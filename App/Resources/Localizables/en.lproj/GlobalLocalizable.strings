@@ -1,0 +1,31 @@
+"global.actions.ok" = "Ok";
+
+"global.actions.no" = "No";
+
+"global.actions.cancel" = "Cancel";
+
+"global.actions.done" = "Done";
+
+"global.actions.search" = "Search";
+
+"global.actions.add" = "Add";
+
+"global.actions.close" = "Close";
+
+"global.actions.login" = "Login";
+
+"global.actions.logout" = "Logout";
+
+"global.actions.confirm" = "Confirm";
+
+"global.titles.error" = "Error";
+
+"global.actions.edit" = "Edit";
+
+"global.actions.delete" = "Delete";
+
+"global.titles.warning" = "Warning";
+
+"global.alert.logout" = "Are you sure you need to logout?";
+
+"global.actions.save" = "Save";

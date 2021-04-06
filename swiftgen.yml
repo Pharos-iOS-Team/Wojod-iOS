@@ -1,0 +1,27 @@
+ib:
+  inputs:
+    - App/Sources
+  outputs:
+    - templateName: scenes-swift4
+      output: App/Generated/SwiftGen/Storyboards.swift
+xcassets:
+  inputs:
+    - App/Resources/Images.xcassets
+    - App/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift4
+      output: App/Generated/SwiftGen/Assets.swift
+fonts:
+  inputs: App/Resources/Fonts
+  outputs:
+    templateName: swift4
+    output: App/Generated/SwiftGen/Fonts.swift
+strings:
+  - inputs: App/Resources/Localizables/en.lproj/Localizable.strings
+    outputs:
+      templatePath: dn-structured-swift5.stencil
+      output: App/Generated/SwiftGen/Strings/Strings.swift
+  - inputs: App/Resources/Localizables/en.lproj/GlobalLocalizable.strings
+    outputs:
+      templatePath: extension-structured-swift5.stencil
+      output: App/Generated/SwiftGen/Strings/GlobalStrings.swift

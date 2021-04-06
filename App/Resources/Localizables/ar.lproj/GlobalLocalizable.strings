@@ -1,0 +1,29 @@
+"global.actions.ok" = "حسنا";
+
+"global.actions.no" = "No";
+
+"global.actions.cancel" = "الغاء";
+
+"global.actions.done" = "تم";
+
+"global.actions.search" = "بحث";
+
+"global.actions.add" = "Add";
+
+"global.actions.login" = "تسجيل الدخول";
+
+"global.actions.logout" = "تسجيل خروج";
+
+"global.actions.confirm" = "تأكيد";
+
+"global.titles.error" = "خطأ";
+
+"global.actions.edit" = "تعديل";
+
+"global.actions.delete" = "Delete";
+
+"global.titles.warning" = "Warning";
+
+"global.alerts.logout" = "هل انت متاكد انك تريد تسجيل خروج؟";
+
+"global.actions.save" = "حفظ";

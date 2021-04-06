@@ -1,0 +1,29 @@
+// Copyright © 2020 Pharos Solutions. All rights reserved.
+
+import Foundation
+import UIKit
+
+class ScreensFlowConfigurationAppDelegate: AppDelegateType {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        navigateToMainScreen()
+        return true
+    }
+
+    func navigateToMainScreen() {
+        guard
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let window = appDelegate.window
+        else {
+            return
+        }
+        UIView.appearance().semanticContentAttribute = Language.semanticContent
+        UINavigationBar.appearance().semanticContentAttribute = Language.semanticContent
+
+        if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
+            // Todo: Navigate To Main Screen if token is there. Set window.rootViewController
+        } else {
+            // Todo: Navigate To login screen if token is invalid. Set window.rootViewController
+        }
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}, completion: nil)
+    }
+}
