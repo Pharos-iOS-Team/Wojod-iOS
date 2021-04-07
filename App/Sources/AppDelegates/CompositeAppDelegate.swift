@@ -19,7 +19,7 @@ enum AppDelegateFactory {
                 ScreensFlowConfigurationAppDelegate(),
                 ThirdPartiesConfiguratorAppDelegate(),
                 ReachabilityAppDelegate(),
-                NotificationConfigurationAppDelegate(),
+                NotificationConfigurationAppDelegate()
             ]
         )
     }

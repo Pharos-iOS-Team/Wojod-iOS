@@ -6,7 +6,7 @@ import Moya
 class NotificationsApiClient {
     let notificationsProvider = MoyaProvider<NotificationsTarget>()
 
-    func getNotifications(page: String, completionHandler: @escaping (Response?, String?) -> Void) {
+    func fetchNotifications(page: String, completionHandler: @escaping (Response?, String?) -> Void) {
         notificationsProvider.request(.getNotifications(page: page)) { result in
             switch result {
             case .success(let response):

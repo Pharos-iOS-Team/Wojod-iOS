@@ -1,0 +1,8 @@
+// Copyright © 2021 Pharos Solutions. All rights reserved.
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+ROOT_URL = https:/$()/drawneat-staging.pharos-solutions.de/api/client/v1
+BASE_URL = https:/$()/drawneat-staging.pharos-solutions.de
+CHAT_BASE_URL = wss:/$()/drawneat-staging.pharos-solutions.de/cable

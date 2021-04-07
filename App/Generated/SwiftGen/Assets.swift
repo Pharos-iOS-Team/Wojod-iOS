@@ -26,6 +26,14 @@ internal enum Asset {
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let backIcon = ImageAsset(name: "BackIcon")
+    internal static let excelExtension = ImageAsset(name: "ExcelExtension")
+    internal static let imageExtension = ImageAsset(name: "ImageExtension")
+    internal static let pdfExtension = ImageAsset(name: "PDFExtension")
+    internal static let unknownExtension = ImageAsset(name: "UnknownExtension")
+    internal static let videoExtension = ImageAsset(name: "VideoExtension")
+    internal static let wordExtension = ImageAsset(name: "WordExtension")
+    internal static let signUpTitlePageOneAr = ImageAsset(name: "SignUpTitlePageOneAr")
+    internal static let signUpTitlePageOneEn = ImageAsset(name: "SignUpTitlePageOneEn")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

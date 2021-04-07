@@ -22,11 +22,11 @@ class NotificationConfigurationAppDelegate: AppDelegateType {
                 analytics.log(error: error.localizedDescription)
             }
             guard granted else { return }
-            self?.getNotificationSettings()
+            self?.fetchNotificationSettings()
         }
     }
 
-    func getNotificationSettings() {
+    func fetchNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {

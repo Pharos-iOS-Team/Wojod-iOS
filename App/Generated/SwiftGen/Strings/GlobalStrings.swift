@@ -12,6 +12,8 @@ import Foundation
 extension L10n {
 
   internal enum Global {
+    /// Please try again later
+    internal static let message = L10n.tr("GlobalLocalizable", "global.message.")
     internal enum Actions {
       /// Add
       internal static let add = L10n.tr("GlobalLocalizable", "global.actions.add")
@@ -40,13 +42,19 @@ extension L10n {
       /// Search
       internal static let search = L10n.tr("GlobalLocalizable", "global.actions.search")
     }
-    internal enum Alert {
+    internal enum Alerts {
+      /// Something went wrong while preparing the data
+      internal static let dataPreparationError = L10n.tr("GlobalLocalizable", "global.alerts.data_preparation_error")
       /// Are you sure you need to logout?
-      internal static let logout = L10n.tr("GlobalLocalizable", "global.alert.logout")
+      internal static let logout = L10n.tr("GlobalLocalizable", "global.alerts.logout")
+      /// Something went wrong, check your connection and try again in a while
+      internal static let somethingWentWrong = L10n.tr("GlobalLocalizable", "global.alerts.something_went_wrong")
     }
     internal enum Titles {
       /// Error
       internal static let error = L10n.tr("GlobalLocalizable", "global.titles.error")
+      /// Settings
+      internal static let settings = L10n.tr("GlobalLocalizable", "global.titles.settings")
       /// Warning
       internal static let warning = L10n.tr("GlobalLocalizable", "global.titles.warning")
     }

@@ -6,9 +6,10 @@ enum ErrorType: Equatable {
     case validationError
     case serverSideError(statusCode: Int? = nil)
     case connectivityError
+    case parsingError
 }
 
-struct CustomError: Error {
+struct WJError: Error {
     var type: ErrorType
     var message: String
 

@@ -4,15 +4,6 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func initActivityIndicator(activityIndicator: UIActivityIndicatorView, center: CGPoint, scaleBy: CGFloat, view: UIView) {
-        activityIndicator.transform = CGAffineTransform(scaleX: scaleBy, y: scaleBy)
-        activityIndicator.hidesWhenStopped = true
-        addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-
     func setBorder(color: UIColor, width: CGFloat, cornerRadius: CGFloat) {
         layer.borderColor = color.cgColor
         layer.borderWidth = width
@@ -55,16 +46,6 @@ extension UIView {
         layer.cornerRadius = radius
     }
 
-    func setVerticalGradientEffect(with gradient: CAGradientLayer, firstColor: UIColor, secondColor: UIColor) {
-        gradient.frame = bounds
-        clipsToBounds = true
-        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.locations = [-0.75, 1.85]
-        gradient.colors = [firstColor.cgColor, secondColor.cgColor]
-        layer.insertSublayer(gradient, at: 0)
-    }
-
     func makeRounded() {
         layer.masksToBounds = true
         layer.cornerRadius = bounds.height / 2
@@ -103,16 +84,5 @@ extension UIView {
 extension UIView {
     func addSubviews(_ subviews: UIView...) {
         subviews.forEach { addSubview($0) }
-    }
-}
-
-extension UIView {
-    func setShadow(color: UIColor) {
-        layer.masksToBounds = false
-        layer.shadowColor = color.cgColor
-        layer.shadowRadius = 10
-        layer.shadowOpacity = 1
-        let shadowPathRect = CGRect(x: 0, y: bounds.maxY - layer.shadowRadius, width: bounds.width, height: layer.shadowRadius)
-        layer.shadowPath = UIBezierPath(rect: shadowPathRect).cgPath
     }
 }

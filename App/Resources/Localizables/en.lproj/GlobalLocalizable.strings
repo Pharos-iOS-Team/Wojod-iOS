@@ -26,6 +26,14 @@
 
 "global.titles.warning" = "Warning";
 
-"global.alert.logout" = "Are you sure you need to logout?";
+"global.alerts.logout" = "Are you sure you need to logout?";
 
 "global.actions.save" = "Save";
+
+"global.titles.settings" = "Settings";
+
+"global.message." = "Please try again later";
+
+"global.alerts.something_went_wrong" = "Something went wrong, check your connection and try again in a while";
+
+"global.alerts.data_preparation_error" = "Something went wrong while preparing the data";

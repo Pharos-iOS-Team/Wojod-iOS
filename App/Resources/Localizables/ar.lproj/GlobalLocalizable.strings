@@ -27,3 +27,9 @@
 "global.alerts.logout" = "هل انت متاكد انك تريد تسجيل خروج؟";
 
 "global.actions.save" = "حفظ";
+
+"global.titles.settings" = "الإعدادات";
+
+"global.alerts.something_went_wrong" = "Something went wrong, check your connection and try again in a while";
+
+"global.alerts.data_preparation_error" = "Something went wrong while preparing the data";

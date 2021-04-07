@@ -16,7 +16,7 @@ extension TargetType {
             "uid": Defaults[\.uidKey] ?? "",
             "access-token": KeychainHandler.shared.userToken ?? "",
             "Accept": "application/json",
-            "lang": Language.currentLanguage.rawValue,
+            "lang": Language.currentLanguage.rawValue
         ]
     }
 

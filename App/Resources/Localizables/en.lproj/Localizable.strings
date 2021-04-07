@@ -1,7 +1,8 @@
-/* 
-  Localizable.strings
-  Wojood
+"shared.alerts.camera.title" = "Camera Permission";
 
-  Created by Ramy Rizkalla on 4/6/21.
-  Copyright © 2021 Pharos Solutions. All rights reserved.
-*/
+"shared.alerts.camera.message" = "Wojood need to access camera";
+
+"shared.alerts.photos.title" = "Gallery Permission";
+
+"shared.alerts.photos.message" = "Wojood need to access Photos";
+

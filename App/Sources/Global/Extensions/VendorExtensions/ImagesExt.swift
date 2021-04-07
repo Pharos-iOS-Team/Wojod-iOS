@@ -15,13 +15,13 @@ extension Images {
     }
 }
 
-//extension Images {
-//    static var freelancerOnboardingHeader: UIImage {
-//        switch Language.currentLanguage {
-//        case .english:
-//            return freelancerOnboardingHeaderEn.image
-//        case .arabic:
-//            return freelancerOnboardingHeaderAr.image
-//        }
-//    }
-//}
+extension Images {
+    static var signUpTitlePageOne: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return signUpTitlePageOneEn.image
+        case .arabic:
+            return signUpTitlePageOneAr.image
+        }
+    }
+}

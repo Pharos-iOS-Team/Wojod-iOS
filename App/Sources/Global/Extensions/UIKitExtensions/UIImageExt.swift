@@ -2,4 +2,4 @@
 
 import UIKit
 
-//extension UIImage: Attachable { }
+extension UIImage: Attachable { }
