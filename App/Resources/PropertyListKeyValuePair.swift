@@ -7,11 +7,9 @@ struct PropertyListKeyValuePair: Decodable {
         case baseUrl = "BASE_URL"
         case rootUrl = "ROOT_URL"
         case chatBaseUrl = "CHAT_BASE_URL"
-        case webUrl = "WEB_URL"
     }
 
     var baseUrl: String
-    var webUrl: String
     var chatBaseUrl: String
     var rootUrl: String
 }

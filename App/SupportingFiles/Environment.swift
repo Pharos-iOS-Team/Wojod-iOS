@@ -13,21 +13,12 @@ enum Environment {
         return url
     }()
 
-    static let webURL: URL = {
-        guard let url = URL(string: propertyListKeyValuePair.webUrl) else { fatalError("web URL is invalid") }
-        return url
-    }()
-
     static let baseURLString: String = {
         return propertyListKeyValuePair.baseUrl
     }()
 
     static let chatBaseURLString: String = {
         return propertyListKeyValuePair.chatBaseUrl
-    }()
-
-    static let webBaseURLString: String = {
-        return propertyListKeyValuePair.webUrl
     }()
 
     static var imageUrl: (String) -> URL = { imagePath in
