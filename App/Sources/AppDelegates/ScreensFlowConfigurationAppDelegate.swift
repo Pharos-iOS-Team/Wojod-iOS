@@ -22,7 +22,7 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
             // Todo: Navigate To Main Screen if token is there. Set window.rootViewController
         } else {
-            // Todo: Navigate To login screen if token is invalid. Set window.rootViewController
+            window.rootViewController = StoryboardScene.Main.viewController.instantiate()
         }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}, completion: nil)
     }

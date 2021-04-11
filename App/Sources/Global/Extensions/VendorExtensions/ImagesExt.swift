@@ -3,6 +3,7 @@
 import UIKit
 
 typealias Images = Asset.Images
+typealias Colors = Asset.Colors
 
 extension Images {
     static var localizedBackButton: UIImage {
@@ -11,6 +12,14 @@ extension Images {
             return backIcon.image
         case .arabic:
             return backIcon.image.withHorizontallyFlippedOrientation()
+        }
+    }
+    static var localizedDisclosureIndicatorButton: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return disclosureIndicator.image
+        case .arabic:
+            return disclosureIndicator.image.withHorizontallyFlippedOrientation()
         }
     }
 }

@@ -53,7 +53,6 @@
 		7723AE0F261C7EDD007C0B97 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */; };
 		7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */; };
 		7723AE19261C7FBD007C0B97 /* dn-structured-swift5.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */; };
-		7723AE32261C8184007C0B97 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE31261C8184007C0B97 /* Colors.xcassets */; };
 		7723AE3B261C8261007C0B97 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE39261C8260007C0B97 /* Strings.swift */; };
 		7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE3A261C8260007C0B97 /* GlobalStrings.swift */; };
 		7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */; };
@@ -98,6 +97,19 @@
 		778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */; };
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
+		BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC98F3E32623219C00032AC6 /* Colors.xcassets */; };
+		BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3EB2623272E00032AC6 /* SendButton.swift */; };
+		BC98F3F72623370500032AC6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3F62623370500032AC6 /* AlertView.swift */; };
+		BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC98F3FB2623370F00032AC6 /* AlertView.xib */; };
+		BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F412262354E000032AC6 /* Inter-Light.ttf */; };
+		BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F413262354E000032AC6 /* Inter-Thin.ttf */; };
+		BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F414262354E100032AC6 /* Inter-SemiBold.ttf */; };
+		BC98F41E262354E100032AC6 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F415262354E100032AC6 /* Inter-Bold.ttf */; };
+		BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F416262354E100032AC6 /* Inter-Regular.ttf */; };
+		BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F417262354E100032AC6 /* Inter-ExtraBold.ttf */; };
+		BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F418262354E100032AC6 /* Inter-Medium.ttf */; };
+		BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F419262354E100032AC6 /* Inter-Black.ttf */; };
+		BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,7 +171,6 @@
 		7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = "extension-structured-swift5.stencil"; sourceTree = SOURCE_ROOT; };
 		7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dn-structured-swift5.stencil"; sourceTree = SOURCE_ROOT; };
-		7723AE31261C8184007C0B97 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7723AE39261C8260007C0B97 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		7723AE3A261C8260007C0B97 /* GlobalStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStrings.swift; sourceTree = "<group>"; };
 		7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventLogger.swift; sourceTree = "<group>"; };
@@ -205,6 +216,19 @@
 		778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertActionExt.swift; sourceTree = "<group>"; };
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		BC98F3E32623219C00032AC6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		BC98F3EB2623272E00032AC6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		BC98F3F62623370500032AC6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		BC98F3FB2623370F00032AC6 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		BC98F412262354E000032AC6 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		BC98F413262354E000032AC6 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
+		BC98F414262354E100032AC6 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		BC98F415262354E100032AC6 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		BC98F416262354E100032AC6 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		BC98F417262354E100032AC6 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		BC98F418262354E100032AC6 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		BC98F419262354E100032AC6 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
+		BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,7 +352,7 @@
 				7723AE2D261C815E007C0B97 /* Fonts */,
 				7723ADD1261C73AE007C0B97 /* Localizables */,
 				7723ACE3261C5E6B007C0B97 /* Images.xcassets */,
-				7723AE31261C8184007C0B97 /* Colors.xcassets */,
+				BC98F3E32623219C00032AC6 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -365,6 +389,7 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
+				BC98F3D426231C5900032AC6 /* UIComponents */,
 				7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */,
 				7723ACE0261C5E69007C0B97 /* Main.storyboard */,
 				778E727C261DCA9A009D7B35 /* ViewController.swift */,
@@ -448,6 +473,15 @@
 		7723AE2D261C815E007C0B97 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				BC98F419262354E100032AC6 /* Inter-Black.ttf */,
+				BC98F415262354E100032AC6 /* Inter-Bold.ttf */,
+				BC98F417262354E100032AC6 /* Inter-ExtraBold.ttf */,
+				BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */,
+				BC98F412262354E000032AC6 /* Inter-Light.ttf */,
+				BC98F418262354E100032AC6 /* Inter-Medium.ttf */,
+				BC98F416262354E100032AC6 /* Inter-Regular.ttf */,
+				BC98F414262354E100032AC6 /* Inter-SemiBold.ttf */,
+				BC98F413262354E000032AC6 /* Inter-Thin.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -536,6 +570,32 @@
 				7723ADB2261C716D007C0B97 /* NotificationsTarget.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		BC98F3D426231C5900032AC6 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				BC98F3F5262336F800032AC6 /* AlertView */,
+				BC98F3D826231DF900032AC6 /* SendButton */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		BC98F3D826231DF900032AC6 /* SendButton */ = {
+			isa = PBXGroup;
+			children = (
+				BC98F3EB2623272E00032AC6 /* SendButton.swift */,
+			);
+			path = SendButton;
+			sourceTree = "<group>";
+		};
+		BC98F3F5262336F800032AC6 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				BC98F3F62623370500032AC6 /* AlertView.swift */,
+				BC98F3FB2623370F00032AC6 /* AlertView.xib */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -676,15 +736,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				7723AE0F261C7EDD007C0B97 /* .swiftlint.yml in Resources */,
+				BC98F41E262354E100032AC6 /* Inter-Bold.ttf in Resources */,
 				7723AE19261C7FBD007C0B97 /* dn-structured-swift5.stencil in Resources */,
+				BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
+				BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */,
+				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
+				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
 				778E7288261DCB4C009D7B35 /* GoogleService-Info.plist in Resources */,
+				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
+				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
+				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
+				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
 				7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */,
+				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
-				7723AE32261C8184007C0B97 /* Colors.xcassets in Resources */,
+				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
 				7723AE0E261C7EDD007C0B97 /* .gitmodules in Resources */,
 				7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */,
 			);
@@ -723,7 +793,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen > /dev/null; then\n    swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
+			shellScript = "if which swiftgen > /dev/null; then\n   arch -x86_64 swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
 		7723AE26261C808C007C0B97 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -741,7 +811,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  arch -x86_64 swiftlint\nelse\n  echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -799,6 +869,7 @@
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
+				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
@@ -809,6 +880,7 @@
 				778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */,
 				778E72DA261DF6C4009D7B35 /* ModelDecodable.swift in Sources */,
 				7723ADAE261C712E007C0B97 /* NotificationsApiClient.swift in Sources */,
+				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,
 				7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */,
 				778E724F261DC2D4009D7B35 /* UILabelExt.swift in Sources */,
 				7723ADFB261C787B007C0B97 /* DefaultsKeysExt.swift in Sources */,

@@ -22,10 +22,14 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
+    internal static let errorAlertBackgroundColor = ColorAsset(name: "errorAlertBackgroundColor")
+    internal static let errorAlertLabelColor = ColorAsset(name: "errorAlertLabelColor")
+    internal static let sendButtonColor = ColorAsset(name: "sendButtonColor")
   }
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let backIcon = ImageAsset(name: "BackIcon")
+    internal static let errorSymbol = ImageAsset(name: "errorSymbol")
     internal static let excelExtension = ImageAsset(name: "ExcelExtension")
     internal static let imageExtension = ImageAsset(name: "ImageExtension")
     internal static let pdfExtension = ImageAsset(name: "PDFExtension")
@@ -34,6 +38,7 @@ internal enum Asset {
     internal static let wordExtension = ImageAsset(name: "WordExtension")
     internal static let signUpTitlePageOneAr = ImageAsset(name: "SignUpTitlePageOneAr")
     internal static let signUpTitlePageOneEn = ImageAsset(name: "SignUpTitlePageOneEn")
+    internal static let disclosureIndicator = ImageAsset(name: "disclosureIndicator")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

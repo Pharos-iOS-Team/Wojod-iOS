@@ -7,6 +7,10 @@ extension UIButton {
         setImage(imageAsset.image, for: state)
     }
 
+    func setImage(_ image: UIImage, state: UIControl.State = .normal) {
+        setImage(image, for: state)
+    }
+
     func setTitle(_ title: String?, state: UIControl.State = .normal) {
         setTitle(title, for: .normal)
     }
