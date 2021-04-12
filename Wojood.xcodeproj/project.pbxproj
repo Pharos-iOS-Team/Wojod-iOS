@@ -97,6 +97,9 @@
 		778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */; };
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
+		BC98F42F262454C300032AC6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC98F42E262454C300032AC6 /* Login.storyboard */; };
+		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
+		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC98F3E32623219C00032AC6 /* Colors.xcassets */; };
 		BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3EB2623272E00032AC6 /* SendButton.swift */; };
 		BC98F3F72623370500032AC6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3F62623370500032AC6 /* AlertView.swift */; };
@@ -216,6 +219,9 @@
 		778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertActionExt.swift; sourceTree = "<group>"; };
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		BC98F42E262454C300032AC6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC98F3E32623219C00032AC6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BC98F3EB2623272E00032AC6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 		BC98F3F62623370500032AC6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -389,6 +395,7 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
+				BC98F42D262454A000032AC6 /* Login */,
 				BC98F3D426231C5900032AC6 /* UIComponents */,
 				7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */,
 				7723ACE0261C5E69007C0B97 /* Main.storyboard */,
@@ -572,7 +579,17 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		BC98F3D426231C5900032AC6 /* UIComponents */ = {
+		BC98F42D262454A000032AC6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BC98F42E262454C300032AC6 /* Login.storyboard */,
+				BC98F433262454D800032AC6 /* LoginViewController.swift */,
+				BC98F438262454E400032AC6 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				BC98F3F5262336F800032AC6 /* AlertView */,
@@ -598,6 +615,7 @@
 			path = AlertView;
 			sourceTree = "<group>";
 		};
+
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -757,6 +775,7 @@
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
 				7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */,
+				BC98F42F262454C300032AC6 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +847,7 @@
 				7723ADC2261C728E007C0B97 /* Environment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
+				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */,
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
@@ -864,6 +884,7 @@
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
 				778E725E261DC2D4009D7B35 /* UITableViewExt.swift in Sources */,
 				7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */,
+				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
 				778E7269261DC398009D7B35 /* ImagesExt.swift in Sources */,
 				778E724E261DC2D4009D7B35 /* UIDeviceExt.swift in Sources */,
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
