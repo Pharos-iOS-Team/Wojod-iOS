@@ -20,21 +20,26 @@ class AlertView: UIView, NibLoadable {
         }
     }
 
+    var message: String? {
+        didSet {
+            errorLabel.text = message
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = Colors.errorAlertBackgroundColor.color
-        layer.cornerRadius = Constants.cornerRadius
+        setBackGroundColorAndCornerRadius()
         try? loadFromNib()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        backgroundColor = Colors.errorAlertBackgroundColor.color
-        layer.cornerRadius = Constants.cornerRadius
+        setBackGroundColorAndCornerRadius()
         try? loadFromNib()
     }
 
-    func setErrorMessage(message: String?) {
-        errorLabel.text = message
+    private func setBackGroundColorAndCornerRadius() {
+        backgroundColor = Colors.errorAlertBackgroundColor.color
+        layer.cornerRadius = Constants.cornerRadius
     }
 }
