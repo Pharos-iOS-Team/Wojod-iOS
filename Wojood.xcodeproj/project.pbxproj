@@ -110,6 +110,7 @@
 		BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F418262354E100032AC6 /* Inter-Medium.ttf */; };
 		BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F419262354E100032AC6 /* Inter-Black.ttf */; };
 		BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */; };
+		E85B7A9626243105009122FB /* Splash.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E85B7A9526243105009122FB /* Splash.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,7 @@
 		BC98F418262354E100032AC6 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		BC98F419262354E100032AC6 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		E85B7A9526243105009122FB /* Splash.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Splash.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
+				E85B7A9526243105009122FB /* Splash.pdf */,
 				7723ACD9261C5E69007C0B97 /* App */,
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
@@ -757,6 +760,7 @@
 				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
 				7723AE0E261C7EDD007C0B97 /* .gitmodules in Resources */,
 				7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */,
+				E85B7A9626243105009122FB /* Splash.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
