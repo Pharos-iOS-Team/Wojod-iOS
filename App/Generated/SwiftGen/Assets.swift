@@ -39,6 +39,7 @@ internal enum Asset {
     internal static let signUpTitlePageOneAr = ImageAsset(name: "SignUpTitlePageOneAr")
     internal static let signUpTitlePageOneEn = ImageAsset(name: "SignUpTitlePageOneEn")
     internal static let disclosureIndicator = ImageAsset(name: "disclosureIndicator")
+    internal static let splash = ImageAsset(name: "Splash")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
