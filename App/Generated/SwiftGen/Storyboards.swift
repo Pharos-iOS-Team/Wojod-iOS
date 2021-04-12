@@ -21,6 +21,8 @@ internal enum StoryboardScene {
     internal static let storyboardName = "Main"
 
     internal static let initialScene = InitialSceneType<Wojood.ViewController>(storyboard: Main.self)
+
+    internal static let viewController = SceneType<Wojood.ViewController>(storyboard: Main.self, identifier: "ViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
