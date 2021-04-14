@@ -4,6 +4,10 @@ import MobileCoreServices
 import UIKit
 
 extension String {
+    var isValid: Bool {
+        return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     var isValidURL: Bool {
         if let url = NSURL(string: self) {
             return UIApplication.shared.canOpenURL(url as URL)

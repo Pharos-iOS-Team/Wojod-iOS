@@ -5,3 +5,21 @@
 "shared.alerts.photos.title" = "Gallery Permission";
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
+
+"login.signIn" = "تسجيل الدخول";
+
+"login.mobileNumber" = "رقم الهاتف";
+
+"login.password" = "كلمة المرور";
+
+"login.forgotPassword" = "نسيت كلمة المرور؟";
+
+"login.noAccount" = "ليس لديك حساب؟  سجل الآن";
+
+"login.mobileNumberIsEmpty" = "برجاء إدخال رقم الهاتف المحمول";
+
+"login.passwordIsEmpty" = "برجاء ادخال كلمة المرور";
+
+"login.bothAreEmpty" = "برجاء ادخال رقم الهاتف و كلمة المرور";
+
+"login.invalidCredentials" = "رقم الهاتف المحمول أو كلمة المرور التي تم إدخالها غير صحيحة";

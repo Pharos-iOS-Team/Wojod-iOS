@@ -20,9 +20,9 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         UINavigationBar.appearance().semanticContentAttribute = Language.semanticContent
 
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
-            // Todo: Navigate To Main Screen if token is there. Set window.rootViewController
+            window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         } else {
-            window.rootViewController = StoryboardScene.Main.viewController.instantiate()
+            window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}, completion: nil)
     }

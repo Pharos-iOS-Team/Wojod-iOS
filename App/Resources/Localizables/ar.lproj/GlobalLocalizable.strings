@@ -22,7 +22,7 @@
 
 "global.actions.delete" = "Delete";
 
-"global.titles.warning" = "Warning";
+"global.titles.warning" = "تنبيه";
 
 "global.alerts.logout" = "هل انت متاكد انك تريد تسجيل خروج؟";
 
