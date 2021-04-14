@@ -17,6 +17,11 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
   }
+  internal enum Login: StoryboardType {
+    internal static let storyboardName = "Login"
+
+    internal static let loginViewController = SceneType<Wojood.LoginViewController>(storyboard: Login.self, identifier: "LoginViewController")
+  }
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 

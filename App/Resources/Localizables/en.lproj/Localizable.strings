@@ -6,3 +6,20 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
+"login.signIn" = "Sign in";
+
+"login.mobileNumber" = "Mobile number";
+
+"login.password" = "Password";
+
+"login.forgotPassword" = "Forgot password?";
+
+"login.noAccount" = "No account? Sign up";
+
+"login.mobileNumberIsEmpty" = "Please enter the mobile number";
+
+"login.passwordIsEmpty" = "Please enter the password";
+
+"login.bothAreEmpty" = "Please enter the mobile number and password";
+
+"login.invalidCredentials" = "Mobile number or password entered are not correct";

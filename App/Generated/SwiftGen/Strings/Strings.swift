@@ -11,6 +11,45 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum Login {
+    /// Please enter the mobile number and password
+    internal static var bothAreEmpty: String {
+        return L10n.tr("Localizable", "login.bothAreEmpty")
+      }
+    /// Forgot password?
+    internal static var forgotPassword: String {
+        return L10n.tr("Localizable", "login.forgotPassword")
+      }
+    /// Mobile number or password entered are not correct
+    internal static var invalidCredentials: String {
+        return L10n.tr("Localizable", "login.invalidCredentials")
+      }
+    /// Mobile number
+    internal static var mobileNumber: String {
+        return L10n.tr("Localizable", "login.mobileNumber")
+      }
+    /// Please enter the mobile number
+    internal static var mobileNumberIsEmpty: String {
+        return L10n.tr("Localizable", "login.mobileNumberIsEmpty")
+      }
+    /// No account? Sign up
+    internal static var noAccount: String {
+        return L10n.tr("Localizable", "login.noAccount")
+      }
+    /// Password
+    internal static var password: String {
+        return L10n.tr("Localizable", "login.password")
+      }
+    /// Please enter the password
+    internal static var passwordIsEmpty: String {
+        return L10n.tr("Localizable", "login.passwordIsEmpty")
+      }
+    /// Sign in
+    internal static var signIn: String {
+        return L10n.tr("Localizable", "login.signIn")
+      }
+  }
+
   internal enum Shared {
     internal enum Alerts {
       internal enum Camera {

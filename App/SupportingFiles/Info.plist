@@ -2,19 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Inter-Medium.ttf</string>
-		<string>Inter-Regular.ttf</string>
-		<string>Inter-Black.ttf</string>
-		<string>Inter-Bold.ttf</string>
-	</array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>BASE_URL</key>
-	<string>https://drawneat-staging.pharos-solutions.de</string>
-    <key>ROOT_URL</key>
-    <string>https://drawneat-staging.pharos-solutions.de/api/client/v1</string>
-    <key>CHAT_BASE_URL</key>
-    <string>wss://drawneat-staging.pharos-solutions.de/cable</string>
+	<string>http://courses.pharos-solutions.de</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -31,8 +29,19 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CHAT_BASE_URL</key>
+	<string>wss://drawneat-staging.pharos-solutions.de/cable</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>ROOT_URL</key>
+	<string>http://courses.pharos-solutions.de/api/student/v1</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

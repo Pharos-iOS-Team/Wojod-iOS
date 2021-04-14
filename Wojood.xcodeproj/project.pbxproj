@@ -97,9 +97,7 @@
 		778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */; };
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
-		BC98F42F262454C300032AC6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC98F42E262454C300032AC6 /* Login.storyboard */; };
-		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
-		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
+		BC5ED0B52626E34800774E54 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* User.swift */; };
 		BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC98F3E32623219C00032AC6 /* Colors.xcassets */; };
 		BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3EB2623272E00032AC6 /* SendButton.swift */; };
 		BC98F3F72623370500032AC6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3F62623370500032AC6 /* AlertView.swift */; };
@@ -113,6 +111,12 @@
 		BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F418262354E100032AC6 /* Inter-Medium.ttf */; };
 		BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F419262354E100032AC6 /* Inter-Black.ttf */; };
 		BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */; };
+		BC98F42F262454C300032AC6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC98F42E262454C300032AC6 /* Login.storyboard */; };
+		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
+		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
+		BC9E08F62625CD4C00D24C69 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08F52625CD4C00D24C69 /* LoginModel.swift */; };
+		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
+		BC9E09042625DAA200D24C69 /* LoginApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E09032625DAA200D24C69 /* LoginApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,9 +223,7 @@
 		778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertActionExt.swift; sourceTree = "<group>"; };
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		BC98F42E262454C300032AC6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BC5ED0B42626E34800774E54 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BC98F3E32623219C00032AC6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BC98F3EB2623272E00032AC6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 		BC98F3F62623370500032AC6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,12 @@
 		BC98F418262354E100032AC6 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		BC98F419262354E100032AC6 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		BC98F41A262354E100032AC6 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		BC98F42E262454C300032AC6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BC9E08F52625CD4C00D24C69 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		BC9E09032625DAA200D24C69 /* LoginApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +415,7 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BC9E08FA2625DA8100D24C69 /* Login */,
 				778E7235261DC237009D7B35 /* Notifications */,
 				778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */,
 			);
@@ -422,6 +431,7 @@
 				778E72AD261DD4D1009D7B35 /* Attachable.swift */,
 				778E72CB261DD6FF009D7B35 /* FileExtension.swift */,
 				778E72DE261DF9AB009D7B35 /* Result.swift */,
+				BC5ED0B42626E34800774E54 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -579,17 +589,7 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		BC98F42D262454A000032AC6 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				BC98F42E262454C300032AC6 /* Login.storyboard */,
-				BC98F433262454D800032AC6 /* LoginViewController.swift */,
-				BC98F438262454E400032AC6 /* LoginViewModel.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-BC98F3D426231C5900032AC6 /* UIComponents */ = {
+		BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				BC98F3F5262336F800032AC6 /* AlertView */,
@@ -615,7 +615,26 @@ BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			path = AlertView;
 			sourceTree = "<group>";
 		};
-
+		BC98F42D262454A000032AC6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BC98F42E262454C300032AC6 /* Login.storyboard */,
+				BC98F433262454D800032AC6 /* LoginViewController.swift */,
+				BC98F438262454E400032AC6 /* LoginViewModel.swift */,
+				BC9E08F52625CD4C00D24C69 /* LoginModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BC9E08FA2625DA8100D24C69 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BC9E09032625DAA200D24C69 /* LoginApiClient.swift */,
+				BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -839,6 +858,7 @@ BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */,
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
@@ -859,11 +879,14 @@ BC98F3D426231C5900032AC6 /* UIComponents */ = {
 				778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
+				BC5ED0B52626E34800774E54 /* User.swift in Sources */,
+				BC9E09042625DAA200D24C69 /* LoginApiClient.swift in Sources */,
 				778E7254261DC2D4009D7B35 /* URLExt.swift in Sources */,
 				7723AD5D261C65F0007C0B97 /* KeychainHandler.swift in Sources */,
 				778E724C261DC2D4009D7B35 /* UICollectionViewExt.swift in Sources */,
 				7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */,
 				778E7255261DC2D4009D7B35 /* DateFormatterExt.swift in Sources */,
+				BC9E08F62625CD4C00D24C69 /* LoginModel.swift in Sources */,
 				778E72B9261DD666009D7B35 /* CGSizeExt.swift in Sources */,
 				778E72A9261DD1BC009D7B35 /* IndexPathExt.swift in Sources */,
 				7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */,
