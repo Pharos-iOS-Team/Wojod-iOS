@@ -98,6 +98,9 @@
                                                         <state key="normal" title="No account? Sign up">
                                                             <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="signUp:" destination="mUu-uY-ag1" eventType="touchUpInside" id="E4Y-Pm-eGs"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

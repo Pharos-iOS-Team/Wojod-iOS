@@ -69,6 +69,11 @@ class LoginViewController: UIViewController {
     @IBAction private func forgotPassword(_ sender: Any) {
         navigateToForgotPasswordScreen()
     }
+    @IBAction private func signUp(_ sender: UIButton) {
+        let viewCtrl = StoryboardScene.Registration.initialScene.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        self.present(viewCtrl, animated: true, completion: nil)
+    }
 
     private func login() {
         viewModel?.login(

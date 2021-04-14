@@ -1,0 +1,85 @@
+// Copyright © 2021 Pharos Solutions. All rights reserved.
+
+import Foundation
+import Moya
+import SwiftyUserDefaults
+
+internal enum NetworkService {
+    case checkNumber(_ mobileNumber: String)
+    case countries
+    case cities(_ countryName: String)
+    case academicTypes(_ academicLevel: Int)
+    case academicDivisions(_ academicLevel: Int)
+    case batches(_ divisionID: Int)
+    case specializations(_ divisionID: Int)
+    case avatars
+    case signUp(_ userInfo: UserSignupRequest)
+}
+
+extension NetworkService: TargetType {
+    internal var baseURL: URL {
+        guard let url = URL(string: APIConstants.rootURL) else {
+            fatalError("Base URL is not valid")
+        }
+        return url
+    }
+
+    internal var path: String {
+        switch self {
+        case .checkNumber:
+            return APIPaths.checkNumber
+        case .countries:
+            return APIPaths.countries
+        case .cities:
+            return APIPaths.cities
+        case .academicTypes:
+            return APIPaths.academicTypes
+        case .academicDivisions:
+            return APIPaths.academicDivisions
+        case .batches(let divisionID):
+            return APIPaths.academicDivisions + "/\(divisionID)" + APIPaths.batches
+        case .specializations(let divisionID):
+            return APIPaths.academicDivisions + "/\(divisionID)" + APIPaths.specializations
+        case .avatars:
+            return APIPaths.avatars
+        case .signUp:
+            return APIPaths.signUp
+        }
+    }
+
+    internal var method: Moya.Method {
+        switch self {
+        case .checkNumber, .countries, .cities,
+        .academicTypes, .academicDivisions, .batches,
+        .specializations, .avatars:
+            return .get
+        case .signUp:
+            return .post
+        }
+    }
+
+    internal var sampleData: Data {
+        return Data()
+    }
+
+    internal var task: Task {
+        var parameters = [String: Any]()
+        switch self {
+        case .checkNumber(let mobileNumber):
+            return.requestParameters(parameters: ["mobile_number": mobileNumber], encoding: URLEncoding.queryString)
+        case .countries, .batches, .specializations,
+        .avatars:
+            return .requestPlain
+        case .cities(let countryName):
+            return .requestParameters(parameters: ["selected_country": countryName], encoding: URLEncoding.queryString)
+        case .academicTypes(let academicLevel):
+            return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
+        case .academicDivisions(let academicLevel):
+            return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
+        case .signUp(let userInfo):
+            guard let params = userInfo.dictionary else { return .requestPlain }
+            params.forEach { parameters[$0.key] = $0.value }
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        }
+    }
+}

@@ -3,10 +3,10 @@
 import Foundation
 
 struct LoginApiResponseModel: Decodable {
-    var data: User
+    var data: UserDataModel
 }
 
-struct User: Codable {
+struct UserDataModel: Codable {
     var id: Int
     var email: String
     var provider: String

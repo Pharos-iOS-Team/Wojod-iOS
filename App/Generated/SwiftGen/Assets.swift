@@ -22,9 +22,12 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
+    internal static let backgroundLightGreyColor = ColorAsset(name: "backgroundLightGreyColor")
+    internal static let backgroundLightPurple = ColorAsset(name: "backgroundLightPurple")
     internal static let errorAlertBackgroundColor = ColorAsset(name: "errorAlertBackgroundColor")
     internal static let errorAlertLabelColor = ColorAsset(name: "errorAlertLabelColor")
     internal static let informationViewColor = ColorAsset(name: "informationViewColor")
+    internal static let labelGreyColor = ColorAsset(name: "labelGreyColor")
     internal static let sendButtonColor = ColorAsset(name: "sendButtonColor")
     internal static let tabBarColor = ColorAsset(name: "tabBarColor")
   }
@@ -41,8 +44,14 @@ internal enum Asset {
     internal static let coursesLogo = ImageAsset(name: "CoursesLogo")
     internal static let welcomeJohnSignInToContinueCopy = ImageAsset(name: "Welcome John! Sign in to continue Copy")
     internal static let welcome = ImageAsset(name: "Welcome")
+    internal static let path = ImageAsset(name: "Path")
+    internal static let firstMilestone = ImageAsset(name: "FirstMilestone")
+    internal static let fourthMilestone = ImageAsset(name: "FourthMilestone")
+    internal static let secondMilestone = ImageAsset(name: "SecondMilestone")
+    internal static let thirdMilestone = ImageAsset(name: "ThirdMilestone")
     internal static let signUpTitlePageOneAr = ImageAsset(name: "SignUpTitlePageOneAr")
     internal static let signUpTitlePageOneEn = ImageAsset(name: "SignUpTitlePageOneEn")
+    internal static let boyAvatarFaded = ImageAsset(name: "boyAvatarFaded")
     internal static let disclosureIndicator = ImageAsset(name: "disclosureIndicator")
     internal static let gear = ImageAsset(name: "Gear")
     internal static let tick = ImageAsset(name: "Tick")
@@ -57,6 +66,19 @@ internal enum Asset {
     internal static let coursesSelected = ImageAsset(name: "coursesSelected")
     internal static let settings = ImageAsset(name: "settings")
     internal static let settingsSelected = ImageAsset(name: "settingsSelected")
+    internal static let academicInfo = ImageAsset(name: "academicInfo")
+    internal static let addAvatar = ImageAsset(name: "addAvatar")
+    internal static let boyAvatar = ImageAsset(name: "boyAvatar")
+    internal static let girlAvatar = ImageAsset(name: "girlAvatar")
+    internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
+    internal static let letsKnowMore = ImageAsset(name: "letsKnowMore")
+    internal static let location = ImageAsset(name: "location")
+    internal static let nextIcon = ImageAsset(name: "nextIcon")
+    internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
+    internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
+    internal static let small = ImageAsset(name: "small")
+    internal static let unselectedRadioButton = ImageAsset(name: "unselectedRadioButton")
+    internal static let welcomeRegistration = ImageAsset(name: "welcomeRegistration")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
