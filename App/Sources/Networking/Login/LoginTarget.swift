@@ -3,11 +3,6 @@
 import Foundation
 import Moya
 
-struct LoginRequestModel: Encodable {
-    var mobileNumber: String
-    var password: String
-}
-
 enum LoginTarget {
     case login(loginRequestModel: LoginRequestModel)
 }

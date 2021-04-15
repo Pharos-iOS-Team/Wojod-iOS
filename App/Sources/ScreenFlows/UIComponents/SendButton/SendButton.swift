@@ -26,8 +26,6 @@ class SendButton: UIButton {
             titleEdgeInsets = UIEdgeInsets(left: -(bounds.maxX + bounds.midX) / 2)
             imageEdgeInsets = UIEdgeInsets(right: -bounds.maxX)
         }
-        let buttonWidth = frame.width
-        let imageWidth = imageView!.frame.width
         let spacing: CGFloat = 8.0 / 2
         contentEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
     }

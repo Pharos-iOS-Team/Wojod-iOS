@@ -44,6 +44,15 @@ enum Language: String, CaseIterable {
         }
     }
 
+    static var contentHorizontalAlignment: UIControl.ContentHorizontalAlignment {
+        switch currentLanguage {
+        case .english:
+            return .left
+        case .arabic:
+            return .right
+        }
+    }
+
     static var textAlignment: NSTextAlignment {
         switch currentLanguage {
         case .english:

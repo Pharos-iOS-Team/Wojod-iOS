@@ -14,24 +14,24 @@ class LoginViewModel {
         return mobileNumber.isValid && password.isValid
     }
 
-    func setMobileNumberAndPassword(mobileNumber: String?, password: String?) {
+    func login(mobileNumber: String?, password: String?) {
         guard let number = mobileNumber, let password = password else { return }
         self.mobileNumber = number
         self.password = password
-        if number.isValid && password.isValid {
-            model.login(mobileNumber: number, password: password) { result in
-                switch result {
-                case .success(let user as LoginApiResponseModel):
-                    self.successHandler?()
-                case .failure(let error):
-                    self.errorHandler?(error)
-                default:
-                    return
-                }
-            }
-        } else {
+        guard number.isValid && password.isValid else {
             let error = WJError(type: .validationError, message: getAlertMessage())
             errorHandler?(error)
+            return
+        }
+        model.login(mobileNumber: number, password: password) { result in
+            switch result {
+            case .success(let user as LoginApiResponseModel):
+                self.successHandler?()
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
         }
     }
 
