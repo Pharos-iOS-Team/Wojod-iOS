@@ -52,6 +52,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction private func login(_ sender: SendButton) {
+        alertView.isHidden = true
         login()
     }
 
@@ -78,7 +79,8 @@ class LoginViewController: UIViewController {
 
     private func handleLoginSuccess() {
         viewModel?.successHandler = {
-            // TODO: Navigate To Main Screen.
+            let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
+            self.present(successViewCtrl, animated: true, completion: nil)
         }
     }
 }
