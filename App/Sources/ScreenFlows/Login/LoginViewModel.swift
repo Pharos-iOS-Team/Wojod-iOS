@@ -37,9 +37,9 @@ class LoginViewModel {
 
     func getAlertMessage() -> String {
         if mobileNumber.isValid && !password.isValid {
-            return L10n.Login.mobileNumberIsEmpty
-        } else if !mobileNumber.isValid && password.isValid {
             return L10n.Login.passwordIsEmpty
+        } else if !mobileNumber.isValid && password.isValid {
+            return L10n.Login.mobileNumberIsEmpty
         } else {
             return L10n.Login.bothAreEmpty
         }
