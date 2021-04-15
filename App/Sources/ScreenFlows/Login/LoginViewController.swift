@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
     }
     @IBOutlet private var alertView: AlertView! {
         didSet {
-            alertView.isHidden = true
+            hideAlertView()
         }
     }
     @IBOutlet private var mobileNumberTextField: UITextField! {
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction private func login(_ sender: SendButton) {
-        alertView.isHidden = true
+        hideAlertView()
         login()
     }
 
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
         viewModel?.errorHandler = { [weak self] error in
             switch error.type {
             case .validationError:
-                self?.alertView.isHidden = false
+                self?.showAlertView()
                 self?.alertView.message = error.message
             default:
                 guard let self = self else { return }
@@ -82,5 +82,13 @@ class LoginViewController: UIViewController {
             let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
             self.present(successViewCtrl, animated: true, completion: nil)
         }
+    }
+
+    private func hideAlertView() {
+        alertView.isHidden = true
+    }
+
+    private func showAlertView() {
+        alertView.isHidden = false
     }
 }
