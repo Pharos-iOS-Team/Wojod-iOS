@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var signUpButton: UIButton! {
         didSet {
             signUpButton.setTitle(L10n.Login.noAccount)
-            signUpButton.contentHorizontalAlignment = Language.currentLanguage == .arabic ? .right : .left
+            signUpButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
         }
     }
 
@@ -56,10 +56,9 @@ class LoginViewController: UIViewController {
     }
 
     private func login() {
-        guard let number = mobileNumberTextField.text, let password = passwordTextField.text else { return }
-        viewModel?.setMobileNumberAndPassword(
-            mobileNumber: number,
-            password: password
+        viewModel?.login(
+            mobileNumber: mobileNumberTextField.text,
+            password: passwordTextField.text
         )
     }
 
