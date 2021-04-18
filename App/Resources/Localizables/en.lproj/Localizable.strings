@@ -23,3 +23,5 @@
 "login.bothAreEmpty" = "Please enter the mobile number and password";
 
 "login.invalidCredentials" = "Mobile number or password entered are not correct";
+
+"login.send" = "Send";

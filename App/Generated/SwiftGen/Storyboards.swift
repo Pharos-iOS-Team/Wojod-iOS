@@ -12,6 +12,11 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum ForgotPassword: StoryboardType {
+    internal static let storyboardName = "ForgotPassword"
+
+    internal static let forgotPasswordViewController = SceneType<Wojood.ForgotPasswordViewController>(storyboard: ForgotPassword.self, identifier: "ForgotPasswordViewController")
+  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 

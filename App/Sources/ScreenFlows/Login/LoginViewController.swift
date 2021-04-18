@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
     }
     @IBOutlet private var alertView: AlertView! {
         didSet {
-            hideAlertView()
+            alertView.hideAlertView()
         }
     }
     @IBOutlet private var mobileNumberTextField: UITextField! {
@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
             signUpButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
         }
     }
+    @IBOutlet private var scrollView: UIScrollView!
 
     private var viewModel: LoginViewModel?
 
@@ -49,11 +50,15 @@ class LoginViewController: UIViewController {
         viewModel = LoginViewModel()
         handleLoginSuccess()
         handleErrors()
+        handleRefreshView()
     }
 
     @IBAction private func login(_ sender: SendButton) {
-        hideAlertView()
+        alertView.hideAlertView()
         login()
+    }
+    @IBAction private func forgotPassword(_ sender: Any) {
+        navigateToForgotPasswordScreen()
     }
 
     private func login() {
@@ -67,7 +72,7 @@ class LoginViewController: UIViewController {
         viewModel?.errorHandler = { [weak self] error in
             switch error.type {
             case .validationError:
-                self?.showAlertView()
+                self?.alertView.showAlertView()
                 self?.alertView.message = error.message
             default:
                 guard let self = self else { return }
@@ -84,11 +89,15 @@ class LoginViewController: UIViewController {
         }
     }
 
-    private func hideAlertView() {
-        alertView.isHidden = true
+    private func handleRefreshView() {
+        alertView.refreshView = {
+            self.view.layoutIfNeeded()
+        }
     }
 
-    private func showAlertView() {
-        alertView.isHidden = false
+    private func navigateToForgotPasswordScreen() {
+        let forgotPasswordViewCtrl = StoryboardScene.ForgotPassword.forgotPasswordViewController.instantiate()
+        forgotPasswordViewCtrl.modalPresentationStyle = .fullScreen
+        present(forgotPasswordViewCtrl, animated: true, completion: nil)
     }
 }

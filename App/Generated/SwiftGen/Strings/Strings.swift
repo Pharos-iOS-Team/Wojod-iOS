@@ -44,6 +44,10 @@ internal enum L10n {
     internal static var passwordIsEmpty: String {
         return L10n.tr("Localizable", "login.passwordIsEmpty")
       }
+    /// Send
+    internal static var send: String {
+        return L10n.tr("Localizable", "login.send")
+      }
     /// Sign in
     internal static var signIn: String {
         return L10n.tr("Localizable", "login.signIn")
