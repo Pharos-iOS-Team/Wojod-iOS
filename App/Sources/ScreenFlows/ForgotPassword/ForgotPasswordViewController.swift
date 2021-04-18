@@ -9,7 +9,11 @@ class ForgotPasswordViewController: UIViewController {
             informationView.layer.masksToBounds = true
         }
     }
-    @IBOutlet private var informationLabel: UILabel!
+    @IBOutlet private var informationLabel: UILabel! {
+        didSet {
+            informationLabel.text = L10n.Login.otpWillBeSent
+        }
+    }
     @IBOutlet private var alertView: AlertView! {
         didSet {
             alertView.hideAlertView()
@@ -33,6 +37,7 @@ class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Language.currentLanguage = .arabic
         handleErrors()
     }
 

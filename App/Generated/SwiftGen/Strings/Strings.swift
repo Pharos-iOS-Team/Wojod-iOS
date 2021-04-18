@@ -36,6 +36,10 @@ internal enum L10n {
     internal static var noAccount: String {
         return L10n.tr("Localizable", "login.noAccount")
       }
+    /// Please enter your phone number, OTP will be sent to your mobile
+    internal static var otpWillBeSent: String {
+        return L10n.tr("Localizable", "login.otpWillBeSent")
+      }
     /// Password
     internal static var password: String {
         return L10n.tr("Localizable", "login.password")
