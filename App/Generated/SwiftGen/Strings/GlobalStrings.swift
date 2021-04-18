@@ -45,6 +45,8 @@ extension L10n {
     internal enum Alerts {
       /// Something went wrong while preparing the data
       internal static let dataPreparationError = L10n.tr("GlobalLocalizable", "global.alerts.data_preparation_error")
+      /// Loading
+      internal static let loading = L10n.tr("GlobalLocalizable", "global.alerts.loading")
       /// Are you sure you need to logout?
       internal static let logout = L10n.tr("GlobalLocalizable", "global.alerts.logout")
       /// Something went wrong, check your connection and try again in a while

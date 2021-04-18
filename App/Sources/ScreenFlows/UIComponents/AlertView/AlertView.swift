@@ -26,8 +26,6 @@ class AlertView: UIView, NibLoadable {
         }
     }
 
-    var refreshView: (() -> Void)?
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setBackGroundColorAndCornerRadius()
@@ -48,11 +46,9 @@ class AlertView: UIView, NibLoadable {
 
     func hideAlertView() {
         isHidden = true
-        refreshView?()
     }
 
     func showAlertView() {
         isHidden = false
-        refreshView?()
     }
 }

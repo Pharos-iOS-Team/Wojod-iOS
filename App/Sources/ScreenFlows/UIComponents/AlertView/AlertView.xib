@@ -32,7 +32,7 @@
                         <constraint firstAttribute="height" constant="20" id="rpd-0b-qko"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="B1C-N3-6NI">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="B1C-N3-6NI">
                     <rect key="frame" x="37" y="8" width="268" height="34"/>
                     <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
                     <color key="textColor" name="errorAlertLabelColor"/>
