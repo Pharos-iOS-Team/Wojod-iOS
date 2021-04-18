@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIH-KY-VtK" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="452" width="732" height="50"/>
+                                                <rect key="frame" x="39" y="460" width="732" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="OAG-ri-sUq"/>
                                                 </constraints>
@@ -48,7 +48,7 @@
                                                     <constraint firstAttribute="width" constant="70" id="DAl-Le-0dr"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="goN-nW-geb">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="goN-nW-geb">
                                                 <rect key="frame" x="39" y="265" width="732" height="180"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xx8-SA-WDh" customClass="AlertView" customModule="Wojood" customModuleProvider="target">
@@ -83,7 +83,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-Sl-a0T">
-                                                <rect key="frame" x="39" y="532" width="732" height="68"/>
+                                                <rect key="frame" x="39" y="540" width="732" height="68"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Wf-EN2">
                                                         <rect key="frame" x="0.0" y="0.0" width="732" height="29"/>
@@ -107,7 +107,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="RIH-KY-VtK" firstAttribute="top" secondItem="goN-nW-geb" secondAttribute="bottom" constant="7" id="3YP-oa-pIc"/>
+                                            <constraint firstItem="RIH-KY-VtK" firstAttribute="top" secondItem="goN-nW-geb" secondAttribute="bottom" constant="15" id="3YP-oa-pIc"/>
                                             <constraint firstItem="cpg-bn-ZeV" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="5I8-fi-twp"/>
                                             <constraint firstItem="bfV-Sl-a0T" firstAttribute="top" secondItem="RIH-KY-VtK" secondAttribute="bottom" constant="30" id="6eq-R8-P8D"/>
                                             <constraint firstItem="vTW-1k-ghw" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="GbL-uS-IzS"/>
@@ -127,13 +127,11 @@
                                 <constraints>
                                     <constraint firstItem="Dgg-Sh-NSy" firstAttribute="top" secondItem="S1U-jZ-Tnc" secondAttribute="top" id="LgD-8t-oSN"/>
                                     <constraint firstAttribute="trailing" secondItem="Dgg-Sh-NSy" secondAttribute="trailing" id="Q7j-Cg-j2U"/>
-                                    <constraint firstAttribute="bottom" secondItem="Dgg-Sh-NSy" secondAttribute="bottom" id="Vrm-Vp-CE7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dgg-Sh-NSy" secondAttribute="bottom" constant="50" id="Vrm-Vp-CE7"/>
                                     <constraint firstItem="Dgg-Sh-NSy" firstAttribute="centerY" secondItem="S1U-jZ-Tnc" secondAttribute="centerY" id="i9J-V5-27u"/>
                                     <constraint firstItem="Dgg-Sh-NSy" firstAttribute="leading" secondItem="S1U-jZ-Tnc" secondAttribute="leading" id="qyn-ho-O1A"/>
                                     <constraint firstItem="Dgg-Sh-NSy" firstAttribute="centerX" secondItem="S1U-jZ-Tnc" secondAttribute="centerX" id="ymD-0d-TU5"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Uia-uk-DuE"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="xHS-77-SOH"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wyB-Mr-nsa"/>
@@ -160,11 +158,6 @@
             <point key="canvasLocation" x="64" y="-26"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="RIH-KY-VtK">
-            <size key="intrinsicContentSize" width="46" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <image name="CoursesLogo" width="46" height="48"/>
         <image name="Welcome" width="199" height="54"/>

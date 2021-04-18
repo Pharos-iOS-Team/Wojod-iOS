@@ -9,6 +9,7 @@ class LoginViewModel {
 
     var errorHandler: ((WJError) -> Void)?
     var successHandler: (() -> Void)?
+    var showIndicator: (() -> Void)?
 
     func checkIfMobileOrPasswordAreEmpty() -> Bool {
         return mobileNumber.isValid && password.isValid
@@ -23,6 +24,7 @@ class LoginViewModel {
             errorHandler?(error)
             return
         }
+        showIndicator?()
         model.login(mobileNumber: number, password: password) { result in
             switch result {
             case .success(let user as LoginApiResponseModel):

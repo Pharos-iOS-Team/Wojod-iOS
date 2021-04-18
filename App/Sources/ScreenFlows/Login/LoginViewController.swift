@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import JGProgressHUD
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -43,14 +44,14 @@ class LoginViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
 
     private var viewModel: LoginViewModel?
+    private var loadingHud: JGProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Language.currentLanguage = .english
         viewModel = LoginViewModel()
         handleLoginSuccess()
         handleErrors()
-        handleRefreshView()
+        showLoadingIndicatorHandler()
     }
 
     @IBAction private func login(_ sender: SendButton) {
@@ -68,8 +69,25 @@ class LoginViewController: UIViewController {
         )
     }
 
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
+    }
+
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
+    }
+
+    private func showLoadingIndicatorHandler() {
+        viewModel?.showIndicator = {
+            self.showLoadingIndicator()
+        }
+    }
+
     private func handleErrors() {
         viewModel?.errorHandler = { [weak self] error in
+            self?.hideLoadingIndicator()
             switch error.type {
             case .validationError:
                 self?.alertView.showAlertView()
@@ -84,14 +102,9 @@ class LoginViewController: UIViewController {
 
     private func handleLoginSuccess() {
         viewModel?.successHandler = {
+            self.hideLoadingIndicator()
             let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
             self.present(successViewCtrl, animated: true, completion: nil)
-        }
-    }
-
-    private func handleRefreshView() {
-        alertView.refreshView = {
-            self.view.layoutIfNeeded()
         }
     }
 
