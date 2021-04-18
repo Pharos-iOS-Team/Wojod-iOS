@@ -25,3 +25,5 @@
 "login.invalidCredentials" = "Mobile number or password entered are not correct";
 
 "login.send" = "Send";
+
+"login.otpWillBeSent" = "Please enter your phone number, OTP will be sent to your mobile";
