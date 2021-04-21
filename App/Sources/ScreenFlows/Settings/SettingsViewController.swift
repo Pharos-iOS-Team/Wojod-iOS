@@ -1,0 +1,77 @@
+// Copyright © 2021 Pharos Solutions. All rights reserved.
+
+import UIKit
+
+class SettingsViewController: UIViewController {
+    enum Constants {
+        static let tableViewCellHeight: CGFloat = 65
+    }
+
+    @IBOutlet private var settingsTableView: UITableView! {
+        didSet {
+            settingsTableView.delegate = self
+            settingsTableView.dataSource = self
+        }
+    }
+    @IBOutlet private var tableViewFooter: UIView!
+    let viewModel = SettingsViewModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        registerNib()
+    }
+
+    private func registerNib() {
+        let settingsTableViewCellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
+        settingsTableView.register(settingsTableViewCellNib, forCellReuseIdentifier: "SettingsTableViewCell")
+    }
+
+    private func configureSettingsCell(forCell cell: SettingsTableViewCell, atIndexPath indexPath: IndexPath) {
+        let cellModel = viewModel.getCellModel(forSettings: indexPath.row)
+        cell.configure(withCellModel: cellModel)
+    }
+
+    private func changeLanguage(action: UIAlertAction) {
+        Language.currentLanguage = action.title == L10n.Settings.english ? .english : .arabic
+        let initialViewCtrl = StoryboardScene.CoursesTabBar.initialScene.instantiate()
+        AppDelegate.getAppDelegate()?.window?.switchRootViewController(initialViewCtrl)
+    }
+}
+
+extension SettingsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Settings.allCases.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "SettingsTableViewCell",
+            for: indexPath
+        ) as? SettingsTableViewCell else { return UITableViewCell() }
+        configureSettingsCell(forCell: cell, atIndexPath: indexPath)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == Settings.languages.rawValue {
+            let alertHandler = AlertHandler(presentingViewCtrl: self)
+            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: self.view) { action in
+                self.changeLanguage(action: action)
+            }
+        }
+    }
+}
+
+extension SettingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        Constants.tableViewCellHeight
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableViewFooter
+    }
+}

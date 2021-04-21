@@ -27,3 +27,25 @@
 "login.send" = "Send";
 
 "login.otpWillBeSent" = "Please enter your phone number, OTP will be sent to your mobile";
+
+"tabBar.home" = "Home";
+
+"tabBar.myCourses" = "My courses";
+
+"tabBar.settings" = "Settings";
+
+"settings.version" = "Version";
+
+"settings.privacyPolicy" = "Privacy policy";
+
+"settings.notification" = "Notification";
+
+"settings.termsOfService" = "Terms of service";
+
+"settings.languages" = "Languages";
+
+"settings.english" = "English";
+
+"settings.arabic" = "Arabic";
+
+"settings.chooseALanguage" = "Choose a language";

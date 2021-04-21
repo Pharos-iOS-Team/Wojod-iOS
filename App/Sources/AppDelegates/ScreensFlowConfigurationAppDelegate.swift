@@ -20,7 +20,7 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         UINavigationBar.appearance().semanticContentAttribute = Language.semanticContent
 
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
-            window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
+            window.rootViewController = StoryboardScene.CoursesTabBar.coursesTabBarViewController.instantiate()
         } else {
             window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }

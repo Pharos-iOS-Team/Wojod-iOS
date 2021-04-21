@@ -12,10 +12,29 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum CoursesList: StoryboardType {
+    internal static let storyboardName = "CoursesList"
+
+    internal static let coursesListViewController = SceneType<Wojood.CoursesListViewController>(storyboard: CoursesList.self, identifier: "CoursesListViewController")
+  }
+  internal enum CoursesTabBar: StoryboardType {
+    internal static let storyboardName = "CoursesTabBar"
+
+    internal static let initialScene = InitialSceneType<Wojood.CoursesTabBarViewController>(storyboard: CoursesTabBar.self)
+
+    internal static let coursesTabBarViewController = SceneType<Wojood.CoursesTabBarViewController>(storyboard: CoursesTabBar.self, identifier: "CoursesTabBarViewController")
+  }
   internal enum ForgotPassword: StoryboardType {
     internal static let storyboardName = "ForgotPassword"
 
     internal static let forgotPasswordViewController = SceneType<Wojood.ForgotPasswordViewController>(storyboard: ForgotPassword.self, identifier: "ForgotPasswordViewController")
+  }
+  internal enum Home: StoryboardType {
+    internal static let storyboardName = "Home"
+
+    internal static let initialScene = InitialSceneType<Wojood.HomeViewController>(storyboard: Home.self)
+
+    internal static let homeViewController = SceneType<Wojood.HomeViewController>(storyboard: Home.self, identifier: "HomeViewController")
   }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
@@ -33,6 +52,11 @@ internal enum StoryboardScene {
     internal static let initialScene = InitialSceneType<Wojood.ViewController>(storyboard: Main.self)
 
     internal static let viewController = SceneType<Wojood.ViewController>(storyboard: Main.self, identifier: "ViewController")
+  }
+  internal enum Settings: StoryboardType {
+    internal static let storyboardName = "Settings"
+
+    internal static let settingsViewController = SceneType<Wojood.SettingsViewController>(storyboard: Settings.self, identifier: "SettingsViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

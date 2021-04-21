@@ -37,7 +37,6 @@ class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Language.currentLanguage = .arabic
         handleErrors()
     }
 

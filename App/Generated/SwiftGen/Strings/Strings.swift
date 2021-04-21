@@ -58,6 +58,41 @@ internal enum L10n {
       }
   }
 
+  internal enum Settings {
+    /// Arabic
+    internal static var arabic: String {
+        return L10n.tr("Localizable", "settings.arabic")
+      }
+    /// Choose a language
+    internal static var chooseALanguage: String {
+        return L10n.tr("Localizable", "settings.chooseALanguage")
+      }
+    /// English
+    internal static var english: String {
+        return L10n.tr("Localizable", "settings.english")
+      }
+    /// Languages
+    internal static var languages: String {
+        return L10n.tr("Localizable", "settings.languages")
+      }
+    /// Notification
+    internal static var notification: String {
+        return L10n.tr("Localizable", "settings.notification")
+      }
+    /// Privacy policy
+    internal static var privacyPolicy: String {
+        return L10n.tr("Localizable", "settings.privacyPolicy")
+      }
+    /// Terms of service
+    internal static var termsOfService: String {
+        return L10n.tr("Localizable", "settings.termsOfService")
+      }
+    /// Version
+    internal static var version: String {
+        return L10n.tr("Localizable", "settings.version")
+      }
+  }
+
   internal enum Shared {
     internal enum Alerts {
       internal enum Camera {
@@ -81,6 +116,21 @@ internal enum L10n {
           }
       }
     }
+  }
+
+  internal enum TabBar {
+    /// Home
+    internal static var home: String {
+        return L10n.tr("Localizable", "tabBar.home")
+      }
+    /// My courses
+    internal static var myCourses: String {
+        return L10n.tr("Localizable", "tabBar.myCourses")
+      }
+    /// Settings
+    internal static var settings: String {
+        return L10n.tr("Localizable", "tabBar.settings")
+      }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

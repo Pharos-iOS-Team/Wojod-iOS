@@ -27,3 +27,25 @@
 "login.send" = "ارسل";
 
 "login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كلمة مرور جديدة إلى هاتفك المحمول";
+
+"tabBar.home" = "القائمة الرئيسية";
+
+"tabBar.myCourses" = "دروسي";
+
+"tabBar.settings" = "الاعدادات";
+
+"settings.version" = "رقم الإصدار";
+
+"settings.privacyPolicy" = "سياسة الخصوصية";
+
+"settings.notification" = "الإشعارات";
+
+"settings.termsOfService" = "شروط الخدمة";
+
+"settings.languages" = "اللغات";
+
+"settings.english" = "الانجليزية";
+
+"settings.arabic" = "العربية";
+
+"settings.chooseALanguage" = "اختر اللغة";

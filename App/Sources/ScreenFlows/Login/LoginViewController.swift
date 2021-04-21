@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
             forgotPasswordButton.setTitle(L10n.Login.forgotPassword)
-            forgotPasswordButton.contentHorizontalAlignment = Language.currentLanguage == .arabic ? .right : .left
+            forgotPasswordButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
         }
     }
     @IBOutlet private var signUpButton: UIButton! {
@@ -103,8 +103,8 @@ class LoginViewController: UIViewController {
     private func handleLoginSuccess() {
         viewModel?.successHandler = {
             self.hideLoadingIndicator()
-            let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
-            self.present(successViewCtrl, animated: true, completion: nil)
+            let initialViewCtrl = StoryboardScene.CoursesTabBar.initialScene.instantiate()
+            AppDelegate.getAppDelegate()?.window?.switchRootViewController(initialViewCtrl)
         }
     }
 

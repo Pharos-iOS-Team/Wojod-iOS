@@ -53,6 +53,27 @@ public final class AlertHandler: NSObject {
         present(alertController)
     }
 
+    func showLanguageActionSheet(
+        title: String,
+        sourceView: UIView,
+        handler: ((UIAlertAction) -> Void)? = nil
+    ) {
+        let preferredStyle: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: preferredStyle).with {
+            $0.modalPresentationStyle = .popover
+            $0.popoverPresentationController?.sourceView = sourceView
+            $0.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
+        let englishAction = UIAlertAction(title: L10n.Settings.english, style: .default, handler: handler)
+        englishAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        let arabicAction = UIAlertAction(title: L10n.Settings.arabic, style: .default, handler: handler)
+        arabicAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alertController.addActions([englishAction, arabicAction, cancelAction])
+        present(alertController)
+    }
+
     private func present(_ alertController: UIAlertController) {
         DispatchQueue.main.async {
             self.presentingViewCtrl.present(alertController, animated: true)
