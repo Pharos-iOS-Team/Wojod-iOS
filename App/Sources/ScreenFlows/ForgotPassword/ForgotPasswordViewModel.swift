@@ -4,9 +4,11 @@ import Foundation
 
 class ForgotPasswordViewModel {
     private var model = ForgotPasswordModel()
-    private var mobileNumber = ""
+    private var mobileNumber: String = ""
 
     var errorHandler: ((WJError) -> Void)?
+    var successHandler: (() -> Void)?
+    var showIndicator: (() -> Void)?
 
     func sendMobileNumber(mobileNumber: String?) {
         guard let mobileNumber = mobileNumber else { return }
@@ -16,6 +18,14 @@ class ForgotPasswordViewModel {
             errorHandler?(error)
             return
         }
-        model.sendMobileNumber(mobileNumber: mobileNumber)
+        showIndicator?()
+        model.sendMobileNumber(mobileNumber: mobileNumber) { result  in
+            switch result {
+            case .success:
+                self.successHandler?()
+            case .failure(let error):
+                self.errorHandler?(error)
+            }
+        }
     }
 }

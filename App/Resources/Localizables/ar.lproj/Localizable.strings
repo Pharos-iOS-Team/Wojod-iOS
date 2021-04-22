@@ -27,3 +27,13 @@
 "login.send" = "ارسل";
 
 "login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كلمة مرور جديدة إلى هاتفك المحمول";
+
+"createPassword.passwordsDontMatch" = "كلمات المرور التي تم ادخالهم غير متطابقين";
+
+"createPassword.passwordLengthTooShort" = "يرجي التأكد ان كلمة المرور مكونة من ٦ احرف علي الأقل";
+
+"createPassword.bothAreEmpty" = "جميع الحقول مطلوبة";
+
+"createPassword.setNewPassword" = "قم بتعيين كلمة مرور جديدة";
+
+"createPassword.confirmPassword" = "تأكيد كلمة المرور";

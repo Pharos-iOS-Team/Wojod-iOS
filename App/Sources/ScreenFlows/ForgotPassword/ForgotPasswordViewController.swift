@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import UIKit
+import JGProgressHUD
 
 class ForgotPasswordViewController: UIViewController {
     @IBOutlet private var informationView: UIView! {
@@ -33,12 +34,14 @@ class ForgotPasswordViewController: UIViewController {
         }
     }
 
+    private var loadingHud: JGProgressHUD?
     private var viewModel = ForgotPasswordViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Language.currentLanguage = .arabic
         handleErrors()
+        handleSuccess()
     }
 
     @IBAction private func sendNumber(_ sender: Any) {
@@ -56,6 +59,31 @@ class ForgotPasswordViewController: UIViewController {
                 self?.alertView.showAlertView()
                 self?.alertView.message = error.message
             }
+        }
+    }
+
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
+    }
+
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
+    }
+
+    private func showLoadingIndicatorHandler() {
+        viewModel.showIndicator = {
+            self.showLoadingIndicator()
+        }
+    }
+
+    private func handleSuccess() {
+        viewModel.successHandler = {
+            self.hideLoadingIndicator()
+            let createPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate()
+            createPasswordViewCtrl.mobileNumber = self.mobileNumberTextField.text ?? ""
+            self.present(createPasswordViewCtrl, animated: true, completion: nil)
         }
     }
 }

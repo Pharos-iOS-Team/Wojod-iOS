@@ -11,10 +11,6 @@ class LoginViewModel {
     var successHandler: (() -> Void)?
     var showIndicator: (() -> Void)?
 
-    func checkIfMobileOrPasswordAreEmpty() -> Bool {
-        return mobileNumber.isValid && password.isValid
-    }
-
     func login(mobileNumber: String?, password: String?) {
         guard let number = mobileNumber, let password = password else { return }
         self.mobileNumber = number

@@ -27,3 +27,13 @@
 "login.send" = "Send";
 
 "login.otpWillBeSent" = "Please enter your phone number, OTP will be sent to your mobile";
+
+"createPassword.passwordsDontMatch" = "The passwords you entered do not match";
+
+"createPassword.passwordLengthTooShort" = "Please make sure the password you entered is minimum 6 letters long";
+
+"createPassword.bothAreEmpty" = "All fields are required";
+
+"createPassword.setNewPassword" = "Set new password";
+
+"createPassword.confirmPassword" = "Confirm password";

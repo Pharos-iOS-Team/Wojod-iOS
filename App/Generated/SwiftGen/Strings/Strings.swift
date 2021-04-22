@@ -11,6 +11,29 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum CreatePassword {
+    /// All fields are required
+    internal static var bothAreEmpty: String {
+        return L10n.tr("Localizable", "createPassword.bothAreEmpty")
+      }
+    /// Confirm password
+    internal static var confirmPassword: String {
+        return L10n.tr("Localizable", "createPassword.confirmPassword")
+      }
+    /// Please make sure the password you entered is minimum 6 letters long
+    internal static var passwordLengthTooShort: String {
+        return L10n.tr("Localizable", "createPassword.passwordLengthTooShort")
+      }
+    /// The passwords you entered do not match
+    internal static var passwordsDontMatch: String {
+        return L10n.tr("Localizable", "createPassword.passwordsDontMatch")
+      }
+    /// Set new password
+    internal static var setNewPassword: String {
+        return L10n.tr("Localizable", "createPassword.setNewPassword")
+      }
+  }
+
   internal enum Login {
     /// Please enter the mobile number and password
     internal static var bothAreEmpty: String {
