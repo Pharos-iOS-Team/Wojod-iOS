@@ -97,6 +97,7 @@
 		778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */; };
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
+		77DBFD602631C7AA0060BACA /* DPOTPView in Frameworks */ = {isa = PBXBuildFile; productRef = 77DBFD5F2631C7AA0060BACA /* DPOTPView */; };
 		BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5A12631983500CFA142 /* VerifyOtpViewController.swift */; };
 		BC19E5AA2631989B00CFA142 /* VerifyOtp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC19E5A92631989B00CFA142 /* VerifyOtp.storyboard */; };
 		BC19E5AF263198AE00CFA142 /* VerifyOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5AE263198AE00CFA142 /* VerifyOtpViewModel.swift */; };
@@ -288,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77DBFD602631C7AA0060BACA /* DPOTPView in Frameworks */,
 				7723AD9B261C6FA2007C0B97 /* FirebaseMessaging in Frameworks */,
 				7723AD43261C64A1007C0B97 /* Kingfisher in Frameworks */,
 				7723AD31261C6351007C0B97 /* SwiftyUserDefaults in Frameworks */,
@@ -765,6 +767,7 @@
 				7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */,
 				7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */,
 				7723AE46261C869A007C0B97 /* Moya */,
+				77DBFD5F2631C7AA0060BACA /* DPOTPView */,
 			);
 			productName = Wojood;
 			productReference = 7723ACD7261C5E69007C0B97 /* Wojood.app */;
@@ -852,6 +855,7 @@
 				7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
+				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
 			);
 			productRefGroup = 7723ACD8261C5E69007C0B97 /* Products */;
 			projectDirPath = "";
@@ -1499,6 +1503,14 @@
 				minimumVersion = 14.0.1;
 			};
 		};
+		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Datt1994/DPOTPView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.11;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1571,6 +1583,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		77DBFD5F2631C7AA0060BACA /* DPOTPView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */;
+			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
