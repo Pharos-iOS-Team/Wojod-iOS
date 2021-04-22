@@ -49,3 +49,41 @@
 "settings.arabic" = "Arabic";
 
 "settings.chooseALanguage" = "Choose a language";
+
+"profile.changePassword" = "Change password";
+
+"profile.editedSuccessfully" = "Your profile has been edited successfully";
+
+"profile.name" = "Name";
+
+"profile.mobileNumber" = "Mobile number";
+
+"profile.email" = "Email";
+
+"profile.parentNumber" = "Parent phone number";
+
+"profile.parentNumber2" = "Parent second phone number";
+
+"profile.academicType" = "Academic type";
+
+"profile.batch" = "Batch/Year";
+
+"profile.division" = "Division";
+
+"profile.specialization" = "specialization";
+
+"profile.homePhone" = "Home phone number";
+
+"profile.country" = "Country";
+
+"profile.region" = "Region";
+
+"profile.city" = "City";
+
+"profile.address" = "Address";
+
+"profile.selectItem" = "Select Item";
+
+"profile.logout" = "Logout";
+
+"profile.save" = "Save";

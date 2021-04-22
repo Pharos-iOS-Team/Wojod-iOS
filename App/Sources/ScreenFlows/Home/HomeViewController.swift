@@ -4,13 +4,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
     let viewModel = HomeViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getUserProfile(id: 0)
+        viewModel.fetchUserProfile(id: 0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getUserProfile(id: 0)
+        viewModel.fetchUserProfile(id: 0)
+        viewModel.fetchEducationalTypes()
+        viewModel.fetchDivisions()
+        viewModel.fetchBatches(id: String(User.shared.divisionId ?? 0))
+        viewModel.fetchSpecializations(id: String(User.shared.divisionId ?? 0))
     }
 }

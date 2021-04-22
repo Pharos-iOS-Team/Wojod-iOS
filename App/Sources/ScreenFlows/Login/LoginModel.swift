@@ -26,8 +26,8 @@ class LoginModel: ModelDecodable {
 
     private func cacheAccessToken(headers: [AnyHashable: Any]?) {
         guard let token = headers?["access-token"] as? String,
-              let client = headers?["client"] as? String,
-              let uid = headers?["uid"] as? String
+        let client = headers?["client"] as? String,
+        let uid = headers?["uid"] as? String
         else { return }
         User.shared.setLoggedIn(token: token, client: client, uid: uid)
     }

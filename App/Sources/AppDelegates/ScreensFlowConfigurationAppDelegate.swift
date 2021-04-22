@@ -4,6 +4,8 @@ import Foundation
 import UIKit
 
 class ScreensFlowConfigurationAppDelegate: AppDelegateType {
+    static var shared = ScreensFlowConfigurationAppDelegate()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         navigateToMainScreen()
         return true

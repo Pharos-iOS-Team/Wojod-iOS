@@ -71,6 +71,6 @@ class SettingsViewModel {
     }
 
     func getUserAvatar(avatarLink: String) -> URL? {
-        return Environment.rootURL.appendingPathComponent(avatarLink)
+        return Environment.baseURL.appendingPathComponent(avatarLink)
     }
 }

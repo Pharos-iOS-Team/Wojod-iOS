@@ -5,8 +5,8 @@ import Foundation
 class HomeModel: ModelDecodable {
     private let apiClient = UserProfileApiClient()
 
-    func getUserProfile(id: Int, completionHandler: @escaping (Result) -> Void) {
-        apiClient.getUserProfile(id: User.shared.id ?? 62) { response, error in
+    func fetchUserProfile(id: Int, completionHandler: @escaping (Result) -> Void) {
+        apiClient.fetchUserProfile(id: User.shared.id ?? 62) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.cacheAccessToken(headers: response.response?.allHeaderFields)
@@ -24,8 +24,8 @@ class HomeModel: ModelDecodable {
 
     private func cacheAccessToken(headers: [AnyHashable: Any]?) {
         guard let token = headers?["access-token"] as? String,
-              let client = headers?["client"] as? String,
-              let uid = headers?["uid"] as? String
+        let client = headers?["client"] as? String,
+        let uid = headers?["uid"] as? String
         else { return }
         User.shared.setLoggedIn(token: token, client: client, uid: uid)
     }

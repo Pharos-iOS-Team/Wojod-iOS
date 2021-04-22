@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
         }
     }
     @IBOutlet private var tableViewFooter: UIView!
-    @IBOutlet private var userAvatar: UIImageView!
+    @IBOutlet private var profileThumbnail: UIButton!
     let viewModel = SettingsViewModel()
     var user: LoginApiResponseModel?
 
@@ -35,6 +35,9 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         setUserAvatar()
     }
+    @IBAction private func navigateToProfile(_ sender: Any) {
+        navigateToProfile()
+    }
 
     private func registerNib() {
         let settingsTableViewCellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
@@ -42,9 +45,16 @@ class SettingsViewController: UIViewController {
     }
 
     private func setUserAvatar() {
-        guard let link = User.shared.avatar?.fileUrl else { return }
+        guard let link = User.shared.avatar?.thumbnailUrl else { return }
         guard let url = viewModel.getUserAvatar(avatarLink: link) else { return }
-        userAvatar.kf.setImage(with: url)
+        profileThumbnail.kf.setImage(with: url, for: .normal)
+    }
+
+    @objc
+    private func navigateToProfile() {
+        let profileViewCtrl = StoryboardScene.Profile.profileViewController.instantiate()
+        profileViewCtrl.modalPresentationStyle = .fullScreen
+        present(profileViewCtrl, animated: true, completion: nil)
     }
 
     private func configureSettingsCell(forCell cell: SettingsTableViewCell, atIndexPath indexPath: IndexPath) {

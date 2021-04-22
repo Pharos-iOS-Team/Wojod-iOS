@@ -6,7 +6,7 @@ import Moya
 class UserProfileApiClient {
     let userProfileProvider = MoyaProvider<UserProfileTarget>()
 
-    func getUserProfile(id: Int, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+    func fetchUserProfile(id: Int, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         userProfileProvider.request(.getUserProfile(id: id)) { result in
             switch result {
             case .success(let response):

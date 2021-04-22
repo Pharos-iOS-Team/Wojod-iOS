@@ -14,6 +14,7 @@ enum TabBarItems: Int {
 
 class CoursesTabBarViewController: UITabBarController {
     var user: LoginApiResponseModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBarTintColor()

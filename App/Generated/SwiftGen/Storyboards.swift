@@ -12,6 +12,11 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum AvatarsList: StoryboardType {
+    internal static let storyboardName = "AvatarsList"
+
+    internal static let avatarsListViewController = SceneType<Wojood.AvatarsListViewController>(storyboard: AvatarsList.self, identifier: "AvatarsListViewController")
+  }
   internal enum CoursesList: StoryboardType {
     internal static let storyboardName = "CoursesList"
 
@@ -52,6 +57,11 @@ internal enum StoryboardScene {
     internal static let initialScene = InitialSceneType<Wojood.ViewController>(storyboard: Main.self)
 
     internal static let viewController = SceneType<Wojood.ViewController>(storyboard: Main.self, identifier: "ViewController")
+  }
+  internal enum Profile: StoryboardType {
+    internal static let storyboardName = "Profile"
+
+    internal static let profileViewController = SceneType<Wojood.ProfileViewController>(storyboard: Profile.self, identifier: "ProfileViewController")
   }
   internal enum Settings: StoryboardType {
     internal static let storyboardName = "Settings"

@@ -1,7 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import UIKit
 import HandyUIKit
+import UIKit
 
 class NavigationBar: UIView, NibLoadable {
     override init(frame: CGRect) {

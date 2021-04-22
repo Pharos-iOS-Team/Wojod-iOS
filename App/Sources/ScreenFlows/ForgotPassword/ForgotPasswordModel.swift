@@ -6,7 +6,7 @@ class ForgotPasswordModel {
     private let apiClient = ForgotPasswordApiClient()
 
     func sendMobileNumber(mobileNumber: String) {
-        apiClient.sendMobileNumber(mobileNumber: mobileNumber) { response, error in
+        apiClient.sendMobileNumber(mobileNumber: mobileNumber) { _, _ in
         }
     }
 }
