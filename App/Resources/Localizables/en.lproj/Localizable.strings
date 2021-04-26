@@ -6,7 +6,8 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
-"login.welcome" = "Welcome! Sign in to continue";
+"login.welcome" = "Welcome!
+Sign in to continue";
 
 "login.signIn" = "Sign in";
 
@@ -16,7 +17,8 @@
 
 "login.forgotPassword" = "Forgot password?";
 
-"login.forgotPasswordTitle" = "Forgot password? No worries!";
+"login.forgotPasswordTitle" = "Forgot password?
+No worries!";
 
 "login.noAccount" = "No account? Sign up";
 
