@@ -43,7 +43,7 @@ internal enum L10n {
     internal static var forgotPassword: String {
         return L10n.tr("Localizable", "login.forgotPassword")
       }
-    /// Forgot password? No worries!
+    /// Forgot password?\nNo worries!
     internal static var forgotPasswordTitle: String {
         return L10n.tr("Localizable", "login.forgotPasswordTitle")
       }
@@ -83,7 +83,7 @@ internal enum L10n {
     internal static var signIn: String {
         return L10n.tr("Localizable", "login.signIn")
       }
-    /// Welcome! Sign in to continue
+    /// Welcome!\nSign in to continue
     internal static var welcome: String {
         return L10n.tr("Localizable", "login.welcome")
       }
@@ -115,6 +115,10 @@ internal enum L10n {
   }
 
   internal enum VerifyOtp {
+    /// Continue
+    internal static var `continue`: String {
+        return L10n.tr("Localizable", "verifyOtp.continue")
+      }
     /// Didn’t receive a code?
     internal static var didNotGetACode: String {
         return L10n.tr("Localizable", "verifyOtp.didNotGetACode")

@@ -49,3 +49,5 @@ No worries!";
 "verifyOtp.didNotGetACode" = "Didn’t receive a code?";
 
 "verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
+
+"verifyOtp.continue" = "Continue";

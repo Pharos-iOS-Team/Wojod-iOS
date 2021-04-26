@@ -13,7 +13,7 @@ class VerifyOtpViewController: UIViewController {
     }
     @IBOutlet private var sendButton: SendButton! {
         didSet {
-            sendButton.setTitle("Continue")
+            sendButton.setTitle(L10n.VerifyOtp.continue)
         }
     }
     @IBOutlet private var alertView: AlertView! {

@@ -49,3 +49,5 @@
 "verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
 
 "verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
+
+"verifyOtp.continue" = "استمرار";
