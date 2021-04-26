@@ -7,6 +7,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var submitButton: SendButton! {
         didSet {
             submitButton.setTitle(L10n.Login.signIn)
+            submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
     @IBOutlet private var alertView: AlertView! {
@@ -42,6 +43,11 @@ class LoginViewController: UIViewController {
         }
     }
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var welcomeLabel: UILabel! {
+        didSet {
+            welcomeLabel.text = L10n.Login.welcome
+        }
+    }
 
     private var viewModel: LoginViewModel?
     private var loadingHud: JGProgressHUD?

@@ -39,6 +39,17 @@ class CreatePasswordViewController: UIViewController {
     @IBOutlet private var sendButton: SendButton! {
         didSet {
             sendButton.setTitle(L10n.Login.signIn)
+            sendButton.setImage(Images.localizedDisclosureIndicatorButton)
+        }
+    }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
+    @IBOutlet private var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = L10n.Login.forgotPasswordTitle
         }
     }
     var mobileNumber: String = ""
@@ -55,6 +66,9 @@ class CreatePasswordViewController: UIViewController {
     @IBAction private func createPassword(_ sender: SendButton) {
         alertView.hideAlertView()
         verifyPassword()
+    }
+    @IBAction private func dismissView(_ sender: Any) {
+        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     private func verifyPassword() {
@@ -95,8 +109,7 @@ class CreatePasswordViewController: UIViewController {
     private func handleSuccess() {
         viewModel.successHandler = {
             self.hideLoadingIndicator()
-            let loginViewCtrl = StoryboardScene.Login.loginViewController.instantiate()
-            self.present(loginViewCtrl, animated: true, completion: nil)
+            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
 }

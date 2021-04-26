@@ -6,11 +6,15 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
+"login.welcome" = "مرحبًا! سجل الدخول للمتابعة";
+
 "login.signIn" = "تسجيل الدخول";
 
 "login.mobileNumber" = "رقم الهاتف";
 
 "login.password" = "كلمة المرور";
+
+"login.forgotPasswordTitle" = "هل نسيت كلمة السر؟ لا داعى للقلق";
 
 "login.forgotPassword" = "نسيت كلمة المرور؟";
 
@@ -37,3 +41,9 @@
 "createPassword.setNewPassword" = "قم بتعيين كلمة مرور جديدة";
 
 "createPassword.confirmPassword" = "تأكيد كلمة المرور";
+
+"verifyOtp.pleaseEnterOTP" = "برجاء ادخال الكود المرسل الي هاتفك";
+
+"verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
+
+"verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";

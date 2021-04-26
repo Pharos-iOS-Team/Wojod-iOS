@@ -20,6 +20,11 @@ class ForgotPasswordViewController: UIViewController {
             alertView.hideAlertView()
         }
     }
+    @IBOutlet private var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = L10n.Login.forgotPasswordTitle
+        }
+    }
     @IBOutlet private var mobileNumberTextField: UITextField! {
         didSet {
             mobileNumberTextField.semanticContentAttribute = Language.semanticContent
@@ -31,6 +36,12 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet private var sendButton: SendButton! {
         didSet {
             sendButton.setTitle(L10n.Login.send)
+            sendButton.setImage(Images.localizedDisclosureIndicatorButton)
+        }
+    }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
         }
     }
 
@@ -42,11 +53,16 @@ class ForgotPasswordViewController: UIViewController {
         Language.currentLanguage = .arabic
         handleErrors()
         handleSuccess()
+        showLoadingIndicatorHandler()
     }
 
     @IBAction private func sendNumber(_ sender: Any) {
         alertView.hideAlertView()
         send(mobileNumber: mobileNumberTextField.text)
+    }
+    
+    @IBAction private func dismissView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
     private func send(mobileNumber: String?) {
@@ -55,9 +71,15 @@ class ForgotPasswordViewController: UIViewController {
 
     private func handleErrors() {
         viewModel.errorHandler = { [weak self] error in
-            if error.type == .validationError {
+            self?.hideLoadingIndicator()
+            switch error.type {
+            case .validationError:
                 self?.alertView.showAlertView()
                 self?.alertView.message = error.message
+            default:
+                guard let self = self else { return }
+                let alert = AlertHandler(presentingViewCtrl: self)
+                alert.showInformationAlert(title: L10n.Global.Titles.error, message: error.message)
             }
         }
     }
@@ -81,9 +103,10 @@ class ForgotPasswordViewController: UIViewController {
     private func handleSuccess() {
         viewModel.successHandler = {
             self.hideLoadingIndicator()
-            let createPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate()
-            createPasswordViewCtrl.mobileNumber = self.mobileNumberTextField.text ?? ""
-            self.present(createPasswordViewCtrl, animated: true, completion: nil)
+            let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
+            verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
+            verifyOtpViewCtrl.mobileNumber = self.mobileNumberTextField.text ?? ""
+            self.present(verifyOtpViewCtrl, animated: true, completion: nil)
         }
     }
 }

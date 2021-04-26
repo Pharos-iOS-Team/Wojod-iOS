@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
         <array key="Inter-ExtraBold.ttf">
             <string>Inter-ExtraBold</string>
         </array>
@@ -76,12 +79,6 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="cpg-bn-ZeV">
-                                                <rect key="frame" x="39" y="180" width="732" height="70"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="ZbY-tD-ewx"/>
-                                                </constraints>
-                                            </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-Sl-a0T">
                                                 <rect key="frame" x="39" y="540" width="732" height="68"/>
                                                 <subviews>
@@ -104,20 +101,29 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUZ-Jh-IZ3">
+                                                <rect key="frame" x="39" y="180" width="732" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="5UL-Un-g8C"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="22"/>
+                                                <color key="textColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="RIH-KY-VtK" firstAttribute="top" secondItem="goN-nW-geb" secondAttribute="bottom" constant="15" id="3YP-oa-pIc"/>
-                                            <constraint firstItem="cpg-bn-ZeV" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="5I8-fi-twp"/>
+                                            <constraint firstItem="xx8-SA-WDh" firstAttribute="top" secondItem="nUZ-Jh-IZ3" secondAttribute="bottom" constant="15" id="4Tq-39-TJN"/>
+                                            <constraint firstItem="nUZ-Jh-IZ3" firstAttribute="top" secondItem="vTW-1k-ghw" secondAttribute="bottom" constant="50" id="5Ke-RR-L0t"/>
                                             <constraint firstItem="bfV-Sl-a0T" firstAttribute="top" secondItem="RIH-KY-VtK" secondAttribute="bottom" constant="30" id="6eq-R8-P8D"/>
+                                            <constraint firstItem="nUZ-Jh-IZ3" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="9hH-1f-ZdU"/>
                                             <constraint firstItem="vTW-1k-ghw" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="GbL-uS-IzS"/>
-                                            <constraint firstAttribute="trailing" secondItem="cpg-bn-ZeV" secondAttribute="trailing" constant="39" id="Jnb-Om-bWt"/>
                                             <constraint firstItem="goN-nW-geb" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="M8n-yL-bAG"/>
                                             <constraint firstAttribute="trailing" secondItem="bfV-Sl-a0T" secondAttribute="trailing" constant="39" id="RxA-yz-H0e"/>
                                             <constraint firstItem="RIH-KY-VtK" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="Tnh-0c-XT2"/>
-                                            <constraint firstItem="goN-nW-geb" firstAttribute="top" secondItem="cpg-bn-ZeV" secondAttribute="bottom" constant="15" id="bEw-cU-UGU"/>
                                             <constraint firstItem="vTW-1k-ghw" firstAttribute="top" secondItem="Dgg-Sh-NSy" secondAttribute="top" constant="60" id="lKk-4z-0Ku"/>
-                                            <constraint firstItem="cpg-bn-ZeV" firstAttribute="top" secondItem="vTW-1k-ghw" secondAttribute="bottom" constant="50" id="lzr-zZ-6vv"/>
+                                            <constraint firstAttribute="trailing" secondItem="nUZ-Jh-IZ3" secondAttribute="trailing" constant="39" id="mUM-Zc-glz"/>
                                             <constraint firstItem="bfV-Sl-a0T" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="nvW-6t-kLW"/>
                                             <constraint firstAttribute="trailing" secondItem="RIH-KY-VtK" secondAttribute="trailing" constant="39" id="xr1-IV-O73"/>
                                             <constraint firstAttribute="trailing" secondItem="goN-nW-geb" secondAttribute="trailing" constant="39" id="zsO-eY-sia"/>
@@ -151,6 +157,7 @@
                         <outlet property="scrollView" destination="S1U-jZ-Tnc" id="asv-1G-rUg"/>
                         <outlet property="signUpButton" destination="SaN-8e-5H3" id="tY3-Yv-xcO"/>
                         <outlet property="submitButton" destination="RIH-KY-VtK" id="LZb-Vf-VOy"/>
+                        <outlet property="welcomeLabel" destination="nUZ-Jh-IZ3" id="0Yh-fK-d00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lw2-CM-can" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -158,9 +165,13 @@
             <point key="canvasLocation" x="64" y="-26"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="RIH-KY-VtK">
+            <size key="intrinsicContentSize" width="46" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="CoursesLogo" width="46" height="48"/>
-        <image name="Welcome" width="199" height="54"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

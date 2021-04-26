@@ -43,6 +43,10 @@ internal enum L10n {
     internal static var forgotPassword: String {
         return L10n.tr("Localizable", "login.forgotPassword")
       }
+    /// Forgot password? No worries!
+    internal static var forgotPasswordTitle: String {
+        return L10n.tr("Localizable", "login.forgotPasswordTitle")
+      }
     /// Mobile number or password entered are not correct
     internal static var invalidCredentials: String {
         return L10n.tr("Localizable", "login.invalidCredentials")
@@ -79,6 +83,10 @@ internal enum L10n {
     internal static var signIn: String {
         return L10n.tr("Localizable", "login.signIn")
       }
+    /// Welcome! Sign in to continue
+    internal static var welcome: String {
+        return L10n.tr("Localizable", "login.welcome")
+      }
   }
 
   internal enum Shared {
@@ -104,6 +112,21 @@ internal enum L10n {
           }
       }
     }
+  }
+
+  internal enum VerifyOtp {
+    /// Didn’t receive a code?
+    internal static var didNotGetACode: String {
+        return L10n.tr("Localizable", "verifyOtp.didNotGetACode")
+      }
+    /// If you didn’t receive a code please contact the admin
+    internal static var didNotGetACodeAlert: String {
+        return L10n.tr("Localizable", "verifyOtp.didNotGetACodeAlert")
+      }
+    /// Please enter the OTP sent to your phone
+    internal static var pleaseEnterOTP: String {
+        return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTP")
+      }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

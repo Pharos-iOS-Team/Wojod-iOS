@@ -21,7 +21,7 @@ class CreatePasswordViewModel {
         self.mobileNumber = number
         self.password = password
         self.passwordConfirmation = passwordConfirmation
-        validatePassword()
+        guard validatePassword() else { return }
         showIndicator?()
         let passwordModel = Password(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
         model.createPassword(password: passwordModel) { result in
@@ -34,23 +34,24 @@ class CreatePasswordViewModel {
         }
     }
 
-    func validatePassword() {
+    func validatePassword() -> Bool {
         guard passwordConfirmation.isValid && password.isValid else {
             let error = WJError(type: .validationError, message: getAlertMessage())
             errorHandler?(error)
-            return
+            return false
         }
         guard passwordConfirmation == password else {
             let error = WJError(type: .validationError, message: getAlertMessage())
             errorHandler?(error)
-            return
+            return false
         }
 
         guard password.count >= 6 else {
             let error = WJError(type: .validationError, message: getAlertMessage())
             errorHandler?(error)
-            return
+            return false
         }
+        return true
     }
 
     func getAlertMessage() -> String {

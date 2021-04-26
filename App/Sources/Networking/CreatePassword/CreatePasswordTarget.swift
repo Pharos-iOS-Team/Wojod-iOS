@@ -9,11 +9,11 @@ enum CreatePasswordTarget {
 
 extension CreatePasswordTarget: TargetType {
     var path: String {
-        return "/auth/sign_in"
+        return "/password"
     }
 
     var method: Moya.Method {
-        return .post
+        return .put
     }
 
     var task: Task {
