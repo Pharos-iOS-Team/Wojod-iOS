@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import SafariServices
 import UIKit
 
 class SettingsViewController: UIViewController {
@@ -11,6 +12,11 @@ class SettingsViewController: UIViewController {
         didSet {
             settingsTableView.delegate = self
             settingsTableView.dataSource = self
+        }
+    }
+    @IBOutlet private var settingsLabel: UILabel! {
+        didSet {
+            settingsLabel.text = L10n.TabBar.settings
         }
     }
     @IBOutlet private var tableViewFooter: UIView!
@@ -53,11 +59,22 @@ extension SettingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == Settings.languages.rawValue {
+        switch indexPath.row {
+        case Settings.languages.rawValue:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
             alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: self.view) { action in
                 self.changeLanguage(action: action)
             }
+        case Settings.privacyPolicy.rawValue:
+            guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
+            let safariViewCtrl = SFSafariViewController(url: linkURL)
+            self.present(safariViewCtrl, animated: true)
+        case Settings.termsOfService.rawValue:
+            guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
+            let safariViewCtrl = SFSafariViewController(url: linkURL)
+            self.present(safariViewCtrl, animated: true)
+        default:
+            return
         }
     }
 }

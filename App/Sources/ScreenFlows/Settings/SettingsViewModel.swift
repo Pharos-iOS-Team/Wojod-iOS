@@ -58,4 +58,15 @@ class SettingsViewModel {
             versionNumber: getVersionNumber(forSettings: settings)
         )
     }
+
+    func getUrl(forIndex index: Int) -> URL? {
+        switch index {
+        case Settings.privacyPolicy.rawValue:
+            return URL(string: "http://courses.pharos-solutions.de/privacy_policy")
+        case Settings.termsOfService.rawValue:
+            return URL(string: "http://courses.pharos-solutions.de/terms_services")
+        default:
+            return URL(string: "")
+        }
+    }
 }
