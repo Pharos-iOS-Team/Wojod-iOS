@@ -1,7 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import UIKit
 import JGProgressHUD
+import UIKit
 
 class ForgotPasswordViewController: UIViewController {
     @IBOutlet private var informationView: UIView! {
@@ -60,7 +60,7 @@ class ForgotPasswordViewController: UIViewController {
         alertView.hideAlertView()
         send(mobileNumber: mobileNumberTextField.text)
     }
-    
+
     @IBAction private func dismissView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

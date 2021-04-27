@@ -5,7 +5,7 @@ import Foundation
 class CreatePasswordModel: ModelDecodable {
     private let apiClient = CreatePasswordApiClient()
 
-    func createPassword(password: Password, completionHandler: @escaping (Result) -> Void) {
+    func createPassword(password: ForgetPasswordModel, completionHandler: @escaping (Result) -> Void) {
         apiClient.createPassword(password: password) { response, error in
             if let response = response {
                 if response.statusCode < 300 {

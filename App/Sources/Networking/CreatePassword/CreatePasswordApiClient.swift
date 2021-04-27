@@ -6,7 +6,7 @@ import Moya
 class CreatePasswordApiClient {
     let createPasswordProvider = MoyaProvider<CreatePasswordTarget>()
 
-    func createPassword(password: Password, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+    func createPassword(password: ForgetPasswordModel, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         createPasswordProvider.request(.createPassword(password: password)) { result in
             switch result {
             case .success(let response):

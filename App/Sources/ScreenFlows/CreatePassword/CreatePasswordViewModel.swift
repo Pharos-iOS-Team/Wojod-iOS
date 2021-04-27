@@ -23,7 +23,7 @@ class CreatePasswordViewModel {
         self.passwordConfirmation = passwordConfirmation
         guard validatePassword() else { return }
         showIndicator?()
-        let passwordModel = Password(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
+        let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
         model.createPassword(password: passwordModel) { result in
             switch result {
             case .success:

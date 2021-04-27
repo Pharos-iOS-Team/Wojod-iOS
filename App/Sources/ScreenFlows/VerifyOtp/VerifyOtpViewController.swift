@@ -1,8 +1,8 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import UIKit
 import DPOTPView
 import JGProgressHUD
+import UIKit
 
 class VerifyOtpViewController: UIViewController {
     @IBOutlet private var enterOTPLabel: UILabel! {

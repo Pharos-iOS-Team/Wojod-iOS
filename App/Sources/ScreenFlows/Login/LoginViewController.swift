@@ -51,6 +51,7 @@ class LoginViewController: UIViewController {
 
     private var viewModel: LoginViewModel?
     private var loadingHud: JGProgressHUD?
+    private var user: LoginApiResponseModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,10 +108,11 @@ class LoginViewController: UIViewController {
     }
 
     private func handleLoginSuccess() {
-        viewModel?.successHandler = {
-            self.hideLoadingIndicator()
+        viewModel?.successHandler = { [weak self] user in
+            self?.user = user
+            self?.hideLoadingIndicator()
             let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
-            self.present(successViewCtrl, animated: true, completion: nil)
+            self?.present(successViewCtrl, animated: true, completion: nil)
         }
     }
 

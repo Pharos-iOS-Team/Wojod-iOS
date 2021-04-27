@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct Password: Codable {
+struct ForgetPasswordModel: Codable {
     var mobileNumber: String?
     var password: String?
     var passwordConfirmation: String?

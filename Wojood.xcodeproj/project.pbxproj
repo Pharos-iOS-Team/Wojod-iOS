@@ -109,7 +109,7 @@
 		BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5DE2631A37B00CFA142 /* CreatePasswordModel.swift */; };
 		BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5E42631A38E00CFA142 /* CreatePasswordTarget.swift */; };
 		BC19E5ED2631A3A000CFA142 /* CreatePasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5EC2631A3A000CFA142 /* CreatePasswordApiClient.swift */; };
-		BC19E5F22631A43B00CFA142 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5F12631A43B00CFA142 /* Password.swift */; };
+		BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */; };
 		BC5ED0B52626E34800774E54 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* User.swift */; };
 		BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */; };
 		BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */; };
@@ -254,7 +254,7 @@
 		BC19E5DE2631A37B00CFA142 /* CreatePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordModel.swift; sourceTree = "<group>"; };
 		BC19E5E42631A38E00CFA142 /* CreatePasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordTarget.swift; sourceTree = "<group>"; };
 		BC19E5EC2631A3A000CFA142 /* CreatePasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordApiClient.swift; sourceTree = "<group>"; };
-		BC19E5F12631A43B00CFA142 /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordModel.swift; sourceTree = "<group>"; };
 		BC5ED0B42626E34800774E54 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 				BC5ED0B42626E34800774E54 /* User.swift */,
 				BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */,
 				BC19E5C926319D5B00CFA142 /* OtpVerification.swift */,
-				BC19E5F12631A43B00CFA142 /* Password.swift */,
+				BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1034,7 +1034,7 @@
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
 				778E72CC261DD6FF009D7B35 /* FileExtension.swift in Sources */,
-				BC19E5F22631A43B00CFA142 /* Password.swift in Sources */,
+				BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */,
 				778E72DF261DF9AB009D7B35 /* Result.swift in Sources */,
 				778E7256261DC2D4009D7B35 /* UIEdgeInsetsExt.swift in Sources */,
 				778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */,

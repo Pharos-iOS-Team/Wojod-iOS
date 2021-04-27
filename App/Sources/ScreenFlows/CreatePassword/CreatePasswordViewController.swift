@@ -1,7 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import UIKit
 import JGProgressHUD
+import UIKit
 
 class CreatePasswordViewController: UIViewController {
     @IBOutlet private var informationView: UIView! {

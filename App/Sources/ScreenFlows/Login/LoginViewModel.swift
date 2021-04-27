@@ -8,7 +8,7 @@ class LoginViewModel {
     private var password: String = ""
 
     var errorHandler: ((WJError) -> Void)?
-    var successHandler: (() -> Void)?
+    var successHandler: ((LoginApiResponseModel) -> Void)?
     var showIndicator: (() -> Void)?
 
     func login(mobileNumber: String?, password: String?) {
@@ -24,7 +24,7 @@ class LoginViewModel {
         model.login(mobileNumber: number, password: password) { result in
             switch result {
             case .success(let user as LoginApiResponseModel):
-                self.successHandler?()
+                self.successHandler?(user)
             case .failure(let error):
                 self.errorHandler?(error)
             default:

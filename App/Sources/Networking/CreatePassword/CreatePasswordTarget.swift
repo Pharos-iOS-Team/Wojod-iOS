@@ -4,7 +4,7 @@ import Foundation
 import Moya
 
 enum CreatePasswordTarget {
-    case createPassword(password: Password)
+    case createPassword(password: ForgetPasswordModel)
 }
 
 extension CreatePasswordTarget: TargetType {
