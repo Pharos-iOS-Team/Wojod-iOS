@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
     }
     @IBOutlet private var tableViewFooter: UIView!
     let viewModel = SettingsViewModel()
+    var user: LoginApiResponseModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
