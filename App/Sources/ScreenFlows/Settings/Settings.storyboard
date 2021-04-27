@@ -97,6 +97,7 @@
                         <outlet property="settingsLabel" destination="ZoQ-jz-i2r" id="ZVg-GK-e7O"/>
                         <outlet property="settingsTableView" destination="JZG-K2-sp6" id="Ins-Rl-yFP"/>
                         <outlet property="tableViewFooter" destination="1gW-FZ-8S1" id="tLY-fU-7yP"/>
+                        <outlet property="userAvatar" destination="G4Q-ws-cRF" id="yw8-wO-IqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPQ-OF-BOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

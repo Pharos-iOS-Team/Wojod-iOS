@@ -58,8 +58,7 @@ public final class AlertHandler: NSObject {
         sourceView: UIView,
         handler: ((UIAlertAction) -> Void)? = nil
     ) {
-        let preferredStyle: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: preferredStyle).with {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet).with {
             $0.modalPresentationStyle = .popover
             $0.popoverPresentationController?.sourceView = sourceView
             $0.popoverPresentationController?.sourceRect = sourceView.bounds

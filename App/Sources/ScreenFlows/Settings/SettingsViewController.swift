@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Kingfisher
 import SafariServices
 import UIKit
 
@@ -20,17 +21,30 @@ class SettingsViewController: UIViewController {
         }
     }
     @IBOutlet private var tableViewFooter: UIView!
+    @IBOutlet private var userAvatar: UIImageView!
     let viewModel = SettingsViewModel()
     var user: LoginApiResponseModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNib()
+        setUserAvatar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUserAvatar()
     }
 
     private func registerNib() {
         let settingsTableViewCellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         settingsTableView.register(settingsTableViewCellNib, forCellReuseIdentifier: "SettingsTableViewCell")
+    }
+
+    private func setUserAvatar() {
+        guard let link = User.shared.avatar?.fileUrl else { return }
+        guard let url = viewModel.getUserAvatar(avatarLink: link) else { return }
+        userAvatar.kf.setImage(with: url)
     }
 
     private func configureSettingsCell(forCell cell: SettingsTableViewCell, atIndexPath indexPath: IndexPath) {
@@ -63,7 +77,8 @@ extension SettingsViewController: UITableViewDataSource {
         switch indexPath.row {
         case Settings.languages.rawValue:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
-            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: self.view) { action in
+            let cell = tableView.cellForRow(at: indexPath)
+            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: cell?.contentView ?? UIView()) { action in
                 self.changeLanguage(action: action)
             }
         case Settings.privacyPolicy.rawValue:

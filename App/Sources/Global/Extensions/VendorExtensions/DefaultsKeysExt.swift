@@ -7,17 +7,17 @@ extension DefaultsKeys {
     var clientKey: DefaultsKey<String?> { .init("client") }
     var fcmToken: DefaultsKey<String?> { .init("fcmToken") }
     var uidKey: DefaultsKey<String?> { .init("uid") }
-    var userId: DefaultsKey<String?> { .init("userId") }
+    var userId: DefaultsKey<Int?> { .init("userId") }
     var isFreshInstall: DefaultsKey<Bool> { .init("isFreshInstall", defaultValue: true) }
 }
 
-extension UserDefaults {
-    var uid: String? {
-        get {
-            return DefaultsKeys[\.uid]
-        }
-        set {
-            DefaultsKeys[\.uid] = uid
-        }
-    }
-}
+//extension UserDefaults {
+//    var uid: String? {
+//        get {
+//            return DefaultsKeys[\.uid]
+//        }
+//        set {
+//            DefaultsKeys[\.uid] = uid
+//        }
+//    }
+//}

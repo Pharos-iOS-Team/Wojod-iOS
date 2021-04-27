@@ -97,8 +97,6 @@
 		778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */; };
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
-		BC19E55E26301ED200CFA142 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E55D26301ED200CFA142 /* NavigationBar.swift */; };
-		BC19E56626301F5500CFA142 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19E56526301F5500CFA142 /* NavigationBar.xib */; };
 		BC5ED0B52626E34800774E54 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* UserModel.swift */; };
 		BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */; };
 		BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */; };
@@ -119,6 +117,11 @@
 		BC767160262C6F870012155C /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC76715E262C6F870012155C /* SettingsTableViewCell.swift */; };
 		BC767161262C6F870012155C /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC76715F262C6F870012155C /* SettingsTableViewCell.xib */; };
 		BC767169262D801F0012155C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767168262D801F0012155C /* SettingsViewModel.swift */; };
+		BC91581026385CED00868BB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91580F26385CED00868BB0 /* Constants.swift */; };
+		BC96823C263861DC009F8550 /* UserProfileApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96823B263861DC009F8550 /* UserProfileApiClient.swift */; };
+		BC968244263861F4009F8550 /* UserProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC968243263861F4009F8550 /* UserProfileTarget.swift */; };
+		BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9682482638631D009F8550 /* HomeViewModel.swift */; };
+		BC96824F26386329009F8550 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96824E26386329009F8550 /* HomeModel.swift */; };
 		BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC98F3E32623219C00032AC6 /* Colors.xcassets */; };
 		BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3EB2623272E00032AC6 /* SendButton.swift */; };
 		BC98F3F72623370500032AC6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F3F62623370500032AC6 /* AlertView.swift */; };
@@ -245,8 +248,6 @@
 		778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertActionExt.swift; sourceTree = "<group>"; };
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		BC19E55D26301ED200CFA142 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		BC19E56526301F5500CFA142 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		BC5ED0B42626E34800774E54 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +268,11 @@
 		BC76715E262C6F870012155C /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		BC76715F262C6F870012155C /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		BC767168262D801F0012155C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BC96823B263861DC009F8550 /* UserProfileApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileApiClient.swift; sourceTree = "<group>"; };
+		BC968243263861F4009F8550 /* UserProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTarget.swift; sourceTree = "<group>"; };
+		BC9682482638631D009F8550 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BC96824E26386329009F8550 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		BC98F3E32623219C00032AC6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BC98F3EB2623272E00032AC6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 		BC98F3F62623370500032AC6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -438,6 +444,7 @@
 		7723AD61261C6601007C0B97 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BC91580E26385CE000868BB0 /* Constants */,
 				BC6231D32638182C00792869 /* Modules */,
 				778E722E261DC162009D7B35 /* Utilities */,
 				778E722A261DC104009D7B35 /* Extensions */,
@@ -464,6 +471,7 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BC96823A263861B5009F8550 /* UserProfile */,
 				BC5ED0E92628687800774E54 /* ForgotPassword */,
 				BC9E08FA2625DA8100D24C69 /* Login */,
 				778E7235261DC237009D7B35 /* Notifications */,
@@ -641,15 +649,6 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		BC19E55C26301EA500CFA142 /* NavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				BC19E55D26301ED200CFA142 /* NavigationBar.swift */,
-				BC19E56526301F5500CFA142 /* NavigationBar.xib */,
-			);
-			path = NavigationBar;
-			sourceTree = "<group>";
-		};
 		BC5ED0C92628434900774E54 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,8 +698,10 @@
 		BC767138262C51E00012155C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				BC767144262C528D0012155C /* HomeViewController.swift */,
 				BC767149262C52960012155C /* Home.storyboard */,
+				BC767144262C528D0012155C /* HomeViewController.swift */,
+				BC9682482638631D009F8550 /* HomeViewModel.swift */,
+				BC96824E26386329009F8550 /* HomeModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -725,10 +726,26 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		BC91580E26385CE000868BB0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BC91580F26385CED00868BB0 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		BC96823A263861B5009F8550 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				BC96823B263861DC009F8550 /* UserProfileApiClient.swift */,
+				BC968243263861F4009F8550 /* UserProfileTarget.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				BC19E55C26301EA500CFA142 /* NavigationBar */,
 				BC767131262C4D030012155C /* CoursesTabBar */,
 				BC98F3F5262336F800032AC6 /* AlertView */,
 				BC98F3D826231DF900032AC6 /* SendButton */,
@@ -919,7 +936,6 @@
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
-				BC19E56626301F5500CFA142 /* NavigationBar.xib in Resources */,
 				BC767140262C524B0012155C /* CoursesList.storyboard in Resources */,
 				BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */,
 				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
@@ -1011,6 +1027,7 @@
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
 				BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */,
+				BC96823C263861DC009F8550 /* UserProfileApiClient.swift in Sources */,
 				778E7257261DC2D4009D7B35 /* DateExt.swift in Sources */,
 				BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */,
 				778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */,
@@ -1027,6 +1044,7 @@
 				7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */,
 				7723ADB8261C720F007C0B97 /* DeviceToken.swift in Sources */,
 				778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */,
+				BC968244263861F4009F8550 /* UserProfileTarget.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
@@ -1039,6 +1057,7 @@
 				778E724C261DC2D4009D7B35 /* UICollectionViewExt.swift in Sources */,
 				7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */,
 				778E7255261DC2D4009D7B35 /* DateFormatterExt.swift in Sources */,
+				BC96824F26386329009F8550 /* HomeModel.swift in Sources */,
 				BC9E08F62625CD4C00D24C69 /* LoginModel.swift in Sources */,
 				778E72B9261DD666009D7B35 /* CGSizeExt.swift in Sources */,
 				778E72A9261DD1BC009D7B35 /* IndexPathExt.swift in Sources */,
@@ -1054,6 +1073,7 @@
 				7723AD9F261C6FC5007C0B97 /* WJError.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
+				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
 				7723AE3B261C8261007C0B97 /* Strings.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
@@ -1068,6 +1088,7 @@
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
+				BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
@@ -1078,7 +1099,6 @@
 				778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */,
 				778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */,
 				778E72DA261DF6C4009D7B35 /* ModelDecodable.swift in Sources */,
-				BC19E55E26301ED200CFA142 /* NavigationBar.swift in Sources */,
 				7723ADAE261C712E007C0B97 /* NotificationsApiClient.swift in Sources */,
 				BC767160262C6F870012155C /* SettingsTableViewCell.swift in Sources */,
 				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,

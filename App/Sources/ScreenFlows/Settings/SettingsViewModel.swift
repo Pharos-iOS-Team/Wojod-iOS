@@ -47,7 +47,7 @@ class SettingsViewModel {
     }
 
     private func getVersionNumber(forSettings settings: Int) -> String? {
-        guard settings != .zero else { return "2.1.2.001" }
+        guard settings != .zero else { return GlobalConstants.Application.version }
         return nil
     }
 
@@ -68,5 +68,9 @@ class SettingsViewModel {
         default:
             return URL(string: "")
         }
+    }
+
+    func getUserAvatar(avatarLink: String) -> URL? {
+        return Environment.rootURL.appendingPathComponent(avatarLink)
     }
 }

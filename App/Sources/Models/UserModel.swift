@@ -1,9 +1,13 @@
-// Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 
 struct LoginApiResponseModel: Decodable {
     var data: UserModel
+}
+
+struct StudentModel: Decodable {
+    var student: UserModel
 }
 
 struct UserModel: Codable {
@@ -27,4 +31,20 @@ struct UserModel: Codable {
     var otpCode: Int?
     var verified: Bool?
     var testUser: Bool?
+    var preferences: Preferences
+    var avatar: Avatar
+}
+
+struct Preferences: Codable {
+    var locale: String?
+    var dartkTheme: Bool?
+}
+
+struct Avatar: Codable {
+    var id: Int?
+    var name: String?
+    var fileUrl: String?
+    var thumbnailURL: String?
+    var createdUrl: String?
+    var updatedAt: String?
 }
