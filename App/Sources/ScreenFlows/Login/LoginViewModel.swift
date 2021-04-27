@@ -28,6 +28,7 @@ class LoginViewModel {
         model.login(mobileNumber: number, password: password) { result in
             switch result {
             case .success(let user as LoginApiResponseModel):
+                self.setUserData(user: user)
                 self.successHandler?(user)
             case .failure(let error):
                 self.errorHandler?(error)
@@ -45,5 +46,9 @@ class LoginViewModel {
         } else {
             return L10n.Login.bothAreEmpty
         }
+    }
+
+    private func setUserData(user: LoginApiResponseModel) {
+        User.shared.setUserData(user: user)
     }
 }

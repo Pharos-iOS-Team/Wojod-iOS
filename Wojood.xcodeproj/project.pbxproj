@@ -99,7 +99,7 @@
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		BC19E55E26301ED200CFA142 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E55D26301ED200CFA142 /* NavigationBar.swift */; };
 		BC19E56626301F5500CFA142 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC19E56526301F5500CFA142 /* NavigationBar.xib */; };
-		BC5ED0B52626E34800774E54 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* User.swift */; };
+		BC5ED0B52626E34800774E54 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* UserModel.swift */; };
 		BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */; };
 		BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */; };
 		BC5ED0D82628438D00774E54 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */; };
@@ -107,7 +107,8 @@
 		BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */; };
 		BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */; };
 		BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */; };
-		BC767133262C4D2F0012155C /* CoursesTabBarVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767132262C4D2F0012155C /* CoursesTabBarVIewController.swift */; };
+		BC6231D52638183C00792869 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6231D42638183C00792869 /* User.swift */; };
+		BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */; };
 		BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC76713A262C521E0012155C /* CoursesListViewController.swift */; };
 		BC767140262C524B0012155C /* CoursesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC76713F262C524B0012155C /* CoursesList.storyboard */; };
 		BC767145262C528D0012155C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767144262C528D0012155C /* HomeViewController.swift */; };
@@ -246,7 +247,7 @@
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		BC19E55D26301ED200CFA142 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		BC19E56526301F5500CFA142 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
-		BC5ED0B42626E34800774E54 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BC5ED0B42626E34800774E54 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
@@ -254,7 +255,8 @@
 		BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiClient.swift; sourceTree = "<group>"; };
 		BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTarget.swift; sourceTree = "<group>"; };
-		BC767132262C4D2F0012155C /* CoursesTabBarVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarVIewController.swift; sourceTree = "<group>"; };
+		BC6231D42638183C00792869 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
 		BC76713A262C521E0012155C /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
 		BC76713F262C524B0012155C /* CoursesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoursesList.storyboard; sourceTree = "<group>"; };
 		BC767144262C528D0012155C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		7723AD61261C6601007C0B97 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				BC6231D32638182C00792869 /* Modules */,
 				778E722E261DC162009D7B35 /* Utilities */,
 				778E722A261DC104009D7B35 /* Extensions */,
 			);
@@ -478,7 +481,7 @@
 				778E72AD261DD4D1009D7B35 /* Attachable.swift */,
 				778E72CB261DD6FF009D7B35 /* FileExtension.swift */,
 				778E72DE261DF9AB009D7B35 /* Result.swift */,
-				BC5ED0B42626E34800774E54 /* User.swift */,
+				BC5ED0B42626E34800774E54 /* UserModel.swift */,
 				BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */,
 			);
 			path = Models;
@@ -667,10 +670,18 @@
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
+		BC6231D32638182C00792869 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				BC6231D42638183C00792869 /* User.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		BC767131262C4D030012155C /* CoursesTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				BC767132262C4D2F0012155C /* CoursesTabBarVIewController.swift */,
+				BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */,
 				BC767158262C54E50012155C /* CoursesTabBar.storyboard */,
 			);
 			path = CoursesTabBar;
@@ -995,7 +1006,7 @@
 				BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */,
 				BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */,
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
-				BC767133262C4D2F0012155C /* CoursesTabBarVIewController.swift in Sources */,
+				BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
@@ -1020,7 +1031,7 @@
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
 				BC5ED0E02628664900774E54 /* ForgotPasswordViewModel.swift in Sources */,
-				BC5ED0B52626E34800774E54 /* User.swift in Sources */,
+				BC5ED0B52626E34800774E54 /* UserModel.swift in Sources */,
 				BC9E09042625DAA200D24C69 /* LoginApiClient.swift in Sources */,
 				BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */,
 				778E7254261DC2D4009D7B35 /* URLExt.swift in Sources */,
@@ -1034,6 +1045,7 @@
 				BC767169262D801F0012155C /* SettingsViewModel.swift in Sources */,
 				7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */,
 				778E725B261DC2D4009D7B35 /* UIButtonExt.swift in Sources */,
+				BC6231D52638183C00792869 /* User.swift in Sources */,
 				778E7272261DC3E1009D7B35 /* Storyboards.swift in Sources */,
 				7723AD23261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift in Sources */,
 				778E72E4261DFA0C009D7B35 /* JSONDecoderExt.swift in Sources */,

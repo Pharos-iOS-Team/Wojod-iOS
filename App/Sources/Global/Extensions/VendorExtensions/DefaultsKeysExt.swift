@@ -10,3 +10,14 @@ extension DefaultsKeys {
     var userId: DefaultsKey<String?> { .init("userId") }
     var isFreshInstall: DefaultsKey<Bool> { .init("isFreshInstall", defaultValue: true) }
 }
+
+extension UserDefaults {
+    var uid: String? {
+        get {
+            return DefaultsKeys[\.uid]
+        }
+        set {
+            DefaultsKeys[\.uid] = uid
+        }
+    }
+}
