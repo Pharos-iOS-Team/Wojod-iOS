@@ -49,7 +49,6 @@
 		7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADFF261C79E8007C0B97 /* ReachabilityExt.swift */; };
 		7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE04261C7DB6007C0B97 /* FileReader.swift */; };
 		7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE0A261C7EDD007C0B97 /* swiftgen.yml */; };
-		7723AE0E261C7EDD007C0B97 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE0B261C7EDD007C0B97 /* .gitmodules */; };
 		7723AE0F261C7EDD007C0B97 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */; };
 		7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */; };
 		7723AE19261C7FBD007C0B97 /* dn-structured-swift5.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */; };
@@ -57,6 +56,7 @@
 		7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE3A261C8260007C0B97 /* GlobalStrings.swift */; };
 		7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */; };
 		7723AE47261C869A007C0B97 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AE46261C869A007C0B97 /* Moya */; };
+		7731E1AD2642A30800F08FFD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7731E1AC2642A30800F08FFD /* .gitignore */; };
 		778E724C261DC2D4009D7B35 /* UICollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */; };
 		778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7237261DC2D3009D7B35 /* ArrayExt.swift */; };
 		778E724E261DC2D4009D7B35 /* UIDeviceExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7238261DC2D3009D7B35 /* UIDeviceExt.swift */; };
@@ -167,13 +167,13 @@
 		7723ADFF261C79E8007C0B97 /* ReachabilityExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityExt.swift; sourceTree = "<group>"; };
 		7723AE04261C7DB6007C0B97 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		7723AE0A261C7EDD007C0B97 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
-		7723AE0B261C7EDD007C0B97 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = SOURCE_ROOT; };
 		7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = "extension-structured-swift5.stencil"; sourceTree = SOURCE_ROOT; };
 		7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dn-structured-swift5.stencil"; sourceTree = SOURCE_ROOT; };
 		7723AE39261C8260007C0B97 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		7723AE3A261C8260007C0B97 /* GlobalStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStrings.swift; sourceTree = "<group>"; };
 		7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventLogger.swift; sourceTree = "<group>"; };
+		7731E1AC2642A30800F08FFD /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
 		778E7237261DC2D3009D7B35 /* ArrayExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		778E7238261DC2D3009D7B35 /* UIDeviceExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExt.swift; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
-				7723AE0B261C7EDD007C0B97 /* .gitmodules */,
+				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
 				7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */,
@@ -739,6 +739,7 @@
 				BC98F41E262354E100032AC6 /* Inter-Bold.ttf in Resources */,
 				7723AE19261C7FBD007C0B97 /* dn-structured-swift5.stencil in Resources */,
 				BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */,
+				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
@@ -755,7 +756,6 @@
 				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
-				7723AE0E261C7EDD007C0B97 /* .gitmodules in Resources */,
 				7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,7 +793,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen > /dev/null; then\n   arch -x86_64 swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
+			shellScript = "if which swiftgen > /dev/null; then\n    arch -x86_64 swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\n    exit 1\nfi\n";
 		};
 		7723AE26261C808C007C0B97 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -811,7 +811,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  arch -x86_64 swiftlint\nelse\n  echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    arch -x86_64 swiftlint\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
