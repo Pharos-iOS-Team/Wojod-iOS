@@ -6,3 +6,48 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
+"login.welcome" = "Welcome!
+Sign in to continue";
+
+"login.signIn" = "Sign in";
+
+"login.mobileNumber" = "Mobile number";
+
+"login.password" = "Password";
+
+"login.forgotPassword" = "Forgot password?";
+
+"login.forgotPasswordTitle" = "Forgot password?
+No worries!";
+
+"login.noAccount" = "No account? Sign up";
+
+"login.mobileNumberIsEmpty" = "Please enter the mobile number";
+
+"login.passwordIsEmpty" = "Please enter the password";
+
+"login.bothAreEmpty" = "Please enter the mobile number and password";
+
+"login.invalidCredentials" = "Mobile number or password entered are not correct";
+
+"login.send" = "Send";
+
+"login.otpWillBeSent" = "Please enter your phone number, OTP will be sent to your mobile";
+
+"createPassword.passwordsDontMatch" = "The passwords you entered do not match";
+
+"createPassword.passwordLengthTooShort" = "Please make sure the password you entered is minimum 6 letters long";
+
+"createPassword.bothAreEmpty" = "All fields are required";
+
+"createPassword.setNewPassword" = "Set new password";
+
+"createPassword.confirmPassword" = "Confirm password";
+
+"verifyOtp.pleaseEnterOTP" = "Please enter the OTP sent to your phone";
+
+"verifyOtp.didNotGetACode" = "Didn’t receive a code?";
+
+"verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
+
+"verifyOtp.continue" = "Continue";

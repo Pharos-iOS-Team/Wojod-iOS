@@ -5,3 +5,49 @@
 "shared.alerts.photos.title" = "Gallery Permission";
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
+
+"login.welcome" = "مرحبًا!
+سجل الدخول للمتابعة";
+
+"login.signIn" = "تسجيل الدخول";
+
+"login.mobileNumber" = "رقم الهاتف";
+
+"login.password" = "كلمة المرور";
+
+"login.forgotPasswordTitle" = "هل نسيت كلمة المرور؟
+لا داعى للقلق";
+
+"login.forgotPassword" = "نسيت كلمة المرور؟";
+
+"login.noAccount" = "ليس لديك حساب؟  سجل الآن";
+
+"login.mobileNumberIsEmpty" = "برجاء إدخال رقم الهاتف المحمول";
+
+"login.passwordIsEmpty" = "برجاء ادخال كلمة المرور";
+
+"login.bothAreEmpty" = "برجاء ادخال رقم الهاتف و كلمة المرور";
+
+"login.invalidCredentials" = "رقم الهاتف المحمول أو كلمة المرور التي تم إدخالها غير صحيحة";
+
+"login.send" = "ارسل";
+
+"login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كلمة مرور جديدة إلى هاتفك المحمول";
+
+"createPassword.passwordsDontMatch" = "كلمات المرور التي تم ادخالهم غير متطابقين";
+
+"createPassword.passwordLengthTooShort" = "يرجي التأكد ان كلمة المرور مكونة من ٦ احرف علي الأقل";
+
+"createPassword.bothAreEmpty" = "جميع الحقول مطلوبة";
+
+"createPassword.setNewPassword" = "قم بتعيين كلمة مرور جديدة";
+
+"createPassword.confirmPassword" = "تأكيد كلمة المرور";
+
+"verifyOtp.pleaseEnterOTP" = "برجاء ادخال الكود المرسل الي هاتفك";
+
+"verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
+
+"verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
+
+"verifyOtp.continue" = "استمرار";

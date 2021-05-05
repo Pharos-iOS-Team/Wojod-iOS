@@ -12,10 +12,25 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum CreatePassword: StoryboardType {
+    internal static let storyboardName = "CreatePassword"
+
+    internal static let createPasswordViewController = SceneType<Wojood.CreatePasswordViewController>(storyboard: CreatePassword.self, identifier: "CreatePasswordViewController")
+  }
+  internal enum ForgotPassword: StoryboardType {
+    internal static let storyboardName = "ForgotPassword"
+
+    internal static let forgotPasswordViewController = SceneType<Wojood.ForgotPasswordViewController>(storyboard: ForgotPassword.self, identifier: "ForgotPasswordViewController")
+  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
+  }
+  internal enum Login: StoryboardType {
+    internal static let storyboardName = "Login"
+
+    internal static let loginViewController = SceneType<Wojood.LoginViewController>(storyboard: Login.self, identifier: "LoginViewController")
   }
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
@@ -23,6 +38,11 @@ internal enum StoryboardScene {
     internal static let initialScene = InitialSceneType<Wojood.ViewController>(storyboard: Main.self)
 
     internal static let viewController = SceneType<Wojood.ViewController>(storyboard: Main.self, identifier: "ViewController")
+  }
+  internal enum VerifyOtp: StoryboardType {
+    internal static let storyboardName = "VerifyOtp"
+
+    internal static let verifyOtpViewController = SceneType<Wojood.VerifyOtpViewController>(storyboard: VerifyOtp.self, identifier: "VerifyOtpViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

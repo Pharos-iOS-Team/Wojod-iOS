@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "DPOTPView",
+        "repositoryURL": "https://github.com/Datt1994/DPOTPView.git",
+        "state": {
+          "branch": null,
+          "revision": "eda0ba2e24f7ffd4af2a9065c27860bb8658a511",
+          "version": "1.5.11"
+        }
+      },
+      {
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {

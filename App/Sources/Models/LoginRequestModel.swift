@@ -1,0 +1,8 @@
+// Copyright © 2021 Pharos Solutions. All rights reserved.
+
+import Foundation
+
+struct LoginRequestModel: Encodable {
+    var mobileNumber: String
+    var password: String
+}
