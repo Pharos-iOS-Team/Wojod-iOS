@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController {
         avatarsSuccessHandler()
         editSuccessHandler()
         editErrorHandler()
+        fetchAcademicInfo()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +128,13 @@ class ProfileViewController: UIViewController {
     private func showSuccessAlert() {
         let alertHandler = AlertHandler(presentingViewCtrl: self)
         alertHandler.showInformationAlert(title: L10n.Global.Titles.warning, message: L10n.Profile.editedSuccessfully)
+    }
+
+    private func fetchAcademicInfo() {
+        viewModel.fetchEducationalTypes()
+        viewModel.fetchDivisions()
+        viewModel.fetchBatches(id: String(User.shared.divisionId ?? 0))
+        viewModel.fetchSpecializations(id: String(User.shared.divisionId ?? 0))
     }
 
     private func navigateToAvatarsList() {

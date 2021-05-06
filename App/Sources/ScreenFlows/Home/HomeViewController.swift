@@ -13,9 +13,5 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchUserProfile(id: 0)
-        viewModel.fetchEducationalTypes()
-        viewModel.fetchDivisions()
-        viewModel.fetchBatches(id: String(User.shared.divisionId ?? 0))
-        viewModel.fetchSpecializations(id: String(User.shared.divisionId ?? 0))
     }
 }
