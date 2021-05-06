@@ -49,6 +49,6 @@ class LoginViewModel {
     }
 
     private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
-        User.shared.setUserData(user: user, student: studentUser)
+        User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
     }
 }

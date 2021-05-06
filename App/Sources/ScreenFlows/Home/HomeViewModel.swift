@@ -29,6 +29,6 @@ class HomeViewModel {
     }
 
     private func setUserData(_ user: StudentModel) {
-        User.shared.setUserData(user: nil, student: user)
+        User.shared.setUserData(user: user.student)
     }
 }

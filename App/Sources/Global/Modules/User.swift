@@ -75,33 +75,32 @@ final class User {
 
     // swiftlint:disable function_body_length
     func setUserData(
-        user: LoginApiResponseModel?,
-        student: StudentModel?
+        user: UserModel?
     ) {
-        id = user != nil ? user?.data.id : student?.student.id
-        nameEn = user != nil ? user?.data.nameEn : student?.student.nameEn
-        nameAr = user != nil ? user?.data.nameAr : student?.student.nameAr
-        email = user != nil ? user?.data.email : student?.student.email
-        mobileNumber = user != nil ? user?.data.mobileNumber : student?.student.mobileNumber
-        parentNumber = user != nil ? user?.data.parent1PhoneNumber : student?.student.parent1PhoneNumber
-        parentNumber2 = user != nil ? user?.data.parent2PhoneNumber : student?.student.parent2PhoneNumber
-        avatar = user != nil ? user?.data.avatar : student?.student.avatar
-        divisionId = user != nil ? user?.data.divisionId : student?.student.divisionId
-        academicType = user != nil ? user?.data.educationalType : student?.student.educationalType
-        batch = user != nil ? user?.data.batchId : student?.student.batchId
-        batchName = user != nil ? user?.data.batchName : student?.student.batchName
-        divisionName = user != nil ? user?.data.divisionName : student?.student.divisionName
-        specializationName = user != nil ? user?.data.specializationName : student?.student.specializationName
-        educationLevel = (user != nil ? user?.data.educationLevel : student?.student.educationLevel) ?? 0
-        educationType = (user != nil ? user?.data.educationType : student?.student.educationType) ?? 0
-        educationLevelName = user != nil ? user?.data.educationLevelName : student?.student.educationLevelName
-        educationTypeName = user != nil ? user?.data.educationTypeName : student?.student.educationTypeName
-        specializationId = user != nil ? user?.data.specializationId : student?.student.specializationId
-        country = user != nil ? user?.data.country : student?.student.country
-        city = user != nil ? user?.data.city : student?.student.city
-        region = user != nil ? user?.data.region : student?.student.region
-        address = user != nil ? user?.data.address : student?.student.address
-        homeNumber = user != nil ? user?.data.homeNumber : student?.student.homeNumber
+        id = user?.id
+        nameEn = user?.nameEn
+        nameAr = user?.nameAr
+        email = user?.email
+        mobileNumber = user?.mobileNumber
+        parentNumber = user?.parent1PhoneNumber
+        parentNumber2 = user?.parent2PhoneNumber
+        avatar = user?.avatar
+        divisionId = user?.divisionId
+        academicType = user?.educationalType
+        batch = user?.batchId
+        batchName = user?.batchName
+        divisionName = user?.divisionName
+        specializationName = user?.specializationName
+        educationLevel = user?.educationLevel ?? 0
+        educationType = user?.educationalType ?? 0
+        educationLevelName = user?.educationLevelName
+        educationTypeName = user?.educationTypeName
+        specializationId = user?.specializationId
+        country = user?.country
+        city = user?.city
+        region = user?.region
+        address = user?.address
+        homeNumber = user?.homeNumber
     }
 
     func setLoggedOut() {

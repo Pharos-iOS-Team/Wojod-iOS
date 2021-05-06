@@ -46,7 +46,7 @@ class ProfileViewModel {
         model.editProfile(id: id, profile: profile) { result in
             switch result {
             case .success(let user as StudentModel):
-                User.shared.setUserData(user: nil, student: user)
+                User.shared.setUserData(user: user.student)
                 self.successHandler?(user)
             case .failure(let error):
                 self.errorHandler?(error)
