@@ -109,10 +109,6 @@ extension SettingsViewController: UITableViewDelegate {
         Constants.tableViewCellHeight
     }
 
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
-    }
-
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return tableViewFooter
     }
