@@ -7,16 +7,8 @@ enum Settings: Int, CaseIterable {
     case privacyPolicy
     case termsOfService
     case languages
-}
 
-struct SettingsCellModel {
-    var image: UIImage?
-    var title: String?
-    var versionNumber: String?
-}
-
-class SettingsViewModel {
-    private func getSettingsImage(forSettings settings: Int) -> UIImage {
+    func getSettingsImage(forSettings settings: Int) -> UIImage {
         switch settings {
         case Settings.version.rawValue:
             return Images.setting.image
@@ -31,7 +23,7 @@ class SettingsViewModel {
         }
     }
 
-    private func getSettingsTitle(forSettings settings: Int) -> String {
+    func getSettingsTitle(forSettings settings: Int) -> String {
         switch settings {
         case Settings.version.rawValue:
             return L10n.Settings.version
@@ -45,7 +37,15 @@ class SettingsViewModel {
             return ""
         }
     }
+}
 
+struct SettingsCellModel {
+    var image: UIImage?
+    var title: String?
+    var versionNumber: String?
+}
+
+class SettingsViewModel {
     private func getVersionNumber(forSettings settings: Int) -> String? {
         guard settings != .zero else { return GlobalConstants.Application.version }
         return nil
@@ -53,8 +53,8 @@ class SettingsViewModel {
 
     func getCellModel(forSettings settings: Int) -> SettingsCellModel {
         return SettingsCellModel(
-            image: getSettingsImage(forSettings: settings),
-            title: getSettingsTitle(forSettings: settings),
+            image: Settings.init(rawValue: settings)?.getSettingsImage(forSettings: settings),
+            title: Settings.init(rawValue: settings)?.getSettingsTitle(forSettings: settings),
             versionNumber: getVersionNumber(forSettings: settings)
         )
     }

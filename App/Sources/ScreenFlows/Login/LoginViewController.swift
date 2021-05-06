@@ -103,9 +103,7 @@ class LoginViewController: UIViewController {
     private func handleLoginSuccess() {
         viewModel?.successHandler = { [weak self] user in
             self?.hideLoadingIndicator()
-            let initialViewCtrl = StoryboardScene.CoursesTabBar.initialScene.instantiate()
-            initialViewCtrl.user = user
-            AppDelegate.getAppDelegate()?.window?.switchRootViewController(initialViewCtrl)
+            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
         }
     }
 

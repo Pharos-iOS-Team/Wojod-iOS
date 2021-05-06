@@ -54,8 +54,8 @@ final class User {
     var divisionName: String?
     var specializationName: String?
     var specializationId: Int?
-    var educationLevel: Int?
-    var educationType: Int?
+    var educationLevel: Int = 0
+    var educationType: Int = 0
     var educationLevelName: String?
     var educationTypeName: String?
     var country: String?
@@ -92,8 +92,8 @@ final class User {
         batchName = user != nil ? user?.data.batchName : student?.student.batchName
         divisionName = user != nil ? user?.data.divisionName : student?.student.divisionName
         specializationName = user != nil ? user?.data.specializationName : student?.student.specializationName
-        educationLevel = user != nil ? user?.data.educationLevel : student?.student.educationLevel
-        educationType = user != nil ? user?.data.educationType : student?.student.educationType
+        educationLevel = (user != nil ? user?.data.educationLevel : student?.student.educationLevel) ?? 0
+        educationType = (user != nil ? user?.data.educationType : student?.student.educationType) ?? 0
         educationLevelName = user != nil ? user?.data.educationLevelName : student?.student.educationLevelName
         educationTypeName = user != nil ? user?.data.educationTypeName : student?.student.educationTypeName
         specializationId = user != nil ? user?.data.specializationId : student?.student.specializationId
@@ -110,25 +110,13 @@ final class User {
     }
 
     func getAccessToken() -> String {
-        if let accessToken = KeychainHandler.shared.userToken {
-            return accessToken
-        }
-        return ""
+        return KeychainHandler.shared.userToken ?? ""
     }
 
-    internal func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+    func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         self.logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
             self?.setLoggedOut()
             completionHandler(response, error)
         }
-    }
-
-    func isCurrentlySelectedLanguageArabic() -> Bool {
-        return Language.currentLanguage == .arabic
-    }
-
-    private func isIphoneLanguageArabic() -> Bool {
-        let preferredLanguage = NSLocale.preferredLanguages[0]
-        return preferredLanguage == "ar-US" ? true : false
     }
 }

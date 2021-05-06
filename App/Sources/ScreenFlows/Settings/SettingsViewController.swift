@@ -64,8 +64,7 @@ class SettingsViewController: UIViewController {
 
     private func changeLanguage(action: UIAlertAction) {
         Language.currentLanguage = action.title == L10n.Settings.english ? .english : .arabic
-        let initialViewCtrl = StoryboardScene.CoursesTabBar.initialScene.instantiate()
-        AppDelegate.getAppDelegate()?.window?.switchRootViewController(initialViewCtrl)
+        ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
     }
 }
 
@@ -84,18 +83,18 @@ extension SettingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case Settings.languages.rawValue:
+        switch Settings(rawValue: indexPath.row) {
+        case .languages:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
             let cell = tableView.cellForRow(at: indexPath)
             alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: cell?.contentView ?? UIView()) { action in
                 self.changeLanguage(action: action)
             }
-        case Settings.privacyPolicy.rawValue:
+        case .privacyPolicy:
             guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
             let safariViewCtrl = SFSafariViewController(url: linkURL)
             self.present(safariViewCtrl, animated: true)
-        case Settings.termsOfService.rawValue:
+        case .termsOfService:
             guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
             let safariViewCtrl = SFSafariViewController(url: linkURL)
             self.present(safariViewCtrl, animated: true)

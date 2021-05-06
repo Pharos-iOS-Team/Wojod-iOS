@@ -8,7 +8,7 @@ class AcademicInfoApiClient {
 
     func fetchEducationalTypes(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         academicInfoProvider.request(
-            .getEducationalTypes(educationLevel: String(User.shared.educationLevel ?? 0),
+            .getAcademicType(educationLevel: String(User.shared.educationLevel ?? 0),
                 educationType: String(User.shared.educationType ?? 0))) { result in
             switch result {
             case .success(let response):

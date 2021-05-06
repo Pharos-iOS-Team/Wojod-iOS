@@ -3,10 +3,10 @@
 import Foundation
 
 class HomeModel: ModelDecodable {
-    private let apiClient = UserProfileApiClient()
+    private let apiClient = ProfileApiClient()
 
     func fetchUserProfile(id: Int, completionHandler: @escaping (Result) -> Void) {
-        apiClient.fetchUserProfile(id: User.shared.id ?? 62) { response, error in
+        apiClient.fetchProfile(id: String(User.shared.id ?? 62)) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.cacheAccessToken(headers: response.response?.allHeaderFields)
