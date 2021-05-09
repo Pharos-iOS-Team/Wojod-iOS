@@ -330,6 +330,7 @@
 		BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiClient.swift; sourceTree = "<group>"; };
 		BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTarget.swift; sourceTree = "<group>"; };
+		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC6231D42638183C00792869 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
 		BC76713A262C521E0012155C /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +417,7 @@
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
+				BC7D1E4126481EF700F21515 /* Wojood.entitlements */,
 				7723ACD9261C5E69007C0B97 /* App */,
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
@@ -1566,6 +1568,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
@@ -1587,6 +1590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
