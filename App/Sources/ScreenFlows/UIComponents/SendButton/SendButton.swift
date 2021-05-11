@@ -12,6 +12,7 @@ class SendButton: UIButton {
         super.awakeFromNib()
         backgroundColor = Colors.sendButtonColor.color
         setTitleColor(.white, for: .normal)
+        setImage(Images.localizedDisclosureIndicatorButton)
         layer.cornerRadius = Constants.cornerRadius
         configureEdgeInsets()
     }

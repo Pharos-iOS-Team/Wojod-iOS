@@ -77,4 +77,13 @@ enum Language: String, CaseIterable {
             return "اللغة العربية"
         }
     }
+
+    func isCurrentlySelectedLanguageArabic() -> Bool {
+        return Language.currentLanguage == .arabic
+    }
+
+    func isIphoneLanguageArabic() -> Bool {
+        let preferredLanguage = NSLocale.preferredLanguages[0]
+        return preferredLanguage == "ar-US" ? true : false
+    }
 }

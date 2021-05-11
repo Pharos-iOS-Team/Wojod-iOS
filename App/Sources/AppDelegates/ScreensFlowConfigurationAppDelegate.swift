@@ -4,6 +4,8 @@ import Foundation
 import UIKit
 
 class ScreensFlowConfigurationAppDelegate: AppDelegateType {
+    static var shared = ScreensFlowConfigurationAppDelegate()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         navigateToMainScreen()
         return true
@@ -20,7 +22,7 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         UINavigationBar.appearance().semanticContentAttribute = Language.semanticContent
 
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
-            window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
+            window.rootViewController = StoryboardScene.CoursesTabBar.coursesTabBarViewController.instantiate()
         } else {
             window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }

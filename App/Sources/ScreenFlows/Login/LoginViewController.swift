@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var forgotPasswordButton: UIButton! {
         didSet {
             forgotPasswordButton.setTitle(L10n.Login.forgotPassword)
-            forgotPasswordButton.contentHorizontalAlignment = Language.currentLanguage == .arabic ? .right : .left
+            forgotPasswordButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
         }
     }
     @IBOutlet private var signUpButton: UIButton! {
@@ -111,8 +111,7 @@ class LoginViewController: UIViewController {
         viewModel?.successHandler = { [weak self] user in
             self?.user = user
             self?.hideLoadingIndicator()
-            let successViewCtrl = StoryboardScene.Main.viewController.instantiate()
-            self?.present(successViewCtrl, animated: true, completion: nil)
+            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
         }
     }
 

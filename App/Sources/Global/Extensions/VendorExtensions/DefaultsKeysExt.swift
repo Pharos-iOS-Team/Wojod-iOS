@@ -7,6 +7,6 @@ extension DefaultsKeys {
     var clientKey: DefaultsKey<String?> { .init("client") }
     var fcmToken: DefaultsKey<String?> { .init("fcmToken") }
     var uidKey: DefaultsKey<String?> { .init("uid") }
-    var userId: DefaultsKey<String?> { .init("userId") }
+    var userId: DefaultsKey<Int?> { .init("userId") }
     var isFreshInstall: DefaultsKey<Bool> { .init("isFreshInstall", defaultValue: true) }
 }

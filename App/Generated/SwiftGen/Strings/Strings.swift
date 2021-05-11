@@ -89,6 +89,120 @@ internal enum L10n {
       }
   }
 
+  internal enum Profile {
+    /// Academic type
+    internal static var academicType: String {
+        return L10n.tr("Localizable", "profile.academicType")
+      }
+    /// Address
+    internal static var address: String {
+        return L10n.tr("Localizable", "profile.address")
+      }
+    /// Batch/Year
+    internal static var batch: String {
+        return L10n.tr("Localizable", "profile.batch")
+      }
+    /// Change password
+    internal static var changePassword: String {
+        return L10n.tr("Localizable", "profile.changePassword")
+      }
+    /// City
+    internal static var city: String {
+        return L10n.tr("Localizable", "profile.city")
+      }
+    /// Country
+    internal static var country: String {
+        return L10n.tr("Localizable", "profile.country")
+      }
+    /// Division
+    internal static var division: String {
+        return L10n.tr("Localizable", "profile.division")
+      }
+    /// Your profile has been edited successfully
+    internal static var editedSuccessfully: String {
+        return L10n.tr("Localizable", "profile.editedSuccessfully")
+      }
+    /// Email
+    internal static var email: String {
+        return L10n.tr("Localizable", "profile.email")
+      }
+    /// Home phone number
+    internal static var homePhone: String {
+        return L10n.tr("Localizable", "profile.homePhone")
+      }
+    /// Logout
+    internal static var logout: String {
+        return L10n.tr("Localizable", "profile.logout")
+      }
+    /// Mobile number
+    internal static var mobileNumber: String {
+        return L10n.tr("Localizable", "profile.mobileNumber")
+      }
+    /// Name
+    internal static var name: String {
+        return L10n.tr("Localizable", "profile.name")
+      }
+    /// Parent phone number
+    internal static var parentNumber: String {
+        return L10n.tr("Localizable", "profile.parentNumber")
+      }
+    /// Parent second phone number
+    internal static var parentNumber2: String {
+        return L10n.tr("Localizable", "profile.parentNumber2")
+      }
+    /// Region
+    internal static var region: String {
+        return L10n.tr("Localizable", "profile.region")
+      }
+    /// Save
+    internal static var save: String {
+        return L10n.tr("Localizable", "profile.save")
+      }
+    /// Select Item
+    internal static var selectItem: String {
+        return L10n.tr("Localizable", "profile.selectItem")
+      }
+    /// specialization
+    internal static var specialization: String {
+        return L10n.tr("Localizable", "profile.specialization")
+      }
+  }
+
+  internal enum Settings {
+    /// Arabic
+    internal static var arabic: String {
+        return L10n.tr("Localizable", "settings.arabic")
+      }
+    /// Choose a language
+    internal static var chooseALanguage: String {
+        return L10n.tr("Localizable", "settings.chooseALanguage")
+      }
+    /// English
+    internal static var english: String {
+        return L10n.tr("Localizable", "settings.english")
+      }
+    /// Languages
+    internal static var languages: String {
+        return L10n.tr("Localizable", "settings.languages")
+      }
+    /// Notification
+    internal static var notification: String {
+        return L10n.tr("Localizable", "settings.notification")
+      }
+    /// Privacy policy
+    internal static var privacyPolicy: String {
+        return L10n.tr("Localizable", "settings.privacyPolicy")
+      }
+    /// Terms of service
+    internal static var termsOfService: String {
+        return L10n.tr("Localizable", "settings.termsOfService")
+      }
+    /// Version
+    internal static var version: String {
+        return L10n.tr("Localizable", "settings.version")
+      }
+  }
+
   internal enum Shared {
     internal enum Alerts {
       internal enum Camera {
@@ -112,6 +226,21 @@ internal enum L10n {
           }
       }
     }
+  }
+
+  internal enum TabBar {
+    /// Home
+    internal static var home: String {
+        return L10n.tr("Localizable", "tabBar.home")
+      }
+    /// My courses
+    internal static var myCourses: String {
+        return L10n.tr("Localizable", "tabBar.myCourses")
+      }
+    /// Settings
+    internal static var settings: String {
+        return L10n.tr("Localizable", "tabBar.settings")
+      }
   }
 
   internal enum VerifyOtp {

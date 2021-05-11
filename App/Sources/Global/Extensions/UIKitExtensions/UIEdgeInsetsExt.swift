@@ -3,6 +3,14 @@
 import UIKit
 
 extension UIEdgeInsets {
+    static var standard: UIEdgeInsets {
+        return horizontal(value: 8.0)
+    }
+
+    static func horizontal(value: CGFloat) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: value, bottom: 0, right: value)
+    }
+
     init(top: CGFloat) {
         self.init(top: top, left: 0, bottom: 0, right: 0)
     }

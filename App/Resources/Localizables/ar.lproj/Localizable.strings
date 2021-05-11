@@ -51,3 +51,63 @@
 "verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
 
 "verifyOtp.continue" = "استمرار";
+
+"tabBar.home" = "القائمة الرئيسية";
+
+"tabBar.myCourses" = "دروسي";
+
+"tabBar.settings" = "الاعدادات";
+
+"settings.version" = "رقم الإصدار";
+
+"settings.privacyPolicy" = "سياسة الخصوصية";
+
+"settings.notification" = "الإشعارات";
+
+"settings.termsOfService" = "شروط الخدمة";
+
+"settings.languages" = "اللغات";
+
+"settings.english" = "الانجليزية";
+
+"settings.arabic" = "العربية";
+
+"settings.chooseALanguage" = "اختر اللغة";
+
+"profile.changePassword" = "تغيير كلمة المرور";
+
+"profile.editedSuccessfully" = "تم تغيير ملفك بنجاح";
+
+"profile.name" = "الاسم";
+
+"profile.mobileNumber" = "رقم الهاتف المحمول";
+
+"profile.email" = "البريد الالكتروني";
+
+"profile.parentNumber" = "رقم هاتف ولي الامر";
+
+"profile.parentNumber2" = "رقم هاتف اخر لولي الامر";
+
+"profile.academicType" = "نوع الشهادة";
+
+"profile.batch" = "الدفعة / السنة الدراسية";
+
+"profile.division" = "الدفعة";
+
+"profile.specialization" = "التخصص";
+
+"profile.homePhone" = "رقم هاتف المنزل";
+
+"profile.country" = "البلد";
+
+"profile.region" = "المنطقة";
+
+"profile.city" = "المدينة";
+
+"profile.address" = "العنوان";
+
+"profile.selectItem" = "اختر واحدة من الاختيارات التالية";
+
+"profile.logout" = "تسجيل خروج";
+
+"profile.save" = "حفظ";

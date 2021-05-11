@@ -6,6 +6,10 @@ typealias AppDelegateType = UIResponder & UIApplicationDelegate
 
 @UIApplicationMain
 class AppDelegate: AppDelegateType {
+    static func getAppDelegate() -> AppDelegate! {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
+
     var window: UIWindow?
     var appDelegateComposer = AppDelegateFactory.makeDefault()
 

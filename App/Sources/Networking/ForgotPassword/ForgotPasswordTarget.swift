@@ -25,7 +25,7 @@ extension ForgotPasswordTarget: TargetType {
     var task: Task {
         switch self {
         case let .sendMobileNumber(mobileNumber):
-            return .requestParameters(parameters: ["mobile_number": mobileNumber], encoding: URLEncoding.queryString)
+            return .requestCustomJSONEncodable(mobileNumber, encoder: JSONEncoder.default)
         case let .verifyOtp(otp):
             return .requestCustomJSONEncodable(otp, encoder: JSONEncoder.default)
         }

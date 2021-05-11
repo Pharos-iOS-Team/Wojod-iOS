@@ -5,6 +5,9 @@ import UIKit
 @objcMembers
 public final class AlertHandler: NSObject {
     private unowned var presentingViewCtrl: UIViewController
+    private var passwordTextField: UITextField?
+    private var newPasswordTextField: UITextField?
+    private var confirmPasswordTextField: UITextField?
 
     init(presentingViewCtrl: UIViewController) {
         self.presentingViewCtrl = presentingViewCtrl
@@ -51,6 +54,74 @@ public final class AlertHandler: NSObject {
         let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
         alertController.addActions([confirmAction, cancelAction])
         present(alertController)
+    }
+
+    func showLanguageActionSheet(
+        title: String,
+        sourceView: UIView,
+        handler: ((UIAlertAction) -> Void)? = nil
+    ) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet).with {
+            $0.modalPresentationStyle = .popover
+            $0.popoverPresentationController?.sourceView = sourceView
+            $0.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
+        let englishAction = UIAlertAction(title: L10n.Settings.english, style: .default, handler: handler)
+        englishAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        let arabicAction = UIAlertAction(title: L10n.Settings.arabic, style: .default, handler: handler)
+        arabicAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alertController.addActions([englishAction, arabicAction, cancelAction])
+        present(alertController)
+    }
+
+    func showNewPasswordAlert(
+        title: String,
+        sourceView: UIView,
+        handler: ((String?, String?, String?) -> Void)? = nil
+    ) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert).with {
+            $0.modalPresentationStyle = .popover
+            $0.popoverPresentationController?.sourceView = sourceView
+            $0.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
+
+        alertController.addTextField(configurationHandler: configurePasswordTextField)
+        alertController.addTextField(configurationHandler: configureNewPasswordTextField)
+        alertController.addTextField(configurationHandler: configureConfirmationPasswordTextField)
+        let confirmAction = UIAlertAction(title: L10n.Global.Actions.confirm, style: .default) {_ in
+            if self.newPasswordTextField?.text == self.confirmPasswordTextField?.text
+                && self.newPasswordTextField?.text?.isValid ?? false
+                && self.confirmPasswordTextField?.text?.isValid ?? false
+                && self.passwordTextField?.text?.isValid ?? false {
+            handler?(self.passwordTextField?.text, self.newPasswordTextField?.text, self.confirmPasswordTextField?.text)
+            } else {
+                self.showInformationAlert(title: L10n.Global.Titles.warning, message: "Passwords don't match")
+            }
+        }
+        let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alertController.addActions([cancelAction, confirmAction])
+        present(alertController)
+    }
+
+    private func configurePasswordTextField(textField: UITextField) {
+        passwordTextField = textField
+        passwordTextField?.placeholder = L10n.Login.password
+        passwordTextField?.isSecureTextEntry = true
+    }
+
+    private func configureNewPasswordTextField(textField: UITextField) {
+        newPasswordTextField = textField
+        newPasswordTextField?.placeholder = "Enter new password"
+        newPasswordTextField?.isSecureTextEntry = true
+    }
+
+    private func configureConfirmationPasswordTextField(textField: UITextField) {
+        confirmPasswordTextField = textField
+        confirmPasswordTextField?.placeholder = "Confirm new Password"
+        confirmPasswordTextField?.isSecureTextEntry = true
     }
 
     private func present(_ alertController: UIAlertController) {

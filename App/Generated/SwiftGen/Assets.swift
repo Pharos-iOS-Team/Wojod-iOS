@@ -26,6 +26,7 @@ internal enum Asset {
     internal static let errorAlertLabelColor = ColorAsset(name: "errorAlertLabelColor")
     internal static let informationViewColor = ColorAsset(name: "informationViewColor")
     internal static let sendButtonColor = ColorAsset(name: "sendButtonColor")
+    internal static let tabBarColor = ColorAsset(name: "tabBarColor")
   }
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
@@ -43,7 +44,19 @@ internal enum Asset {
     internal static let signUpTitlePageOneAr = ImageAsset(name: "SignUpTitlePageOneAr")
     internal static let signUpTitlePageOneEn = ImageAsset(name: "SignUpTitlePageOneEn")
     internal static let disclosureIndicator = ImageAsset(name: "disclosureIndicator")
+    internal static let gear = ImageAsset(name: "Gear")
+    internal static let tick = ImageAsset(name: "Tick")
+    internal static let alert = ImageAsset(name: "alert")
+    internal static let notification = ImageAsset(name: "notification")
+    internal static let privacy = ImageAsset(name: "privacy")
+    internal static let setting = ImageAsset(name: "setting")
     internal static let splash = ImageAsset(name: "Splash")
+    internal static let home = ImageAsset(name: "Home")
+    internal static let homeSelected = ImageAsset(name: "HomeSelected")
+    internal static let courses = ImageAsset(name: "courses")
+    internal static let coursesSelected = ImageAsset(name: "coursesSelected")
+    internal static let settings = ImageAsset(name: "settings")
+    internal static let settingsSelected = ImageAsset(name: "settingsSelected")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

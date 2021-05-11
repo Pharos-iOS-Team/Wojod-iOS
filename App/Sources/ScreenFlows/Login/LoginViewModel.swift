@@ -11,6 +11,10 @@ class LoginViewModel {
     var successHandler: ((LoginApiResponseModel) -> Void)?
     var showIndicator: (() -> Void)?
 
+    func checkIfMobileOrPasswordAreEmpty() -> Bool {
+        return mobileNumber.isValid && password.isValid
+    }
+
     func login(mobileNumber: String?, password: String?) {
         guard let number = mobileNumber, let password = password else { return }
         self.mobileNumber = number
@@ -24,6 +28,7 @@ class LoginViewModel {
         model.login(mobileNumber: number, password: password) { result in
             switch result {
             case .success(let user as LoginApiResponseModel):
+                self.setUserData(user: user, studentUser: nil)
                 self.successHandler?(user)
             case .failure(let error):
                 self.errorHandler?(error)
@@ -41,5 +46,9 @@ class LoginViewModel {
         } else {
             return L10n.Login.bothAreEmpty
         }
+    }
+
+    private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
+        User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
     }
 }
