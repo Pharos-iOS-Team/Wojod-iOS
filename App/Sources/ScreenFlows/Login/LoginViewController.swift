@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
     @IBAction private func signUp(_ sender: UIButton) {
         let viewCtrl = StoryboardScene.Registration.initialScene.instantiate()
         viewCtrl.modalPresentationStyle = .fullScreen
-        self.present(viewCtrl, animated: true, completion: nil)
+        self.present(viewCtrl, animated: true)
     }
 
     private func login() {

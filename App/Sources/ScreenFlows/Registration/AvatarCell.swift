@@ -2,7 +2,7 @@
 
 import UIKit
 
-class AvatarCollectionViewCell: UICollectionViewCell {
+class AvatarCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
     @IBOutlet private var avatarImageView: UIImageView!

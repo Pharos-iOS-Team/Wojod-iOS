@@ -192,15 +192,14 @@
 		E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */; };
 		E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C748C2640A5B90097F115 /* KeyValue.swift */; };
 		E85C74922640A9130097F115 /* Divisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74912640A9130097F115 /* Divisions.swift */; };
-		E85C74972640AFEE0097F115 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74962640AFEE0097F115 /* AvatarCollectionViewCell.swift */; };
+		E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74962640AFEE0097F115 /* AvatarCell.swift */; };
 		E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C749B2640B03F0097F115 /* AvatarsViewController.swift */; };
 		E85C74A126416CE10097F115 /* Batches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74A026416CE10097F115 /* Batches.swift */; };
 		E86753032642890D005ABF77 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86753022642890D005ABF77 /* Specializations.swift */; };
 		E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */; };
 		E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */; };
-		E8C9EF2A26321A3C0023D2B1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF2926321A3C0023D2B1 /* NetworkService.swift */; };
+		E8C9EF2A26321A3C0023D2B1 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */; };
 		E8C9EF3226321AE00023D2B1 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */; };
-		E8C9EF3A26321DD30023D2B1 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF3926321DD30023D2B1 /* APIConstants.swift */; };
 		E8C9EF4226323B0D0023D2B1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */; };
 		E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */; };
 		E8C9EF542636019D0023D2B1 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF532636019D0023D2B1 /* Avatar.swift */; };
@@ -416,15 +415,14 @@
 		E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignupRequest.swift; sourceTree = "<group>"; };
 		E85C748C2640A5B90097F115 /* KeyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValue.swift; sourceTree = "<group>"; };
 		E85C74912640A9130097F115 /* Divisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divisions.swift; sourceTree = "<group>"; };
-		E85C74962640AFEE0097F115 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		E85C74962640AFEE0097F115 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		E85C749B2640B03F0097F115 /* AvatarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsViewController.swift; sourceTree = "<group>"; };
 		E85C74A026416CE10097F115 /* Batches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batches.swift; sourceTree = "<group>"; };
 		E86753022642890D005ABF77 /* Specializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specializations.swift; sourceTree = "<group>"; };
 		E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoViewController.swift; sourceTree = "<group>"; };
 		E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
-		E8C9EF2926321A3C0023D2B1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
-		E8C9EF3926321DD30023D2B1 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E8C9EF532636019D0023D2B1 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -631,7 +629,7 @@
 				BC19E58D2631823700CFA142 /* Profile */,
 				BC5ED0E92628687800774E54 /* ForgotPassword */,
 				BC9E08FA2625DA8100D24C69 /* Login */,
-				E8C9EF2926321A3C0023D2B1 /* NetworkService.swift */,
+				E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */,
 				E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */,
 				778E7235261DC237009D7B35 /* Notifications */,
 				778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */,
@@ -816,12 +814,9 @@
 			children = (
 				778E72ED261DFA57009D7B35 /* AlertHandler.swift */,
 				7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */,
-				E8C9EF3926321DD30023D2B1 /* APIConstants.swift */,
 				7723AE04261C7DB6007C0B97 /* FileReader.swift */,
 				7723AD5C261C65F0007C0B97 /* KeychainHandler.swift */,
 				7723ADA3261C70D6007C0B97 /* Language.swift */,
-				E8C9EF72263C546C0023D2B1 /* NoCutPasteField.swift */,
-				E8C9EF6D263C2FF40023D2B1 /* PickerInputView.swift */,
 				7723ADA8261C70F8007C0B97 /* PushNotificationsManager.swift */,
 				77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */,
 			);
@@ -1062,6 +1057,7 @@
 				BC083B072641754900A1E6A4 /* AccessoryView */,
 				BC083B012641724B00A1E6A4 /* PickerInputView */,
 				BC767131262C4D030012155C /* CoursesTabBar */,
+				E866815E2652B9F400B98155 /* PickerView */,
 				BC98F3F5262336F800032AC6 /* AlertView */,
 				BC98F3D826231DF900032AC6 /* SendButton */,
 			);
@@ -1116,10 +1112,19 @@
 				E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */,
 				E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */,
 				E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */,
-				E85C74962640AFEE0097F115 /* AvatarCollectionViewCell.swift */,
+				E85C74962640AFEE0097F115 /* AvatarCell.swift */,
 				E85C749B2640B03F0097F115 /* AvatarsViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		E866815E2652B9F400B98155 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				E8C9EF72263C546C0023D2B1 /* NoCutPasteField.swift */,
+				E8C9EF6D263C2FF40023D2B1 /* PickerInputView.swift */,
+			);
+			path = PickerView;
 			sourceTree = "<group>";
 		};
 		E8FB16962647FD4700895DDC /* Modules */ = {
@@ -1386,7 +1391,7 @@
 				7723ADC2261C728E007C0B97 /* Environment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
 				BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */,
-				E85C74972640AFEE0097F115 /* AvatarCollectionViewCell.swift in Sources */,
+				E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */,
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
@@ -1474,7 +1479,6 @@
 				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
 				BC19E5D52631A36600CFA142 /* CreatePasswordViewController.swift in Sources */,
 				778E7269261DC398009D7B35 /* ImagesExt.swift in Sources */,
-				E8C9EF3A26321DD30023D2B1 /* APIConstants.swift in Sources */,
 				778E724E261DC2D4009D7B35 /* UIDeviceExt.swift in Sources */,
 				BC19E5CA26319D5B00CFA142 /* OtpVerification.swift in Sources */,
 				77E32BAF264A8BE50064B801 /* UIDeviceExt.swift in Sources */,
@@ -1503,7 +1507,7 @@
 				778E72DF261DF9AB009D7B35 /* Result.swift in Sources */,
 				E8C9EF5926361C140023D2B1 /* Avatars.swift in Sources */,
 				778E7256261DC2D4009D7B35 /* UIEdgeInsetsExt.swift in Sources */,
-				E8C9EF2A26321A3C0023D2B1 /* NetworkService.swift in Sources */,
+				E8C9EF2A26321A3C0023D2B1 /* RegistrationService.swift in Sources */,
 				778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */,
 				77E32B91264A8B2C0064B801 /* LoginModel.swift in Sources */,
 				E85C74922640A9130097F115 /* Divisions.swift in Sources */,

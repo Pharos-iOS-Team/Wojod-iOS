@@ -19,8 +19,7 @@ class AvatarsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = RegistrationViewModel()
-        avatarsCollectionView.dataSource = self
-        avatarsCollectionView.delegate = self
+        configureCollectionView()
         loadAvatars()
     }
 
@@ -36,6 +35,11 @@ class AvatarsViewController: UIViewController {
 
     // MARK: - Private Functions
 
+    private func configureCollectionView() {
+        avatarsCollectionView.dataSource = self
+        avatarsCollectionView.delegate = self
+    }
+
     private func loadAvatars() {
         viewModel?.loadAvatars { avatars in
             self.avatars = avatars
@@ -44,7 +48,7 @@ class AvatarsViewController: UIViewController {
     }
 
     private func getImage(from url: String) -> UIImage? {
-        let imageURL = APIConstants.baseURL + url
+        let imageURL = Environment.baseURLString + url
         guard let url = URL(string: imageURL), let data = try? Data(contentsOf: url) else { return nil }
         return UIImage(data: data)
     }
@@ -70,12 +74,14 @@ class AvatarsViewController: UIViewController {
             specializationID: sharedUser.specializationId,
             avatarID: sharedUser.avatar?.id
         )
-        viewModel?.signUp(user: user) { isSuccessful, error in
+        viewModel?.signUp(user: user) { _, error in
             if error == nil {
-                print(isSuccessful)
+                ScreensFlowConfigurationAppDelegate().navigateToMainScreen()
             } else {
                 let alertHandler = AlertHandler(presentingViewCtrl: self)
-                alertHandler.showInformationAlert(title: "Error", message: error?.localizedDescription ?? "Something went wrong, please try again.")
+                alertHandler.showInformationAlert(
+                    title: L10n.Global.Titles.error, message: error?.localizedDescription ?? L10n.Global.Alerts.somethingWentWrong
+                )
             }
         }
     }
@@ -89,8 +95,8 @@ extension AvatarsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell: AvatarCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "avatarCell", for: indexPath)
-            as? AvatarCollectionViewCell, let image = getImage(from: avatars[indexPath.row].thumbnailURL ?? "") {
+        let cell: AvatarCell = collectionView.dequeCell(indexPath: indexPath)
+        if let image = getImage(from: avatars[indexPath.row].thumbnailURL ?? "") {
             cell.setImageView(with: image)
             return cell
         }
@@ -98,11 +104,11 @@ extension AvatarsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if previouslySelectedAvatarIndexPath != nil {
-            let previousCell = collectionView.cellForItem(at: previouslySelectedAvatarIndexPath ?? IndexPath(item: 0, section: 0)) as? AvatarCollectionViewCell
+        if let previousSelectedIndexPath = previouslySelectedAvatarIndexPath {
+            let previousCell = collectionView.cellForItem(at: previousSelectedIndexPath) as? AvatarCell
             previousCell?.unselectImage()
         }
-        let cell = collectionView.cellForItem(at: indexPath) as? AvatarCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as? AvatarCell
         previouslySelectedAvatarIndexPath = indexPath
         cell?.selectImage()
     }

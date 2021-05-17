@@ -7,12 +7,32 @@ class BasicInfoRegistrationViewController: UIViewController {
 
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
-    @IBOutlet private var nameTextField: UITextField!
-    @IBOutlet private var mobileNumberTextField: UITextField!
+    @IBOutlet private var nameTextField: NoCutPasteTextField! {
+        didSet {
+            nameTextField.isMandatoryTextField = true
+        }
+    }
+    @IBOutlet private var mobileNumberTextField: NoCutPasteTextField! {
+        didSet {
+            mobileNumberTextField.isMandatoryTextField = true
+        }
+    }
     @IBOutlet private var homeNumberTextField: UITextField!
-    @IBOutlet private var emailTextField: UITextField!
-    @IBOutlet private var passwordTextField: UITextField!
-    @IBOutlet private var confirmPasswordTextField: UITextField!
+    @IBOutlet private var emailTextField: NoCutPasteTextField! {
+        didSet {
+            emailTextField.isMandatoryTextField = true
+        }
+    }
+    @IBOutlet private var passwordTextField: NoCutPasteTextField! {
+        didSet {
+            passwordTextField.isMandatoryTextField = true
+        }
+    }
+    @IBOutlet private var confirmPasswordTextField: NoCutPasteTextField! {
+        didSet {
+            confirmPasswordTextField.isMandatoryTextField = true
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -40,7 +60,7 @@ class BasicInfoRegistrationViewController: UIViewController {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled(), isPasswordValid(), isMobileNumberValid(), isEmailValid() else {
-            AlertHandler(presentingViewCtrl: self).showInformationAlert(title: "Error", message: "One of the fields is incorrect.")
+            configureTextFields()
             return false
         }
         return true
@@ -55,6 +75,40 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func configureTextFields() {
+        if !isMandatoryFieldsFilled() {
+            configureEmptyMandatoryFields()
+        }
+        if !isPasswordValid() {
+            passwordTextField.setErrorView()
+            confirmPasswordTextField.setErrorView()
+        }
+        if !isMobileNumberValid() {
+            mobileNumberTextField.setErrorView()
+        }
+        if !isEmailValid() {
+            emailTextField.setErrorView()
+        }
+    }
+
+    private func configureEmptyMandatoryFields() {
+        if nameTextField.isEmpty {
+            nameTextField.setErrorView()
+        }
+        if mobileNumberTextField.isEmpty {
+            mobileNumberTextField.setErrorView()
+        }
+        if emailTextField.isEmpty {
+            emailTextField.setErrorView()
+        }
+        if passwordTextField.isEmpty {
+            passwordTextField.setErrorView()
+        }
+        if confirmPasswordTextField.isEmpty {
+            confirmPasswordTextField.setErrorView()
+        }
+    }
 
     private func isMandatoryFieldsFilled() -> Bool {
         return !nameTextField.isEmpty && !mobileNumberTextField.isEmpty && !emailTextField.isEmpty &&

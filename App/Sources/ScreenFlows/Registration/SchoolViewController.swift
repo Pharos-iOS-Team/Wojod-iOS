@@ -5,8 +5,6 @@ import UIKit
 class SchoolViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var contentView: UIView!
     @IBOutlet private var firstParentNumberTextField: UITextField!
     @IBOutlet private var secondParentNumberTextField: UITextField!
     @IBOutlet private var schoolNameTextField: UITextField!

@@ -87,7 +87,7 @@ class LocationInfoViewController: UIViewController {
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard isMandatoryFieldsFilled() == true else {
+        guard isMandatoryFieldsFilled() else {
             AlertHandler(presentingViewCtrl: self).showInformationAlert(title: "Error", message: "One of the fields is incorrect.")
             return false
         }

@@ -4,7 +4,19 @@ import Foundation
 import Moya
 import SwiftyUserDefaults
 
-internal enum NetworkService {
+internal enum APIPaths {
+    internal static let checkNumber: String = "/check_number"
+    internal static let countries: String = "/countries"
+    internal static let cities: String = "/cities"
+    internal static let academicTypes: String = "/education_types"
+    internal static let academicDivisions: String = "/divisions"
+    internal static let batches: String = "/batches"
+    internal static let specializations: String = "/specializations"
+    internal static let avatars: String = "/avatars"
+    internal static let signUp: String = "/students"
+}
+
+internal enum RegistrationService {
     case checkNumber(_ mobileNumber: String)
     case countries
     case cities(_ countryName: String)
@@ -16,14 +28,7 @@ internal enum NetworkService {
     case signUp(_ userInfo: UserSignupRequest)
 }
 
-extension NetworkService: TargetType {
-    internal var baseURL: URL {
-        guard let url = URL(string: APIConstants.rootURL) else {
-            fatalError("Base URL is not valid")
-        }
-        return url
-    }
-
+extension RegistrationService: TargetType {
     internal var path: String {
         switch self {
         case .checkNumber:

@@ -37,7 +37,7 @@ class UniversityViewController: UIViewController {
     // MARK: - Private Properties
 
     private var viewModel: RegistrationViewModel?
-    private var isStudent = Bool()
+    private var academicLevel: AcademicLevel = .universityStudent
     private var selectedDivisionIndex: Int = 0
     private var selectedYearIndex: Int = 0
     private var universities = [String]()
@@ -62,11 +62,11 @@ class UniversityViewController: UIViewController {
 
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
-        self.isStudent = true
+        self.academicLevel = .universityStudent
     }
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
-        self.isStudent = false
+        self.academicLevel = .graduate
     }
 
     // MARK: - Private Functions
@@ -128,8 +128,7 @@ class UniversityViewController: UIViewController {
     }
 
     private func retrieveUniversities() {
-        let academicLevel: AcademicLevel = isStudent ? .universityStudent : .graduate
-        viewModel?.loadAcademicDivisions(for: academicLevel) { universities in
+        viewModel?.loadAcademicDivisions(for: self.academicLevel) { universities in
             self.universities = universities
         }
     }
@@ -154,8 +153,8 @@ class UniversityViewController: UIViewController {
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
-        switch isStudent {
-        case true:
+        switch self.academicLevel {
+        case .universityStudent:
             return !universityTextField.isEmpty && !fieldTextField.isEmpty && !yearTextField.isEmpty
         default:
             return !universityTextField.isEmpty && !fieldTextField.isEmpty
@@ -173,7 +172,7 @@ class UniversityViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        User.shared.academicType = isStudent ? 1 : 2
+        User.shared.academicType = self.academicLevel.rawValue
         User.shared.university = universityTextField.text
         User.shared.field = fieldTextField.text
         User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]

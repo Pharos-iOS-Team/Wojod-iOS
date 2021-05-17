@@ -91,7 +91,7 @@ internal class RegistrationViewModel {
 
     internal func signUp(user: UserSignupRequest, completion: @escaping (Bool, Error?) -> Void) {
         NetworkProvider.shared.request(target: .signUp(user)) { response, error in
-            let isSignupSuccessful = response == 200 ? true : false
+            let isSignupSuccessful = (response == 200)
             completion(isSignupSuccessful, error)
         }
     }

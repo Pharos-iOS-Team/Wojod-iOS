@@ -8,12 +8,12 @@ import SwiftyUserDefaults
 internal class NetworkProvider {
     internal static var shared = NetworkProvider()
 
-    private let provider = MoyaProvider<NetworkService>(
+    private let provider = MoyaProvider<RegistrationService>(
         plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: [.formatRequestAscURL, .verbose]))]
     )
 
     internal func request(
-        target: NetworkService,
+        target: RegistrationService,
         completion: @escaping (Int?, NetworkError?) -> Void
     ) {
         provider.request(target) { result in
@@ -32,7 +32,7 @@ internal class NetworkProvider {
     }
 
     internal func request<T: Decodable>(
-        target: NetworkService,
+        target: RegistrationService,
         type: T.Type,
         completion: @escaping ((T?, NetworkError?) -> Void)
     ) {
