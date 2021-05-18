@@ -33,11 +33,15 @@ extension NoCutPasteTextField {
         if let text = text, text.isEmpty, isMandatoryTextField {
             setErrorView()
         } else {
-            setBorder(color: Asset.Colors.backgroundLightGreyColor.color, width: 1, cornerRadius: 6)
+            setBorder(color: Asset.Colors.backgroundLightGreyColor.color, width: 1, cornerRadius: 5)
         }
     }
 
     func setErrorView() {
         setBorder(color: .red, width: 1, cornerRadius: 6)
+    }
+
+    func setNormalView() {
+        setBorder(color: Asset.Colors.backgroundLightGreyColor.color, width: 1, cornerRadius: 5)
     }
 }

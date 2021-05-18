@@ -19,18 +19,31 @@ class UniversityViewController: UIViewController {
         didSet {
             universityTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             universityTextField.inputView = universityPickerView
+            universityTextField.isMandatoryTextField = true
         }
     }
     @IBOutlet private var fieldTextField: NoCutPasteTextField! {
         didSet {
             fieldTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             fieldTextField.inputView = fieldPickerView
+            fieldTextField.isMandatoryTextField = true
         }
     }
     @IBOutlet private var yearTextField: NoCutPasteTextField! {
         didSet {
             yearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             yearTextField.inputView = yearPickerView
+            yearTextField.isMandatoryTextField = true
+        }
+    }
+    @IBOutlet private var wrongCredentialsImageView: UIImageView! {
+        didSet {
+            wrongCredentialsImageView.isHidden = true
+        }
+    }
+    @IBOutlet private var wrongCredentialsImageViewHeight: NSLayoutConstraint! {
+        didSet {
+            wrongCredentialsImageViewHeight.constant = 0
         }
     }
 
@@ -39,6 +52,7 @@ class UniversityViewController: UIViewController {
     private var viewModel: RegistrationViewModel?
     private var academicLevel: AcademicLevel = .universityStudent
     private var selectedDivisionIndex: Int = 0
+    private var selectedFieldIndex: Int = 0
     private var selectedYearIndex: Int = 0
     private var universities = [String]()
     private var fields = [String]()
@@ -60,10 +74,15 @@ class UniversityViewController: UIViewController {
 
     // MARK: - IBActions
 
+    @IBAction private func didTapOnBack(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
         self.academicLevel = .universityStudent
     }
+
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
         self.academicLevel = .graduate
@@ -76,7 +95,18 @@ class UniversityViewController: UIViewController {
         fieldPickerView.items = { self.fields }
         yearPickerView.items = { self.years }
 
-        universityTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(pickerDoneTapped))
+        universityTextField.keyboardToolbar.doneBarButton.setTarget(
+            self,
+            action: #selector(universityPickerDoneTapped)
+        )
+        fieldTextField.keyboardToolbar.doneBarButton.setTarget(
+            self,
+            action: #selector(fieldPickerDoneTapped)
+        )
+        yearTextField.keyboardToolbar.doneBarButton.setTarget(
+            self,
+            action: #selector(yearPickerDoneTapped)
+        )
     }
 
     private func configurePickerViews() {
@@ -87,21 +117,25 @@ class UniversityViewController: UIViewController {
         universityPickerView.didSelectAtIndex = { [unowned self] index in
             universityTextField.text = universities[index]
             self.selectedDivisionIndex = index
+            universityTextField.setNormalView()
         }
         fieldPickerView.didSelectAtIndex = { [unowned self] index in
             fieldTextField.text = fields[index]
+            self.selectedFieldIndex = index
+            fieldTextField.setNormalView()
         }
         yearPickerView.didSelectAtIndex = { [unowned self] index in
             yearTextField.text = years[index]
             selectedYearIndex = index
+            yearTextField.setNormalView()
         }
     }
 
     private func configureStudentView() {
-        studentButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
-        studentButton.setTitleColor(.black, for: .normal)
-        graduateButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
-        graduateButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+        graduateButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
+        graduateButton.setTitleColor(.black, for: .normal)
+        studentButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
+        studentButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
 
         UIView.transition(
             with: yearTextField,
@@ -113,10 +147,10 @@ class UniversityViewController: UIViewController {
     }
 
     private func configureGraduateView() {
-        graduateButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
-        graduateButton.setTitleColor(.black, for: .normal)
-        studentButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
-        studentButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+        studentButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
+        studentButton.setTitleColor(.black, for: .normal)
+        graduateButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
+        graduateButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
 
         UIView.transition(
             with: yearTextField,
@@ -146,10 +180,23 @@ class UniversityViewController: UIViewController {
     }
 
     @objc
-    private func pickerDoneTapped() {
+    private func universityPickerDoneTapped() {
         universityPickerView.resignFirstResponder()
+        universityTextField.text = universities[selectedDivisionIndex]
         retrieveFields()
         retrieveYears()
+    }
+
+    @objc
+    private func fieldPickerDoneTapped() {
+        fieldPickerView.resignFirstResponder()
+        fieldTextField.text = fields[selectedFieldIndex]
+    }
+
+    @objc
+    private func yearPickerDoneTapped() {
+        yearPickerView.resignFirstResponder()
+        yearTextField.text = years[selectedYearIndex]
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
@@ -161,11 +208,25 @@ class UniversityViewController: UIViewController {
         }
     }
 
+    private func configureEmptyMandatoryFields() {
+        if universityTextField.isEmpty {
+            universityTextField.setErrorView()
+        }
+        if fieldTextField.isEmpty {
+            fieldTextField.setErrorView()
+        }
+        if yearTextField.isEmpty && academicLevel == .universityStudent {
+            yearTextField.setErrorView()
+        }
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled() == true else {
-            AlertHandler(presentingViewCtrl: self).showInformationAlert(title: "Error", message: "One of the fields is incorrect.")
+            wrongCredentialsImageView.isHidden = false
+            wrongCredentialsImageViewHeight.constant = 50.0
+            configureEmptyMandatoryFields()
             return false
         }
         return true

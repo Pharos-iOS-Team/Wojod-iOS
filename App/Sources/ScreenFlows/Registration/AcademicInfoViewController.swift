@@ -14,16 +14,22 @@ class AcademicInfoViewController: UIViewController {
 
     // MARK: - IBActions
 
+    @IBAction private func didTapOnBack(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+
     @IBAction private func didTapOnSchool(_ sender: UIButton) {
         isSchoolChosen = true
         schoolButton.setImage(Images.girlAvatar.image)
         universityButton.setImage(Images.boyAvatarFaded.image)
     }
+
     @IBAction private func didTapOnUniversity(_ sender: UIButton) {
         isSchoolChosen = false
         schoolButton.setImage(Images.girlAvatarFaded.image)
         universityButton.setImage(Images.boyAvatar.image)
     }
+
     @IBAction private func didTapOnNext(_ sender: SendButton) {
         if isSchoolChosen {
             performSegue(withIdentifier: "segueToSchool", sender: sender)

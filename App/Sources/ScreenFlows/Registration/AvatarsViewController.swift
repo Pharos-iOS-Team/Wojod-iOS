@@ -6,6 +6,11 @@ class AvatarsViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet private var avatarsCollectionView: UICollectionView!
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView! {
+        didSet {
+            loadingIndicator.hidesWhenStopped = true
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -25,10 +30,19 @@ class AvatarsViewController: UIViewController {
 
     // MARK: - IBBActions
 
+    @IBAction private func didTapOnBack(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+
     @IBAction private func didTapOnSubmitButton(_ sender: UIButton) {
+        guard previouslySelectedAvatarIndexPath != nil else {
+            AlertHandler(presentingViewCtrl: self).showInformationAlert(title: "Error", message: "Please choose an avatar first.")
+            return
+        }
         sharedUser.avatar = self.avatars[previouslySelectedAvatarIndexPath?.item ?? 0]
         signup()
     }
+
     @IBAction private func didTapOnSkipButton(_ sender: UIButton) {
         signup()
     }
@@ -41,7 +55,9 @@ class AvatarsViewController: UIViewController {
     }
 
     private func loadAvatars() {
+        loadingIndicator.startAnimating()
         viewModel?.loadAvatars { avatars in
+            self.loadingIndicator.stopAnimating()
             self.avatars = avatars
             self.avatarsCollectionView.reloadData()
         }
@@ -55,6 +71,7 @@ class AvatarsViewController: UIViewController {
 
     // swiftlint:disable function_body_length
     private func signup() {
+        loadingIndicator.startAnimating()
         let user = UserSignupRequest(
             name: sharedUser.nameEn,
             mobileNumber: sharedUser.mobileNumber,
@@ -75,6 +92,7 @@ class AvatarsViewController: UIViewController {
             avatarID: sharedUser.avatar?.id
         )
         viewModel?.signUp(user: user) { _, error in
+            self.loadingIndicator.stopAnimating()
             if error == nil {
                 ScreensFlowConfigurationAppDelegate().navigateToMainScreen()
             } else {

@@ -5,34 +5,55 @@ import UIKit
 class SchoolViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet private var firstParentNumberTextField: UITextField!
+    @IBOutlet private var firstParentNumberTextField: NoCutPasteTextField! {
+        didSet {
+            firstParentNumberTextField.isMandatoryTextField = true
+        }
+    }
     @IBOutlet private var secondParentNumberTextField: UITextField!
-    @IBOutlet private var schoolNameTextField: UITextField!
+    @IBOutlet private var schoolNameTextField: NoCutPasteTextField! {
+        didSet {
+            schoolNameTextField.isMandatoryTextField = true
+        }
+    }
     @IBOutlet private var academicTypeTextField: NoCutPasteTextField! {
         didSet {
             academicTypeTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicTypeTextField.inputView = academicTypesPickerView
+            academicTypeTextField.isMandatoryTextField = true
         }
     }
     @IBOutlet private var academicDivisionTextField: NoCutPasteTextField! {
         didSet {
             academicDivisionTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicDivisionTextField.inputView = divisionsPickerView
+            academicDivisionTextField.isMandatoryTextField = true
         }
     }
     @IBOutlet private var academicYearTextField: NoCutPasteTextField! {
         didSet {
             academicYearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicYearTextField.inputView = academicYearPickerView
+            academicYearTextField.isMandatoryTextField = true
+        }
+    }
+    @IBOutlet private var wrongCredentialsImageView: UIImageView! {
+        didSet {
+            wrongCredentialsImageView.isHidden = true
+        }
+    }
+    @IBOutlet private var wrongCredentialsImageViewHeight: NSLayoutConstraint! {
+        didSet {
+            wrongCredentialsImageViewHeight.constant = 0
         }
     }
 
     // MARK: - Private Properties
 
     private var viewModel: RegistrationViewModel?
-    private var selectedAcademicTypeIndexID: Int?
-    private var selectedDivisionIndexID: Int?
-    private var selectedYearIndexID: Int?
+    private var selectedAcademicTypeIndexID: Int = 0
+    private var selectedDivisionIndexID: Int = 0
+    private var selectedYearIndexID: Int = 0
     private var divisionsList: [String] = []
     private var academicTypesList: [String] = []
     private var academicYears: [String] = []
@@ -51,6 +72,12 @@ class SchoolViewController: UIViewController {
         configurePickerViews()
     }
 
+    // MARK: - IBActions
+
+    @IBAction private func didTapOnBack(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+
     // MARK: - Private Functions
 
     private func configurePickerFields() {
@@ -58,7 +85,9 @@ class SchoolViewController: UIViewController {
         academicTypesPickerView.items = { self.academicTypesList }
         academicYearPickerView.items = { self.academicYears }
 
-        academicDivisionTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(pickerDoneTapped))
+        academicTypeTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
+        academicDivisionTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicDivisionPickerDoneTapped))
+        academicYearTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicYearPickerDoneTapped))
     }
 
     private func configurePickerViews() {
@@ -69,14 +98,17 @@ class SchoolViewController: UIViewController {
         divisionsPickerView.didSelectAtIndex = { [unowned self] index in
             academicDivisionTextField.text = self.divisionsList[index]
             self.selectedDivisionIndexID = index
+            academicDivisionTextField.setNormalView()
         }
         academicTypesPickerView.didSelectAtIndex = { [unowned self] index in
             academicTypeTextField.text = self.academicTypesList[index]
             self.selectedAcademicTypeIndexID = index
+            academicTypeTextField.setNormalView()
         }
         academicYearPickerView.didSelectAtIndex = { [unowned self] index in
             academicYearTextField.text = self.academicYears[index]
             self.selectedYearIndexID = index
+            academicYearTextField.setNormalView()
         }
     }
 
@@ -93,15 +125,28 @@ class SchoolViewController: UIViewController {
     }
 
     private func retrieveAcademicYear() {
-        viewModel?.loadBatches(for: selectedDivisionIndexID ?? 0) { batches in
+        viewModel?.loadBatches(for: selectedDivisionIndexID ) { batches in
             self.academicYears = batches
         }
     }
 
     @objc
-    private func pickerDoneTapped() {
+    private func academicTypePickerDoneTapped() {
+        academicTypesPickerView.resignFirstResponder()
+        academicTypeTextField.text = academicTypesList[selectedAcademicTypeIndexID]
+    }
+
+    @objc
+    private func academicDivisionPickerDoneTapped() {
         divisionsPickerView.resignFirstResponder()
+        academicDivisionTextField.text = divisionsList[selectedDivisionIndexID]
         retrieveAcademicYear()
+    }
+
+    @objc
+    private func academicYearPickerDoneTapped() {
+        academicYearPickerView.resignFirstResponder()
+        academicYearTextField.text = academicYears[selectedYearIndexID]
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
@@ -109,11 +154,31 @@ class SchoolViewController: UIViewController {
         !academicYearTextField.isEmpty && !schoolNameTextField.isEmpty
     }
 
+    private func configureEmptyMandatoryFields() {
+        if firstParentNumberTextField.isEmpty {
+            firstParentNumberTextField.setErrorView()
+        }
+        if academicTypeTextField.isEmpty {
+            academicTypeTextField.setErrorView()
+        }
+        if academicDivisionTextField.isEmpty {
+            academicDivisionTextField.setErrorView()
+        }
+        if academicYearTextField.isEmpty {
+            academicYearTextField.setErrorView()
+        }
+        if schoolNameTextField.isEmpty {
+            schoolNameTextField.setErrorView()
+        }
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled() == true else {
-            AlertHandler(presentingViewCtrl: self).showInformationAlert(title: "Error", message: "One of the fields is incorrect.")
+            wrongCredentialsImageView.isHidden = false
+            wrongCredentialsImageViewHeight.constant = 50.0
+            configureEmptyMandatoryFields()
             return false
         }
         return true
@@ -123,10 +188,10 @@ class SchoolViewController: UIViewController {
         User.shared.educationLevel = 0
         User.shared.parentNumber = firstParentNumberTextField.text
         User.shared.parentNumber2 = secondParentNumberTextField.text
-        User.shared.academicType = viewModel?.academicTypeIDs[selectedAcademicTypeIndexID ?? 0]
-        User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndexID ?? 0]
+        User.shared.academicType = viewModel?.academicTypeIDs[selectedAcademicTypeIndexID]
+        User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndexID]
         User.shared.divisionName = academicDivisionTextField.text
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndexID ?? 0]
+        User.shared.batch = viewModel?.batchesIDs[selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text
         User.shared.schoolName = schoolNameTextField.text
     }

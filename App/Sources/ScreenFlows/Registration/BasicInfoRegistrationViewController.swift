@@ -33,6 +33,14 @@ class BasicInfoRegistrationViewController: UIViewController {
             confirmPasswordTextField.isMandatoryTextField = true
         }
     }
+    @IBOutlet private var wrongCredentialsImageView: UIImageView! {
+        didSet {
+            wrongCredentialsImageView.isHidden = true
+        }
+    }
+    @IBOutlet private var hintContentView: UIView!
+    @IBOutlet private var mandatoryCellsHintLabel: UILabel!
+    @IBOutlet private var mobileNumberHintLabel: UILabel!
 
     // MARK: - Private Properties
 
@@ -56,10 +64,17 @@ class BasicInfoRegistrationViewController: UIViewController {
         scrollView.contentSize = scrollSize
     }
 
+    // MARK: - IBActions
+
+    @IBAction private func didTapOnClose(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+
     // MARK: - Segues
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled(), isPasswordValid(), isMobileNumberValid(), isEmailValid() else {
+            displayWrongCredentialsError()
             configureTextFields()
             return false
         }
@@ -75,6 +90,13 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func displayWrongCredentialsError() {
+        wrongCredentialsImageView.isHidden = false
+        hintContentView.isHidden = true
+        mandatoryCellsHintLabel.isHidden = true
+        mobileNumberHintLabel.isHidden = true
+    }
 
     private func configureTextFields() {
         if !isMandatoryFieldsFilled() {

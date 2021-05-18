@@ -69,6 +69,7 @@ internal enum Asset {
     internal static let academicInfo = ImageAsset(name: "academicInfo")
     internal static let addAvatar = ImageAsset(name: "addAvatar")
     internal static let boyAvatar = ImageAsset(name: "boyAvatar")
+    internal static let close = ImageAsset(name: "close")
     internal static let girlAvatar = ImageAsset(name: "girlAvatar")
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let letsKnowMore = ImageAsset(name: "letsKnowMore")
@@ -79,6 +80,7 @@ internal enum Asset {
     internal static let small = ImageAsset(name: "small")
     internal static let unselectedRadioButton = ImageAsset(name: "unselectedRadioButton")
     internal static let welcomeRegistration = ImageAsset(name: "welcomeRegistration")
+    internal static let wrongCredentials = ImageAsset(name: "wrongCredentials")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
