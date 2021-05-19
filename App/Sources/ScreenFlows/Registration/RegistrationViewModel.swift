@@ -53,7 +53,7 @@ internal class RegistrationViewModel {
     }
 
     internal func loadAcademicDivisions(for academicLevel: AcademicLevel, completion: @escaping ([String]) -> Void) {
-        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue), type: Divisions.self) { response, _ in
+        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue), type: DivisionsModel.self) { response, _ in
             let divisions = response?.divisions
             self.divisionIDs = divisions?.compactMap { $0.key } ?? []
             if let divisionNames = divisions?.compactMap({ $0.value }) {
@@ -64,7 +64,7 @@ internal class RegistrationViewModel {
 
     internal func loadBatches(for divisionIndex: Int, completion: @escaping ([String]) -> Void) {
         let divisionID = self.divisionIDs[divisionIndex]
-        NetworkProvider.shared.request(target: .batches(divisionID), type: Batches.self) { response, _ in
+        NetworkProvider.shared.request(target: .batches(divisionID), type: BatchesModel.self) { response, _ in
             let batches = response?.batches
             self.batchesIDs = batches?.compactMap { $0.key } ?? []
             if let batchesList = batches?.compactMap({ $0.value }) {
@@ -75,7 +75,7 @@ internal class RegistrationViewModel {
 
     internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([String]) -> Void) {
         let divisionID = self.divisionIDs[divisionIndex]
-        NetworkProvider.shared.request(target: .specializations(divisionID), type: Specializations.self) { response, _ in
+        NetworkProvider.shared.request(target: .specializations(divisionID), type: SpecializationsModel.self) { response, _ in
             let specializations = response?.specializations
             if let specializationsList = specializations?.compactMap({ $0.value }) {
                 completion(specializationsList)
@@ -84,7 +84,7 @@ internal class RegistrationViewModel {
     }
 
     internal func loadAvatars(completion: @escaping ([Avatar]) -> Void) {
-        NetworkProvider.shared.request(target: .avatars, type: Avatars.self) { response, _ in
+        NetworkProvider.shared.request(target: .avatars, type: AvatarsModel.self) { response, _ in
             completion(response?.avatars ?? [])
         }
     }

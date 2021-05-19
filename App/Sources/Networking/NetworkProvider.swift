@@ -65,7 +65,7 @@ internal class NetworkProvider {
         _ responseData: Data,
         _ completion: @escaping ((T?, NetworkError?) -> Void)
     ) throws {
-        let decodedResponse = try JSONDecoder().decode(
+        let decodedResponse = try JSONDecoder.default.decode(
             T.self,
             from: responseData
         )

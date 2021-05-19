@@ -44,6 +44,7 @@ final class User {
     var nameAr: String?
     var email: String?
     var mobileNumber: String?
+    var password: String = ""
     var avatar: Avatar?
     var parentNumber: String?
     var parentNumber2: String?
@@ -58,6 +59,7 @@ final class User {
     var educationType: Int = 0
     var educationLevelName: String?
     var educationTypeName: String?
+    var schoolName: String?
     var country: String?
     var city: String?
     var region: String?

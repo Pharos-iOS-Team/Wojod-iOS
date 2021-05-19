@@ -114,7 +114,7 @@ extension AvatarsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AvatarCell = collectionView.dequeCell(indexPath: indexPath)
-        if let image = getImage(from: avatars[indexPath.row].thumbnailURL ?? "") {
+        if let image = getImage(from: avatars[indexPath.row].thumbnailUrl ?? "") {
             cell.setImageView(with: image)
             return cell
         }

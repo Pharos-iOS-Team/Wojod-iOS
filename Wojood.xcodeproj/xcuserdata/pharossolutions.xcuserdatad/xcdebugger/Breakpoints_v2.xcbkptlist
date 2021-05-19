@@ -3,4 +3,70 @@
    uuid = "E2629941-B452-47F5-BEF3-B754AEF4B57E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B12FCB24-DC30-48EF-945E-93BF70A100E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "App/Sources/ScreenFlows/Registration/RegistrationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "loadAvatars(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED2F68A4-512D-4A5A-9F38-C77D8FB01609"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "App/Sources/ScreenFlows/Registration/RegistrationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "signUp(user:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED2F68A4-512D-4A5A-9F38-C77D8FB01609 - a0708e6b96be8671"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Wojood.RegistrationViewModel.signUp(user: Wojood.UserSignupRequest, completion: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Wojood"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pharossolutions/Documents/courses-portal-ios/App/Sources/ScreenFlows/Registration/RegistrationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "978">
+               </Location>
+               <Location
+                  uuid = "ED2F68A4-512D-4A5A-9F38-C77D8FB01609 - 8fb77423107bedae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Int&gt;, Swift.Optional&lt;Wojood.NetworkError&gt;) -&gt; () in Wojood.RegistrationViewModel.signUp(user: Wojood.UserSignupRequest, completion: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Wojood"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pharossolutions/Documents/courses-portal-ios/App/Sources/ScreenFlows/Registration/RegistrationViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "280">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

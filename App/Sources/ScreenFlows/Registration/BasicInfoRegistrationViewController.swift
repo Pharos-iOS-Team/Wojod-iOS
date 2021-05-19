@@ -86,7 +86,7 @@ class BasicInfoRegistrationViewController: UIViewController {
         User.shared.mobileNumber = mobileNumberTextField.text
         User.shared.homeNumber = homeNumberTextField.text
         User.shared.email = emailTextField.text
-        User.shared.password = passwordTextField.text
+        User.shared.password = passwordTextField.text ?? ""
     }
 
     // MARK: - Private Functions

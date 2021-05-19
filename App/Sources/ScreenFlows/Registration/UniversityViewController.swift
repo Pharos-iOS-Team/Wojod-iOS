@@ -234,8 +234,8 @@ class UniversityViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         User.shared.academicType = self.academicLevel.rawValue
-        User.shared.university = universityTextField.text
-        User.shared.field = fieldTextField.text
+        User.shared.divisionName = universityTextField.text
+        User.shared.specializationName = fieldTextField.text
         User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
     }
