@@ -7,10 +7,42 @@ class AcademicInfoViewController: UIViewController {
 
     @IBOutlet private var schoolButton: UIButton!
     @IBOutlet private var universityButton: UIButton!
+    @IBOutlet private var schoolLabel: UILabel! {
+        didSet {
+            schoolLabel.text = L10n.Signup.AcademicInfo.school
+        }
+    }
+    @IBOutlet private var universityLabel: UILabel! {
+        didSet {
+            universityLabel.text = L10n.Signup.AcademicInfo.university
+        }
+    }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
+    @IBOutlet private var academicInfoTitleImageView: UIImageView! {
+        didSet {
+            academicInfoTitleImageView.image = Images.academicInfoTitle
+        }
+    }
+    @IBOutlet private var thirdMilestoneImageView: UIImageView! {
+        didSet {
+            thirdMilestoneImageView.image = Images.thirdMilestone
+        }
+    }
 
     // MARK: - Private Properties
 
     private var isSchoolChosen = Bool()
+
+    // MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureSemanticAttribute()
+    }
 
     // MARK: - IBActions
 

@@ -5,41 +5,83 @@ import UIKit
 class SchoolViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet private var schoolLabel: UILabel! {
+        didSet {
+            schoolLabel.text = L10n.Signup.AcademicInfo.school
+        }
+    }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
+    @IBOutlet private var letsKnowMoreTitleImageView: UIImageView! {
+        didSet {
+            letsKnowMoreTitleImageView.image = Images.letsKnowMoreTitle
+        }
+    }
+    @IBOutlet private var fourthMilestoneImageView: UIImageView! {
+        didSet {
+            fourthMilestoneImageView.image = Images.fourthMilestone
+        }
+    }
     @IBOutlet private var firstParentNumberTextField: NoCutPasteTextField! {
         didSet {
             firstParentNumberTextField.isMandatoryTextField = true
+            firstParentNumberTextField.placeholder = L10n.Signup.School.parentNumber
+            firstParentNumberTextField.semanticContentAttribute = Language.semanticContent
+            firstParentNumberTextField.textAlignment = Language.textAlignment
         }
     }
-    @IBOutlet private var secondParentNumberTextField: UITextField!
+    @IBOutlet private var secondParentNumberTextField: UITextField! {
+        didSet {
+            secondParentNumberTextField.placeholder = L10n.Signup.School.parentNumber2
+            secondParentNumberTextField.semanticContentAttribute = Language.semanticContent
+            secondParentNumberTextField.textAlignment = Language.textAlignment
+        }
+    }
     @IBOutlet private var schoolNameTextField: NoCutPasteTextField! {
         didSet {
             schoolNameTextField.isMandatoryTextField = true
+            schoolNameTextField.placeholder = L10n.Signup.School.schoolName
+            schoolNameTextField.semanticContentAttribute = Language.semanticContent
+            schoolNameTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var academicTypeTextField: NoCutPasteTextField! {
         didSet {
+            academicTypeTextField.placeholder = L10n.Signup.School.academicType
             academicTypeTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicTypeTextField.inputView = academicTypesPickerView
             academicTypeTextField.isMandatoryTextField = true
+            academicTypeTextField.semanticContentAttribute = Language.semanticContent
+            academicTypeTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var academicDivisionTextField: NoCutPasteTextField! {
         didSet {
+            academicDivisionTextField.placeholder = L10n.Signup.School.academicDivision
             academicDivisionTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicDivisionTextField.inputView = divisionsPickerView
             academicDivisionTextField.isMandatoryTextField = true
+            academicDivisionTextField.semanticContentAttribute = Language.semanticContent
+            academicDivisionTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var academicYearTextField: NoCutPasteTextField! {
         didSet {
+            academicYearTextField.placeholder = L10n.Signup.School.academicYear
             academicYearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             academicYearTextField.inputView = academicYearPickerView
             academicYearTextField.isMandatoryTextField = true
+            academicYearTextField.semanticContentAttribute = Language.semanticContent
+            academicYearTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var wrongCredentialsImageView: UIImageView! {
         didSet {
             wrongCredentialsImageView.isHidden = true
+            wrongCredentialsImageView.image = Images.wrongCredentials
         }
     }
     @IBOutlet private var wrongCredentialsImageViewHeight: NSLayoutConstraint! {
@@ -66,6 +108,7 @@ class SchoolViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = RegistrationViewModel()
+        configureSemanticAttribute()
         loadAcademicTypes()
         retrieveAcademicDivisions()
         configurePickerFields()

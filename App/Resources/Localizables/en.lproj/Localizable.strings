@@ -111,3 +111,38 @@ No worries!";
 "profile.logout" = "Logout";
 
 "profile.save" = "Save";
+
+// MARK: - Registration
+
+"signup.basicInfo.mandatoryFieldsHint" = "* Cells with asterisks must be filled.";
+"signup.basicInfo.whatsappNumberHint" = "Mobile number must be linked to whatsapp.";
+"signup.basicInfo.name" = "Name*";
+"signup.basicInfo.mobileNumber" = "Mobile number*";
+"signup.basicInfo.homeNumber" = "Home number";
+"signup.basicInfo.email" = "Email*";
+"signup.basicInfo.password" = "Password*";
+"signup.basicInfo.confirmPassword" = "Confirm password*";
+
+"signup.locationInfo.country" = "Country*";
+"signup.locationInfo.city" = "City*";
+"signup.locationInfo.district" = "District*";
+"signup.locationInfo.address" = "Address";
+
+"signup.academicInfo.school" = "SCHOOL";
+"signup.academicInfo.university" = "UNIVERSITY";
+
+"signup.universityScreen.student" = "Student";
+"signup.universityScreen.graduate" = "Graduate";
+"signup.universityScreen.university" = "University*";
+"signup.universityScreen.field" = "Field*";
+"signup.universityScreen.year" = "Year*";
+
+"signup.school.parentNumber" = "Parent Number*";
+"signup.school.parentNumber2" = "Parent Number 2";
+"signup.school.academicType" = "Academic Type*";
+"signup.school.academicDivision" = "Academic Division*";
+"signup.school.academicYear" = "Academic Year*";
+"signup.school.schoolName" = "School Name*";
+
+"signup.addAvatar.submit" = "Submit";
+"signup.addAvatar.skip" = "Skip";

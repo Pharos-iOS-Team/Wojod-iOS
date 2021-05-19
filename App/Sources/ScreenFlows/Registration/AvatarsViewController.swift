@@ -6,9 +6,34 @@ class AvatarsViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet private var avatarsCollectionView: UICollectionView!
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
+    @IBOutlet private var addAvatarTitleImageView: UIImageView! {
+        didSet {
+            addAvatarTitleImageView.image = Images.addAvatarTitle
+        }
+    }
+    @IBOutlet private var submitIconImageView: UIImageView! {
+        didSet {
+            submitIconImageView.image = Images.localizedNextButton
+        }
+    }
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView! {
         didSet {
             loadingIndicator.hidesWhenStopped = true
+        }
+    }
+    @IBOutlet private var submitButtonLabel: UILabel! {
+        didSet {
+            submitButtonLabel.text = L10n.Signup.AddAvatar.submit
+        }
+    }
+    @IBOutlet private var skipButton: UIButton! {
+        didSet {
+            skipButton.setTitle(L10n.Signup.AddAvatar.skip)
         }
     }
 

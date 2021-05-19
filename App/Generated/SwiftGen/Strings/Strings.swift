@@ -228,6 +228,129 @@ internal enum L10n {
     }
   }
 
+  internal enum Signup {
+    internal enum AcademicInfo {
+      /// SCHOOL
+      internal static var school: String {
+          return L10n.tr("Localizable", "signup.academicInfo.school")
+        }
+      /// UNIVERSITY
+      internal static var university: String {
+          return L10n.tr("Localizable", "signup.academicInfo.university")
+        }
+    }
+    internal enum AddAvatar {
+      /// Skip
+      internal static var skip: String {
+          return L10n.tr("Localizable", "signup.addAvatar.skip")
+        }
+      /// Submit
+      internal static var submit: String {
+          return L10n.tr("Localizable", "signup.addAvatar.submit")
+        }
+    }
+    internal enum BasicInfo {
+      /// Confirm password*
+      internal static var confirmPassword: String {
+          return L10n.tr("Localizable", "signup.basicInfo.confirmPassword")
+        }
+      /// Email*
+      internal static var email: String {
+          return L10n.tr("Localizable", "signup.basicInfo.email")
+        }
+      /// Home number
+      internal static var homeNumber: String {
+          return L10n.tr("Localizable", "signup.basicInfo.homeNumber")
+        }
+      /// * Cells with asterisks must be filled.
+      internal static var mandatoryFieldsHint: String {
+          return L10n.tr("Localizable", "signup.basicInfo.mandatoryFieldsHint")
+        }
+      /// Mobile number*
+      internal static var mobileNumber: String {
+          return L10n.tr("Localizable", "signup.basicInfo.mobileNumber")
+        }
+      /// Name*
+      internal static var name: String {
+          return L10n.tr("Localizable", "signup.basicInfo.name")
+        }
+      /// Password*
+      internal static var password: String {
+          return L10n.tr("Localizable", "signup.basicInfo.password")
+        }
+      /// Mobile number must be linked to whatsapp.
+      internal static var whatsappNumberHint: String {
+          return L10n.tr("Localizable", "signup.basicInfo.whatsappNumberHint")
+        }
+    }
+    internal enum LocationInfo {
+      /// Address
+      internal static var address: String {
+          return L10n.tr("Localizable", "signup.locationInfo.address")
+        }
+      /// City*
+      internal static var city: String {
+          return L10n.tr("Localizable", "signup.locationInfo.city")
+        }
+      /// Country*
+      internal static var country: String {
+          return L10n.tr("Localizable", "signup.locationInfo.country")
+        }
+      /// District*
+      internal static var district: String {
+          return L10n.tr("Localizable", "signup.locationInfo.district")
+        }
+    }
+    internal enum School {
+      /// Academic Division*
+      internal static var academicDivision: String {
+          return L10n.tr("Localizable", "signup.school.academicDivision")
+        }
+      /// Academic Type*
+      internal static var academicType: String {
+          return L10n.tr("Localizable", "signup.school.academicType")
+        }
+      /// Academic Year*
+      internal static var academicYear: String {
+          return L10n.tr("Localizable", "signup.school.academicYear")
+        }
+      /// Parent Number*
+      internal static var parentNumber: String {
+          return L10n.tr("Localizable", "signup.school.parentNumber")
+        }
+      /// Parent Number 2
+      internal static var parentNumber2: String {
+          return L10n.tr("Localizable", "signup.school.parentNumber2")
+        }
+      /// School Name*
+      internal static var schoolName: String {
+          return L10n.tr("Localizable", "signup.school.schoolName")
+        }
+    }
+    internal enum UniversityScreen {
+      /// Field*
+      internal static var field: String {
+          return L10n.tr("Localizable", "signup.universityScreen.field")
+        }
+      /// Graduate
+      internal static var graduate: String {
+          return L10n.tr("Localizable", "signup.universityScreen.graduate")
+        }
+      /// Student
+      internal static var student: String {
+          return L10n.tr("Localizable", "signup.universityScreen.student")
+        }
+      /// University*
+      internal static var university: String {
+          return L10n.tr("Localizable", "signup.universityScreen.university")
+        }
+      /// Year*
+      internal static var year: String {
+          return L10n.tr("Localizable", "signup.universityScreen.year")
+        }
+    }
+  }
+
   internal enum TabBar {
     /// Home
     internal static var home: String {

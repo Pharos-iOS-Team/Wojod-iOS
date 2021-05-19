@@ -5,45 +5,77 @@ import UIKit
 class UniversityViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
+    @IBOutlet private var letsKnowMoreTitleImageView: UIImageView! {
+        didSet {
+            letsKnowMoreTitleImageView.image = Images.letsKnowMoreTitle
+        }
+    }
+    @IBOutlet private var fourthMilestoneImageView: UIImageView! {
+        didSet {
+            fourthMilestoneImageView.image = Images.fourthMilestone
+        }
+    }
     @IBOutlet private var studentButton: UIButton! {
         didSet {
+            studentButton.setTitle(L10n.Signup.UniversityScreen.student)
             studentButton.layer.cornerRadius = 5
         }
     }
     @IBOutlet private var graduateButton: UIButton! {
         didSet {
+            graduateButton.setTitle(L10n.Signup.UniversityScreen.graduate)
             graduateButton.layer.cornerRadius = 5
         }
     }
     @IBOutlet private var universityTextField: NoCutPasteTextField! {
         didSet {
+            universityTextField.placeholder = L10n.Signup.UniversityScreen.university
             universityTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             universityTextField.inputView = universityPickerView
             universityTextField.isMandatoryTextField = true
+            universityTextField.semanticContentAttribute = Language.semanticContent
+            universityTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var fieldTextField: NoCutPasteTextField! {
         didSet {
+            fieldTextField.placeholder = L10n.Signup.UniversityScreen.field
             fieldTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             fieldTextField.inputView = fieldPickerView
             fieldTextField.isMandatoryTextField = true
+            fieldTextField.semanticContentAttribute = Language.semanticContent
+            fieldTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var yearTextField: NoCutPasteTextField! {
         didSet {
+            yearTextField.placeholder = L10n.Signup.UniversityScreen.year
             yearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             yearTextField.inputView = yearPickerView
             yearTextField.isMandatoryTextField = true
+            yearTextField.semanticContentAttribute = Language.semanticContent
+            yearTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var wrongCredentialsImageView: UIImageView! {
         didSet {
             wrongCredentialsImageView.isHidden = true
+            wrongCredentialsImageView.image = Images.wrongCredentials
         }
     }
     @IBOutlet private var wrongCredentialsImageViewHeight: NSLayoutConstraint! {
         didSet {
             wrongCredentialsImageViewHeight.constant = 0
+        }
+    }
+    @IBOutlet private var universityLabel: UILabel! {
+        didSet {
+            universityLabel.text = L10n.Signup.AcademicInfo.university
         }
     }
 
@@ -66,6 +98,7 @@ class UniversityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = RegistrationViewModel()
+        configureSemanticAttribute()
         configureStudentView()
         retrieveUniversities()
         configurePickerViews()

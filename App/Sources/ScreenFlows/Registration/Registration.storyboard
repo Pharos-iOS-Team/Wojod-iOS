@@ -32,7 +32,7 @@
                                                     <constraint firstAttribute="width" constant="44" id="KTH-7i-YzU"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcomeRegistration" translatesAutoresizingMaskIntoConstraints="NO" id="is3-Jp-stJ">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignUpTitlePageOneEn" translatesAutoresizingMaskIntoConstraints="NO" id="is3-Jp-stJ">
                                                 <rect key="frame" x="35" y="154" width="291" height="66"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="66" id="3Ra-CI-hky"/>
@@ -110,7 +110,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentials" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-dy-5dg">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentialsEn" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-dy-5dg">
                                                 <rect key="frame" x="35" y="252" width="353" height="63"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-LJ-XkG">
@@ -181,7 +181,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fa-U3-yy2">
                                 <rect key="frame" x="0.0" y="772" width="414" height="90"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FirstMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="vUl-FV-ErK">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FirstMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="vUl-FV-ErK">
                                         <rect key="frame" x="35" y="28.5" width="85" height="33"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPq-Ue-8Er" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
@@ -224,14 +224,18 @@
                         <outlet property="confirmPasswordTextField" destination="ds5-ce-Ibe" id="xmU-Jd-Zee"/>
                         <outlet property="contentView" destination="1cg-8u-nZE" id="JFS-ug-Ola"/>
                         <outlet property="emailTextField" destination="gMg-I4-ko7" id="H6j-wc-K0m"/>
+                        <outlet property="firstMilestoneImageView" destination="vUl-FV-ErK" id="Rx3-nj-I7F"/>
                         <outlet property="hintContentView" destination="1ze-j0-xap" id="3BU-gi-ZeX"/>
                         <outlet property="homeNumberTextField" destination="h3Q-qY-eE1" id="HkE-r4-WPZ"/>
                         <outlet property="mandatoryCellsHintLabel" destination="bBv-yd-KNM" id="Y7I-CW-w3Z"/>
+                        <outlet property="mandatoryFieldsHintLabel" destination="bBv-yd-KNM" id="JpQ-m7-dBl"/>
+                        <outlet property="mobileLinkedToWhatsappHintLabel" destination="nm5-Yh-f6P" id="zoq-KW-iHc"/>
                         <outlet property="mobileNumberHintLabel" destination="nm5-Yh-f6P" id="cxt-g3-WIM"/>
                         <outlet property="mobileNumberTextField" destination="a20-6w-a96" id="eqV-pE-My0"/>
                         <outlet property="nameTextField" destination="DDz-Lq-Gou" id="Ibg-7N-6kO"/>
                         <outlet property="passwordTextField" destination="nhD-Ur-fO8" id="GmN-uo-4Z4"/>
                         <outlet property="scrollView" destination="Ykz-wP-fHg" id="PQ3-8d-FtM"/>
+                        <outlet property="signUpTitleImageView" destination="is3-Jp-stJ" id="ae5-Pb-UJB"/>
                         <outlet property="wrongCredentialsImageView" destination="Xur-dy-5dg" id="Ccv-ij-gu7"/>
                     </connections>
                 </viewController>
@@ -254,7 +258,7 @@
                                     <constraint firstAttribute="height" constant="44" id="dSu-NN-nyJ"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="yEP-bM-4Wl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationInfoTitleEn" translatesAutoresizingMaskIntoConstraints="NO" id="yEP-bM-4Wl">
                                 <rect key="frame" x="40" y="218" width="151" height="51"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e8Y-pb-EQR" customClass="NoCutPasteTextField" customModule="Wojood" customModuleProvider="target">
@@ -303,10 +307,10 @@
                                     <segue destination="nnQ-Uf-xb1" kind="custom" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="hzx-ao-3LF"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecondMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="DdI-UN-YkX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SecondMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="DdI-UN-YkX">
                                 <rect key="frame" x="40" y="780.5" width="85" height="33"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentials" translatesAutoresizingMaskIntoConstraints="NO" id="GP7-RG-33r">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentialsEn" translatesAutoresizingMaskIntoConstraints="NO" id="GP7-RG-33r">
                                 <rect key="frame" x="40" y="281" width="334" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0PT-5B-bq5"/>
@@ -367,10 +371,13 @@
                     <navigationItem key="navigationItem" id="vAl-AJ-7wz"/>
                     <connections>
                         <outlet property="addressTextField" destination="a3B-e6-1a5" id="tsX-dm-CaQ"/>
+                        <outlet property="backButton" destination="VxB-8w-9OY" id="UVn-p0-qO1"/>
                         <outlet property="cityTextField" destination="1bF-oL-SQ6" id="RDi-Fy-xB0"/>
                         <outlet property="countryTextField" destination="e8Y-pb-EQR" id="7mc-CO-ZtS"/>
                         <outlet property="districtTextField" destination="LoC-T3-jws" id="TdI-Ib-mgQ"/>
                         <outlet property="loadingIndicator" destination="vFE-Qy-v1D" id="dKE-CN-ooT"/>
+                        <outlet property="locationInfoTitleImageView" destination="yEP-bM-4Wl" id="6O8-Rs-3bZ"/>
+                        <outlet property="secondMilestoneImageView" destination="DdI-UN-YkX" id="nvX-cq-uRl"/>
                         <outlet property="wrongCredentialsImageView" destination="GP7-RG-33r" id="qxJ-C1-czM"/>
                         <outlet property="wrongCredentialsImageViewHeight" destination="0PT-5B-bq5" id="rbc-Oc-lF5"/>
                     </connections>
@@ -394,7 +401,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ukj-jS-zRw"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="academicInfo" translatesAutoresizingMaskIntoConstraints="NO" id="HU3-Tc-KWj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AcademicInfoTitleEn" translatesAutoresizingMaskIntoConstraints="NO" id="HU3-Tc-KWj">
                                 <rect key="frame" x="40" y="223" width="209" height="51"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kt-Vl-nUE">
@@ -441,7 +448,7 @@
                                     <action selector="didTapOnUniversity:" destination="nnQ-Uf-xb1" eventType="touchUpInside" id="XBd-e7-JA3"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThirdMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="dym-Kg-EKt">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThirdMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="dym-Kg-EKt">
                                 <rect key="frame" x="40" y="780.5" width="85" height="33"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpv-hg-Off">
@@ -481,8 +488,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="academicInfoTitleImageView" destination="HU3-Tc-KWj" id="NcQ-Fi-cKe"/>
+                        <outlet property="backButton" destination="jpv-hg-Off" id="KC7-0h-kIJ"/>
                         <outlet property="schoolButton" destination="mIo-nV-gYa" id="Yyp-ds-zBr"/>
+                        <outlet property="schoolLabel" destination="3Kt-Vl-nUE" id="IHJ-te-s3w"/>
+                        <outlet property="thirdMilestoneImageView" destination="dym-Kg-EKt" id="3pM-Vb-s4m"/>
                         <outlet property="universityButton" destination="NMa-ko-zDS" id="hJW-yr-eRf"/>
+                        <outlet property="universityLabel" destination="WFO-SY-XQU" id="QTQ-dq-5V1"/>
                         <segue destination="LqN-mb-Mcj" kind="custom" identifier="segueToSchool" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="Pdo-lr-NQu"/>
                         <segue destination="koE-dA-28G" kind="custom" identifier="segueToUniversity" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="WHg-Lh-glJ"/>
                     </connections>
@@ -529,7 +541,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letsKnowMore" translatesAutoresizingMaskIntoConstraints="NO" id="ADN-Vg-Clx">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LetsKnowMoreTitleEn" translatesAutoresizingMaskIntoConstraints="NO" id="ADN-Vg-Clx">
                                                 <rect key="frame" x="30" y="307" width="180" height="48"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent Number*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xFe-Qy-cgC" customClass="NoCutPasteTextField" customModule="Wojood" customModuleProvider="target">
@@ -586,7 +598,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentials" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-D7-iAH">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentialsEn" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-D7-iAH">
                                                 <rect key="frame" x="30" y="368" width="354" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="yZG-hU-16w"/>
@@ -666,8 +678,8 @@
                                             <segue destination="mJA-qu-53P" kind="custom" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="JMe-6k-e6W"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FourthMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="c3X-yb-bbZ">
-                                        <rect key="frame" x="30" y="28.5" width="85" height="33"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="FourthMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="c3X-yb-bbZ">
+                                        <rect key="frame" x="30" y="29.5" width="85" height="33"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -700,7 +712,11 @@
                         <outlet property="academicDivisionTextField" destination="MMM-Kd-aSu" id="2gx-59-CdE"/>
                         <outlet property="academicTypeTextField" destination="6vS-Zp-3Pa" id="Vga-Je-yyv"/>
                         <outlet property="academicYearTextField" destination="HEo-K1-2XP" id="9Nf-8P-faF"/>
+                        <outlet property="backButton" destination="yTj-h9-dOH" id="tjv-zh-VSN"/>
                         <outlet property="firstParentNumberTextField" destination="xFe-Qy-cgC" id="Bbc-Wc-C2n"/>
+                        <outlet property="fourthMilestoneImageView" destination="c3X-yb-bbZ" id="Z4O-Yd-aY8"/>
+                        <outlet property="letsKnowMoreTitleImageView" destination="ADN-Vg-Clx" id="5B4-FO-fSf"/>
+                        <outlet property="schoolLabel" destination="sGS-lt-cFP" id="JKn-GM-Swh"/>
                         <outlet property="schoolNameTextField" destination="9cr-qK-JPI" id="EWg-PH-uOY"/>
                         <outlet property="secondParentNumberTextField" destination="Fqo-bz-L8h" id="ujG-xy-uKv"/>
                         <outlet property="wrongCredentialsImageView" destination="Xkw-D7-iAH" id="Ofu-fk-Vkt"/>
@@ -749,7 +765,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letsKnowMore" translatesAutoresizingMaskIntoConstraints="NO" id="8XG-NX-1pB">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LetsKnowMoreTitleEn" translatesAutoresizingMaskIntoConstraints="NO" id="8XG-NX-1pB">
                                                 <rect key="frame" x="30" y="307" width="180" height="48"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="University*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ed0-OS-E9n" customClass="NoCutPasteTextField" customModule="Wojood" customModuleProvider="target">
@@ -807,7 +823,7 @@
                                                     <action selector="didChooseGraduate:" destination="koE-dA-28G" eventType="touchUpInside" id="I82-qZ-5ck"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentials" translatesAutoresizingMaskIntoConstraints="NO" id="8hZ-Gg-tBO">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentialsEn" translatesAutoresizingMaskIntoConstraints="NO" id="8hZ-Gg-tBO">
                                                 <rect key="frame" x="20" y="375" width="364" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="4ue-Cs-v3l"/>
@@ -875,7 +891,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ci9-5l-hgo">
                                 <rect key="frame" x="0.0" y="806" width="414" height="90"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FourthMilestone" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-ZR-zW2">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FourthMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-ZR-zW2">
                                         <rect key="frame" x="20" y="28.5" width="85" height="33"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzA-nr-iH7" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
@@ -915,9 +931,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="u46-Xu-dCE" id="zJ3-Yb-NsW"/>
                         <outlet property="fieldTextField" destination="eKe-do-c3W" id="POP-Og-hmh"/>
+                        <outlet property="fourthMilestoneImageView" destination="Owz-ZR-zW2" id="hKu-gT-jeH"/>
                         <outlet property="graduateButton" destination="oI4-Dt-TiI" id="7cu-BO-rax"/>
+                        <outlet property="letsKnowMoreTitleImageView" destination="8XG-NX-1pB" id="wQB-2Z-UDY"/>
                         <outlet property="studentButton" destination="H2O-Mb-rhp" id="9aa-d7-7XA"/>
+                        <outlet property="universityLabel" destination="fXG-zu-TOF" id="abR-aW-Axp"/>
                         <outlet property="universityTextField" destination="Ed0-OS-E9n" id="hmy-8V-Dkw"/>
                         <outlet property="wrongCredentialsImageView" destination="8hZ-Gg-tBO" id="UT5-BQ-9wZ"/>
                         <outlet property="wrongCredentialsImageViewHeight" destination="4ue-Cs-v3l" id="uBW-G9-wSN"/>
@@ -943,7 +963,7 @@
                                     <constraint firstAttribute="width" constant="44" id="xVf-8O-bxf"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="8xA-tD-oyp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddAvatarTitleEn" translatesAutoresizingMaskIntoConstraints="NO" id="8xA-tD-oyp">
                                 <rect key="frame" x="40" y="213" width="266" height="88"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhO-z4-9kx">
@@ -1064,8 +1084,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addAvatarTitleImageView" destination="8xA-tD-oyp" id="SPK-r9-ERJ"/>
                         <outlet property="avatarsCollectionView" destination="PcF-pc-QBw" id="S4X-x6-KS4"/>
+                        <outlet property="backButton" destination="0aO-CN-79y" id="col-0G-raP"/>
                         <outlet property="loadingIndicator" destination="OLQ-7m-AJY" id="qmX-Mm-TzK"/>
+                        <outlet property="skipButton" destination="e1a-z5-Yi4" id="81M-fB-bzW"/>
+                        <outlet property="submitButtonLabel" destination="z7h-xX-9aH" id="8Oe-x7-Inn"/>
+                        <outlet property="submitIconImageView" destination="ajU-Tc-IMW" id="lx4-9z-JaB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5T-tC-W4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1074,25 +1099,25 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MBg-2b-cwf"/>
+        <segue reference="JMe-6k-e6W"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AcademicInfoTitleEn" width="209" height="51"/>
+        <image name="AddAvatarTitleEn" width="266" height="88"/>
         <image name="BackIcon" width="30" height="30"/>
-        <image name="FirstMilestone" width="85" height="33"/>
-        <image name="FourthMilestone" width="85" height="33"/>
-        <image name="SecondMilestone" width="85" height="33"/>
-        <image name="ThirdMilestone" width="85" height="33"/>
-        <image name="academicInfo" width="209" height="51"/>
-        <image name="addAvatar" width="266" height="88"/>
+        <image name="FirstMilestoneEn" width="85" height="33"/>
+        <image name="FourthMilestoneEn" width="85" height="33"/>
+        <image name="LetsKnowMoreTitleEn" width="180" height="48"/>
+        <image name="LocationInfoTitleEn" width="151" height="51"/>
+        <image name="SecondMilestoneEn" width="85" height="33"/>
+        <image name="SignUpTitlePageOneEn" width="291" height="54"/>
+        <image name="ThirdMilestoneEn" width="85" height="33"/>
         <image name="boyAvatar" width="93" height="114"/>
         <image name="close" width="24" height="24"/>
         <image name="girlAvatar" width="95" height="114"/>
-        <image name="letsKnowMore" width="180" height="48"/>
-        <image name="location" width="151" height="51"/>
         <image name="nextIcon" width="6" height="10"/>
         <image name="small" width="46" height="48"/>
-        <image name="welcomeRegistration" width="291" height="54"/>
-        <image name="wrongCredentials" width="309" height="50"/>
+        <image name="wrongCredentialsEn" width="309" height="50"/>
         <namedColor name="label">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

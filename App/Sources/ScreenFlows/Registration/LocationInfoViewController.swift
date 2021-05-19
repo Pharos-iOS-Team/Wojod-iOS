@@ -10,9 +10,20 @@ class LocationInfoViewController: UIViewController {
             loadingIndicator.hidesWhenStopped = true
         }
     }
+    @IBOutlet private var locationInfoTitleImageView: UIImageView! {
+        didSet {
+            locationInfoTitleImageView.image = Images.locationInfoTitle
+        }
+    }
+    @IBOutlet private var secondMilestoneImageView: UIImageView! {
+        didSet {
+            secondMilestoneImageView.image = Images.secondMilestone
+        }
+    }
     @IBOutlet private var wrongCredentialsImageView: UIImageView! {
         didSet {
             wrongCredentialsImageView.isHidden = true
+            wrongCredentialsImageView.image = Images.wrongCredentials
         }
     }
     @IBOutlet private var wrongCredentialsImageViewHeight: NSLayoutConstraint! {
@@ -22,24 +33,44 @@ class LocationInfoViewController: UIViewController {
     }
     @IBOutlet private var countryTextField: NoCutPasteTextField! {
         didSet {
+            countryTextField.placeholder = L10n.Signup.LocationInfo.country
             countryTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             countryTextField.inputView = countryPickerView
             countryTextField.isMandatoryTextField = true
+            countryTextField.semanticContentAttribute = Language.semanticContent
+            countryTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var cityTextField: NoCutPasteTextField! {
         didSet {
+            cityTextField.placeholder = L10n.Signup.LocationInfo.city
             cityTextField.addRightIcon(Images.path.image, width: 10, height: 6)
             cityTextField.inputView = cityPickerView
             cityTextField.isMandatoryTextField = true
+            cityTextField.semanticContentAttribute = Language.semanticContent
+            cityTextField.textAlignment = Language.textAlignment
         }
     }
     @IBOutlet private var districtTextField: NoCutPasteTextField! {
         didSet {
+            districtTextField.placeholder = L10n.Signup.LocationInfo.district
             districtTextField.isMandatoryTextField = true
+            districtTextField.semanticContentAttribute = Language.semanticContent
+            districtTextField.textAlignment = Language.textAlignment
         }
     }
-    @IBOutlet private var addressTextField: UITextField!
+    @IBOutlet private var addressTextField: UITextField! {
+        didSet {
+            addressTextField.placeholder = L10n.Signup.LocationInfo.address
+            addressTextField.semanticContentAttribute = Language.semanticContent
+            addressTextField.textAlignment = Language.textAlignment
+        }
+    }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedBackButton)
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -57,6 +88,7 @@ class LocationInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = RegistrationViewModel()
+        configureSemanticAttribute()
         retrieveCountriesList()
         configurePickerFields()
         configurePickerViews()
