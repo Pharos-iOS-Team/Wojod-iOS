@@ -967,7 +967,7 @@
                                 <rect key="frame" x="40" y="213" width="266" height="88"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhO-z4-9kx">
-                                <rect key="frame" x="40" y="713" width="334" height="50"/>
+                                <rect key="frame" x="40" y="752" width="334" height="50"/>
                                 <color key="backgroundColor" name="sendButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dZe-al-zCG"/>
@@ -977,20 +977,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7h-xX-9aH">
-                                <rect key="frame" x="65" y="729.5" width="46" height="17"/>
+                                <rect key="frame" x="65" y="768.5" width="46" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ajU-Tc-IMW">
-                                <rect key="frame" x="348" y="733" width="6" height="10"/>
+                                <rect key="frame" x="348" y="772" width="6" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Gu3-qC-Tu5"/>
                                     <constraint firstAttribute="width" constant="6" id="qFd-pu-Geq"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-z5-Yi4">
-                                <rect key="frame" x="192" y="777" width="30" height="30"/>
+                                <rect key="frame" x="192" y="816" width="30" height="30"/>
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" name="sendButtonColor"/>
                                 </state>
@@ -999,7 +999,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-pc-QBw">
-                                <rect key="frame" x="30" y="351" width="354" height="312"/>
+                                <rect key="frame" x="30" y="351" width="354" height="371"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UQS-VW-5d9">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1034,7 +1034,7 @@
                                 </cells>
                             </collectionView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OLQ-7m-AJY">
-                                <rect key="frame" x="197" y="497" width="20" height="20"/>
+                                <rect key="frame" x="197" y="526.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="E7v-ll-cGD"/>
                                     <constraint firstAttribute="height" constant="20" id="Kmq-Mf-XCg"/>
@@ -1067,12 +1067,12 @@
                             <constraint firstItem="8xA-tD-oyp" firstAttribute="top" secondItem="fu8-B4-NQp" secondAttribute="bottom" constant="5" id="4jP-5t-WD2"/>
                             <constraint firstItem="0aO-CN-79y" firstAttribute="top" secondItem="H4z-TX-3x6" secondAttribute="top" constant="70" id="IVt-9Z-bq5"/>
                             <constraint firstItem="ajU-Tc-IMW" firstAttribute="centerY" secondItem="OhO-z4-9kx" secondAttribute="centerY" id="Jr7-l5-pVk"/>
-                            <constraint firstItem="OhO-z4-9kx" firstAttribute="top" secondItem="PcF-pc-QBw" secondAttribute="bottom" constant="50" id="Okb-yS-UUq"/>
+                            <constraint firstItem="OhO-z4-9kx" firstAttribute="top" secondItem="PcF-pc-QBw" secondAttribute="bottom" constant="30" id="Okb-yS-UUq"/>
                             <constraint firstItem="OhO-z4-9kx" firstAttribute="centerX" secondItem="H4z-TX-3x6" secondAttribute="centerX" id="R8Y-cC-Gzf"/>
                             <constraint firstItem="OLQ-7m-AJY" firstAttribute="centerY" secondItem="PcF-pc-QBw" secondAttribute="centerY" id="Twc-Bg-3qA"/>
                             <constraint firstItem="PcF-pc-QBw" firstAttribute="top" secondItem="8xA-tD-oyp" secondAttribute="bottom" constant="50" id="UF2-0q-5Xx"/>
                             <constraint firstItem="fu8-B4-NQp" firstAttribute="leading" secondItem="0aO-CN-79y" secondAttribute="leading" id="VjR-CO-w1L"/>
-                            <constraint firstAttribute="bottom" secondItem="e1a-z5-Yi4" secondAttribute="bottom" constant="89" id="Wd2-7p-fXB"/>
+                            <constraint firstAttribute="bottom" secondItem="e1a-z5-Yi4" secondAttribute="bottom" constant="50" id="Wd2-7p-fXB"/>
                             <constraint firstItem="e1a-z5-Yi4" firstAttribute="centerX" secondItem="H4z-TX-3x6" secondAttribute="centerX" id="YuQ-Qj-ed1"/>
                             <constraint firstItem="8xA-tD-oyp" firstAttribute="leading" secondItem="fu8-B4-NQp" secondAttribute="leading" id="b5w-Hk-jfh"/>
                             <constraint firstItem="OLQ-7m-AJY" firstAttribute="centerX" secondItem="PcF-pc-QBw" secondAttribute="centerX" id="gko-vS-FQW"/>
@@ -1098,6 +1098,23 @@
             <point key="canvasLocation" x="1393" y="1497"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="58V-w4-RXk">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="AzA-nr-iH7">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="XQ3-F8-Huo">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="bMz-xC-JgU">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="kPq-Ue-8Er">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="JMe-6k-e6W"/>
     </inferredMetricsTieBreakers>
