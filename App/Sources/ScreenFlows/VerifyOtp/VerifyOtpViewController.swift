@@ -39,6 +39,8 @@ class VerifyOtpViewController: UIViewController {
     let viewModel = VerifyOtpViewModel()
     let loadingHud = JGProgressHUD()
 
+    var successHandler: (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureErrorHandler()
@@ -49,11 +51,13 @@ class VerifyOtpViewController: UIViewController {
     @IBAction private func verifyOTP(_ sender: SendButton) {
         confirmOTP()
     }
+
     @IBAction private func resendOTP(_ sender: UIButton) {
         showAlert()
     }
+
     @IBAction private func backButton(_ sender: UIButton) {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        AppDelegate.getAppDelegate()?.window?.rootViewController?.dismiss(animated: true)
     }
 
     private func confirmOTP() {
@@ -64,13 +68,7 @@ class VerifyOtpViewController: UIViewController {
     }
 
     private func configureSuccessHandler() {
-        viewModel.successHandler = {
-            self.hideLoadingIndicator()
-            let createPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate()
-            createPasswordViewCtrl.mobileNumber = self.mobileNumber
-            createPasswordViewCtrl.modalPresentationStyle = .fullScreen
-            self.present(createPasswordViewCtrl, animated: true, completion: nil)
-        }
+        viewModel.successHandler = successHandler
     }
 
     private func configureErrorHandler() {

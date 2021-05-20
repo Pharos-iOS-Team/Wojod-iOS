@@ -21,7 +21,10 @@ extension ModelDecodable {
     func decodeError(response: Response, completionHandler: @escaping (Result) -> Void) {
         let error = decode(modelType: ErrorModel.self, from: response.data)
         if let error = error.data {
-            let customError = WJError(type: .serverSideError(), message: error.errors?.commaSeparatedString ?? "")
+            let customError = WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: response.statusCode)),
+                message: error.errors?.commaSeparatedString ?? ""
+            )
             completionHandler(.failure(customError))
         } else if let error = error.catchedError {
             completionHandler(.failure(WJError(type: .parsingError, message: error)))

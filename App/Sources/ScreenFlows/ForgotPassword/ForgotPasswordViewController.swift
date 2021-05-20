@@ -100,12 +100,28 @@ class ForgotPasswordViewController: UIViewController {
     }
 
     private func handleSuccess() {
-        viewModel.successHandler = {
+        viewModel.successHandler = {  [weak self] in
+            guard let self = self else { return }
             self.hideLoadingIndicator()
-            let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
-            verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
-            verifyOtpViewCtrl.mobileNumber = self.mobileNumberTextField.text ?? ""
-            self.present(verifyOtpViewCtrl, animated: true, completion: nil)
+            let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
+                $0.modalPresentationStyle = .fullScreen
+                $0.mobileNumber = self.mobileNumberTextField.text ?? ""
+                $0.successHandler = {
+                    self.hideLoadingIndicator()
+                    self.dismiss(animated: true) {
+                        self.showCreatePasswordScreen(mobileNumber: self.viewModel.mobileNumber)
+                    }
+                }
+            }
+            self.present(verifyOtpViewCtrl, animated: true)
         }
+    }
+
+    private func showCreatePasswordScreen(mobileNumber: String) {
+        let createPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
+            $0.mobileNumber = mobileNumber
+            $0.modalPresentationStyle = .fullScreen
+        }
+        present(createPasswordViewCtrl, animated: true)
     }
 }

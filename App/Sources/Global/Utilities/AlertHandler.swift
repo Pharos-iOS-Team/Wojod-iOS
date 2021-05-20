@@ -23,7 +23,12 @@ public final class AlertHandler: NSObject {
         present(alertController)
     }
 
-    func showConfirmAlert(title: String, message: String, confirmButtonTitle: String, handler: ((UIAlertAction) -> Void)? = nil) {
+    func showConfirmAlert(
+        title: String,
+        message: String,
+        confirmButtonTitle: String = L10n.Global.Actions.ok,
+        handler: ((UIAlertAction) -> Void)? = nil
+    ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: confirmButtonTitle, style: .default, handler: handler)
         let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
@@ -31,9 +36,9 @@ public final class AlertHandler: NSObject {
         present(alertController)
     }
 
-    func showInformationAlert(title: String, message: String) {
+    func showInformationAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: L10n.Global.Actions.ok, style: .default)
+        let confirmAction = UIAlertAction(title: L10n.Global.Actions.ok, style: .default, handler: handler)
         alertController.addAction(confirmAction)
         present(alertController)
     }

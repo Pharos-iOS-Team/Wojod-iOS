@@ -4,7 +4,7 @@ import Foundation
 
 class ForgotPasswordViewModel {
     private var model = ForgotPasswordModel()
-    private var mobileNumber: String = ""
+    private(set) var mobileNumber: String = ""
 
     var errorHandler: ((WJError) -> Void)?
     var successHandler: (() -> Void)?

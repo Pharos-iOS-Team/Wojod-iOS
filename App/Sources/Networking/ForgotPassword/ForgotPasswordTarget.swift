@@ -4,7 +4,7 @@ import Foundation
 import Moya
 
 enum ForgotPasswordTarget {
-    case sendMobileNumber(mobileNumber: String)
+    case sendMobileNumber(mobileNumber: Encodable)
     case verifyOtp(otp: OtpVerification)
 }
 
@@ -25,7 +25,7 @@ extension ForgotPasswordTarget: TargetType {
     var task: Task {
         switch self {
         case let .sendMobileNumber(mobileNumber):
-            return .requestCustomJSONEncodable(mobileNumber, encoder: JSONEncoder.default)
+            return .requestParameters(parameters: ["mobile_number": mobileNumber], encoding: JSONEncoding.default)
         case let .verifyOtp(otp):
             return .requestCustomJSONEncodable(otp, encoder: JSONEncoder.default)
         }

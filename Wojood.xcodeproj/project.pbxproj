@@ -57,6 +57,8 @@
 		7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */; };
 		7723AE47261C869A007C0B97 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AE46261C869A007C0B97 /* Moya */; };
 		7731E1AD2642A30800F08FFD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7731E1AC2642A30800F08FFD /* .gitignore */; };
+		7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6C62656741800F429F5 /* HTTPStatusCode.swift */; };
+		7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */; };
 		778E724C261DC2D4009D7B35 /* UICollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */; };
 		778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7237261DC2D3009D7B35 /* ArrayExt.swift */; };
 		778E724F261DC2D4009D7B35 /* UILabelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7239261DC2D3009D7B35 /* UILabelExt.swift */; };
@@ -245,6 +247,8 @@
 		7723AE3A261C8260007C0B97 /* GlobalStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStrings.swift; sourceTree = "<group>"; };
 		7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventLogger.swift; sourceTree = "<group>"; };
 		7731E1AC2642A30800F08FFD /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		7744F6C62656741800F429F5 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
 		778E7237261DC2D3009D7B35 /* ArrayExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		778E7239261DC2D3009D7B35 /* UILabelExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExt.swift; sourceTree = "<group>"; };
@@ -330,7 +334,6 @@
 		BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiClient.swift; sourceTree = "<group>"; };
 		BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTarget.swift; sourceTree = "<group>"; };
-		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC6231D42638183C00792869 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
 		BC76713A262C521E0012155C /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +348,7 @@
 		BC767168262D801F0012155C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC7D1E112643F63900F21515 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC9682482638631D009F8550 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BC96824E26386329009F8550 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -589,6 +593,7 @@
 				77E32B82264A8AD30064B801 /* UserModel.swift */,
 				7723AD9E261C6FC5007C0B97 /* WJError.swift */,
 				BC5ED0B42626E34800774E54 /* UserModel.swift */,
+				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 				77E32BBE264A8C200064B801 /* UITableViewExt.swift */,
 				778E7243261DC2D3009D7B35 /* UITextFieldExt.swift */,
 				778E723A261DC2D3009D7B35 /* UIViewExt.swift */,
+				7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -1255,6 +1261,7 @@
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
+				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
 				BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
@@ -1272,6 +1279,7 @@
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
 				77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */,
 				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
+				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */,
 				BC083B6726430E9500A1E6A4 /* AvatarModel.swift in Sources */,

@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    private var viewModel: LoginViewModel?
+    private var viewModel: LoginViewModel!
     private var loadingHud: JGProgressHUD?
     private var user: LoginApiResponseModel?
 
@@ -65,6 +65,7 @@ class LoginViewController: UIViewController {
         alertView.hideAlertView()
         login()
     }
+
     @IBAction private func forgotPassword(_ sender: Any) {
         navigateToForgotPasswordScreen()
     }
@@ -100,11 +101,30 @@ class LoginViewController: UIViewController {
                 self?.alertView.showAlertView()
                 self?.alertView.message = error.message
             default:
-                guard let self = self else { return }
-                let alert = AlertHandler(presentingViewCtrl: self)
-                alert.showInformationAlert(title: L10n.Global.Titles.error, message: error.message)
+                self?.showError(error)
             }
         }
+    }
+
+    private func showError(_ error: WJError) {
+        let alert = AlertHandler(presentingViewCtrl: self)
+        alert.showInformationAlert(title: L10n.Global.Titles.error, message: error.message) { _ in
+            if self.viewModel.doesErrorIndicateVerificationRequired(error) {
+                self.showVerifyOtpScreen()
+            }
+        }
+    }
+
+    private func showVerifyOtpScreen() {
+        guard let mobileNumber = mobileNumberTextField.text else { return }
+        let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
+            $0.mobileNumber = mobileNumber
+            $0.successHandler = {
+                self.hideLoadingIndicator()
+                self.dismiss(animated: true)
+            }
+        }
+        present(verifyOtpViewCtrl, animated: true)
     }
 
     private func handleLoginSuccess() {

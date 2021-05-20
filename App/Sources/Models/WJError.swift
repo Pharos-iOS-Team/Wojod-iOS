@@ -4,7 +4,7 @@ import Foundation
 
 enum ErrorType: Equatable {
     case validationError
-    case serverSideError(statusCode: Int? = nil)
+    case serverSideError(statusCode: HTTPStatusCode? = nil)
     case connectivityError
     case parsingError
 }

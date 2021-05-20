@@ -38,7 +38,7 @@ class CreatePasswordViewController: UIViewController {
     }
     @IBOutlet private var sendButton: SendButton! {
         didSet {
-            sendButton.setTitle(L10n.Login.signIn)
+            sendButton.setTitle(L10n.CreatePassword.setNewPassword)
             sendButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
@@ -67,8 +67,9 @@ class CreatePasswordViewController: UIViewController {
         alertView.hideAlertView()
         verifyPassword()
     }
+
     @IBAction private func dismissView(_ sender: Any) {
-        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        rootViewCtrl?.dismiss(animated: true)
     }
 
     private func verifyPassword() {
@@ -109,7 +110,7 @@ class CreatePasswordViewController: UIViewController {
     private func handleSuccess() {
         viewModel.successHandler = {
             self.hideLoadingIndicator()
-            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            self.rootViewCtrl?.dismiss(animated: true)
         }
     }
 }
