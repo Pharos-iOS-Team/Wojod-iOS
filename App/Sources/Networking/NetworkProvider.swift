@@ -14,7 +14,7 @@ internal class NetworkProvider {
 
     internal func request(
         target: RegistrationService,
-        completion: @escaping (Int?, NetworkError?) -> Void
+        completion: @escaping (Response?, NetworkError?) -> Void
     ) {
         provider.request(target) { result in
             switch result {
@@ -22,7 +22,7 @@ internal class NetworkProvider {
                 if let error = self.decodeErrorResponse(from: response.data), error.message != nil {
                     completion(nil, error)
                 } else {
-                    completion(response.statusCode, nil)
+                    completion(response, nil)
                 }
             case .failure(let error):
                 let responseError = NetworkError(error: error)

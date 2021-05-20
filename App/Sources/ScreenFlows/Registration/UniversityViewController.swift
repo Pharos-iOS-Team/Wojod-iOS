@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import SwiftyUserDefaults
 import UIKit
 
 class UniversityViewController: UIViewController {
@@ -103,11 +104,13 @@ class UniversityViewController: UIViewController {
         retrieveUniversities()
         configurePickerViews()
         configurePickerFields()
+        displayAlreadyEnteredDataBeforeUserTapsBackIfAny()
     }
 
     // MARK: - IBActions
 
     @IBAction private func didTapOnBack(_ sender: UIButton) {
+        retrieveInputEnteredFromUser()
         self.dismiss(animated: false)
     }
 
@@ -149,12 +152,12 @@ class UniversityViewController: UIViewController {
 
         universityPickerView.didSelectAtIndex = { [unowned self] index in
             universityTextField.text = universities[index]
-            self.selectedDivisionIndex = index
+            selectedDivisionIndex = index
             universityTextField.setNormalView()
         }
         fieldPickerView.didSelectAtIndex = { [unowned self] index in
             fieldTextField.text = fields[index]
-            self.selectedFieldIndex = index
+            selectedFieldIndex = index
             fieldTextField.setNormalView()
         }
         yearPickerView.didSelectAtIndex = { [unowned self] index in
@@ -162,6 +165,12 @@ class UniversityViewController: UIViewController {
             selectedYearIndex = index
             yearTextField.setNormalView()
         }
+    }
+
+    private func displayAlreadyEnteredDataBeforeUserTapsBackIfAny() {
+        universityTextField.text = User.shared.divisionName
+        fieldTextField.text = User.shared.specializationName
+        yearTextField.text = User.shared.batchName
     }
 
     private func configureStudentView() {
@@ -197,17 +206,19 @@ class UniversityViewController: UIViewController {
     private func retrieveUniversities() {
         viewModel?.loadAcademicDivisions(for: self.academicLevel) { universities in
             self.universities = universities
+            self.retrieveFields()
+            self.retrieveYears()
         }
     }
 
     private func retrieveFields() {
-        viewModel?.loadSpecializations(for: self.selectedDivisionIndex) { fields in
+        viewModel?.loadSpecializations(for: User.shared.divisionId ?? 0) { fields in
             self.fields = fields
         }
     }
 
     private func retrieveYears() {
-        viewModel?.loadBatches(for: self.selectedDivisionIndex) { years in
+        viewModel?.loadBatches(for: User.shared.divisionId ?? 0) { years in
             self.years = years
         }
     }
@@ -216,6 +227,7 @@ class UniversityViewController: UIViewController {
     private func universityPickerDoneTapped() {
         universityPickerView.resignFirstResponder()
         universityTextField.text = universities[selectedDivisionIndex]
+        User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndex]
         retrieveFields()
         retrieveYears()
     }
@@ -253,6 +265,14 @@ class UniversityViewController: UIViewController {
         }
     }
 
+    private func retrieveInputEnteredFromUser() {
+        User.shared.academicType = self.academicLevel.rawValue
+        User.shared.divisionName = universityTextField.text
+        User.shared.specializationName = fieldTextField.text
+        User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
+        User.shared.batchName = yearTextField.text
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -266,10 +286,6 @@ class UniversityViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        User.shared.academicType = self.academicLevel.rawValue
-        User.shared.divisionName = universityTextField.text
-        User.shared.specializationName = fieldTextField.text
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
-        User.shared.batchName = yearTextField.text
+        retrieveInputEnteredFromUser()
     }
 }

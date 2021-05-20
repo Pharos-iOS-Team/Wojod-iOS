@@ -122,6 +122,7 @@
 "signup.basicInfo.email" = "البريد الالكتروني*";
 "signup.basicInfo.password" = "كلمه السر*";
 "signup.basicInfo.confirmPassword" = "تأكيد كلمة السر*";
+"signup.basicInfo.numberAlreadyExistsError" = "الهاتف المحمول الذي أدخلته له حساب بالفعل.";
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";

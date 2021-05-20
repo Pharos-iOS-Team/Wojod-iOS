@@ -274,6 +274,10 @@ internal enum L10n {
       internal static var name: String {
           return L10n.tr("Localizable", "signup.basicInfo.name")
         }
+      /// The mobile you've entered already has an account.
+      internal static var numberAlreadyExistsError: String {
+          return L10n.tr("Localizable", "signup.basicInfo.numberAlreadyExistsError")
+        }
       /// Password*
       internal static var password: String {
           return L10n.tr("Localizable", "signup.basicInfo.password")

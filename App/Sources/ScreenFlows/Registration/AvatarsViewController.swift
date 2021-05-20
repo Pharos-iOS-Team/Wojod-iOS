@@ -119,11 +119,13 @@ class AvatarsViewController: UIViewController {
         viewModel?.signUp(user: user) { _, error in
             self.loadingIndicator.stopAnimating()
             if error == nil {
-                ScreensFlowConfigurationAppDelegate().navigateToMainScreen()
+                let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
+                verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
+                self.present(verifyOtpViewCtrl, animated: true, completion: nil)
             } else {
                 let alertHandler = AlertHandler(presentingViewCtrl: self)
                 alertHandler.showInformationAlert(
-                    title: L10n.Global.Titles.error, message: error?.localizedDescription ?? L10n.Global.Alerts.somethingWentWrong
+                    title: L10n.Global.Titles.error, message: error ?? L10n.Global.Alerts.somethingWentWrong
                 )
             }
         }
@@ -147,13 +149,12 @@ extension AvatarsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let previousSelectedIndexPath = previouslySelectedAvatarIndexPath {
-            let previousCell = collectionView.cellForItem(at: previousSelectedIndexPath) as? AvatarCell
-            previousCell?.unselectImage()
-        }
-        let cell = collectionView.cellForItem(at: indexPath) as? AvatarCell
         previouslySelectedAvatarIndexPath = indexPath
-        cell?.selectImage()
+        for cell in collectionView.visibleCells {
+            if let avatarCell = cell as? AvatarCell {
+                avatarCell.isSelected ? avatarCell.selectImage() : avatarCell.unselectImage()
+            }
+        }
     }
 }
 

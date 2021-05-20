@@ -1102,10 +1102,10 @@
 				E84874912627913C006DF74C /* SegueFromLeft.swift */,
 				E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */,
 				E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */,
-				E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */,
 				E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */,
 				E85C74962640AFEE0097F115 /* AvatarCell.swift */,
 				E85C749B2640B03F0097F115 /* AvatarsViewController.swift */,
+				E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";

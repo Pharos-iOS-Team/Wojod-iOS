@@ -14,10 +14,11 @@ internal class RegistrationViewModel {
     internal var academicTypeIDs = [Int]()
     internal var divisionIDs = [Int]()
     internal var batchesIDs = [Int]()
+    internal var divisions: [Division]?
 
     internal func checkNumberIfValid(_ mobileNumber: String, completion: @escaping (Bool) -> Void) {
-        NetworkProvider.shared.request(target: .checkNumber(mobileNumber)) { statusCode, _ in
-            completion(statusCode == 200)
+        NetworkProvider.shared.request(target: .checkNumber(mobileNumber)) { response, _ in
+            completion(response?.statusCode == 200)
         }
     }
 
@@ -31,8 +32,7 @@ internal class RegistrationViewModel {
         }
     }
 
-    internal func loadCities(for countryIndex: Int, completion: @escaping ([String]) -> Void) {
-        let selectedCountry = countryCodes[countryIndex]
+    internal func loadCities(for selectedCountry: String, completion: @escaping ([String]) -> Void) {
         NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
             let cities = response?.data
             self.cityCodes = cities?.compactMap { $0.key } ?? []
@@ -55,6 +55,7 @@ internal class RegistrationViewModel {
     internal func loadAcademicDivisions(for academicLevel: AcademicLevel, completion: @escaping ([String]) -> Void) {
         NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue), type: DivisionsModel.self) { response, _ in
             let divisions = response?.divisions
+            self.divisions = divisions
             self.divisionIDs = divisions?.compactMap { $0.key } ?? []
             if let divisionNames = divisions?.compactMap({ $0.value }) {
                 completion(divisionNames)
@@ -63,8 +64,7 @@ internal class RegistrationViewModel {
     }
 
     internal func loadBatches(for divisionIndex: Int, completion: @escaping ([String]) -> Void) {
-        let divisionID = self.divisionIDs[divisionIndex]
-        NetworkProvider.shared.request(target: .batches(divisionID), type: BatchesModel.self) { response, _ in
+        NetworkProvider.shared.request(target: .batches(divisionIndex), type: BatchesModel.self) { response, _ in
             let batches = response?.batches
             self.batchesIDs = batches?.compactMap { $0.key } ?? []
             if let batchesList = batches?.compactMap({ $0.value }) {
@@ -74,8 +74,7 @@ internal class RegistrationViewModel {
     }
 
     internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([String]) -> Void) {
-        let divisionID = self.divisionIDs[divisionIndex]
-        NetworkProvider.shared.request(target: .specializations(divisionID), type: SpecializationsModel.self) { response, _ in
+        NetworkProvider.shared.request(target: .specializations(divisionIndex), type: SpecializationsModel.self) { response, _ in
             let specializations = response?.specializations
             if let specializationsList = specializations?.compactMap({ $0.value }) {
                 completion(specializationsList)
@@ -89,10 +88,13 @@ internal class RegistrationViewModel {
         }
     }
 
-    internal func signUp(user: UserSignupRequest, completion: @escaping (Bool, Error?) -> Void) {
+    internal func signUp(user: UserSignupRequest, completion: @escaping (Bool, String?) -> Void) {
         NetworkProvider.shared.request(target: .signUp(user)) { response, error in
-            let isSignupSuccessful = (response == 200)
-            completion(isSignupSuccessful, error)
+            if error == nil {
+                completion(response?.statusCode == 200, nil)
+            } else {
+                completion(false, error?.errors?[0])
+            }
         }
     }
 }

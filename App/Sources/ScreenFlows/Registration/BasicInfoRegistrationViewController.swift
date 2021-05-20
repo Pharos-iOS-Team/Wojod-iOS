@@ -95,6 +95,7 @@ class BasicInfoRegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSemanticAttribute()
+        mobileNumberTextField.delegate = self
         viewModel = RegistrationViewModel()
     }
 
@@ -133,6 +134,12 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func isMobileNumberUnique(completion: @escaping (Bool) -> Void) {
+        viewModel?.checkNumberIfValid(mobileNumberTextField.text ?? "") { isValid in
+            completion(isValid)
+        }
+    }
 
     private func displayWrongCredentialsError() {
         wrongCredentialsImageView.isHidden = false
@@ -192,5 +199,24 @@ class BasicInfoRegistrationViewController: UIViewController {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: emailTextField.text)
+    }
+}
+
+extension BasicInfoRegistrationViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == mobileNumberTextField {
+            let digitsCount = textField.text?.count
+            if digitsCount == 10 {
+                self.isMobileNumberUnique { isUnique in
+                    if !isUnique {
+                        AlertHandler(presentingViewCtrl: self).showInformationAlert(
+                            title: L10n.Global.Titles.error,
+                            message: L10n.Signup.BasicInfo.numberAlreadyExistsError
+                        )
+                    }
+                }
+            }
+        }
+        return true
     }
 }

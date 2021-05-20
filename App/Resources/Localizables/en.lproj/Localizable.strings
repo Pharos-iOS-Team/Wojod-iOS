@@ -122,6 +122,7 @@ No worries!";
 "signup.basicInfo.email" = "Email*";
 "signup.basicInfo.password" = "Password*";
 "signup.basicInfo.confirmPassword" = "Confirm password*";
+"signup.basicInfo.numberAlreadyExistsError" = "The mobile you've entered already has an account.";
 
 "signup.locationInfo.country" = "Country*";
 "signup.locationInfo.city" = "City*";

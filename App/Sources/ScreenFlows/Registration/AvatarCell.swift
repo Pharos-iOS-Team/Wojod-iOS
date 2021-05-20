@@ -13,12 +13,11 @@ class AvatarCell: UICollectionViewCell {
         avatarImageView.image = avatar
     }
 
-    internal func unselectImage() {
-        avatarImageView.layer.borderWidth = 0
+    internal func selectImage() {
+        avatarImageView.alpha = 1.0
     }
 
-    internal func selectImage() {
-        avatarImageView.layer.borderWidth = 2.0
-        avatarImageView.layer.borderColor = Colors.sendButtonColor.color.cgColor
+    internal func unselectImage() {
+        avatarImageView.alpha = 0.5
     }
 }

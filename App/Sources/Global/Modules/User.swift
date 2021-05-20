@@ -49,6 +49,7 @@ final class User {
     var parentNumber: String?
     var parentNumber2: String?
     var academicType: Int?
+    var academicTypeName: String?
     var batch: Int?
     var divisionId: Int?
     var batchName: String?
@@ -61,7 +62,9 @@ final class User {
     var educationTypeName: String?
     var schoolName: String?
     var country: String?
+    var countryName: String?
     var city: String?
+    var cityName: String?
     var region: String?
     var address: String?
     var homeNumber: String?

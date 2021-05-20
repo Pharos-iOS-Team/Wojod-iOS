@@ -113,11 +113,13 @@ class SchoolViewController: UIViewController {
         retrieveAcademicDivisions()
         configurePickerFields()
         configurePickerViews()
+        displayAlreadyEnteredDataIfAny()
     }
 
     // MARK: - IBActions
 
     @IBAction private func didTapOnBack(_ sender: UIButton) {
+        retrieveInputEnteredFromUser()
         self.dismiss(animated: false)
     }
 
@@ -168,7 +170,7 @@ class SchoolViewController: UIViewController {
     }
 
     private func retrieveAcademicYear() {
-        viewModel?.loadBatches(for: selectedDivisionIndexID ) { batches in
+        viewModel?.loadBatches(for: User.shared.divisionId ?? 0 ) { batches in
             self.academicYears = batches
         }
     }
@@ -182,7 +184,8 @@ class SchoolViewController: UIViewController {
     @objc
     private func academicDivisionPickerDoneTapped() {
         divisionsPickerView.resignFirstResponder()
-        academicDivisionTextField.text = divisionsList[selectedDivisionIndexID]
+        User.shared.divisionId = selectedDivisionIndexID
+        academicDivisionTextField.text = divisionsList[User.shared.divisionId ?? 0]
         retrieveAcademicYear()
     }
 
@@ -215,6 +218,28 @@ class SchoolViewController: UIViewController {
         }
     }
 
+    private func retrieveInputEnteredFromUser() {
+        User.shared.educationLevel = 0
+        User.shared.parentNumber = firstParentNumberTextField.text
+        User.shared.parentNumber2 = secondParentNumberTextField.text
+        User.shared.academicType = viewModel?.academicTypeIDs[selectedAcademicTypeIndexID]
+        User.shared.academicTypeName = academicTypeTextField.text
+        User.shared.divisionId = User.shared.divisionId ?? 0
+        User.shared.divisionName = academicDivisionTextField.text
+        User.shared.batch = viewModel?.batchesIDs[selectedYearIndexID]
+        User.shared.batchName = academicYearTextField.text
+        User.shared.schoolName = schoolNameTextField.text
+    }
+
+    private func displayAlreadyEnteredDataIfAny() {
+        firstParentNumberTextField.text = User.shared.parentNumber
+        secondParentNumberTextField.text = User.shared.parentNumber2
+        academicTypeTextField.text = User.shared.academicTypeName
+        academicDivisionTextField.text = User.shared.divisionName
+        academicYearTextField.text = User.shared.batchName
+        schoolNameTextField.text = User.shared.schoolName
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -228,14 +253,6 @@ class SchoolViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        User.shared.educationLevel = 0
-        User.shared.parentNumber = firstParentNumberTextField.text
-        User.shared.parentNumber2 = secondParentNumberTextField.text
-        User.shared.academicType = viewModel?.academicTypeIDs[selectedAcademicTypeIndexID]
-        User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndexID]
-        User.shared.divisionName = academicDivisionTextField.text
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndexID]
-        User.shared.batchName = academicYearTextField.text
-        User.shared.schoolName = schoolNameTextField.text
+        retrieveInputEnteredFromUser()
     }
 }

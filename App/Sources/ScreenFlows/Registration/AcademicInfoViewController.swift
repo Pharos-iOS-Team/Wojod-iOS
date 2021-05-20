@@ -42,6 +42,7 @@ class AcademicInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSemanticAttribute()
+        configureDefaultSelection()
     }
 
     // MARK: - IBActions
@@ -68,5 +69,13 @@ class AcademicInfoViewController: UIViewController {
         } else {
             performSegue(withIdentifier: "segueToUniversity", sender: sender)
         }
+    }
+
+    // MARK: - // Private Functions
+
+    private func configureDefaultSelection() {
+        isSchoolChosen = true
+        schoolButton.setImage(Images.girlAvatar.image)
+        universityButton.setImage(Images.boyAvatarFaded.image)
     }
 }

@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import SwiftyUserDefaults
 import UIKit
 
 class LocationInfoViewController: UIViewController {
@@ -92,11 +93,13 @@ class LocationInfoViewController: UIViewController {
         retrieveCountriesList()
         configurePickerFields()
         configurePickerViews()
+        displayDataEnteredBeforePressingBackIfExists()
     }
 
     // MARK: - IBActions
 
     @IBAction private func didTapOnBack(_ sender: UIButton) {
+        retrieveDataEnteredFromUser()
         self.dismiss(animated: false)
     }
 
@@ -135,6 +138,13 @@ class LocationInfoViewController: UIViewController {
     private func retrieveCountriesList() {
         viewModel?.loadCountries { countries in
             self.countries = countries
+            self.retrieveCitiesList()
+        }
+    }
+
+    private func retrieveCitiesList() {
+        viewModel?.loadCities(for: User.shared.country ?? "") { cities in
+            self.cities = cities
         }
     }
 
@@ -143,10 +153,10 @@ class LocationInfoViewController: UIViewController {
         let selectedIndex = selectedCountryIndex == nil ? 0 : selectedCountryIndex
         countryPickerView.resignFirstResponder()
         countryTextField.text = countries[selectedIndex ?? 0]
-        self.selectedCountryIndex = selectedIndex
+        selectedCountryIndex = selectedIndex
         self.selectedCountry = self.countryTextField.text
         loadingIndicator.startAnimating()
-        viewModel?.loadCities(for: selectedCountryIndex ?? 0) { cities in
+        viewModel?.loadCities(for: viewModel?.countryCodes[selectedCountryIndex ?? 0] ?? "") { cities in
             self.loadingIndicator.stopAnimating()
             self.cities = cities
         }
@@ -157,7 +167,7 @@ class LocationInfoViewController: UIViewController {
         let selectedIndex = selectedCityIndex == nil ? 0 : selectedCityIndex
         cityPickerView.resignFirstResponder()
         cityTextField.text = cities[selectedIndex ?? 0]
-        self.selectedCityIndex = selectedIndex
+        selectedCityIndex = selectedIndex
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
@@ -176,6 +186,22 @@ class LocationInfoViewController: UIViewController {
         }
     }
 
+    private func retrieveDataEnteredFromUser() {
+        User.shared.country = viewModel?.countryCodes[selectedCountryIndex ?? 0]
+        User.shared.countryName = countries[selectedCountryIndex ?? 0]
+        User.shared.city = viewModel?.cityCodes[selectedCityIndex ?? 0]
+        User.shared.cityName = cities[selectedCityIndex ?? 0]
+        User.shared.region = districtTextField.text
+        User.shared.address = addressTextField.text
+    }
+
+    private func displayDataEnteredBeforePressingBackIfExists() {
+        countryTextField.text = User.shared.countryName
+        cityTextField.text = User.shared.cityName
+        districtTextField.text = User.shared.region
+        addressTextField.text = addressTextField.text
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -189,9 +215,6 @@ class LocationInfoViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        User.shared.country = viewModel?.countryCodes[selectedCityIndex ?? 0]
-        User.shared.city = viewModel?.cityCodes[selectedCityIndex ?? 0]
-        User.shared.region = districtTextField.text
-        User.shared.address = addressTextField.text
+        retrieveDataEnteredFromUser()
     }
 }
