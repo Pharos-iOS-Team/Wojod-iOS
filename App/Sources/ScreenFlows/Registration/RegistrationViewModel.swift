@@ -16,8 +16,8 @@ internal class RegistrationViewModel {
     internal var batchesIDs = [Int]()
     internal var divisions: [Division]?
 
-    internal func checkNumberIfValid(_ mobileNumber: String, completion: @escaping (Bool) -> Void) {
-        NetworkProvider.shared.request(target: .checkNumber(mobileNumber)) { response, _ in
+    internal func checkNumberIfValid(_ mobileNumber: String, email: String, completion: @escaping (Bool) -> Void) {
+        NetworkProvider.shared.request(target: .checkNumber(mobileNumber, email)) { response, _ in
             completion(response?.statusCode == 200)
         }
     }

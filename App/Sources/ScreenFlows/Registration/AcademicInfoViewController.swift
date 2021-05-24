@@ -53,14 +53,14 @@ class AcademicInfoViewController: UIViewController {
 
     @IBAction private func didTapOnSchool(_ sender: UIButton) {
         isSchoolChosen = true
-        schoolButton.setImage(Images.girlAvatar.image)
-        universityButton.setImage(Images.boyAvatarFaded.image)
+        User.shared.isSchoolStudent = true
+        configureSchoolView()
     }
 
     @IBAction private func didTapOnUniversity(_ sender: UIButton) {
         isSchoolChosen = false
-        schoolButton.setImage(Images.girlAvatarFaded.image)
-        universityButton.setImage(Images.boyAvatar.image)
+        User.shared.isSchoolStudent = false
+        configureUniversityView()
     }
 
     @IBAction private func didTapOnNext(_ sender: SendButton) {
@@ -74,7 +74,16 @@ class AcademicInfoViewController: UIViewController {
     // MARK: - // Private Functions
 
     private func configureDefaultSelection() {
-        isSchoolChosen = true
+        isSchoolChosen = (User.shared.isSchoolStudent == nil ? true : User.shared.isSchoolStudent) ?? true
+        isSchoolChosen ? configureSchoolView() : configureUniversityView()
+    }
+
+    private func configureUniversityView() {
+        schoolButton.setImage(Images.girlAvatarFaded.image)
+        universityButton.setImage(Images.boyAvatar.image)
+    }
+
+    private func configureSchoolView() {
         schoolButton.setImage(Images.girlAvatar.image)
         universityButton.setImage(Images.boyAvatarFaded.image)
     }

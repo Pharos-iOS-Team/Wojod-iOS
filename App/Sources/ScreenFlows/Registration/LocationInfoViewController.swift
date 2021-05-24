@@ -187,10 +187,10 @@ class LocationInfoViewController: UIViewController {
     }
 
     private func retrieveDataEnteredFromUser() {
-        User.shared.country = viewModel?.countryCodes[selectedCountryIndex ?? 0]
-        User.shared.countryName = countries[selectedCountryIndex ?? 0]
-        User.shared.city = viewModel?.cityCodes[selectedCityIndex ?? 0]
-        User.shared.cityName = cities[selectedCityIndex ?? 0]
+        User.shared.country = countryTextField.isEmpty ? nil : viewModel?.countryCodes[selectedCountryIndex ?? 0]
+        User.shared.countryName = countryTextField.isEmpty ? nil : countries[selectedCountryIndex ?? 0]
+        User.shared.city = cityTextField.isEmpty ? nil : viewModel?.cityCodes[selectedCityIndex ?? 0]
+        User.shared.cityName = cityTextField.isEmpty ? nil : cities[selectedCityIndex ?? 0]
         User.shared.region = districtTextField.text
         User.shared.address = addressTextField.text
     }

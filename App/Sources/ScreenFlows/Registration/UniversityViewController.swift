@@ -100,7 +100,7 @@ class UniversityViewController: UIViewController {
         super.viewDidLoad()
         viewModel = RegistrationViewModel()
         configureSemanticAttribute()
-        configureStudentView()
+        configureView()
         retrieveUniversities()
         configurePickerViews()
         configurePickerFields()
@@ -171,6 +171,10 @@ class UniversityViewController: UIViewController {
         universityTextField.text = User.shared.divisionName
         fieldTextField.text = User.shared.specializationName
         yearTextField.text = User.shared.batchName
+    }
+
+    private func configureView() {
+        User.shared.academicType == AcademicLevel.graduate.rawValue ? configureGraduateView() : configureStudentView()
     }
 
     private func configureStudentView() {
@@ -269,7 +273,7 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
+        User.shared.batch = yearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
     }
 

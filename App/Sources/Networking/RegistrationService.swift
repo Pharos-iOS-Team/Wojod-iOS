@@ -17,7 +17,7 @@ internal enum APIPaths {
 }
 
 internal enum RegistrationService {
-    case checkNumber(_ mobileNumber: String)
+    case checkNumber(_ mobileNumber: String, _ email: String)
     case countries
     case cities(_ countryName: String)
     case academicTypes(_ academicLevel: Int)
@@ -70,8 +70,8 @@ extension RegistrationService: TargetType {
     internal var task: Task {
         var parameters = [String: Any]()
         switch self {
-        case .checkNumber(let mobileNumber):
-            return.requestParameters(parameters: ["mobile_number": mobileNumber], encoding: URLEncoding.queryString)
+        case .checkNumber(let mobileNumber, let email):
+            return.requestParameters(parameters: ["mobile_number": mobileNumber, "email": email], encoding: URLEncoding.queryString)
         case .countries, .batches, .specializations,
         .avatars:
             return .requestPlain

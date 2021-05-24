@@ -68,6 +68,7 @@ final class User {
     var region: String?
     var address: String?
     var homeNumber: String?
+    var isSchoolStudent: Bool?
     let logoutApiClient = LogoutApiClient()
 
     private init() {}

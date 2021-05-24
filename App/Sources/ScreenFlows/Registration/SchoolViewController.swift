@@ -226,7 +226,7 @@ class SchoolViewController: UIViewController {
         User.shared.academicTypeName = academicTypeTextField.text
         User.shared.divisionId = User.shared.divisionId ?? 0
         User.shared.divisionName = academicDivisionTextField.text
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndexID]
+        User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text
         User.shared.schoolName = schoolNameTextField.text
     }

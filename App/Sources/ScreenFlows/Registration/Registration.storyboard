@@ -191,7 +191,7 @@
                                             <constraint firstAttribute="width" constant="50" id="xvv-sp-15m"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="XrF-Hl-JUc" kind="custom" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="YG2-FO-0zt"/>
+                                            <action selector="didTapOnNext:" destination="i77-x1-Kj8" eventType="touchUpInside" id="hH1-Qz-4VX"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -237,6 +237,7 @@
                         <outlet property="scrollView" destination="Ykz-wP-fHg" id="PQ3-8d-FtM"/>
                         <outlet property="signUpTitleImageView" destination="is3-Jp-stJ" id="ae5-Pb-UJB"/>
                         <outlet property="wrongCredentialsImageView" destination="Xur-dy-5dg" id="Ccv-ij-gu7"/>
+                        <segue destination="XrF-Hl-JUc" kind="custom" identifier="redirectToLocationInfo" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="8Ln-93-EYW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArF-Xv-PrZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
