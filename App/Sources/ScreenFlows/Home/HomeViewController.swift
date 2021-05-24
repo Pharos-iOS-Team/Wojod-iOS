@@ -14,4 +14,12 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.fetchUserProfile(id: 0)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+            self.present(viewCtrl, animated: true)
+        }
+    }
 }

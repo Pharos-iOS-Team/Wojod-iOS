@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
+		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
+		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
+		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
+		38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -231,6 +236,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3898E4E8265E572E00295A43 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		38B03551265B9EF200C24479 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACD7261C5E69007C0B97 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -478,6 +488,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38B03550265B9EC600C24479 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				38B0355E265BA45800C24479 /* Cells */,
+				38B03551265B9EF200C24479 /* NotificationsViewController.swift */,
+				38B03559265B9F0A00C24479 /* Notifications.storyboard */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		38B0355E265BA45800C24479 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */,
+				38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +631,7 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
+				38B03550265B9EC600C24479 /* Notifications */,
 				BC19E5CE2631A34500CFA142 /* CreatePassword */,
 				BC19E5A02631981000CFA142 /* VerifyOtp */,
 				BC083B2626429E2E00A1E6A4 /* Avatars */,
@@ -1040,6 +1070,7 @@
 			isa = PBXGroup;
 			children = (
 				BC91580F26385CED00868BB0 /* Constants.swift */,
+				3898E4E8265E572E00295A43 /* UIConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1292,9 +1323,11 @@
 				7723AE19261C7FBD007C0B97 /* dn-structured-swift5.stencil in Resources */,
 				BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */,
 				BC5ED0D82628438D00774E54 /* ForgotPassword.storyboard in Resources */,
+				38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */,
 				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				BC19E5D02631A35900CFA142 /* CreatePassword.storyboard in Resources */,
+				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
 				BC767140262C524B0012155C /* CoursesList.storyboard in Resources */,
@@ -1462,6 +1495,7 @@
 				7723ADC7261C72E1007C0B97 /* PropertyListKeyValuePair.swift in Sources */,
 				7723AD9F261C6FC5007C0B97 /* WJError.swift in Sources */,
 				BC19E5942631828E00CFA142 /* ProfileTarget.swift in Sources */,
+				3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */,
 				BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */,
@@ -1486,6 +1520,7 @@
 				BC19E579263036AF00CFA142 /* ProfileViewModel.swift in Sources */,
 				BC083B2D26429E5400A1E6A4 /* AvatarsListViewController.swift in Sources */,
 				E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */,
+				38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */,
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
 				E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
@@ -1522,6 +1557,7 @@
 				E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */,
 				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,
 				BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */,
+				38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */,
 				7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */,
 				BC767145262C528D0012155C /* HomeViewController.swift in Sources */,
 				BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */,

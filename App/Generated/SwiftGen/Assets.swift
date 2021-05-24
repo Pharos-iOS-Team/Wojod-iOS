@@ -89,6 +89,7 @@ internal enum Asset {
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
     internal static let small = ImageAsset(name: "small")
     internal static let unselectedRadioButton = ImageAsset(name: "unselectedRadioButton")
+    internal static let notificationAvatar = ImageAsset(name: "notificationAvatar")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
