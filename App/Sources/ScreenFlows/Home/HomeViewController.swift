@@ -14,4 +14,11 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.fetchUserProfile(id: 0)
     }
+
+    // TODO: delete this part
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+        self.present(viewCtrl, animated: true)
+    }
 }
