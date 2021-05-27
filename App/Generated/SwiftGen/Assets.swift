@@ -44,6 +44,7 @@ internal enum Asset {
     internal static let star = ImageAsset(name: "star")
     internal static let collapse = ImageAsset(name: "collapse")
     internal static let expand = ImageAsset(name: "expand")
+    internal static let quiz = ImageAsset(name: "quiz")
     internal static let errorSymbol = ImageAsset(name: "errorSymbol")
     internal static let pdf = ImageAsset(name: "pdf")
     internal static let excelExtension = ImageAsset(name: "ExcelExtension")

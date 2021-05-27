@@ -61,8 +61,21 @@
 		385CC0CC265F958100A091FD /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */; };
 		385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */; };
 		385CC0D6265FAB1500A091FD /* Lessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0D5265FAB1500A091FD /* Lessons.swift */; };
+		385CC0E5265FD67F00A091FD /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */; };
+		385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */; };
+		385CC0EB26601A6700A091FD /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0EA26601A6600A091FD /* Reviews.swift */; };
+		385CC0F0266116EB00A091FD /* LessonsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */; };
+		385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */; };
+		385CC1052663D95D00A091FD /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = 385CC1042663D95C00A091FD /* Roboto */; };
+		385CC10B26641D0F00A091FD /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC10A26641D0E00A091FD /* ReceiptView.swift */; };
+		385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC11226641D3A00A091FD /* ReceiptView.xib */; };
 		38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */; };
 		38706CD3265E6DD300440B53 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38706CD2265E6DD300440B53 /* CourseDetails.storyboard */; };
+		38F7D48E2666C8FD00CD8934 /* CancelBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */; };
+		38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D4922666C92900CD8934 /* CancelBookingView.xib */; };
+		38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D497266761E600CD8934 /* ReviewCourseView.swift */; };
+		38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */; };
+		38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4A426677B6C00CD8934 /* CourseReview.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -340,8 +353,21 @@
 		385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsModel.swift; sourceTree = "<group>"; };
 		385CC0D5265FAB1500A091FD /* Lessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lessons.swift; sourceTree = "<group>"; };
+		385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		385CC0EA26601A6600A091FD /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAttachmentsModel.swift; sourceTree = "<group>"; };
+		385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCourseResponseModel.swift; sourceTree = "<group>"; };
+		385CC1042663D95C00A091FD /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
+		385CC10A26641D0E00A091FD /* ReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
+		385CC11226641D3A00A091FD /* ReceiptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptView.xib; sourceTree = "<group>"; };
 		38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		38706CD2265E6DD300440B53 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
+		38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBookingView.swift; sourceTree = "<group>"; };
+		38F7D4922666C92900CD8934 /* CancelBookingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelBookingView.xib; sourceTree = "<group>"; };
+		38F7D497266761E600CD8934 /* ReviewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseView.swift; sourceTree = "<group>"; };
+		38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCourseView.xib; sourceTree = "<group>"; };
+		38F7D4A426677B6C00CD8934 /* CourseReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseReview.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACD7261C5E69007C0B97 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -707,9 +733,23 @@
 			path = CourseDetails;
 			sourceTree = "<group>";
 		};
+		385CC10926641C9900A091FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				385CC10A26641D0E00A091FD /* ReceiptView.swift */,
+				385CC11226641D3A00A091FD /* ReceiptView.xib */,
+				38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */,
+				38F7D4922666C92900CD8934 /* CancelBookingView.xib */,
+				38F7D497266761E600CD8934 /* ReviewCourseView.swift */,
+				38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		38706CD7265E6DE100440B53 /* CourseDetails */ = {
 			isa = PBXGroup;
 			children = (
+				385CC10926641C9900A091FD /* Views */,
 				385CC0A5265ED46F00A091FD /* TableViewHeaders */,
 				38706CE4265E91CD00440B53 /* Cells */,
 				38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */,
@@ -725,6 +765,8 @@
 			children = (
 				385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */,
 				385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */,
+				385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */,
+				385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1588,6 +1630,7 @@
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
 				380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */,
+				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
