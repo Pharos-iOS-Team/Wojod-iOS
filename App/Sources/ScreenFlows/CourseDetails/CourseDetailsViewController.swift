@@ -8,6 +8,11 @@ internal enum CourseState {
     case booked
 }
 
+internal enum ActiveScreen {
+    case details
+    case reviews
+}
+
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
@@ -38,16 +43,23 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Private Properties
 
     private var state: CourseState?
+    private var activeScreen: ActiveScreen?
     private var viewModel: CourseDetailsViewModel?
     private var lessonsList: [Lesson]?
     private var lessonNumbersList: [Int]?
+    private var reviewsList: [Review]?
+    private var attachmentsOfLessons: [Int: LessonAttachmentsModel] = [:]
+    private var expandedSections: [Int] = []
+    private var blurredView: UIVisualEffectView?
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.state = .normal
+        state = .booked
+        activeScreen = .details
         viewModel = CourseDetailsViewModel()
+        configureActionButtonAccordingToState()
         loadCourseLessons()
         configureTableView()
     }
@@ -55,6 +67,8 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction private func didTapDetails(_ sender: UIButton) {
+        activeScreen = .details
+        tableView.reloadData()
         select(button: detailsButton)
         unselect(button: materialsButton)
         unselect(button: reviewsButton)
@@ -67,15 +81,96 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func didTapReviews(_ sender: UIButton) {
+        viewModel?.loadReviews(courseID: 10) { result in
+            self.reviewsList = result.reviews
+            self.tableView.reloadData()
+        }
+        activeScreen = .reviews
         select(button: reviewsButton)
         unselect(button: detailsButton)
         unselect(button: materialsButton)
     }
 
+    @IBAction private func didTapOnActionButton(_ sender: UIButton) {
+        switch state {
+        case .normal:
+            viewModel?.bookCourses(courseID: 35) { bookingResponse in
+                self.state = .pending
+                self.actionButton.setTitle("Cancel Booking")
+                self.blurView()
+                self.displayReceipt(bookingResponse)
+            }
+
+        case .pending:
+            self.blurView()
+            self.displayConfirmCancelBooking()
+
+        case .booked:
+            self.blurView()
+            self.displayReviewCoursePopup()
+
+        default:
+            return
+        }
+    }
+
     // MARK: - Private Functions
+
+    private func configureActionButtonAccordingToState() {
+        switch state {
+        case .normal:
+            actionButton.setTitle("Book Now")
+        case .pending:
+            actionButton.setTitle("Cancel Booking")
+        case .booked:
+            actionButton.setTitle("Review Course")
+        default:
+            return
+        }
+    }
+
+    private func blurView() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurredView = blurEffectView
+        self.view.addSubview(blurredView ?? blurEffectView)
+    }
+
+    private func displayReceipt(_ receiptData: BookingCourseResponseModel) {
+        let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
+        view?.center = CGPoint(
+            x: self.view.frame.size.width / 2,
+            y: self.view.frame.size.height / 2
+        )
+        view?.configure(with: receiptData)
+        view?.receiptDoneButtonDelegate = self
+        view?.addShadow()
+        self.view.addSubview(view ?? UIView())
+    }
+
+    private func displayConfirmCancelBooking() {
+        let view = UINib(nibName: "CancelBookingView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? CancelBookingView
+        view?.layer.cornerRadius = 10
+        view?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
+        view?.delegate = self
+        view?.addShadow()
+        self.view.addSubview(view ?? UIView())
+    }
+
+    private func displayReviewCoursePopup() {
+        let reviewCourseView = UINib(nibName: "ReviewCourseView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReviewCourseView
+        reviewCourseView?.layer.cornerRadius = 10
+        reviewCourseView?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
+        reviewCourseView?.delegate = self
+        reviewCourseView?.addShadow()
+        self.view.addSubview(reviewCourseView ?? UIView())
+    }
 
     private func configureTableView() {
         tableView.register(UINib(nibName: "AttachmentTableViewCell", bundle: nil), forCellReuseIdentifier: "AttachmentTableViewCell")
+        tableView.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
         let headerNib = UINib(nibName: "CourseDetailsHeaderView", bundle: Bundle.main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CourseDetailsHeaderView")
         tableView.dataSource = self
@@ -93,7 +188,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func loadCourseLessons() {
-        viewModel?.loadLessons(courseID: 32) { lessonsModel in
+        viewModel?.loadLessons(courseID: 35) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
             self.tableView.reloadData()
@@ -101,8 +196,70 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func generateLessonsNumbersList() {
+        guard lessonsList?.count ?? 0 >= 1 else { return }
         let numberOfLessons = lessonsList?.count ?? 0
         lessonNumbersList = Array(1 ... numberOfLessons)
+    }
+
+    private func imageFromURL(_ imageURLString: String?) -> UIImage? {
+        if let imageURLString = imageURLString, let imageURL = URL(string: imageURLString),
+        let imageData = try? Data(contentsOf: imageURL) {
+            return UIImage(data: imageData)
+        }
+        return nil
+    }
+
+    private func numberOfRowsInLessonSection(_ sectionNumber: Int) -> Int {
+        let attachments = attachmentsOfLessons[sectionNumber]
+        let documentsCount = attachments?.documents?.count ?? 0
+        let assignmentsCount = attachments?.assignments?.count ?? 0
+        let videosCount = attachments?.videos?.count ?? 0
+        let quizzesCount = attachments?.quizzes?.count ?? 0
+        return documentsCount + assignmentsCount + videosCount + quizzesCount
+    }
+
+    private func configureAttachments(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
+        if let assignments = attachments?.assignments {
+            for assignment in assignments {
+                cell?.setSubtitleLabel(assignment.title ?? "Assignment")
+                cell?.setAttachmentImageView(Images.quiz.image)
+            }
+        }
+    }
+
+    private func configureQuizzes(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
+        if let quizzes = attachments?.quizzes {
+            for quiz in quizzes {
+                cell?.setSubtitleLabel(quiz.title ?? "Quiz")
+                cell?.setAttachmentImageView(Images.quiz.image)
+            }
+        }
+    }
+
+    private func configureVideos(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
+        if let videos = attachments?.videos {
+            for video in videos {
+                cell?.setSubtitleLabel(video.title ?? "Video")
+            }
+        }
+    }
+
+    private func configureDocuments(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
+        if let documents = attachments?.documents {
+            for document in documents {
+                cell?.setOptionalTitleLabel(document.title ?? "File")
+                cell?.setSubtitleLabel(document.fileName ?? "")
+                cell?.setAttachmentImageView(Images.pdf.image)
+            }
+        }
+    }
+
+    private func configureAttachmentCell(_ cell: AttachmentTableViewCell?, _ section: Int) {
+        let attachments = attachmentsOfLessons[section]
+        configureAttachments(attachments, cell)
+        configureQuizzes(attachments, cell)
+        configureVideos(attachments, cell)
+        configureDocuments(attachments, cell)
     }
 }
 
@@ -110,17 +267,40 @@ class CourseDetailsViewController: UIViewController {
 
 extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return lessonsList?.count ?? 0
+        return activeScreen == .details ? lessonsList?.count ?? 0 : 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.state == .normal ? 0 : 2
+        switch activeScreen {
+        case .reviews:
+            return reviewsList?.count ?? 0
+        case .details:
+            return numberOfRowsInLessonSection(section)
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentTableViewCell", for: indexPath) as? AttachmentTableViewCell
-        cell?.setAttachmentImageView(Images.pdf.image)
-        return cell ?? UITableViewCell()
+        switch activeScreen {
+        case .details:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentTableViewCell", for: indexPath) as? AttachmentTableViewCell
+            configureAttachmentCell(cell, indexPath.section)
+            return cell ?? UITableViewCell()
+
+        case .reviews:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
+            let review = reviewsList?[indexPath.row]
+            cell?.setTitle(review?.title ?? "")
+            cell?.setSubtitle("\(review?.createdAt ?? "") by \(review?.reviewer?.name ?? "")")
+            cell?.setComment(review?.comment ?? "")
+            cell?.setRating(viewModel?.ratingFromUserPercentage(review?.rating ?? 0) ?? 0)
+            cell?.setAvatarImage(imageFromURL(review?.reviewer?.avatar?.fileUrl ?? ""))
+            return cell ?? UITableViewCell()
+
+        default:
+            return UITableViewCell()
+        }
     }
 }
 
@@ -128,20 +308,32 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
 extension CourseDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
+        return activeScreen == .details ? 65 : 100
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDetailsHeaderView")  as? CourseDetailsHeaderView
-        view?.collapseExpandDelegate = self
-        let lesson = lessonsList?[section]
-        view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
-        view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
-        return view
+        switch activeScreen {
+        case .details:
+            let view = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDetailsHeaderView")  as? CourseDetailsHeaderView
+            view?.collapseExpandDelegate = self
+            let lesson = lessonsList?[section]
+            view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
+            view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
+            view?.assignSectionTagToButton(section)
+            if expandedSections.contains(section) {
+                view?.setImageOfButton(Images.collapse.image)
+            } else {
+                view?.setImageOfButton(Images.expand.image)
+            }
+            return view
+
+        default:
+            return nil
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return activeScreen == .details ? 60 : 0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -158,7 +350,61 @@ extension CourseDetailsViewController: UITableViewDelegate {
 // MARK: - Collapse Expand Delegate
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
-    func didTapOnCollapseExpand() {
-        print("TAPPED!")
+    func didTapOnCollapseExpand(in section: Int) {
+        if expandedSections.contains(section) {
+            if let index = expandedSections.firstIndex(of: section) {
+                expandedSections.remove(at: index)
+            }
+            self.attachmentsOfLessons[section] = LessonAttachmentsModel()
+            self.tableView.reloadData()
+        } else {
+            expandedSections.append(section)
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[section] = attachmentsModel
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+// MARK: - Receipt Done Button Delegate
+
+extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
+    func didTapDone() {
+        blurredView?.removeFromSuperview()
+    }
+}
+
+// MARK: - Cancel Booking View Delegate
+
+extension CourseDetailsViewController: CancelBookingViewDelegate {
+    func didTapCancelBooking() {
+        blurredView?.removeFromSuperview()
+        viewModel?.cancelBookingCourse(courseID: 35) { isCancellingSuccessful in
+            if isCancellingSuccessful {
+                self.state = .normal
+                self.actionButton.setTitle("Book Now")
+            }
+        }
+    }
+
+    func didTapReturn() {
+        blurredView?.removeFromSuperview()
+    }
+}
+
+// MARK: - Review Course View Delegate
+
+extension CourseDetailsViewController: ReviewCourseViewDelegate {
+    func didTapSendButton(courseReview: CourseReview) {
+        viewModel?.sendReview(courseID: 35, courseReview: courseReview) { isSentSuccessfully in
+            if isSentSuccessfully {
+                self.blurredView?.removeFromSuperview()
+            }
+        }
+    }
+
+    func didTapSkipButton() {
+        blurredView?.removeFromSuperview()
     }
 }

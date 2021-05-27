@@ -15,4 +15,55 @@ class CourseDetailsViewModel {
             }
         }
     }
+
+    func loadReviews(courseID: Int, completion: @escaping (ReviewsModel) -> Void) {
+        model.loadReviews(courseID: courseID) { result in
+            switch result {
+            case .success(let reviews as ReviewsModel):
+                completion(reviews)
+            default:
+                return
+            }
+        }
+    }
+
+    func loadAttachmentsOfLesson(lessonID: Int, completion: @escaping (LessonAttachmentsModel) -> Void) {
+        model.loadAttachmentsOfLesson(lessonID: lessonID) { result in
+            switch result {
+            case .success(let attachments as LessonAttachmentsModel):
+                completion(attachments)
+            default:
+                return
+            }
+        }
+    }
+
+    func bookCourses(courseID: Int, completion: @escaping (BookingCourseResponseModel) -> Void) {
+        model.bookCourse(courseID: courseID) { result in
+            switch result {
+            case .success(let bookingResponse as BookingCourseResponseModel):
+                completion(bookingResponse)
+            default:
+                return
+            }
+        }
+    }
+
+    func cancelBookingCourse(courseID: Int, completion: @escaping (Bool) -> Void) {
+        model.cancelBookingCourse(courseID: courseID) { isCancellingBookingSuccessful in
+            completion(isCancellingBookingSuccessful)
+        }
+    }
+
+    func sendReview(courseID: Int, courseReview: CourseReview, completion: @escaping (Bool) -> Void) {
+        model.sendReview(courseID: courseID, courseReview: courseReview) { isSentSuccessfully in
+            completion(isSentSuccessfully)
+        }
+    }
+}
+
+extension CourseDetailsViewModel {
+    func ratingFromUserPercentage(_ percentage: Int) -> Int {
+        return percentage / 100 * 5
+    }
 }

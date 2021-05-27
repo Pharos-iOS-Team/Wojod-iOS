@@ -5,6 +5,11 @@ import Moya
 
 enum CourseDetailsTarget {
     case loadLessons(courseID: Int)
+    case loadReviews(courseID: Int)
+    case loadAttachmentsOfLesson(lessonID: Int)
+    case bookCourse(courseID: Int)
+    case cancelBookingCourse(courseID: Int)
+    case sendReview(courseID: Int, courseReview: CourseReview)
 }
 
 extension CourseDetailsTarget: TargetType {
@@ -12,14 +17,36 @@ extension CourseDetailsTarget: TargetType {
         switch self {
         case let .loadLessons(courseID):
             return "/courses/\(courseID)/lessons"
+        case let .loadReviews(courseID):
+            return "/courses/\(courseID)/reviews"
+        case let .loadAttachmentsOfLesson(lessonID):
+            return "/lessons/\(lessonID)"
+        case let .bookCourse(courseID):
+            return "/courses/\(courseID)/reservations"
+        case let .cancelBookingCourse(courseID):
+            return "/courses/\(courseID)/reservations"
+        case let .sendReview(courseID, _):
+            return "/courses/\(courseID)/reviews"
         }
     }
 
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .bookCourse, .sendReview:
+            return .post
+        case .cancelBookingCourse:
+            return .delete
+        default:
+            return .get
+        }
     }
 
     var task: Task {
-        return .requestPlain
+        switch self {
+        case let .sendReview(_, courseReview):
+            return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
+        default:
+            return .requestPlain
+        }
     }
 }

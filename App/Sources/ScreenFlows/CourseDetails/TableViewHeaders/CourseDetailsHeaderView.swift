@@ -3,7 +3,7 @@
 import UIKit
 
 internal protocol CollapseExpandDelegate: AnyObject {
-    func didTapOnCollapseExpand()
+    func didTapOnCollapseExpand(in section: Int)
 }
 
 class CourseDetailsHeaderView: UITableViewHeaderFooterView {
@@ -22,11 +22,12 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     // MARK: - Public Properties
 
     internal weak var collapseExpandDelegate: CollapseExpandDelegate?
+    internal var isExpanded: Bool?
 
     // MARK: - IBActions
 
     @IBAction private func didTapOnCollapseExpandButton(_ sender: UIButton) {
-        collapseExpandDelegate?.didTapOnCollapseExpand()
+        collapseExpandDelegate?.didTapOnCollapseExpand(in: expandCollapseButton.tag)
     }
 
     // MARK: - Public Functions
@@ -37,5 +38,13 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
 
     internal func setLessonTitleLabel(_ title: String) {
         lessonTitleLabel.text = title
+    }
+
+    internal func assignSectionTagToButton(_ sectionNumber: Int) {
+        expandCollapseButton.tag = sectionNumber
+    }
+
+    internal func setImageOfButton(_ image: UIImage) {
+        expandCollapseButton.setImage(image)
     }
 }

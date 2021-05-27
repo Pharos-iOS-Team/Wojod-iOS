@@ -24,6 +24,7 @@ internal enum Asset {
   internal enum Colors {
     internal static let backgroundLightGreyColor = ColorAsset(name: "backgroundLightGreyColor")
     internal static let backgroundLightPurple = ColorAsset(name: "backgroundLightPurple")
+    internal static let darkGreyColor = ColorAsset(name: "darkGreyColor")
     internal static let errorAlertBackgroundColor = ColorAsset(name: "errorAlertBackgroundColor")
     internal static let errorAlertLabelColor = ColorAsset(name: "errorAlertLabelColor")
     internal static let informationViewColor = ColorAsset(name: "informationViewColor")
@@ -40,6 +41,7 @@ internal enum Asset {
     internal static let star = ImageAsset(name: "star")
     internal static let collapse = ImageAsset(name: "collapse")
     internal static let expand = ImageAsset(name: "expand")
+    internal static let quiz = ImageAsset(name: "quiz")
     internal static let errorSymbol = ImageAsset(name: "errorSymbol")
     internal static let pdf = ImageAsset(name: "pdf")
     internal static let excelExtension = ImageAsset(name: "ExcelExtension")

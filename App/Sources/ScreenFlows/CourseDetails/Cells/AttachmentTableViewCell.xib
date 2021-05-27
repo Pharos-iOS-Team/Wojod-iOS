@@ -54,6 +54,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="attachmentImageView" destination="6u7-py-xz4" id="lE8-BA-jYo"/>
+                <outlet property="optionalTitleLabel" destination="iTV-LX-6ex" id="aIU-nx-zYE"/>
+                <outlet property="subtitleLabel" destination="TzX-a2-qti" id="91V-ka-wZ7"/>
             </connections>
             <point key="canvasLocation" x="-197" y="68"/>
         </tableViewCell>
