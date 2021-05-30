@@ -136,6 +136,7 @@
 		BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5E42631A38E00CFA142 /* CreatePasswordTarget.swift */; };
 		BC19E5ED2631A3A000CFA142 /* CreatePasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5EC2631A3A000CFA142 /* CreatePasswordApiClient.swift */; };
 		BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */; };
+		BC5ED0B52626E34800774E54 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0B42626E34800774E54 /* UserDataModel.swift */; };
 		BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */; };
 		BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */; };
 		BC5ED0D82628438D00774E54 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */; };
@@ -160,8 +161,6 @@
 		BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9682482638631D009F8550 /* HomeViewModel.swift */; };
 		BC96824F26386329009F8550 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96824E26386329009F8550 /* HomeModel.swift */; };
 		BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC968276263975BB009F8550 /* EducationalTypes.swift */; };
-		BC96827C263977DC009F8550 /* Divisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96827B263977DC009F8550 /* Divisions.swift */; };
-		BC968281263977F0009F8550 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC968280263977F0009F8550 /* Specializations.swift */; };
 		BC96828626397884009F8550 /* Batches.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96828526397884009F8550 /* Batches.swift */; };
 		BC96828C263979BD009F8550 /* AcademicInfoTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96828B263979BD009F8550 /* AcademicInfoTarget.swift */; };
 		BC968291263979CB009F8550 /* AcademicInfoApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC968290263979CB009F8550 /* AcademicInfoApiClient.swift */; };
@@ -183,6 +182,31 @@
 		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
+		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
+		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
+		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
+		E84874922627913C006DF74C /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874912627913C006DF74C /* SegueFromLeft.swift */; };
+		E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E78DA26553DC8000902CB /* ViewControllerExt.swift */; };
+		E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */; };
+		E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C748C2640A5B90097F115 /* KeyValue.swift */; };
+		E85C74922640A9130097F115 /* Divisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74912640A9130097F115 /* Divisions.swift */; };
+		E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74962640AFEE0097F115 /* AvatarCell.swift */; };
+		E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C749B2640B03F0097F115 /* AvatarsViewController.swift */; };
+		E86753032642890D005ABF77 /* Specializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86753022642890D005ABF77 /* Specializations.swift */; };
+		E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */; };
+		E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */; };
+		E8C9EF2A26321A3C0023D2B1 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */; };
+		E8C9EF3226321AE00023D2B1 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */; };
+		E8C9EF4226323B0D0023D2B1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */; };
+		E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */; };
+		E8C9EF5926361C140023D2B1 /* Avatars.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF5826361C140023D2B1 /* Avatars.swift */; };
+		E8C9EF5E2638CA2C0023D2B1 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF5D2638CA2B0023D2B1 /* Student.swift */; };
+		E8C9EF632638D6940023D2B1 /* TextfieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */; };
+		E8C9EF692638D9A60023D2B1 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */; };
+		E8C9EF73263C546D0023D2B1 /* NoCutPasteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF72263C546C0023D2B1 /* NoCutPasteField.swift */; };
+		E8C9EF78263DD22D0023D2B1 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF77263DD22D0023D2B1 /* DataResponse.swift */; };
+		E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF7C263DD2680023D2B1 /* KeyName.swift */; };
+		E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,7 +351,7 @@
 		BC19E5E42631A38E00CFA142 /* CreatePasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordTarget.swift; sourceTree = "<group>"; };
 		BC19E5EC2631A3A000CFA142 /* CreatePasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordApiClient.swift; sourceTree = "<group>"; };
 		BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordModel.swift; sourceTree = "<group>"; };
-		BC5ED0B42626E34800774E54 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		BC5ED0B42626E34800774E54 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
@@ -376,6 +400,34 @@
 		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
+		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
+		E84874912627913C006DF74C /* SegueFromLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		E84E78DA26553DC8000902CB /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExt.swift; sourceTree = "<group>"; };
+		E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignupRequest.swift; sourceTree = "<group>"; };
+		E85C748C2640A5B90097F115 /* KeyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValue.swift; sourceTree = "<group>"; };
+		E85C74912640A9130097F115 /* Divisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divisions.swift; sourceTree = "<group>"; };
+		E85C74962640AFEE0097F115 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
+		E85C749B2640B03F0097F115 /* AvatarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsViewController.swift; sourceTree = "<group>"; };
+		E85C74A026416CE10097F115 /* Batches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batches.swift; sourceTree = "<group>"; };
+		E86753022642890D005ABF77 /* Specializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specializations.swift; sourceTree = "<group>"; };
+		E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoViewController.swift; sourceTree = "<group>"; };
+		E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
+		E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		E8C9EF532636019D0023D2B1 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		E8C9EF5826361C140023D2B1 /* Avatars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatars.swift; sourceTree = "<group>"; };
+		E8C9EF5D2638CA2B0023D2B1 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExt.swift; sourceTree = "<group>"; };
+		E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
+		E8C9EF72263C546C0023D2B1 /* NoCutPasteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCutPasteField.swift; sourceTree = "<group>"; };
+		E8C9EF77263DD22D0023D2B1 /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
+		E8C9EF7C263DD2680023D2B1 /* KeyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyName.swift; sourceTree = "<group>"; };
+		E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTypes.swift; sourceTree = "<group>"; };
+		E8FB16972647FD5B00895DDC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +479,7 @@
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
 				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
 				7723ACD8261C5E69007C0B97 /* Products */,
+				E84E78C126552D81000902CB /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -531,6 +584,7 @@
 			children = (
 				BC91580E26385CE000868BB0 /* Constants */,
 				BC6231D32638182C00792869 /* Modules */,
+				E8FB16962647FD4700895DDC /* Modules */,
 				778E722E261DC162009D7B35 /* Utilities */,
 				778E722A261DC104009D7B35 /* Extensions */,
 			);
@@ -549,6 +603,7 @@
 				BC767137262C51D90012155C /* CoursesList */,
 				BC5ED0C92628434900774E54 /* ForgotPassword */,
 				BC98F42D262454A000032AC6 /* Login */,
+				E84874532624B0E1006DF74C /* Registration */,
 				BC98F3D426231C5900032AC6 /* UIComponents */,
 				7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */,
 				7723ACE0261C5E69007C0B97 /* Main.storyboard */,
@@ -567,6 +622,8 @@
 				BC19E58D2631823700CFA142 /* Profile */,
 				BC5ED0E92628687800774E54 /* ForgotPassword */,
 				BC9E08FA2625DA8100D24C69 /* Login */,
+				E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */,
+				E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */,
 				778E7235261DC237009D7B35 /* Notifications */,
 				778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */,
 			);
@@ -584,7 +641,6 @@
 				BC968276263975BB009F8550 /* EducationalTypes.swift */,
 				778E7308261E035D009D7B35 /* ErrorModel.swift */,
 				778E72CB261DD6FF009D7B35 /* FileExtension.swift */,
-				BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */,
 				BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */,
 				BC19E5C926319D5B00CFA142 /* OtpVerification.swift */,
 				BC19E5982631866700CFA142 /* Profile.swift */,
@@ -594,6 +650,20 @@
 				7723AD9E261C6FC5007C0B97 /* WJError.swift */,
 				BC5ED0B42626E34800774E54 /* UserModel.swift */,
 				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
+				BC5ED0B42626E34800774E54 /* UserDataModel.swift */,
+				BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */,
+				E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */,
+				E8C9EF532636019D0023D2B1 /* Avatar.swift */,
+				E8C9EF5826361C140023D2B1 /* Avatars.swift */,
+				E8C9EF5D2638CA2B0023D2B1 /* Student.swift */,
+				E8C9EF77263DD22D0023D2B1 /* DataResponse.swift */,
+				E8C9EF7C263DD2680023D2B1 /* KeyName.swift */,
+				E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */,
+				E85C748C2640A5B90097F115 /* KeyValue.swift */,
+				E85C74912640A9130097F115 /* Divisions.swift */,
+				E85C74A026416CE10097F115 /* Batches.swift */,
+				E86753022642890D005ABF77 /* Specializations.swift */,
+				E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -692,6 +762,7 @@
 				778E723C261DC2D3009D7B35 /* StringExt.swift */,
 				778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */,
 				778E723E261DC2D3009D7B35 /* URLExt.swift */,
+				E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */,
 			);
 			path = FoundationExtensions;
 			sourceTree = "<group>";
@@ -714,6 +785,7 @@
 				778E7243261DC2D3009D7B35 /* UITextFieldExt.swift */,
 				778E723A261DC2D3009D7B35 /* UIViewExt.swift */,
 				7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */,
+				E84E78DA26553DC8000902CB /* ViewControllerExt.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -977,6 +1049,7 @@
 				BC083B072641754900A1E6A4 /* AccessoryView */,
 				BC083B012641724B00A1E6A4 /* PickerInputView */,
 				BC767131262C4D030012155C /* CoursesTabBar */,
+				E866815E2652B9F400B98155 /* PickerView */,
 				BC98F3F5262336F800032AC6 /* AlertView */,
 				BC98F3D826231DF900032AC6 /* SendButton */,
 			);
@@ -1018,6 +1091,46 @@
 				BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		E84874532624B0E1006DF74C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				E84874592624B138006DF74C /* Registration.storyboard */,
+				E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */,
+				E848748C26276FD2006DF74C /* LocationInfoViewController.swift */,
+				E84874912627913C006DF74C /* SegueFromLeft.swift */,
+				E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */,
+				E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */,
+				E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */,
+				E85C74962640AFEE0097F115 /* AvatarCell.swift */,
+				E85C749B2640B03F0097F115 /* AvatarsViewController.swift */,
+				E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		E84E78C126552D81000902CB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		E866815E2652B9F400B98155 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				E8C9EF72263C546C0023D2B1 /* NoCutPasteField.swift */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		E8FB16962647FD4700895DDC /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB16972647FD5B00895DDC /* User.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1182,6 +1295,7 @@
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
 				BC767154262C531B0012155C /* Settings.storyboard in Resources */,
 				BC76714A262C52960012155C /* Home.storyboard in Resources */,
+				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
@@ -1264,6 +1378,7 @@
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
 				BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
+				E84874922627913C006DF74C /* SegueFromLeft.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
 				BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */,
@@ -1274,6 +1389,7 @@
 				7723ADC2261C728E007C0B97 /* Environment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
 				BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */,
+				E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */,
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
@@ -1289,22 +1405,26 @@
 				778E725A261DC2D4009D7B35 /* EncodableExt.swift in Sources */,
 				BC19E5DA2631A37100CFA142 /* CreatePasswordViewModel.swift in Sources */,
 				7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */,
+				E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */,
 				7723ADB8261C720F007C0B97 /* DeviceToken.swift in Sources */,
 				BC19E5ED2631A3A000CFA142 /* CreatePasswordApiClient.swift in Sources */,
 				778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
-				BC968281263977F0009F8550 /* Specializations.swift in Sources */,
 				BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */,
+				BC5ED0B52626E34800774E54 /* UserDataModel.swift in Sources */,
 				778E7254261DC2D4009D7B35 /* URLExt.swift in Sources */,
 				7723AD5D261C65F0007C0B97 /* KeychainHandler.swift in Sources */,
 				77E32BB4264A8BF80064B801 /* ImagesExt.swift in Sources */,
 				BC96828C263979BD009F8550 /* AcademicInfoTarget.swift in Sources */,
 				778E724C261DC2D4009D7B35 /* UICollectionViewExt.swift in Sources */,
+				E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */,
 				7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */,
 				BC19E58F2631827C00CFA142 /* ProfileApiClient.swift in Sources */,
 				778E7255261DC2D4009D7B35 /* DateFormatterExt.swift in Sources */,
+				E8C9EF692638D9A60023D2B1 /* SchoolViewController.swift in Sources */,
+				E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */,
 				BC19E5AF263198AE00CFA142 /* VerifyOtpViewModel.swift in Sources */,
 				BC96828626397884009F8550 /* Batches.swift in Sources */,
 				BC96824F26386329009F8550 /* HomeModel.swift in Sources */,
@@ -1313,13 +1433,13 @@
 				BC19E574263036A400CFA142 /* ProfileViewController.swift in Sources */,
 				BC083B192641D52600A1E6A4 /* LogoutApiClient.swift in Sources */,
 				7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */,
+				E8C9EF3226321AE00023D2B1 /* NetworkProvider.swift in Sources */,
 				778E725B261DC2D4009D7B35 /* UIButtonExt.swift in Sources */,
 				BC6231D52638183C00792869 /* User.swift in Sources */,
 				778E7272261DC3E1009D7B35 /* Storyboards.swift in Sources */,
 				BC19E5B4263198BB00CFA142 /* VerifyOtpModel.swift in Sources */,
 				7723AD23261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift in Sources */,
 				778E72E4261DFA0C009D7B35 /* JSONDecoderExt.swift in Sources */,
-				BC96827C263977DC009F8550 /* Divisions.swift in Sources */,
 				778E7259261DC2D4009D7B35 /* UITextFieldExt.swift in Sources */,
 				77E32BC4264A8C450064B801 /* ForgotPasswordViewModel.swift in Sources */,
 				BC19E57E263036BB00CFA142 /* ProfileModel.swift in Sources */,
@@ -1330,12 +1450,15 @@
 				BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */,
+				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
 				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
 				7723AE3B261C8261007C0B97 /* Strings.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
+				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
+				E8C9EF73263C546D0023D2B1 /* NoCutPasteField.swift in Sources */,
 				7723ADA9261C70F8007C0B97 /* PushNotificationsManager.swift in Sources */,
 				7723AD20261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift in Sources */,
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
@@ -1347,30 +1470,41 @@
 				77E32BAF264A8BE50064B801 /* UIDeviceExt.swift in Sources */,
 				BC19E579263036AF00CFA142 /* ProfileViewModel.swift in Sources */,
 				BC083B2D26429E5400A1E6A4 /* AvatarsListViewController.swift in Sources */,
+				E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */,
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
+				E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
 				BC083B032641725B00A1E6A4 /* PickerInputView.swift in Sources */,
 				77E32B96264A8B430064B801 /* LoginApiClient.swift in Sources */,
+				E8C9EF4226323B0D0023D2B1 /* NetworkError.swift in Sources */,
+				E8C9EF5E2638CA2C0023D2B1 /* Student.swift in Sources */,
+				E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
 				BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
+				E86753032642890D005ABF77 /* Specializations.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
 				BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */,
 				BC19E5882631762A00CFA142 /* ProfileTableViewCell.swift in Sources */,
 				778E72CC261DD6FF009D7B35 /* FileExtension.swift in Sources */,
 				BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */,
 				778E72DF261DF9AB009D7B35 /* Result.swift in Sources */,
+				E8C9EF5926361C140023D2B1 /* Avatars.swift in Sources */,
 				778E7256261DC2D4009D7B35 /* UIEdgeInsetsExt.swift in Sources */,
+				E8C9EF2A26321A3C0023D2B1 /* RegistrationService.swift in Sources */,
 				778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */,
 				77E32B91264A8B2C0064B801 /* LoginModel.swift in Sources */,
+				E85C74922640A9130097F115 /* Divisions.swift in Sources */,
 				778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */,
 				BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */,
 				BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */,
 				778E72DA261DF6C4009D7B35 /* ModelDecodable.swift in Sources */,
+				E8C9EF632638D6940023D2B1 /* TextfieldExt.swift in Sources */,
 				7723ADAE261C712E007C0B97 /* NotificationsApiClient.swift in Sources */,
 				BC767160262C6F870012155C /* SettingsTableViewCell.swift in Sources */,
+				E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */,
 				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,
 				BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */,
 				7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */,
@@ -1379,6 +1513,9 @@
 				778E724F261DC2D4009D7B35 /* UILabelExt.swift in Sources */,
 				BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */,
 				7723ADFB261C787B007C0B97 /* DefaultsKeysExt.swift in Sources */,
+				E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */,
+				E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */,
+				E8C9EF78263DD22D0023D2B1 /* DataResponse.swift in Sources */,
 				778E7271261DC3E1009D7B35 /* Assets.swift in Sources */,
 				BC96829926397FE6009F8550 /* AcademicInfoModel.swift in Sources */,
 			);

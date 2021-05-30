@@ -111,3 +111,39 @@
 "profile.logout" = "تسجيل خروج";
 
 "profile.save" = "حفظ";
+
+// MARK: - Registration
+
+"signup.basicInfo.mandatoryFieldsHint" = "* يجب ملأ كل الحقول التي تنتهي ب";
+"signup.basicInfo.whatsappNumberHint" = "رقم الهاتف يجب ان يكون مربوط بخدمة الواتس اب";
+"signup.basicInfo.name" = "الاسم*";
+"signup.basicInfo.mobileNumber" = "رقم الهاتف*";
+"signup.basicInfo.homeNumber" = "الرقم الارضي";
+"signup.basicInfo.email" = "البريد الالكتروني*";
+"signup.basicInfo.password" = "كلمه السر*";
+"signup.basicInfo.confirmPassword" = "تأكيد كلمة السر*";
+"signup.basicInfo.numberAlreadyExistsError" = "الهاتف المحمول الذي أدخلته له حساب بالفعل.";
+
+"signup.locationInfo.country" = "البلد*";
+"signup.locationInfo.city" = "المحافظة*";
+"signup.locationInfo.district" = "المنطقة*";
+"signup.locationInfo.address" = "العنوان";
+
+"signup.academicInfo.school" = "مدرسة";
+"signup.academicInfo.university" = "جامعة";
+
+"signup.universityScreen.student" = "طالب";
+"signup.universityScreen.graduate" = "خريج";
+"signup.universityScreen.university" = "جامعة*";
+"signup.universityScreen.field" = "المجال*";
+"signup.universityScreen.year" = "السنة الأكاديمية*";
+
+"signup.school.parentNumber" = "رقم ولي الأمر*";
+"signup.school.parentNumber2" = "رقم ولي الأمر ٢";
+"signup.school.academicType" = "النوع الأكاديمي*";
+"signup.school.academicDivision" = "القسم الأكاديمي*";
+"signup.school.academicYear" = "السنة الأكاديمية*";
+"signup.school.schoolName" = "اسم المدرسة*";
+
+"signup.addAvatar.submit" = "إرسال";
+"signup.addAvatar.skip" = "تخطي";

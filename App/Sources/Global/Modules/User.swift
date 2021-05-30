@@ -44,10 +44,12 @@ final class User {
     var nameAr: String?
     var email: String?
     var mobileNumber: String?
+    var password: String = ""
     var avatar: Avatar?
     var parentNumber: String?
     var parentNumber2: String?
     var academicType: Int?
+    var academicTypeName: String?
     var batch: Int?
     var divisionId: Int?
     var batchName: String?
@@ -58,11 +60,15 @@ final class User {
     var educationType: Int = 0
     var educationLevelName: String?
     var educationTypeName: String?
+    var schoolName: String?
     var country: String?
+    var countryName: String?
     var city: String?
+    var cityName: String?
     var region: String?
     var address: String?
     var homeNumber: String?
+    var isSchoolStudent: Bool?
     let logoutApiClient = LogoutApiClient()
 
     private init() {}
