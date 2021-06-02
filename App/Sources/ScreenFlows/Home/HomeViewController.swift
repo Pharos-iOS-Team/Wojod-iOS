@@ -385,12 +385,4 @@ extension HomeViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegate {
     func didTapDone() {
         blurredView?.removeFromSuperview()
     }
-
-    // TODO: delete this part
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
-        viewCtrl.modalPresentationStyle = .fullScreen
-        self.present(viewCtrl, animated: true)
-    }
 }
