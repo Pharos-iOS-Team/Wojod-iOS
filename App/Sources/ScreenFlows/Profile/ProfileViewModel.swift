@@ -5,6 +5,7 @@ import Foundation
 enum ProfileFields: Int, CaseIterable {
     case name
     case mobileNumber
+    case mobileNumber2
     case email
     case parentNumber
     case parentNumber2
@@ -17,6 +18,7 @@ enum ProfileFields: Int, CaseIterable {
     case city
     case region
     case address
+    case logout
 }
 
 class ProfileViewModel {
@@ -25,6 +27,8 @@ class ProfileViewModel {
     let academicInfoModel = AcademicInfoModel()
     var user: StudentModel?
     var profile = Profile()
+    var countries = [KeyName]()
+    var cities = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
         case EducationLevel.school.rawValue:
@@ -32,7 +36,7 @@ class ProfileViewModel {
         case EducationLevel.facutly.rawValue:
             return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 }
         case EducationLevel.gradute.rawValue:
-            return [.name, .mobileNumber, .email, .homeNumber, .batch, .country, .city, .region, .address]
+            return [.name, .mobileNumber, .mobileNumber2, .email, .homeNumber, .batch, .division, .country, .city, .region, .address, .logout]
         default:
             return ProfileFields.allCases
         }
@@ -41,6 +45,8 @@ class ProfileViewModel {
     var successHandler: ((StudentModel) -> Void)?
     var avatarSuccessHandler: ((AvatarsModel) -> Void)?
     var errorHandler: ((WJError) -> Void)?
+    var reloadCountriesCell: (() -> Void)?
+    var reloadCitiesCell: ((Int) -> Void)?
 
     func editProfile(id: String) {
         model.editProfile(id: id, profile: profile) { result in
@@ -121,13 +127,31 @@ class ProfileViewModel {
         }
     }
 
+    func loadCountries() {
+        NetworkProvider.shared.request(target: .countries, type: DataResponse.self) { response, _ in
+            let countries = response?.data
+            self.countries = countries ?? [KeyName]()
+            self.reloadCountriesCell?()
+        }
+    }
+
+    func loadCities(for selectedCountry: String, index: Int) {
+        NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
+            let cities = response?.data
+            self.cities = cities ?? [KeyName]()
+            self.reloadCitiesCell?(index + 1)
+        }
+    }
+
     // swiftlint:disable function_body_length
     func setTextFieldInfo(forIndexPath index: Int) -> String? {
         switch validFields[index] {
         case .name:
-            return Language.currentLanguage == .english ? User.shared.nameEn : User.shared.nameAr
+            return User.shared.name
         case .mobileNumber:
             return User.shared.mobileNumber
+        case .mobileNumber2:
+            return User.shared.mobileNumber2
         case .email:
             return User.shared.email
         case .academicType:
@@ -152,6 +176,8 @@ class ProfileViewModel {
             return User.shared.homeNumber
         case .parentNumber2:
             return User.shared.parentNumber2
+        case .logout:
+            return nil
         }
     }
 
@@ -161,9 +187,12 @@ class ProfileViewModel {
         case .email:
             profile.email = text
         case .country:
-            profile.country = text
+            guard let countryCode =  countries.first { $0.name == text }?.key else { return }
+            profile.country = countries.first { $0.name == text }?.key
+            User.shared.country = countries.first { $0.name == text }?.name
+            loadCities(for: countryCode, index: index)
         case .city:
-            profile.city = text
+            profile.city = cities.first { $0.name == text }?.key
         case .region:
             profile.region = text
         case .address:
@@ -214,6 +243,10 @@ class ProfileViewModel {
             return L10n.Profile.region
         case .address:
             return L10n.Profile.address
+        case .mobileNumber2:
+            return L10n.Profile.mobileNumber2
+        case .logout:
+            return ""
         }
     }
 

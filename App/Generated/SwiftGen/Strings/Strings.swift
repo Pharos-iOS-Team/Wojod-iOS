@@ -138,6 +138,10 @@ internal enum L10n {
     internal static var mobileNumber: String {
         return L10n.tr("Localizable", "profile.mobileNumber")
       }
+    /// Another mobile number
+    internal static var mobileNumber2: String {
+        return L10n.tr("Localizable", "profile.mobileNumber2")
+      }
     /// Name
     internal static var name: String {
         return L10n.tr("Localizable", "profile.name")

@@ -40,10 +40,10 @@ final class User {
     }
 
     var isFirstHomeLoad: Bool = true
-    var nameEn: String?
-    var nameAr: String?
+    var name: String?
     var email: String?
     var mobileNumber: String?
+    var mobileNumber2: String?
     var password: String = ""
     var avatar: Avatar?
     var parentNumber: String?
@@ -84,10 +84,10 @@ final class User {
         user: UserModel?
     ) {
         id = user?.id
-        nameEn = user?.nameEn
-        nameAr = user?.nameAr
+        name = user?.name
         email = user?.email
         mobileNumber = user?.mobileNumber
+        mobileNumber2 = user?.mobileNumber2
         parentNumber = user?.parent1PhoneNumber
         parentNumber2 = user?.parent2PhoneNumber
         avatar = user?.avatar
@@ -102,8 +102,8 @@ final class User {
         educationLevelName = user?.educationLevelName
         educationTypeName = user?.educationTypeName
         specializationId = user?.specializationId
-        country = user?.country
-        city = user?.city
+        country = user?.countryName
+        city = user?.cityName
         region = user?.region
         address = user?.address
         homeNumber = user?.homeNumber
