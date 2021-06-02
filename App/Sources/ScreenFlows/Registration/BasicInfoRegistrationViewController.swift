@@ -116,6 +116,11 @@ class BasicInfoRegistrationViewController: UIViewController {
     @IBAction private func didTapOnNext(_ sender: SendButton) {
         viewModel?.checkNumberIfValid(mobileNumberTextField.text ?? "", email: emailTextField.text ?? "") { isValid in
             if isValid {
+                guard self.isMandatoryFieldsFilled(), self.isPasswordValid(), self.isMobileNumberValid(), self.isEmailValid() else {
+                    self.displayWrongCredentialsError()
+                    self.configureTextFields()
+                    return
+                }
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "redirectToLocationInfo", sender: sender)
                 }
@@ -129,15 +134,6 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     // MARK: - Segues
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard isMandatoryFieldsFilled(), isPasswordValid(), isMobileNumberValid(), isEmailValid() else {
-            displayWrongCredentialsError()
-            configureTextFields()
-            return false
-        }
-        return true
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         User.shared.nameEn = nameTextField.text

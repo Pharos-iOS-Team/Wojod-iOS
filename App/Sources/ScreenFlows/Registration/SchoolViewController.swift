@@ -151,6 +151,7 @@ class SchoolViewController: UIViewController {
             academicTypeTextField.setNormalView()
         }
         academicYearPickerView.didSelectAtIndex = { [unowned self] index in
+            guard !academicYears.isEmpty else { return }
             academicYearTextField.text = self.academicYears[index]
             self.selectedYearIndexID = index
             academicYearTextField.setNormalView()
@@ -166,11 +167,12 @@ class SchoolViewController: UIViewController {
     private func retrieveAcademicDivisions() {
         viewModel?.loadAcademicDivisions(for: .schoolStudent) { divisions in
             self.divisionsList = divisions
+            self.retrieveAcademicYear()
         }
     }
 
     private func retrieveAcademicYear() {
-        viewModel?.loadBatches(for: User.shared.divisionId ?? 0 ) { batches in
+        viewModel?.loadBatches(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0 ) { batches in
             self.academicYears = batches
         }
     }
@@ -191,6 +193,7 @@ class SchoolViewController: UIViewController {
 
     @objc
     private func academicYearPickerDoneTapped() {
+        guard !academicYears.isEmpty else { return }
         academicYearPickerView.resignFirstResponder()
         academicYearTextField.text = academicYears[selectedYearIndexID]
     }

@@ -161,6 +161,7 @@ class UniversityViewController: UIViewController {
             fieldTextField.setNormalView()
         }
         yearPickerView.didSelectAtIndex = { [unowned self] index in
+            guard !years.isEmpty else { return }
             yearTextField.text = years[index]
             selectedYearIndex = index
             yearTextField.setNormalView()
@@ -216,13 +217,13 @@ class UniversityViewController: UIViewController {
     }
 
     private func retrieveFields() {
-        viewModel?.loadSpecializations(for: User.shared.divisionId ?? 0) { fields in
+        viewModel?.loadSpecializations(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0) { fields in
             self.fields = fields
         }
     }
 
     private func retrieveYears() {
-        viewModel?.loadBatches(for: User.shared.divisionId ?? 0) { years in
+        viewModel?.loadBatches(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0) { years in
             self.years = years
         }
     }
@@ -244,6 +245,7 @@ class UniversityViewController: UIViewController {
 
     @objc
     private func yearPickerDoneTapped() {
+        guard !years.isEmpty else { return }
         yearPickerView.resignFirstResponder()
         yearTextField.text = years[selectedYearIndex]
     }
