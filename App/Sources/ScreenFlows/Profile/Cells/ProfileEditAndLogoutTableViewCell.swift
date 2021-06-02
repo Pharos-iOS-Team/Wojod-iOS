@@ -2,21 +2,23 @@
 
 import UIKit
 
-protocol ProfileChangePasswordDelegate: class {
+protocol ProfileChangePasswordDelegate: AnyObject {
     func changePasswordHandler()
 }
 
 class ProfileEditAndLogoutTableViewCell: UITableViewCell {
+    enum Constants {
+        static var buttonsCornerRadius: CGFloat = 8
+    }
     @IBOutlet private var changePasswordStackView: UIStackView!
     @IBOutlet private var changePasswordButton: UIButton! {
         didSet {
-            changePasswordButton.layer.cornerRadius = 8
-
+            changePasswordButton.layer.cornerRadius = Constants.buttonsCornerRadius
         }
     }
     @IBOutlet private var logoutButton: UIButton! {
         didSet {
-            logoutButton.layer.cornerRadius = 8
+            logoutButton.layer.cornerRadius = Constants.buttonsCornerRadius
         }
     }
 
@@ -25,10 +27,6 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-    }
-
-    func configure(delegate: ProfileChangePasswordDelegate?) {
-        self.delegate = delegate
     }
 
     @IBAction private func changePasswordPressed(_ sender: Any) {
@@ -40,5 +38,9 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
                 ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
             }
         }
+    }
+
+    func configure(delegate: ProfileChangePasswordDelegate?) {
+        self.delegate = delegate
     }
 }
