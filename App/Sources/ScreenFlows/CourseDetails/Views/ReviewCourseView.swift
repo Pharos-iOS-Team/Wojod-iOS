@@ -15,11 +15,45 @@ class ReviewCourseView: UIView {
     @IBOutlet private var thirdStar: UIButton!
     @IBOutlet private var fourthStar: UIButton!
     @IBOutlet private var fifthStar: UIButton!
-    @IBOutlet private var courseReviewTitleTextField: UITextField!
-    @IBOutlet private var courseReviewCommentTextField: UITextField!
+    @IBOutlet private var courseReviewTitleTextField: UITextField! {
+        didSet {
+            courseReviewTitleTextField.placeholder = L10n.CourseDetails.CourseReview.describeCourse
+            courseReviewTitleTextField.textAlignment = Language.textAlignment
+        }
+    }
+    @IBOutlet private var courseReviewCommentTextField: UITextField! {
+        didSet {
+            courseReviewCommentTextField.textAlignment = Language.textAlignment
+        }
+    }
     @IBOutlet private var sendButton: UIButton! {
         didSet {
-            sendButton.layer.cornerRadius = 5
+            sendButton.layer.cornerRadius = UIConstants.defaultCornerRadius
+        }
+    }
+    @IBOutlet private var messageTitleLabel: UILabel! {
+        didSet {
+            messageTitleLabel.text = L10n.CourseDetails.CourseReview.messageTitle
+        }
+    }
+    @IBOutlet private var rateContentLabel: UILabel! {
+        didSet {
+            rateContentLabel.text = L10n.CourseDetails.CourseReview.rateContent
+        }
+    }
+    @IBOutlet private var skipRatingButton: UIButton! {
+        didSet {
+            skipRatingButton.setTitle(L10n.CourseDetails.CourseReview.skipRating)
+        }
+    }
+    @IBOutlet private var sendLabel: UILabel! {
+        didSet {
+            sendLabel.text = L10n.Login.send
+        }
+    }
+    @IBOutlet private var nextIconImageView: UIImageView! {
+        didSet {
+            nextIconImageView.image = Images.localizedNextButton
         }
     }
 

@@ -164,6 +164,7 @@
                 <outlet property="doneButton" destination="g2s-0t-4AB" id="Lt8-Rx-PVp"/>
                 <outlet property="receiptNumberContainerView" destination="eaw-TB-ff1" id="vFP-wL-djK"/>
                 <outlet property="receiptNumberLabel" destination="cvH-zO-boF" id="ays-zB-hW0"/>
+                <outlet property="receiptNumberTitleLabel" destination="CKi-On-aCx" id="57a-BZ-GSH"/>
                 <outlet property="teacherNameLabel" destination="ZFe-aU-PpL" id="cck-mN-2aa"/>
                 <outlet property="teacherNameValueLabel" destination="G44-L7-eYs" id="VIZ-S5-i98"/>
             </connections>

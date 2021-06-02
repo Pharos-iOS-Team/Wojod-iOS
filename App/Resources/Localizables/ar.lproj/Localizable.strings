@@ -153,3 +153,28 @@
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
+
+// MARK: - Course Details
+
+"courseDetails.main.details" = "التفاصيل";
+"courseDetails.main.reviews" = "التقييمات";
+"courseDetails.main.bookNow" = "احجز الآن";
+"courseDetails.main.cancelBooking" = "إلغاء الحجز";
+"courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
+
+"courseDetails.receipt.receiptNumber" = "رقم الإيصال";
+"courseDetails.receipt.customerName" = "اسم العميل";
+"courseDetails.receipt.address" = "العنوان";
+"courseDetails.receipt.courseName" = "اسم الدورة";
+"courseDetails.receipt.teacherName" = "اسم المدرس";
+"courseDetails.receipt.done" = "تم";
+
+"courseDetails.cancelBooking.messageTitle" = "رسالة";
+"courseDetails.cancelBooking.message" = "هل أنت متأكد أنك تريد إلغاء حجز الدورة؟";
+"courseDetails.cancelBooking.cancelButton" = "إلغاء الحجز";
+"courseDetails.cancelBooking.returnButton" = "عودة";
+
+"courseDetails.courseReview.messageTitle" = "رسالة";
+"courseDetails.courseReview.rateContent" = "هل ترغب في تقييم المحتوى؟";
+"courseDetails.courseReview.describeCourse" = "صف الدورة ...";
+"courseDetails.courseReview.skipRating" = "تخطي التقييم";

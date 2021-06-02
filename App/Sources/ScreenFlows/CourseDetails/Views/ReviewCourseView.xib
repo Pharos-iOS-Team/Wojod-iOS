@@ -186,8 +186,13 @@
                 <outlet property="fifthStar" destination="TFi-JJ-44g" id="L5N-NH-iqn"/>
                 <outlet property="firstStar" destination="3Q9-wS-F6J" id="GUQ-3w-j3V"/>
                 <outlet property="fourthStar" destination="RtP-2q-XRs" id="4jg-0y-IGo"/>
+                <outlet property="messageTitleLabel" destination="OkF-Vd-SW4" id="5Lw-VA-rgU"/>
+                <outlet property="nextIconImageView" destination="m5c-Ns-w25" id="T58-5U-K9V"/>
+                <outlet property="rateContentLabel" destination="Vug-Sr-yzx" id="2Un-fs-3jh"/>
                 <outlet property="secondStar" destination="cfl-CG-HcK" id="uZd-JQ-e4G"/>
                 <outlet property="sendButton" destination="L3K-Zr-2eR" id="2EE-XC-uiR"/>
+                <outlet property="sendLabel" destination="nVM-Ot-6rj" id="guu-g2-NJ4"/>
+                <outlet property="skipRatingButton" destination="nEm-Ga-f5F" id="CpZ-je-gC4"/>
                 <outlet property="thirdStar" destination="88c-6G-nho" id="DFo-8r-m0m"/>
             </connections>
             <point key="canvasLocation" x="52" y="45"/>

@@ -39,6 +39,7 @@
 		38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D497266761E600CD8934 /* ReviewCourseView.swift */; };
 		38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */; };
 		38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4A426677B6C00CD8934 /* CourseReview.swift */; };
+		38F7D4B92667A8A000CD8934 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4B82667A8A000CD8934 /* UIConstants.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -295,6 +296,7 @@
 		38F7D497266761E600CD8934 /* ReviewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseView.swift; sourceTree = "<group>"; };
 		38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCourseView.xib; sourceTree = "<group>"; };
 		38F7D4A426677B6C00CD8934 /* CourseReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseReview.swift; sourceTree = "<group>"; };
+		38F7D4B82667A8A000CD8934 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACD7261C5E69007C0B97 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -809,6 +811,10 @@
 				77E32B82264A8AD30064B801 /* UserModel.swift */,
 				E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */,
 				7723AD9E261C6FC5007C0B97 /* WJError.swift */,
+				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
+				BC5ED0B42626E34800774E54 /* UserDataModel.swift */,
+				BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */,
+				E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */,
 				E8C9EF532636019D0023D2B1 /* Avatar.swift */,
 				E85C74912640A9130097F115 /* Divisions.swift */,
 				E85C74A026416CE10097F115 /* Batches.swift */,
@@ -1659,6 +1665,7 @@
 				77E32BAF264A8BE50064B801 /* UIDeviceExt.swift in Sources */,
 				BC19E579263036AF00CFA142 /* ProfileViewModel.swift in Sources */,
 				BC083B2D26429E5400A1E6A4 /* AvatarsListViewController.swift in Sources */,
+				38F7D4B92667A8A000CD8934 /* UIConstants.swift in Sources */,
 				E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */,
 				38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */,
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,

@@ -153,3 +153,28 @@ No worries!";
 
 "signup.addAvatar.submit" = "Submit";
 "signup.addAvatar.skip" = "Skip";
+
+// MARK: - Course Details
+
+"courseDetails.main.details" = "Details";
+"courseDetails.main.reviews" = "Reviews";
+"courseDetails.main.bookNow" = "Book Now";
+"courseDetails.main.cancelBooking" = "Cancel Booking";
+"courseDetails.main.reviewCourse" = "Review Course";
+
+"courseDetails.receipt.receiptNumber" = "Receipt Number";
+"courseDetails.receipt.customerName" = "Customer Name";
+"courseDetails.receipt.address" = "Address";
+"courseDetails.receipt.courseName" = "Course Name";
+"courseDetails.receipt.teacherName" = "Teacher Name";
+"courseDetails.receipt.done" = "Done";
+
+"courseDetails.cancelBooking.messageTitle" = "Message";
+"courseDetails.cancelBooking.message" = "Are you sure you want to cancel booking of course?";
+"courseDetails.cancelBooking.cancelButton" = "Cancel Booking";
+"courseDetails.cancelBooking.returnButton" = "Return";
+
+"courseDetails.courseReview.messageTitle" = "Message";
+"courseDetails.courseReview.rateContent" = "Would you like to rate content?";
+"courseDetails.courseReview.describeCourse" = "Describe Course...";
+"courseDetails.courseReview.skipRating" = "Skip Rating";

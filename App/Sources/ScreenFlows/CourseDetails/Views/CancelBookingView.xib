@@ -93,6 +93,12 @@
                 <constraint firstItem="da6-eM-lUp" firstAttribute="top" secondItem="KGL-Ff-f0q" secondAttribute="bottom" constant="10" id="xFf-hc-W2h"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelBookingButton" destination="5V3-B6-Djw" id="HPM-Zp-wUq"/>
+                <outlet property="messageBodyLabel" destination="KGL-Ff-f0q" id="daX-Ty-FAd"/>
+                <outlet property="messageTitleLabel" destination="Qkm-SA-miT" id="jiA-0H-OES"/>
+                <outlet property="returnButton" destination="obO-19-kUU" id="KtW-oe-KfF"/>
+            </connections>
             <point key="canvasLocation" x="71" y="68"/>
         </view>
     </objects>

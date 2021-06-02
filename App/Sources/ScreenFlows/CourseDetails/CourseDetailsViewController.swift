@@ -19,24 +19,26 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var detailsButton: UIButton! {
         didSet {
-            detailsButton.layer.cornerRadius = 5
+            detailsButton.setTitle(L10n.CourseDetails.Main.details)
+            detailsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
         }
     }
     @IBOutlet private var materialsButton: UIButton! {
         didSet {
-            materialsButton.layer.cornerRadius = 5
+            materialsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
             materialsButton.isHidden = !(self.state == .booked)
         }
     }
     @IBOutlet private var reviewsButton: UIButton! {
         didSet {
-            reviewsButton.layer.cornerRadius = 5
+            reviewsButton.setTitle(L10n.CourseDetails.Main.reviews)
+            reviewsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
         }
     }
     @IBOutlet private var actionButton: UIButton! {
         didSet {
             actionButton.layer.cornerRadius = 10
-            actionButton.setTitle("Book Now")
+            actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
 
@@ -51,12 +53,16 @@ class CourseDetailsViewController: UIViewController {
     private var attachmentsOfLessons: [Int: LessonAttachmentsModel] = [:]
     private var expandedSections: [Int] = []
     private var blurredView: UIVisualEffectView?
+    private let detailsRowHeight: CGFloat = 65
+    private let reviewsRowHeight: CGFloat = 100
+    private let detailsHeaderHeight: CGFloat = 60
+    private let footerHeight: CGFloat = 1
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        state = .booked
+        state = .normal
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
         configureActionButtonAccordingToState()
@@ -94,9 +100,9 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: 35) { bookingResponse in
+            viewModel?.bookCourses(courseID: 32) { bookingResponse in
                 self.state = .pending
-                self.actionButton.setTitle("Cancel Booking")
+                self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
                 self.blurView()
                 self.displayReceipt(bookingResponse)
             }
@@ -119,11 +125,11 @@ class CourseDetailsViewController: UIViewController {
     private func configureActionButtonAccordingToState() {
         switch state {
         case .normal:
-            actionButton.setTitle("Book Now")
+            actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         case .pending:
-            actionButton.setTitle("Cancel Booking")
+            actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
         case .booked:
-            actionButton.setTitle("Review Course")
+            actionButton.setTitle(L10n.CourseDetails.Main.reviewCourse)
         default:
             return
         }
@@ -308,7 +314,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
 extension CourseDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return activeScreen == .details ? 65 : 100
+        return activeScreen == .details ? detailsRowHeight : reviewsRowHeight
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -333,7 +339,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return activeScreen == .details ? 60 : 0
+        return activeScreen == .details ? detailsHeaderHeight : 0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -343,7 +349,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1.0
+        return footerHeight
     }
 }
 
@@ -380,10 +386,10 @@ extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
 extension CourseDetailsViewController: CancelBookingViewDelegate {
     func didTapCancelBooking() {
         blurredView?.removeFromSuperview()
-        viewModel?.cancelBookingCourse(courseID: 35) { isCancellingSuccessful in
+        viewModel?.cancelBookingCourse(courseID: 32) { isCancellingSuccessful in
             if isCancellingSuccessful {
                 self.state = .normal
-                self.actionButton.setTitle("Book Now")
+                self.actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
             }
         }
     }

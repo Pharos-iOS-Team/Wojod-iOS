@@ -15,16 +15,38 @@ class ReceiptView: UIView {
         }
     }
     @IBOutlet private var receiptNumberLabel: UILabel!
-    @IBOutlet private var customerNameLabel: UILabel!
+    @IBOutlet private var receiptNumberTitleLabel: UILabel! {
+        didSet {
+            receiptNumberTitleLabel.text = L10n.CourseDetails.Receipt.receiptNumber
+        }
+    }
+    @IBOutlet private var customerNameLabel: UILabel! {
+        didSet {
+            customerNameLabel.text = L10n.CourseDetails.Receipt.customerName
+        }
+    }
     @IBOutlet private var customerNameValueLabel: UILabel!
-    @IBOutlet private var addressLabel: UILabel!
+    @IBOutlet private var addressLabel: UILabel! {
+        didSet {
+            addressLabel.text = L10n.CourseDetails.Receipt.address
+        }
+    }
     @IBOutlet private var addressValueLabel: UILabel!
-    @IBOutlet private var courseLabel: UILabel!
+    @IBOutlet private var courseLabel: UILabel! {
+        didSet {
+            courseLabel.text = L10n.CourseDetails.Receipt.courseName
+        }
+    }
     @IBOutlet private var courseNameValueLabel: UILabel!
-    @IBOutlet private var teacherNameLabel: UILabel!
+    @IBOutlet private var teacherNameLabel: UILabel! {
+        didSet {
+            teacherNameLabel.text = L10n.CourseDetails.Receipt.teacherName
+        }
+    }
     @IBOutlet private var teacherNameValueLabel: UILabel!
     @IBOutlet private var doneButton: UIButton! {
         didSet {
+            doneButton.setTitle(L10n.CourseDetails.Receipt.done)
             doneButton.layer.cornerRadius = 5
         }
     }
