@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import HandySwift
 import UIKit
 
 class NotificationsViewController: UIViewController {
@@ -12,20 +13,16 @@ class NotificationsViewController: UIViewController {
     // MARK: - Private Properties
 
     private var rowHeight: CGFloat = 100
-
-    // MARK: - Dummy data sources
-
-    private var teacherNames: [String] = ["Malak", "Nada", "Mona"]
-    private var timeStamps: [String] = ["12 mins", "23 Feb", "12 Mar"]
-    private var contentOfCells: [String] = ["Sent a new message", "Shared a file", "Published a new course"]
-    private var numberOfRows: Int = 3
-    private var images: [UIImage]?
+    private var viewModel: NotificationsViewModel?
+    private var notifications: [Notification] = []
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = NotificationsViewModel()
         configureTableView()
+        loadNotifications()
     }
 
     // MARK: - IBActions
@@ -37,9 +34,15 @@ class NotificationsViewController: UIViewController {
     // MARK: - Private functions
 
     private func configureTableView() {
-        tableView.register(UINib(nibName: "NotificationTableViewCell", bundle: nil), forCellReuseIdentifier: "NotificationTableViewCell")
+        tableView.registerCell(ofType: NotificationTableViewCell.self)
         tableView.dataSource = self
         tableView.delegate = self
+    }
+
+    private func loadNotifications() {
+        viewModel?.loadNotifications { notifications in
+            self.notifications = notifications
+        }
     }
 }
 
@@ -47,17 +50,12 @@ class NotificationsViewController: UIViewController {
 
 extension NotificationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return notifications.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell")
-        as? NotificationTableViewCell else { return UITableViewCell() }
-        cell.setTeacherName(teacherNames[indexPath.row])
-        cell.setTimeStamp(timeStamps[indexPath.row])
-        cell.setNotificationContent(contentOfCells[indexPath.row])
-        cell.setTeacherAvatar(Images.notificationAvatar.image)
-
+        guard let cell = tableView.dequeueCell(ofType: NotificationTableViewCell.self, for: indexPath) else { return UITableViewCell() }
+        cell.configure(using: notifications[indexPath.row])
         return cell
     }
 }

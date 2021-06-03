@@ -50,23 +50,14 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
 
-    internal func setTeacherAvatar(_ avatar: UIImage) {
-        teacherAvatarImageView.image = avatar
-    }
-
-    internal func setTeacherName(_ name: String) {
-        teacherNameLabel.text = name
-    }
-
-    internal func setNotificationContent(_ content: String) {
-        notificationContentLabel.text = content
+    internal func configure(using notification: Notification) {
+        teacherNameLabel.text = notification.teacherName
+        notificationContentLabel.text = notification.message
+        timestampLabel.text = notification.timeStamp
+        teacherAvatarImageView.image = Images.notificationAvatar.image
     }
 
     internal func setAttachedFileName(_ fileName: String) {
         attachedFileNameLabel.text = fileName
-    }
-
-    internal func setTimeStamp(_ timeStampString: String) {
-        timestampLabel.text = timeStampString
     }
 }
