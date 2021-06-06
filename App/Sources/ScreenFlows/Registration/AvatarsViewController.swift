@@ -98,7 +98,7 @@ class AvatarsViewController: UIViewController {
     private func signup() {
         loadingIndicator.startAnimating()
         let user = UserSignupRequest(
-            name: sharedUser.nameEn,
+            name: sharedUser.name,
             mobileNumber: sharedUser.mobileNumber,
             mobileNumber2: nil,
             homeNumber: sharedUser.homeNumber,

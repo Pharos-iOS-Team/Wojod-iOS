@@ -5,22 +5,14 @@ import UIKit
 class ProfileViewController: UIViewController {
     enum Constants {
         static let tableViewCellHeight: CGFloat = 70
+        static let tableViewHeaderHeight: CGFloat = 225
+        static let tableViewLogoutCellHeight: CGFloat = 130
     }
 
     @IBOutlet private var profileTableView: UITableView! {
         didSet {
             profileTableView.dataSource = self
             profileTableView.delegate = self
-        }
-    }
-    @IBOutlet private var nameLabel: UILabel! {
-        didSet {
-            nameLabel.text = Language.currentLanguage == .arabic ? User.shared.nameAr : User.shared.nameEn
-        }
-    }
-    @IBOutlet private var schoolLabel: UILabel! {
-        didSet {
-            schoolLabel.text = User.shared.educationLevelName
         }
     }
     @IBOutlet private var backButton: UIButton! {
@@ -32,30 +24,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var saveButton: UIButton! {
         didSet {
             saveButton.setTitle(L10n.Profile.save)
-            saveButton.isEnabled = false
-        }
-    }
-    @IBOutlet private var avatarButton: UIButton! {
-        didSet {
-            guard let link = User.shared.avatar?.thumbnailUrl else { return }
-            let url = Environment.baseURL.appendingPathComponent(link)
-            avatarButton.kf.setImage(with: url, for: .normal)
-        }
-    }
-    @IBOutlet private var logoutButton: UIButton! {
-        didSet {
-            logoutButton.setTitle(L10n.Profile.logout)
-            logoutButton.layer.cornerRadius = 5
-        }
-    }
-    @IBOutlet private var changePasswordButton: UIButton! {
-        didSet {
-            changePasswordButton.layer.cornerRadius = 5
-            changePasswordButton.setTitle(L10n.Profile.changePassword)
         }
     }
 
-    let viewModel = ProfileViewModel()
+    private let viewModel = ProfileViewModel()
     var avatars: AvatarsModel?
     var user: StudentModel?
 
@@ -66,6 +38,9 @@ class ProfileViewController: UIViewController {
         editSuccessHandler()
         editErrorHandler()
         fetchAcademicInfo()
+        viewModel.loadCountries()
+        reloadCountriesCell()
+        reloadCitiesCell()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,22 +54,11 @@ class ProfileViewController: UIViewController {
     @IBAction private func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction private func changeAvatar(_ sender: Any) {
-        navigateToAvatarsList()
-    }
-    @IBAction private func logout(_ sender: Any) {
-        User.shared.logout { _, error in
-            if error == nil {
-                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
-            }
-        }
-    }
-    @IBAction private func changePasswordPressed(_ sender: Any) {
-        changePassword()
-    }
+
     private func registerNib() {
-        let profileTableViewCellNib = UINib(nibName: "ProfileTableViewCell", bundle: nil)
-        profileTableView.register(profileTableViewCellNib, forCellReuseIdentifier: "ProfileTableViewCell")
+        profileTableView.registerCell(ofType: ProfileTableViewCell.self)
+        profileTableView.registerCell(ofType: ProfileEditAndLogoutTableViewCell.self)
+        profileTableView.registerHeaderFooterView(ofType: ProfileTableViewHeader.self)
     }
 
     private func editProfile() {
@@ -125,6 +89,20 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    private func reloadCountriesCell() {
+        viewModel.reloadCountriesCell = { [weak self] in
+            self?.profileTableView.reloadData()
+        }
+    }
+
+    private func reloadCitiesCell() {
+        viewModel.reloadCitiesCell = { [weak self] index in
+            self?.profileTableView.beginUpdates()
+            self?.profileTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            self?.profileTableView.endUpdates()
+        }
+    }
+
     private func showSuccessAlert() {
         let alertHandler = AlertHandler(presentingViewCtrl: self)
         alertHandler.showInformationAlert(title: L10n.Global.Titles.warning, message: L10n.Profile.editedSuccessfully)
@@ -152,7 +130,7 @@ class ProfileViewController: UIViewController {
         return image
     }
 
-    private func fetchEducationalItems(forIndex index: Int) -> [String] {
+    private func fetchPickerViewItems(forIndex index: Int) -> [String] {
         switch viewModel.validFields[index] {
         case .academicType:
             return AcademicInfo.shared.educationalTypes?.educationTypes.compactMap({
@@ -170,6 +148,10 @@ class ProfileViewController: UIViewController {
             return AcademicInfo.shared.specializations?.specializations.compactMap({
                 $0.value
             }) ?? []
+        case .country:
+            return viewModel.countries.compactMap { $0.name }
+        case .city:
+            return viewModel.cities.compactMap { $0.name }
         default:
             return []
         }
@@ -184,9 +166,34 @@ class ProfileViewController: UIViewController {
             self.viewModel.setNewPassword(oldPassword: oldPassword, newPassword: newPassword, passwordConfirmation: passwordConfirmation)
         }
     }
-}
 
-private let viewModel = ProfileViewModel()
+    private func createLogoutCell(indexPath: IndexPath, tableView: UITableView) -> ProfileEditAndLogoutTableViewCell {
+        let cell: ProfileEditAndLogoutTableViewCell =
+            tableView.dequeueCell(for: indexPath)
+        cell.configure(delegate: self)
+        return cell
+    }
+
+    private func createProfileFields(indexPath: IndexPath, tableView: UITableView) -> ProfileTableViewCell {
+        let cell: ProfileTableViewCell = tableView.dequeueCell(for: indexPath)
+        let text = viewModel.setTextFieldInfo(forIndexPath: indexPath.row) ?? ""
+        let fieldLabel = viewModel.setTextfieldLabel(forIndexPath: indexPath.row)
+        let shouldDisableTextField = viewModel.shouldMakeTextFieldDisabled(forIndexPath: indexPath.row)
+        let dataModel = ProfileTableViewCellDataModel(
+            text: text,
+            items: fetchPickerViewItems(forIndex: indexPath.row),
+            indexPath: indexPath.row,
+            fields: viewModel.validFields,
+            fieldLabel: fieldLabel,
+            shouldDisableTextField: !shouldDisableTextField
+        )
+        cell.configure(
+            dataModel: dataModel,
+            delegate: self
+        )
+        return cell
+    }
+}
 
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -194,43 +201,39 @@ extension ProfileViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ProfileTableViewCell",
-            for: indexPath
-        ) as? ProfileTableViewCell else { return UITableViewCell() }
-        let text = viewModel.setTextFieldInfo(forIndexPath: indexPath.row) ?? ""
-        let fieldLabel = viewModel.setTextfieldLabel(forIndexPath: indexPath.row)
-        let shouldDisableTextField = viewModel.shouldMakeTextFieldDisabled(forIndexPath: indexPath.row)
-        let dataModel = ProfileTableViewCellDataModel(
-            text: text,
-            items: fetchEducationalItems(forIndex: indexPath.row),
-            indexPath: indexPath.row,
-            fields: viewModel.validFields,
-            fieldLabel: fieldLabel,
-            shouldDisableTextField: !shouldDisableTextField
-        )
-        cell.configure(
-            dataModel: dataModel
-        )
-        cell.delegate = self
-        return cell
+        if  viewModel.validFields[indexPath.row] == .logout {
+            return createLogoutCell(indexPath: indexPath, tableView: tableView)
+        } else {
+            return createProfileFields(indexPath: indexPath, tableView: tableView)
+        }
     }
 }
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        Constants.tableViewCellHeight
+        viewModel.validFields[indexPath.row] == .logout ? Constants.tableViewLogoutCellHeight : Constants.tableViewCellHeight
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constants.tableViewHeaderHeight
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard var link = User.shared.avatar?.thumbnailUrl else { return UIView() }
+        link = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        link = link.replacingOccurrences(of: "http", with: "https")
+        let url = Environment.baseURL.appendingPathComponent(link)
+        let headerModel = ProfileHeaderModel(imageURL: url, name: User.shared.name ?? "", type: User.shared.educationLevelName ?? "")
+        let headerView = tableView.dequeueHeaderFooterView(ofType: ProfileTableViewHeader.self)
+        headerView?.configure(model: headerModel, delegate: self)
+        return headerView
     }
 }
 
 extension ProfileViewController: ProfileTableViwCellProtocol {
     func didFieldChange(text: String, cell: UITableViewCell) {
         guard let index = profileTableView.indexPath(for: cell) else { return }
-        guard !text.isValid else {
-            saveButton.isEnabled = true
-            viewModel.editProfileFields(forIndexPath: index.row, withText: text)
-            return
-        }
+        viewModel.editProfileFields(forIndexPath: index.row, withText: text)
     }
 }
 
@@ -238,7 +241,19 @@ extension ProfileViewController: AvatarsListDelegate {
     func setAvatar(avatar: Avatar) {
         guard let id = avatar.id else { return }
         let image = getImage(from: avatar)
-        avatarButton.setImage(image)
         viewModel.setNewAvatar(avatarId: id)
+        profileTableView.reloadData()
+    }
+}
+
+extension ProfileViewController: ProfileChangePasswordDelegate {
+    func changePasswordHandler() {
+        changePassword()
+    }
+}
+
+extension ProfileViewController: ProfileTableViewHeaderDelegate {
+    func changeProfileImage() {
+        navigateToAvatarsList()
     }
 }

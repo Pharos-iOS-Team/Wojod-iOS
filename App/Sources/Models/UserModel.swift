@@ -16,8 +16,7 @@ struct UserModel: Codable {
     var provider: String?
     var uid: String?
     var batchId: Int?
-    var nameEn: String?
-    var nameAr: String?
+    var name: String?
     var address: String?
     var mobileNumber: String?
     var mobileNumber2: String?
@@ -25,7 +24,9 @@ struct UserModel: Codable {
     var parent1PhoneNumber: String?
     var parent2PhoneNumber: String?
     var country: String?
+    var countryName: String?
     var city: String?
+    var cityName: String?
     var region: String?
     var schoolName: String?
     var specializationId: Int?

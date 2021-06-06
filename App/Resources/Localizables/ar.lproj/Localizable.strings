@@ -82,6 +82,8 @@
 
 "profile.mobileNumber" = "رقم الهاتف المحمول";
 
+"profile.mobileNumber2" = "رقم الهاتف المحمول الاخر";
+
 "profile.email" = "البريد الالكتروني";
 
 "profile.parentNumber" = "رقم هاتف ولي الامر";

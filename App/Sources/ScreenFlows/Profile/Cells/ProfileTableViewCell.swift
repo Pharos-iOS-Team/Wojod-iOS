@@ -24,6 +24,7 @@ class ProfileTableViewCell: UITableViewCell {
     }
     weak var delegate: ProfileTableViwCellProtocol?
     var items: [String]?
+    var selectedItem: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,28 +49,33 @@ class ProfileTableViewCell: UITableViewCell {
         let inputView = PickerInputView<String>(height: 250)
         inputView.items = { return (self.items ?? []) }
         inputView.didSelectAtIndex = { index in profileTextField.text = self.items?[index]
-            self.delegate?.didFieldChange(text: self.items?[index] ?? "", cell: self)
+            self.selectedItem = self.items?[index] ?? ""
         }
         inputView.text = { string in return string }
         profileTextField.inputView = inputView
         profileTextField.inputAccessoryView = AccessoryView(L10n.Profile.selectItem, doneTapped: {
             profileTextField.resignFirstResponder()
+            self.delegate?.didFieldChange(text: self.selectedItem ?? "", cell: self)
         }
         )
     }
 
     func configure(
-        dataModel: ProfileTableViewCellDataModel
+        dataModel: ProfileTableViewCellDataModel,
+        delegate: ProfileTableViwCellProtocol?
     ) {
         profileTextField.text = dataModel.text
         profileTextField.isEnabled = dataModel.shouldDisableTextField
         profileTextField.backgroundColor = !dataModel.shouldDisableTextField ? .groupTableViewBackground : .white
         self.items = dataModel.items
+        self.delegate = delegate
         profileTextField.labelText = dataModel.fieldLabel
         if dataModel.fields[dataModel.indexPath] == .academicType
             || dataModel.fields[dataModel.indexPath] == .batch
             || dataModel.fields[dataModel.indexPath] == .division
-            || dataModel.fields[dataModel.indexPath] == .specialization {
+            || dataModel.fields[dataModel.indexPath] == .specialization
+            || dataModel.fields[dataModel.indexPath] == .country
+            ||  dataModel.fields[dataModel.indexPath] == .city {
             addPickerView()
         }
     }

@@ -140,7 +140,7 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        User.shared.nameEn = nameTextField.text
+        User.shared.name = nameTextField.text
         User.shared.mobileNumber = mobileNumberTextField.text
         User.shared.homeNumber = homeNumberTextField.text
         User.shared.email = emailTextField.text
