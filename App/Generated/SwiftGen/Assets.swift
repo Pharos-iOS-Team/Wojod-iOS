@@ -33,17 +33,18 @@ internal enum Asset {
     internal static let lightGreyColor = ColorAsset(name: "lightGreyColor")
     internal static let sendButtonColor = ColorAsset(name: "sendButtonColor")
     internal static let superLightGrey = ColorAsset(name: "superLightGrey")
+    internal static let superLightGreyBackgroundColor = ColorAsset(name: "superLightGreyBackgroundColor")
     internal static let tabBarColor = ColorAsset(name: "tabBarColor")
   }
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let backIcon = ImageAsset(name: "BackIcon")
     internal static let backIconWhite = ImageAsset(name: "BackIconWhite")
-    internal static let quiz = ImageAsset(name: "quiz")
     internal static let filledStar = ImageAsset(name: "filledStar")
     internal static let star = ImageAsset(name: "star")
     internal static let collapse = ImageAsset(name: "collapse")
     internal static let expand = ImageAsset(name: "expand")
+    internal static let nextIndicator = ImageAsset(name: "nextIndicator")
     internal static let quiz = ImageAsset(name: "quiz")
     internal static let errorSymbol = ImageAsset(name: "errorSymbol")
     internal static let pdf = ImageAsset(name: "pdf")
@@ -96,7 +97,6 @@ internal enum Asset {
     internal static let boyAvatar = ImageAsset(name: "boyAvatar")
     internal static let close = ImageAsset(name: "close")
     internal static let defaultAvatar = ImageAsset(name: "defaultAvatar")
-    internal static let filledStar = ImageAsset(name: "filledStar")
     internal static let girlAvatar = ImageAsset(name: "girlAvatar")
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let helpCenter = ImageAsset(name: "helpCenter")
@@ -108,7 +108,6 @@ internal enum Asset {
     internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
     internal static let small = ImageAsset(name: "small")
-    internal static let star = ImageAsset(name: "star")
     internal static let unselectedRadioButton = ImageAsset(name: "unselectedRadioButton")
   }
 }

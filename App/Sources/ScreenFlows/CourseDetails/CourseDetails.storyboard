@@ -25,7 +25,7 @@
         <scene sceneID="mJ7-2d-lnS">
             <objects>
                 <viewController id="s5u-w3-yVK" customClass="CourseDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZZO-zO-dkI">
+                    <view key="view" alpha="0.98999999999999999" contentMode="scaleToFill" id="ZZO-zO-dkI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -189,7 +189,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="6tM-9b-gyM" firstAttribute="centerX" secondItem="lTA-ov-VZE" secondAttribute="centerX" id="KeA-l0-ZXB"/>
                                     <constraint firstItem="6tM-9b-gyM" firstAttribute="centerY" secondItem="lTA-ov-VZE" secondAttribute="centerY" id="SGz-Uo-gL8"/>
@@ -198,13 +198,13 @@
                                     <constraint firstAttribute="trailing" secondItem="6tM-9b-gyM" secondAttribute="trailing" constant="12" id="ivm-SF-axq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-VY-3TQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-VY-3TQ">
                                 <rect key="frame" x="12" y="594" width="390" height="217"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YxP-J3-d9A"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pCp-l8-q2K" firstAttribute="leading" secondItem="3Z9-SN-jDQ" secondAttribute="trailing" constant="2" id="2bJ-9g-AO7"/>
                             <constraint firstItem="lTA-ov-VZE" firstAttribute="top" secondItem="YDd-VY-3TQ" secondAttribute="bottom" constant="5" id="3fu-3I-XLN"/>
@@ -281,9 +281,9 @@
         <namedColor name="sendButtonColor">
             <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="superLightGreyBackgroundColor">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

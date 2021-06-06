@@ -1,5 +1,8 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import AVKit
+import HandySwift
+import JGProgressHUD
 import UIKit
 
 internal enum CourseState {
@@ -11,6 +14,14 @@ internal enum CourseState {
 internal enum ActiveScreen {
     case details
     case reviews
+    case materials
+}
+
+internal enum MaterialsSections: Int {
+    case assignments
+    case quizzes
+    case videos
+    case documents
 }
 
 class CourseDetailsViewController: UIViewController {
@@ -37,7 +48,7 @@ class CourseDetailsViewController: UIViewController {
     }
     @IBOutlet private var actionButton: UIButton! {
         didSet {
-            actionButton.layer.cornerRadius = 10
+            actionButton.layer.cornerRadius = UIConstants.cornerRadius
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
@@ -63,6 +74,10 @@ class CourseDetailsViewController: UIViewController {
     private let reviewsRowHeight: CGFloat = 100
     private let detailsHeaderHeight: CGFloat = 60
     private let footerHeight: CGFloat = 1
+    private var materials: Materials?
+    private var documentInteractionController = UIDocumentInteractionController()
+    private var loadingHud: JGProgressHUD?
+    private var numberOfSectionsInMaterials: Int = 4
 
     // MARK: - Public Properties
 
@@ -77,8 +92,10 @@ class CourseDetailsViewController: UIViewController {
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
         configureActionButtonAccordingToState()
+        configureVisibilityOfButtonsAccordingToState()
         loadCourseLessons()
         configureTableView()
+        documentInteractionController.delegate = self
     }
 
     // MARK: - IBActions
@@ -92,6 +109,11 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func didTapMaterials(_ sender: UIButton) {
+        viewModel?.loadMaterials(courseID: 35) { materials in
+            self.materials = materials
+            self.tableView.reloadData()
+        }
+        activeScreen = .materials
         select(button: materialsButton)
         unselect(button: detailsButton)
         unselect(button: reviewsButton)
@@ -156,6 +178,16 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
+    }
+
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
+    }
+
     private func configureActionButtonAccordingToState() {
         switch state {
         case .normal:
@@ -167,6 +199,10 @@ class CourseDetailsViewController: UIViewController {
         default:
             return
         }
+    }
+
+    private func configureVisibilityOfButtonsAccordingToState() {
+        materialsButton.isHidden = state != .booked
     }
 
     private func blurView() {
@@ -209,10 +245,10 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func configureTableView() {
-        tableView.register(UINib(nibName: "AttachmentTableViewCell", bundle: nil), forCellReuseIdentifier: "AttachmentTableViewCell")
-        tableView.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
-        let headerNib = UINib(nibName: "CourseDetailsHeaderView", bundle: Bundle.main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CourseDetailsHeaderView")
+        tableView.registerCell(ofType: AttachmentTableViewCell.self)
+        tableView.registerCell(ofType: ReviewTableViewCell.self)
+        tableView.registerCell(ofType: MaterialTableViewCell.self)
+        tableView.registerHeaderFooterView(ofType: CourseDetailsHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -301,41 +337,150 @@ class CourseDetailsViewController: UIViewController {
         configureVideos(attachments, cell)
         configureDocuments(attachments, cell)
     }
+
+    private func getCorrespondingImage(for document: MaterialsDocument?) -> UIImage {
+        switch document?.contentType {
+        case "application/pdf":
+            return Images.pdfExtension.image
+        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+            return Images.excelExtension.image
+        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            return Images.wordExtension.image
+        default:
+            return Images.unknownExtension.image
+        }
+    }
+
+    func storeAndShare(withURLString: String) {
+        guard let url = URL(string: withURLString) else { return }
+        showLoadingIndicator()
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            let tmpURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "fileName.png")
+            do {
+                try data.write(to: tmpURL)
+            } catch {
+                AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                    title: L10n.Global.Titles.error,
+                    message: L10n.Global.Alerts.somethingWentWrong
+                )
+            }
+            DispatchQueue.main.async {
+                self.hideLoadingIndicator()
+                self.share(url: tmpURL)
+            }
+        }.resume()
+    }
+
+    func share(url: URL) {
+        documentInteractionController.url = url
+        documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
+        documentInteractionController.name = url.localizedName ?? url.lastPathComponent
+        documentInteractionController.presentPreview(animated: true)
+    }
+
+    private func play(videoURL: URL) {
+        showLoadingIndicator()
+        let player = AVPlayer(url: videoURL)
+        let playerViewCtrl = AVPlayerViewController()
+        playerViewCtrl.player = player
+        present(playerViewCtrl, animated: true) {
+            self.hideLoadingIndicator()
+            player.play()
+        }
+    }
 }
 
 // MARK: - Table View Data Source
 
 extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return activeScreen == .details ? lessonsList?.count ?? 0 : 1
+        switch activeScreen {
+        case .details:
+            return lessonsList?.count ?? 0
+        case .materials:
+            return numberOfSectionsInMaterials
+        default:
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
             return reviewsList?.count ?? 0
+
         case .details:
             return numberOfRowsInLessonSection(section)
+
+        case .materials:
+            switch MaterialsSections(rawValue: section) {
+            case .assignments:
+                return materials?.assignments?.count ?? 0
+            case .quizzes:
+                return materials?.quizzes?.count ?? 0
+            case .videos:
+                return materials?.videos?.count ?? 0
+            case .documents:
+                return materials?.documents?.count ?? 0
+            default:
+                return 0
+            }
+
         default:
             return 0
         }
     }
 
+    // swiftlint:disable function_body_length
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch activeScreen {
         case .details:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AttachmentTableViewCell", for: indexPath) as? AttachmentTableViewCell
+            let cell = tableView.dequeueCell(ofType: AttachmentTableViewCell.self, for: indexPath)
             configureAttachmentCell(cell, indexPath.section)
             return cell ?? UITableViewCell()
 
         case .reviews:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
+            let cell = tableView.dequeueCell(ofType: ReviewTableViewCell.self, for: indexPath)
             let review = reviewsList?[indexPath.row]
             cell?.setTitle(review?.title ?? "")
             cell?.setSubtitle("\(review?.createdAt ?? "") by \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
             cell?.setRating(viewModel?.ratingFromUserPercentage(review?.rating ?? 0) ?? 0)
             cell?.setAvatarImage(imageFromURL(review?.reviewer?.avatar?.fileUrl ?? ""))
+            return cell ?? UITableViewCell()
+
+        case .materials:
+            let cell = tableView.dequeueCell(ofType: MaterialTableViewCell.self, for: indexPath)
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+            switch MaterialsSections(rawValue: indexPath.section) {
+            case .assignments:
+                let assignment = materials?.assignments?[indexPath.row]
+                let date = inputFormatter.date(from: assignment?.publishedAt ?? "") ?? Date()
+                cell?.configure(title: assignment?.title, date: date.formattedDateString, image: Images.quiz.image)
+
+            case .quizzes:
+                let quiz = materials?.quizzes?[indexPath.row]
+                let date = inputFormatter.date(from: quiz?.publishedAt ?? "") ?? Date()
+                cell?.configure(title: quiz?.title, date: date.formattedDateString, image: Images.quiz.image)
+
+            case .videos:
+                let video = materials?.videos?[indexPath.row]
+                let date = inputFormatter.date(from: video?.publishedAt ?? "") ?? Date()
+                cell?.configure(title: video?.title, date: date.formattedDateString, image: Images.videoExtension.image)
+
+            case .documents:
+                let document = materials?.documents?[indexPath.row]
+                let date = inputFormatter.date(from: document?.publishedAt ?? "") ?? Date()
+                cell?.configure(title: document?.fileName ?? document?.title, date: date.formattedDateString, image: getCorrespondingImage(for: document))
+
+            default:
+                return cell ?? UITableViewCell()
+            }
+            cell?.selectionStyle = .none
             return cell ?? UITableViewCell()
 
         default:
@@ -354,7 +499,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch activeScreen {
         case .details:
-            let view = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDetailsHeaderView")  as? CourseDetailsHeaderView
+            let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
             view?.collapseExpandDelegate = self
             let lesson = lessonsList?[section]
             view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
@@ -377,13 +522,33 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-        view.backgroundColor = Colors.lightGreyColor.color
-        return view
+        if activeScreen == .details {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
+            view.backgroundColor = Colors.lightGreyColor.color
+            return view
+        }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return footerHeight
+        return activeScreen == .details ? footerHeight : 0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if activeScreen == .materials {
+            switch MaterialsSections(rawValue: indexPath.section) {
+            case .videos:
+                let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
+                play(videoURL: videoURL)
+
+            case .documents:
+                let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
+                storeAndShare(withURLString: "\(documentURL)")
+
+            default:
+                return
+            }
+        }
     }
 }
 
@@ -446,5 +611,11 @@ extension CourseDetailsViewController: ReviewCourseViewDelegate {
 
     func didTapSkipButton() {
         blurredView?.removeFromSuperview()
+    }
+}
+
+extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
 }

@@ -92,4 +92,20 @@ class CourseDetailsModel: ModelDecodable {
             }
         }
     }
+
+    func loadMaterials(courseID: Int, completion: @escaping (Result) -> Void) {
+        apiClient.loadMaterials(courseID: courseID) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: Materials.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
 }
