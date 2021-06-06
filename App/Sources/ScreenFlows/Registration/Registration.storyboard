@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykz-wP-fHg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cg-8u-nZE">
                                         <rect key="frame" x="0.0" y="0.0" width="425" height="896"/>
@@ -211,7 +211,7 @@
                             <constraint firstItem="3Fa-U3-yy2" firstAttribute="leading" secondItem="Y7a-mv-nSX" secondAttribute="leading" id="SCg-E7-6yd"/>
                             <constraint firstItem="Ykz-wP-fHg" firstAttribute="width" secondItem="03M-Sb-QYS" secondAttribute="width" id="VwB-Em-gA1"/>
                             <constraint firstItem="Y7a-mv-nSX" firstAttribute="trailing" secondItem="3Fa-U3-yy2" secondAttribute="trailing" id="YXj-rw-w9J"/>
-                            <constraint firstItem="Ykz-wP-fHg" firstAttribute="top" secondItem="03M-Sb-QYS" secondAttribute="top" id="Yn7-yo-sUq"/>
+                            <constraint firstItem="Ykz-wP-fHg" firstAttribute="top" secondItem="Y7a-mv-nSX" secondAttribute="top" id="Yn7-yo-sUq"/>
                             <constraint firstItem="Y7a-mv-nSX" firstAttribute="bottom" secondItem="3Fa-U3-yy2" secondAttribute="bottom" id="arK-Z3-ZEj"/>
                             <constraint firstItem="kPq-Ue-8Er" firstAttribute="trailing" secondItem="ds5-ce-Ibe" secondAttribute="trailing" id="eaM-vL-35k"/>
                             <constraint firstItem="1cg-8u-nZE" firstAttribute="width" secondItem="03M-Sb-QYS" secondAttribute="width" multiplier="1.02657" id="nPK-xG-Vno"/>
@@ -737,7 +737,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUe-jn-qLR">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZL-mS-rJn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
@@ -923,7 +923,7 @@
                             <constraint firstAttribute="trailing" secondItem="GUe-jn-qLR" secondAttribute="trailing" id="6Ba-wh-ant"/>
                             <constraint firstItem="GUe-jn-qLR" firstAttribute="leading" secondItem="wg7-Tc-alc" secondAttribute="leading" id="AsX-WG-MQW"/>
                             <constraint firstItem="GUe-jn-qLR" firstAttribute="centerY" secondItem="wg7-Tc-alc" secondAttribute="centerY" id="FQt-hL-tr1"/>
-                            <constraint firstItem="GUe-jn-qLR" firstAttribute="top" secondItem="wg7-Tc-alc" secondAttribute="top" id="Qw0-cf-BKk"/>
+                            <constraint firstItem="GUe-jn-qLR" firstAttribute="top" secondItem="Qpy-YW-j8E" secondAttribute="top" id="Qw0-cf-BKk"/>
                             <constraint firstItem="Qpy-YW-j8E" firstAttribute="trailing" secondItem="ci9-5l-hgo" secondAttribute="trailing" id="Whh-bd-SaR"/>
                             <constraint firstItem="GUe-jn-qLR" firstAttribute="centerX" secondItem="wg7-Tc-alc" secondAttribute="centerX" id="e94-Ia-v2N"/>
                             <constraint firstAttribute="bottom" secondItem="ci9-5l-hgo" secondAttribute="bottom" id="orc-Qr-ozr"/>
@@ -1117,7 +1117,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="JMe-6k-e6W"/>
+        <segue reference="MBg-2b-cwf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AcademicInfoTitleEn" width="209" height="51"/>

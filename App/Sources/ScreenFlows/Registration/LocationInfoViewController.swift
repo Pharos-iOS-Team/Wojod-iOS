@@ -143,7 +143,7 @@ class LocationInfoViewController: UIViewController {
     }
 
     private func retrieveCitiesList() {
-        viewModel?.loadCities(for: User.shared.country ?? "") { cities in
+        viewModel?.loadCities(for: User.shared.country ?? "EGY") { cities in
             self.cities = cities
         }
     }
