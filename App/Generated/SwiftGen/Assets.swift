@@ -85,6 +85,7 @@ internal enum Asset {
     internal static let girlAvatar = ImageAsset(name: "girlAvatar")
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let nextIcon = ImageAsset(name: "nextIcon")
+    internal static let notificationAvatar = ImageAsset(name: "notificationAvatar")
     internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
     internal static let small = ImageAsset(name: "small")
