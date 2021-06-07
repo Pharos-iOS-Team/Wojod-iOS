@@ -3,10 +3,83 @@
 import Foundation
 
 class HomeModel: ModelDecodable {
-    private let apiClient = ProfileApiClient()
+    private let homeApiClient = HomeApiClient()
+    private let profileApiClient = ProfileApiClient()
+
+    private func cacheAccessToken(headers: [AnyHashable: Any]?) {
+        guard let token = headers?["access-token"] as? String,
+        let client = headers?["client"] as? String,
+        let uid = headers?["uid"] as? String
+        else { return }
+        User.shared.setLoggedIn(token: token, client: client, uid: uid)
+    }
+
+    func loadSubjects(batchID: Int, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadSubjects(batchID: batchID) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: Subjects.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func loadExploreMoreCourses(isMyCourses: Bool, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadExploreMoreCourses(isMyCourses: isMyCourses) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func searchCourses(value: String, completion: @escaping (Result) -> Void) {
+        homeApiClient.searchCourses(value: value) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
 
     func fetchUserProfile(id: Int, completionHandler: @escaping (Result) -> Void) {
-        apiClient.fetchProfile(id: String(User.shared.id ?? 62)) { response, error in
+        profileApiClient.fetchProfile(id: String(User.shared.id ?? 62)) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.cacheAccessToken(headers: response.response?.allHeaderFields)
@@ -20,13 +93,5 @@ class HomeModel: ModelDecodable {
                 self.handleMoyaError(error: error, completionHandler: completionHandler)
             }
         }
-    }
-
-    private func cacheAccessToken(headers: [AnyHashable: Any]?) {
-        guard let token = headers?["access-token"] as? String,
-        let client = headers?["client"] as? String,
-        let uid = headers?["uid"] as? String
-        else { return }
-        User.shared.setLoggedIn(token: token, client: client, uid: uid)
     }
 }
