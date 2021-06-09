@@ -691,7 +691,6 @@
 				778E7308261E035D009D7B35 /* ErrorModel.swift */,
 				778E72CB261DD6FF009D7B35 /* FileExtension.swift */,
 				BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */,
-				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
 				E8C9EF7C263DD2680023D2B1 /* KeyName.swift */,
 				E85C748C2640A5B90097F115 /* KeyValue.swift */,
 				BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */,
@@ -701,7 +700,6 @@
 				778E72DE261DF9AB009D7B35 /* Result.swift */,
 				BC968280263977F0009F8550 /* Specializations.swift */,
 				E8C9EF5D2638CA2B0023D2B1 /* Student.swift */,
-				BC5ED0B42626E34800774E54 /* UserDataModel.swift */,
 				77E32B82264A8AD30064B801 /* UserModel.swift */,
 				E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */,
 				7723AD9E261C6FC5007C0B97 /* WJError.swift */,
@@ -709,7 +707,7 @@
 				E85C74912640A9130097F115 /* Divisions.swift */,
 				E85C74A026416CE10097F115 /* Batches.swift */,
 				E86753022642890D005ABF77 /* Specializations.swift */,
-				BC5ED0B42626E34800774E54 /* UserModel.swift */,
+				BC5ED0B42626E34800774E54 /* UserDataModel.swift */,
 				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
 				38F7D4D42668EBE400CD8934 /* Notification.swift */,
 			);
@@ -987,9 +985,9 @@
 			isa = PBXGroup;
 			children = (
 				BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */,
-				BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */,
 				BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */,
 				77E32BC3264A8C450064B801 /* ForgotPasswordViewModel.swift */,
+				BC5ED0E4262867E100774E54 /* ForgotPasswordModel.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";

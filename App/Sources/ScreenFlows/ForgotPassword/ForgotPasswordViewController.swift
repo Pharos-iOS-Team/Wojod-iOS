@@ -30,7 +30,7 @@ class ForgotPasswordViewController: UIViewController {
             mobileNumberTextField.semanticContentAttribute = Language.semanticContent
             mobileNumberTextField.textAlignment = Language.textAlignment
             mobileNumberTextField.keyboardType = .asciiCapableNumberPad
-            mobileNumberTextField.placeholder = L10n.Login.mobileNumber
+            mobileNumberTextField.placeholder = L10n.Login.phoneNumber
         }
     }
     @IBOutlet private var sendButton: SendButton! {

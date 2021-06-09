@@ -32,7 +32,7 @@ struct UserModel: Codable {
     var specializationId: Int?
     var educationalType: Int?
     var divisionId: Int?
-    var otpCode: Int?
+    var otpCode: String?
     var verified: Bool?
     var testUser: Bool?
     var preferences: Preferences

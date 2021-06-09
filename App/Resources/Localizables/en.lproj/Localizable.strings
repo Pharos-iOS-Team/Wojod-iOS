@@ -13,6 +13,8 @@ Sign in to continue";
 
 "login.mobileNumber" = "Mobile number";
 
+"login.phoneNumber" = "Phone number";
+
 "login.password" = "Password";
 
 "login.forgotPassword" = "Forgot password?";
