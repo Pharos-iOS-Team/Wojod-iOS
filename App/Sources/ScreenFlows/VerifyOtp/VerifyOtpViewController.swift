@@ -21,7 +21,11 @@ class VerifyOtpViewController: UIViewController {
             hideAlertView()
         }
     }
-    @IBOutlet private var resendButton: UIButton!
+    @IBOutlet private var resendButton: UIButton! {
+        didSet {
+            resendButton.setTitle(L10n.VerifyOtp.resendCode)
+        }
+    }
     @IBOutlet private var backButton: UIButton! {
         didSet {
             backButton.setImage(Images.localizedBackButton)

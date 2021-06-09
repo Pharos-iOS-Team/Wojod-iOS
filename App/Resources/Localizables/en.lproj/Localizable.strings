@@ -54,6 +54,8 @@ No worries!";
 
 "verifyOtp.continue" = "Continue";
 
+"verifyOtp.resendCode" = "Resend code";
+
 "tabBar.home" = "Home";
 
 "tabBar.myCourses" = "My courses";

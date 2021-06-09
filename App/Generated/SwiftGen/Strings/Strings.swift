@@ -395,6 +395,10 @@ internal enum L10n {
     internal static var pleaseEnterOTP: String {
         return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTP")
       }
+    /// Resend code
+    internal static var resendCode: String {
+        return L10n.tr("Localizable", "verifyOtp.resendCode")
+      }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

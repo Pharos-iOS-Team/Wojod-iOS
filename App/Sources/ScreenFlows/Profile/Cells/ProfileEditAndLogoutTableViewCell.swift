@@ -10,6 +10,7 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
     enum Constants {
         static var buttonsCornerRadius: CGFloat = 8
     }
+
     @IBOutlet private var changePasswordStackView: UIStackView!
     @IBOutlet private var changePasswordButton: UIButton! {
         didSet {
@@ -24,20 +25,18 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
 
     private weak var delegate: ProfileChangePasswordDelegate?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
-    }
-
     @IBAction private func changePasswordPressed(_ sender: Any) {
         delegate?.changePasswordHandler()
     }
     @IBAction private func logoutPressed(_ sender: Any) {
-        User.shared.logout { _, error in
-            if error == nil {
-                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
-            }
+        User.shared.logout { _, _ in
+            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
         }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
     }
 
     func configure(delegate: ProfileChangePasswordDelegate?) {
