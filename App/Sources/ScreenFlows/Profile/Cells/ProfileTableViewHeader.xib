@@ -23,35 +23,31 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XH5-6T-E1U">
                     <rect key="frame" x="5" y="5" width="450" height="255"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="quc-AG-VbU">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="quc-AG-VbU">
                             <rect key="frame" x="20" y="0.0" width="420" height="245"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnT-a8-Z8A">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="93.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="150"/>
                                     <constraints>
+                                        <constraint firstAttribute="height" constant="150" id="lLt-rf-mrb"/>
                                         <constraint firstAttribute="width" constant="130" id="yCL-TG-nne"/>
                                     </constraints>
                                     <connections>
                                         <action selector="avatarPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="5fu-Sf-6fV"/>
                                     </connections>
                                 </button>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-mK-kk4">
-                                    <rect key="frame" x="0.0" y="99.5" width="46.5" height="145.5"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs7-pQ-aiq">
-                                            <rect key="frame" x="0.0" y="0.0" width="46.5" height="70.5"/>
-                                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
-                                            <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqf-kd-eFq">
-                                            <rect key="frame" x="0.0" y="75.5" width="46.5" height="70"/>
-                                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJm-L6-7bg">
+                                    <rect key="frame" x="0.0" y="156" width="46.5" height="70.5"/>
+                                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
+                                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-et-VWm">
+                                    <rect key="frame" x="0.0" y="232.5" width="26" height="12.5"/>
+                                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
+                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -75,8 +71,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="profileImageView" destination="XnT-a8-Z8A" id="53r-ct-MZb"/>
-                <outlet property="profileNameLabel" destination="gs7-pQ-aiq" id="ew1-el-oT4"/>
-                <outlet property="profileUserTypeLabel" destination="eqf-kd-eFq" id="qfc-E1-9wD"/>
+                <outlet property="profileNameLabel" destination="SJm-L6-7bg" id="eyj-CU-Sal"/>
+                <outlet property="profileUserTypeLabel" destination="dlm-et-VWm" id="KoS-RA-HAW"/>
             </connections>
             <point key="canvasLocation" x="128.98550724637681" y="-311.04910714285711"/>
         </view>

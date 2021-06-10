@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cg7-p1-Tsg">
-                        <rect key="frame" x="12" y="11" width="382" height="108"/>
+                        <rect key="frame" x="0.0" y="11" width="409" height="108"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sro-AP-IRI">
-                                <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="50"/>
                                 <color key="backgroundColor" name="sendButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="M9q-r9-V8C"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0L-ri-fcu">
-                                <rect key="frame" x="0.0" y="58" width="382" height="50"/>
+                                <rect key="frame" x="0.0" y="58" width="409" height="50"/>
                                 <color key="backgroundColor" name="errorAlertLabelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DHG-VX-YfL"/>
@@ -53,8 +53,8 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Cg7-p1-Tsg" secondAttribute="bottom" constant="11" id="Sfg-z0-yqI"/>
                     <constraint firstItem="Cg7-p1-Tsg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="unh-NL-EYb"/>
-                    <constraint firstAttribute="trailing" secondItem="Cg7-p1-Tsg" secondAttribute="trailing" constant="15" id="wW1-Sv-7S0"/>
-                    <constraint firstItem="Cg7-p1-Tsg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="wY8-Hi-uGT"/>
+                    <constraint firstAttribute="trailing" secondItem="Cg7-p1-Tsg" secondAttribute="trailing" id="wW1-Sv-7S0"/>
+                    <constraint firstItem="Cg7-p1-Tsg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wY8-Hi-uGT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
