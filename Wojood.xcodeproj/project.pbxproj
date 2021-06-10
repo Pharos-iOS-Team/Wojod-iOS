@@ -279,7 +279,6 @@
 		7723ADDB261C73FE007C0B97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7723ADE0261C7420007C0B97 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7723ADE5261C742D007C0B97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GlobalLocalizable.strings; sourceTree = "<group>"; };
-		7723ADE7261C7431007C0B97 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/GlobalLocalizable.strings; sourceTree = "<group>"; };
 		7723ADFA261C787B007C0B97 /* DefaultsKeysExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeysExt.swift; sourceTree = "<group>"; };
 		7723ADFF261C79E8007C0B97 /* ReachabilityExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityExt.swift; sourceTree = "<group>"; };
 		7723AE04261C7DB6007C0B97 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
@@ -407,6 +406,7 @@
 		BC96828B263979BD009F8550 /* AcademicInfoTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoTarget.swift; sourceTree = "<group>"; };
 		BC968290263979CB009F8550 /* AcademicInfoApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoApiClient.swift; sourceTree = "<group>"; };
 		BC96829826397FE6009F8550 /* AcademicInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoModel.swift; sourceTree = "<group>"; };
+		BC98BA0326710DD3006C2AD9 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/GlobalLocalizable.strings; sourceTree = "<group>"; };
 		BC98F3E32623219C00032AC6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BC98F3EB2623272E00032AC6 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 		BC98F3F62623370500032AC6 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -1128,9 +1128,9 @@
 			isa = PBXGroup;
 			children = (
 				BC98F42E262454C300032AC6 /* Login.storyboard */,
-				77E32B90264A8B2C0064B801 /* LoginModel.swift */,
 				BC98F433262454D800032AC6 /* LoginViewController.swift */,
 				BC98F438262454E400032AC6 /* LoginViewModel.swift */,
+				77E32B90264A8B2C0064B801 /* LoginModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1645,7 +1645,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7723ADE5261C742D007C0B97 /* en */,
-				7723ADE7261C7431007C0B97 /* ar */,
+				BC98BA0326710DD3006C2AD9 /* ar */,
 			);
 			name = GlobalLocalizable.strings;
 			sourceTree = "<group>";

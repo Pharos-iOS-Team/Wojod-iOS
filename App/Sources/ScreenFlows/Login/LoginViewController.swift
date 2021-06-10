@@ -124,9 +124,10 @@ class LoginViewController: UIViewController {
         guard let mobileNumber = mobileNumberTextField.text else { return }
         let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
             $0.mobileNumber = mobileNumber
+            $0.verifyUserFromLogin = true
             $0.successHandler = {
                 self.hideLoadingIndicator()
-                self.dismiss(animated: true)
+                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
             }
         }
         present(verifyOtpViewCtrl, animated: true)

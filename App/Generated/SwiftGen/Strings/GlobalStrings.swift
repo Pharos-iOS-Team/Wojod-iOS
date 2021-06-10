@@ -12,53 +12,91 @@ import Foundation
 extension L10n {
 
   internal enum Global {
-    /// Please try again later
-    internal static let message = L10n.tr("GlobalLocalizable", "global.message.")
     internal enum Actions {
       /// Add
-      internal static let add = L10n.tr("GlobalLocalizable", "global.actions.add")
+      internal static var add: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.add")
+        }
       /// Cancel
-      internal static let cancel = L10n.tr("GlobalLocalizable", "global.actions.cancel")
+      internal static var cancel: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.cancel")
+        }
       /// Close
-      internal static let close = L10n.tr("GlobalLocalizable", "global.actions.close")
+      internal static var close: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.close")
+        }
       /// Confirm
-      internal static let confirm = L10n.tr("GlobalLocalizable", "global.actions.confirm")
+      internal static var confirm: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.confirm")
+        }
       /// Delete
-      internal static let delete = L10n.tr("GlobalLocalizable", "global.actions.delete")
+      internal static var delete: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.delete")
+        }
       /// Done
-      internal static let done = L10n.tr("GlobalLocalizable", "global.actions.done")
+      internal static var done: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.done")
+        }
       /// Edit
-      internal static let edit = L10n.tr("GlobalLocalizable", "global.actions.edit")
+      internal static var edit: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.edit")
+        }
       /// Login
-      internal static let login = L10n.tr("GlobalLocalizable", "global.actions.login")
+      internal static var login: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.login")
+        }
       /// Logout
-      internal static let logout = L10n.tr("GlobalLocalizable", "global.actions.logout")
+      internal static var logout: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.logout")
+        }
       /// No
-      internal static let no = L10n.tr("GlobalLocalizable", "global.actions.no")
+      internal static var no: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.no")
+        }
       /// Ok
-      internal static let ok = L10n.tr("GlobalLocalizable", "global.actions.ok")
+      internal static var ok: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.ok")
+        }
       /// Save
-      internal static let save = L10n.tr("GlobalLocalizable", "global.actions.save")
+      internal static var save: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.save")
+        }
       /// Search
-      internal static let search = L10n.tr("GlobalLocalizable", "global.actions.search")
+      internal static var search: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.search")
+        }
     }
     internal enum Alerts {
       /// Something went wrong while preparing the data
-      internal static let dataPreparationError = L10n.tr("GlobalLocalizable", "global.alerts.data_preparation_error")
+      internal static var dataPreparationError: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.data_preparation_error")
+        }
       /// Loading
-      internal static let loading = L10n.tr("GlobalLocalizable", "global.alerts.loading")
+      internal static var loading: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.loading")
+        }
       /// Are you sure you need to logout?
-      internal static let logout = L10n.tr("GlobalLocalizable", "global.alerts.logout")
+      internal static var logout: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.logout")
+        }
       /// Something went wrong, check your connection and try again in a while
-      internal static let somethingWentWrong = L10n.tr("GlobalLocalizable", "global.alerts.something_went_wrong")
+      internal static var somethingWentWrong: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.something_went_wrong")
+        }
     }
     internal enum Titles {
       /// Error
-      internal static let error = L10n.tr("GlobalLocalizable", "global.titles.error")
+      internal static var error: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.error")
+        }
       /// Settings
-      internal static let settings = L10n.tr("GlobalLocalizable", "global.titles.settings")
+      internal static var settings: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.settings")
+        }
       /// Warning
-      internal static let warning = L10n.tr("GlobalLocalizable", "global.titles.warning")
+      internal static var warning: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.warning")
+        }
     }
   }
 }
@@ -76,12 +114,8 @@ extension L10n {
 
 // swiftlint:disable convenience_type
 private final class BundleToken {
-  static let bundle: Bundle = {
-    #if SWIFT_PACKAGE
-    return Bundle.module
-    #else
-    return Bundle(for: BundleToken.self)
-    #endif
-  }()
+  static var bundle: Bundle {
+    Bundle(path: Bundle.main.path(forResource: Language.currentLanguage.rawValue, ofType: "lproj")!)!
+  }
 }
 // swiftlint:enable convenience_type

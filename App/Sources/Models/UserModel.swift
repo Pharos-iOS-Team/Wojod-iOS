@@ -25,6 +25,9 @@ struct UserModel: Codable {
     var parent2PhoneNumber: String?
     var country: String?
     var countryName: String?
+    var createdAt: String?
+    var updatedAt: String?
+    var initials: String?
     var city: String?
     var cityName: String?
     var region: String?

@@ -15,11 +15,14 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
     @IBOutlet private var changePasswordButton: UIButton! {
         didSet {
             changePasswordButton.layer.cornerRadius = Constants.buttonsCornerRadius
+            changePasswordButton.setTitle(L10n.Profile.changePassword)
+
         }
     }
     @IBOutlet private var logoutButton: UIButton! {
         didSet {
             logoutButton.layer.cornerRadius = Constants.buttonsCornerRadius
+            logoutButton.setTitle(L10n.Global.Actions.logout)
         }
     }
 

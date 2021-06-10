@@ -51,7 +51,7 @@ class LoginViewModel {
     private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
         User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
     }
-    
+
     func doesErrorIndicateVerificationRequired(_ error: WJError) -> Bool {
         if case .serverSideError(statusCode: let statusCode) = error.type, statusCode == .unprocessableEntity {
             return true
