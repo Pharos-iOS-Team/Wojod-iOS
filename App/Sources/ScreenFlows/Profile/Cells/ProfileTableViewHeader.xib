@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -26,24 +26,23 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="quc-AG-VbU">
                             <rect key="frame" x="20" y="0.0" width="420" height="245"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnT-a8-Z8A">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="150"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jVf-Vd-x6Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="150" id="lLt-rf-mrb"/>
-                                        <constraint firstAttribute="width" constant="130" id="yCL-TG-nne"/>
+                                        <constraint firstAttribute="height" constant="130" id="psL-li-c4F"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="avatarPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="5fu-Sf-6fV"/>
-                                    </connections>
-                                </button>
+                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJm-L6-7bg">
-                                    <rect key="frame" x="0.0" y="156" width="46.5" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="136" width="46.5" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="soQ-Rb-z5Z"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
                                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-et-VWm">
-                                    <rect key="frame" x="0.0" y="232.5" width="26" height="12.5"/>
+                                    <rect key="frame" x="0.0" y="202" width="26" height="43"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -70,7 +69,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="profileImageView" destination="XnT-a8-Z8A" id="53r-ct-MZb"/>
+                <outlet property="profileImageView" destination="jVf-Vd-x6Y" id="DQ9-mB-gPI"/>
                 <outlet property="profileNameLabel" destination="SJm-L6-7bg" id="eyj-CU-Sal"/>
                 <outlet property="profileUserTypeLabel" destination="dlm-et-VWm" id="KoS-RA-HAW"/>
             </connections>

@@ -13,28 +13,31 @@ struct ProfileHeaderModel {
 }
 
 class ProfileTableViewHeader: UITableViewHeaderFooterView {
-    @IBOutlet private var profileImageView: UIButton!
+    @IBOutlet private var profileImageView: UIImageView!
     @IBOutlet private var profileNameLabel: UILabel!
     @IBOutlet private var profileUserTypeLabel: UILabel!
 
     private weak var delegate: ProfileTableViewHeaderDelegate?
 
-    @IBAction private func avatarPressed(_ sender: Any) {
-        delegate?.changeProfileImage()
-    }
-
     func configure(model: ProfileHeaderModel, delegate: ProfileTableViewHeaderDelegate?) {
         if model.imageURL == nil {
-            profileImageView.isHidden = true
+            profileImageView.image = Images.defaultAvatar.image.withAlignmentRectInsets(UIEdgeInsets(right: -200))
         } else {
             guard var link = model.imageURL else { return }
             link = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             link = link.replacingOccurrences(of: "http", with: "https")
             let url = Environment.baseURL.appendingPathComponent(link)
-            profileImageView.kf.setImage(with: url, for: .normal)
+            profileImageView.kf.setImage(with: url)
         }
         profileNameLabel.text = model.name
         profileUserTypeLabel.text = model.type
         self.delegate = delegate
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeAvatar)))
+    }
+
+    @objc
+    private func changeAvatar() {
+        delegate?.changeProfileImage()
     }
 }

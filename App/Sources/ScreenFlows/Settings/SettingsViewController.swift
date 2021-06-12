@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
         }
     }
     @IBOutlet private var tableViewFooter: UIView!
-    @IBOutlet private var profileThumbnail: UIButton!
+    @IBOutlet private var profileThumbnail: UIImageView!
     let viewModel = SettingsViewModel()
     var user: LoginApiResponseModel?
 
@@ -29,14 +29,12 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         registerNib()
         setUserAvatar()
+        navigateToProfileHandler()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUserAvatar()
-    }
-    @IBAction private func navigateToProfile(_ sender: Any) {
-        navigateToProfile()
     }
 
     private func registerNib() {
@@ -45,9 +43,18 @@ class SettingsViewController: UIViewController {
     }
 
     private func setUserAvatar() {
-        guard let link = User.shared.avatar?.thumbnailUrl else { return }
-        guard let url = viewModel.getUserAvatar(avatarLink: link) else { return }
-        profileThumbnail.kf.setImage(with: url, for: .normal)
+        if User.shared.avatar?.thumbnailUrl != nil {
+            guard let link = User.shared.avatar?.thumbnailUrl else { return }
+            guard let url = viewModel.getUserAvatar(avatarLink: link) else { return }
+            profileThumbnail.kf.setImage(with: url)
+        } else {
+            profileThumbnail.image = Images.defaultAvatar.image
+        }
+    }
+
+    private func navigateToProfileHandler() {
+        profileThumbnail.isUserInteractionEnabled = true
+        profileThumbnail.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(navigateToProfile)))
     }
 
     @objc

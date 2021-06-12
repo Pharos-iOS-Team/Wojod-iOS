@@ -120,7 +120,7 @@ class AvatarsViewController: UIViewController {
             schoolName: sharedUser.schoolName,
             batchID: sharedUser.batch,
             specializationID: sharedUser.specializationId,
-            avatarID: sharedUser.avatar?.id ?? avatars.first?.id
+            avatarID: sharedUser.avatar?.id
         )
         viewModel?.signUp(user: user) { _, error in
             self.loadingIndicator.stopAnimating()

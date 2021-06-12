@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JZG-K2-sp6">
-                                <rect key="frame" x="20" y="150" width="374" height="712"/>
+                                <rect key="frame" x="20" y="132" width="374" height="730"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="1gW-FZ-8S1" userLabel="footer">
                                     <rect key="frame" x="0.0" y="99.5" width="374" height="44"/>
@@ -43,17 +42,17 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNU-lN-Lbb">
-                                <rect key="frame" x="20" y="44" width="374" height="102"/>
+                                <rect key="frame" x="20" y="44" width="374" height="78"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="esG-w8-OB3">
-                                        <rect key="frame" x="8" y="26" width="50" height="50"/>
+                                        <rect key="frame" x="8" y="14" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="MXW-Hk-hge"/>
                                             <constraint firstAttribute="height" constant="50" id="S4o-BQ-KLj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoQ-jz-i2r">
-                                        <rect key="frame" x="137" y="23" width="100" height="56"/>
+                                        <rect key="frame" x="137" y="23" width="100" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="KUN-OY-25R"/>
                                         </constraints>
@@ -61,31 +60,22 @@
                                         <color key="textColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXE-5M-LpY">
-                                        <rect key="frame" x="301" y="16" width="65" height="70"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9cI-76-nMr">
+                                        <rect key="frame" x="306" y="9" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="Qcq-76-Oix"/>
-                                            <constraint firstAttribute="width" constant="65" id="Z0G-uM-MLN"/>
+                                            <constraint firstAttribute="width" constant="60" id="6tL-fu-xAo"/>
+                                            <constraint firstAttribute="height" constant="60" id="cxw-T6-Mfj"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <imageReference key="image" image="person.circle.fill" catalog="system" symbolScale="large" renderingMode="template"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="navigateToProfile:" destination="Pzv-Bs-FGO" eventType="touchUpInside" id="cBp-m4-xWs"/>
-                                        </connections>
-                                    </button>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="fXE-5M-LpY" firstAttribute="top" secondItem="kNU-lN-Lbb" secondAttribute="top" constant="16" id="8Jz-nE-Yhg"/>
                                     <constraint firstItem="ZoQ-jz-i2r" firstAttribute="centerY" secondItem="kNU-lN-Lbb" secondAttribute="centerY" id="JbN-eh-ac0"/>
+                                    <constraint firstItem="9cI-76-nMr" firstAttribute="top" secondItem="kNU-lN-Lbb" secondAttribute="top" constant="9" id="OFC-Xd-apU"/>
                                     <constraint firstItem="esG-w8-OB3" firstAttribute="leading" secondItem="kNU-lN-Lbb" secondAttribute="leading" constant="8" id="P43-TL-hdi"/>
-                                    <constraint firstItem="fXE-5M-LpY" firstAttribute="centerY" secondItem="kNU-lN-Lbb" secondAttribute="centerY" id="Syh-j8-xFB"/>
                                     <constraint firstItem="ZoQ-jz-i2r" firstAttribute="centerX" secondItem="kNU-lN-Lbb" secondAttribute="centerX" id="axg-EJ-EA0"/>
-                                    <constraint firstAttribute="bottom" secondItem="fXE-5M-LpY" secondAttribute="bottom" constant="16" id="sLv-jU-tlU"/>
-                                    <constraint firstAttribute="trailing" secondItem="fXE-5M-LpY" secondAttribute="trailing" constant="8" id="tBM-yH-MX9"/>
+                                    <constraint firstAttribute="trailing" secondItem="9cI-76-nMr" secondAttribute="trailing" constant="8" id="c83-i5-Mcd"/>
+                                    <constraint firstItem="9cI-76-nMr" firstAttribute="centerY" secondItem="ZoQ-jz-i2r" secondAttribute="centerY" id="iCr-43-fMe"/>
                                     <constraint firstItem="ZoQ-jz-i2r" firstAttribute="top" secondItem="kNU-lN-Lbb" secondAttribute="top" constant="23" id="w4v-2H-YDs"/>
                                     <constraint firstItem="esG-w8-OB3" firstAttribute="centerY" secondItem="kNU-lN-Lbb" secondAttribute="centerY" id="xnc-G0-a8Z"/>
                                 </constraints>
@@ -95,16 +85,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kNU-lN-Lbb" firstAttribute="leading" secondItem="qhd-mO-5A7" secondAttribute="leading" constant="20" id="4es-Ah-VSr"/>
-                            <constraint firstItem="JZG-K2-sp6" firstAttribute="top" secondItem="SL1-Xb-HXC" secondAttribute="top" constant="150" id="FxO-xy-O1J"/>
                             <constraint firstAttribute="trailing" secondItem="JZG-K2-sp6" secondAttribute="trailing" constant="20" id="L50-ob-eZk"/>
                             <constraint firstItem="JZG-K2-sp6" firstAttribute="leading" secondItem="SL1-Xb-HXC" secondAttribute="leading" constant="20" id="PVd-NZ-9bI"/>
+                            <constraint firstItem="JZG-K2-sp6" firstAttribute="top" secondItem="kNU-lN-Lbb" secondAttribute="bottom" constant="10" id="T0Z-u3-8Wb"/>
                             <constraint firstItem="qhd-mO-5A7" firstAttribute="trailing" secondItem="kNU-lN-Lbb" secondAttribute="trailing" constant="20" id="Tst-6x-dMx"/>
                             <constraint firstItem="kNU-lN-Lbb" firstAttribute="top" secondItem="SL1-Xb-HXC" secondAttribute="top" constant="44" id="bhy-T7-2ON"/>
                             <constraint firstAttribute="bottom" secondItem="JZG-K2-sp6" secondAttribute="bottom" constant="34" id="md1-e7-erl"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="profileThumbnail" destination="fXE-5M-LpY" id="ELR-yO-lUx"/>
+                        <outlet property="profileThumbnail" destination="9cI-76-nMr" id="jAv-mh-Eu6"/>
                         <outlet property="settingsLabel" destination="ZoQ-jz-i2r" id="ZVg-GK-e7O"/>
                         <outlet property="settingsTableView" destination="JZG-K2-sp6" id="Ins-Rl-yFP"/>
                         <outlet property="tableViewFooter" destination="1gW-FZ-8S1" id="tLY-fU-7yP"/>
@@ -117,7 +107,6 @@
     </scenes>
     <resources>
         <image name="CoursesLogo" width="46" height="48"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
