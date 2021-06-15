@@ -82,6 +82,7 @@ internal enum Asset {
     internal static let settingsSelected = ImageAsset(name: "settingsSelected")
     internal static let boyAvatar = ImageAsset(name: "boyAvatar")
     internal static let close = ImageAsset(name: "close")
+    internal static let defaultAvatar = ImageAsset(name: "defaultAvatar")
     internal static let girlAvatar = ImageAsset(name: "girlAvatar")
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let nextIcon = ImageAsset(name: "nextIcon")

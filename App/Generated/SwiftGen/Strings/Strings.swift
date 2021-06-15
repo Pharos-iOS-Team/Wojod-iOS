@@ -75,6 +75,10 @@ internal enum L10n {
     internal static var passwordIsEmpty: String {
         return L10n.tr("Localizable", "login.passwordIsEmpty")
       }
+    /// Phone number
+    internal static var phoneNumber: String {
+        return L10n.tr("Localizable", "login.phoneNumber")
+      }
     /// Send
     internal static var send: String {
         return L10n.tr("Localizable", "login.send")
@@ -390,6 +394,10 @@ internal enum L10n {
     /// Please enter the OTP sent to your phone
     internal static var pleaseEnterOTP: String {
         return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTP")
+      }
+    /// Resend code
+    internal static var resendCode: String {
+        return L10n.tr("Localizable", "verifyOtp.resendCode")
       }
   }
 }

@@ -219,11 +219,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard var link = User.shared.avatar?.thumbnailUrl else { return UIView() }
-        link = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        link = link.replacingOccurrences(of: "http", with: "https")
-        let url = Environment.baseURL.appendingPathComponent(link)
-        let headerModel = ProfileHeaderModel(imageURL: url, name: User.shared.name ?? "", type: User.shared.educationLevelName ?? "")
+        let headerModel = ProfileHeaderModel(imageURL: User.shared.avatar?.fileUrl, name: User.shared.name ?? "", type: User.shared.educationLevelName ?? "")
         let headerView = tableView.dequeueHeaderFooterView(ofType: ProfileTableViewHeader.self)
         headerView?.configure(model: headerModel, delegate: self)
         return headerView
@@ -240,7 +236,6 @@ extension ProfileViewController: ProfileTableViwCellProtocol {
 extension ProfileViewController: AvatarsListDelegate {
     func setAvatar(avatar: Avatar) {
         guard let id = avatar.id else { return }
-        let image = getImage(from: avatar)
         viewModel.setNewAvatar(avatarId: id)
         profileTableView.reloadData()
     }

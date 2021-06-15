@@ -13,6 +13,8 @@
 
 "login.mobileNumber" = "رقم الهاتف";
 
+"login.phoneNumber" = "رقم الهاتف";
+
 "login.password" = "كلمة المرور";
 
 "login.forgotPasswordTitle" = "هل نسيت كلمة المرور؟
@@ -51,6 +53,8 @@
 "verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
 
 "verifyOtp.continue" = "استمرار";
+
+"verifyOtp.resendCode" = "إعادة إرسال كود التفعيل";
 
 "tabBar.home" = "القائمة الرئيسية";
 

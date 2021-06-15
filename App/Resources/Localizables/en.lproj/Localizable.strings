@@ -13,6 +13,8 @@ Sign in to continue";
 
 "login.mobileNumber" = "Mobile number";
 
+"login.phoneNumber" = "Phone number";
+
 "login.password" = "Password";
 
 "login.forgotPassword" = "Forgot password?";
@@ -51,6 +53,8 @@ No worries!";
 "verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
 
 "verifyOtp.continue" = "Continue";
+
+"verifyOtp.resendCode" = "Resend code";
 
 "tabBar.home" = "Home";
 

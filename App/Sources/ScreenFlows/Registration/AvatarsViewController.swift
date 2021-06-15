@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import JGProgressHUD
 import UIKit
 
 class AvatarsViewController: UIViewController {
@@ -43,6 +44,7 @@ class AvatarsViewController: UIViewController {
     private var avatars: [Avatar] = []
     private var previouslySelectedAvatarIndexPath: IndexPath?
     private var sharedUser = User.shared.self
+    private var loadingHud: JGProgressHUD?
 
     // MARK: - Lifecycle
 
@@ -94,6 +96,10 @@ class AvatarsViewController: UIViewController {
         return UIImage(data: data)
     }
 
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
+    }
+
     // swiftlint:disable function_body_length
     private func signup() {
         loadingIndicator.startAnimating()
@@ -119,8 +125,14 @@ class AvatarsViewController: UIViewController {
         viewModel?.signUp(user: user) { _, error in
             self.loadingIndicator.stopAnimating()
             if error == nil {
-                let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
-                verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
+                let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
+                    $0.mobileNumber = self.sharedUser.mobileNumber ?? ""
+                    $0.verifyUserFromLogin = true
+                    $0.successHandler = {
+                        self.hideLoadingIndicator()
+                        ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+                    }
+                }
                 self.present(verifyOtpViewCtrl, animated: true, completion: nil)
             } else {
                 let alertHandler = AlertHandler(presentingViewCtrl: self)

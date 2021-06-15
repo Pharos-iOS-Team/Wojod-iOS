@@ -21,7 +21,11 @@ class VerifyOtpViewController: UIViewController {
             hideAlertView()
         }
     }
-    @IBOutlet private var resendButton: UIButton!
+    @IBOutlet private var resendButton: UIButton! {
+        didSet {
+            resendButton.setTitle(L10n.VerifyOtp.resendCode)
+        }
+    }
     @IBOutlet private var backButton: UIButton! {
         didSet {
             backButton.setImage(Images.localizedBackButton)
@@ -35,6 +39,7 @@ class VerifyOtpViewController: UIViewController {
     }
 
     var mobileNumber: String = ""
+    var verifyUserFromLogin: Bool = false
     var alertViewHeight: CGFloat = 0
     let viewModel = VerifyOtpViewModel()
     let loadingHud = JGProgressHUD()
@@ -64,7 +69,7 @@ class VerifyOtpViewController: UIViewController {
         hideAlertView()
         guard let otp = otpTextView.text else { return }
         let otpModel = OtpVerification(mobileNumber: mobileNumber, otpCode: otp)
-        viewModel.verifyOtp(otp: otpModel)
+        verifyUserFromLogin ? viewModel.verifyOtpFromLogin(otp: otpModel) : viewModel.verifyOtp(otp: otpModel)
     }
 
     private func configureSuccessHandler() {

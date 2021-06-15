@@ -27,4 +27,15 @@ class ForgotPasswordApiClient {
             }
         }
     }
+
+    func verifyOtpFromLogin(otp: OtpVerification, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        forgotPasswordProvider.request(.verifyOtpFromLogin(otp: otp)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
