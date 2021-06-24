@@ -16,7 +16,7 @@ class AvatarModel: ModelDecodable {
                     self.decodeError(response: response, completionHandler: completionHandler)
                 }
             } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                self.handleMoyaError(error: error, completionHandler: completionHandler)
             }
         }
     }
