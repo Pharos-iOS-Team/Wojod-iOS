@@ -79,6 +79,10 @@ extension L10n {
       internal static var logout: String {
           return L10n.tr("GlobalLocalizable", "global.alerts.logout")
         }
+      /// The internet connection appears to be offline
+      internal static var noInternetConnection: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.no_internet_connection")
+        }
       /// Something went wrong, check your connection and try again in a while
       internal static var somethingWentWrong: String {
           return L10n.tr("GlobalLocalizable", "global.alerts.something_went_wrong")

@@ -35,11 +35,11 @@ extension ModelDecodable {
 
     func handleMoyaError(error: MoyaError, completionHandler: @escaping (Result) -> Void) {
         if let alamofireError = error.errorUserInfo["NSUnderlyingError"] as? Alamofire.AFError,
-           let underlyingError = alamofireError.underlyingError as NSError?,
-           [NSURLErrorNotConnectedToInternet, NSURLErrorDataNotAllowed].contains(underlyingError.code) {
-            completionHandler(.failure(WJError(type: .parsingError, message: underlyingError.localizedDescription)))
+        let underlyingError = alamofireError.underlyingError as NSError?,
+        [NSURLErrorNotConnectedToInternet, NSURLErrorDataNotAllowed].contains(underlyingError.code) {
+            completionHandler(.failure(WJError(type: .parsingError, message: L10n.Global.Alerts.noInternetConnection)))
         } else {
-            completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            completionHandler(.failure(WJError(type: .parsingError, message: L10n.Global.Alerts.somethingWentWrong)))
         }
     }
 

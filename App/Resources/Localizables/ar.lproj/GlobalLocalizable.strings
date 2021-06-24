@@ -30,7 +30,9 @@
 
 "global.titles.settings" = "الإعدادات";
 
-"global.alerts.something_went_wrong" = "Something went wrong, check your connection and try again in a while";
+"global.alerts.something_went_wrong" = "حدث خطأ ما، برجاء من التأكد من الاتصال بالإنترنت و اعادة المحاولة مرة اخرى";
+
+"global.alerts.no_internet_connection" = "يبدو انه لا يوجد اتصال بالإنترنت";
 
 "global.alerts.data_preparation_error" = "Something went wrong while preparing the data";
 
