@@ -187,7 +187,7 @@ class ProfileViewModel {
         case .email:
             profile.email = text
         case .country:
-            guard let countryCode =  countries.first { $0.name == text }?.key else { return }
+            guard let countryCode = countries.first { $0.name == text }?.key else { return }
             profile.country = countries.first { $0.name == text }?.key
             User.shared.country = countries.first { $0.name == text }?.name
             loadCities(for: countryCode, index: index)

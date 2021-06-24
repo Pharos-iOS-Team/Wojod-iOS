@@ -17,7 +17,7 @@ class VerifyOtpModel: ModelDecodable {
                     self.decodeError(response: response, completionHandler: completionHandler)
                 }
             } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription.replacingOccurrences(of: "URLSessionTask failed with error:", with: ""))))
             }
         }
     }
@@ -34,7 +34,7 @@ class VerifyOtpModel: ModelDecodable {
                     self.decodeError(response: response, completionHandler: completionHandler)
                 }
             } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                self.handleMoyaError(error: error, completionHandler: completionHandler)
             }
         }
     }

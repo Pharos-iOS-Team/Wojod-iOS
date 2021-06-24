@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Alamofire
 import Foundation
 import Moya
 
@@ -19,15 +20,15 @@ class LoginModel: ModelDecodable {
                     self.decodeError(response: response, completionHandler: completionHandler)
                 }
             } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                self.handleMoyaError(error: error, completionHandler: completionHandler)
             }
         }
     }
 
     private func cacheAccessToken(headers: [AnyHashable: Any]?) {
         guard let token = headers?["access-token"] as? String,
-        let client = headers?["client"] as? String,
-        let uid = headers?["uid"] as? String
+              let client = headers?["client"] as? String,
+              let uid = headers?["uid"] as? String
         else { return }
         User.shared.setLoggedIn(token: token, client: client, uid: uid)
     }

@@ -1,11 +1,13 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Alamofire
 import Foundation
 import Moya
 
 protocol ModelDecodable {
     func decode<Model: Decodable>(modelType: Model.Type, from response: Response, completionHandler: @escaping (Result) -> Void)
     func decodeError(response: Response, completionHandler: @escaping (Result) -> Void)
+    func handleMoyaError(error: MoyaError, completionHandler: @escaping (Result) -> Void)
 }
 
 extension ModelDecodable {
@@ -28,6 +30,16 @@ extension ModelDecodable {
             completionHandler(.failure(customError))
         } else if let error = error.catchedError {
             completionHandler(.failure(WJError(type: .parsingError, message: error)))
+        }
+    }
+
+    func handleMoyaError(error: MoyaError, completionHandler: @escaping (Result) -> Void) {
+        if let alamofireError = error.errorUserInfo["NSUnderlyingError"] as? Alamofire.AFError,
+        let underlyingError = alamofireError.underlyingError as NSError?,
+        [NSURLErrorNotConnectedToInternet, NSURLErrorDataNotAllowed].contains(underlyingError.code) {
+            completionHandler(.failure(WJError(type: .parsingError, message: L10n.Global.Alerts.noInternetConnection)))
+        } else {
+            completionHandler(.failure(WJError(type: .parsingError, message: L10n.Global.Alerts.somethingWentWrong)))
         }
     }
 
