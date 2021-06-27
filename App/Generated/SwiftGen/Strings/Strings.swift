@@ -11,6 +11,93 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum CourseDetails {
+    internal enum CancelBooking {
+      /// Cancel Booking
+      internal static var cancelButton: String {
+          return L10n.tr("Localizable", "courseDetails.cancelBooking.cancelButton")
+        }
+      /// Are you sure you want to cancel booking of course?
+      internal static var message: String {
+          return L10n.tr("Localizable", "courseDetails.cancelBooking.message")
+        }
+      /// Message
+      internal static var messageTitle: String {
+          return L10n.tr("Localizable", "courseDetails.cancelBooking.messageTitle")
+        }
+      /// Return
+      internal static var returnButton: String {
+          return L10n.tr("Localizable", "courseDetails.cancelBooking.returnButton")
+        }
+    }
+    internal enum CourseReview {
+      /// Describe Course...
+      internal static var describeCourse: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.describeCourse")
+        }
+      /// Message
+      internal static var messageTitle: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.messageTitle")
+        }
+      /// Would you like to rate content?
+      internal static var rateContent: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.rateContent")
+        }
+      /// Skip Rating
+      internal static var skipRating: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.skipRating")
+        }
+    }
+    internal enum Main {
+      /// Book Now
+      internal static var bookNow: String {
+          return L10n.tr("Localizable", "courseDetails.main.bookNow")
+        }
+      /// Cancel Booking
+      internal static var cancelBooking: String {
+          return L10n.tr("Localizable", "courseDetails.main.cancelBooking")
+        }
+      /// Details
+      internal static var details: String {
+          return L10n.tr("Localizable", "courseDetails.main.details")
+        }
+      /// Review Course
+      internal static var reviewCourse: String {
+          return L10n.tr("Localizable", "courseDetails.main.reviewCourse")
+        }
+      /// Reviews
+      internal static var reviews: String {
+          return L10n.tr("Localizable", "courseDetails.main.reviews")
+        }
+    }
+    internal enum Receipt {
+      /// Address
+      internal static var address: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.address")
+        }
+      /// Course Name
+      internal static var courseName: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.courseName")
+        }
+      /// Customer Name
+      internal static var customerName: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.customerName")
+        }
+      /// Done
+      internal static var done: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.done")
+        }
+      /// Receipt Number
+      internal static var receiptNumber: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.receiptNumber")
+        }
+      /// Teacher Name
+      internal static var teacherName: String {
+          return L10n.tr("Localizable", "courseDetails.receipt.teacherName")
+        }
+    }
+  }
+
   internal enum CreatePassword {
     /// All fields are required
     internal static var bothAreEmpty: String {

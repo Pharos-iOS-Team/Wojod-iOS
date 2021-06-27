@@ -17,6 +17,11 @@ internal enum StoryboardScene {
 
     internal static let avatarsListViewController = SceneType<Wojood.AvatarsListViewController>(storyboard: AvatarsList.self, identifier: "AvatarsListViewController")
   }
+  internal enum CourseDetails: StoryboardType {
+    internal static let storyboardName = "CourseDetails"
+
+    internal static let initialScene = InitialSceneType<Wojood.CourseDetailsViewController>(storyboard: CourseDetails.self)
+  }
   internal enum CoursesList: StoryboardType {
     internal static let storyboardName = "CoursesList"
 

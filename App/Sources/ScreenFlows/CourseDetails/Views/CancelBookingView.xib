@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Light.ttf">
+            <string>Inter-Light</string>
+        </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CancelBookingView" customModule="Wojood" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="355" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkm-SA-miT">
+                    <rect key="frame" x="141" y="45" width="73.5" height="21"/>
+                    <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="18"/>
+                    <color key="textColor" name="darkGreyColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to cancel booking of course?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGL-Ff-f0q">
+                    <rect key="frame" x="20" y="76" width="315" height="33"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da6-eM-lUp">
+                    <rect key="frame" x="20" y="119" width="315" height="2"/>
+                    <color key="backgroundColor" name="lightGreyColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="iMA-7d-gEa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zq6-zX-Cqx">
+                    <rect key="frame" x="20" y="174" width="315" height="2"/>
+                    <color key="backgroundColor" name="lightGreyColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="9am-Ir-Kac"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-B6-Djw">
+                    <rect key="frame" x="20" y="131" width="315" height="33"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
+                    <state key="normal" title="Cancel Booking">
+                        <color key="titleColor" name="sendButtonColor"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapCancelBooking:" destination="iN0-l3-epB" eventType="touchUpInside" id="m3K-F7-N9M"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obO-19-kUU">
+                    <rect key="frame" x="20" y="186" width="315" height="31"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
+                    <state key="normal" title="Return">
+                        <color key="titleColor" name="errorAlertLabelColor"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapReturn:" destination="iN0-l3-epB" eventType="touchUpInside" id="dHt-7A-bLQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="5V3-B6-Djw" firstAttribute="leading" secondItem="da6-eM-lUp" secondAttribute="leading" id="0FC-vE-4Hu"/>
+                <constraint firstItem="5V3-B6-Djw" firstAttribute="trailing" secondItem="da6-eM-lUp" secondAttribute="trailing" id="1lR-J2-Rdh"/>
+                <constraint firstItem="Zq6-zX-Cqx" firstAttribute="trailing" secondItem="da6-eM-lUp" secondAttribute="trailing" id="2I7-m7-RpL"/>
+                <constraint firstItem="KGL-Ff-f0q" firstAttribute="top" secondItem="Qkm-SA-miT" secondAttribute="bottom" constant="10" id="Axt-HB-cRC"/>
+                <constraint firstItem="da6-eM-lUp" firstAttribute="width" secondItem="KGL-Ff-f0q" secondAttribute="width" id="CFT-lH-wR5"/>
+                <constraint firstItem="obO-19-kUU" firstAttribute="trailing" secondItem="Zq6-zX-Cqx" secondAttribute="trailing" id="Cxi-J7-Xmb"/>
+                <constraint firstItem="da6-eM-lUp" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Dsj-L2-mwI"/>
+                <constraint firstItem="Qkm-SA-miT" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="JD5-cS-0FY"/>
+                <constraint firstItem="Qkm-SA-miT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="JLR-xD-8aL"/>
+                <constraint firstItem="Zq6-zX-Cqx" firstAttribute="top" secondItem="5V3-B6-Djw" secondAttribute="bottom" constant="10" id="Mac-2I-1hO"/>
+                <constraint firstItem="KGL-Ff-f0q" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="NlO-gs-qcj"/>
+                <constraint firstItem="obO-19-kUU" firstAttribute="top" secondItem="Zq6-zX-Cqx" secondAttribute="bottom" constant="10" id="YaG-yj-vva"/>
+                <constraint firstItem="Zq6-zX-Cqx" firstAttribute="leading" secondItem="da6-eM-lUp" secondAttribute="leading" id="aNN-Jq-RUt"/>
+                <constraint firstItem="5V3-B6-Djw" firstAttribute="top" secondItem="da6-eM-lUp" secondAttribute="bottom" constant="10" id="hAk-0L-eDo"/>
+                <constraint firstItem="obO-19-kUU" firstAttribute="leading" secondItem="Zq6-zX-Cqx" secondAttribute="leading" id="uTV-l6-Jeu"/>
+                <constraint firstItem="KGL-Ff-f0q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="wRH-7F-roL"/>
+                <constraint firstItem="da6-eM-lUp" firstAttribute="top" secondItem="KGL-Ff-f0q" secondAttribute="bottom" constant="10" id="xFf-hc-W2h"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelBookingButton" destination="5V3-B6-Djw" id="HPM-Zp-wUq"/>
+                <outlet property="messageBodyLabel" destination="KGL-Ff-f0q" id="daX-Ty-FAd"/>
+                <outlet property="messageTitleLabel" destination="Qkm-SA-miT" id="jiA-0H-OES"/>
+                <outlet property="returnButton" destination="obO-19-kUU" id="KtW-oe-KfF"/>
+            </connections>
+            <point key="canvasLocation" x="71" y="68"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="darkGreyColor">
+            <color red="0.42745098039215684" green="0.44705882352941179" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="errorAlertLabelColor">
+            <color red="1" green="0.31372549019607843" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreyColor">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
