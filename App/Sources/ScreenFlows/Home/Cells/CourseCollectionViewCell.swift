@@ -3,6 +3,10 @@
 import AVKit
 import UIKit
 
+protocol ViewCourseDetailsDelegate: AnyObject {
+    func showCourseDetails(for course: Course?)
+}
+
 class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
@@ -26,6 +30,11 @@ class CourseCollectionViewCell: UICollectionViewCell {
             playButton.isHidden = true
         }
     }
+    @IBOutlet private var seeReceiptButton: UIButton! {
+        didSet {
+            seeReceiptButton.layer.cornerRadius = UIConstants.slightCornerRadius
+        }
+    }
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var firstRatingStar: UIImageView!
@@ -38,13 +47,26 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     private let dimmedStar: UIImage = Images.star.image
     private let filledStar: UIImage = Images.filledStar.image
+    private var course: Course?
+    private var isMyCourses = Bool()
+
+    // MARK: - Public Properties
 
     internal var playVideo: (() -> Void)?
+    internal weak var delegate: ViewCourseDetailsDelegate?
 
     // MARK: - IBActions
 
     @IBAction private func didTapPlayVideo(_ sender: UIButton) {
         self.playVideo!()
+    }
+
+    @IBAction private func didTapViewCourse(_ sender: UIButton) {
+        delegate?.showCourseDetails(for: course)
+    }
+
+    @IBAction private func didTapSeeReceipt(_ sender: UIButton) {
+        
     }
 
     // MARK: - Private Functions
@@ -86,14 +108,25 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    private func configureVisibilityOfSeeReceiptButton() {
+        if isMyCourses && course?.reservationState == "pending" {
+            seeReceiptButton.isHidden = false
+        } else {
+            seeReceiptButton.isHidden = true
+        }
+    }
+
     // MARK: - Public Functions
 
-    func configure(with course: Course?) {
+    func configure(with course: Course?, isMyCourses: Bool) {
+        self.course = course
+        self.isMyCourses = isMyCourses
         titleLabel.text = course?.name
         priceLabel.text = "EGP \(course?.price ?? "")"
         imageView.image = getImage(from: course?.media?.thumbnailUrl ?? "")
         playButton.isHidden = course?.video == nil
         configureRatingStars(course?.rating)
+        configureVisibilityOfSeeReceiptButton()
     }
 
     func configureVideo(with url: String) {

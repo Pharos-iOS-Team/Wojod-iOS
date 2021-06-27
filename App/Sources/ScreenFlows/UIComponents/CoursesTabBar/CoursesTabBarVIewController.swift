@@ -43,8 +43,8 @@ class CoursesTabBarViewController: UITabBarController {
             title: L10n.TabBar.myCourses,
             itemImage: Images.courses.image,
             selectedItemImage: Images.coursesSelected.image,
-            storyBoard: StoryboardScene.CoursesList.storyboard,
-            viewCtrlIdentifier: StoryboardScene.CoursesList.coursesListViewController.identifier
+            storyBoard: StoryboardScene.Home.storyboard,
+            viewCtrlIdentifier: StoryboardScene.Home.homeViewController.identifier
         )
         let settingsViewCtrl = setUpTabBarItem(
             title: L10n.TabBar.settings,

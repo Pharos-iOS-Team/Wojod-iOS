@@ -8,7 +8,15 @@ class CourseTableViewCell: UITableViewCell {
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var coursesCollectionView: UICollectionView!
 
+    // MARK: - Private Properties
+
     private var courses: [Course]?
+    private var isMyCourses = Bool()
+
+    // MARK: - Public Properties
+
+    internal weak var delegate: ViewCourseDetailsDelegate?
+
     // MARK: - Lifecycle
 
     override func awakeFromNib() {
@@ -29,7 +37,7 @@ class CourseTableViewCell: UITableViewCell {
         teacherNameLabel.text = name
     }
 
-    func configureCourses(_ courses: [Course]?) {
+    func configureCourses(_ courses: [Course]?, isMyCourses: Bool) {
         self.courses = courses
         coursesCollectionView.reloadData()
     }
@@ -45,7 +53,8 @@ extension CourseTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CourseCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         let course = courses?[indexPath.item]
-        cell.configure(with: course)
+        cell.configure(with: course, isMyCourses: isMyCourses)
+        cell.delegate = delegate
         cell.playVideo = { () -> Void in
             cell.configureVideo(with: course?.video?.fileUrl ?? "")
         }

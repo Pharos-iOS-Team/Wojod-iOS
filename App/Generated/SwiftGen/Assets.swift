@@ -38,8 +38,7 @@ internal enum Asset {
   internal enum Images {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let backIcon = ImageAsset(name: "BackIcon")
-    internal static let filledStar = ImageAsset(name: "filledStar")
-    internal static let star = ImageAsset(name: "star")
+    internal static let backIconWhite = ImageAsset(name: "BackIconWhite")
     internal static let collapse = ImageAsset(name: "collapse")
     internal static let expand = ImageAsset(name: "expand")
     internal static let quiz = ImageAsset(name: "quiz")

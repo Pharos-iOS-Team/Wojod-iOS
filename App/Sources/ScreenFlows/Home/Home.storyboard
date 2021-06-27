@@ -225,6 +225,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m04-iN-YQq">
                                 <rect key="frame" x="364" y="113" width="30" height="30"/>
                                 <state key="normal" image="homeNotification"/>
+                                <connections>
+                                    <action selector="didTapNotificationsButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="la5-Nt-5iT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d28-A6-w5m">
                                 <rect key="frame" x="229" y="110.5" width="120" height="35"/>
@@ -238,7 +241,7 @@
                                 <rect key="frame" x="239" y="120" width="15" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-4d-Zb1">
-                                <rect key="frame" x="259" y="119.5" width="75" height="17"/>
+                                <rect key="frame" x="259" y="119.5" width="79.5" height="17"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>

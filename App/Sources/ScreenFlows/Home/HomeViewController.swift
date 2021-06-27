@@ -52,6 +52,9 @@ class HomeViewController: UIViewController {
     private var mode: HomeMode = .relatedCourses
     private var isInSearchMode: Bool = false
     private var loadingHud: JGProgressHUD?
+    private var selectedTabBarItem: TabBarItems?
+    private var isMyCourses: Bool = false
+    private var isFirstScreenLoad: Bool = true
 
     // MARK: - Lifecycle
 
@@ -62,6 +65,13 @@ class HomeViewController: UIViewController {
         configureSearchBar()
         loadUserProfile()
         selectRelatedCoursesButton()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
+        hideAdsCollectionViewIfNeeded()
+        // selectFirstSubjectByDefault()
     }
 
     // MARK: - IBActions
@@ -78,6 +88,13 @@ class HomeViewController: UIViewController {
         configureVisibilityOfSubjectsAndAds()
         loadExploreMoreCourses()
     }
+
+    @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
+        let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        present(viewCtrl, animated: true)
+    }
+    
 
     // MARK: - Private Functions
 
@@ -128,7 +145,7 @@ class HomeViewController: UIViewController {
 
     private func loadRelatedCourses() {
         showLoadingIndicator()
-        viewModel.loadRelatedCourses(isMyCourses: false, subjectID: selectedSubject?.id ?? 0) { [unowned self] relatedCourses in
+        viewModel.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: selectedSubject?.id ?? 0) { [unowned self] relatedCourses in
             hideLoadingIndicator()
             subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? ""]
             coursesTableView.reloadData()
@@ -137,7 +154,7 @@ class HomeViewController: UIViewController {
 
     private func loadExploreMoreCourses() {
         showLoadingIndicator()
-        viewModel.loadExploreMoreCourses(isMyCourses: false) { [unowned self] courses in
+        viewModel.loadExploreMoreCourses(isMyCourses: isMyCourses) { [unowned self] courses in
             hideLoadingIndicator()
             exploreMoreCourses = courses?.teachersCourses
             coursesTableView.reloadData()
@@ -169,6 +186,11 @@ class HomeViewController: UIViewController {
             return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses?[index]
         }
     }
+
+    private func hideAdsCollectionViewIfNeeded() {
+        adsCollectionView.isHidden = isMyCourses
+        adsCollectionViewHeightConstraint.constant = isMyCourses ? 0 : 150
+    }
 }
 
 // MARK: - Collection View Data Source
@@ -183,6 +205,13 @@ extension HomeViewController: UICollectionViewDataSource {
             let subjectCell: SubjectCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
             let subject = subjects?[indexPath.row]
             subjectCell.setSubject(subject?.name ?? "")
+            if isFirstScreenLoad {
+                isFirstScreenLoad = false
+                selectedSubjectIndexPath = indexPath
+                selectedSubject = subjects?[indexPath.item]
+                loadRelatedCourses()
+                subjectCell.select()
+            }
             return subjectCell
         } else {
             let adsCell: AdsCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
@@ -234,7 +263,8 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueCell(ofType: CourseTableViewCell.self, for: indexPath)
         let subjectCourse = appropriateSubjectCourse(index: indexPath.row)
         cell?.setTeacherName(subjectCourse?.teacher?.name ?? "")
-        cell?.configureCourses(subjectCourse?.courses)
+        cell?.configureCourses(subjectCourse?.courses, isMyCourses: isMyCourses)
+        cell?.delegate = self
         return cell ?? UITableViewCell()
     }
 }
@@ -265,5 +295,15 @@ extension HomeViewController: UISearchBarDelegate {
             isInSearchMode = false
             coursesTableView.reloadData()
         }
+    }
+}
+
+// MARK: - View Course Details Delegate
+
+extension HomeViewController: ViewCourseDetailsDelegate {
+    func showCourseDetails(for course: Course?) {
+        let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+        viewCtrl.course = course
+        present(viewCtrl, animated: true)
     }
 }
