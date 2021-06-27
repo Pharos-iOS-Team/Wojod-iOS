@@ -20,19 +20,19 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private var detailsButton: UIButton! {
         didSet {
             detailsButton.setTitle(L10n.CourseDetails.Main.details)
-            detailsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
+            detailsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
     @IBOutlet private var materialsButton: UIButton! {
         didSet {
-            materialsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
+            materialsButton.layer.cornerRadius = UIConstants.cornerRadius
             materialsButton.isHidden = !(self.state == .booked)
         }
     }
     @IBOutlet private var reviewsButton: UIButton! {
         didSet {
             reviewsButton.setTitle(L10n.CourseDetails.Main.reviews)
-            reviewsButton.layer.cornerRadius = UIConstants.defaultCornerRadius
+            reviewsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
     @IBOutlet private var actionButton: UIButton! {

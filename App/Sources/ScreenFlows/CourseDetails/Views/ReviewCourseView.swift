@@ -28,7 +28,7 @@ class ReviewCourseView: UIView {
     }
     @IBOutlet private var sendButton: UIButton! {
         didSet {
-            sendButton.layer.cornerRadius = UIConstants.defaultCornerRadius
+            sendButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
     @IBOutlet private var messageTitleLabel: UILabel! {
