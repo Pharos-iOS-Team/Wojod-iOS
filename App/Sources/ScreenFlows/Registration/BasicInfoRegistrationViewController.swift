@@ -83,6 +83,11 @@ class BasicInfoRegistrationViewController: UIViewController {
     @IBOutlet private var hintContentView: UIView!
     @IBOutlet private var mandatoryCellsHintLabel: UILabel!
     @IBOutlet private var mobileNumberHintLabel: UILabel!
+    @IBOutlet private var nextButton: SendButton! {
+        didSet {
+            nextButton.isEnabled = false
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -95,7 +100,14 @@ class BasicInfoRegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSemanticAttribute()
+        configureTextFieldsDelegate()
         viewModel = RegistrationViewModel()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureView()
+        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     override func viewDidLayoutSubviews() {
@@ -144,6 +156,13 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func configureView() {
+        wrongCredentialsImageView.isHidden = true
+        hintContentView.isHidden = false
+        mandatoryCellsHintLabel.isHidden = false
+        mobileNumberHintLabel.isHidden = false
+    }
 
     private func displayWrongCredentialsError() {
         wrongCredentialsImageView.isHidden = false
@@ -200,8 +219,26 @@ class BasicInfoRegistrationViewController: UIViewController {
     }
 
     private func isEmailValid() -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        // swiftlint:disable:next line_length
+        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?:)+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: emailTextField.text)
+    }
+
+    private func configureTextFieldsDelegate() {
+        nameTextField.delegate = self
+        mobileNumberTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+    }
+}
+
+// MARK: - Text Field Delegate
+
+extension BasicInfoRegistrationViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        nextButton.isEnabled = isMandatoryFieldsFilled()
+        nextButton.layer.backgroundColor = isMandatoryFieldsFilled() ? Colors.sendButtonColor.color.cgColor : Colors.darkGreyColor.color.cgColor
     }
 }

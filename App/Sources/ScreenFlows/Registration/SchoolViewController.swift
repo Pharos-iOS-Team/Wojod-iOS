@@ -89,15 +89,21 @@ class SchoolViewController: UIViewController {
             wrongCredentialsImageViewHeight.constant = 0
         }
     }
+    @IBOutlet private var nextButton: SendButton! {
+        didSet {
+            nextButton.isEnabled = false
+        }
+    }
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Private Properties
 
     private var viewModel: RegistrationViewModel?
-    private var selectedAcademicTypeIndexID: Int = 0
+    private var selectedAcademicType: KeyValue?
+    private var academicTypesList: [KeyValue]?
     private var selectedDivisionIndexID: Int = 0
     private var selectedYearIndexID: Int = 0
     private var divisionsList: [String] = []
-    private var academicTypesList: [String] = []
     private var academicYears: [String] = []
     private var divisionsPickerView = PickerInputView<String>(height: 200)
     private var academicTypesPickerView = PickerInputView<String>(height: 200)
@@ -110,10 +116,16 @@ class SchoolViewController: UIViewController {
         viewModel = RegistrationViewModel()
         configureSemanticAttribute()
         loadAcademicTypes()
-        retrieveAcademicDivisions()
         configurePickerFields()
         configurePickerViews()
         displayAlreadyEnteredDataIfAny()
+        configureTextFieldsDelegate()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideWrongCredentials()
+        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     // MARK: - IBActions
@@ -127,7 +139,7 @@ class SchoolViewController: UIViewController {
 
     private func configurePickerFields() {
         divisionsPickerView.items = { self.divisionsList }
-        academicTypesPickerView.items = { self.academicTypesList }
+        academicTypesPickerView.items = { (self.academicTypesList?.compactMap { $0.value } ?? [""]) }
         academicYearPickerView.items = { self.academicYears }
 
         academicTypeTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
@@ -146,8 +158,8 @@ class SchoolViewController: UIViewController {
             academicDivisionTextField.setNormalView()
         }
         academicTypesPickerView.didSelectAtIndex = { [unowned self] index in
-            academicTypeTextField.text = self.academicTypesList[index]
-            self.selectedAcademicTypeIndexID = index
+            selectedAcademicType = academicTypesList?[index]
+            academicTypeTextField.text = selectedAcademicType?.value
             academicTypeTextField.setNormalView()
         }
         academicYearPickerView.didSelectAtIndex = { [unowned self] index in
@@ -165,7 +177,9 @@ class SchoolViewController: UIViewController {
     }
 
     private func retrieveAcademicDivisions() {
-        viewModel?.loadAcademicDivisions(for: .schoolStudent) { divisions in
+        activityIndicator.startAnimating()
+        viewModel?.loadAcademicDivisions(for: .schoolStudent, in: self.selectedAcademicType?.key ?? 0) { divisions in
+            self.activityIndicator.stopAnimating()
             self.divisionsList = divisions
             self.retrieveAcademicYear()
         }
@@ -179,8 +193,12 @@ class SchoolViewController: UIViewController {
 
     @objc
     private func academicTypePickerDoneTapped() {
+        if selectedAcademicType == nil {
+            selectedAcademicType = academicTypesList?[0]
+        }
         academicTypesPickerView.resignFirstResponder()
-        academicTypeTextField.text = academicTypesList[selectedAcademicTypeIndexID]
+        academicTypeTextField.text = selectedAcademicType?.value
+        retrieveAcademicDivisions()
     }
 
     @objc
@@ -201,6 +219,15 @@ class SchoolViewController: UIViewController {
     private func isMandatoryFieldsFilled() -> Bool {
         return !firstParentNumberTextField.isEmpty && !academicTypeTextField.isEmpty && !academicDivisionTextField.isEmpty &&
         !academicYearTextField.isEmpty && !schoolNameTextField.isEmpty
+    }
+
+    private func isFirstNumberValid() -> Bool {
+        if firstParentNumberTextField.text?.count == 11 {
+            return true
+        } else {
+            firstParentNumberTextField.setErrorView()
+            return false
+        }
     }
 
     private func configureEmptyMandatoryFields() {
@@ -225,7 +252,7 @@ class SchoolViewController: UIViewController {
         User.shared.educationLevel = 0
         User.shared.parentNumber = firstParentNumberTextField.text
         User.shared.parentNumber2 = secondParentNumberTextField.text
-        User.shared.academicType = viewModel?.academicTypeIDs[selectedAcademicTypeIndexID]
+        User.shared.academicType = selectedAcademicType?.key
         User.shared.academicTypeName = academicTypeTextField.text
         User.shared.divisionId = User.shared.divisionId ?? 0
         User.shared.divisionName = academicDivisionTextField.text
@@ -243,12 +270,29 @@ class SchoolViewController: UIViewController {
         schoolNameTextField.text = User.shared.schoolName
     }
 
+    private func showWrongCredentials() {
+        wrongCredentialsImageView.isHidden = false
+        wrongCredentialsImageViewHeight.constant = 50.0
+    }
+
+    private func hideWrongCredentials() {
+        wrongCredentialsImageView.isHidden = true
+        wrongCredentialsImageViewHeight.constant = 0
+    }
+
+    private func configureTextFieldsDelegate() {
+        firstParentNumberTextField.delegate = self
+        academicTypeTextField.delegate = self
+        academicDivisionTextField.delegate = self
+        academicYearTextField.delegate = self
+        schoolNameTextField.delegate = self
+    }
+
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard isMandatoryFieldsFilled() == true else {
-            wrongCredentialsImageView.isHidden = false
-            wrongCredentialsImageViewHeight.constant = 50.0
+        guard isMandatoryFieldsFilled(), isFirstNumberValid() else {
+            showWrongCredentials()
             configureEmptyMandatoryFields()
             return false
         }
@@ -257,5 +301,19 @@ class SchoolViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         retrieveInputEnteredFromUser()
+    }
+}
+
+// MARK: - Text Field Delegate
+
+extension SchoolViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if isMandatoryFieldsFilled() {
+            nextButton.isEnabled = true
+            nextButton.backgroundColor = Colors.sendButtonColor.color
+        } else {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = Colors.darkGreyColor.color
+        }
     }
 }

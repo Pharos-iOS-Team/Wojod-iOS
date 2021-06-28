@@ -21,7 +21,7 @@ internal enum RegistrationService {
     case countries
     case cities(_ countryName: String)
     case academicTypes(_ academicLevel: Int)
-    case academicDivisions(_ academicLevel: Int)
+    case academicDivisions(_ academicLevel: Int, _ educationType: Int)
     case batches(_ divisionID: Int)
     case specializations(_ divisionID: Int)
     case avatars
@@ -70,7 +70,7 @@ extension RegistrationService: TargetType {
     internal var task: Task {
         var parameters = [String: Any]()
         switch self {
-        case .checkNumber(let mobileNumber, let email):
+        case let .checkNumber(mobileNumber, email):
             return.requestParameters(parameters: ["mobile_number": mobileNumber, "email": email], encoding: URLEncoding.queryString)
         case .countries, .batches, .specializations,
         .avatars:
@@ -79,8 +79,13 @@ extension RegistrationService: TargetType {
             return .requestParameters(parameters: ["selected_country": countryName], encoding: URLEncoding.queryString)
         case .academicTypes(let academicLevel):
             return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
-        case .academicDivisions(let academicLevel):
-            return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
+        case let .academicDivisions(academicLevel, educationType):
+            switch academicLevel {
+            case 0:
+                return .requestParameters(parameters: ["education_level": academicLevel, "education_type": educationType], encoding: URLEncoding.queryString)
+            default:
+                return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
+            }
         case .signUp(let userInfo):
             guard let params = userInfo.dictionary else { return .requestPlain }
             params.forEach { parameters[$0.key] = $0.value }

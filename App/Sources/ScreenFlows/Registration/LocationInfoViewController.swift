@@ -72,6 +72,12 @@ class LocationInfoViewController: UIViewController {
             backButton.setImage(Images.localizedBackButton)
         }
     }
+    @IBOutlet private var nextButton: SendButton! {
+        didSet {
+            nextButton.isEnabled = false
+        }
+    }
+    
 
     // MARK: - Private Properties
 
@@ -94,6 +100,13 @@ class LocationInfoViewController: UIViewController {
         configurePickerFields()
         configurePickerViews()
         displayDataEnteredBeforePressingBackIfExists()
+        configureTextFieldsDelegate()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideWrongCredentials()
+        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     // MARK: - IBActions
@@ -159,6 +172,7 @@ class LocationInfoViewController: UIViewController {
         viewModel?.loadCities(for: viewModel?.countryCodes[selectedCountryIndex ?? 0] ?? "") { cities in
             self.loadingIndicator.stopAnimating()
             self.cities = cities
+            self.cityTextField.text = cities[0]
         }
     }
 
@@ -199,15 +213,30 @@ class LocationInfoViewController: UIViewController {
         countryTextField.text = User.shared.countryName
         cityTextField.text = User.shared.cityName
         districtTextField.text = User.shared.region
-        addressTextField.text = addressTextField.text
+        addressTextField.text = User.shared.address
+    }
+
+    private func displayWrongCredentials() {
+        wrongCredentialsImageView.isHidden = false
+        wrongCredentialsImageViewHeight.constant = 50.0
+    }
+
+    private func hideWrongCredentials() {
+        wrongCredentialsImageView.isHidden = true
+        wrongCredentialsImageViewHeight.constant = 0
+    }
+
+    private func configureTextFieldsDelegate() {
+        countryTextField.delegate = self
+        cityTextField.delegate = self
+        districtTextField.delegate = self
     }
 
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled() else {
-            wrongCredentialsImageView.isHidden = false
-            wrongCredentialsImageViewHeight.constant = 50.0
+            displayWrongCredentials()
             configureEmptyMandatoryFields()
             return false
         }
@@ -216,5 +245,19 @@ class LocationInfoViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         retrieveDataEnteredFromUser()
+    }
+}
+
+// MARK: -  Text Field Delegate
+
+extension LocationInfoViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if isMandatoryFieldsFilled() {
+            nextButton.isEnabled = true
+            nextButton.backgroundColor = Colors.sendButtonColor.color
+        } else {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = Colors.darkGreyColor.color
+        }
     }
 }

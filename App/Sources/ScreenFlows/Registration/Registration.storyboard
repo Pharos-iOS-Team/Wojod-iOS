@@ -233,6 +233,7 @@
                         <outlet property="mobileNumberHintLabel" destination="nm5-Yh-f6P" id="cxt-g3-WIM"/>
                         <outlet property="mobileNumberTextField" destination="a20-6w-a96" id="eqV-pE-My0"/>
                         <outlet property="nameTextField" destination="DDz-Lq-Gou" id="Ibg-7N-6kO"/>
+                        <outlet property="nextButton" destination="kPq-Ue-8Er" id="5VF-tD-Td3"/>
                         <outlet property="passwordTextField" destination="nhD-Ur-fO8" id="GmN-uo-4Z4"/>
                         <outlet property="scrollView" destination="Ykz-wP-fHg" id="PQ3-8d-FtM"/>
                         <outlet property="signUpTitleImageView" destination="is3-Jp-stJ" id="ae5-Pb-UJB"/>
@@ -378,6 +379,7 @@
                         <outlet property="districtTextField" destination="LoC-T3-jws" id="TdI-Ib-mgQ"/>
                         <outlet property="loadingIndicator" destination="vFE-Qy-v1D" id="dKE-CN-ooT"/>
                         <outlet property="locationInfoTitleImageView" destination="yEP-bM-4Wl" id="6O8-Rs-3bZ"/>
+                        <outlet property="nextButton" destination="bMz-xC-JgU" id="WZA-3R-Xxd"/>
                         <outlet property="secondMilestoneImageView" destination="DdI-UN-YkX" id="nvX-cq-uRl"/>
                         <outlet property="wrongCredentialsImageView" destination="GP7-RG-33r" id="qxJ-C1-czM"/>
                         <outlet property="wrongCredentialsImageViewHeight" destination="0PT-5B-bq5" id="rbc-Oc-lF5"/>
@@ -618,6 +620,10 @@
                                                     <action selector="didTapOnBack:" destination="LqN-mb-Mcj" eventType="touchUpInside" id="xVd-d7-97f"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uQu-4Z-6CA">
+                                                <rect key="frame" x="197" y="458" width="20" height="20"/>
+                                                <color key="color" name="sendButtonColor"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -636,6 +642,7 @@
                                             <constraint firstItem="MMM-Kd-aSu" firstAttribute="top" secondItem="6vS-Zp-3Pa" secondAttribute="bottom" constant="9" id="KeP-g9-5Sc"/>
                                             <constraint firstItem="9cr-qK-JPI" firstAttribute="top" secondItem="HEo-K1-2XP" secondAttribute="bottom" constant="9" id="OH3-oY-gNt"/>
                                             <constraint firstItem="ADN-Vg-Clx" firstAttribute="top" secondItem="sGS-lt-cFP" secondAttribute="bottom" constant="7" id="Xkr-gI-KWA"/>
+                                            <constraint firstItem="uQu-4Z-6CA" firstAttribute="centerY" secondItem="Zuq-LQ-rAe" secondAttribute="centerY" id="YT1-Zc-meP"/>
                                             <constraint firstItem="sGS-lt-cFP" firstAttribute="top" secondItem="YxA-6V-ouC" secondAttribute="bottom" constant="5" id="dot-qt-MFS"/>
                                             <constraint firstItem="Fqo-bz-L8h" firstAttribute="trailing" secondItem="xFe-Qy-cgC" secondAttribute="trailing" id="fzn-zh-kFs"/>
                                             <constraint firstItem="9cr-qK-JPI" firstAttribute="leading" secondItem="HEo-K1-2XP" secondAttribute="leading" id="goc-dg-U9m"/>
@@ -645,6 +652,7 @@
                                             <constraint firstItem="ADN-Vg-Clx" firstAttribute="leading" secondItem="YxA-6V-ouC" secondAttribute="leading" id="ii9-NM-QPA"/>
                                             <constraint firstItem="sGS-lt-cFP" firstAttribute="centerX" secondItem="YxA-6V-ouC" secondAttribute="centerX" id="jCj-9t-t2n"/>
                                             <constraint firstItem="Xkw-D7-iAH" firstAttribute="trailing" secondItem="xFe-Qy-cgC" secondAttribute="trailing" id="kx2-b5-buf"/>
+                                            <constraint firstItem="uQu-4Z-6CA" firstAttribute="centerX" secondItem="Zuq-LQ-rAe" secondAttribute="centerX" id="lGS-jm-rKM"/>
                                             <constraint firstItem="Fqo-bz-L8h" firstAttribute="leading" secondItem="xFe-Qy-cgC" secondAttribute="leading" id="luW-g1-G77"/>
                                             <constraint firstItem="YxA-6V-ouC" firstAttribute="top" secondItem="55x-p6-KwM" secondAttribute="bottom" constant="5" id="ppZ-5E-EiX"/>
                                             <constraint firstItem="HEo-K1-2XP" firstAttribute="trailing" secondItem="MMM-Kd-aSu" secondAttribute="trailing" id="qQc-NR-VHd"/>
@@ -679,8 +687,8 @@
                                             <segue destination="mJA-qu-53P" kind="custom" customClass="SegueFromLeft" customModule="Wojood" customModuleProvider="target" id="JMe-6k-e6W"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="FourthMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="c3X-yb-bbZ">
-                                        <rect key="frame" x="30" y="29.5" width="85" height="33"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FourthMilestoneEn" translatesAutoresizingMaskIntoConstraints="NO" id="c3X-yb-bbZ">
+                                        <rect key="frame" x="30" y="28.5" width="85" height="33"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -713,10 +721,12 @@
                         <outlet property="academicDivisionTextField" destination="MMM-Kd-aSu" id="2gx-59-CdE"/>
                         <outlet property="academicTypeTextField" destination="6vS-Zp-3Pa" id="Vga-Je-yyv"/>
                         <outlet property="academicYearTextField" destination="HEo-K1-2XP" id="9Nf-8P-faF"/>
+                        <outlet property="activityIndicator" destination="uQu-4Z-6CA" id="wlr-K8-X68"/>
                         <outlet property="backButton" destination="yTj-h9-dOH" id="tjv-zh-VSN"/>
                         <outlet property="firstParentNumberTextField" destination="xFe-Qy-cgC" id="Bbc-Wc-C2n"/>
                         <outlet property="fourthMilestoneImageView" destination="c3X-yb-bbZ" id="Z4O-Yd-aY8"/>
                         <outlet property="letsKnowMoreTitleImageView" destination="ADN-Vg-Clx" id="5B4-FO-fSf"/>
+                        <outlet property="nextButton" destination="58V-w4-RXk" id="f71-jX-Gj5"/>
                         <outlet property="schoolLabel" destination="sGS-lt-cFP" id="JKn-GM-Swh"/>
                         <outlet property="schoolNameTextField" destination="9cr-qK-JPI" id="EWg-PH-uOY"/>
                         <outlet property="secondParentNumberTextField" destination="Fqo-bz-L8h" id="ujG-xy-uKv"/>
@@ -937,6 +947,7 @@
                         <outlet property="fourthMilestoneImageView" destination="Owz-ZR-zW2" id="hKu-gT-jeH"/>
                         <outlet property="graduateButton" destination="oI4-Dt-TiI" id="7cu-BO-rax"/>
                         <outlet property="letsKnowMoreTitleImageView" destination="8XG-NX-1pB" id="wQB-2Z-UDY"/>
+                        <outlet property="nextButton" destination="AzA-nr-iH7" id="g7w-OW-7sQ"/>
                         <outlet property="studentButton" destination="H2O-Mb-rhp" id="9aa-d7-7XA"/>
                         <outlet property="universityLabel" destination="fXG-zu-TOF" id="abR-aW-Axp"/>
                         <outlet property="universityTextField" destination="Ed0-OS-E9n" id="hmy-8V-Dkw"/>
@@ -1117,7 +1128,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="MBg-2b-cwf"/>
+        <segue reference="JMe-6k-e6W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AcademicInfoTitleEn" width="209" height="51"/>
