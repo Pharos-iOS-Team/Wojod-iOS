@@ -41,6 +41,12 @@ class CourseDetailsViewController: UIViewController {
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
+    @IBOutlet private var courseTitle: UILabel!
+    @IBOutlet private var teacherNameLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var numberOfReviewsLabel: UILabel!
+    @IBOutlet private var priceLabel: UILabel!
+    @IBOutlet private var courseImageView: UIImageView!
 
     // MARK: - Private Properties
 
@@ -58,11 +64,16 @@ class CourseDetailsViewController: UIViewController {
     private let detailsHeaderHeight: CGFloat = 60
     private let footerHeight: CGFloat = 1
 
+    // MARK: - Public Properties
+
+    internal var course: Course?
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        state = .normal
+        configure()
+        state = getReservationState()
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
         configureActionButtonAccordingToState()
@@ -87,7 +98,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func didTapReviews(_ sender: UIButton) {
-        viewModel?.loadReviews(courseID: 10) { result in
+        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
             self.reviewsList = result.reviews
             self.tableView.reloadData()
         }
@@ -100,7 +111,7 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: 32) { bookingResponse in
+            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse in
                 self.state = .pending
                 self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
                 self.blurView()
@@ -120,7 +131,30 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
+    @IBAction private func didTapBackButton(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+
     // MARK: - Private Functions
+
+    private func configure() {
+        courseImageView.image = getImage(from: course?.media?.fileUrl ?? "")
+        courseTitle.text = course?.name
+        descriptionLabel.text = course?.summary
+        priceLabel.text = "EGP \(course?.price ?? "")"
+        numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
+    }
+
+    private func getReservationState() -> CourseState {
+        switch course?.reservationState {
+        case "pending":
+            return .pending
+        case "approved":
+            return .booked
+        default:
+            return .normal
+        }
+    }
 
     private func configureActionButtonAccordingToState() {
         switch state {
@@ -158,7 +192,7 @@ class CourseDetailsViewController: UIViewController {
 
     private func displayConfirmCancelBooking() {
         let view = UINib(nibName: "CancelBookingView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? CancelBookingView
-        view?.layer.cornerRadius = 10
+        view?.layer.cornerRadius = UIConstants.cornerRadius
         view?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
         view?.delegate = self
         view?.addShadow()
@@ -167,7 +201,7 @@ class CourseDetailsViewController: UIViewController {
 
     private func displayReviewCoursePopup() {
         let reviewCourseView = UINib(nibName: "ReviewCourseView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReviewCourseView
-        reviewCourseView?.layer.cornerRadius = 10
+        reviewCourseView?.layer.cornerRadius = UIConstants.cornerRadius
         reviewCourseView?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
         reviewCourseView?.delegate = self
         reviewCourseView?.addShadow()
@@ -194,7 +228,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func loadCourseLessons() {
-        viewModel?.loadLessons(courseID: 35) { lessonsModel in
+        viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
             self.tableView.reloadData()
