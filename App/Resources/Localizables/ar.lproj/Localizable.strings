@@ -178,3 +178,12 @@
 "courseDetails.courseReview.rateContent" = "هل ترغب في تقييم المحتوى؟";
 "courseDetails.courseReview.describeCourse" = "صف الدورة ...";
 "courseDetails.courseReview.skipRating" = "تخطي التقييم";
+
+// MARK: - Home & My courses
+
+"home.relatedCourses" = "الدورات ذات الصلة";
+"home.exploreMore" = "استكشاف المزيد";
+"home.helpCenter" = "مركز المساعدة";
+"home.view" = "عرض";
+"home.course.price" = "ج.م.";
+"home.course.seeReceipt" = "عرض الايصال";

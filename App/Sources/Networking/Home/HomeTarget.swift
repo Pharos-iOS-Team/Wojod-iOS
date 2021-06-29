@@ -5,8 +5,8 @@ import Moya
 
 enum HomeTarget {
     case loadSubjects(batchID: Int)
-    case loadRelatedCourses(isMyCourses: Bool, subjectID: Int)
-    case loadExploreMoreCourses(isMyCourses: Bool)
+    case loadRelatedCourses(isMyCourses: Bool, subjectID: Int, page: Int, limit: Int)
+    case loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int)
     case searchCourses(value: String)
 }
 
@@ -30,10 +30,16 @@ extension HomeTarget: TargetType {
 
     var task: Task {
         switch self {
-        case let .loadRelatedCourses(isMyCourses, subjectID):
-            return .requestParameters(parameters: ["my_courses": isMyCourses, "subject_id": subjectID], encoding: URLEncoding.queryString)
-        case let .loadExploreMoreCourses(isMyCourses):
-            return .requestParameters(parameters: ["my_courses": isMyCourses], encoding: URLEncoding.queryString)
+        case let .loadRelatedCourses(isMyCourses, subjectID, page, limit):
+            return .requestParameters(
+                parameters: ["my_courses": isMyCourses, "subject_id": subjectID, "page": page, "limit": limit],
+                encoding: URLEncoding.queryString
+            )
+        case let .loadExploreMoreCourses(isMyCourses, page, limit):
+            return .requestParameters(
+                parameters: ["my_courses": isMyCourses, "page": page, "limit": limit],
+                encoding: URLEncoding.queryString
+            )
         case let .searchCourses(value):
             return .requestParameters(parameters: ["value": value], encoding: URLEncoding.queryString)
         default:

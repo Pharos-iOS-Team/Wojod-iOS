@@ -7,6 +7,10 @@ protocol ViewCourseDetailsDelegate: AnyObject {
     func showCourseDetails(for course: Course?)
 }
 
+protocol ViewReceiptDelegate: AnyObject {
+    func displayReceipt(_ receipt: Receipt)
+}
+
 class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
@@ -23,6 +27,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var viewButton: UIButton! {
         didSet {
             viewButton.layer.cornerRadius = UIConstants.slightCornerRadius
+            viewButton.setTitle(L10n.Home.view)
         }
     }
     @IBOutlet private var playButton: UIButton! {
@@ -33,6 +38,12 @@ class CourseCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var seeReceiptButton: UIButton! {
         didSet {
             seeReceiptButton.layer.cornerRadius = UIConstants.slightCornerRadius
+            seeReceiptButton.setTitle(L10n.Home.Course.seeReceipt)
+        }
+    }
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            activityIndicator.hidesWhenStopped = true
         }
     }
     @IBOutlet private var titleLabel: UILabel!
@@ -54,6 +65,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     internal var playVideo: (() -> Void)?
     internal weak var delegate: ViewCourseDetailsDelegate?
+    internal weak var viewReceiptDelegate: ViewReceiptDelegate?
 
     // MARK: - IBActions
 
@@ -66,15 +78,24 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction private func didTapSeeReceipt(_ sender: UIButton) {
-        
+        viewReceiptDelegate?.displayReceipt(course?.receipt ?? Receipt())
+    }
+
+    // MARK: - Lifecycle
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
     }
 
     // MARK: - Private Functions
 
-    private func getImage(from url: String) -> UIImage? {
-        let imageURL = Environment.baseURLString + url
-        guard let url = URL(string: imageURL), let data = try? Data(contentsOf: url) else { return nil }
-        return UIImage(data: data)
+    private func loadImage(from url: String, completion: @escaping (UIImage?) -> Void) {
+        DispatchQueue.global().async {
+            let imageURL = Environment.baseURLString + url
+            guard let url = URL(string: imageURL), let data = try? Data(contentsOf: url) else { return }
+            completion(UIImage(data: data))
+        }
     }
 
     // swiftlint:disable function_body_length
@@ -122,8 +143,14 @@ class CourseCollectionViewCell: UICollectionViewCell {
         self.course = course
         self.isMyCourses = isMyCourses
         titleLabel.text = course?.name
-        priceLabel.text = "EGP \(course?.price ?? "")"
-        imageView.image = getImage(from: course?.media?.thumbnailUrl ?? "")
+        priceLabel.text = "\(L10n.Home.Course.price) \(course?.price ?? "")"
+        activityIndicator.startAnimating()
+        loadImage(from: course?.media?.thumbnailUrl ?? "") { image in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.imageView.image = image
+            }
+        }
         playButton.isHidden = course?.video == nil
         configureRatingStars(course?.rating)
         configureVisibilityOfSeeReceiptButton()

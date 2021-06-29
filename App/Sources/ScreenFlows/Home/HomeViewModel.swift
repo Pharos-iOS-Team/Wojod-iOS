@@ -13,6 +13,9 @@ class HomeViewModel {
     var divisions: DivisionsModel?
     var batches: BatchesModel?
     var specializations: SpecializationsModel?
+    var relatedCoursesPage: Int = 1
+    var exploreMorePage: Int = 1
+    var limit: Int = 10
 
     func fetchUserProfile(id: Int, completion: @escaping () -> Void) {
         model.fetchUserProfile(id: id) { result in
@@ -41,10 +44,11 @@ class HomeViewModel {
     }
 
     func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, completion: @escaping (RelatedCoursesResponse?) -> Void) {
-        model.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID) { result in
+        model.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: relatedCoursesPage, limit: limit) { result in
             switch result {
             case .success(let relatedCourses as RelatedCoursesResponse):
                 completion(relatedCourses)
+                self.relatedCoursesPage += 1
             default:
                 return
             }
@@ -52,10 +56,11 @@ class HomeViewModel {
     }
 
     func loadExploreMoreCourses(isMyCourses: Bool, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
-        model.loadExploreMoreCourses(isMyCourses: isMyCourses) { result in
+        model.loadExploreMoreCourses(isMyCourses: isMyCourses, page: exploreMorePage, limit: limit) { result in
             switch result {
             case .success(let exploreMoreCourses as ExploreMoreCoursesResponse):
                 completion(exploreMoreCourses)
+                self.exploreMorePage += 1
             default:
                 return
             }

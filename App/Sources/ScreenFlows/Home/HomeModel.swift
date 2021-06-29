@@ -30,8 +30,14 @@ class HomeModel: ModelDecodable {
         }
     }
 
-    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, completion: @escaping (Result) -> Void) {
-        homeApiClient.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID) { response, error in
+    func loadRelatedCourses(
+        isMyCourses: Bool,
+        subjectID: Int,
+        page: Int,
+        limit: Int,
+        completion: @escaping (Result) -> Void
+    ) {
+        homeApiClient.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
@@ -46,8 +52,8 @@ class HomeModel: ModelDecodable {
         }
     }
 
-    func loadExploreMoreCourses(isMyCourses: Bool, completion: @escaping (Result) -> Void) {
-        homeApiClient.loadExploreMoreCourses(isMyCourses: isMyCourses) { response, error in
+    func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in

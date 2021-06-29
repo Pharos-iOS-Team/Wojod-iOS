@@ -178,3 +178,12 @@ No worries!";
 "courseDetails.courseReview.rateContent" = "Would you like to rate content?";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
+
+// MARK: - Home & My courses
+
+"home.relatedCourses" = "Related Courses";
+"home.exploreMore" = "Explore More";
+"home.helpCenter" = "Help Center";
+"home.view" = "View";
+"home.course.price" = "EGP";
+"home.course.seeReceipt" = "See Receipt";

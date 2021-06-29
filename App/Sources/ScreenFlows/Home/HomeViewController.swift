@@ -3,6 +3,7 @@
 import HandySwift
 import JGProgressHUD
 import UIKit
+import UIScrollView_InfiniteScroll
 
 enum HomeMode {
     case relatedCourses
@@ -20,16 +21,23 @@ class HomeViewController: UIViewController {
     @IBOutlet private var relatedCoursesButton: UIButton! {
         didSet {
             relatedCoursesButton.layer.cornerRadius = UIConstants.slightCornerRadius
+            relatedCoursesButton.setTitle(L10n.Home.relatedCourses)
         }
     }
     @IBOutlet private var exploreMoreButton: UIButton! {
         didSet {
             exploreMoreButton.layer.cornerRadius = UIConstants.slightCornerRadius
+            exploreMoreButton.setTitle(L10n.Home.exploreMore)
         }
     }
     @IBOutlet private var helpCenterButton: UIButton! {
         didSet {
             helpCenterButton.layer.cornerRadius = UIConstants.slightCornerRadius
+        }
+    }
+    @IBOutlet private var helpCenterLabel: UILabel! {
+        didSet {
+            helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
     @IBOutlet private var subjectsCollectionView: UICollectionView!
@@ -55,35 +63,41 @@ class HomeViewController: UIViewController {
     private var selectedTabBarItem: TabBarItems?
     private var isMyCourses: Bool = false
     private var isFirstScreenLoad: Bool = true
+    private let refreshControl = UIRefreshControl()
+    private var blurredView: UIVisualEffectView?
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureInfiniteScrolling()
         configureCollectionViews()
         configureTableView()
+        configureRefreshControl()
         configureSearchBar()
         loadUserProfile()
         selectRelatedCoursesButton()
+        fetchRelatedCourses()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         hideAdsCollectionViewIfNeeded()
-        // selectFirstSubjectByDefault()
     }
 
     // MARK: - IBActions
 
     @IBAction private func didTapRelatedCourses(_ sender: UIButton) {
         mode = .relatedCourses
+        viewModel.exploreMorePage = 1
         selectRelatedCoursesButton()
         configureVisibilityOfSubjectsAndAds()
     }
 
     @IBAction private func didTapExploreMore(_ sender: UIButton) {
         mode = .exploreMore
+        viewModel.relatedCoursesPage = 1
         selectExploreMoreButton()
         configureVisibilityOfSubjectsAndAds()
         loadExploreMoreCourses()
@@ -94,9 +108,55 @@ class HomeViewController: UIViewController {
         viewCtrl.modalPresentationStyle = .fullScreen
         present(viewCtrl, animated: true)
     }
-    
 
     // MARK: - Private Functions
+
+    private func showReceipt(_ receiptData: Receipt) {
+        let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
+        view?.center = CGPoint(
+            x: self.view.frame.size.width / 2,
+            y: self.view.frame.size.height / 2
+        )
+        view?.configureInMyCourses(with: receiptData)
+        view?.receiptDoneButtonDelegate = self
+        view?.addShadow()
+        self.view.addSubview(view ?? UIView())
+    }
+
+    private func blurView() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurredView = blurEffectView
+        self.view.addSubview(blurredView ?? blurEffectView)
+    }
+
+    private func configureInfiniteScrolling() {
+        coursesTableView.addInfiniteScroll { [weak self] _ in
+            if self?.mode == .relatedCourses {
+                self?.loadRelatedCourses()
+            } else {
+                self?.loadExploreMoreCourses()
+            }
+        }
+    }
+
+    private func hideInfiniteScrolling() {
+        coursesTableView.finishInfiniteScroll()
+        self.coursesTableView.reloadData()
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        coursesTableView.addSubview(refreshControl)
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        coursesTableView.reloadData()
+    }
 
     private func configureCollectionViews() {
         subjectsCollectionView.dataSource = self
@@ -143,12 +203,16 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func loadRelatedCourses() {
+    private func fetchRelatedCourses() {
         showLoadingIndicator()
+        loadRelatedCourses()
+    }
+
+    private func loadRelatedCourses() {
         viewModel.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: selectedSubject?.id ?? 0) { [unowned self] relatedCourses in
             hideLoadingIndicator()
             subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? ""]
-            coursesTableView.reloadData()
+            hideInfiniteScrolling()
         }
     }
 
@@ -265,6 +329,8 @@ extension HomeViewController: UITableViewDataSource {
         cell?.setTeacherName(subjectCourse?.teacher?.name ?? "")
         cell?.configureCourses(subjectCourse?.courses, isMyCourses: isMyCourses)
         cell?.delegate = self
+        cell?.selectCellDelegate = self
+        cell?.viewReceiptDelegate = self
         return cell ?? UITableViewCell()
     }
 }
@@ -300,10 +366,23 @@ extension HomeViewController: UISearchBarDelegate {
 
 // MARK: - View Course Details Delegate
 
-extension HomeViewController: ViewCourseDetailsDelegate {
+extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
     func showCourseDetails(for course: Course?) {
         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
         viewCtrl.course = course
         present(viewCtrl, animated: true)
+    }
+}
+
+// MARK: - Receipt Delegate
+
+extension HomeViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegate {
+    func displayReceipt(_ receipt: Receipt) {
+        self.blurView()
+        self.showReceipt(receipt)
+    }
+
+    func didTapDone() {
+        blurredView?.removeFromSuperview()
     }
 }

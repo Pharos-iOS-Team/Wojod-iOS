@@ -17,8 +17,8 @@ class HomeApiClient {
         }
     }
 
-    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
-        homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID)) { result in
+    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+        homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)
@@ -28,8 +28,8 @@ class HomeApiClient {
         }
     }
 
-    func loadExploreMoreCourses(isMyCourses: Bool, completion: @escaping (Response?, MoyaError?) -> Void) {
-        homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses)) { result in
+    func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+        homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)

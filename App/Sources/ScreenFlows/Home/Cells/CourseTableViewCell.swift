@@ -2,6 +2,10 @@
 
 import UIKit
 
+protocol SelectCourseCellDelegate: AnyObject {
+    func showCourseDetails(for course: Course?)
+}
+
 class CourseTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
 
@@ -16,6 +20,8 @@ class CourseTableViewCell: UITableViewCell {
     // MARK: - Public Properties
 
     internal weak var delegate: ViewCourseDetailsDelegate?
+    internal weak var viewReceiptDelegate: ViewReceiptDelegate?
+    internal weak var selectCellDelegate: SelectCourseCellDelegate?
 
     // MARK: - Lifecycle
 
@@ -29,6 +35,7 @@ class CourseTableViewCell: UITableViewCell {
     private func configureCollectionView() {
         coursesCollectionView.register(UINib(nibName: "CourseCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CourseCollectionViewCell")
         coursesCollectionView.dataSource = self
+        coursesCollectionView.delegate = self
     }
 
     // MARK: - Public Functions
@@ -39,6 +46,7 @@ class CourseTableViewCell: UITableViewCell {
 
     func configureCourses(_ courses: [Course]?, isMyCourses: Bool) {
         self.courses = courses
+        self.isMyCourses = isMyCourses
         coursesCollectionView.reloadData()
     }
 }
@@ -55,9 +63,18 @@ extension CourseTableViewCell: UICollectionViewDataSource {
         let course = courses?[indexPath.item]
         cell.configure(with: course, isMyCourses: isMyCourses)
         cell.delegate = delegate
+        cell.viewReceiptDelegate = viewReceiptDelegate
         cell.playVideo = { () -> Void in
             cell.configureVideo(with: course?.video?.fileUrl ?? "")
         }
         return cell
+    }
+}
+
+// MARK: - Collection View Delegate
+
+extension CourseTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectCellDelegate?.showCourseDetails(for: courses?[indexPath.item])
     }
 }

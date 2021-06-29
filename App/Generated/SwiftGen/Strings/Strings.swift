@@ -121,6 +121,35 @@ internal enum L10n {
       }
   }
 
+  internal enum Home {
+    /// Explore More
+    internal static var exploreMore: String {
+        return L10n.tr("Localizable", "home.exploreMore")
+      }
+    /// Help Center
+    internal static var helpCenter: String {
+        return L10n.tr("Localizable", "home.helpCenter")
+      }
+    /// Related Courses
+    internal static var relatedCourses: String {
+        return L10n.tr("Localizable", "home.relatedCourses")
+      }
+    /// View
+    internal static var view: String {
+        return L10n.tr("Localizable", "home.view")
+      }
+    internal enum Course {
+      /// EGP
+      internal static var price: String {
+          return L10n.tr("Localizable", "home.course.price")
+        }
+      /// See Receipt
+      internal static var seeReceipt: String {
+          return L10n.tr("Localizable", "home.course.seeReceipt")
+        }
+    }
+  }
+
   internal enum Login {
     /// Please enter the mobile number and password
     internal static var bothAreEmpty: String {

@@ -241,7 +241,7 @@
                                 <rect key="frame" x="239" y="120" width="15" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-4d-Zb1">
-                                <rect key="frame" x="259" y="119.5" width="79.5" height="17"/>
+                                <rect key="frame" x="259" y="119.5" width="75" height="17"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>
@@ -286,6 +286,7 @@
                         <outlet property="coursesTableView" destination="iDj-vZ-gEt" id="BCw-ZQ-B6B"/>
                         <outlet property="exploreMoreButton" destination="tqh-TY-FBu" id="rIn-qc-ixd"/>
                         <outlet property="helpCenterButton" destination="d28-A6-w5m" id="dEW-sf-03R"/>
+                        <outlet property="helpCenterLabel" destination="sQb-4d-Zb1" id="QqA-cR-MSs"/>
                         <outlet property="relatedCoursesButton" destination="e7s-Nj-7LA" id="GIt-GH-MdG"/>
                         <outlet property="scrollView" destination="ri0-eh-zMH" id="pUU-wF-J46"/>
                         <outlet property="searchBar" destination="Qsv-4L-rmb" id="YjJ-2h-ZiS"/>
