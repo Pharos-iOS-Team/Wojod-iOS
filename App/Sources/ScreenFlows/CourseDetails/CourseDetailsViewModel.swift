@@ -60,6 +60,17 @@ class CourseDetailsViewModel {
             completion(isSentSuccessfully)
         }
     }
+
+    func loadMaterials(courseID: Int, completion: @escaping (Materials) -> Void) {
+        model.loadMaterials(courseID: courseID) { result in
+            switch result {
+            case .success(let materials as Materials):
+                completion(materials)
+            default:
+                return
+            }
+        }
+    }
 }
 
 extension CourseDetailsViewModel {

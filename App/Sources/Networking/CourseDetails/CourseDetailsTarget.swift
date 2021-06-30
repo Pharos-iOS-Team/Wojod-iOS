@@ -10,6 +10,7 @@ enum CourseDetailsTarget {
     case bookCourse(courseID: Int)
     case cancelBookingCourse(courseID: Int)
     case sendReview(courseID: Int, courseReview: CourseReview)
+    case loadMaterials(courseID: Int)
 }
 
 extension CourseDetailsTarget: TargetType {
@@ -27,6 +28,8 @@ extension CourseDetailsTarget: TargetType {
             return "/courses/\(courseID)/reservations"
         case let .sendReview(courseID, _):
             return "/courses/\(courseID)/reviews"
+        case let .loadMaterials(courseID):
+            return "/courses/\(courseID)/materials"
         }
     }
 
