@@ -82,6 +82,7 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Public Properties
 
     internal var course: Course?
+    internal var teacherName: String?
 
     // MARK: - Lifecycle
 
@@ -160,6 +161,7 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Private Functions
 
     private func configure() {
+        teacherNameLabel.text = teacherName
         courseImageView.image = getImage(from: course?.media?.fileUrl ?? "")
         courseTitle.text = course?.name
         descriptionLabel.text = course?.summary
@@ -585,7 +587,7 @@ extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
 extension CourseDetailsViewController: CancelBookingViewDelegate {
     func didTapCancelBooking() {
         blurredView?.removeFromSuperview()
-        viewModel?.cancelBookingCourse(courseID: 32) { isCancellingSuccessful in
+        viewModel?.cancelBookingCourse(courseID: course?.id ?? 0) { isCancellingSuccessful in
             if isCancellingSuccessful {
                 self.state = .normal
                 self.actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
@@ -602,7 +604,7 @@ extension CourseDetailsViewController: CancelBookingViewDelegate {
 
 extension CourseDetailsViewController: ReviewCourseViewDelegate {
     func didTapSendButton(courseReview: CourseReview) {
-        viewModel?.sendReview(courseID: 35, courseReview: courseReview) { isSentSuccessfully in
+        viewModel?.sendReview(courseID: course?.id ?? 0, courseReview: courseReview) { isSentSuccessfully in
             if isSentSuccessfully {
                 self.blurredView?.removeFromSuperview()
             }

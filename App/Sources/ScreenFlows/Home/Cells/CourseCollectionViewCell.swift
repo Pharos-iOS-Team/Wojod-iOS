@@ -4,7 +4,7 @@ import AVKit
 import UIKit
 
 protocol ViewCourseDetailsDelegate: AnyObject {
-    func showCourseDetails(for course: Course?)
+    func showCourseDetails(for course: Course?, with teacherNameIndex: Int)
 }
 
 protocol ViewReceiptDelegate: AnyObject {
@@ -66,6 +66,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     internal var playVideo: (() -> Void)?
     internal weak var delegate: ViewCourseDetailsDelegate?
     internal weak var viewReceiptDelegate: ViewReceiptDelegate?
+    internal var teacherNameIndex: Int?
 
     // MARK: - IBActions
 
@@ -74,7 +75,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction private func didTapViewCourse(_ sender: UIButton) {
-        delegate?.showCourseDetails(for: course)
+        delegate?.showCourseDetails(for: course, with: teacherNameIndex ?? 0)
     }
 
     @IBAction private func didTapSeeReceipt(_ sender: UIButton) {

@@ -3,7 +3,7 @@
 import UIKit
 
 protocol SelectCourseCellDelegate: AnyObject {
-    func showCourseDetails(for course: Course?)
+    func showCourseDetails(for course: Course?, with teacherNameIndex: Int)
 }
 
 class CourseTableViewCell: UITableViewCell {
@@ -62,6 +62,7 @@ extension CourseTableViewCell: UICollectionViewDataSource {
         let cell: CourseCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         let course = courses?[indexPath.item]
         cell.configure(with: course, isMyCourses: isMyCourses)
+        cell.teacherNameIndex = indexPath.row
         cell.delegate = delegate
         cell.viewReceiptDelegate = viewReceiptDelegate
         cell.playVideo = { () -> Void in
@@ -75,6 +76,7 @@ extension CourseTableViewCell: UICollectionViewDataSource {
 
 extension CourseTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectCellDelegate?.showCourseDetails(for: courses?[indexPath.item])
+        let cell = collectionView.cellForItem(at: indexPath) as? CourseCollectionViewCell
+        selectCellDelegate?.showCourseDetails(for: courses?[indexPath.item], with: cell?.teacherNameIndex ?? 0)
     }
 }
