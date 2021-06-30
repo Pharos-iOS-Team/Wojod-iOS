@@ -38,6 +38,7 @@ struct Media: Codable {
 
 struct Receipt: Codable {
     var id: Int?
+    var receiptNumber: String?
     var studentName: String?
     var teacherName: String?
     var courseName: String?

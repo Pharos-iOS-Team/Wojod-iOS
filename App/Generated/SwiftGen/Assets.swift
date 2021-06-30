@@ -100,6 +100,7 @@ internal enum Asset {
     internal static let homeNotification = ImageAsset(name: "homeNotification")
     internal static let nextIcon = ImageAsset(name: "nextIcon")
     internal static let notificationAvatar = ImageAsset(name: "notificationAvatar")
+    internal static let person = ImageAsset(name: "person")
     internal static let playButton = ImageAsset(name: "playButton")
     internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")

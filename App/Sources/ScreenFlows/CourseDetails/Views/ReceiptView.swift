@@ -71,4 +71,12 @@ class ReceiptView: UIView {
         courseNameValueLabel.text = receiptData.courseName
         teacherNameValueLabel.text = receiptData.teacherName
     }
+
+    internal func configureInMyCourses(with receipt: Receipt) {
+        receiptNumberLabel.text = receipt.receiptNumber
+        customerNameValueLabel.text = receipt.studentName
+        addressValueLabel.text = receipt.address
+        courseNameValueLabel.text = receipt.courseName
+        teacherNameValueLabel.text = receipt.teacherName
+    }
 }

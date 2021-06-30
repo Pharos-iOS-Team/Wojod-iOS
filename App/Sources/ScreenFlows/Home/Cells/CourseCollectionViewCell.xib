@@ -105,9 +105,10 @@
                                     <action selector="didTapPlayVideo:" destination="gTV-IL-0wX" eventType="touchUpInside" id="RBM-5q-HBb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03q-8x-ccX">
-                                <rect key="frame" x="79" y="152" width="82" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="03q-8x-ccX">
+                                <rect key="frame" x="103" y="152" width="58" height="28"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="See Receipt">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -115,16 +116,21 @@
                                     <action selector="didTapSeeReceipt:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DGE-ZH-nsI"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RJ9-UB-Ppo">
+                                <rect key="frame" x="112.5" y="58.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RGw-VE-DT5" firstAttribute="leading" secondItem="waf-wk-xby" secondAttribute="leading" id="2sN-dw-Jnc"/>
                             <constraint firstItem="ynT-ac-HKi" firstAttribute="top" secondItem="RGw-VE-DT5" secondAttribute="bottom" constant="10" id="38H-aR-MOu"/>
+                            <constraint firstItem="RJ9-UB-Ppo" firstAttribute="centerY" secondItem="waf-wk-xby" secondAttribute="centerY" id="5hB-gR-zse"/>
                             <constraint firstItem="03q-8x-ccX" firstAttribute="height" secondItem="s2E-Az-Ail" secondAttribute="height" id="9nU-EB-MeR"/>
                             <constraint firstAttribute="bottom" secondItem="ynT-ac-HKi" secondAttribute="bottom" constant="10" id="9xH-or-pNb"/>
                             <constraint firstItem="s2E-Az-Ail" firstAttribute="trailing" secondItem="waf-wk-xby" secondAttribute="trailing" id="COp-fa-0ty"/>
                             <constraint firstItem="rMT-Nu-xl7" firstAttribute="trailing" secondItem="s2E-Az-Ail" secondAttribute="trailing" id="Cmm-ai-6Si"/>
                             <constraint firstItem="03q-8x-ccX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ynT-ac-HKi" secondAttribute="trailing" constant="10" id="DJm-5D-QgI"/>
+                            <constraint firstItem="RJ9-UB-Ppo" firstAttribute="centerX" secondItem="waf-wk-xby" secondAttribute="centerX" id="I9R-Y7-rT7"/>
                             <constraint firstItem="RGw-VE-DT5" firstAttribute="top" secondItem="waf-wk-xby" secondAttribute="bottom" constant="10" id="QrE-HX-gWq"/>
                             <constraint firstItem="rMT-Nu-xl7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGw-VE-DT5" secondAttribute="trailing" constant="10" id="Sez-dH-FPy"/>
                             <constraint firstItem="s2E-Az-Ail" firstAttribute="top" secondItem="rMT-Nu-xl7" secondAttribute="bottom" constant="5" id="T6d-hb-wYf"/>
@@ -150,6 +156,7 @@
                 <constraint firstItem="kFx-By-3Qx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rNh-63-p1t"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicator" destination="RJ9-UB-Ppo" id="1pQ-84-k76"/>
                 <outlet property="courseContentView" destination="kFx-By-3Qx" id="KJp-LP-gmt"/>
                 <outlet property="fifthRatingStar" destination="t7t-xy-h6u" id="zwn-Jx-kUu"/>
                 <outlet property="firstRatingStar" destination="wuf-Vz-WnJ" id="Gcr-LW-iaH"/>
