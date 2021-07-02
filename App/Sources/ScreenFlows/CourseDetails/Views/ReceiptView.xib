@@ -66,8 +66,8 @@
                         <constraint firstItem="cvH-zO-boF" firstAttribute="centerX" secondItem="eaw-TB-ff1" secondAttribute="centerX" id="nLr-Cr-QSS"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-co-6Nd">
-                    <rect key="frame" x="195" y="152" width="55" height="11"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-co-6Nd">
+                    <rect key="frame" x="194.5" y="152" width="55.5" height="10.5"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -90,8 +90,8 @@
                     <color key="textColor" name="darkGreyColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQQ-Gh-v9x">
-                    <rect key="frame" x="216" y="121" width="34" height="11"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQQ-Gh-v9x">
+                    <rect key="frame" x="216.5" y="121" width="33.5" height="10.5"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -143,8 +143,10 @@
                 <constraint firstItem="eaw-TB-ff1" firstAttribute="leading" secondItem="Abf-4P-i9r" secondAttribute="leading" id="On8-Bc-I9q"/>
                 <constraint firstItem="QOZ-RQ-T6G" firstAttribute="top" secondItem="PAO-qE-ReS" secondAttribute="bottom" constant="20" id="UJW-r9-jAA"/>
                 <constraint firstItem="KE2-Ql-Kc4" firstAttribute="firstBaseline" secondItem="Abf-4P-i9r" secondAttribute="firstBaseline" id="W9S-oV-DCM"/>
+                <constraint firstItem="QVe-co-6Nd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QOZ-RQ-T6G" secondAttribute="trailing" constant="5" id="e2y-ac-3nl"/>
                 <constraint firstItem="kQQ-Gh-v9x" firstAttribute="firstBaseline" secondItem="PAO-qE-ReS" secondAttribute="firstBaseline" id="hlp-Zo-oSt"/>
                 <constraint firstItem="eaw-TB-ff1" firstAttribute="trailing" secondItem="KE2-Ql-Kc4" secondAttribute="trailing" id="i97-2A-cxs"/>
+                <constraint firstItem="kQQ-Gh-v9x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PAO-qE-ReS" secondAttribute="trailing" constant="5" id="mE2-c3-zjl"/>
                 <constraint firstItem="eaw-TB-ff1" firstAttribute="centerX" secondItem="g2s-0t-4AB" secondAttribute="centerX" id="opx-SP-B5G"/>
                 <constraint firstItem="eaw-TB-ff1" firstAttribute="trailing" secondItem="G44-L7-eYs" secondAttribute="trailing" id="pnS-Qb-noK"/>
                 <constraint firstItem="eaw-TB-ff1" firstAttribute="leading" secondItem="QOZ-RQ-T6G" secondAttribute="leading" id="qiZ-R5-Zdg"/>

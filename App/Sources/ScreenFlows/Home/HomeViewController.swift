@@ -367,9 +367,12 @@ extension HomeViewController: UISearchBarDelegate {
 // MARK: - View Course Details Delegate
 
 extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
-    func showCourseDetails(for course: Course?) {
+    func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+        let subjectCourse = appropriateSubjectCourse(index: teacherNameIndex)
+        let teacherName = subjectCourse?.teacher?.name
         viewCtrl.course = course
+        viewCtrl.teacherName = teacherName
         present(viewCtrl, animated: true)
     }
 }
