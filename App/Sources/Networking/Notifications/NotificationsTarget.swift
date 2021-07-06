@@ -4,7 +4,7 @@ import Foundation
 import Moya
 
 enum NotificationsTarget {
-    case getNotifications(page: String)
+    case getNotifications
     case markAsRead(id: String)
     case registerDeviceToken(tokenModel: DeviceToken)
     case readAllNotifications
@@ -35,8 +35,9 @@ extension NotificationsTarget: TargetType {
 
     var task: Task {
         switch self {
-        case let .getNotifications(page):
-            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
+        case .getNotifications:
+            return .requestPlain
+            // return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         case .markAsRead, .readAllNotifications:
             return .requestPlain
         case let .registerDeviceToken(tokenModel: tokenModel):

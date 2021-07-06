@@ -2,16 +2,22 @@
 
 import Foundation
 
-class NotificationsModel {
-    func loadNotifications(completion: @escaping ([Notification]) -> Void) {
-        var notifications: [Notification] = []
-        let firstNotification = Notification(teacherName: "Malak", timeStamp: "12 mins", message: "Sent a new message")
-        let secondNotification = Notification(teacherName: "Nada", timeStamp: "23 Feb", message: "Shared a file")
-        let thirdNotification = Notification(teacherName: "Mona", timeStamp: "12 Mar", message: "Published a new course")
-        notifications.append(firstNotification)
-        notifications.append(secondNotification)
-        notifications.append(thirdNotification)
+class NotificationsModel: ModelDecodable {
+    let apiClient = NotificationsApiClient()
 
-        completion(notifications)
+    func fetchNotifications(completion: @escaping (Result) -> Void) {
+        apiClient.fetchNotifications { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: Notifications.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error)))
+            }
+        }
     }
 }

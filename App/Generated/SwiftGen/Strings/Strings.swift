@@ -209,6 +209,13 @@ internal enum L10n {
       }
   }
 
+  internal enum Notifications {
+    /// Notifications
+    internal static var title: String {
+        return L10n.tr("Localizable", "notifications.title")
+      }
+  }
+
   internal enum Profile {
     /// Academic type
     internal static var academicType: String {
