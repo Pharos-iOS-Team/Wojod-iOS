@@ -236,6 +236,9 @@
                                     <constraint firstAttribute="width" constant="120" id="TQm-dR-Hke"/>
                                     <constraint firstAttribute="height" constant="35" id="jy1-wb-OtI"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="didTapHelpCenterButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="aMX-25-hF2"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="helpCenter" translatesAutoresizingMaskIntoConstraints="NO" id="Ys3-Rv-O80">
                                 <rect key="frame" x="239" y="60" width="15" height="16"/>

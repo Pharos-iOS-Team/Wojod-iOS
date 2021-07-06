@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 262FA7592694B0FD00245D2C /* Chat.storyboard */; };
+		262FA75F2694B11F00245D2C /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */; };
+		262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA7852694BD0B00245D2C /* ChatViewController.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
 		380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A0261267248D300D01B06 /* CourseTableViewCell.xib */; };
 		380A026926725A4B00D01B06 /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */; };
 		380A026A26725A4B00D01B06 /* CourseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A026826725A4B00D01B06 /* CourseCollectionViewCell.xib */; };
 		380A027B2680AADE00D01B06 /* ExploreMoreCoursesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A027A2680AADD00D01B06 /* ExploreMoreCoursesResponse.swift */; };
+		3826BC792669086E00CF9357 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826BC782669086E00CF9357 /* Materials.swift */; };
+		3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826BC7D266CB26F00CF9357 /* MaterialTableViewCell.swift */; };
+		3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3826BC7E266CB26F00CF9357 /* MaterialTableViewCell.xib */; };
 		3838B9DC2670E53600544C79 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3838B9DB2670E53600544C79 /* AdsCollectionViewCell.swift */; };
 		385CC0A0265ECB7200A091FD /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */; };
 		385CC0A1265ECB7200A091FD /* AttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */; };
@@ -39,41 +45,6 @@
 		38812C63266F769200CCD924 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C62266F769100CCD924 /* SubjectCollectionViewCell.swift */; };
 		38812C68266F9DF600CCD924 /* RelatedCoursesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C67266F9DF500CCD924 /* RelatedCoursesResponseModel.swift */; };
 		38812C6D266F9E3900CCD924 /* TeacherCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C6C266F9E3800CCD924 /* TeacherCourse.swift */; };
-		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
-		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
-		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
-		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
-		38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */; };
-		38F7D48E2666C8FD00CD8934 /* CancelBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */; };
-		38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D4922666C92900CD8934 /* CancelBookingView.xib */; };
-		38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D497266761E600CD8934 /* ReviewCourseView.swift */; };
-		38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */; };
-		38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4A426677B6C00CD8934 /* CourseReview.swift */; };
-		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
-		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
-		38F7D4D52668EBE400CD8934 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* Notification.swift */; };
-		3826BC792669086E00CF9357 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826BC782669086E00CF9357 /* Materials.swift */; };
-		3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826BC7D266CB26F00CF9357 /* MaterialTableViewCell.swift */; };
-		3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3826BC7E266CB26F00CF9357 /* MaterialTableViewCell.xib */; };
-		385CC0A0265ECB7200A091FD /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */; };
-		385CC0A1265ECB7200A091FD /* AttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */; };
-		385CC0B7265ED63A00A091FD /* CourseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0B6265ED63A00A091FD /* CourseDetailsHeaderView.swift */; };
-		385CC0BC265ED64F00A091FD /* CourseDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC0BB265ED64F00A091FD /* CourseDetailsHeaderView.xib */; };
-		385CC0C2265F92FA00A091FD /* CourseDetailsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0C1265F92FA00A091FD /* CourseDetailsApiClient.swift */; };
-		385CC0C7265F930C00A091FD /* CourseDetailsTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0C6265F930C00A091FD /* CourseDetailsTarget.swift */; };
-		385CC0CC265F958100A091FD /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */; };
-		385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */; };
-		385CC0D6265FAB1500A091FD /* Lessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0D5265FAB1500A091FD /* Lessons.swift */; };
-		385CC0E5265FD67F00A091FD /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */; };
-		385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */; };
-		385CC0EB26601A6700A091FD /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0EA26601A6600A091FD /* Reviews.swift */; };
-		385CC0F0266116EB00A091FD /* LessonsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */; };
-		385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */; };
-		385CC1052663D95D00A091FD /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = 385CC1042663D95C00A091FD /* Roboto */; };
-		385CC10B26641D0F00A091FD /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC10A26641D0E00A091FD /* ReceiptView.swift */; };
-		385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC11226641D3A00A091FD /* ReceiptView.xib */; };
-		38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */; };
-		38706CD3265E6DD300440B53 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38706CD2265E6DD300440B53 /* CourseDetails.storyboard */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
@@ -311,11 +282,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		262FA7592694B0FD00245D2C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
+		262FA7852694BD0B00245D2C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		380A0260267248D300D01B06 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		380A0261267248D300D01B06 /* CourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseTableViewCell.xib; sourceTree = "<group>"; };
 		380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		380A026826725A4B00D01B06 /* CourseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCollectionViewCell.xib; sourceTree = "<group>"; };
 		380A027A2680AADD00D01B06 /* ExploreMoreCoursesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMoreCoursesResponse.swift; sourceTree = "<group>"; };
+		3826BC782669086E00CF9357 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
+		3826BC7D266CB26F00CF9357 /* MaterialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTableViewCell.swift; sourceTree = "<group>"; };
+		3826BC7E266CB26F00CF9357 /* MaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTableViewCell.xib; sourceTree = "<group>"; };
 		3838B9DB2670E53600544C79 /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
 		385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentTableViewCell.xib; sourceTree = "<group>"; };
@@ -342,41 +319,6 @@
 		38812C62266F769100CCD924 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		38812C67266F9DF500CCD924 /* RelatedCoursesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedCoursesResponseModel.swift; sourceTree = "<group>"; };
 		38812C6C266F9E3800CCD924 /* TeacherCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourse.swift; sourceTree = "<group>"; };
-		3898E4E8265E572E00295A43 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
-		38B03551265B9EF200C24479 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
-		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
-		38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBookingView.swift; sourceTree = "<group>"; };
-		38F7D4922666C92900CD8934 /* CancelBookingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelBookingView.xib; sourceTree = "<group>"; };
-		38F7D497266761E600CD8934 /* ReviewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseView.swift; sourceTree = "<group>"; };
-		38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCourseView.xib; sourceTree = "<group>"; };
-		38F7D4A426677B6C00CD8934 /* CourseReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseReview.swift; sourceTree = "<group>"; };
-		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
-		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
-		38F7D4D42668EBE400CD8934 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		3826BC782669086E00CF9357 /* Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
-		3826BC7D266CB26F00CF9357 /* MaterialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTableViewCell.swift; sourceTree = "<group>"; };
-		3826BC7E266CB26F00CF9357 /* MaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTableViewCell.xib; sourceTree = "<group>"; };
-		385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
-		385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentTableViewCell.xib; sourceTree = "<group>"; };
-		385CC0B6265ED63A00A091FD /* CourseDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsHeaderView.swift; sourceTree = "<group>"; };
-		385CC0BB265ED64F00A091FD /* CourseDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailsHeaderView.xib; sourceTree = "<group>"; };
-		385CC0C1265F92FA00A091FD /* CourseDetailsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsApiClient.swift; sourceTree = "<group>"; };
-		385CC0C6265F930C00A091FD /* CourseDetailsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsTarget.swift; sourceTree = "<group>"; };
-		385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
-		385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsModel.swift; sourceTree = "<group>"; };
-		385CC0D5265FAB1500A091FD /* Lessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lessons.swift; sourceTree = "<group>"; };
-		385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
-		385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
-		385CC0EA26601A6600A091FD /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
-		385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAttachmentsModel.swift; sourceTree = "<group>"; };
-		385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCourseResponseModel.swift; sourceTree = "<group>"; };
-		385CC1042663D95C00A091FD /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
-		385CC10A26641D0E00A091FD /* ReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
-		385CC11226641D3A00A091FD /* ReceiptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptView.xib; sourceTree = "<group>"; };
-		38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
-		38706CD2265E6DD300440B53 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		3898E4E8265E572E00295A43 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		38B03551265B9EF200C24479 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
@@ -638,103 +580,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		385CC0A5265ED46F00A091FD /* TableViewHeaders */ = {
+		262FA7582694B0EA00245D2C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				385CC0B6265ED63A00A091FD /* CourseDetailsHeaderView.swift */,
-				385CC0BB265ED64F00A091FD /* CourseDetailsHeaderView.xib */,
+				262FA77E2694B9DA00245D2C /* CustomMessageCell */,
+				262FA77D2694B9CD00245D2C /* ChatContainer */,
+				262FA7592694B0FD00245D2C /* Chat.storyboard */,
+				262FA7792694B9B100245D2C /* ChatView */,
 			);
-			path = TableViewHeaders;
+			path = Chat;
 			sourceTree = "<group>";
 		};
-		385CC0C0265F92D800A091FD /* CourseDetails */ = {
+		262FA7792694B9B100245D2C /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
-				385CC0C1265F92FA00A091FD /* CourseDetailsApiClient.swift */,
-				385CC0C6265F930C00A091FD /* CourseDetailsTarget.swift */,
+				262FA7852694BD0B00245D2C /* ChatViewController.swift */,
 			);
-			path = CourseDetails;
+			path = ChatView;
 			sourceTree = "<group>";
 		};
-		385CC10926641C9900A091FD /* Views */ = {
+		262FA77D2694B9CD00245D2C /* ChatContainer */ = {
 			isa = PBXGroup;
 			children = (
-				385CC10A26641D0E00A091FD /* ReceiptView.swift */,
-				385CC11226641D3A00A091FD /* ReceiptView.xib */,
-				38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */,
-				38F7D4922666C92900CD8934 /* CancelBookingView.xib */,
-				38F7D497266761E600CD8934 /* ReviewCourseView.swift */,
-				38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */,
+				262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */,
 			);
-			path = Views;
+			path = ChatContainer;
 			sourceTree = "<group>";
 		};
-		38706CD7265E6DE100440B53 /* CourseDetails */ = {
+		262FA77E2694B9DA00245D2C /* CustomMessageCell */ = {
 			isa = PBXGroup;
 			children = (
-				385CC10926641C9900A091FD /* Views */,
-				385CC0A5265ED46F00A091FD /* TableViewHeaders */,
-				38706CE4265E91CD00440B53 /* Cells */,
-				38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */,
-				38706CD2265E6DD300440B53 /* CourseDetails.storyboard */,
-				385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */,
-				385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */,
 			);
-			path = CourseDetails;
-			sourceTree = "<group>";
-		};
-		38706CE4265E91CD00440B53 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				385CC09E265ECB7200A091FD /* AttachmentTableViewCell.swift */,
-				385CC09F265ECB7200A091FD /* AttachmentTableViewCell.xib */,
-				385CC0E3265FD67F00A091FD /* ReviewTableViewCell.swift */,
-				385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		38812C52266E9AEE00CCD924 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				38812C58266E9B1E00CCD924 /* HomeApiClient.swift */,
-				38812C53266E9B0E00CCD924 /* HomeTarget.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		38812C71266FE32100CCD924 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				38812C62266F769100CCD924 /* SubjectCollectionViewCell.swift */,
-				3838B9DB2670E53600544C79 /* AdsCollectionViewCell.swift */,
-				380A0260267248D300D01B06 /* CourseTableViewCell.swift */,
-				380A0261267248D300D01B06 /* CourseTableViewCell.xib */,
-				380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */,
-				380A026826725A4B00D01B06 /* CourseCollectionViewCell.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		38B03550265B9EC600C24479 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				38B0355E265BA45800C24479 /* Cells */,
-				38B03551265B9EF200C24479 /* NotificationsViewController.swift */,
-				38B03559265B9F0A00C24479 /* Notifications.storyboard */,
-				38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */,
-				38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
-		38B0355E265BA45800C24479 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */,
-				38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */,
-			);
-			path = Cells;
+			path = CustomMessageCell;
 			sourceTree = "<group>";
 		};
 		385CC0A5265ED46F00A091FD /* TableViewHeaders */ = {
@@ -791,6 +668,28 @@
 				385CC0E4265FD67F00A091FD /* ReviewTableViewCell.xib */,
 				3826BC7D266CB26F00CF9357 /* MaterialTableViewCell.swift */,
 				3826BC7E266CB26F00CF9357 /* MaterialTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		38812C52266E9AEE00CCD924 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				38812C58266E9B1E00CCD924 /* HomeApiClient.swift */,
+				38812C53266E9B0E00CCD924 /* HomeTarget.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		38812C71266FE32100CCD924 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				38812C62266F769100CCD924 /* SubjectCollectionViewCell.swift */,
+				3838B9DB2670E53600544C79 /* AdsCollectionViewCell.swift */,
+				380A0260267248D300D01B06 /* CourseTableViewCell.swift */,
+				380A0261267248D300D01B06 /* CourseTableViewCell.xib */,
+				380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */,
+				380A026826725A4B00D01B06 /* CourseCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -940,6 +839,7 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
+				262FA7582694B0EA00245D2C /* Chat */,
 				38B03550265B9EC600C24479 /* Notifications */,
 				38706CD7265E6DE100440B53 /* CourseDetails */,
 				BC19E5CE2631A34500CFA142 /* CreatePassword */,
@@ -1671,6 +1571,7 @@
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
+				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
 				BC767154262C531B0012155C /* Settings.storyboard in Resources */,
 				BC76714A262C52960012155C /* Home.storyboard in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
@@ -1788,6 +1689,7 @@
 				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				385CC0F0266116EB00A091FD /* LessonsAttachmentsModel.swift in Sources */,
+				262FA75F2694B11F00245D2C /* ChatContainerViewController.swift in Sources */,
 				7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */,
 				BC083B6726430E9500A1E6A4 /* AvatarModel.swift in Sources */,
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
@@ -1804,6 +1706,7 @@
 				BC19E5ED2631A3A000CFA142 /* CreatePasswordApiClient.swift in Sources */,
 				778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */,
 				380A027B2680AADE00D01B06 /* ExploreMoreCoursesResponse.swift in Sources */,
+				262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
