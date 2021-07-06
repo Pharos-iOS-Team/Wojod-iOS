@@ -79,6 +79,11 @@ class UniversityViewController: UIViewController {
             universityLabel.text = L10n.Signup.AcademicInfo.university
         }
     }
+    @IBOutlet private var nextButton: SendButton! {
+        didSet {
+            nextButton.isEnabled = false
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -105,6 +110,12 @@ class UniversityViewController: UIViewController {
         configurePickerViews()
         configurePickerFields()
         displayAlreadyEnteredDataBeforeUserTapsBackIfAny()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideWrongCredentialsError()
+        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     // MARK: - IBActions
@@ -209,7 +220,7 @@ class UniversityViewController: UIViewController {
     }
 
     private func retrieveUniversities() {
-        viewModel?.loadAcademicDivisions(for: self.academicLevel) { universities in
+        viewModel?.loadAcademicDivisions(for: self.academicLevel, in: 0) { universities in
             self.universities = universities
             self.retrieveFields()
             self.retrieveYears()
@@ -235,12 +246,14 @@ class UniversityViewController: UIViewController {
         User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndex]
         retrieveFields()
         retrieveYears()
+        configureNextButtonEnabling()
     }
 
     @objc
     private func fieldPickerDoneTapped() {
         fieldPickerView.resignFirstResponder()
         fieldTextField.text = fields[selectedFieldIndex]
+        configureNextButtonEnabling()
     }
 
     @objc
@@ -248,6 +261,7 @@ class UniversityViewController: UIViewController {
         guard !years.isEmpty else { return }
         yearPickerView.resignFirstResponder()
         yearTextField.text = years[selectedYearIndex]
+        configureNextButtonEnabling()
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
@@ -275,16 +289,36 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text
-        User.shared.batch = yearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndex]
+        User.shared.specializationId = viewModel?.specializationsIDs[selectedFieldIndex]
+        User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
+    }
+
+    private func showWrongCredentialsError() {
+        wrongCredentialsImageView.isHidden = false
+        wrongCredentialsImageViewHeight.constant = 50.0
+    }
+
+    private func hideWrongCredentialsError() {
+        wrongCredentialsImageView.isHidden = true
+        wrongCredentialsImageViewHeight.constant = 0
+    }
+
+    private func configureNextButtonEnabling() {
+        if isMandatoryFieldsFilled() {
+            nextButton.isEnabled = true
+            nextButton.backgroundColor = Colors.sendButtonColor.color
+        } else {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = Colors.darkGreyColor.color
+        }
     }
 
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled() == true else {
-            wrongCredentialsImageView.isHidden = false
-            wrongCredentialsImageViewHeight.constant = 50.0
+            showWrongCredentialsError()
             configureEmptyMandatoryFields()
             return false
         }

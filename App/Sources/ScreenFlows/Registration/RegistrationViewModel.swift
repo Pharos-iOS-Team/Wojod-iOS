@@ -11,9 +11,9 @@ internal enum AcademicLevel: Int {
 internal class RegistrationViewModel {
     internal var countryCodes = [String]()
     internal var cityCodes = [String]()
-    internal var academicTypeIDs = [Int]()
     internal var divisionIDs = [Int]()
     internal var batchesIDs = [Int]()
+    internal var specializationsIDs = [Int]()
     internal var divisions: [Division]?
 
     internal func checkNumberIfValid(_ mobileNumber: String, email: String, completion: @escaping (Bool) -> Void) {
@@ -42,18 +42,15 @@ internal class RegistrationViewModel {
         }
     }
 
-    internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([String]) -> Void) {
+    internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([KeyValue]?) -> Void) {
         NetworkProvider.shared.request(target: .academicTypes(academicLevel.rawValue), type: EducationTypes.self) { response, _ in
             let educationTypes = response?.educationTypes
-            self.academicTypeIDs = educationTypes?.compactMap { $0.key } ?? []
-            if let educationTypesList = educationTypes?.compactMap({ $0.value }) {
-                completion(educationTypesList)
-            }
+            completion(educationTypes)
         }
     }
 
-    internal func loadAcademicDivisions(for academicLevel: AcademicLevel, completion: @escaping ([String]) -> Void) {
-        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue), type: DivisionsModel.self) { response, _ in
+    internal func loadAcademicDivisions(for academicLevel: AcademicLevel, in educationType: Int, completion: @escaping ([String]) -> Void) {
+        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue, educationType), type: DivisionsModel.self) { response, _ in
             let divisions = response?.divisions
             self.divisions = divisions
             self.divisionIDs = divisions?.compactMap { $0.key } ?? []
@@ -76,6 +73,7 @@ internal class RegistrationViewModel {
     internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([String]) -> Void) {
         NetworkProvider.shared.request(target: .specializations(divisionIndex), type: SpecializationsModel.self) { response, _ in
             let specializations = response?.specializations
+            self.specializationsIDs = specializations?.compactMap { $0.key } ?? []
             if let specializationsList = specializations?.compactMap({ $0.value }) {
                 completion(specializationsList)
             }
