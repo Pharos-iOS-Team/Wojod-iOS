@@ -24,6 +24,8 @@ class AppDelegate: AppDelegateType {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
                 print("Permission granted: \(granted)")
+                guard granted else { return }
+                self.getNotificationSettings()
             }
     }
 
