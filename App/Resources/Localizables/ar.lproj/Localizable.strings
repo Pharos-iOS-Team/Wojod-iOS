@@ -187,3 +187,7 @@
 "home.view" = "عرض";
 "home.course.price" = "ج.م.";
 "home.course.seeReceipt" = "عرض الايصال";
+
+// MARK: - Notifications
+
+"notifications.title" = "إشعارات";

@@ -5,9 +5,14 @@ import Foundation
 class NotificationsViewModel {
     let model = NotificationsModel()
 
-    func loadNotifications(completion: @escaping ([Notification]) -> Void) {
-        model.loadNotifications { notifications in
-            completion(notifications)
+    func loadNotifications(completion: @escaping (Notifications) -> Void) {
+        model.fetchNotifications { result in
+            switch result {
+            case .success(let notifications as Notifications):
+                completion(notifications)
+            default:
+                return
+            }
         }
     }
 }

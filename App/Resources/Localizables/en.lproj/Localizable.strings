@@ -187,3 +187,7 @@ No worries!";
 "home.view" = "View";
 "home.course.price" = "EGP";
 "home.course.seeReceipt" = "See Receipt";
+
+// MARK: - Notifications
+
+"notifications.title" = "Notifications";

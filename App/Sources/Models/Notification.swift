@@ -2,8 +2,22 @@
 
 import Foundation
 
+struct Notifications: Codable {
+    var notifications: [Notification]?
+}
+
 struct Notification: Codable {
-    var teacherName: String?
-    var timeStamp: String?
+    var id: Int?
+    var topic: String?
     var message: String?
+    var creator: String?
+    var createdAt: String?
+    var attachments: [Attachment]?
+}
+
+struct Attachment: Codable {
+    var id: Int?
+    var filename: String?
+    var fileUrl: String?
+    var contentType: String?
 }
