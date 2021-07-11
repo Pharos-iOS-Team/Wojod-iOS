@@ -15,7 +15,7 @@
 		<string>Inter-Bold.ttf</string>
 	</array>
 	<key>BASE_URL</key>
-	<string>https://staging.wojodacademy.com/ </string>
+	<string>https://staging.wojodacademy.com</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
