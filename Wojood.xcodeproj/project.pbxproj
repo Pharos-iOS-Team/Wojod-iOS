@@ -1171,6 +1171,8 @@
 		38812C71266FE32100CCD924 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				38812C62266F769100CCD924 /* SubjectCollectionViewCell.swift */,
+				3838B9DB2670E53600544C79 /* AdsCollectionViewCell.swift */,
 				380A0260267248D300D01B06 /* CourseTableViewCell.swift */,
 				380A0261267248D300D01B06 /* CourseTableViewCell.xib */,
 				380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */,

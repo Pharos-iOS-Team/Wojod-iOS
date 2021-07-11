@@ -44,6 +44,11 @@
 	<string>wss://staging.wojodacademy.com/cable</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>ROOT_URL</key>
 	<string>https://staging.wojodacademy.com/api/student/v1</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
