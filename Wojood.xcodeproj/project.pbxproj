@@ -11,6 +11,32 @@
 		262FA75F2694B11F00245D2C /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */; };
 		262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA7852694BD0B00245D2C /* ChatViewController.swift */; };
 		26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4897269AF86B00DDA29F /* ChatViewModel.swift */; };
+		26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */; };
+		26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */; };
+		26CF48B4269B0FF800DDA29F /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48B3269B0FF800DDA29F /* ChatModel.swift */; };
+		26CF48BA269B1F0F00DDA29F /* ConversationReponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48B9269B1F0F00DDA29F /* ConversationReponseModel.swift */; };
+		26CF48BF269B2DE400DDA29F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48BE269B2DE400DDA29F /* ActivityIndicator.swift */; };
+		26CF48C4269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48C3269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift */; };
+		26CF48C9269B306A00DDA29F /* ChatViewController+SocketExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48C8269B306A00DDA29F /* ChatViewController+SocketExtension.swift */; };
+		26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48CD269B30E900DDA29F /* SocketManager.swift */; };
+		26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 26CF48D3269B31BF00DDA29F /* Starscream */; };
+		26CF48D9269B350100DDA29F /* MessagesDisplayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48D8269B350100DDA29F /* MessagesDisplayHandler.swift */; };
+		26CF48E1269B379B00DDA29F /* LoggedUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48E0269B379B00DDA29F /* LoggedUserDetails.swift */; };
+		26CF48E9269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48E8269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift */; };
+		26CF48EE269B4B5800DDA29F /* ChatViewController+CustomMessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48ED269B4B5800DDA29F /* ChatViewController+CustomMessageExtension.swift */; };
+		26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48F3269B4BC700DDA29F /* CustomMessageCell.swift */; };
+		26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF48F4269B4BC700DDA29F /* CustomMessageCell.xib */; };
+		26CF48FF269B4E8900DDA29F /* CustomMessagesFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48FE269B4E8900DDA29F /* CustomMessagesFlowLayout.swift */; };
+		26CF4907269B4F9E00DDA29F /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4906269B4F9E00DDA29F /* LoadingButton.swift */; };
+		26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF490B269B4FCD00DDA29F /* ChatConstants.swift */; };
+		26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4910269B51D900DDA29F /* FileManagerExt.swift */; };
+		26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4923269C6ED700DDA29F /* DocumentContainerViewController.swift */; };
+		26CF492B269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF492A269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift */; };
+		26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 26CF4933269C7F3900DDA29F /* SwiftEntryKit */; };
+		26CF493A269C83B500DDA29F /* AttachmentTypeActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4938269C83B500DDA29F /* AttachmentTypeActionSheet.swift */; };
+		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
+		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
+		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
 		380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A0261267248D300D01B06 /* CourseTableViewCell.xib */; };
 		380A026926725A4B00D01B06 /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */; };
@@ -287,6 +313,30 @@
 		262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		262FA7852694BD0B00245D2C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		26CF4897269AF86B00DDA29F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiClient.swift; sourceTree = "<group>"; };
+		26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTarget.swift; sourceTree = "<group>"; };
+		26CF48B3269B0FF800DDA29F /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		26CF48B9269B1F0F00DDA29F /* ConversationReponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationReponseModel.swift; sourceTree = "<group>"; };
+		26CF48BE269B2DE400DDA29F /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		26CF48C3269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+MessageKitExtension.swift"; sourceTree = "<group>"; };
+		26CF48C8269B306A00DDA29F /* ChatViewController+SocketExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+SocketExtension.swift"; sourceTree = "<group>"; };
+		26CF48CD269B30E900DDA29F /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		26CF48D8269B350100DDA29F /* MessagesDisplayHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesDisplayHandler.swift; sourceTree = "<group>"; };
+		26CF48E0269B379B00DDA29F /* LoggedUserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedUserDetails.swift; sourceTree = "<group>"; };
+		26CF48E8269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageObjectModel+MessageKitExtension.swift"; sourceTree = "<group>"; };
+		26CF48ED269B4B5800DDA29F /* ChatViewController+CustomMessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+CustomMessageExtension.swift"; sourceTree = "<group>"; };
+		26CF48F3269B4BC700DDA29F /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
+		26CF48F4269B4BC700DDA29F /* CustomMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMessageCell.xib; sourceTree = "<group>"; };
+		26CF48FE269B4E8900DDA29F /* CustomMessagesFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMessagesFlowLayout.swift; sourceTree = "<group>"; };
+		26CF4906269B4F9E00DDA29F /* LoadingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		26CF490B269B4FCD00DDA29F /* ChatConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConstants.swift; sourceTree = "<group>"; };
+		26CF4910269B51D900DDA29F /* FileManagerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerExt.swift; sourceTree = "<group>"; };
+		26CF4923269C6ED700DDA29F /* DocumentContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentContainerViewController.swift; sourceTree = "<group>"; };
+		26CF492A269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+InputBarExtension.swift"; sourceTree = "<group>"; };
+		26CF4938269C83B500DDA29F /* AttachmentTypeActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentTypeActionSheet.swift; sourceTree = "<group>"; };
+		26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentTypeActionSheet.xib; sourceTree = "<group>"; };
+		26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageRequestModel.swift; sourceTree = "<group>"; };
+		26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+AttachmentExtension.swift"; sourceTree = "<group>"; };
 		380A0260267248D300D01B06 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		380A0261267248D300D01B06 /* CourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseTableViewCell.xib; sourceTree = "<group>"; };
 		380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -560,8 +610,10 @@
 				7723AD9D261C6FA2007C0B97 /* FirebaseCrashlytics in Frameworks */,
 				7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */,
 				7723AD40261C63F3007C0B97 /* KeychainAccess in Frameworks */,
+				26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */,
 				7723AE47261C869A007C0B97 /* Moya in Frameworks */,
 				7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */,
+				26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +637,6 @@
 		262FA7582694B0EA00245D2C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				262FA77E2694B9DA00245D2C /* CustomMessageCell */,
 				262FA77D2694B9CD00245D2C /* ChatContainer */,
 				262FA7592694B0FD00245D2C /* Chat.storyboard */,
 				262FA7792694B9B100245D2C /* ChatView */,
@@ -596,8 +647,19 @@
 		262FA7792694B9B100245D2C /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				26CF493F269C83BA00DDA29F /* AttachmentTypeActionsheet */,
+				26CF4919269C5CE700DDA29F /* MessageKitObjcets */,
+				26CF4918269C5CCA00DDA29F /* WebSocketPart */,
+				26CF48F2269B4BB400DDA29F /* CustomMessage */,
 				262FA7852694BD0B00245D2C /* ChatViewController.swift */,
+				26CF492A269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift */,
+				26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */,
+				26CF48C3269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift */,
+				26CF48D8269B350100DDA29F /* MessagesDisplayHandler.swift */,
+				26CF48B3269B0FF800DDA29F /* ChatModel.swift */,
 				26CF4897269AF86B00DDA29F /* ChatViewModel.swift */,
+				26CF490B269B4FCD00DDA29F /* ChatConstants.swift */,
+				26CF4923269C6ED700DDA29F /* DocumentContainerViewController.swift */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -610,11 +672,60 @@
 			path = ChatContainer;
 			sourceTree = "<group>";
 		};
-		262FA77E2694B9DA00245D2C /* CustomMessageCell */ = {
+		26CF48A8269B061E00DDA29F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */,
+				26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */,
 			);
-			path = CustomMessageCell;
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		26CF48B8269B1EF000DDA29F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				26CF48B9269B1F0F00DDA29F /* ConversationReponseModel.swift */,
+				26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		26CF48F2269B4BB400DDA29F /* CustomMessage */ = {
+			isa = PBXGroup;
+			children = (
+				26CF48F3269B4BC700DDA29F /* CustomMessageCell.swift */,
+				26CF48F4269B4BC700DDA29F /* CustomMessageCell.xib */,
+				26CF48FE269B4E8900DDA29F /* CustomMessagesFlowLayout.swift */,
+				26CF48ED269B4B5800DDA29F /* ChatViewController+CustomMessageExtension.swift */,
+			);
+			path = CustomMessage;
+			sourceTree = "<group>";
+		};
+		26CF4918269C5CCA00DDA29F /* WebSocketPart */ = {
+			isa = PBXGroup;
+			children = (
+				26CF48CD269B30E900DDA29F /* SocketManager.swift */,
+				26CF48C8269B306A00DDA29F /* ChatViewController+SocketExtension.swift */,
+			);
+			path = WebSocketPart;
+			sourceTree = "<group>";
+		};
+		26CF4919269C5CE700DDA29F /* MessageKitObjcets */ = {
+			isa = PBXGroup;
+			children = (
+				26CF48E0269B379B00DDA29F /* LoggedUserDetails.swift */,
+				26CF48E8269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift */,
+			);
+			path = MessageKitObjcets;
+			sourceTree = "<group>";
+		};
+		26CF493F269C83BA00DDA29F /* AttachmentTypeActionsheet */ = {
+			isa = PBXGroup;
+			children = (
+				26CF4938269C83B500DDA29F /* AttachmentTypeActionSheet.swift */,
+				26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */,
+			);
+			path = AttachmentTypeActionsheet;
 			sourceTree = "<group>";
 		};
 		385CC0A5265ED46F00A091FD /* TableViewHeaders */ = {
@@ -866,6 +977,7 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				26CF48A8269B061E00DDA29F /* Chat */,
 				385CC0C0265F92D800A091FD /* CourseDetails */,
 				38812C52266E9AEE00CCD924 /* Home */,
 				BC19E5E32631A38100CFA142 /* CreatePassword */,
@@ -886,6 +998,7 @@
 		7723AD64261C6649007C0B97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				26CF48B8269B1EF000DDA29F /* Chat */,
 				778E72AD261DD4D1009D7B35 /* Attachable.swift */,
 				BC083B612643091A00A1E6A4 /* Avatar.swift */,
 				E8C9EF5826361C140023D2B1 /* Avatars.swift */,
@@ -1012,6 +1125,7 @@
 		778E722B261DC111009D7B35 /* FoundationExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				26CF4910269B51D900DDA29F /* FileManagerExt.swift */,
 				778E7237261DC2D3009D7B35 /* ArrayExt.swift */,
 				778E723B261DC2D3009D7B35 /* BoolExt.swift */,
 				778E7241261DC2D3009D7B35 /* DateExt.swift */,
@@ -1068,6 +1182,8 @@
 		778E722E261DC162009D7B35 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				26CF4906269B4F9E00DDA29F /* LoadingButton.swift */,
+				26CF48BE269B2DE400DDA29F /* ActivityIndicator.swift */,
 				778E72ED261DFA57009D7B35 /* AlertHandler.swift */,
 				7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */,
 				7723AE04261C7DB6007C0B97 /* FileReader.swift */,
@@ -1438,6 +1554,8 @@
 				7723AE46261C869A007C0B97 /* Moya */,
 				77DBFD5F2631C7AA0060BACA /* DPOTPView */,
 				38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */,
+				26CF48D3269B31BF00DDA29F /* Starscream */,
+				26CF4933269C7F3900DDA29F /* SwiftEntryKit */,
 			);
 			productName = Wojood;
 			productReference = 7723ACD7261C5E69007C0B97 /* Wojood.app */;
@@ -1527,6 +1645,8 @@
 				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
 				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
 				38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
+				26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */,
+				26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 			);
 			productRefGroup = 7723ACD8261C5E69007C0B97 /* Products */;
 			projectDirPath = "";
@@ -1544,6 +1664,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */,
 				BC767161262C6F870012155C /* SettingsTableViewCell.xib in Resources */,
 				7723AE0F261C7EDD007C0B97 /* .swiftlint.yml in Resources */,
 				BC19E5AA2631989B00CFA142 /* VerifyOtp.storyboard in Resources */,
@@ -1559,6 +1680,7 @@
 				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				BC19E5D02631A35900CFA142 /* CreatePassword.storyboard in Resources */,
+				26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */,
 				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
 				38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
@@ -1662,6 +1784,8 @@
 				BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */,
 				BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */,
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
+				26CF48D9269B350100DDA29F /* MessagesDisplayHandler.swift in Sources */,
+				26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
@@ -1672,11 +1796,13 @@
 				E84874922627913C006DF74C /* SegueFromLeft.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
+				26CF48C9269B306A00DDA29F /* ChatViewController+SocketExtension.swift in Sources */,
 				BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */,
 				778E7257261DC2D4009D7B35 /* DateExt.swift in Sources */,
 				BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */,
 				BC968291263979CB009F8550 /* AcademicInfoApiClient.swift in Sources */,
 				778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */,
+				26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */,
 				7723ADC2261C728E007C0B97 /* Environment.swift in Sources */,
 				38812C63266F769200CCD924 /* SubjectCollectionViewCell.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
@@ -1687,6 +1813,8 @@
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
 				385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */,
+				26CF48C4269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift in Sources */,
+				26CF48BF269B2DE400DDA29F /* ActivityIndicator.swift in Sources */,
 				77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */,
 				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
 				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
@@ -1697,6 +1825,7 @@
 				BC083B6726430E9500A1E6A4 /* AvatarModel.swift in Sources */,
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
 				7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */,
+				26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */,
 				778E7270261DC3E1009D7B35 /* Fonts.swift in Sources */,
 				3838B9DC2670E53600544C79 /* AdsCollectionViewCell.swift in Sources */,
 				778E725A261DC2D4009D7B35 /* EncodableExt.swift in Sources */,
@@ -1714,6 +1843,7 @@
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
 				BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */,
+				26CF493A269C83B500DDA29F /* AttachmentTypeActionSheet.swift in Sources */,
 				BC5ED0B52626E34800774E54 /* UserDataModel.swift in Sources */,
 				778E7254261DC2D4009D7B35 /* URLExt.swift in Sources */,
 				380A026926725A4B00D01B06 /* CourseCollectionViewCell.swift in Sources */,
@@ -1736,6 +1866,7 @@
 				BC19E574263036A400CFA142 /* ProfileViewController.swift in Sources */,
 				BC083B192641D52600A1E6A4 /* LogoutApiClient.swift in Sources */,
 				7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */,
+				26CF48EE269B4B5800DDA29F /* ChatViewController+CustomMessageExtension.swift in Sources */,
 				E8C9EF3226321AE00023D2B1 /* NetworkProvider.swift in Sources */,
 				778E725B261DC2D4009D7B35 /* UIButtonExt.swift in Sources */,
 				BC6231D52638183C00792869 /* User.swift in Sources */,
@@ -1759,17 +1890,21 @@
 				BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */,
+				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
 				38F7D4D52668EBE400CD8934 /* Notification.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
 				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
 				7723AE3B261C8261007C0B97 /* Strings.swift in Sources */,
+				26CF48E1269B379B00DDA29F /* LoggedUserDetails.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
 				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
 				E8C9EF73263C546D0023D2B1 /* NoCutPasteField.swift in Sources */,
+				26CF48E9269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift in Sources */,
+				26CF4907269B4F9E00DDA29F /* LoadingButton.swift in Sources */,
 				7723ADA9261C70F8007C0B97 /* PushNotificationsManager.swift in Sources */,
 				7723AD20261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift in Sources */,
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
@@ -1780,6 +1915,7 @@
 				BC19E5D52631A36600CFA142 /* CreatePasswordViewController.swift in Sources */,
 				BC19E5CA26319D5B00CFA142 /* OtpVerification.swift in Sources */,
 				77E32BAF264A8BE50064B801 /* UIDeviceExt.swift in Sources */,
+				26CF48FF269B4E8900DDA29F /* CustomMessagesFlowLayout.swift in Sources */,
 				BC19E579263036AF00CFA142 /* ProfileViewModel.swift in Sources */,
 				BC083B2D26429E5400A1E6A4 /* AvatarsListViewController.swift in Sources */,
 				E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */,
@@ -1794,14 +1930,17 @@
 				E8C9EF4226323B0D0023D2B1 /* NetworkError.swift in Sources */,
 				E8C9EF5E2638CA2C0023D2B1 /* Student.swift in Sources */,
 				E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */,
+				26CF48B4269B0FF800DDA29F /* ChatModel.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
 				BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */,
 				38812C5E266E9CDA00CCD924 /* Subjects.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
+				26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */,
 				385CC0D6265FAB1500A091FD /* Lessons.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
+				26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */,
 				E86753032642890D005ABF77 /* Specializations.swift in Sources */,
 				385CC0C2265F92FA00A091FD /* CourseDetailsApiClient.swift in Sources */,
 				38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */,
@@ -1810,6 +1949,7 @@
 				BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */,
 				385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */,
 				38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */,
+				26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */,
 				BC19E5882631762A00CFA142 /* ProfileTableViewCell.swift in Sources */,
 				778E72CC261DD6FF009D7B35 /* FileExtension.swift in Sources */,
 				BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */,
@@ -1837,7 +1977,10 @@
 				38812C68266F9DF600CCD924 /* RelatedCoursesResponseModel.swift in Sources */,
 				778E724F261DC2D4009D7B35 /* UILabelExt.swift in Sources */,
 				BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */,
+				26CF492B269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift in Sources */,
+				26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */,
 				38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */,
+				26CF48BA269B1F0F00DDA29F /* ConversationReponseModel.swift in Sources */,
 				7723ADFB261C787B007C0B97 /* DefaultsKeysExt.swift in Sources */,
 				E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */,
 				E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */,
@@ -1846,6 +1989,7 @@
 				778E7271261DC3E1009D7B35 /* Assets.swift in Sources */,
 				BC96829926397FE6009F8550 /* AcademicInfoModel.swift in Sources */,
 				38812C6D266F9E3900CCD924 /* TeacherCourse.swift in Sources */,
+				26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2206,6 +2350,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+		26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.7;
+			};
+		};
 		38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pronebird/UIScrollView-InfiniteScroll";
@@ -2321,6 +2481,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		26CF48D3269B31BF00DDA29F /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		26CF4933269C7F3900DDA29F /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
+		};
 		38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;

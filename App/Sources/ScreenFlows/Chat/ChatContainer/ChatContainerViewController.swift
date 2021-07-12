@@ -4,7 +4,6 @@ import UIKit
 
 class ChatContainerViewController: UIViewController {
     @IBOutlet private var navigationView: UIView!
-    @IBOutlet private var chatIDLbl: UILabel!
     @IBOutlet private var receiverNameLbl: UILabel!
     @IBOutlet private var chatView: UIView!
 
@@ -20,6 +19,9 @@ class ChatContainerViewController: UIViewController {
     }
 
     private func addChatChildVc() {
+        chatViewCtrl.setReciverNameHandler = { name in
+            self.receiverNameLbl.text = name ?? ""
+        }
         chatViewCtrl.willMove(toParent: self)
         addChild(chatViewCtrl)
         chatViewCtrl.didMove(toParent: self)

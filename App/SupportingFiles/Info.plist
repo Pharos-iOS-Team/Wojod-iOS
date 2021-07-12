@@ -35,7 +35,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CHAT_BASE_URL</key>
-	<string>wss://drawneat-staging.pharos-solutions.de/cable</string>
+	<string>ws://staging.wojodacademy.com/cable</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>ROOT_URL</key>

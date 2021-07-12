@@ -15,6 +15,7 @@ class ThirdPartiesConfiguratorAppDelegate: AppDelegateType {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = L10n.Global.Actions.done
+        IQKeyboardManager.shared.disabledDistanceHandlingClasses = [ChatViewController.self]
     }
 
     private func configureFirebase() {

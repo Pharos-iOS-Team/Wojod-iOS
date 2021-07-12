@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NunitoSans-Regular.ttf">
+            <string>NunitoSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttachmentTypeActionSheet" customModule="DrawNeat_Client" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="GWM-xP-Y2y" id="0Xm-9X-e5P"/>
+                <outlet property="filesButton" destination="gkB-kl-UqC" id="h9b-Fv-VFT"/>
+                <outlet property="imagesButton" destination="VTb-wr-OTL" id="Pyq-BY-jTZ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="5ru-S7-UQT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONS-8m-Fif">
+                    <rect key="frame" x="8" y="8" width="381" height="184"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PLP-G8-huS">
+                            <rect key="frame" x="0.0" y="0.0" width="381" height="184"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-wr-OTL">
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="56"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
+                                    <state key="normal" title="Images">
+                                        <color key="titleColor" name="steel"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="oXd-Ow-UFL"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkB-kl-UqC">
+                                    <rect key="frame" x="0.0" y="64" width="381" height="56"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
+                                    <state key="normal" title="Files">
+                                        <color key="titleColor" name="steel"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="YK0-bf-g2y"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWM-xP-Y2y">
+                                    <rect key="frame" x="0.0" y="128" width="381" height="56"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" name="steel"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="l87-wj-70H"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="colorsWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PLP-G8-huS" secondAttribute="trailing" id="SfB-iN-ahc"/>
+                        <constraint firstAttribute="bottom" secondItem="PLP-G8-huS" secondAttribute="bottom" id="X8i-K0-Pro"/>
+                        <constraint firstItem="PLP-G8-huS" firstAttribute="leading" secondItem="ONS-8m-Fif" secondAttribute="leading" id="hwP-Jd-HpE"/>
+                        <constraint firstItem="PLP-G8-huS" firstAttribute="top" secondItem="ONS-8m-Fif" secondAttribute="top" id="uvh-Ub-dvX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ONS-8m-Fif" secondAttribute="bottom" constant="8" id="NmH-cQ-ddj"/>
+                <constraint firstItem="ONS-8m-Fif" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="fGB-a8-7TL"/>
+                <constraint firstItem="ONS-8m-Fif" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lot-zf-5zJ"/>
+                <constraint firstAttribute="trailing" secondItem="ONS-8m-Fif" secondAttribute="trailing" constant="8" id="wof-P2-foJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="125.36231884057972" y="-98.772321428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="colorsWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="steel">
+            <color red="0.44699999690055847" green="0.50199997425079346" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
