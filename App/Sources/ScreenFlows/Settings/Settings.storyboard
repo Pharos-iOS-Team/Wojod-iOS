@@ -89,7 +89,7 @@
                             <constraint firstItem="JZG-K2-sp6" firstAttribute="leading" secondItem="SL1-Xb-HXC" secondAttribute="leading" constant="20" id="PVd-NZ-9bI"/>
                             <constraint firstItem="JZG-K2-sp6" firstAttribute="top" secondItem="kNU-lN-Lbb" secondAttribute="bottom" constant="10" id="T0Z-u3-8Wb"/>
                             <constraint firstItem="qhd-mO-5A7" firstAttribute="trailing" secondItem="kNU-lN-Lbb" secondAttribute="trailing" constant="20" id="Tst-6x-dMx"/>
-                            <constraint firstItem="kNU-lN-Lbb" firstAttribute="top" secondItem="SL1-Xb-HXC" secondAttribute="top" constant="44" id="bhy-T7-2ON"/>
+                            <constraint firstItem="kNU-lN-Lbb" firstAttribute="top" secondItem="qhd-mO-5A7" secondAttribute="top" id="bhy-T7-2ON"/>
                             <constraint firstAttribute="bottom" secondItem="JZG-K2-sp6" secondAttribute="bottom" constant="34" id="md1-e7-erl"/>
                         </constraints>
                     </view>
