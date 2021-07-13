@@ -12,6 +12,7 @@ class ChatViewController: MessagesViewController {
     var socketManager: SocketManager?
     var messagesDisplayHandler: MessagesDisplayHandler?
     var documentPicker: UIDocumentPickerViewController?
+    var chatType: ChatType = .customerSupport
     lazy var attachmentManager: AttachmentManager = { [unowned self] in
         let manager = AttachmentManager()
         manager.showAddAttachmentCell = false
@@ -24,6 +25,7 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         configureCustomCell()
         super.viewDidLoad()
+        setViewModel()
         bindViewModel()
         loadConversation()
         configureSocketManager()
@@ -46,6 +48,10 @@ class ChatViewController: MessagesViewController {
     }
 
     // MARK: - Helper Methods
+
+    private func setViewModel() {
+        viewModel.chatType = chatType
+    }
 
     private func loadConversation() {
         activityIndicator.displayForLoading(in: view)

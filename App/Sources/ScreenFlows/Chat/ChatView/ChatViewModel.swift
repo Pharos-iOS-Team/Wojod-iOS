@@ -21,6 +21,7 @@ class ChatViewModel {
     var reciverName: String?
     var selectedImage: ImageAttachmentDetails?
     var selectedFile: URL?
+    var chatType: ChatType = .customerSupport
 
     // MARK: - Init
     init() {
@@ -29,7 +30,31 @@ class ChatViewModel {
 
     // MARK: - public methods
     func fetchConversation() {
-        model.fetchConversation { [self] result in
+        switch chatType {
+        case let .teacher(courseID, teacherID):
+            print(teacherID)
+            fetchConversationForTeacher(id: courseID)
+        case .customerSupport:
+            fetchConversationForCustomerSupport()
+        }
+    }
+
+    private func fetchConversationForTeacher(id: Int) {
+        model.fetchConversationForTeacher(courseID: id) { [self] result in
+            switch result {
+            case .success(let conversation as ConversationReponseModel):
+                handleSuccessRequest(response: conversation)
+                handleSuccessResponse?()
+            case .failure(let error):
+                handleErrorResponse?(error.message)
+            default:
+                self.handleErrorResponse?(nil)
+            }
+        }
+    }
+
+    private func fetchConversationForCustomerSupport() {
+        model.fetchConversationForSupport { [self] result in
             switch result {
             case .success(let conversation as ConversationReponseModel):
                 handleSuccessRequest(response: conversation)
@@ -50,6 +75,17 @@ class ChatViewModel {
     }
 
     func sendMessage(text: String) {
+        switch chatType {
+        case .teacher:
+            sendMessageForTeacher(text: text)
+        case .customerSupport:
+            sendMessageForCustomerSupport(text: text)
+        }
+    }
+
+    private func sendMessageForTeacher(text: String) {}
+
+    private func sendMessageForCustomerSupport(text: String) {
         let messageRequestBody = createMessageRequestModel(text: text, isFirstMessage: isStartingConversation)
         model.addMessage(
             isFirstMessage: isStartingConversation,

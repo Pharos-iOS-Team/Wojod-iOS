@@ -6,8 +6,19 @@ import Moya
 class ChatApiClient {
     let chatProvider = MoyaProvider<ChatTarget>()
 
-    func loadConversation(completion: @escaping (Response?, MoyaError?) -> Void) {
-        chatProvider.request(.getConversation) { result in
+    func loadConversationForTeacher(courseID: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+        chatProvider.request(.getConversationForTeacher(courseID: courseID)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func loadConversationForSupport(completion: @escaping (Response?, MoyaError?) -> Void) {
+        chatProvider.request(.getConversationForSupport) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)

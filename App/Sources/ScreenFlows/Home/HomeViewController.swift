@@ -112,6 +112,7 @@ class HomeViewController: UIViewController {
 
     @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
         let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.chatType = .customerSupport
         viewCtrl.modalPresentationStyle = .fullScreen
         present(viewCtrl, animated: true)
     }
@@ -372,6 +373,7 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         let teacherName = subjectCourse?.teacher?.name
         viewCtrl.course = course
         viewCtrl.teacherName = teacherName
+        viewCtrl.teacherID = subjectCourse?.teacher?.id
         present(viewCtrl, animated: true)
     }
 }

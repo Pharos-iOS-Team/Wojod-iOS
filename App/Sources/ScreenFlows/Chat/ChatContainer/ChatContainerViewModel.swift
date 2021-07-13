@@ -2,11 +2,16 @@
 
 import Foundation
 
+enum ChatType: Equatable {
+    case teacher(courseID: Int, teacherID: Int)
+    case customerSupport
+}
+
 class ChatContainerViewModel {
     var handleEndingChat: (() -> Void)?
+    var conversationID: Int?
 
     private var model = ChatModel()
-    var conversationID: Int?
 
     func endChat() {
         guard let conversationID = conversationID else { return }

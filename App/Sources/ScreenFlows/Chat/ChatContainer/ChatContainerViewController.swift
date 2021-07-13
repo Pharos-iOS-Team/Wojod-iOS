@@ -8,8 +8,9 @@ class ChatContainerViewController: UIViewController {
     @IBOutlet private var chatView: UIView!
     @IBOutlet private var endChatView: UIView!
     @IBOutlet private var endChatLabel: UILabel!
-    let activityIndicator = ActivityIndicator()
+    var chatType: ChatType = .customerSupport
 
+    private let activityIndicator = ActivityIndicator()
     private let chatViewCtrl = ChatViewController()
     private let viewModel = ChatContainerViewModel()
 
@@ -45,9 +46,10 @@ class ChatContainerViewController: UIViewController {
     private func addChatChildVc() {
         chatViewCtrl.setHeaderHandler = { name, conversationID in
             self.receiverNameLbl.text = name ?? ""
-            self.endChatView.isHidden = (conversationID == nil)
+            self.endChatView.isHidden = (conversationID == nil || self.chatType != .customerSupport)
             self.viewModel.conversationID = conversationID
         }
+        chatViewCtrl.chatType = chatType
         chatViewCtrl.willMove(toParent: self)
         addChild(chatViewCtrl)
         chatViewCtrl.didMove(toParent: self)
