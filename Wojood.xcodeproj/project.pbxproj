@@ -13,6 +13,7 @@
 		268BD94C269DBC13004758CE /* ImageAttachmentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD94B269DBC12004758CE /* ImageAttachmentDetails.swift */; };
 		268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD950269DBD47004758CE /* FormDataGenerator.swift */; };
 		268BD95A269DD8DB004758CE /* ChatContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */; };
+		268BD965269E025E004758CE /* DateFormatterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD964269E025D004758CE /* DateFormatterHandler.swift */; };
 		26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4897269AF86B00DDA29F /* ChatViewModel.swift */; };
 		26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */; };
 		26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */; };
@@ -318,6 +319,7 @@
 		268BD94B269DBC12004758CE /* ImageAttachmentDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAttachmentDetails.swift; sourceTree = "<group>"; };
 		268BD950269DBD47004758CE /* FormDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataGenerator.swift; sourceTree = "<group>"; };
 		268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewModel.swift; sourceTree = "<group>"; };
+		268BD964269E025D004758CE /* DateFormatterHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterHandler.swift; sourceTree = "<group>"; };
 		26CF4897269AF86B00DDA29F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiClient.swift; sourceTree = "<group>"; };
 		26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTarget.swift; sourceTree = "<group>"; };
@@ -1190,6 +1192,7 @@
 		778E722E261DC162009D7B35 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				268BD964269E025D004758CE /* DateFormatterHandler.swift */,
 				26CF4906269B4F9E00DDA29F /* LoadingButton.swift */,
 				26CF48BE269B2DE400DDA29F /* ActivityIndicator.swift */,
 				778E72ED261DFA57009D7B35 /* AlertHandler.swift */,
@@ -1965,6 +1968,7 @@
 				BC19E5882631762A00CFA142 /* ProfileTableViewCell.swift in Sources */,
 				778E72CC261DD6FF009D7B35 /* FileExtension.swift in Sources */,
 				BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */,
+				268BD965269E025E004758CE /* DateFormatterHandler.swift in Sources */,
 				778E72DF261DF9AB009D7B35 /* Result.swift in Sources */,
 				E8C9EF5926361C140023D2B1 /* Avatars.swift in Sources */,
 				778E7256261DC2D4009D7B35 /* UIEdgeInsetsExt.swift in Sources */,

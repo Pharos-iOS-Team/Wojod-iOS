@@ -11,4 +11,6 @@ enum ChatConstants {
     static let sendButtonColorDimmed: UIColor = Asset.Colors.sendButtonColor.color.withAlphaComponent(0.5)
     static let messageHorizontalPadding: CGFloat = 10
     static let messageVerticalPadding: CGFloat = 4
+    static let messageDateHeight: CGFloat = 15
+    static let dateFont: UIFont = FontFamily.Inter.regular.font(size: 11)
 }

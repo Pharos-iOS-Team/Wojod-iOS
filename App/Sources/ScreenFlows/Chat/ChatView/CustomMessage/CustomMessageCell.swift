@@ -19,6 +19,7 @@ class CustomMessageCell: UICollectionViewCell {
     @IBOutlet private var attachmentNameLbl: UILabel!
     @IBOutlet private var attachmentImageView: UIImageView!
     @IBOutlet private var attachmentExtensionLbl: UILabel!
+    @IBOutlet private var messageDateLabel: UILabel!
     @IBOutlet private var downloadAttachmentBtn: LoadingButton!
 
     var message: MessageObjectModel?
@@ -71,8 +72,10 @@ class CustomMessageCell: UICollectionViewCell {
     private func messageStyle(sender: Bool) {
         if sender {
             messageContentView.setSenderMessageCornerRadius(radius: 15)
+            messageDateLabel.textAlignment = .right
         } else {
             messageContentView.setReciverMessageCornerRadius(radius: 15)
+            messageDateLabel.textAlignment = .left
         }
     }
 
@@ -84,6 +87,9 @@ class CustomMessageCell: UICollectionViewCell {
 
     private func fillCellData() {
         contentMessageLbl.text = message?.content
+        let inputFormatter = DateFormatter()
+        let date = inputFormatter.date(from: message?.createdAt ?? "") ?? Date()
+        messageDateLabel.text = date.formatDateToDateTimeString
         let currentAttachment = message?.attachments?.first
         attachmentNameLbl.text = currentAttachment?.filename ?? "-"
         attachmentExtensionLbl.text = currentAttachment?.contentType ?? ""

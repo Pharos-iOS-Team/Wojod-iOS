@@ -24,6 +24,7 @@ struct RecivableObjectModel: Codable {
 struct MessageObjectModel: Codable {
     var id: Int?
     var content: String?
+    var createdAt: String
     var sendableId: Int?
     var sendableType: String?
     var receivable: RecivableObjectModel?

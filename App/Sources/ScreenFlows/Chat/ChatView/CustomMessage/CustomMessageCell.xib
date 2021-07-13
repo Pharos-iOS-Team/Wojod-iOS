@@ -27,19 +27,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="220" height="214"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWd-J4-nDh">
-                                <rect key="frame" x="0.0" y="0.0" width="220" height="214"/>
+                                <rect key="frame" x="0.0" y="0.0" width="220" height="199"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="M0E-JR-dbI">
-                                        <rect key="frame" x="10" y="10" width="200" height="194"/>
+                                        <rect key="frame" x="10" y="10" width="200" height="179"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YN-Tn-HXv">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="134"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="119"/>
                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZu-vu-x1p">
-                                                <rect key="frame" x="0.0" y="144" width="200" height="50"/>
+                                                <rect key="frame" x="0.0" y="129" width="200" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PdfIcon" translatesAutoresizingMaskIntoConstraints="NO" id="AUy-iP-RO7">
                                                         <rect key="frame" x="4" y="8" width="34" height="34"/>
@@ -111,6 +111,15 @@
                                     <constraint firstItem="M0E-JR-dbI" firstAttribute="leading" secondItem="qWd-J4-nDh" secondAttribute="leading" constant="10" id="kYC-Ul-wTG"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-5W-euI">
+                                <rect key="frame" x="0.0" y="199" width="220" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="LW7-h4-Z1K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -130,6 +139,7 @@
                 <outlet property="contentMessageLbl" destination="6YN-Tn-HXv" id="Lfs-9u-hfX"/>
                 <outlet property="downloadAttachmentBtn" destination="0n8-bk-DeP" id="ER4-1Q-C0j"/>
                 <outlet property="messageContentView" destination="qWd-J4-nDh" id="pfL-fE-CQO"/>
+                <outlet property="messageDateLabel" destination="1Kr-5W-euI" id="cdj-WV-twB"/>
             </connections>
             <point key="canvasLocation" x="713.04347826086962" y="-122.54464285714285"/>
         </collectionViewCell>

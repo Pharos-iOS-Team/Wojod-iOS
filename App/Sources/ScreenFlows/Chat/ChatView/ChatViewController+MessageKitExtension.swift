@@ -81,10 +81,17 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        ChatConstants.messageVerticalPadding
+        ChatConstants.messageDateHeight
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        return nil
+        let createdAt = viewModel.messages[indexPath.section].createdAt
+        let inputFormatter = DateFormatter()
+        let date = inputFormatter.date(from: createdAt) ?? Date()
+        let attributedString = NSMutableAttributedString(
+            string: date.formatDateToDateTimeString,
+            attributes: [.font: ChatConstants.dateFont]
+        )
+        return attributedString
     }
 }
