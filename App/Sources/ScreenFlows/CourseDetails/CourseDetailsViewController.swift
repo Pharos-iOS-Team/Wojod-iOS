@@ -109,6 +109,12 @@ class CourseDetailsViewController: UIViewController {
         unselect(button: reviewsButton)
     }
 
+    @IBAction private func didTapChat(_ sender: UIButton) {
+        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        present(viewCtrl, animated: true)
+    }
+
     @IBAction private func didTapMaterials(_ sender: UIButton) {
         viewModel?.loadMaterials(courseID: 35) { materials in
             self.materials = materials
