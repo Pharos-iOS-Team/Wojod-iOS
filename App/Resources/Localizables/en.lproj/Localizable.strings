@@ -202,3 +202,5 @@ No worries!";
 "chat.sending" = "Sending";
 "chat.images" = "Images";
 "chat.files" = "Files";
+"chat.camera" = "Camera";
+"chat.endChat" = "End chat";

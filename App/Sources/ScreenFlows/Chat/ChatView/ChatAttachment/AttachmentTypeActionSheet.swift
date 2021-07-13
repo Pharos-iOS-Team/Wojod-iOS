@@ -6,18 +6,22 @@ import UIKit
 
 enum AttachmentTag: CaseIterable {
     case photos
+    case camera
     case files
     case cancel
 }
 
 class AttachmentTypeActionSheet: UIView, NibLoadable {
-    var photoTypeSelectionHandler: (() -> Void)?
-    var fileTypeSelectionHandler: (() -> Void)?
     @IBOutlet private var view: UIView!
     @IBOutlet private var imagesButton: UIButton!
+    @IBOutlet private var cameraButton: UIButton!
     @IBOutlet private var filesButton: UIButton!
     @IBOutlet private var cancelButton: UIButton!
-
+    
+    var photoTypeSelectionHandler: (() -> Void)?
+    var fileTypeSelectionHandler: (() -> Void)?
+    var cameraTypeSelectionHandler: (() -> Void)?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initWithNib()
@@ -39,6 +43,8 @@ class AttachmentTypeActionSheet: UIView, NibLoadable {
         switch attachmentType {
         case .photos:
             photoTypeSelectionHandler?()
+        case .camera:
+            cameraTypeSelectionHandler?()
         case .files:
             fileTypeSelectionHandler?()
         case .cancel:
@@ -61,7 +67,6 @@ class AttachmentTypeActionSheet: UIView, NibLoadable {
                 radius: 8
             )
         )
-        
         return attributes
     }
 
@@ -72,6 +77,7 @@ class AttachmentTypeActionSheet: UIView, NibLoadable {
 
     private func configureTexts() {
         imagesButton.setTitle(L10n.Chat.images, for: .normal)
+        cameraButton.setTitle(L10n.Chat.camera, for: .normal)
         filesButton.setTitle(L10n.Chat.files, for: .normal)
         cancelButton.setTitle(L10n.Shared.Action.cancel, for: .normal)
     }

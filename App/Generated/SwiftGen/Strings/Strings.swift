@@ -12,6 +12,14 @@ import Foundation
 internal enum L10n {
 
   internal enum Chat {
+    /// Camera
+    internal static var camera: String {
+        return L10n.tr("Localizable", "chat.camera")
+      }
+    /// End chat
+    internal static var endChat: String {
+        return L10n.tr("Localizable", "chat.endChat")
+      }
     /// Files
     internal static var files: String {
         return L10n.tr("Localizable", "chat.files")

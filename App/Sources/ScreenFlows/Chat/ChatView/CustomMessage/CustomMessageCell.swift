@@ -47,6 +47,7 @@ class CustomMessageCell: UICollectionViewCell {
         containerStackView.addGestureRecognizer(tap)
         handleColorsWith(sender: isSameSender)
         messageStyle(sender: isSameSender)
+        attachmentImageView.layer.cornerRadius = 4
     }
 
     private func configureDownloadButton() {

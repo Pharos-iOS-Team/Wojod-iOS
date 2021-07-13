@@ -202,3 +202,5 @@
 "chat.sending" = "ارسال";
 "chat.images" = "صور";
 "chat.files" = "ملفات";
+"chat.camera" = "كاميرا";
+"chat.endChat" = "إنهاء المحادثة";

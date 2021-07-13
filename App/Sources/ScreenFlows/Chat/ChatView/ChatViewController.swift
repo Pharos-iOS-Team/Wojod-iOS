@@ -5,7 +5,7 @@ import MessageKit
 import UIKit
 
 class ChatViewController: MessagesViewController {
-    var setReciverNameHandler: ((_: String?) -> Void)?
+    var setHeaderHandler: ((_: String?, _: Int?) -> Void)?
     let viewModel = ChatViewModel()
     let activityIndicator = ActivityIndicator()
     let attachmentTypesActionSheet = AttachmentTypeActionSheet()
@@ -56,7 +56,7 @@ class ChatViewController: MessagesViewController {
         viewModel.handleSuccessResponse = { [weak self] in
             guard let self = self else { return }
             self.activityIndicator.dismiss()
-            self.setReciverNameHandler?(self.viewModel.reciverName)
+            self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
             self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem()
         }
@@ -64,6 +64,7 @@ class ChatViewController: MessagesViewController {
             self.activityIndicator.dismiss()
         }
         viewModel.handleSendingMessageSuccess = {
+            self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
             self.messagesCollectionView.reloadData()
             self.messageSentSuccessfully()
         }

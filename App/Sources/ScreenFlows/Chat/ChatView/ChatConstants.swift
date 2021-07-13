@@ -7,6 +7,8 @@ enum ChatConstants {
     static let senderTextColor: UIColor = .white
     static let reciverBackgroundColor: UIColor = Asset.Colors.lightGreyColor.color
     static let reciverTextColor: UIColor = .black
+    static let sendButtonColor: UIColor = Asset.Colors.sendButtonColor.color
+    static let sendButtonColorDimmed: UIColor = Asset.Colors.sendButtonColor.color.withAlphaComponent(0.5)
     static let messageHorizontalPadding: CGFloat = 10
     static let messageVerticalPadding: CGFloat = 4
 }

@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
         <array key="NunitoSans-SemiBold.ttf">
             <string>NunitoSans-SemiBold</string>
         </array>
@@ -43,14 +46,46 @@
                                             <action selector="closeBtn" destination="Zl2-Zz-NbS" eventType="touchUpInside" id="8Yx-dd-1HL"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tV-Tp-A1o">
+                                        <rect key="frame" x="367" y="2.5" width="39" height="25"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMx-I6-5C7">
+                                                <rect key="frame" x="4" y="4" width="31" height="17"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQr-sX-EIl">
+                                                <rect key="frame" x="0.0" y="0.0" width="39" height="25"/>
+                                                <connections>
+                                                    <action selector="endChatButton" destination="Zl2-Zz-NbS" eventType="touchUpInside" id="Ffu-zW-YpG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="errorAlertLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="pQr-sX-EIl" secondAttribute="bottom" id="0h2-0G-sk9"/>
+                                            <constraint firstAttribute="height" constant="25" id="0qG-2v-dsh"/>
+                                            <constraint firstAttribute="bottom" secondItem="RMx-I6-5C7" secondAttribute="bottom" constant="4" id="7e7-jm-5F9"/>
+                                            <constraint firstAttribute="trailing" secondItem="RMx-I6-5C7" secondAttribute="trailing" constant="4" id="CCB-1Z-QnU"/>
+                                            <constraint firstAttribute="trailing" secondItem="pQr-sX-EIl" secondAttribute="trailing" id="Tvf-Qo-NEU"/>
+                                            <constraint firstItem="pQr-sX-EIl" firstAttribute="top" secondItem="1tV-Tp-A1o" secondAttribute="top" id="VfP-8w-4Dg"/>
+                                            <constraint firstItem="RMx-I6-5C7" firstAttribute="top" secondItem="1tV-Tp-A1o" secondAttribute="top" constant="4" id="dPa-vl-fZV"/>
+                                            <constraint firstItem="RMx-I6-5C7" firstAttribute="leading" secondItem="1tV-Tp-A1o" secondAttribute="leading" constant="4" id="gu8-9S-yw8"/>
+                                            <constraint firstItem="pQr-sX-EIl" firstAttribute="leading" secondItem="1tV-Tp-A1o" secondAttribute="leading" id="pN8-0Z-bhi"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="xBs-Y6-b7H" firstAttribute="centerY" secondItem="MF6-Zy-yd4" secondAttribute="centerY" id="1Mc-li-Ydc"/>
                                     <constraint firstItem="RoV-ec-EpO" firstAttribute="centerY" secondItem="MF6-Zy-yd4" secondAttribute="centerY" id="2Xr-lG-2Ej"/>
+                                    <constraint firstItem="1tV-Tp-A1o" firstAttribute="centerY" secondItem="MF6-Zy-yd4" secondAttribute="centerY" id="9hk-nA-1fJ"/>
                                     <constraint firstAttribute="height" constant="30" id="MEZ-hv-bhx"/>
                                     <constraint firstItem="xBs-Y6-b7H" firstAttribute="centerX" secondItem="MF6-Zy-yd4" secondAttribute="centerX" id="Mo4-WN-kfe"/>
+                                    <constraint firstAttribute="trailing" secondItem="1tV-Tp-A1o" secondAttribute="trailing" constant="8" id="kxk-a2-zNq"/>
                                     <constraint firstItem="RoV-ec-EpO" firstAttribute="leading" secondItem="MF6-Zy-yd4" secondAttribute="leading" constant="15" id="rXJ-WG-7Dr"/>
+                                    <constraint firstItem="1tV-Tp-A1o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xBs-Y6-b7H" secondAttribute="trailing" constant="8" id="vnm-fb-ttF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-h5-cMS">
@@ -72,6 +107,8 @@
                     </view>
                     <connections>
                         <outlet property="chatView" destination="gbS-h5-cMS" id="F3l-C1-Mby"/>
+                        <outlet property="endChatLabel" destination="RMx-I6-5C7" id="2Ki-cj-y53"/>
+                        <outlet property="endChatView" destination="1tV-Tp-A1o" id="wnB-OL-6B5"/>
                         <outlet property="navigationView" destination="MF6-Zy-yd4" id="Q6b-ZV-xch"/>
                         <outlet property="receiverNameLbl" destination="xBs-Y6-b7H" id="sgL-8A-rJh"/>
                     </connections>
@@ -98,6 +135,9 @@
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
+        <namedColor name="errorAlertLabelColor">
+            <color red="1" green="0.31372549019607843" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="incomingMessageLabel">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

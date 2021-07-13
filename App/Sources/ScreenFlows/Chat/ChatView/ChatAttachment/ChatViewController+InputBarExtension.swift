@@ -12,6 +12,9 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         attachmentTypesActionSheet.photoTypeSelectionHandler = { [weak self] in
             self?.pickImage(pickImageFrom: .photoLibrary)
         }
+        attachmentTypesActionSheet.cameraTypeSelectionHandler = { [weak self] in
+            self?.pickImage(pickImageFrom: .camera)
+        }
     }
 
     func removeSelectedAttachmentManager() {
@@ -25,10 +28,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         messageInputBar.sendButton.setTitle(L10n.Chat.send, for: .normal)
         messageInputBar.shouldAnimateTextDidChangeLayout = true
         messageInputBar.inputPlugins = [attachmentManager]
-        messageInputBar.inputTextView.tintColor = .yellow
-        messageInputBar.sendButton.setTitleColor(.yellow, for: .normal)
+        messageInputBar.inputTextView.tintColor = ChatConstants.sendButtonColor
+        messageInputBar.sendButton.setTitleColor(ChatConstants.sendButtonColor, for: .normal)
         messageInputBar.sendButton.setTitleColor(
-            .yellow,
+            ChatConstants.sendButtonColorDimmed,
             for: .highlighted
         )
         setAddAttachmentBtn(isAnyAttachmentSelected: false)
@@ -103,7 +106,7 @@ extension ChatViewController: AttachmentManagerDelegate, AttachmentManagerDataSo
         cell.indexPath = indexPath
         cell.manager = manager
         if let selectedImage = viewModel.selectedImage {
-            cell.imageView.image = selectedImage
+            cell.imageView.image = selectedImage.image
         }
         if let selectedFile = viewModel.selectedFile {
             if selectedFile.pathExtension.contains("pdf") {

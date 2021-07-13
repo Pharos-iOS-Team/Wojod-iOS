@@ -2,6 +2,7 @@
 
 import InputBarAccessoryView
 import UIKit
+import Photos
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -9,7 +10,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = pickImageFrom
-        imagePicker.modalPresentationStyle = .overFullScreen
+        imagePicker.modalPresentationStyle = .fullScreen
         imagePicker.modalTransitionStyle = .crossDissolve
         present(imagePicker, animated: true, completion: nil)
     }
@@ -19,7 +20,14 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            viewModel.selectedImage = image
+            let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset ?? PHAsset()
+            let assetResources = PHAssetResource.assetResources(for: asset)
+            let imageAttachmentDetails = ImageAttachmentDetails(
+                image: image,
+                imageName: assetResources.first?.originalFilename ?? "",
+                mimeType: assetResources.first?.uniformTypeIdentifier ?? ""
+                )
+            viewModel.selectedImage = imageAttachmentDetails
             self.messageInputBar.inputPlugins.forEach {
                 if let attach = $0 as? AttachmentManager {
                     attach.handleInput(of: image)

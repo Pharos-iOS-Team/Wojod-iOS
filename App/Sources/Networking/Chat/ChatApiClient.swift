@@ -17,6 +17,17 @@ class ChatApiClient {
         }
     }
 
+    func endChat(id: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+        chatProvider.request(.endChat(id: id)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
     func sendMessage(
         id: Int,
         isFirstMessageInConversation: Bool,

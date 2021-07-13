@@ -8,16 +8,18 @@ class ChatViewModel {
     // clousers
     var handleSuccessResponse: (() -> Void)?
     var handleSendingMessageSuccess: (() -> Void)?
+    var handleEndingChat: (() -> Void)?
     var handleErrorResponse: ((_: String?) -> Void)?
 
     // private vars
     private var model: ChatModel
+    private var isStartingConversation = true
 
     // public vars
     var messages: [MessageObjectModel] = []
     var conversationID: Int?
     var reciverName: String?
-    var selectedImage: UIImage?
+    var selectedImage: ImageAttachmentDetails?
     var selectedFile: URL?
 
     // MARK: - Init
@@ -30,9 +32,7 @@ class ChatViewModel {
         model.fetchConversation { [self] result in
             switch result {
             case .success(let conversation as ConversationReponseModel):
-                messages += conversation.messages ?? []
-                conversationID = conversation.conversation?.id
-                reciverName = conversation.messages?.last?.receivable?.name ?? ""
+                handleSuccessRequest(response: conversation)
                 handleSuccessResponse?()
             case .failure(let error):
                 handleErrorResponse?(error.message)
@@ -42,17 +42,23 @@ class ChatViewModel {
         }
     }
 
+    private func handleSuccessRequest(response conversation: ConversationReponseModel) {
+        messages += conversation.messages ?? []
+        isStartingConversation = messages.isEmpty
+        conversationID = conversation.conversation?.id
+        reciverName = conversation.messages?.last?.receivable?.name ?? ""
+    }
+
     func sendMessage(text: String) {
-        let messageRequestBody = createMessageRequestModel(text: text, isFirstMessage: messages.isEmpty)
+        let messageRequestBody = createMessageRequestModel(text: text, isFirstMessage: isStartingConversation)
         model.addMessage(
-            isFirstMessage: messages.isEmpty,
+            isFirstMessage: isStartingConversation,
             id: conversationID ?? 0,
             messageRequestModel: messageRequestBody
         ) { [self] result in
             switch result {
             case .success(let conversation as ConversationReponseModel):
-                messages += conversation.messages ?? []
-                reciverName = conversation.messages?.last?.receivable?.name ?? ""
+                handleSuccessRequest(response: conversation)
                 handleSendingMessageSuccess?()
             case .failure(let error):
                 handleErrorResponse?(error.message)
@@ -76,25 +82,24 @@ class ChatViewModel {
 
     private func getFormData(requestDictionary: [String: Any]) -> [Moya.MultipartFormData] {
         var formDataArr = [Moya.MultipartFormData]()
-        for (key, value) in requestDictionary {
-            let dataOfValue = getDataFrom(value)
-            let formData = Moya.MultipartFormData(provider: .data(dataOfValue), name: key)
-            formDataArr.append(formData)
+        formDataArr.append(
+            contentsOf: FormDataGenerator.getDictionaryFormData(requestDictionary: requestDictionary)
+        )
+        if let attachmentImage = selectedImage {
+            formDataArr.append(
+                contentsOf: FormDataGenerator.getImagesFormData(
+                    images: [attachmentImage],
+                    key: isStartingConversation ? "conversation[messages_attributes][][attachments][]" : "message[attachments][]"
+                )
+            )
+        } else if let attachmentFiles = selectedFile {
+            formDataArr.append(
+                contentsOf: FormDataGenerator.getFilesFormData(
+                    files: [attachmentFiles],
+                    key: isStartingConversation ? "conversation[messages_attributes][][attachments][]" : "message[attachments][]"
+                )
+            )
         }
         return formDataArr
-    }
-
-    private func getDataFrom(_ value: Any) -> Data {
-        if let value = value as? String {
-            return value.data(using: String.Encoding.utf8) ?? Data()
-        } else if let value = value as? [String] {
-            var valueData = Data()
-            for string in value {
-                valueData.append(string.data(using: String.Encoding.utf8) ?? Data())
-            }
-            return valueData
-        } else {
-            return Data()
-        }
     }
 }

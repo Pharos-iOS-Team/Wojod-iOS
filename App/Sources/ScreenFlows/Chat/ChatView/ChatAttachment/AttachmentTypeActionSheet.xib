@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,8 +14,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttachmentTypeActionSheet" customModule="DrawNeat_Client" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttachmentTypeActionSheet" customModule="Wojood" customModuleProvider="target">
             <connections>
+                <outlet property="cameraButton" destination="zSI-7w-GVK" id="avN-rY-xts"/>
                 <outlet property="cancelButton" destination="GWM-xP-Y2y" id="0Xm-9X-e5P"/>
                 <outlet property="filesButton" destination="gkB-kl-UqC" id="h9b-Fv-VFT"/>
                 <outlet property="imagesButton" destination="VTb-wr-OTL" id="Pyq-BY-jTZ"/>
@@ -34,7 +35,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="381" height="184"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-wr-OTL">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="40"/>
                                     <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
                                     <state key="normal" title="Images">
                                         <color key="titleColor" name="steel"/>
@@ -43,8 +44,18 @@
                                         <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="oXd-Ow-UFL"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkB-kl-UqC">
-                                    <rect key="frame" x="0.0" y="64" width="381" height="56"/>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSI-7w-GVK">
+                                    <rect key="frame" x="0.0" y="48" width="381" height="40"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
+                                    <state key="normal" title="Camera">
+                                        <color key="titleColor" name="steel"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="AiR-6w-hPS"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkB-kl-UqC">
+                                    <rect key="frame" x="0.0" y="96" width="381" height="40"/>
                                     <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
                                     <state key="normal" title="Files">
                                         <color key="titleColor" name="steel"/>
@@ -53,8 +64,8 @@
                                         <action selector="selectRequestType:" destination="-1" eventType="touchUpInside" id="YK0-bf-g2y"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWM-xP-Y2y">
-                                    <rect key="frame" x="0.0" y="128" width="381" height="56"/>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWM-xP-Y2y">
+                                    <rect key="frame" x="0.0" y="144" width="381" height="40"/>
                                     <fontDescription key="fontDescription" name="NunitoSans-Regular" family="Nunito Sans" pointSize="17"/>
                                     <state key="normal" title="Cancel">
                                         <color key="titleColor" name="steel"/>
