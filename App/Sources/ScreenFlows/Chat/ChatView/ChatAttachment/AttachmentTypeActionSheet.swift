@@ -17,11 +17,11 @@ class AttachmentTypeActionSheet: UIView, NibLoadable {
     @IBOutlet private var cameraButton: UIButton!
     @IBOutlet private var filesButton: UIButton!
     @IBOutlet private var cancelButton: UIButton!
-    
+
     var photoTypeSelectionHandler: (() -> Void)?
     var fileTypeSelectionHandler: (() -> Void)?
     var cameraTypeSelectionHandler: (() -> Void)?
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initWithNib()

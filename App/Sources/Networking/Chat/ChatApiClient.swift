@@ -16,7 +16,7 @@ class ChatApiClient {
             }
         }
     }
-    
+
     func loadConversationForSupport(completion: @escaping (Response?, MoyaError?) -> Void) {
         chatProvider.request(.getConversationForSupport) { result in
             switch result {
@@ -50,8 +50,8 @@ class ChatApiClient {
             sendMessageForTeacher(messageRequestModel: messageRequestModel, completion: completionHandler)
         } else {
             isFirstMessageInConversation ?
-                sendMessageForFirstTime(messageRequestModel: messageRequestModel, completion: completionHandler) :
-                addToConversation(id: id, messageRequestModel: messageRequestModel, completion: completionHandler)
+                sendMessageForFirstTime(messageRequestModel: messageRequestModel, completion: completionHandler)
+                : addToConversation(id: id, messageRequestModel: messageRequestModel, completion: completionHandler)
         }
     }
 

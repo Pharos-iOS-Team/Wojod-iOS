@@ -29,10 +29,7 @@ extension MessageObjectModel: MessageType {
     }
 
     var kind: MessageKind {
-        guard let attachment = attachments?.first,
-              let attachmentType = attachment.contentType
-        else { return .text(content ?? "") }
-
+        guard let attachment = attachments?.first, let attachmentType = attachment.contentType else { return .text(content ?? "") }
         if attachmentType.contains("audio") {
             return .custom("")
         } else {

@@ -1,11 +1,10 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import InputBarAccessoryView
-import UIKit
 import Photos
+import UIKit
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     func pickImage(pickImageFrom: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

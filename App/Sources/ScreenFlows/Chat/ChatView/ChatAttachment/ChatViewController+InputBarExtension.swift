@@ -60,10 +60,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        guard ReachabilityAppDelegate.connectionState == .connected else {
-            //ErrorView().displayNoInternentConnection()
-            return
-        }
         messageInputBar.inputTextView.text = String()
         messageInputBar.sendButton.startAnimating()
         messageInputBar.inputTextView.placeholder = L10n.Chat.sending

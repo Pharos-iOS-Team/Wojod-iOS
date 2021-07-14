@@ -54,8 +54,19 @@ class ChatModel: ModelDecodable {
         }
     }
 
-    func addMessage(isSendToTeacher: Bool, isFirstMessage: Bool, id: Int, messageRequestModel: [Moya.MultipartFormData], completion: @escaping (Result) -> Void) {
-        apiClient.sendMessage(id: id, isSendToTeacher: isSendToTeacher, isFirstMessageInConversation: isFirstMessage, messageRequestModel: messageRequestModel) { response, error in
+    func addMessage(
+        isSendToTeacher: Bool,
+        isFirstMessage: Bool,
+        id: Int,
+        messageRequestModel: [Moya.MultipartFormData],
+        completion: @escaping (Result) -> Void
+    ) {
+        apiClient.sendMessage(
+            id: id,
+            isSendToTeacher: isSendToTeacher,
+            isFirstMessageInConversation: isFirstMessage,
+            messageRequestModel: messageRequestModel
+        ) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.decode(modelType: ConversationReponseModel.self, from: response) { result in
