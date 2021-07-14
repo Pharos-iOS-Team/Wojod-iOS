@@ -11,8 +11,8 @@ enum FormDataGenerator {
             let imgFormData = Moya.MultipartFormData(
                 provider: .data(imageData),
                 name: key,
-                fileName: attachment.imageName ?? "Image1",
-                mimeType: attachment.mimeType ?? "image/jpeg"
+                fileName: attachment.imageName ?? "IMG_000.PNG",
+                mimeType: attachment.mimeType ?? "public.png"
             )
             formData.append(imgFormData)
         }
@@ -38,14 +38,14 @@ enum FormDataGenerator {
     static func getDictionaryFormData(requestDictionary: [String: Any]) -> [Moya.MultipartFormData] {
         var formDataArr = [Moya.MultipartFormData]()
         for (key, value) in requestDictionary {
-            let dataOfValue = getDataFrom(value)
+            let dataOfValue = getDataFromString(value)
             let formData = Moya.MultipartFormData(provider: .data(dataOfValue), name: key)
             formDataArr.append(formData)
         }
         return formDataArr
     }
 
-    static func getDataFrom(_ value: Any) -> Data {
+    static func getDataFromString(_ value: Any) -> Data {
         if let value = value as? String {
             return value.data(using: String.Encoding.utf8) ?? Data()
         } else if let value = value as? [String] {

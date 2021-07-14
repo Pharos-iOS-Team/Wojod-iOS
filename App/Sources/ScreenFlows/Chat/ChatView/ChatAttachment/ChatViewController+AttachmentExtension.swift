@@ -20,12 +20,12 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset ?? PHAsset()
-            let assetResources = PHAssetResource.assetResources(for: asset)
+            let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            let imageRefrenceURL = info[UIImagePickerController.InfoKey.] as? URL
             let imageAttachmentDetails = ImageAttachmentDetails(
                 image: image,
-                imageName: assetResources.first?.originalFilename ?? "",
-                mimeType: assetResources.first?.uniformTypeIdentifier ?? ""
+                imageName: imageUrl?.lastPathComponent,
+                mimeType: info[UIImagePickerController.InfoKey.mediaType] as? String
                 )
             viewModel.selectedImage = imageAttachmentDetails
             self.messageInputBar.inputPlugins.forEach {
