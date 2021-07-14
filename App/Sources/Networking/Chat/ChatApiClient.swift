@@ -41,14 +41,28 @@ class ChatApiClient {
 
     func sendMessage(
         id: Int,
+        isSendToTeacher: Bool,
         isFirstMessageInConversation: Bool,
         messageRequestModel: [Moya.MultipartFormData],
         completionHandler: @escaping (Response?, MoyaError?) -> Void
     ) {
-        if isFirstMessageInConversation {
-            sendMessageForFirstTime(messageRequestModel: messageRequestModel, completion: completionHandler)
+        if isSendToTeacher {
+            sendMessageForTeacher(messageRequestModel: messageRequestModel, completion: completionHandler)
         } else {
-            addToConversation(id: id, messageRequestModel: messageRequestModel, completion: completionHandler)
+            isFirstMessageInConversation ?
+                sendMessageForFirstTime(messageRequestModel: messageRequestModel, completion: completionHandler) :
+                addToConversation(id: id, messageRequestModel: messageRequestModel, completion: completionHandler)
+        }
+    }
+
+    private func sendMessageForTeacher(messageRequestModel: [Moya.MultipartFormData], completion: @escaping (Response?, MoyaError?) -> Void) {
+        chatProvider.request(.sendMessageForteacher(formData: messageRequestModel)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
         }
     }
 

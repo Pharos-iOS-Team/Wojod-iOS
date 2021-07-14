@@ -43,7 +43,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         button.setImage(Asset.Images.plusIcn.image, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(addAttachment), for: .touchUpInside)
-        messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: true)
         messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
         button.isHidden = isAnyAttachmentSelected
     }

@@ -7,6 +7,7 @@ enum ChatTarget {
     case getConversationForSupport
     case getConversationForTeacher(courseID: Int)
     case sendMessageForFirstTime(formData: [Moya.MultipartFormData])
+    case sendMessageForteacher(formData: [Moya.MultipartFormData])
     case addMessage(id: Int, formData: [Moya.MultipartFormData])
     case endChat(id: Int)
 }
@@ -20,7 +21,7 @@ extension ChatTarget: TargetType {
             return "/conversations/\(id)/add_message_to_conversation"
         case let .endChat(id):
             return "/conversations/\(id)/close_issue"
-        case .getConversationForTeacher:
+        case .getConversationForTeacher, .sendMessageForteacher:
             return "/messages"
         }
     }
@@ -29,7 +30,7 @@ extension ChatTarget: TargetType {
         switch self {
         case .getConversationForSupport, .getConversationForTeacher:
             return .get
-        case .addMessage, .sendMessageForFirstTime, .endChat:
+        case .addMessage, .sendMessageForFirstTime, .endChat, .sendMessageForteacher:
             return .post
         }
     }
@@ -39,11 +40,11 @@ extension ChatTarget: TargetType {
         case let .getConversationForTeacher(courseID):
             return .requestParameters(
                 parameters: ["course_id": courseID],
-                encoding: URLEncoding.queryString
+                encoding: URLEncoding.default
             )
         case .getConversationForSupport, .endChat:
             return .requestPlain
-        case .sendMessageForFirstTime(let formData), .addMessage(_, let formData):
+        case .sendMessageForFirstTime(let formData), .addMessage(_, let formData), .sendMessageForteacher(let formData):
             return .uploadMultipart(formData)
         }
     }

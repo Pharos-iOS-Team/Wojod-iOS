@@ -11,8 +11,8 @@ enum FormDataGenerator {
             let imgFormData = Moya.MultipartFormData(
                 provider: .data(imageData),
                 name: key,
-                fileName: attachment.imageName,
-                mimeType: attachment.mimeType
+                fileName: attachment.imageName ?? "Image1",
+                mimeType: attachment.mimeType ?? "image/jpeg"
             )
             formData.append(imgFormData)
         }

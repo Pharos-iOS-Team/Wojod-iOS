@@ -21,7 +21,7 @@ class ChatModel: ModelDecodable {
             }
         }
     }
-    
+
     func fetchConversationForSupport(completion: @escaping (Result) -> Void) {
         apiClient.loadConversationForSupport { response, error in
             if let response = response {
@@ -54,8 +54,8 @@ class ChatModel: ModelDecodable {
         }
     }
 
-    func addMessage(isFirstMessage: Bool, id: Int, messageRequestModel: [Moya.MultipartFormData], completion: @escaping (Result) -> Void) {
-        apiClient.sendMessage(id: id, isFirstMessageInConversation: isFirstMessage, messageRequestModel: messageRequestModel) { response, error in
+    func addMessage(isSendToTeacher: Bool, isFirstMessage: Bool, id: Int, messageRequestModel: [Moya.MultipartFormData], completion: @escaping (Result) -> Void) {
+        apiClient.sendMessage(id: id, isSendToTeacher: isSendToTeacher, isFirstMessageInConversation: isFirstMessage, messageRequestModel: messageRequestModel) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.decode(modelType: ConversationReponseModel.self, from: response) { result in

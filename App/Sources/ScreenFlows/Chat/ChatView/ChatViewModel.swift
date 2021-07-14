@@ -31,8 +31,7 @@ class ChatViewModel {
     // MARK: - public methods
     func fetchConversation() {
         switch chatType {
-        case let .teacher(courseID, teacherID):
-            print(teacherID)
+        case let .teacher(courseID, _):
             fetchConversationForTeacher(id: courseID)
         case .customerSupport:
             fetchConversationForCustomerSupport()
@@ -75,19 +74,9 @@ class ChatViewModel {
     }
 
     func sendMessage(text: String) {
-        switch chatType {
-        case .teacher:
-            sendMessageForTeacher(text: text)
-        case .customerSupport:
-            sendMessageForCustomerSupport(text: text)
-        }
-    }
-
-    private func sendMessageForTeacher(text: String) {}
-
-    private func sendMessageForCustomerSupport(text: String) {
         let messageRequestBody = createMessageRequestModel(text: text, isFirstMessage: isStartingConversation)
         model.addMessage(
+            isSendToTeacher: chatType != .customerSupport,
             isFirstMessage: isStartingConversation,
             id: conversationID ?? 0,
             messageRequestModel: messageRequestBody
@@ -105,18 +94,26 @@ class ChatViewModel {
     }
 
     private func createMessageRequestModel(text: String, isFirstMessage: Bool) -> [Moya.MultipartFormData] {
-        if isFirstMessage {
-            let requestModel = AddMessageForFirstTimeRequestModel(text: text)
-            guard let requestDictionary = requestModel.dictionary else { return [] }
-            return getFormData(requestDictionary: requestDictionary)
-        } else {
-            let requestModel = AddMessageRequestModel(text: text)
-            guard let requestDictionary = requestModel.dictionary else { return [] }
-            return getFormData(requestDictionary: requestDictionary)
+        var requestModel: Encodable?
+        var attachmentKey = ""
+        switch chatType {
+        case let .teacher(courseID, teacherID):
+            requestModel = AddMessageForTeacherRequestModel(text: text, receivableId: "\(teacherID)", courseId: "\(courseID)")
+            attachmentKey = AddMessageForTeacherRequestModel.attachmentKey
+        case .customerSupport:
+            if isFirstMessage {
+                requestModel = AddMessageForFirstTimeRequestModel(text: text)
+                attachmentKey = AddMessageForFirstTimeRequestModel.attachmentKey
+            } else {
+                requestModel = AddMessageRequestModel(text: text)
+                attachmentKey = AddMessageRequestModel.attachmentKey
+            }
         }
+        guard let requestDictionary = requestModel?.dictionary else { return [] }
+        return getFormData(requestDictionary: requestDictionary, attachmentKey: attachmentKey)
     }
 
-    private func getFormData(requestDictionary: [String: Any]) -> [Moya.MultipartFormData] {
+    private func getFormData(requestDictionary: [String: Any], attachmentKey: String) -> [Moya.MultipartFormData] {
         var formDataArr = [Moya.MultipartFormData]()
         formDataArr.append(
             contentsOf: FormDataGenerator.getDictionaryFormData(requestDictionary: requestDictionary)
@@ -125,14 +122,14 @@ class ChatViewModel {
             formDataArr.append(
                 contentsOf: FormDataGenerator.getImagesFormData(
                     images: [attachmentImage],
-                    key: isStartingConversation ? "conversation[messages_attributes][][attachments][]" : "message[attachments][]"
+                    key: attachmentKey
                 )
             )
         } else if let attachmentFiles = selectedFile {
             formDataArr.append(
                 contentsOf: FormDataGenerator.getFilesFormData(
                     files: [attachmentFiles],
-                    key: isStartingConversation ? "conversation[messages_attributes][][attachments][]" : "message[attachments][]"
+                    key: attachmentKey
                 )
             )
         }

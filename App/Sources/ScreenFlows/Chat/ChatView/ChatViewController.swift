@@ -61,28 +61,32 @@ class ChatViewController: MessagesViewController {
     private func bindViewModel() {
         viewModel.handleSuccessResponse = { [weak self] in
             guard let self = self else { return }
-            self.activityIndicator.dismiss()
             self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
             self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem()
+            self.activityIndicator.dismiss()
         }
         viewModel.handleErrorResponse = { error in
             self.activityIndicator.dismiss()
+            AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                title: L10n.Global.Titles.error,
+                message: error ?? ""
+            )
         }
         viewModel.handleSendingMessageSuccess = {
             self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
-            self.messagesCollectionView.reloadData()
             self.messageSentSuccessfully()
         }
     }
 
     private func messageSentSuccessfully() {
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToLastItem()
         messageInputBar.sendButton.stopAnimating()
         messageInputBar.inputTextView.placeholder = "Aa"
         configureMessageInputBar()
         setAttachmentManager(active: false)
         removeSelectedAttachmentManager()
-        messagesCollectionView.scrollToLastItem()
     }
 
     // MARK: - handling custom messages

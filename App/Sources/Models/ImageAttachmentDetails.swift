@@ -5,6 +5,6 @@ import UIKit
 
 struct ImageAttachmentDetails: Attachable {
     var image: UIImage
-    var imageName: String
-    var mimeType: String
+    var imageName: String?
+    var mimeType: String?
 }
