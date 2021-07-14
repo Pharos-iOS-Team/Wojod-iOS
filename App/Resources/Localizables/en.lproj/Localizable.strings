@@ -6,6 +6,10 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
+"shared.alerts.error" = "Error";
+
+"shared.action.cancel" = "Cancel";
+
 "login.welcome" = "Welcome!
 Sign in to continue";
 
@@ -191,3 +195,12 @@ No worries!";
 // MARK: - Notifications
 
 "notifications.title" = "Notifications";
+
+// MARK: - Chat
+
+"chat.send" = "Send";
+"chat.sending" = "Sending";
+"chat.images" = "Images";
+"chat.files" = "Files";
+"chat.camera" = "Camera";
+"chat.endChat" = "End chat";

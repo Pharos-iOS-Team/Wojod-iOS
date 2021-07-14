@@ -205,6 +205,34 @@
                                                 <constraint firstItem="djD-0W-Eag" firstAttribute="height" secondItem="IIf-7Y-W30" secondAttribute="height" id="zDb-kJ-iEL"/>
                                             </constraints>
                                         </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-FY-dH7">
+                                            <rect key="frame" x="341" y="298" width="65" height="65"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval" translatesAutoresizingMaskIntoConstraints="NO" id="9m9-07-SkM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-as-Grv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <state key="normal" image="Shape"/>
+                                                    <connections>
+                                                        <action selector="didTapChat:" destination="s5u-w3-yVK" eventType="touchUpInside" id="7DU-ye-ZqT"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="vuD-as-Grv" firstAttribute="leading" secondItem="8GP-FY-dH7" secondAttribute="leading" id="3W4-Mh-qnq"/>
+                                                <constraint firstItem="vuD-as-Grv" firstAttribute="top" secondItem="8GP-FY-dH7" secondAttribute="top" id="3wK-db-yz6"/>
+                                                <constraint firstAttribute="bottom" secondItem="9m9-07-SkM" secondAttribute="bottom" id="5TL-rq-o9z"/>
+                                                <constraint firstAttribute="bottom" secondItem="vuD-as-Grv" secondAttribute="bottom" id="8mw-GI-ByN"/>
+                                                <constraint firstAttribute="trailing" secondItem="9m9-07-SkM" secondAttribute="trailing" id="AJe-EV-O9o"/>
+                                                <constraint firstAttribute="trailing" secondItem="vuD-as-Grv" secondAttribute="trailing" id="gn2-IU-d0J"/>
+                                                <constraint firstItem="9m9-07-SkM" firstAttribute="top" secondItem="8GP-FY-dH7" secondAttribute="top" id="iqi-Sy-IjX"/>
+                                                <constraint firstAttribute="height" constant="65" id="w9o-wq-dzX"/>
+                                                <constraint firstAttribute="width" constant="65" id="woo-tS-LZ5"/>
+                                                <constraint firstItem="9m9-07-SkM" firstAttribute="leading" secondItem="8GP-FY-dH7" secondAttribute="leading" id="yv0-F4-9Vb"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" name="superLightGrey"/>
                                     <constraints>
@@ -228,6 +256,7 @@
                                         <constraint firstItem="Dp9-fZ-Ee2" firstAttribute="trailing" secondItem="ImB-3V-22f" secondAttribute="trailing" id="UM4-q2-vek"/>
                                         <constraint firstAttribute="trailing" secondItem="ImB-3V-22f" secondAttribute="trailing" constant="25" id="VIg-K9-qZp"/>
                                         <constraint firstItem="pCp-l8-q2K" firstAttribute="leading" secondItem="3Z9-SN-jDQ" secondAttribute="trailing" constant="2" id="Vha-Qs-Mxa"/>
+                                        <constraint firstAttribute="trailing" secondItem="8GP-FY-dH7" secondAttribute="trailing" constant="8" id="ZQG-2C-bQV"/>
                                         <constraint firstItem="D2g-gM-a1h" firstAttribute="top" secondItem="Dp9-fZ-Ee2" secondAttribute="bottom" constant="20" id="bxp-TW-ANi"/>
                                         <constraint firstItem="v47-w3-FDk" firstAttribute="leading" secondItem="Q0C-6n-nHB" secondAttribute="trailing" constant="5" id="cdR-zy-9RV"/>
                                         <constraint firstItem="pCp-l8-q2K" firstAttribute="firstBaseline" secondItem="3Z9-SN-jDQ" secondAttribute="firstBaseline" id="eKf-DD-5T0"/>
@@ -239,6 +268,7 @@
                                         <constraint firstItem="7ZR-vA-mZS" firstAttribute="leading" secondItem="n5W-Ox-rdW" secondAttribute="leading" id="mzz-K2-rA3"/>
                                         <constraint firstItem="Diu-FS-Nhf" firstAttribute="leading" secondItem="w0B-7C-8OB" secondAttribute="leading" id="nOj-Ed-zpz"/>
                                         <constraint firstItem="Dp9-fZ-Ee2" firstAttribute="top" secondItem="ImB-3V-22f" secondAttribute="bottom" constant="8" id="qGy-qN-CRb"/>
+                                        <constraint firstItem="8GP-FY-dH7" firstAttribute="top" secondItem="Diu-FS-Nhf" secondAttribute="bottom" constant="8" id="sgp-vz-jVH"/>
                                         <constraint firstAttribute="bottom" secondItem="D2g-gM-a1h" secondAttribute="bottom" constant="50" id="tVC-ag-y7W"/>
                                         <constraint firstItem="D2g-gM-a1h" firstAttribute="trailing" secondItem="Dp9-fZ-Ee2" secondAttribute="trailing" id="uoe-WK-K6I"/>
                                         <constraint firstItem="ncl-VC-ptR" firstAttribute="firstBaseline" secondItem="7ZR-vA-mZS" secondAttribute="firstBaseline" id="wEw-yP-0rF"/>
@@ -279,6 +309,8 @@
     </scenes>
     <resources>
         <image name="BackIconWhite" width="25" height="25"/>
+        <image name="Shape" width="11" height="9"/>
+        <image name="oval" width="51" height="51"/>
         <image name="star" width="15" height="15"/>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -301,6 +333,9 @@
         <namedColor name="superLightGreyBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>need access for camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>need photos access</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -35,7 +39,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CHAT_BASE_URL</key>
-	<string>wss://drawneat-staging.pharos-solutions.de/cable</string>
+	<string>ws://staging.wojodacademy.com/cable</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>ROOT_URL</key>

@@ -9,4 +9,8 @@ extension Date {
         }
         return formatter.string(from: self)
     }
+
+    var formatDateToDateTimeString: String {
+        return DateFormatter.shortStyleDateFormatter.string(from: self)
+    }
 }

@@ -58,11 +58,11 @@ class HomeViewController: UIViewController {
     private var exploreMoreCourses: [SubjectCourses]?
     private var searchResultsCourses: [SubjectCourses]?
     private var mode: HomeMode = .relatedCourses
-    private var isInSearchMode: Bool = false
+    private var isInSearchMode = false
     private var loadingHud: JGProgressHUD?
     private var selectedTabBarItem: TabBarItems?
-    private var isMyCourses: Bool = false
-    private var isFirstScreenLoad: Bool = true
+    private var isMyCourses = false
+    private var isFirstScreenLoad = true
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
 
@@ -106,6 +106,13 @@ class HomeViewController: UIViewController {
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
         let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        present(viewCtrl, animated: true)
+    }
+
+    @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
+        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.chatType = .customerSupport
         viewCtrl.modalPresentationStyle = .fullScreen
         present(viewCtrl, animated: true)
     }
@@ -366,6 +373,7 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         let teacherName = subjectCourse?.teacher?.name
         viewCtrl.course = course
         viewCtrl.teacherName = teacherName
+        viewCtrl.teacherID = subjectCourse?.teacher?.id
         present(viewCtrl, animated: true)
     }
 }

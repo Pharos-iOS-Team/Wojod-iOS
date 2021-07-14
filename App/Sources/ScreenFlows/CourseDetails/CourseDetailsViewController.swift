@@ -81,8 +81,9 @@ class CourseDetailsViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    internal var course: Course?
-    internal var teacherName: String?
+    var course: Course?
+    var teacherName: String?
+    var teacherID: Int?
 
     // MARK: - Lifecycle
 
@@ -107,6 +108,13 @@ class CourseDetailsViewController: UIViewController {
         select(button: detailsButton)
         unselect(button: materialsButton)
         unselect(button: reviewsButton)
+    }
+
+    @IBAction private func didTapChat(_ sender: UIButton) {
+        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
+        present(viewCtrl, animated: true)
     }
 
     @IBAction private func didTapMaterials(_ sender: UIButton) {

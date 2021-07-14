@@ -11,6 +11,33 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum Chat {
+    /// Camera
+    internal static var camera: String {
+        return L10n.tr("Localizable", "chat.camera")
+      }
+    /// End chat
+    internal static var endChat: String {
+        return L10n.tr("Localizable", "chat.endChat")
+      }
+    /// Files
+    internal static var files: String {
+        return L10n.tr("Localizable", "chat.files")
+      }
+    /// Images
+    internal static var images: String {
+        return L10n.tr("Localizable", "chat.images")
+      }
+    /// Send
+    internal static var send: String {
+        return L10n.tr("Localizable", "chat.send")
+      }
+    /// Sending
+    internal static var sending: String {
+        return L10n.tr("Localizable", "chat.sending")
+      }
+  }
+
   internal enum CourseDetails {
     internal enum CancelBooking {
       /// Cancel Booking
@@ -335,7 +362,17 @@ internal enum L10n {
   }
 
   internal enum Shared {
+    internal enum Action {
+      /// Cancel
+      internal static var cancel: String {
+          return L10n.tr("Localizable", "shared.action.cancel")
+        }
+    }
     internal enum Alerts {
+      /// Error
+      internal static var error: String {
+          return L10n.tr("Localizable", "shared.alerts.error")
+        }
       internal enum Camera {
         /// Wojood need to access camera
         internal static var message: String {
