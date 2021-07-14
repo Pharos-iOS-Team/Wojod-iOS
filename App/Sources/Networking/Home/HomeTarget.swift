@@ -33,9 +33,9 @@ extension HomeTarget: TargetType {
         case let .loadRelatedCourses(isMyCourses, subjectID, page, limit):
             var parameters: [String: Any] = [:]
             if let subjectID = subjectID {
-                parameters = ["my_courses": isMyCourses, "subject_id": subjectID, "page": page, "limit": limit]
+                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID, "page": page, "limit": limit]
             } else {
-                parameters = ["my_courses": isMyCourses, "page": page, "limit": limit]
+                parameters = ["my_courses": isMyCourses.description, "page": page, "limit": limit]
             }
             return .requestParameters(
                 parameters: parameters,

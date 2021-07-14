@@ -77,7 +77,6 @@ class HomeViewController: UIViewController {
         configureSearchBar()
         loadUserProfile()
         selectRelatedCoursesButton()
-        // loadRelatedCourses(isBeingScrolled: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
