@@ -32,7 +32,7 @@ class HomeModel: ModelDecodable {
 
     func loadRelatedCourses(
         isMyCourses: Bool,
-        subjectID: Int,
+        subjectID: Int?,
         page: Int,
         limit: Int,
         completion: @escaping (Result) -> Void

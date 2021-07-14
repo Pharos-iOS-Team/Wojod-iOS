@@ -77,12 +77,13 @@ class HomeViewController: UIViewController {
         configureSearchBar()
         loadUserProfile()
         selectRelatedCoursesButton()
-        fetchRelatedCourses()
+        // loadRelatedCourses(isBeingScrolled: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
+        loadRelatedCourses(isBeingScrolled: false)
         hideAdsCollectionViewIfNeeded()
     }
 
@@ -92,6 +93,7 @@ class HomeViewController: UIViewController {
         mode = .relatedCourses
         viewModel.exploreMorePage = 1
         selectRelatedCoursesButton()
+        loadRelatedCourses(isBeingScrolled: false)
         configureVisibilityOfSubjectsAndAds()
     }
 
@@ -100,7 +102,7 @@ class HomeViewController: UIViewController {
         viewModel.relatedCoursesPage = 1
         selectExploreMoreButton()
         configureVisibilityOfSubjectsAndAds()
-        loadExploreMoreCourses()
+        loadExploreMoreCourses(isBeingScrolled: false)
     }
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
@@ -135,9 +137,9 @@ class HomeViewController: UIViewController {
     private func configureInfiniteScrolling() {
         coursesTableView.addInfiniteScroll { [weak self] _ in
             if self?.mode == .relatedCourses {
-                self?.loadRelatedCourses()
+                self?.loadRelatedCourses(isBeingScrolled: true)
             } else {
-                self?.loadExploreMoreCourses()
+                self?.loadExploreMoreCourses(isBeingScrolled: true)
             }
         }
     }
@@ -190,35 +192,28 @@ class HomeViewController: UIViewController {
     }
 
     private func loadUserProfile() {
-        viewModel.fetchUserProfile(id: User.shared.id ?? 0) {
-            self.loadSubjects()
-        }
+        viewModel.fetchUserProfile(id: User.shared.id ?? 0)
     }
 
-    private func loadSubjects() {
-        guard let batchID = User.shared.batch else { return }
-        viewModel.loadSubjects(batchID: batchID) { subjectsList in
-            self.subjects = subjectsList?.subjects
-            self.subjectsCollectionView.reloadData()
-        }
-    }
-
-    private func fetchRelatedCourses() {
+    private func loadRelatedCourses(isBeingScrolled: Bool) {
         showLoadingIndicator()
-        loadRelatedCourses()
-    }
-
-    private func loadRelatedCourses() {
-        viewModel.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: selectedSubject?.id ?? 0) { [unowned self] relatedCourses in
+        viewModel.loadRelatedCourses(
+            isBeingScrolled: isBeingScrolled,
+            isMyCourses: isMyCourses,
+            subjectID: selectedSubject?.id
+        ) { [unowned self] relatedCourses in
             hideLoadingIndicator()
-            subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? ""]
+            subjects = relatedCourses?.subjects
+            subjectsCollectionView.reloadData()
+            let defaultSubjectName = subjects?[0].name ?? ""
+            subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName]
             hideInfiniteScrolling()
         }
     }
 
-    private func loadExploreMoreCourses() {
+    private func loadExploreMoreCourses(isBeingScrolled: Bool) {
         showLoadingIndicator()
-        viewModel.loadExploreMoreCourses(isMyCourses: isMyCourses) { [unowned self] courses in
+        viewModel.loadExploreMoreCourses(isBeingScrolled: isBeingScrolled, isMyCourses: isMyCourses) { [unowned self] courses in
             hideLoadingIndicator()
             exploreMoreCourses = courses?.teachersCourses
             coursesTableView.reloadData()
@@ -273,7 +268,6 @@ extension HomeViewController: UICollectionViewDataSource {
                 isFirstScreenLoad = false
                 selectedSubjectIndexPath = indexPath
                 selectedSubject = subjects?[indexPath.item]
-                loadRelatedCourses()
                 subjectCell.select()
             }
             return subjectCell
@@ -291,7 +285,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
                 selectedSubjectIndexPath = indexPath
                 selectedSubject = subjects?[indexPath.item]
-                loadRelatedCourses()
+                loadRelatedCourses(isBeingScrolled: false)
                 subjectCell.select()
             }
         }

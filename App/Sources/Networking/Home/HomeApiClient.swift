@@ -17,7 +17,13 @@ class HomeApiClient {
         }
     }
 
-    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+    func loadRelatedCourses(
+        isMyCourses: Bool,
+        subjectID: Int?,
+        page: Int,
+        limit: Int,
+        completion: @escaping (Response?, MoyaError?) -> Void
+    ) {
         homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit)) { result in
             switch result {
             case .success(let response):
