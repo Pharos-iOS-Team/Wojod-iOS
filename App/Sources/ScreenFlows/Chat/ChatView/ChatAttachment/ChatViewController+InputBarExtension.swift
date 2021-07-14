@@ -25,15 +25,12 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
     func configureMessageInputBar() {
         messageInputBar.delegate = self
-        messageInputBar.sendButton.setTitle(L10n.Chat.send, for: .normal)
+        messageInputBar.sendButton.setTitle("", for: .normal)
+        messageInputBar.sendButton.setImage(Asset.Images.sendArrow)
         messageInputBar.shouldAnimateTextDidChangeLayout = true
         messageInputBar.inputPlugins = [attachmentManager]
         messageInputBar.inputTextView.tintColor = ChatConstants.sendButtonColor
-        messageInputBar.sendButton.setTitleColor(ChatConstants.sendButtonColor, for: .normal)
-        messageInputBar.sendButton.setTitleColor(
-            ChatConstants.sendButtonColorDimmed,
-            for: .highlighted
-        )
+        messageInputBar.sendButton.setTitleColor(ChatConstants.sendButtonColor, for: .highlighted)
         setAddAttachmentBtn(isAnyAttachmentSelected: false)
     }
 

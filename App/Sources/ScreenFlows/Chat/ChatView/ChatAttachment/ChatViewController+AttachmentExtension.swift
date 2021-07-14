@@ -21,7 +21,6 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     ) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL
-            let imageRefrenceURL = info[UIImagePickerController.InfoKey.] as? URL
             let imageAttachmentDetails = ImageAttachmentDetails(
                 image: image,
                 imageName: imageUrl?.lastPathComponent,

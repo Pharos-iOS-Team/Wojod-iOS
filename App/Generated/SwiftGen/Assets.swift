@@ -76,6 +76,7 @@ internal enum Asset {
     internal static let thirdMilestoneEn = ImageAsset(name: "ThirdMilestoneEn")
     internal static let wrongCredentialsAr = ImageAsset(name: "WrongCredentialsAr")
     internal static let wrongCredentialsEn = ImageAsset(name: "wrongCredentialsEn")
+    internal static let sendArrowDimmed = ImageAsset(name: "SendArrowDimmed")
     internal static let boyAvatarFaded = ImageAsset(name: "boyAvatarFaded")
     internal static let disclosureIndicator = ImageAsset(name: "disclosureIndicator")
     internal static let gear = ImageAsset(name: "Gear")
@@ -110,6 +111,7 @@ internal enum Asset {
     internal static let plusIcn = ImageAsset(name: "plusIcn")
     internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
+    internal static let sendArrow = ImageAsset(name: "sendArrow")
     internal static let small = ImageAsset(name: "small")
     internal static let unselectedRadioButton = ImageAsset(name: "unselectedRadioButton")
   }
