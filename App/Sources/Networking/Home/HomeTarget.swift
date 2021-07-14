@@ -5,7 +5,7 @@ import Moya
 
 enum HomeTarget {
     case loadSubjects(batchID: Int)
-    case loadRelatedCourses(isMyCourses: Bool, subjectID: Int, page: Int, limit: Int)
+    case loadRelatedCourses(isMyCourses: Bool, subjectID: Int?, page: Int, limit: Int)
     case loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int)
     case searchCourses(value: String)
 }
@@ -31,8 +31,14 @@ extension HomeTarget: TargetType {
     var task: Task {
         switch self {
         case let .loadRelatedCourses(isMyCourses, subjectID, page, limit):
+            var parameters: [String: Any] = [:]
+            if let subjectID = subjectID {
+                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID, "page": page, "limit": limit]
+            } else {
+                parameters = ["my_courses": isMyCourses.description, "page": page, "limit": limit]
+            }
             return .requestParameters(
-                parameters: ["my_courses": isMyCourses, "subject_id": subjectID, "page": page, "limit": limit],
+                parameters: parameters,
                 encoding: URLEncoding.queryString
             )
         case let .loadExploreMoreCourses(isMyCourses, page, limit):

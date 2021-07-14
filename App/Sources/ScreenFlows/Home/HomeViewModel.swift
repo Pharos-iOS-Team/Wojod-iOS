@@ -17,13 +17,12 @@ class HomeViewModel {
     var exploreMorePage: Int = 1
     var limit: Int = 10
 
-    func fetchUserProfile(id: Int, completion: @escaping () -> Void) {
+    func fetchUserProfile(id: Int) {
         model.fetchUserProfile(id: id) { result in
             switch result {
             case .success(let user as StudentModel):
                 self.setUserData(user)
                 self.successHandler?(user)
-                completion()
             case .failure(let error):
                 self.errorHandler?(error)
             default:
@@ -32,35 +31,32 @@ class HomeViewModel {
         }
     }
 
-    func loadSubjects(batchID: Int, completion: @escaping (Subjects?) -> Void) {
-        model.loadSubjects(batchID: batchID) { result in
-            switch result {
-            case .success(let subjects as Subjects):
-                completion(subjects)
-            default:
-                return
-            }
-        }
-    }
-
-    func loadRelatedCourses(isMyCourses: Bool, subjectID: Int, completion: @escaping (RelatedCoursesResponse?) -> Void) {
+    func loadRelatedCourses(isBeingScrolled: Bool, isMyCourses: Bool, subjectID: Int?, completion: @escaping (RelatedCoursesResponse?) -> Void) {
         model.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: relatedCoursesPage, limit: limit) { result in
             switch result {
             case .success(let relatedCourses as RelatedCoursesResponse):
                 completion(relatedCourses)
-                self.relatedCoursesPage += 1
+                if isBeingScrolled {
+                    self.relatedCoursesPage += 1
+                } else {
+                    self.relatedCoursesPage = 1
+                }
             default:
                 return
             }
         }
     }
 
-    func loadExploreMoreCourses(isMyCourses: Bool, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
+    func loadExploreMoreCourses(isBeingScrolled: Bool, isMyCourses: Bool, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
         model.loadExploreMoreCourses(isMyCourses: isMyCourses, page: exploreMorePage, limit: limit) { result in
             switch result {
             case .success(let exploreMoreCourses as ExploreMoreCoursesResponse):
                 completion(exploreMoreCourses)
-                self.exploreMorePage += 1
+                if isBeingScrolled {
+                    self.exploreMorePage += 1
+                } else {
+                    self.exploreMorePage = 1
+                }
             default:
                 return
             }
