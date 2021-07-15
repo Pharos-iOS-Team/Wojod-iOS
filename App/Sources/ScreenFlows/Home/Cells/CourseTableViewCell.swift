@@ -22,6 +22,7 @@ class CourseTableViewCell: UITableViewCell {
     internal weak var delegate: ViewCourseDetailsDelegate?
     internal weak var viewReceiptDelegate: ViewReceiptDelegate?
     internal weak var selectCellDelegate: SelectCourseCellDelegate?
+    internal var teacherNameIndex: Int?
 
     // MARK: - Lifecycle
 
@@ -62,7 +63,7 @@ extension CourseTableViewCell: UICollectionViewDataSource {
         let cell: CourseCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         let course = courses?[indexPath.item]
         cell.configure(with: course, isMyCourses: isMyCourses)
-        cell.teacherNameIndex = indexPath.row
+        cell.teacherNameIndex = teacherNameIndex
         cell.delegate = delegate
         cell.viewReceiptDelegate = viewReceiptDelegate
         cell.playVideo = { () -> Void in
