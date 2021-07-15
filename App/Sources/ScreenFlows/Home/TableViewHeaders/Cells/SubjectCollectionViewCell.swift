@@ -14,11 +14,21 @@ class SubjectCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                selectSubject()
+            } else {
+                unselect()
+            }
+        }
+    }
+
     func setSubject(_ subjectName: String) {
         subjectLabel.text = subjectName
     }
 
-    func select() {
+    func selectSubject() {
         subjectLabel.textColor = Colors.sendButtonColor.color
         underLinedView.isHidden = false
     }
