@@ -118,14 +118,16 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func didTapMaterials(_ sender: UIButton) {
-        viewModel?.loadMaterials(courseID: 35) { materials in
-            self.materials = materials
-            self.tableView.reloadData()
-        }
         activeScreen = .materials
         select(button: materialsButton)
         unselect(button: detailsButton)
         unselect(button: reviewsButton)
+
+        guard let courseID = course?.id else { return }
+        viewModel?.loadMaterials(courseID: courseID) { materials in
+            self.materials = materials
+            self.tableView.reloadData()
+        }
     }
 
     @IBAction private func didTapReviews(_ sender: UIButton) {

@@ -32,7 +32,11 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
             exploreMoreButton.setTitle(L10n.Home.exploreMore)
         }
     }
-    @IBOutlet private var subjectsCollectionView: UICollectionView!
+    @IBOutlet private var subjectsCollectionView: UICollectionView! {
+        didSet {
+            subjectsCollectionView.allowsMultipleSelection = false
+        }
+    }
     @IBOutlet private var adsCollectionView: UICollectionView!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var adsCollectionViewHeightConstraint: NSLayoutConstraint!
@@ -124,7 +128,8 @@ extension HomeTableViewHeader: UICollectionViewDataSource {
             cell.setSubject(subject?.name ?? "")
             if isFirstLoad && !(subjects?.isEmpty ?? true) && indexPath.item == 0 {
                 isFirstLoad = false
-                cell.select()
+                cell.isSelected = true
+                cell.selectSubject()
             }
             return cell
         } else {
