@@ -41,6 +41,7 @@
 		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
 		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
 		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
+		2FF9EA7ED2F6C3D8BD471D38 /* Pods_WojoodTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BA30D6759ED4FB2875580 /* Pods_WojoodTests.framework */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
 		380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A0261267248D300D01B06 /* CourseTableViewCell.xib */; };
 		380A026926725A4B00D01B06 /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */; };
@@ -89,6 +90,9 @@
 		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* Notification.swift */; };
+		4124F8E9269F5319008C5AD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4124F8E8269F5319008C5AD3 /* GoogleService-Info.plist */; };
+		4124F96A26A0364F008C5AD3 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4124F96826A0364F008C5AD3 /* Debug.xcconfig */; };
+		4124F96B26A0364F008C5AD3 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4124F96926A0364F008C5AD3 /* Release.xcconfig */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -113,9 +117,6 @@
 		7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD4B261C6505007C0B97 /* JGProgressHUD */; };
 		7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD4E261C653E007C0B97 /* MessageKit */; };
 		7723AD5D261C65F0007C0B97 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD5C261C65F0007C0B97 /* KeychainHandler.swift */; };
-		7723AD99261C6FA2007C0B97 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */; };
-		7723AD9B261C6FA2007C0B97 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */; };
-		7723AD9D261C6FA2007C0B97 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */; };
 		7723AD9F261C6FC5007C0B97 /* WJError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD9E261C6FC5007C0B97 /* WJError.swift */; };
 		7723ADA4261C70D6007C0B97 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADA3261C70D6007C0B97 /* Language.swift */; };
 		7723ADA9261C70F8007C0B97 /* PushNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADA8261C70F8007C0B97 /* PushNotificationsManager.swift */; };
@@ -161,7 +162,6 @@
 		778E7271261DC3E1009D7B35 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726E261DC3E1009D7B35 /* Assets.swift */; };
 		778E7272261DC3E1009D7B35 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726F261DC3E1009D7B35 /* Storyboards.swift */; };
 		778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E727C261DCA9A009D7B35 /* ViewController.swift */; };
-		778E7288261DCB4C009D7B35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */; };
 		778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */; };
 		778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */; };
 		778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72AD261DD4D1009D7B35 /* Attachable.swift */; };
@@ -268,6 +268,7 @@
 		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
+		DDEC7AEC4B9D0836A6D26FFE /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC94AE15D39672798A731F08 /* Pods_Wojood.framework */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -293,6 +294,7 @@
 		E8C9EF78263DD22D0023D2B1 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF77263DD22D0023D2B1 /* DataResponse.swift */; };
 		E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF7C263DD2680023D2B1 /* KeyName.swift */; };
 		E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */; };
+		FEB8F033ADAC3CECA3790D45 /* Pods_Wojood_WojoodUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8109AFB483AB80F7EB439FCE /* Pods_Wojood_WojoodUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +347,7 @@
 		26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentTypeActionSheet.xib; sourceTree = "<group>"; };
 		26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageRequestModel.swift; sourceTree = "<group>"; };
 		26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+AttachmentExtension.swift"; sourceTree = "<group>"; };
+		32464EF2A082980953111CBD /* Pods-WojoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WojoodTests.debug.xcconfig"; path = "Target Support Files/Pods-WojoodTests/Pods-WojoodTests.debug.xcconfig"; sourceTree = "<group>"; };
 		380A0260267248D300D01B06 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		380A0261267248D300D01B06 /* CourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseTableViewCell.xib; sourceTree = "<group>"; };
 		380A026726725A4B00D01B06 /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -392,6 +395,9 @@
 		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		4124F8E8269F5319008C5AD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4124F96826A0364F008C5AD3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		4124F96926A0364F008C5AD3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACD7261C5E69007C0B97 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -457,14 +463,11 @@
 		778E726E261DC3E1009D7B35 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		778E726F261DC3E1009D7B35 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		778E727C261DCA9A009D7B35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolExt.swift; sourceTree = "<group>"; };
 		778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExt.swift; sourceTree = "<group>"; };
 		778E72AD261DD4D1009D7B35 /* Attachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
 		778E72BD261DD692009D7B35 /* OptionalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExt.swift; sourceTree = "<group>"; };
 		778E72CB261DD6FF009D7B35 /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
-		778E72D0261DE641009D7B35 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		778E72D1261DE6D8009D7B35 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
 		778E72DE261DF9AB009D7B35 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		778E72E3261DFA0C009D7B35 /* JSONDecoderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExt.swift; sourceTree = "<group>"; };
@@ -483,6 +486,9 @@
 		77E32BBE264A8C200064B801 /* UITableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
 		77E32BC3264A8C450064B801 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		77E32BCB264A8C670064B801 /* IndexPathExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPathExt.swift; sourceTree = "<group>"; };
+		8109AFB483AB80F7EB439FCE /* Pods_Wojood_WojoodUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood_WojoodUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4BA30D6759ED4FB2875580 /* Pods_WojoodTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WojoodTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51316319EE4F1513E3CF4E3 /* Pods-Wojood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.debug.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfo.swift; sourceTree = "<group>"; };
@@ -569,6 +575,10 @@
 		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		C8ACF7D2A010F9DCD1B3DF43 /* Pods-Wojood-WojoodUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood-WojoodUITests.release.xcconfig"; path = "Target Support Files/Pods-Wojood-WojoodUITests/Pods-Wojood-WojoodUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D64309CF5FF2D586C9D77AFF /* Pods-Wojood-WojoodUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood-WojoodUITests.debug.xcconfig"; path = "Target Support Files/Pods-Wojood-WojoodUITests/Pods-Wojood-WojoodUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC94AE15D39672798A731F08 /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1063104FB417E72A7461F89 /* Pods-WojoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WojoodTests.release.xcconfig"; path = "Target Support Files/Pods-WojoodTests/Pods-WojoodTests.release.xcconfig"; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -597,6 +607,7 @@
 		E8C9EF7C263DD2680023D2B1 /* KeyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyName.swift; sourceTree = "<group>"; };
 		E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTypes.swift; sourceTree = "<group>"; };
 		E8FB16972647FD5B00895DDC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FE4DDFD7005F82CE0E438C11 /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -605,7 +616,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				77DBFD602631C7AA0060BACA /* DPOTPView in Frameworks */,
-				7723AD9B261C6FA2007C0B97 /* FirebaseMessaging in Frameworks */,
 				7723AD43261C64A1007C0B97 /* Kingfisher in Frameworks */,
 				7723AD31261C6351007C0B97 /* SwiftyUserDefaults in Frameworks */,
 				7723AD3D261C63D2007C0B97 /* IQKeyboardManagerSwift in Frameworks */,
@@ -613,15 +623,14 @@
 				7723AD46261C64C4007C0B97 /* LanguageManager-iOS in Frameworks */,
 				38702FC4268B3F6F00547C9E /* UIScrollView_InfiniteScroll in Frameworks */,
 				7723AD49261C64D7007C0B97 /* Reachability in Frameworks */,
-				7723AD99261C6FA2007C0B97 /* FirebaseAnalytics in Frameworks */,
 				7723AD34261C6370007C0B97 /* HandySwift in Frameworks */,
-				7723AD9D261C6FA2007C0B97 /* FirebaseCrashlytics in Frameworks */,
 				7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */,
 				7723AD40261C63F3007C0B97 /* KeychainAccess in Frameworks */,
 				26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */,
 				7723AE47261C869A007C0B97 /* Moya in Frameworks */,
 				7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */,
 				26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */,
+				DDEC7AEC4B9D0836A6D26FFE /* Pods_Wojood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +638,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FF9EA7ED2F6C3D8BD471D38 /* Pods_WojoodTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +646,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB8F033ADAC3CECA3790D45 /* Pods_Wojood_WojoodUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +849,25 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		4124F96726A0364F008C5AD3 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				4124F96826A0364F008C5AD3 /* Debug.xcconfig */,
+				4124F96926A0364F008C5AD3 /* Release.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		6AA6E45AD7AF746AA15E199B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC94AE15D39672798A731F08 /* Pods_Wojood.framework */,
+				8109AFB483AB80F7EB439FCE /* Pods_Wojood_WojoodUITests.framework */,
+				8A4BA30D6759ED4FB2875580 /* Pods_WojoodTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
@@ -848,6 +878,8 @@
 				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
 				7723ACD8261C5E69007C0B97 /* Products */,
 				E84E78C126552D81000902CB /* Recovered References */,
+				FA176117E40636D3066EF28A /* Pods */,
+				6AA6E45AD7AF746AA15E199B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -938,9 +970,9 @@
 		7723AD56261C6584007C0B97 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				7723ADCB261C7339007C0B97 /* Configurations */,
+				4124F96726A0364F008C5AD3 /* Configurations */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
-				778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */,
+				4124F8E8269F5319008C5AD3 /* GoogleService-Info.plist */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
 			);
@@ -1052,15 +1084,6 @@
 				3826BC782669086E00CF9357 /* Materials.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		7723ADCB261C7339007C0B97 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				778E72D0261DE641009D7B35 /* Debug.xcconfig */,
-				778E72D1261DE6D8009D7B35 /* Release.xcconfig */,
-			);
-			path = Configurations;
 			sourceTree = "<group>";
 		};
 		7723ADD1261C73AE007C0B97 /* Localizables */ = {
@@ -1531,6 +1554,19 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		FA176117E40636D3066EF28A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A51316319EE4F1513E3CF4E3 /* Pods-Wojood.debug.xcconfig */,
+				FE4DDFD7005F82CE0E438C11 /* Pods-Wojood.release.xcconfig */,
+				D64309CF5FF2D586C9D77AFF /* Pods-Wojood-WojoodUITests.debug.xcconfig */,
+				C8ACF7D2A010F9DCD1B3DF43 /* Pods-Wojood-WojoodUITests.release.xcconfig */,
+				32464EF2A082980953111CBD /* Pods-WojoodTests.debug.xcconfig */,
+				E1063104FB417E72A7461F89 /* Pods-WojoodTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1538,11 +1574,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD01261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "Wojood" */;
 			buildPhases = (
+				F09464E69087B4B68298AEF1 /* [CP] Check Pods Manifest.lock */,
 				7723AE25261C807B007C0B97 /* SwiftGen */,
 				7723AE26261C808C007C0B97 /* Swiftlint */,
+				4134A58F269F4F7200B81DBF /* Crashlytics */,
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
+				6328DDF842DB047C1684589B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1560,9 +1599,6 @@
 				7723AD48261C64D7007C0B97 /* Reachability */,
 				7723AD4B261C6505007C0B97 /* JGProgressHUD */,
 				7723AD4E261C653E007C0B97 /* MessageKit */,
-				7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */,
-				7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */,
-				7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */,
 				7723AE46261C869A007C0B97 /* Moya */,
 				77DBFD5F2631C7AA0060BACA /* DPOTPView */,
 				38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */,
@@ -1577,6 +1613,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD04261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodTests" */;
 			buildPhases = (
+				713C4F00998BA8D059B4DAAF /* [CP] Check Pods Manifest.lock */,
 				7723ACE9261C5E6C007C0B97 /* Sources */,
 				7723ACEA261C5E6C007C0B97 /* Frameworks */,
 				7723ACEB261C5E6C007C0B97 /* Resources */,
@@ -1595,9 +1632,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD07261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodUITests" */;
 			buildPhases = (
+				3FDB21034672C5C012AB3F3B /* [CP] Check Pods Manifest.lock */,
 				7723ACF4261C5E6C007C0B97 /* Sources */,
 				7723ACF5261C5E6C007C0B97 /* Frameworks */,
 				7723ACF6261C5E6C007C0B97 /* Resources */,
+				DE4DE6C4C9CB1A5F79D744F3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1653,7 +1692,6 @@
 				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */,
 				7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
 				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
 				38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
@@ -1687,12 +1725,14 @@
 				BC98F3E42623219C00032AC6 /* Colors.xcassets in Resources */,
 				BC5ED0D82628438D00774E54 /* ForgotPassword.storyboard in Resources */,
 				38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */,
+				4124F8E9269F5319008C5AD3 /* GoogleService-Info.plist in Resources */,
 				385CC0A1265ECB7200A091FD /* AttachmentTableViewCell.xib in Resources */,
 				385CC0BC265ED64F00A091FD /* CourseDetailsHeaderView.xib in Resources */,
 				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
 				BC19E5D02631A35900CFA142 /* CreatePassword.storyboard in Resources */,
 				26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */,
+				4124F96A26A0364F008C5AD3 /* Debug.xcconfig in Resources */,
 				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
 				38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
@@ -1702,7 +1742,6 @@
 				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
 				BC767159262C54E50012155C /* CoursesTabBar.storyboard in Resources */,
 				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
-				778E7288261DCB4C009D7B35 /* GoogleService-Info.plist in Resources */,
 				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
@@ -1715,6 +1754,7 @@
 				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
 				380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
+				4124F96B26A0364F008C5AD3 /* Release.xcconfig in Resources */,
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
@@ -1750,6 +1790,85 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3FDB21034672C5C012AB3F3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wojood-WojoodUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4134A58F269F4F7200B81DBF /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
+		};
+		6328DDF842DB047C1684589B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		713C4F00998BA8D059B4DAAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WojoodTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7723AE25261C807B007C0B97 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1785,6 +1904,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    arch -x86_64 swiftlint\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
+		};
+		DE4DE6C4C9CB1A5F79D744F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood-WojoodUITests/Pods-Wojood-WojoodUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood-WojoodUITests/Pods-Wojood-WojoodUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood-WojoodUITests/Pods-Wojood-WojoodUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F09464E69087B4B68298AEF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wojood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2131,7 +2289,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2198,6 +2356,7 @@
 		};
 		7723AD02261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A51316319EE4F1513E3CF4E3 /* Pods-Wojood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2220,6 +2379,7 @@
 		};
 		7723AD03261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE4DDFD7005F82CE0E438C11 /* Pods-Wojood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2242,6 +2402,7 @@
 		};
 		7723AD05261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32464EF2A082980953111CBD /* Pods-WojoodTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2264,6 +2425,7 @@
 		};
 		7723AD06261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1063104FB417E72A7461F89 /* Pods-WojoodTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2286,6 +2448,7 @@
 		};
 		7723AD08261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D64309CF5FF2D586C9D77AFF /* Pods-Wojood-WojoodUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2306,6 +2469,7 @@
 		};
 		7723AD09261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8ACF7D2A010F9DCD1B3DF43 /* Pods-Wojood-WojoodUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2470,14 +2634,6 @@
 				minimumVersion = 3.6.0;
 			};
 		};
-		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
-			};
-		};
 		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -2561,21 +2717,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
-		};
-		7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-		7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 		7723AE46261C869A007C0B97 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
