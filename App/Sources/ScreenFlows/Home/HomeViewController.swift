@@ -29,7 +29,6 @@ class HomeViewController: UIViewController {
 
     private let viewModel = HomeViewModel()
     private var subjects: [Subject]?
-    private var selectedSubjectIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     private var selectedSubject: Subject?
     private var subjectRelatedCourses: [SubjectCourses]?
     private var exploreMoreCourses: [SubjectCourses]?
@@ -273,15 +272,11 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectSubject(in collectionView: UICollectionView, at indexPath: IndexPath) {
-        if let selectedSubjectCell = collectionView.cellForItem(at: selectedSubjectIndexPath ?? indexPath) as? SubjectCollectionViewCell {
-            selectedSubjectCell.unselect()
-        }
         if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
-            selectedSubjectIndexPath = indexPath
-            selectedSubject = subjects?[indexPath.item]
-            loadRelatedCourses(isBeingScrolled: false)
-            subjectCell.select()
+            subjectCell.isSelected = true
         }
+        selectedSubject = subjects?[indexPath.item]
+        loadRelatedCourses(isBeingScrolled: false)
     }
 
     func didSelectRelatedCourses() {
