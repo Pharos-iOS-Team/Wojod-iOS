@@ -13,23 +13,6 @@ enum HomeMode {
 class HomeViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet private var collectionViewLayout: UICollectionViewFlowLayout! {
-        didSet {
-            collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
-    }
-    @IBOutlet private var relatedCoursesButton: UIButton! {
-        didSet {
-            relatedCoursesButton.layer.cornerRadius = UIConstants.slightCornerRadius
-            relatedCoursesButton.setTitle(L10n.Home.relatedCourses)
-        }
-    }
-    @IBOutlet private var exploreMoreButton: UIButton! {
-        didSet {
-            exploreMoreButton.layer.cornerRadius = UIConstants.slightCornerRadius
-            exploreMoreButton.setTitle(L10n.Home.exploreMore)
-        }
-    }
     @IBOutlet private var helpCenterButton: UIButton! {
         didSet {
             helpCenterButton.layer.cornerRadius = UIConstants.slightCornerRadius
@@ -40,19 +23,13 @@ class HomeViewController: UIViewController {
             helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
-    @IBOutlet private var subjectsCollectionView: UICollectionView!
-    @IBOutlet private var adsCollectionView: UICollectionView!
     @IBOutlet private var coursesTableView: UITableView!
-    @IBOutlet private var subjectsCollectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private var adsCollectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var searchBar: UISearchBar!
 
     // MARK: - Private Properties
 
     private let viewModel = HomeViewModel()
     private var subjects: [Subject]?
-    private var selectedSubjectIndexPath: IndexPath?
+    private var selectedSubjectIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     private var selectedSubject: Subject?
     private var subjectRelatedCourses: [SubjectCourses]?
     private var exploreMoreCourses: [SubjectCourses]?
@@ -71,38 +48,18 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInfiniteScrolling()
-        configureCollectionViews()
         configureTableView()
         configureRefreshControl()
-        configureSearchBar()
         loadUserProfile()
-        selectRelatedCoursesButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         loadRelatedCourses(isBeingScrolled: false)
-        hideAdsCollectionViewIfNeeded()
     }
 
     // MARK: - IBActions
-
-    @IBAction private func didTapRelatedCourses(_ sender: UIButton) {
-        mode = .relatedCourses
-        viewModel.exploreMorePage = 1
-        selectRelatedCoursesButton()
-        loadRelatedCourses(isBeingScrolled: false)
-        configureVisibilityOfSubjectsAndAds()
-    }
-
-    @IBAction private func didTapExploreMore(_ sender: UIButton) {
-        mode = .exploreMore
-        viewModel.relatedCoursesPage = 1
-        selectExploreMoreButton()
-        configureVisibilityOfSubjectsAndAds()
-        loadExploreMoreCourses(isBeingScrolled: false)
-    }
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
         let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
@@ -166,35 +123,11 @@ class HomeViewController: UIViewController {
         coursesTableView.reloadData()
     }
 
-    private func configureCollectionViews() {
-        subjectsCollectionView.dataSource = self
-        subjectsCollectionView.delegate = self
-        adsCollectionView.dataSource = self
-        adsCollectionView.delegate = self
-    }
-
     private func configureTableView() {
         coursesTableView.dataSource = self
         coursesTableView.delegate = self
         coursesTableView.registerCell(ofType: CourseTableViewCell.self)
-    }
-
-    private func configureSearchBar() {
-        searchBar.delegate = self
-    }
-
-    private func selectRelatedCoursesButton() {
-        relatedCoursesButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
-        relatedCoursesButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
-        exploreMoreButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
-        exploreMoreButton.setTitleColor(UIColor.black, for: .normal)
-    }
-
-    private func selectExploreMoreButton() {
-        relatedCoursesButton.layer.backgroundColor = Colors.backgroundLightGreyColor.color.cgColor
-        relatedCoursesButton.setTitleColor(UIColor.black, for: .normal)
-        exploreMoreButton.layer.backgroundColor = Colors.backgroundLightPurple.color.cgColor
-        exploreMoreButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+        coursesTableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
     }
 
     private func loadUserProfile() {
@@ -210,7 +143,6 @@ class HomeViewController: UIViewController {
         ) { [unowned self] relatedCourses in
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
-            subjectsCollectionView.reloadData()
             let defaultSubjectName = subjects?[0].name ?? ""
             subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName]
             hideInfiniteScrolling()
@@ -224,13 +156,6 @@ class HomeViewController: UIViewController {
             exploreMoreCourses = courses?.teachersCourses
             coursesTableView.reloadData()
         }
-    }
-
-    private func configureVisibilityOfSubjectsAndAds() {
-        subjectsCollectionView.isHidden = mode == .exploreMore
-        adsCollectionView.isHidden = mode == .exploreMore
-        subjectsCollectionViewHeightConstraint.constant = mode == .exploreMore ? 0 : 50
-        adsCollectionViewHeightConstraint.constant = mode == .exploreMore ? 0 : 150
     }
 
     private func showLoadingIndicator() {
@@ -250,64 +175,6 @@ class HomeViewController: UIViewController {
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses?[index]
         }
-    }
-
-    private func hideAdsCollectionViewIfNeeded() {
-        adsCollectionView.isHidden = isMyCourses
-        adsCollectionViewHeightConstraint.constant = isMyCourses ? 0 : 150
-    }
-}
-
-// MARK: - Collection View Data Source
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == subjectsCollectionView ? self.subjects?.count ?? 0 : 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == subjectsCollectionView {
-            let subjectCell: SubjectCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
-            let subject = subjects?[indexPath.row]
-            subjectCell.setSubject(subject?.name ?? "")
-            if isFirstScreenLoad {
-                isFirstScreenLoad = false
-                selectedSubjectIndexPath = indexPath
-                selectedSubject = subjects?[indexPath.item]
-                subjectCell.select()
-            }
-            return subjectCell
-        } else {
-            let adsCell: AdsCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
-            return adsCell
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == subjectsCollectionView {
-            if let selectedSubjectCell = collectionView.cellForItem(at: selectedSubjectIndexPath ?? indexPath) as? SubjectCollectionViewCell {
-                selectedSubjectCell.unselect()
-            }
-            if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
-                selectedSubjectIndexPath = indexPath
-                selectedSubject = subjects?[indexPath.item]
-                loadRelatedCourses(isBeingScrolled: false)
-                subjectCell.select()
-            }
-        }
-    }
-}
-
-// MARK: - Collection View Delegate
-
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        guard collectionView == subjectsCollectionView else { return 0 }
-        return 5.0
     }
 }
 
@@ -333,6 +200,19 @@ extension HomeViewController: UITableViewDataSource {
         cell?.viewReceiptDelegate = self
         return cell ?? UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
+        headerView?.delegate = self
+        headerView?.configureCollectionViews()
+        headerView?.configureSearchBar()
+        headerView?.setSubjects(self.subjects)
+        if isFirstScreenLoad && self.subjects != nil {
+            isFirstScreenLoad = false
+            headerView?.selectRelatedCoursesButton()
+        }
+        return headerView
+    }
 }
 
 // MARK: - Table View Delegate
@@ -341,26 +221,9 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 280
     }
-}
 
-// MARK: - Search Bar Delegate
-
-extension HomeViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        isInSearchMode = true
-        showLoadingIndicator()
-        viewModel.searchCourses(value: searchBar.text ?? "") { resultCourses in
-            self.hideLoadingIndicator()
-            self.searchResultsCourses = resultCourses?.teachersCourses
-            self.coursesTableView.reloadData()
-        }
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.isEmpty ?? false {
-            isInSearchMode = false
-            coursesTableView.reloadData()
-        }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return mode == .exploreMore ? 150 : 380
     }
 }
 
@@ -388,5 +251,48 @@ extension HomeViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegate {
 
     func didTapDone() {
         blurredView?.removeFromSuperview()
+    }
+}
+
+extension HomeViewController: HomeTableViewHeaderDelegate {
+    func textDidChange(in searchBar: UISearchBar) {
+        if searchBar.text?.isEmpty ?? false {
+            isInSearchMode = false
+            coursesTableView.reloadData()
+        }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isInSearchMode = true
+        showLoadingIndicator()
+        viewModel.searchCourses(value: searchBar.text ?? "") { resultCourses in
+            self.hideLoadingIndicator()
+            self.searchResultsCourses = resultCourses?.teachersCourses
+            self.coursesTableView.reloadData()
+        }
+    }
+
+    func didSelectSubject(in collectionView: UICollectionView, at indexPath: IndexPath) {
+        if let selectedSubjectCell = collectionView.cellForItem(at: selectedSubjectIndexPath ?? indexPath) as? SubjectCollectionViewCell {
+            selectedSubjectCell.unselect()
+        }
+        if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
+            selectedSubjectIndexPath = indexPath
+            selectedSubject = subjects?[indexPath.item]
+            loadRelatedCourses(isBeingScrolled: false)
+            subjectCell.select()
+        }
+    }
+
+    func didSelectRelatedCourses() {
+        mode = .relatedCourses
+        viewModel.exploreMorePage = 1
+        loadRelatedCourses(isBeingScrolled: false)
+    }
+
+    func didSelectExploreMore() {
+        mode = .exploreMore
+        viewModel.relatedCoursesPage = 1
+        loadExploreMoreCourses(isBeingScrolled: false)
     }
 }
