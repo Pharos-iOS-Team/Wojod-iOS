@@ -194,6 +194,7 @@ extension HomeViewController: UITableViewDataSource {
         let subjectCourse = appropriateSubjectCourse(index: indexPath.row)
         cell?.setTeacherName(subjectCourse?.teacher?.name ?? "")
         cell?.configureCourses(subjectCourse?.courses, isMyCourses: isMyCourses)
+        cell?.teacherNameIndex = indexPath.row
         cell?.delegate = self
         cell?.selectCellDelegate = self
         cell?.viewReceiptDelegate = self
