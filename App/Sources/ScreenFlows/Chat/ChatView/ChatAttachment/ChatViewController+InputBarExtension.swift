@@ -51,10 +51,12 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             withDuration: 0.25,
             animations: {
                 self.messageInputBar.inputTextView.resignFirstResponder()
+                self.messagesCollectionView.scrollToLastItem()
             },
             completion: { _ in
                 let attributes = self.attachmentTypesActionSheet.actionSheetAttributes()
                 SwiftEntryKit.display(entry: self.attachmentTypesActionSheet, using: attributes)
+                self.messagesCollectionView.scrollToLastItem()
             }
         )
     }
