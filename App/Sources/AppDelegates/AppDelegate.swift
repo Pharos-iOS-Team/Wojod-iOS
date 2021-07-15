@@ -1,6 +1,5 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import Firebase
 import UIKit
 
 typealias AppDelegateType = UIResponder & UIApplicationDelegate
@@ -16,7 +15,6 @@ class AppDelegate: AppDelegateType {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = appDelegateComposer.application(application, didFinishLaunchingWithOptions: launchOptions)
-        FirebaseApp.configure()
         return true
     }
 }
