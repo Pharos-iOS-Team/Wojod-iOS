@@ -97,18 +97,18 @@ class HomeViewController: UIViewController {
     }
 
     private func configureInfiniteScrolling() {
-        coursesTableView.addInfiniteScroll { [weak self] _ in
-            if self?.mode == .relatedCourses {
-                self?.loadRelatedCourses(isBeingScrolled: true)
+        coursesTableView.addInfiniteScroll {  _ in
+            if self.mode == .relatedCourses {
+                self.loadRelatedCourses(isBeingScrolled: true)
             } else {
-                self?.loadExploreMoreCourses(isBeingScrolled: true)
+                self.loadExploreMoreCourses(isBeingScrolled: true)
             }
         }
     }
 
     private func hideInfiniteScrolling() {
-        coursesTableView.finishInfiniteScroll()
         self.coursesTableView.reloadData()
+        coursesTableView.finishInfiniteScroll()
     }
 
     private func configureRefreshControl() {
