@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     private let viewModel = HomeViewModel()
     private var subjects: [Subject]?
     private var selectedSubject: Subject?
-    private var subjectRelatedCourses: [SubjectCourses]?
+    private var subjectRelatedCourses: [SubjectCourses] = []
     private var exploreMoreCourses: [SubjectCourses]?
     private var searchResultsCourses: [SubjectCourses]?
     private var mode: HomeMode = .relatedCourses
@@ -107,8 +107,9 @@ class HomeViewController: UIViewController {
     }
 
     private func hideInfiniteScrolling() {
-        self.coursesTableView.reloadData()
         coursesTableView.finishInfiniteScroll()
+        self.coursesTableView.reloadData()
+        // coursesTableView.finishInfiniteScroll()
     }
 
     private func configureRefreshControl() {
@@ -143,7 +144,9 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
             let defaultSubjectName = subjects?[0].name ?? ""
-            subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName]
+            if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
+                subjectRelatedCourses.append(contentsOf: subjectCourses)
+            }
             hideInfiniteScrolling()
         }
     }
@@ -154,6 +157,7 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             exploreMoreCourses = courses?.teachersCourses
             coursesTableView.reloadData()
+            hideInfiniteScrolling()
         }
     }
 
@@ -170,7 +174,7 @@ class HomeViewController: UIViewController {
     private func appropriateSubjectCourse(index: Int) -> SubjectCourses? {
         switch mode {
         case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses?[index]
+            return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses[index]
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses?[index]
         }
@@ -183,7 +187,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch mode {
         case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses?.count ?? 0
+            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count ?? 0
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses?.count ?? 0
         }
