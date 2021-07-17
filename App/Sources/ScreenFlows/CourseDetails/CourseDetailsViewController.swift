@@ -24,6 +24,13 @@ internal enum MaterialsSections: Int {
     case documents
 }
 
+internal enum AttachmentType {
+    case assignments
+    case quizzes
+    case videos
+    case documents
+}
+
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
@@ -78,6 +85,8 @@ class CourseDetailsViewController: UIViewController {
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
     private var numberOfSectionsInMaterials: Int = 4
+    private var allAttachmentsOfLesson: [Any] = []
+    // private var attachmentType: AttachmentType? = .assignments
 
     // MARK: - Public Properties
 
@@ -306,48 +315,44 @@ class CourseDetailsViewController: UIViewController {
         return documentsCount + assignmentsCount + videosCount + quizzesCount
     }
 
-    private func configureAttachments(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
+    private func configureAttachments(in section: Int) {
+        allAttachmentsOfLesson.removeAll()
+        let attachments = attachmentsOfLessons[section]
         if let assignments = attachments?.assignments {
             for assignment in assignments {
-                cell?.setSubtitleLabel(assignment.title ?? "Assignment")
-                cell?.setAttachmentImageView(Images.quiz.image)
+                allAttachmentsOfLesson.append(assignment)
             }
         }
-    }
-
-    private func configureQuizzes(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
         if let quizzes = attachments?.quizzes {
             for quiz in quizzes {
-                cell?.setSubtitleLabel(quiz.title ?? "Quiz")
-                cell?.setAttachmentImageView(Images.quiz.image)
+                allAttachmentsOfLesson.append(quiz)
             }
         }
-    }
-
-    private func configureVideos(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
         if let videos = attachments?.videos {
             for video in videos {
-                cell?.setSubtitleLabel(video.title ?? "Video")
+                allAttachmentsOfLesson.append(video)
             }
         }
-    }
-
-    private func configureDocuments(_ attachments: LessonAttachmentsModel?, _ cell: AttachmentTableViewCell?) {
         if let documents = attachments?.documents {
             for document in documents {
-                cell?.setOptionalTitleLabel(document.title ?? "File")
-                cell?.setSubtitleLabel(document.fileName ?? "")
-                cell?.setAttachmentImageView(Images.pdf.image)
+                allAttachmentsOfLesson.append(document)
             }
         }
     }
 
-    private func configureAttachmentCell(_ cell: AttachmentTableViewCell?, _ section: Int) {
-        let attachments = attachmentsOfLessons[section]
-        configureAttachments(attachments, cell)
-        configureQuizzes(attachments, cell)
-        configureVideos(attachments, cell)
-        configureDocuments(attachments, cell)
+    private func configureLessonDetails(cell: AttachmentTableViewCell?, with attachment: Any) {
+        if let assignment = attachment as? Assignment {
+            cell?.setSubtitleLabel(assignment.title ?? "")
+            cell?.setAttachmentImageView(Images.quiz.image)
+        } else if let quiz = attachment as? Quiz {
+            cell?.setSubtitleLabel(quiz.title ?? "")
+            cell?.setAttachmentImageView(Images.quiz.image)
+        } else if let video = attachment as? Video {
+            cell?.setSubtitleLabel(video.title ?? "")
+        } else if let document = attachment as? Document {
+            cell?.setSubtitleLabel(document.fileName ?? "")
+            cell?.setAttachmentImageView(Images.pdf.image)
+        }
     }
 
     private func getCorrespondingImage(for document: MaterialsDocument?) -> UIImage {
@@ -449,8 +454,10 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch activeScreen {
         case .details:
+            configureAttachments(in: indexPath.section)
             let cell = tableView.dequeueCell(ofType: AttachmentTableViewCell.self, for: indexPath)
-            configureAttachmentCell(cell, indexPath.section)
+            let attachment = allAttachmentsOfLesson[indexPath.row]
+            configureLessonDetails(cell: cell, with: attachment)
             return cell ?? UITableViewCell()
 
         case .reviews:
@@ -572,7 +579,7 @@ extension CourseDetailsViewController: CollapseExpandDelegate {
             if let index = expandedSections.firstIndex(of: section) {
                 expandedSections.remove(at: index)
             }
-            self.attachmentsOfLessons[section] = LessonAttachmentsModel()
+            self.attachmentsOfLessons[section] = nil
             self.tableView.reloadData()
         } else {
             expandedSections.append(section)

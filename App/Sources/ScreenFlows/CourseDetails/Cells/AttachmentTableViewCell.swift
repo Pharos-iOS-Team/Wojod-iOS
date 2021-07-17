@@ -19,6 +19,13 @@ class AttachmentTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        attachmentImageView.image = nil
+        subtitleLabel.text = nil
+        optionalTitleLabel.text = nil
+    }
+
     // MARK: - Public Functions
 
     internal func setAttachmentImageView(_ image: UIImage) {

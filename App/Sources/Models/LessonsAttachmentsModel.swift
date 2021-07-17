@@ -35,7 +35,7 @@ struct Video: Codable {
     var title: String?
     var fileUrl: String?
     var fileName: String?
-    var contentType: Int?
+    var contentType: String?
     var type: String?
 }
 
@@ -45,6 +45,6 @@ struct Document: Codable {
     var link: String?
     var fileUrl: String?
     var fileName: String?
-    var contentType: Int?
+    var contentType: String?
     var type: String?
 }
