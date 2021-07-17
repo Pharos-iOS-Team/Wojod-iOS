@@ -68,23 +68,6 @@ class HomeModel: ModelDecodable {
         }
     }
 
-    // swiftlint:disable:next function_parameter_count
-    func loadExploreMoreCoursesForTeacher(teacherID: Int, isMyCourses: Bool, subjectID: Int, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
-        homeApiClient.loadRelatedCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
-    }
-
     func searchCourses(value: String, completion: @escaping (Result) -> Void) {
         homeApiClient.searchCourses(value: value) { response, error in
             if let response = response {

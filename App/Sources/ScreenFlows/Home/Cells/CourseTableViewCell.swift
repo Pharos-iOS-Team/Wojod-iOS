@@ -1,7 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import UIKit
-import UIScrollView_InfiniteScroll
 
 protocol SelectCourseCellDelegate: AnyObject {
     func showCourseDetails(for course: Course?, with teacherNameIndex: Int)
@@ -24,7 +23,6 @@ class CourseTableViewCell: UITableViewCell {
     internal weak var viewReceiptDelegate: ViewReceiptDelegate?
     internal weak var selectCellDelegate: SelectCourseCellDelegate?
     internal var teacherNameIndex: Int?
-    internal var viewModel: HomeViewModel?
 
     // MARK: - Lifecycle
 
@@ -51,14 +49,6 @@ class CourseTableViewCell: UITableViewCell {
         self.courses = courses
         self.isMyCourses = isMyCourses
         coursesCollectionView.reloadData()
-    }
-
-    func addInfiniteScroll(viewModel: HomeViewModel, selectedSubject: Subject, teacherID: Int, isMyCourses: Bool) {
-        coursesCollectionView.addInfiniteScroll { _ in
-            viewModel.loadRelatedCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: selectedSubject.id ?? 0) { relatedCourses in
-                print(relatedCourses)
-            }
-        }
     }
 }
 
