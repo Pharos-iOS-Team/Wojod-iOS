@@ -34,6 +34,24 @@ class HomeApiClient {
         }
     }
 
+    // swiftlint:disable:next function_parameter_count
+    func loadRelatedCoursesForTeacher(
+        teacherID: Int,
+        isMyCourses: Bool,
+        subjectID: Int,
+        page: Int,
+        limit: Int,
+        completion: @escaping (Response?, MoyaError?) -> Void
+    ) { homeProvider.request(.loadRelatedCoursesForTeacher(teacherID: teacherID, subjectID: subjectID, isMyCourses: isMyCourses, page: page, limit: limit)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
     func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
         homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit)) { result in
             switch result {

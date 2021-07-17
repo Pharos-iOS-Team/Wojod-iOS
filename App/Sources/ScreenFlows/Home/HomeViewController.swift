@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     private let viewModel = HomeViewModel()
     private var subjects: [Subject]?
     private var selectedSubject: Subject?
-    private var subjectRelatedCourses: [SubjectCourses]?
+    private var subjectRelatedCourses: [SubjectCourses] = []
     private var exploreMoreCourses: [SubjectCourses]?
     private var searchResultsCourses: [SubjectCourses]?
     private var mode: HomeMode = .relatedCourses
@@ -97,11 +97,11 @@ class HomeViewController: UIViewController {
     }
 
     private func configureInfiniteScrolling() {
-        coursesTableView.addInfiniteScroll { [weak self] _ in
-            if self?.mode == .relatedCourses {
-                self?.loadRelatedCourses(isBeingScrolled: true)
+        coursesTableView.addInfiniteScroll {  _ in
+            if self.mode == .relatedCourses {
+                self.loadRelatedCourses(isBeingScrolled: true)
             } else {
-                self?.loadExploreMoreCourses(isBeingScrolled: true)
+                self.loadExploreMoreCourses(isBeingScrolled: true)
             }
         }
     }
@@ -143,7 +143,9 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
             let defaultSubjectName = subjects?[0].name ?? ""
-            subjectRelatedCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName]
+            if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
+                subjectRelatedCourses.append(contentsOf: subjectCourses)
+            }
             hideInfiniteScrolling()
         }
     }
@@ -154,6 +156,7 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             exploreMoreCourses = courses?.teachersCourses
             coursesTableView.reloadData()
+            hideInfiniteScrolling()
         }
     }
 
@@ -170,7 +173,7 @@ class HomeViewController: UIViewController {
     private func appropriateSubjectCourse(index: Int) -> SubjectCourses? {
         switch mode {
         case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses?[index]
+            return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses[index]
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses?[index]
         }
@@ -183,7 +186,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch mode {
         case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses?.count ?? 0
+            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses?.count ?? 0
         }
@@ -196,6 +199,8 @@ extension HomeViewController: UITableViewDataSource {
         cell?.configureCourses(subjectCourse?.courses, isMyCourses: isMyCourses)
         cell?.teacherNameIndex = indexPath.row
         cell?.delegate = self
+        let teacherID = subjectRelatedCourses[indexPath.row].teacher?.id ?? 0
+        cell?.addInfiniteScroll(viewModel: viewModel, selectedSubject: (selectedSubject ?? subjects?[indexPath.row]) ?? Subject(), teacherID: teacherID, isMyCourses: isMyCourses)
         cell?.selectCellDelegate = self
         cell?.viewReceiptDelegate = self
         return cell ?? UITableViewCell()
