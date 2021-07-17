@@ -109,7 +109,6 @@ class HomeViewController: UIViewController {
     private func hideInfiniteScrolling() {
         coursesTableView.finishInfiniteScroll()
         self.coursesTableView.reloadData()
-        // coursesTableView.finishInfiniteScroll()
     }
 
     private func configureRefreshControl() {
@@ -187,7 +186,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch mode {
         case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count ?? 0
+            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses?.count ?? 0
         }
@@ -200,6 +199,8 @@ extension HomeViewController: UITableViewDataSource {
         cell?.configureCourses(subjectCourse?.courses, isMyCourses: isMyCourses)
         cell?.teacherNameIndex = indexPath.row
         cell?.delegate = self
+        let teacherID = subjectRelatedCourses[indexPath.row].teacher?.id ?? 0
+        cell?.addInfiniteScroll(viewModel: viewModel, selectedSubject: (selectedSubject ?? subjects?[indexPath.row]) ?? Subject(), teacherID: teacherID, isMyCourses: isMyCourses)
         cell?.selectCellDelegate = self
         cell?.viewReceiptDelegate = self
         return cell ?? UITableViewCell()

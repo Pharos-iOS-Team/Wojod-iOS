@@ -16,6 +16,8 @@ class HomeViewModel {
     var relatedCoursesPage: Int = 1
     var exploreMorePage: Int = 1
     var limit: Int = 10
+    var coursesPerTeacherPage: Int = 1
+    var coursesPerTeacherLimit: Int = 3
 
     func fetchUserProfile(id: Int) {
         model.fetchUserProfile(id: id) { result in
@@ -41,6 +43,19 @@ class HomeViewModel {
                 } else {
                     self.relatedCoursesPage = 1
                 }
+            default:
+                return
+            }
+        }
+    }
+
+    // swiftlint:disable:next function_parameter_count
+    func loadRelatedCoursesForTeacher(teacherID: Int, isMyCourses: Bool, subjectID: Int, completion: @escaping (RelatedCoursesResponse?) -> Void) {
+        model.loadExploreMoreCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: subjectID, page: coursesPerTeacherPage, limit: coursesPerTeacherLimit) { result in
+            switch result {
+            case .success(let relatedCourses as RelatedCoursesResponse):
+                completion(relatedCourses)
+                self.coursesPerTeacherPage += 1
             default:
                 return
             }
