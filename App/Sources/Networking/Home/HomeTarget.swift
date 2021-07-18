@@ -43,7 +43,7 @@ extension HomeTarget: TargetType {
             )
         case let .loadExploreMoreCourses(isMyCourses, page, limit):
             return .requestParameters(
-                parameters: ["my_courses": isMyCourses, "page": page, "limit": limit],
+                parameters: ["my_courses": isMyCourses.description, "page": page, "limit": limit],
                 encoding: URLEncoding.queryString
             )
         case let .searchCourses(value):
