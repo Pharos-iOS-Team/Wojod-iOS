@@ -14,6 +14,8 @@
 		268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD950269DBD47004758CE /* FormDataGenerator.swift */; };
 		268BD95A269DD8DB004758CE /* ChatContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */; };
 		268BD965269E025E004758CE /* DateFormatterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD964269E025D004758CE /* DateFormatterHandler.swift */; };
+		26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AFE37326A5C86C007D01EF /* ErrorView.swift */; };
+		26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AFE37826A5C87A007D01EF /* ErrorView.xib */; };
 		26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4897269AF86B00DDA29F /* ChatViewModel.swift */; };
 		26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */; };
 		26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */; };
@@ -320,6 +322,8 @@
 		268BD950269DBD47004758CE /* FormDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataGenerator.swift; sourceTree = "<group>"; };
 		268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewModel.swift; sourceTree = "<group>"; };
 		268BD964269E025D004758CE /* DateFormatterHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterHandler.swift; sourceTree = "<group>"; };
+		26AFE37326A5C86C007D01EF /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		26AFE37826A5C87A007D01EF /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		26CF4897269AF86B00DDA29F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiClient.swift; sourceTree = "<group>"; };
 		26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTarget.swift; sourceTree = "<group>"; };
@@ -686,6 +690,8 @@
 				26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */,
 				26CF492A269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift */,
 				26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */,
+				26AFE37326A5C86C007D01EF /* ErrorView.swift */,
+				26AFE37826A5C87A007D01EF /* ErrorView.xib */,
 			);
 			path = ChatAttachment;
 			sourceTree = "<group>";
@@ -1710,6 +1716,7 @@
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
 				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
 				BC767154262C531B0012155C /* Settings.storyboard in Resources */,
+				26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */,
 				BC76714A262C52960012155C /* Home.storyboard in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
@@ -1912,6 +1919,7 @@
 				26CF48E1269B379B00DDA29F /* LoggedUserDetails.swift in Sources */,
 				268BD94C269DBC13004758CE /* ImageAttachmentDetails.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
+				26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */,
 				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
