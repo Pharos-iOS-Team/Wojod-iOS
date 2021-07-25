@@ -23,14 +23,14 @@ open class CustomMessageSizeCalculator: MessageSizeCalculator {
     }
 
     private func heightForView(text: String, width: CGFloat) -> CGFloat {
-        let padding: CGFloat = 40
-        let actualWidth = width - padding
+        let padding: CGFloat = 20
+        let actualWidth = width + padding
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: actualWidth, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.text = text
         label.sizeToFit()
-        return label.frame.height
+        return label.frame.height + 4
     }
 }
 

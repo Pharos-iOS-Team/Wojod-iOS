@@ -6,14 +6,19 @@ import UIKit
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func setAttachmentTypeActionSheet() {
+        let accessPermissionHandler = AccessPermissionHandler(presentingViewCtrl: self)
         attachmentTypesActionSheet.fileTypeSelectionHandler = { [weak self] in
             self?.pickFile()
         }
         attachmentTypesActionSheet.photoTypeSelectionHandler = { [weak self] in
-            self?.pickImage(pickImageFrom: .photoLibrary)
+            accessPermissionHandler.checkPhotoLibraryAuthoriztion {
+                self?.pickImage(pickImageFrom: .photoLibrary)
+            }
         }
         attachmentTypesActionSheet.cameraTypeSelectionHandler = { [weak self] in
-            self?.pickImage(pickImageFrom: .camera)
+            accessPermissionHandler.checkCameraAuthoriztion {
+                self?.pickImage(pickImageFrom: .camera)
+            }
         }
     }
 
@@ -51,10 +56,12 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             withDuration: 0.25,
             animations: {
                 self.messageInputBar.inputTextView.resignFirstResponder()
+                self.messagesCollectionView.scrollToLastItem()
             },
             completion: { _ in
                 let attributes = self.attachmentTypesActionSheet.actionSheetAttributes()
                 SwiftEntryKit.display(entry: self.attachmentTypesActionSheet, using: attributes)
+                self.messagesCollectionView.scrollToLastItem()
             }
         )
     }
