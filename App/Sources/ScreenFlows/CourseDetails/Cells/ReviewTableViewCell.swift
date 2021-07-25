@@ -22,7 +22,13 @@ class ReviewTableViewCell: UITableViewCell {
     }
 
     internal func setAvatarImage(_ image: UIImage?) {
-        avatarImageView.image = image
+        DispatchQueue.main.async {
+            guard let image = image else {
+                self.avatarImageView.image = Images.person.image
+                return
+            }
+            self.avatarImageView.image = image
+        }
     }
 
     internal func setTitle(_ title: String) {

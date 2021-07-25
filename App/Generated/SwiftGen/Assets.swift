@@ -104,6 +104,7 @@ internal enum Asset {
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let helpCenter = ImageAsset(name: "helpCenter")
     internal static let homeNotification = ImageAsset(name: "homeNotification")
+    internal static let messageButton = ImageAsset(name: "messageButton")
     internal static let newGenericExt = ImageAsset(name: "newGenericExt")
     internal static let nextIcon = ImageAsset(name: "nextIcon")
     internal static let notificationAvatar = ImageAsset(name: "notificationAvatar")

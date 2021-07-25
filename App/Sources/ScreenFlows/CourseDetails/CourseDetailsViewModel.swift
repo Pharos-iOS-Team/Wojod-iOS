@@ -72,9 +72,3 @@ class CourseDetailsViewModel {
         }
     }
 }
-
-extension CourseDetailsViewModel {
-    func ratingFromUserPercentage(_ percentage: Int) -> Int {
-        return percentage / 100 * 5
-    }
-}
