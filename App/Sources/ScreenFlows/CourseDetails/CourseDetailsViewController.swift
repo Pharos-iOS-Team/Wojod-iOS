@@ -65,6 +65,11 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private var numberOfReviewsLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var courseImageView: UIImageView!
+    @IBOutlet private var firstReviewStar: UIImageView!
+    @IBOutlet private var secondReviewStar: UIImageView!
+    @IBOutlet private var thirdReviewStar: UIImageView!
+    @IBOutlet private var fourthReviewStar: UIImageView!
+    @IBOutlet private var fifthReviewStar: UIImageView!
 
     // MARK: - Private Properties
 
@@ -86,7 +91,6 @@ class CourseDetailsViewController: UIViewController {
     private var loadingHud: JGProgressHUD?
     private var numberOfSectionsInMaterials: Int = 4
     private var allAttachmentsOfLesson: [Any] = []
-    // private var attachmentType: AttachmentType? = .assignments
 
     // MARK: - Public Properties
 
@@ -186,6 +190,7 @@ class CourseDetailsViewController: UIViewController {
         descriptionLabel.text = course?.summary
         priceLabel.text = "EGP \(course?.price ?? "")"
         numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
+        setRating(Int(course?.rating ?? 0.0))
     }
 
     private func getReservationState() -> CourseState {
@@ -299,7 +304,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func imageFromURL(_ imageURLString: String?) -> UIImage? {
-        if let imageURLString = imageURLString, let imageURL = URL(string: imageURLString),
+        if let imageURLString = imageURLString, let imageURL = URL(string: "\(Environment.baseURL)\(imageURLString)"),
         let imageData = try? Data(contentsOf: imageURL) {
             return UIImage(data: imageData)
         }
@@ -407,6 +412,34 @@ class CourseDetailsViewController: UIViewController {
             player.play()
         }
     }
+
+    // swiftlint:disable function_body_length
+    private func setRating(_ rating: Int) {
+        switch rating {
+        case 1:
+            firstReviewStar.image = Images.filledStar.image
+        case 2:
+            firstReviewStar.image = Images.filledStar.image
+            secondReviewStar.image = Images.filledStar.image
+        case 3:
+            firstReviewStar.image = Images.filledStar.image
+            secondReviewStar.image = Images.filledStar.image
+            thirdReviewStar.image = Images.filledStar.image
+        case 4:
+            firstReviewStar.image = Images.filledStar.image
+            secondReviewStar.image = Images.filledStar.image
+            thirdReviewStar.image = Images.filledStar.image
+            fourthReviewStar.image = Images.filledStar.image
+        case 5:
+            firstReviewStar.image = Images.filledStar.image
+            secondReviewStar.image = Images.filledStar.image
+            thirdReviewStar.image = Images.filledStar.image
+            fourthReviewStar.image = Images.filledStar.image
+            fifthReviewStar.image = Images.filledStar.image
+        default:
+            return
+        }
+    }
 }
 
 // MARK: - Table View Data Source
@@ -463,11 +496,17 @@ extension CourseDetailsViewController: UITableViewDataSource {
         case .reviews:
             let cell = tableView.dequeueCell(ofType: ReviewTableViewCell.self, for: indexPath)
             let review = reviewsList?[indexPath.row]
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let date = dateFormatter.date(from: review?.createdAt ?? "")
             cell?.setTitle(review?.title ?? "")
-            cell?.setSubtitle("\(review?.createdAt ?? "") by \(review?.reviewer?.name ?? "")")
+            cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") by \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
-            cell?.setRating(viewModel?.ratingFromUserPercentage(review?.rating ?? 0) ?? 0)
-            cell?.setAvatarImage(imageFromURL(review?.reviewer?.avatar?.fileUrl ?? ""))
+            cell?.setRating(review?.rating ?? 0)
+            DispatchQueue.global().async {
+                let image = self.getImage(from: review?.reviewer?.avatar?.fileUrl ?? "")
+                cell?.setAvatarImage(image)
+            }
             return cell ?? UITableViewCell()
 
         case .materials:
