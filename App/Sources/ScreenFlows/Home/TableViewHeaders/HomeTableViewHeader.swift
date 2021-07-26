@@ -12,6 +12,12 @@ protocol HomeTableViewHeaderDelegate: AnyObject {
 }
 
 class HomeTableViewHeader: UITableViewHeaderFooterView {
+    // MARK: - Lifecycle
+
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
     // MARK: - IBOutlets
 
     @IBOutlet private var subjectCollectionViewFlowLayout: UICollectionViewFlowLayout! {
@@ -47,12 +53,6 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     weak var delegate: HomeTableViewHeaderDelegate?
     var subjects: [Subject]?
     private var isFirstLoad: Bool = true
-
-    // MARK: - Lifecycle
-
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     // MARK: - IBActions
 
@@ -148,6 +148,13 @@ extension HomeTableViewHeader: UICollectionViewDelegate {
 }
 
 extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = subjects?[indexPath.item].name
+        label.sizeToFit()
+        return CGSize(width: label.frame.width, height: 50)
+    }
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
