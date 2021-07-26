@@ -8,6 +8,7 @@ enum HomeTarget {
     case loadRelatedCourses(isMyCourses: Bool, subjectID: Int?, page: Int, limit: Int)
     case loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int)
     case searchCourses(value: String)
+    case loadRelatedCoursesForTeacher(teacherID: Int, subjectID: Int, isMyCourses: Bool, page: Int, limit: Int)
 }
 
 extension HomeTarget: TargetType {
@@ -21,6 +22,8 @@ extension HomeTarget: TargetType {
             return "/courses"
         case .searchCourses:
             return "/courses/search"
+        case let .loadRelatedCoursesForTeacher(teacherID, _, _, _, _):
+            return "/teachers/\(teacherID)/related_courses"
         }
     }
 
@@ -48,6 +51,11 @@ extension HomeTarget: TargetType {
             )
         case let .searchCourses(value):
             return .requestParameters(parameters: ["value": value], encoding: URLEncoding.queryString)
+        case let .loadRelatedCoursesForTeacher(_, subjectID, isMyCourses, page, limit):
+            return .requestParameters(
+                parameters: ["subject_id": subjectID, "my_courses": isMyCourses, "page": page, "limit": limit],
+                encoding: URLEncoding.queryString
+            )
         default:
             return .requestPlain
         }
