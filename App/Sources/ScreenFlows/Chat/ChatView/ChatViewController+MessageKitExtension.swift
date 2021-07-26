@@ -17,7 +17,8 @@ extension ChatViewController {
         maintainPositionOnKeyboardFrameChanged = true
     }
 
-    private func configureMessageDisplayHandler() {        messagesDisplayHandler = MessagesDisplayHandler { self.isFromCurrentSender(message: $0) }
+    private func configureMessageDisplayHandler() {
+        messagesDisplayHandler = MessagesDisplayHandler { self.isFromCurrentSender(message: $0) }
     }
 
     private func configureAvatarLayout(layout: MessagesCollectionViewFlowLayout?) {
@@ -86,10 +87,8 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let createdAt = viewModel.messages[indexPath.section].createdAt
-        let inputFormatter = DateFormatter()
-        let date = inputFormatter.date(from: createdAt) ?? Date()
         let attributedString = NSMutableAttributedString(
-            string: date.formatDateToDateTimeString,
+            string: DateFormatterHandler.shared.formatStringDateToDateTimeForChat(createdAt),
             attributes: [.font: ChatConstants.dateFont]
         )
         return attributedString

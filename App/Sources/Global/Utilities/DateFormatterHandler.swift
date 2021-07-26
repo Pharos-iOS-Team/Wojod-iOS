@@ -25,8 +25,8 @@ struct DateFormatterHandler {
         return DateFormatter.mediumStyleDateFormatter.string(from: date)
     }
 
-    func formatStringDateToDateTime(_ stringDate: String) -> String {
-        guard let date = DateFormatter.iso8086DateFormatter.date(from: stringDate) else { return "" }
+    func formatStringDateToDateTimeForChat(_ stringDate: String) -> String {
+        guard let date = DateFormatter.isoDateFormatter.date(from: stringDate) else { return "" }
         return DateFormatter.shortStyleDateFormatter.string(from: date)
     }
 }

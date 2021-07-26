@@ -27,7 +27,9 @@ extension ChatViewController {
         if case .custom = message.kind {
             let customCellWidth: CGFloat = CustomMessageCellConstants.cellwidth
             let endPadding = messagesCollectionView.bounds.width - customCellWidth - horizontalPadding
-            if self.isFromCurrentSender(message: message) {
+            if isFromCurrentSender(message: message), Language.currentLanguage == .english {
+                return UIEdgeInsets(top: verticalPadding, left: endPadding, bottom: verticalPadding, right: horizontalPadding)
+            } else if !isFromCurrentSender(message: message), Language.currentLanguage == .arabic {
                 return UIEdgeInsets(top: verticalPadding, left: endPadding, bottom: verticalPadding, right: horizontalPadding)
             } else {
                 return UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: endPadding)

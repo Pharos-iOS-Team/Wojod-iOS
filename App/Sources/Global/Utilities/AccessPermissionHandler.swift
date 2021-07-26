@@ -21,18 +21,10 @@ final class AccessPermissionHandler {
         default:
             AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
                 DispatchQueue.main.async {
-                    granted ? successHandler(): self?.showMissingCameraPermissionAlert()
+                    granted ? successHandler(): self?.showMissingPhotoLibraryPermissionAlert(pickImageFrom: .camera)
                 }
             }
         }
-    }
-
-    private func showMissingCameraPermissionAlert() {
-        let alertHandler = AlertHandler(presentingViewCtrl: presentingViewCtrl)
-        alertHandler.showMissingPermissionAlert(
-            title: L10n.Shared.Alerts.Camera.title,
-            message: L10n.Shared.Alerts.Camera.message
-        )
     }
 
     func checkPhotoLibraryAuthoriztion(successHandler: @escaping () -> Void) {
@@ -43,13 +35,13 @@ final class AccessPermissionHandler {
         default:
             PHPhotoLibrary.requestAuthorization { [weak self] status in
                 DispatchQueue.main.async {
-                    status == .authorized ? successHandler(): self?.showMissingPhotoLibraryPermissionAlert()
+                    status == .authorized ? successHandler(): self?.showMissingPhotoLibraryPermissionAlert(pickImageFrom: .photoLibrary)
                 }
             }
         }
     }
 
-    private func showMissingPhotoLibraryPermissionAlert() {
+    private func showMissingPhotoLibraryPermissionAlert(pickImageFrom: UIImagePickerController.SourceType) {
         var attributes = EKAttributes.centerFloat
         attributes.displayDuration = .infinity
         attributes.screenInteraction = .dismiss
@@ -65,6 +57,7 @@ final class AccessPermissionHandler {
             )
         )
         let errorPopup = ErrorView()
+        errorPopup.configureTexts(pickImageFrom: pickImageFrom)
         SwiftEntryKit.display(entry: errorPopup, using: attributes)
     }
 }

@@ -4,6 +4,14 @@ import Foundation
 import HandySwift
 
 extension DateFormatter {
+
+    static var isoDateFormatter: DateFormatter {
+        return DateFormatter().with {
+            $0.locale = Language.locale
+            $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        }
+    }
+
     static var iso8086DateFormatter: DateFormatter {
         return DateFormatter().with {
             $0.locale = Language.locale

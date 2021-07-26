@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="220" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JmX-lA-GH8">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JmX-lA-GH8">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="214"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWd-J4-nDh">
@@ -112,7 +112,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kr-5W-euI">
-                                <rect key="frame" x="0.0" y="199" width="220" height="15"/>
+                                <rect key="frame" x="8" y="199" width="204" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="LW7-h4-Z1K"/>
                                 </constraints>
@@ -121,6 +121,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="1Kr-5W-euI" firstAttribute="leading" secondItem="JmX-lA-GH8" secondAttribute="leading" constant="8" id="Och-q1-Wu3"/>
+                            <constraint firstAttribute="trailing" secondItem="1Kr-5W-euI" secondAttribute="trailing" constant="8" id="gcN-gJ-LNC"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
