@@ -111,6 +111,7 @@ class CourseDetailsViewController: UIViewController {
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
     }
 
     // MARK: - IBActions
