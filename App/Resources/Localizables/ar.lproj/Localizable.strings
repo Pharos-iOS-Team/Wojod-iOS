@@ -182,6 +182,7 @@
 "courseDetails.courseReview.rateContent" = "هل ترغب في تقييم المحتوى؟";
 "courseDetails.courseReview.describeCourse" = "صف الدورة ...";
 "courseDetails.courseReview.skipRating" = "تخطي التقييم";
+"courseDetails.courseReview.by" = "من قبل";
 
 // MARK: - Home & My courses
 
