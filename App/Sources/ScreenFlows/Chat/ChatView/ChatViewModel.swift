@@ -67,7 +67,7 @@ class ChatViewModel {
     }
 
     private func handleSuccessRequest(response conversation: ConversationReponseModel) {
-        messages += conversation.messages ?? []
+        messages += conversation.messages?.reversed() ?? []
         isStartingConversation = messages.isEmpty
         conversationID = conversation.conversation?.id
         reciverName = conversation.messages?.last?.receivable?.name ?? ""
