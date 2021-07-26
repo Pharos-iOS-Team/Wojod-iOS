@@ -38,11 +38,7 @@ class HomeViewModel {
             switch result {
             case .success(let relatedCourses as RelatedCoursesResponse):
                 completion(relatedCourses)
-                if isBeingScrolled {
-                    self.relatedCoursesPage += 1
-                } else {
-                    self.relatedCoursesPage = 1
-                }
+                self.relatedCoursesPage += 1
             default:
                 return
             }
@@ -67,11 +63,7 @@ class HomeViewModel {
             switch result {
             case .success(let exploreMoreCourses as ExploreMoreCoursesResponse):
                 completion(exploreMoreCourses)
-                if isBeingScrolled {
-                    self.exploreMorePage += 1
-                } else {
-                    self.exploreMorePage = 1
-                }
+                self.exploreMorePage += 1
             default:
                 return
             }
