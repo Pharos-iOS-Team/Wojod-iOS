@@ -38,11 +38,7 @@ class HomeViewModel {
             switch result {
             case .success(let relatedCourses as RelatedCoursesResponse):
                 completion(relatedCourses)
-                if isBeingScrolled {
-                    self.relatedCoursesPage += 1
-                } else {
-                    self.relatedCoursesPage = 1
-                }
+                self.relatedCoursesPage += 1
             default:
                 return
             }
