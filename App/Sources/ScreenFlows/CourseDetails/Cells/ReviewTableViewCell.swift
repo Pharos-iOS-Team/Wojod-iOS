@@ -5,7 +5,11 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
 
-    @IBOutlet private var avatarImageView: UIImageView!
+    @IBOutlet private var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        }
+    }
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var commentLabel: UILabel!

@@ -500,7 +500,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             let date = dateFormatter.date(from: review?.createdAt ?? "")
             cell?.setTitle(review?.title ?? "")
-            cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") by \(review?.reviewer?.name ?? "")")
+            cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
             cell?.setRating(review?.rating ?? 0)
             DispatchQueue.global().async {

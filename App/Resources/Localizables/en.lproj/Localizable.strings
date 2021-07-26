@@ -182,6 +182,7 @@ No worries!";
 "courseDetails.courseReview.rateContent" = "Would you like to rate content?";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
+"courseDetails.courseReview.by" = "by";
 
 // MARK: - Home & My courses
 

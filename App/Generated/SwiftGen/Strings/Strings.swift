@@ -58,6 +58,10 @@ internal enum L10n {
         }
     }
     internal enum CourseReview {
+      /// by
+      internal static var by: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.by")
+        }
       /// Describe Course...
       internal static var describeCourse: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.describeCourse")
