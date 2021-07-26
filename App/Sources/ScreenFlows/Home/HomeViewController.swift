@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     private var subjects: [Subject]?
     private var selectedSubject: Subject?
     private var subjectRelatedCourses: [SubjectCourses] = []
-    private var exploreMoreCourses: [SubjectCourses]?
+    private var exploreMoreCourses: [SubjectCourses] = []
     private var searchResultsCourses: [SubjectCourses]?
     private var mode: HomeMode = .relatedCourses
     private var isInSearchMode = false
@@ -154,7 +154,9 @@ class HomeViewController: UIViewController {
         showLoadingIndicator()
         viewModel.loadExploreMoreCourses(isBeingScrolled: isBeingScrolled, isMyCourses: isMyCourses) { [unowned self] courses in
             hideLoadingIndicator()
-            exploreMoreCourses = courses?.teachersCourses
+            if let exploreCourses = courses?.teachersCourses {
+                exploreMoreCourses.append(contentsOf: exploreCourses)
+            }
             coursesTableView.reloadData()
             hideInfiniteScrolling()
         }
@@ -175,7 +177,7 @@ class HomeViewController: UIViewController {
         case .relatedCourses:
             return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses[index]
         case .exploreMore:
-            return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses?[index]
+            return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses[index]
         }
     }
 }
@@ -188,7 +190,7 @@ extension HomeViewController: UITableViewDataSource {
         case .relatedCourses:
             return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses?.count ?? 0
+            return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count 
         }
     }
 
