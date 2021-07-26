@@ -1,10 +1,10 @@
-"shared.alerts.camera.title" = "Camera Permission";
+"shared.alerts.camera.title" = "السماح للكاميرا";
 
-"shared.alerts.camera.message" = "Wojood need to access camera";
+"shared.alerts.camera.message" = "Wojood يحتاج الي الوصول للكاميرا";
 
-"shared.alerts.photos.title" = "Gallery Permission";
+"shared.alerts.photos.title" = "السماح للصور";
 
-"shared.alerts.photos.message" = "Wojood need to access Photos";
+"shared.alerts.photos.message" = "Wojood يحتاج الي الوصول للصور";
 
 "shared.alerts.error" = "خطأ";
 

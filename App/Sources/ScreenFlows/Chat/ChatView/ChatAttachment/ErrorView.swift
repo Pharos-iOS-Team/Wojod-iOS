@@ -36,12 +36,16 @@ class ErrorView: UIView, NibLoadable {
 
     private func setupLayout() {
         view.setTopCornerRadius(radius: 20)
-        configureTexts()
     }
 
-    private func configureTexts() {
+    func configureTexts(pickImageFrom: UIImagePickerController.SourceType) {
+        switch pickImageFrom {
+        case .camera:
+            errorTitle.text = L10n.Shared.Alerts.Camera.message
+        default:
+            errorTitle.text = L10n.Shared.Alerts.Photos.message
+        }
         settingsButton.setTitle(L10n.Global.Titles.settings, for: .normal)
-        errorTitle.text = L10n.Shared.Alerts.Photos.message
         cancelButton.setTitle(L10n.Shared.Action.cancel, for: .normal)
     }
 }

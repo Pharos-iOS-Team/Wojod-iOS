@@ -87,9 +87,7 @@ class CustomMessageCell: UICollectionViewCell {
 
     private func fillCellData() {
         contentMessageLbl.text = message?.content
-        let inputFormatter = DateFormatter()
-        let date = inputFormatter.date(from: message?.createdAt ?? "") ?? Date()
-        messageDateLabel.text = date.formatDateToDateTimeString
+        messageDateLabel.text = DateFormatterHandler.shared.formatStringDateToDateTimeForChat(message?.createdAt ?? "")
         let currentAttachment = message?.attachments?.first
         attachmentNameLbl.text = currentAttachment?.filename ?? "-"
         attachmentExtensionLbl.text = currentAttachment?.contentType ?? ""
