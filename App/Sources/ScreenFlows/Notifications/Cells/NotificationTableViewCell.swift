@@ -61,6 +61,7 @@ class NotificationTableViewCell: UITableViewCell {
 
     internal func configure(using notification: Notification) {
         let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = inputFormatter.date(from: notification.createdAt ?? "") ?? Date()
         attachments = notification.attachments
         configureAttachments()
