@@ -114,6 +114,7 @@ class CustomMessageCell: UICollectionViewCell {
 
     private func downloadFile(attachment: AttachmentObjectModel) {
         downloadAttachmentBtn.startLoading()
+        downloadAttachmentBtn.setImage(UIImage())
         let filePath = attachment.fileUrl ?? ""
         guard let url = URL(string: Environment.baseURLString + filePath) else { return }
         let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
