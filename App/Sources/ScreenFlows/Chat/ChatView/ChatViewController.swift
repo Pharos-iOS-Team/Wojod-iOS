@@ -28,7 +28,6 @@ class ChatViewController: MessagesViewController {
         setViewModel()
         bindViewModel()
         loadConversation()
-        configureSocketManager()
         connectToSocket()
         configureMessageCollectionView()
         configureMessageInputBar()
@@ -64,6 +63,8 @@ class ChatViewController: MessagesViewController {
             self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
             self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem()
+            self.configureSocketManager()
+            self.connectToSocket()
             self.activityIndicator.dismiss()
         }
         viewModel.handleErrorResponse = { error in

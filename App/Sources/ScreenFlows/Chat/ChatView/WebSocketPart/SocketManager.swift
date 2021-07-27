@@ -11,7 +11,7 @@ protocol SocketManagerDelegate: AnyObject {
 class SocketManager {
     private let channelIdentifier: String = "ChatChannel"
     private var socket: WebSocket?
-    private var chatableId: String
+    private var conversationID: String
 
     // MARK: - Delegates
 
@@ -19,8 +19,8 @@ class SocketManager {
 
     // MARK: - Initializers
 
-    init(chatableId: String) {
-        self.chatableId = chatableId
+    init(conversationID: String) {
+        self.conversationID = conversationID
         initSocketManager()
     }
 
@@ -65,10 +65,8 @@ extension SocketManager: WebSocketDelegate {
     }
 
     private func subscribeToChannel() {
-        let parameters: [String: Any] = [
-            "command": "subscribe",
-            "identifier": "{\"channel\":\"\(channelIdentifier)\",\"conversation_id\":\"\(1)\"}",
-        ]
+        let strChannel = "{ \"channel\": \"\(channelIdentifier)\",\"conversation_id\": \"\(conversationID)\" }"
+        let parameters: [String: Any] = ["command": "subscribe", "identifier": strChannel]
         do {
             let data = try JSONSerialization.data(withJSONObject: parameters)
             guard let params = String(bytes: data, encoding: .utf8) else { return }
