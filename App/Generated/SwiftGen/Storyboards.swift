@@ -46,6 +46,11 @@ internal enum StoryboardScene {
 
     internal static let createPasswordViewController = SceneType<Wojood.CreatePasswordViewController>(storyboard: CreatePassword.self, identifier: "CreatePasswordViewController")
   }
+  internal enum Filters: StoryboardType {
+    internal static let storyboardName = "Filters"
+
+    internal static let initialScene = InitialSceneType<Wojood.FiltersViewController>(storyboard: Filters.self)
+  }
   internal enum ForgotPassword: StoryboardType {
     internal static let storyboardName = "ForgotPassword"
 
