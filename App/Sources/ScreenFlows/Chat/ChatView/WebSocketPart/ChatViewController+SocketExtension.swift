@@ -6,7 +6,7 @@ extension ChatViewController: SocketManagerDelegate {
     // MARK: - Socket connection
 
     func configureSocketManager() {
-        socketManager = SocketManager(chatableId: "")
+        socketManager = SocketManager(conversationID: "\(viewModel.conversationID ?? 0)")
         socketManager?.delegate = self
     }
 

@@ -39,7 +39,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CHAT_BASE_URL</key>
-	<string>ws://staging.wojodacademy.com/cable</string>
+	<string>wss://staging.wojodacademy.com/cable</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>ROOT_URL</key>
