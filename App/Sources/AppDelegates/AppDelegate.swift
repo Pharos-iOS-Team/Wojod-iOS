@@ -6,7 +6,7 @@ import UserNotifications
 typealias AppDelegateType = UIResponder & UIApplicationDelegate
 
 @UIApplicationMain
-class AppDelegate: AppDelegateType {
+class AppDelegate: AppDelegateType, UNUserNotificationCenterDelegate {
     static func getAppDelegate() -> AppDelegate! {
         return UIApplication.shared.delegate as? AppDelegate
     }
@@ -16,6 +16,7 @@ class AppDelegate: AppDelegateType {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = appDelegateComposer.application(application, didFinishLaunchingWithOptions: launchOptions)
+        UNUserNotificationCenter.current().delegate = self
         registerForPushNotifications()
         return true
     }
@@ -23,15 +24,13 @@ class AppDelegate: AppDelegateType {
     func registerForPushNotifications() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                print("Permission granted: \(granted)")
                 guard granted else { return }
-                self.getNotificationSettings()
+                self.retrieveNotificationSettings()
             }
     }
 
-    func getNotificationSettings() {
+    func retrieveNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
@@ -45,13 +44,6 @@ class AppDelegate: AppDelegateType {
     ) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
-        print("Device Token: \(token)")
-    }
-
-    func application(
-        _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error
-    ) {
-        print("Failed to register: \(error)")
+        PushNotificationsManager.shared.sendUserDeviceToken(token)
     }
 }

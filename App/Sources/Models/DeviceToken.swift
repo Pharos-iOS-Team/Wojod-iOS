@@ -3,7 +3,7 @@
 import UIKit
 
 struct DeviceToken: Encodable {
-    var deviceTokenNew: String
+    var deviceToken: String
     var deviceType: String = "ios"
     var deviceId: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
 }
