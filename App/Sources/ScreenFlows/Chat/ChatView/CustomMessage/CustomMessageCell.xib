@@ -122,8 +122,12 @@
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="1Kr-5W-euI" firstAttribute="top" secondItem="qWd-J4-nDh" secondAttribute="bottom" id="7ZA-56-AjC"/>
                             <constraint firstItem="1Kr-5W-euI" firstAttribute="leading" secondItem="JmX-lA-GH8" secondAttribute="leading" constant="8" id="Och-q1-Wu3"/>
+                            <constraint firstItem="qWd-J4-nDh" firstAttribute="top" secondItem="JmX-lA-GH8" secondAttribute="top" id="gJi-b7-d9j"/>
                             <constraint firstAttribute="trailing" secondItem="1Kr-5W-euI" secondAttribute="trailing" constant="8" id="gcN-gJ-LNC"/>
+                            <constraint firstAttribute="trailing" secondItem="qWd-J4-nDh" secondAttribute="trailing" id="kPu-Z2-9DR"/>
+                            <constraint firstItem="qWd-J4-nDh" firstAttribute="leading" secondItem="JmX-lA-GH8" secondAttribute="leading" id="wxw-Au-Flv"/>
                         </constraints>
                     </stackView>
                 </subviews>
