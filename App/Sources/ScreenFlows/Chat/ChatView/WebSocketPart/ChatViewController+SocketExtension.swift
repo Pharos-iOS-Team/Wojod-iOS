@@ -6,7 +6,7 @@ extension ChatViewController: SocketManagerDelegate {
     // MARK: - Socket connection
 
     func configureSocketManager() {
-        socketManager = SocketManager(conversationID: "\(viewModel.conversationID ?? 0)")
+        socketManager = SocketManager(conversationID: viewModel.conversationID ?? 0, chatType: viewModel.chatType)
         socketManager?.delegate = self
     }
 
@@ -20,5 +20,9 @@ extension ChatViewController: SocketManagerDelegate {
 
     func didReceiveMessage(_ message: String) {
         print(message)
+        if viewModel.decodeReceivedMessageFromWebSocket(from: message) != nil {
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToLastItem()
+        }
     }
 }

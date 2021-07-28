@@ -31,6 +31,15 @@ struct MessageObjectModel: Codable {
     var attachments: [AttachmentObjectModel]?
 }
 
+struct WebSocketResponseModel: Codable {
+    var identifier: String
+    var message: WebSocketMessageModel
+}
+
+struct WebSocketMessageModel: Codable {
+    var messageApi: MessageObjectModel
+}
+
 struct ConversationReponseModel: Codable {
     var conversation: ConversationObjectModel?
     var messages: [MessageObjectModel]?

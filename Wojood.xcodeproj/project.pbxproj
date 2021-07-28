@@ -10,6 +10,7 @@
 		262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 262FA7592694B0FD00245D2C /* Chat.storyboard */; };
 		262FA75F2694B11F00245D2C /* ChatContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */; };
 		262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FA7852694BD0B00245D2C /* ChatViewController.swift */; };
+		26835F5A26B0578B0061DA70 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26835F5926B0578B0061DA70 /* Decoder.swift */; };
 		268BD94C269DBC13004758CE /* ImageAttachmentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD94B269DBC12004758CE /* ImageAttachmentDetails.swift */; };
 		268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD950269DBD47004758CE /* FormDataGenerator.swift */; };
 		268BD95A269DD8DB004758CE /* ChatContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */; };
@@ -323,6 +324,7 @@
 		262FA7592694B0FD00245D2C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		262FA7852694BD0B00245D2C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		26835F5926B0578B0061DA70 /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		268BD94B269DBC12004758CE /* ImageAttachmentDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAttachmentDetails.swift; sourceTree = "<group>"; };
 		268BD950269DBD47004758CE /* FormDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataGenerator.swift; sourceTree = "<group>"; };
 		268BD959269DD8DB004758CE /* ChatContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewModel.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				26835F5926B0578B0061DA70 /* Decoder.swift */,
 				26CF48A8269B061E00DDA29F /* Chat */,
 				385CC0C0265F92D800A091FD /* CourseDetails */,
 				38812C52266E9AEE00CCD924 /* Home */,
@@ -1852,6 +1855,7 @@
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
 				26CF48C9269B306A00DDA29F /* ChatViewController+SocketExtension.swift in Sources */,
 				BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */,
+				26835F5A26B0578B0061DA70 /* Decoder.swift in Sources */,
 				778E7257261DC2D4009D7B35 /* DateExt.swift in Sources */,
 				BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */,
 				BC968291263979CB009F8550 /* AcademicInfoApiClient.swift in Sources */,

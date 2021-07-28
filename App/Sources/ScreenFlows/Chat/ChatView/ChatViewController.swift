@@ -88,6 +88,15 @@ class ChatViewController: MessagesViewController {
         configureMessageInputBar()
         setAttachmentManager(active: false)
         removeSelectedAttachmentManager()
+        handleWebSocketConfigurationIfneeded()
+    }
+
+    private func handleWebSocketConfigurationIfneeded() {
+        let isFirstMessage = viewModel.messages.count == 1
+        if isFirstMessage {
+            self.configureSocketManager()
+            self.connectToSocket()
+        }
     }
 
     // MARK: - handling custom messages
