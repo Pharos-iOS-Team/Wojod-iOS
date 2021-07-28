@@ -135,4 +135,12 @@ class ChatViewModel {
         }
         return formDataArr
     }
+
+    func decodeReceivedMessageFromWebSocket(from text: String) -> MessageObjectModel? {
+        guard let data = text.data(using: .utf8) else { return nil }
+        let decodedResponse = Decoder.decode(modelType: WebSocketResponseModel.self, from: data)
+        guard let decodedMessage = decodedResponse.data?.message.messageApi else { return nil }
+        messages.append(decodedMessage)
+        return decodedMessage
+    }
 }

@@ -11,7 +11,8 @@ protocol SocketManagerDelegate: AnyObject {
 class SocketManager {
     private let channelIdentifier: String = "ChatChannel"
     private var socket: WebSocket?
-    private var conversationID: String
+    private var conversationID: Int
+    private var chatType: ChatType
 
     // MARK: - Delegates
 
@@ -19,8 +20,9 @@ class SocketManager {
 
     // MARK: - Initializers
 
-    init(conversationID: String) {
+    init(conversationID: Int, chatType: ChatType) {
         self.conversationID = conversationID
+        self.chatType = chatType
         initSocketManager()
     }
 
@@ -65,14 +67,25 @@ extension SocketManager: WebSocketDelegate {
     }
 
     private func subscribeToChannel() {
-        let strChannel = "{ \"channel\": \"\(channelIdentifier)\",\"conversation_id\": \"\(conversationID)\" }"
-        let parameters: [String: Any] = ["command": "subscribe", "identifier": strChannel]
+        let parameters = setParamsForSubscribing()
         do {
             let data = try JSONSerialization.data(withJSONObject: parameters)
             guard let params = String(bytes: data, encoding: .utf8) else { return }
             socket?.write(string: params)
         } catch {
             AnalyticsEventLogger.log(error: error.localizedDescription)
+        }
+    }
+
+    private func setParamsForSubscribing() -> [String: Any] {
+        switch chatType {
+        case let .teacher(courseID, _):
+            let loggedUserDetails = LoggedUserDetails()
+            let strChannel = "{\"channel\": \"\(channelIdentifier)\",\"student_id\": \"\(loggedUserDetails.senderId)\",\"course_id\": \"\(courseID)\" }"
+            return ["command": "subscribe", "identifier": strChannel]
+        case .customerSupport:
+            let strChannel = "{\"channel\": \"\(channelIdentifier)\",\"conversation_id\": \"\(conversationID)\",\"conversation\": \"\(true)\" }"
+            return ["command": "subscribe", "identifier": strChannel]
         }
     }
 }
