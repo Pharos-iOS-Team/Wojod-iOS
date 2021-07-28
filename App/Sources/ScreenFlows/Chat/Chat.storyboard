@@ -106,6 +106,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="RoV-ec-EpO" id="JqV-fC-KtT"/>
                         <outlet property="chatView" destination="gbS-h5-cMS" id="F3l-C1-Mby"/>
                         <outlet property="endChatLabel" destination="RMx-I6-5C7" id="2Ki-cj-y53"/>
                         <outlet property="endChatView" destination="1tV-Tp-A1o" id="wnB-OL-6B5"/>

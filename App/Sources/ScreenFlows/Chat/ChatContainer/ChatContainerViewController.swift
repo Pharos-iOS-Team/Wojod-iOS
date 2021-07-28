@@ -8,6 +8,11 @@ class ChatContainerViewController: UIViewController {
     @IBOutlet private var chatView: UIView!
     @IBOutlet private var endChatView: UIView!
     @IBOutlet private var endChatLabel: UILabel!
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Asset.Images.localizedBackButton)
+        }
+    }
     var chatType: ChatType = .customerSupport
 
     private let activityIndicator = ActivityIndicator()
