@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 // swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// swiftlint:disable file_length implicit_return
 
 // MARK: - Storyboard Scenes
 
@@ -45,6 +45,11 @@ internal enum StoryboardScene {
     internal static let storyboardName = "CreatePassword"
 
     internal static let createPasswordViewController = SceneType<Wojood.CreatePasswordViewController>(storyboard: CreatePassword.self, identifier: "CreatePasswordViewController")
+  }
+  internal enum Filters: StoryboardType {
+    internal static let storyboardName = "Filters"
+
+    internal static let initialScene = InitialSceneType<Wojood.FiltersViewController>(storyboard: Filters.self)
   }
   internal enum ForgotPassword: StoryboardType {
     internal static let storyboardName = "ForgotPassword"
@@ -114,7 +119,7 @@ internal protocol StoryboardType {
 internal extension StoryboardType {
   static var storyboard: UIStoryboard {
     let name = self.storyboardName
-    return UIStoryboard(name: name, bundle: Bundle(for: BundleToken.self))
+    return UIStoryboard(name: name, bundle: BundleToken.bundle)
   }
 }
 
@@ -129,6 +134,11 @@ internal struct SceneType<T: UIViewController> {
     }
     return controller
   }
+
+  @available(iOS 13.0, tvOS 13.0, *)
+  internal func instantiate(creator block: @escaping (NSCoder) -> T?) -> T {
+    return storyboard.storyboard.instantiateViewController(identifier: identifier, creator: block)
+  }
 }
 
 internal struct InitialSceneType<T: UIViewController> {
@@ -140,6 +150,24 @@ internal struct InitialSceneType<T: UIViewController> {
     }
     return controller
   }
+
+  @available(iOS 13.0, tvOS 13.0, *)
+  internal func instantiate(creator block: @escaping (NSCoder) -> T?) -> T {
+    guard let controller = storyboard.storyboard.instantiateInitialViewController(creator: block) else {
+      fatalError("Storyboard \(storyboard.storyboardName) does not have an initial scene.")
+    }
+    return controller
+  }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
+}
+// swiftlint:enable convenience_type

@@ -23,6 +23,18 @@ class HomeViewController: UIViewController {
             helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
+    @IBOutlet private var filterSelectedLabel: UILabel! {
+        didSet {
+            filterSelectedLabel.isHidden = true
+        }
+    }
+    @IBOutlet private var clearLabel: UILabel! {
+        didSet {
+            clearLabel.isHidden = true
+        }
+    }
+    @IBOutlet private var filtersButton: UIButton!
+    @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var coursesTableView: UITableView!
 
     // MARK: - Private Properties
@@ -41,6 +53,7 @@ class HomeViewController: UIViewController {
     private var isFirstScreenLoad = true
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
+    private var isFiltersSelected: Bool = false
 
     // MARK: - Lifecycle
 
@@ -55,6 +68,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
+        configureFilterButton()
         loadRelatedCourses(isBeingScrolled: false)
     }
 
@@ -73,7 +87,28 @@ class HomeViewController: UIViewController {
         present(viewCtrl, animated: true)
     }
 
+    @IBAction private func didTapFiltersButton(_ sender: UIButton) {
+        if isFiltersSelected {
+            loadExploreMoreCourses(isBeingScrolled: false)
+            configureFiltersButtonWhenNoFilterSelected()
+        } else {
+            let viewCtrl = StoryboardScene.Filters.initialScene.instantiate()
+            viewCtrl.delegate = self
+            present(viewCtrl, animated: true)
+        }
+    }
+
     // MARK: - Private Functions
+
+    private func configureFilterButton() {
+        if !isMyCourses && mode == .exploreMore {
+            filtersButton.isHidden = false
+            filtersButtonHeightConstraint.constant = 50
+        } else {
+            filtersButton.isHidden = true
+            filtersButtonHeightConstraint.constant = 0
+        }
+    }
 
     private func showReceipt(_ receiptData: Receipt) {
         let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
@@ -179,6 +214,22 @@ class HomeViewController: UIViewController {
         case .exploreMore:
             return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses[index]
         }
+    }
+
+    private func configureFiltersButtonWhenFiltersAreSelected() {
+        isFiltersSelected = true
+        filtersButton.layer.backgroundColor = Colors.green.color.cgColor
+        filtersButton.setTitle("")
+        filterSelectedLabel.isHidden = false
+        clearLabel.isHidden = false
+    }
+
+    private func configureFiltersButtonWhenNoFilterSelected() {
+        isFiltersSelected = false
+        filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
+        filtersButton.setTitle("Show Filters")
+        filterSelectedLabel.isHidden = true
+        clearLabel.isHidden = true
     }
 }
 
@@ -290,12 +341,23 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     func didSelectRelatedCourses() {
         mode = .relatedCourses
         viewModel.exploreMorePage = 1
+        configureFilterButton()
         loadRelatedCourses(isBeingScrolled: false)
     }
 
     func didSelectExploreMore() {
         mode = .exploreMore
         viewModel.relatedCoursesPage = 1
+        configureFilterButton()
         loadExploreMoreCourses(isBeingScrolled: false)
+    }
+}
+
+// MARK: - Filters Delegate
+extension HomeViewController: FiltersDelegate {
+    func loadFilteredCourses(_ courses: ExploreMoreCoursesResponse?) {
+        exploreMoreCourses = courses?.teachersCourses ?? []
+        self.coursesTableView.reloadData()
+        configureFiltersButtonWhenFiltersAreSelected()
     }
 }
