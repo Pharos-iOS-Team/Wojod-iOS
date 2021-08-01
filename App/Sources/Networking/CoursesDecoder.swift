@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum Decoder {
+enum CoursesDecoder {
     static func decode<T: Decodable>(modelType: T.Type, from data: Data) -> (data: T?, catchedError: String?) {
         do {
             let decoder = JSONDecoder()

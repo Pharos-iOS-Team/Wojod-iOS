@@ -31,6 +31,11 @@ internal enum AttachmentType {
     case documents
 }
 
+protocol LoadableView: class {
+    func startLoading()
+    func stopLoading()
+}
+
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
@@ -76,6 +81,7 @@ class CourseDetailsViewController: UIViewController {
     private var state: CourseState?
     private var activeScreen: ActiveScreen?
     private var viewModel: CourseDetailsViewModel?
+    private var quizzesViewModel: AssessmentsOverViewViewModel?
     private var lessonsList: [Lesson]?
     private var lessonNumbersList: [Int]?
     private var reviewsList: [Review]?
@@ -91,6 +97,7 @@ class CourseDetailsViewController: UIViewController {
     private var loadingHud: JGProgressHUD?
     private var numberOfSectionsInMaterials: Int = 4
     private var allAttachmentsOfLesson: [Any] = []
+    private var alertViewController: AppAlertViewController?
 
     // MARK: - Public Properties
 
@@ -106,11 +113,14 @@ class CourseDetailsViewController: UIViewController {
         state = getReservationState()
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
+        quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
         configureActionButtonAccordingToState()
         configureVisibilityOfButtonsAccordingToState()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
+        bindStartAssessmentHandler()
+        bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
     }
 
@@ -441,6 +451,99 @@ class CourseDetailsViewController: UIViewController {
             return
         }
     }
+
+    private func startAssessment(at indexPath: IndexPath) {
+        guard let assessment = quizzesViewModel?.assessments[indexPath.row]
+        else { return }
+        switch assessment.type {
+        case "Quiz":
+            // tableView.deselectRow(at: indexPath, animated: false)
+            showStartQuizAlert(assessment)
+        default:
+            guard let cell = tableView.cellForRow(at: indexPath) as? LoadableView
+            else { return }
+            tableView.isUserInteractionEnabled = false
+            cell.startLoading()
+            quizzesViewModel?.startAssessment(with: assessment) { [weak self] in
+                self?.tableView.isUserInteractionEnabled = true
+                cell.stopLoading()
+            }
+        }
+    }
+
+    private func showStartQuizAlert(_ assessment: Assessment) {
+        alertViewController = showAndReturnAlert(
+            imageName: Asset.Images.danger.name,
+            title: L10n.Quizzes.alertTitle,
+            message: L10n.Quizzes.alertSubTitle,
+            primaryButtonTitle: L10n.Quizzes.start,
+            dismissButtonTitle: L10n.Global.Actions.cancel
+        ) { [weak self] in
+            self?.startAssessment(with: assessment)
+        }
+    }
+
+    private func startAssessment(with assessment: Assessment) {
+        alertViewController?.startPrimaryButtonLoading()
+        quizzesViewModel?.startAssessment(with: assessment)
+    }
+
+    private func showResultForRow(at indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? LoadableView
+        tableView.isUserInteractionEnabled = false
+        cell?.startLoading()
+        quizzesViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
+            self?.tableView.isUserInteractionEnabled = true
+            cell?.stopLoading()
+        }
+    }
+
+    private func bindStartAssessmentHandler() {
+        quizzesViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, type in
+            switch type {
+            case .quiz:
+                self?.dismissAlertView { [weak self] in
+                    self?.alertViewController = nil
+                    self?.openAssessmentDetails(.quizzes, assessmentID, assessmentDetails)
+                }
+            case .assignment:
+                self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
+            }
+        }
+    }
+
+    private func bindAssessmentResultsHandler() {
+        quizzesViewModel?.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, type in
+            let module: AssessmentsOverViewViewModel.Module = type == .quiz
+                ? .quizzes
+                : .assignments
+            self?.present(
+                AssessmentDetailsConfigurator.configure(
+                    status: .closed,
+                    module: module,
+                    assessmentID: assessmentID,
+                    assessmentDetails: assessmentDetails,
+                    delegate: self
+                ),
+                animated: true
+            )
+        }
+    }
+
+    private func openAssessmentDetails(_ currentModule: AssessmentsOverViewViewModel.Module, _ assessmentID: Int?, _ assessmentDetails: AssessmentDetails?) {
+        let viewCtrl = AssessmentDetailsConfigurator.configure(
+            status: .open,
+            module: currentModule,
+            assessmentID: assessmentID,
+            assessmentDetails: assessmentDetails,
+            delegate: self
+        )
+        self.present(viewCtrl, animated: true)
+    }
+
+    private func dismissAlertView(completion: (() -> Void)? = nil) {
+        alertViewController?.dismiss(animated: true, completion: completion)
+    }
 }
 
 // MARK: - Table View Data Source
@@ -604,6 +707,18 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
                 storeAndShare(withURLString: "\(documentURL)")
 
+            case .quizzes:
+                quizzesViewModel?.assessments = materials?.quizzes ?? []
+                let quiz = materials?.quizzes?[indexPath.row]
+                switch quiz?.status {
+                case "open":
+                    self.startAssessment(at: indexPath)
+                case "closed":
+                    self.showResultForRow(at: indexPath)
+                default:
+                    return
+                }
+
             default:
                 return
             }
@@ -673,8 +788,18 @@ extension CourseDetailsViewController: ReviewCourseViewDelegate {
     }
 }
 
+// MARK: - Document Interaction Controller Delegate
+
 extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+}
+
+// MARK: - Assessment Details Delegate
+
+extension CourseDetailsViewController: AssessmentDetailsDelegate {
+    func didFinishAssessment(with id: Int?) {
+        tableView.reloadData()
     }
 }

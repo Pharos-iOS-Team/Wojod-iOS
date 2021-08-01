@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssessmentFreeTextTableViewCell" rowHeight="215" id="KGk-i7-Jjw" customClass="AssessmentFreeTextTableViewCell" customModule="De_la_salle" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87W-Rh-NU2">
+                        <rect key="frame" x="0.0" y="15" width="320" height="170"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-W9-IrJ">
+                                <rect key="frame" x="20" y="10" width="210" height="150"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nX-50-Iyb">
+                                <rect key="frame" x="285" y="15" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Gxo-Jp-7jX"/>
+                                    <constraint firstAttribute="width" constant="25" id="lFD-tR-NHi"/>
+                                </constraints>
+                                <state key="normal" image="attach"/>
+                                <connections>
+                                    <action selector="attach:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qyw-oz-g6L"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attachmentUploadPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="EdG-2L-BKB">
+                                <rect key="frame" x="240" y="89.5" width="60" height="70.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EdG-2L-BKB" secondAttribute="height" multiplier="17:20" id="DcR-fn-fIG"/>
+                                    <constraint firstAttribute="width" constant="60" id="g09-5o-Gxm"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-7s-Z9s">
+                                <rect key="frame" x="290" y="84.5" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="4lV-Ie-aPD"/>
+                                    <constraint firstAttribute="width" constant="15" id="ES6-ih-ECX"/>
+                                </constraints>
+                                <state key="normal" image="closeBold"/>
+                                <connections>
+                                    <action selector="deleteAttachment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OFj-DG-JJC"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-9z-aT1" customClass="RPCircularProgress" customModule="RPCircularProgress">
+                                <rect key="frame" x="250" y="104.5" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1MB-Jv-n3U"/>
+                                    <constraint firstAttribute="height" constant="40" id="ejM-pc-978"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundedCorners" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lnk-W9-IrJ" firstAttribute="top" secondItem="87W-Rh-NU2" secondAttribute="top" constant="10" id="5Oc-3G-FFV"/>
+                            <constraint firstItem="Os4-7s-Z9s" firstAttribute="trailing" secondItem="EdG-2L-BKB" secondAttribute="trailing" constant="5" id="6km-Qw-zoj"/>
+                            <constraint firstItem="6nX-50-Iyb" firstAttribute="top" secondItem="87W-Rh-NU2" secondAttribute="top" constant="15" id="7Ww-2k-DSK"/>
+                            <constraint firstAttribute="bottom" secondItem="lnk-W9-IrJ" secondAttribute="bottom" constant="10" id="B8M-oH-3KY"/>
+                            <constraint firstAttribute="bottom" secondItem="EdG-2L-BKB" secondAttribute="bottom" constant="10" id="QLH-2j-8is"/>
+                            <constraint firstItem="EdG-2L-BKB" firstAttribute="leading" secondItem="lnk-W9-IrJ" secondAttribute="trailing" priority="750" constant="10" id="UF4-Cd-fDb"/>
+                            <constraint firstAttribute="trailing" secondItem="EdG-2L-BKB" secondAttribute="trailing" constant="20" id="Vdf-H6-7d1"/>
+                            <constraint firstItem="6nX-50-Iyb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lnk-W9-IrJ" secondAttribute="trailing" constant="10" id="biT-QS-8Q4"/>
+                            <constraint firstItem="Os4-7s-Z9s" firstAttribute="top" secondItem="EdG-2L-BKB" secondAttribute="top" constant="-5" id="hG3-hm-Iw7"/>
+                            <constraint firstItem="Mce-9z-aT1" firstAttribute="centerY" secondItem="EdG-2L-BKB" secondAttribute="centerY" id="nOp-aL-Kfi"/>
+                            <constraint firstItem="Mce-9z-aT1" firstAttribute="centerX" secondItem="EdG-2L-BKB" secondAttribute="centerX" id="vRN-Hc-mmB"/>
+                            <constraint firstAttribute="trailing" secondItem="6nX-50-Iyb" secondAttribute="trailing" constant="10" id="xAc-Uq-ekt"/>
+                            <constraint firstItem="lnk-W9-IrJ" firstAttribute="leading" secondItem="87W-Rh-NU2" secondAttribute="leading" constant="20" id="yUH-iQ-KHT"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qp-Cl-OlK">
+                        <rect key="frame" x="0.0" y="10" width="320" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="87W-Rh-NU2" secondAttribute="bottom" constant="10" id="27s-h4-okL"/>
+                    <constraint firstItem="1Qp-Cl-OlK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="59r-8J-koA"/>
+                    <constraint firstAttribute="trailing" secondItem="1Qp-Cl-OlK" secondAttribute="trailing" id="I4D-Cd-C9y"/>
+                    <constraint firstItem="87W-Rh-NU2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J6Z-45-S6d"/>
+                    <constraint firstAttribute="trailing" secondItem="87W-Rh-NU2" secondAttribute="trailing" id="P6R-mT-12k"/>
+                    <constraint firstItem="1Qp-Cl-OlK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Y82-Bm-NQP"/>
+                    <constraint firstItem="87W-Rh-NU2" firstAttribute="top" secondItem="1Qp-Cl-OlK" secondAttribute="bottom" constant="5" id="ZXM-Yn-Z0W"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="answerTextView" destination="lnk-W9-IrJ" id="Wc1-vV-QKu"/>
+                <outlet property="attachFileButton" destination="6nX-50-Iyb" id="HoM-ib-H0y"/>
+                <outlet property="attachmentImageView" destination="EdG-2L-BKB" id="J8y-3z-zl9"/>
+                <outlet property="attachmentImageViewWidthConstraint" destination="g09-5o-Gxm" id="dgt-X9-SVj"/>
+                <outlet property="cancelUploadButton" destination="Os4-7s-Z9s" id="GNf-da-u5g"/>
+                <outlet property="containerView" destination="87W-Rh-NU2" id="k7p-dB-82j"/>
+                <outlet property="uploadProgressView" destination="Mce-9z-aT1" id="OO7-0I-hDa"/>
+                <outlet property="yourAnswerLabel" destination="1Qp-Cl-OlK" id="tca-8K-fnW"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="150.33482142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="attach" width="25" height="26"/>
+        <image name="attachmentUploadPlaceholder" width="34" height="40"/>
+        <image name="closeBold" width="24" height="24"/>
+    </resources>
+</document>
