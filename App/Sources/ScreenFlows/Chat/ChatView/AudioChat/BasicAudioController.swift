@@ -40,28 +40,48 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     }
 
     private func playSound(audioCell: AudioMessageCell, message: MessageType, item: AudioItem, completion: (() -> Void)? = nil) {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destinationURL = documentsPath.appendingPathComponent(item.url.lastPathComponent)
+        if let fileLocalUrl = FileManager.default.localUrl(ofFileName: item.url.lastPathComponent) {
+            handleDownloadingAudioSuccess(audioCell: audioCell, message: message, downloadedURL: fileLocalUrl, item: item, completion: completion)
+        } else {
+            downloadAudio(audioCell: audioCell, message: message, item: item, destinationUrl: destinationURL, completion: completion)
+        }
+    }
+
+    private func downloadAudio(audioCell: AudioMessageCell, message: MessageType, item: AudioItem, destinationUrl: URL, completion: (() -> Void)? = nil) {
         var downloadTask: URLSessionDownloadTask
         downloadTask = URLSession.shared.downloadTask(with: item.url) { [weak self] url, _, _ in
-            self?.playingCell = audioCell
-            self?.playingMessage = message
-            guard let url = url,
-                  let player = try? AVAudioPlayer(contentsOf: url)
-            else { return }
-            self?.audioPlayer = player
-            self?.audioPlayer?.prepareToPlay()
-            self?.audioPlayer?.delegate = self
-            self?.audioPlayer?.play()
-            self?.state = .playing
-            DispatchQueue.main.sync {
-                audioCell.playButton.isSelected = true
-                self?.startProgressTimer()
-                audioCell.delegate?.didStartAudio(in: audioCell)
-                if let completion = completion {
-                    completion()
+            if let url = url {
+                DispatchQueue.main.sync {
+                    self?.handleDownloadingAudioSuccess(audioCell: audioCell, message: message, downloadedURL: url, item: item, completion: completion)
                 }
+                do {
+                    try? FileManager.default.removeItem(at: destinationUrl)
+                    try FileManager.default.moveItem(at: url, to: destinationUrl)
+                } catch {}
             }
         }
         downloadTask.resume()
+    }
+
+    private func handleDownloadingAudioSuccess(audioCell: AudioMessageCell, message: MessageType, downloadedURL: URL?, item: AudioItem, completion: (() -> Void)? = nil) {
+        playingCell = audioCell
+        playingMessage = message
+        guard let url = downloadedURL,
+              let player = try? AVAudioPlayer(contentsOf: url)
+        else { return }
+        audioPlayer = player
+        audioPlayer?.prepareToPlay()
+        audioPlayer?.delegate = self
+        audioPlayer?.play()
+        state = .playing
+        audioCell.playButton.isSelected = true
+        startProgressTimer()
+        audioCell.delegate?.didStartAudio(in: audioCell)
+        if let completion = completion {
+            completion()
+        }
     }
 
     func playSound(for message: MessageType, in audioCell: AudioMessageCell, completion: (() -> Void)? = nil) {
