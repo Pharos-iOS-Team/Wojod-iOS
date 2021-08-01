@@ -57,7 +57,7 @@ class ChatViewController: MessagesViewController {
     private func configureAudioController() {
         audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
     }
-    
+
     private func setViewModel() {
         viewModel.chatType = chatType
     }
