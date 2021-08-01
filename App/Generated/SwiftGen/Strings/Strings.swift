@@ -28,6 +28,10 @@ internal enum L10n {
     internal static var images: String {
         return L10n.tr("Localizable", "chat.images")
       }
+    /// Recording...
+    internal static var recording: String {
+        return L10n.tr("Localizable", "chat.recording")
+      }
     /// Send
     internal static var send: String {
         return L10n.tr("Localizable", "chat.send")

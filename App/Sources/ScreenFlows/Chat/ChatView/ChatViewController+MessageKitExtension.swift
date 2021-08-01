@@ -11,6 +11,7 @@ extension ChatViewController {
         configureAvatarLayout(layout: layout)
         setMessageConstraints(layout: layout)
         messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messageCellDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = messagesDisplayHandler
         scrollsToLastItemOnKeyboardBeginsEditing = true

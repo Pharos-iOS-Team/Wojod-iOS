@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import AVFoundation
 import InputBarAccessoryView
 import MessageKit
 import UIKit
@@ -13,6 +14,8 @@ class ChatViewController: MessagesViewController {
     var messagesDisplayHandler: MessagesDisplayHandler?
     var documentPicker: UIDocumentPickerViewController?
     var chatType: ChatType = .customerSupport
+    var audioController: BasicAudioController?
+    var lastAudioIndexPathClicked: IndexPath?
     lazy var attachmentManager: AttachmentManager = { [unowned self] in
         let manager = AttachmentManager()
         manager.showAddAttachmentCell = false
@@ -33,6 +36,7 @@ class ChatViewController: MessagesViewController {
         configureMessageInputBar()
         setAttachmentTypeActionSheet()
         setDocumentPicker()
+        configureAudioController()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -43,10 +47,16 @@ class ChatViewController: MessagesViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         disconnectSocket()
+        audioController?.dinitAudioPlayer()
+        audioController = nil
         resignFirstResponder()
     }
 
     // MARK: - Helper Methods
+
+    private func configureAudioController() {
+        audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    }
 
     private func setViewModel() {
         viewModel.chatType = chatType
@@ -80,7 +90,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    private func messageSentSuccessfully() {
+    func messageSentSuccessfully() {
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToLastItem()
         messageInputBar.sendButton.stopAnimating()

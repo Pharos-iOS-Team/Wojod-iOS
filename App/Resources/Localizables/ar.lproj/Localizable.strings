@@ -205,3 +205,4 @@
 "chat.files" = "ملفات";
 "chat.camera" = "كاميرا";
 "chat.endChat" = "إنهاء المحادثة";
+"chat.recording" = "جاري التسجيل...";
