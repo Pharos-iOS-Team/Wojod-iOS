@@ -14,7 +14,7 @@ class ChatViewController: MessagesViewController {
     var messagesDisplayHandler: MessagesDisplayHandler?
     var documentPicker: UIDocumentPickerViewController?
     var chatType: ChatType = .customerSupport
-    lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    var audioController: BasicAudioController?
     var lastAudioIndexPathClicked: IndexPath?
     lazy var attachmentManager: AttachmentManager = { [unowned self] in
         let manager = AttachmentManager()
@@ -36,6 +36,7 @@ class ChatViewController: MessagesViewController {
         configureMessageInputBar()
         setAttachmentTypeActionSheet()
         setDocumentPicker()
+        configureAudioController()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -46,12 +47,17 @@ class ChatViewController: MessagesViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         disconnectSocket()
-        audioController.stopAnyOngoingPlaying()
+        audioController?.dinitAudioPlayer()
+        audioController = nil
         resignFirstResponder()
     }
 
     // MARK: - Helper Methods
 
+    private func configureAudioController() {
+        audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    }
+    
     private func setViewModel() {
         viewModel.chatType = chatType
     }

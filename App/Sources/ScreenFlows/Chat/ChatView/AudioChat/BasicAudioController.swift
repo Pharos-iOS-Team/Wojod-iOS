@@ -101,7 +101,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     open func stopAnyOngoingPlaying() {
         guard let player = audioPlayer,
               let collectionView = messageCollectionView
-        else { return } // If the audio player is nil then we don't need to go through the stopping logic
+        else { return }
         player.stop()
         state = .stopped
         if let cell = playingCell {
@@ -113,6 +113,11 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             cell.durationLabel.text = displayDelegate.audioProgressTextFormat(Float(player.duration), for: cell, in: collectionView)
             cell.delegate?.didStopAudio(in: cell)
         }
+        dinitAudioPlayer()
+    }
+
+    func dinitAudioPlayer() {
+        state = .stopped
         progressTimer?.invalidate()
         progressTimer = nil
         audioPlayer = nil
@@ -146,7 +151,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             let currentMessage = collectionView.messagesDataSource?.messageForItem(at: playingCellIndexPath, in: collectionView)
             if currentMessage != nil && currentMessage?.messageId == playingMessage?.messageId {
                 // messages are the same update cell content
-                cell.progressView.progress = (player.duration == 0) ? 0 : Float(player.currentTime/player.duration)
+                cell.progressView.progress = (player.duration == 0) ? 0 : Float(player.currentTime / player.duration)
                 guard let displayDelegate = collectionView.messagesDisplayDelegate else {
                     fatalError("MessagesDisplayDelegate has not been set.")
                 }
@@ -162,7 +167,13 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     private func startProgressTimer() {
         progressTimer?.invalidate()
         progressTimer = nil
-        progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(BasicAudioController.didFireProgressTimer(_:)), userInfo: nil, repeats: true)
+        progressTimer = Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(BasicAudioController.didFireProgressTimer(_:)),
+            userInfo: nil,
+            repeats: true
+        )
     }
 
     // MARK: - AVAudioPlayerDelegate

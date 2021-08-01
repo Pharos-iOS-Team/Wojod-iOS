@@ -50,7 +50,7 @@ extension MessageObjectModel: AudioItem {
 
     var duration: Float {
         guard let attachmentPath = attachments?.first?.fileUrl else { return 0.0 }
-        let asset = AVURLAsset(url: URL(fileURLWithPath: Environment.baseURLString + attachmentPath), options: nil)
+        let asset = AVURLAsset(url: URL(fileURLWithPath: Environment.baseURLString + attachmentPath))
         let audioDuration = asset.duration
         let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
         return Float(audioDurationSeconds)
