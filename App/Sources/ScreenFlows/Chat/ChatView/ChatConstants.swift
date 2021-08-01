@@ -13,4 +13,6 @@ enum ChatConstants {
     static let messageVerticalPadding: CGFloat = 4
     static let messageDateHeight: CGFloat = 15
     static let dateFont: UIFont = FontFamily.Inter.regular.font(size: 11)
+    static let inputBarItemWidth: CGFloat = 36
+    static let numberOfLeftInputBarItems: CGFloat = 2
 }

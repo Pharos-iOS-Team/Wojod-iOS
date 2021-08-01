@@ -19,7 +19,6 @@ extension ChatViewController: SocketManagerDelegate {
     }
 
     func didReceiveMessage(_ message: String) {
-        print(message)
         if viewModel.decodeReceivedMessageFromWebSocket(from: message) != nil {
             self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem()

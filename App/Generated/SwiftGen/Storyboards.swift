@@ -20,6 +20,8 @@ internal enum StoryboardScene {
   internal enum Chat: StoryboardType {
     internal static let storyboardName = "Chat"
 
+    internal static let audioRecordingViewController = SceneType<Wojood.AudioRecordingViewController>(storyboard: Chat.self, identifier: "AudioRecordingViewController")
+
     internal static let chatContainerViewController = SceneType<Wojood.ChatContainerViewController>(storyboard: Chat.self, identifier: "ChatContainerViewController")
 
     internal static let documentContainerViewController = SceneType<Wojood.DocumentContainerViewController>(storyboard: Chat.self, identifier: "DocumentContainerViewController")

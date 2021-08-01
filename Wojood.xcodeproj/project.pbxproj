@@ -17,6 +17,9 @@
 		268BD965269E025E004758CE /* DateFormatterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BD964269E025D004758CE /* DateFormatterHandler.swift */; };
 		26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AFE37326A5C86C007D01EF /* ErrorView.swift */; };
 		26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AFE37826A5C87A007D01EF /* ErrorView.xib */; };
+		26C2E84326B2CB1E00988B1D /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2E84226B2CB1E00988B1D /* BasicAudioController.swift */; };
+		26C2E85026B2CBA500988B1D /* AudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2E84F26B2CBA500988B1D /* AudioRecordingViewController.swift */; };
+		26C2E85D26B31DCD00988B1D /* ChatViewController+AudioExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2E85C26B31DCD00988B1D /* ChatViewController+AudioExtension.swift */; };
 		26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4897269AF86B00DDA29F /* ChatViewModel.swift */; };
 		26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */; };
 		26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */; };
@@ -341,6 +344,9 @@
 		268BD964269E025D004758CE /* DateFormatterHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterHandler.swift; sourceTree = "<group>"; };
 		26AFE37326A5C86C007D01EF /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		26AFE37826A5C87A007D01EF /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		26C2E84226B2CB1E00988B1D /* BasicAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
+		26C2E84F26B2CBA500988B1D /* AudioRecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingViewController.swift; sourceTree = "<group>"; };
+		26C2E85C26B31DCD00988B1D /* ChatViewController+AudioExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+AudioExtension.swift"; sourceTree = "<group>"; };
 		26CF4897269AF86B00DDA29F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		26CF48A9269B0F0800DDA29F /* ChatApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiClient.swift; sourceTree = "<group>"; };
 		26CF48AE269B0F1D00DDA29F /* ChatTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTarget.swift; sourceTree = "<group>"; };
@@ -691,6 +697,7 @@
 		262FA7792694B9B100245D2C /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				26C2E83E26B2CAA200988B1D /* AudioChat */,
 				268BD955269DD5A3004758CE /* ChatAttachment */,
 				26CF4919269C5CE700DDA29F /* MessageKitObjcets */,
 				26CF4918269C5CCA00DDA29F /* WebSocketPart */,
@@ -726,6 +733,16 @@
 				26AFE37826A5C87A007D01EF /* ErrorView.xib */,
 			);
 			path = ChatAttachment;
+			sourceTree = "<group>";
+		};
+		26C2E83E26B2CAA200988B1D /* AudioChat */ = {
+			isa = PBXGroup;
+			children = (
+				26C2E84226B2CB1E00988B1D /* BasicAudioController.swift */,
+				26C2E84F26B2CBA500988B1D /* AudioRecordingViewController.swift */,
+				26C2E85C26B31DCD00988B1D /* ChatViewController+AudioExtension.swift */,
+			);
+			path = AudioChat;
 			sourceTree = "<group>";
 		};
 		26CF48A8269B061E00DDA29F /* Chat */ = {
@@ -1972,6 +1989,7 @@
 				7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */,
 				BC19E58F2631827C00CFA142 /* ProfileApiClient.swift in Sources */,
 				3826BC792669086E00CF9357 /* Materials.swift in Sources */,
+				26C2E85026B2CBA500988B1D /* AudioRecordingViewController.swift in Sources */,
 				778E7255261DC2D4009D7B35 /* DateFormatterExt.swift in Sources */,
 				E8C9EF692638D9A60023D2B1 /* SchoolViewController.swift in Sources */,
 				E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */,
@@ -2017,6 +2035,7 @@
 				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
 				7723AE3B261C8261007C0B97 /* Strings.swift in Sources */,
 				26CF48E1269B379B00DDA29F /* LoggedUserDetails.swift in Sources */,
+				26C2E85D26B31DCD00988B1D /* ChatViewController+AudioExtension.swift in Sources */,
 				268BD94C269DBC13004758CE /* ImageAttachmentDetails.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
 				26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */,
@@ -2081,6 +2100,7 @@
 				BC19E5882631762A00CFA142 /* ProfileTableViewCell.swift in Sources */,
 				778E72CC261DD6FF009D7B35 /* FileExtension.swift in Sources */,
 				BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */,
+				26C2E84326B2CB1E00988B1D /* BasicAudioController.swift in Sources */,
 				268BD965269E025E004758CE /* DateFormatterHandler.swift in Sources */,
 				778E72DF261DF9AB009D7B35 /* Result.swift in Sources */,
 				E8C9EF5926361C140023D2B1 /* Avatars.swift in Sources */,

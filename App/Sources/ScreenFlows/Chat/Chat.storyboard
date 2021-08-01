@@ -13,6 +13,9 @@
         <array key="Inter-Regular.ttf">
             <string>Inter-Regular</string>
         </array>
+        <array key="Inter-SemiBold.ttf">
+            <string>Inter-SemiBold</string>
+        </array>
         <array key="NunitoSans-SemiBold.ttf">
             <string>NunitoSans-SemiBold</string>
         </array>
@@ -133,14 +136,140 @@
             </objects>
             <point key="canvasLocation" x="888" y="128"/>
         </scene>
+        <!--Audio Recording View Controller-->
+        <scene sceneID="zbu-8q-9hT">
+            <objects>
+                <viewController storyboardIdentifier="AudioRecordingViewController" id="gKa-8O-2FK" customClass="AudioRecordingViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eY7-gk-cQU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X18-kL-I4n">
+                                <rect key="frame" x="41.5" y="323" width="331" height="250"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5y-jR-nV8">
+                                        <rect key="frame" x="105.5" y="15" width="120" height="120"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYy-k1-15d">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="17"/>
+                                                <color key="textColor" name="sendButtonColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="7s8-Ak-WeJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="pYy-k1-15d" secondAttribute="bottom" id="JPy-IA-4zQ"/>
+                                            <constraint firstAttribute="width" constant="120" id="JoX-6n-eyu"/>
+                                            <constraint firstItem="pYy-k1-15d" firstAttribute="leading" secondItem="I5y-jR-nV8" secondAttribute="leading" id="bOE-9B-1TG"/>
+                                            <constraint firstAttribute="trailing" secondItem="pYy-k1-15d" secondAttribute="trailing" id="cUZ-dn-vIF"/>
+                                            <constraint firstItem="pYy-k1-15d" firstAttribute="top" secondItem="I5y-jR-nV8" secondAttribute="top" id="hGg-hi-pes"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYu-OQ-Xds">
+                                        <rect key="frame" x="11" y="11" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="PqB-fu-NNG"/>
+                                            <constraint firstAttribute="height" constant="30" id="TOU-ZA-nS3"/>
+                                        </constraints>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="dismissRecordView" destination="gKa-8O-2FK" eventType="touchUpInside" id="gKw-WZ-Mmk"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWt-Ys-Vuf">
+                                        <rect key="frame" x="162" y="155" width="7" height="20"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="17"/>
+                                        <color key="textColor" name="darkGreyColor"/>
+                                        <color key="highlightedColor" name="label"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUy-7Z-DcZ">
+                                        <rect key="frame" x="150.5" y="200" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="hJ4-fK-hlh"/>
+                                            <constraint firstAttribute="width" constant="30" id="zEY-BN-wDv"/>
+                                        </constraints>
+                                        <state key="normal" image="Stop record"/>
+                                        <connections>
+                                            <action selector="stopRecording" destination="gKa-8O-2FK" eventType="touchUpInside" id="cGC-2L-Iri"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7B3-SP-Aae" customClass="LoadingButton" customModule="Wojood" customModuleProvider="target">
+                                        <rect key="frame" x="130.5" y="179" width="70" height="40"/>
+                                        <color key="backgroundColor" name="sendButtonColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="KQb-S9-FMS"/>
+                                            <constraint firstAttribute="width" constant="70" id="b4e-HH-QXu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="16"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendRecord" destination="gKa-8O-2FK" eventType="touchUpInside" id="KLD-81-oL2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="FWt-Ys-Vuf" firstAttribute="centerX" secondItem="X18-kL-I4n" secondAttribute="centerX" id="2dm-dA-zcJ"/>
+                                    <constraint firstAttribute="height" constant="250" id="3Cm-Ib-s7M"/>
+                                    <constraint firstItem="kUy-7Z-DcZ" firstAttribute="centerX" secondItem="X18-kL-I4n" secondAttribute="centerX" id="7gT-8o-1Z6"/>
+                                    <constraint firstItem="I5y-jR-nV8" firstAttribute="centerX" secondItem="X18-kL-I4n" secondAttribute="centerX" id="9NJ-dV-lJb"/>
+                                    <constraint firstItem="7B3-SP-Aae" firstAttribute="centerX" secondItem="X18-kL-I4n" secondAttribute="centerX" id="Dgi-m0-hDA"/>
+                                    <constraint firstItem="I5y-jR-nV8" firstAttribute="top" secondItem="X18-kL-I4n" secondAttribute="top" constant="15" id="I6G-UV-zD9"/>
+                                    <constraint firstItem="kUy-7Z-DcZ" firstAttribute="top" secondItem="FWt-Ys-Vuf" secondAttribute="bottom" constant="25" id="Mzx-L5-4FW"/>
+                                    <constraint firstItem="FWt-Ys-Vuf" firstAttribute="top" secondItem="I5y-jR-nV8" secondAttribute="bottom" constant="20" id="aaq-Xy-vcv"/>
+                                    <constraint firstItem="bYu-OQ-Xds" firstAttribute="leading" secondItem="X18-kL-I4n" secondAttribute="leading" constant="11" id="afz-iB-LD8"/>
+                                    <constraint firstItem="bYu-OQ-Xds" firstAttribute="top" secondItem="X18-kL-I4n" secondAttribute="top" constant="11" id="b3e-VN-f48"/>
+                                    <constraint firstItem="7B3-SP-Aae" firstAttribute="top" secondItem="FWt-Ys-Vuf" secondAttribute="bottom" constant="4" id="d4r-hc-4S4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fpw-04-RC2"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X18-kL-I4n" firstAttribute="centerX" secondItem="eY7-gk-cQU" secondAttribute="centerX" id="Eit-Oj-vRs"/>
+                            <constraint firstItem="X18-kL-I4n" firstAttribute="centerY" secondItem="eY7-gk-cQU" secondAttribute="centerY" id="btd-i8-cFh"/>
+                            <constraint firstItem="X18-kL-I4n" firstAttribute="width" secondItem="eY7-gk-cQU" secondAttribute="width" multiplier="0.8" id="tmm-6W-Nyi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="X18-kL-I4n" id="kch-FH-3qN"/>
+                        <outlet property="recordingLabel" destination="FWt-Ys-Vuf" id="76g-Gj-u68"/>
+                        <outlet property="sendButton" destination="7B3-SP-Aae" id="SYp-gb-Oj7"/>
+                        <outlet property="stopRecordingButton" destination="kUy-7Z-DcZ" id="tsh-nX-jzb"/>
+                        <outlet property="timerContainerView" destination="I5y-jR-nV8" id="tJB-Iu-gOu"/>
+                        <outlet property="timerLabel" destination="pYy-k1-15d" id="RYc-bh-MY2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uyu-ek-hPZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584" y="128"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="7B3-SP-Aae">
+            <size key="intrinsicContentSize" width="38" height="31"/>
+        </designable>
+    </designables>
     <resources>
         <image name="BackIcon" width="30" height="30"/>
+        <image name="Stop record" width="512" height="512"/>
+        <image name="close" width="24" height="24"/>
+        <namedColor name="darkGreyColor">
+            <color red="0.42745098039215684" green="0.44705882352941179" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="errorAlertLabelColor">
             <color red="1" green="0.31372549019607843" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="incomingMessageLabel">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="label">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

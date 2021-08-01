@@ -36,18 +36,46 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         messageInputBar.inputPlugins = [attachmentManager]
         messageInputBar.inputTextView.tintColor = ChatConstants.sendButtonColor
         messageInputBar.sendButton.setTitleColor(ChatConstants.sendButtonColor, for: .highlighted)
-        setAddAttachmentBtn(isAnyAttachmentSelected: false)
+        setInputBarButtons(isAnyAttachmentSelected: false)
     }
 
-    func setAddAttachmentBtn(isAnyAttachmentSelected: Bool) {
+    func setInputBarButtons(isAnyAttachmentSelected: Bool) {
+        let addAttachemtnButton = setAddAttachmentButton(isHidden: isAnyAttachmentSelected)
+        let startRecordButton = setStartRecordButton(isHidden: isAnyAttachmentSelected)
+        let leftStackViewWidth = ChatConstants.inputBarItemWidth * ChatConstants.numberOfLeftInputBarItems
+        messageInputBar.setLeftStackViewWidthConstant(to: leftStackViewWidth, animated: true)
+        messageInputBar.setStackViewItems([addAttachemtnButton, startRecordButton], forStack: .left, animated: false)
+    }
+
+    private func setAddAttachmentButton(isHidden: Bool) -> InputBarButtonItem {
         let button = InputBarButtonItem()
-        button.setSize(CGSize(width: 36, height: 36), animated: false)
+        button.setSize(CGSize(width: ChatConstants.inputBarItemWidth, height: ChatConstants.inputBarItemWidth), animated: false)
         button.setImage(Asset.Images.plusIcn.image, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(addAttachment), for: .touchUpInside)
-        messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: true)
-        messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
-        button.isHidden = isAnyAttachmentSelected
+        button.isHidden = isHidden
+        return button
+    }
+
+    private func setStartRecordButton(isHidden: Bool) -> InputBarButtonItem {
+        let button = InputBarButtonItem()
+        button.setSize(CGSize(width: ChatConstants.inputBarItemWidth, height: ChatConstants.inputBarItemWidth), animated: false)
+        button.setImage(Asset.Images.audio.image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(goToRecordView), for: .touchUpInside)
+        button.isHidden = isHidden
+        return button
+    }
+
+    @objc
+    private func goToRecordView() {
+        let viewCtrl = StoryboardScene.Chat.audioRecordingViewController.instantiate()
+        viewCtrl.modalPresentationStyle = .popover
+        viewCtrl.viewModel = viewModel
+        viewCtrl.handleSendingMessageSuccessfully = {
+            self.messageSentSuccessfully()
+        }
+        present(viewCtrl, animated: true, completion: nil)
     }
 
     @objc
@@ -81,12 +109,12 @@ extension ChatViewController: AttachmentManagerDelegate, AttachmentManagerDataSo
     }
 
     func attachmentManager(_ manager: AttachmentManager, didReloadTo attachments: [AttachmentManager.Attachment]) {
-        setAddAttachmentBtn(isAnyAttachmentSelected: !manager.attachments.isEmpty)
+        setInputBarButtons(isAnyAttachmentSelected: !manager.attachments.isEmpty)
         messageInputBar.sendButton.isEnabled = !manager.attachments.isEmpty
     }
 
     func attachmentManager(_ manager: AttachmentManager, didInsert attachment: AttachmentManager.Attachment, at index: Int) {
-        setAddAttachmentBtn(isAnyAttachmentSelected: !manager.attachments.isEmpty)
+        setInputBarButtons(isAnyAttachmentSelected: !manager.attachments.isEmpty)
         messageInputBar.sendButton.isEnabled = !manager.attachments.isEmpty
     }
 
@@ -125,7 +153,7 @@ extension ChatViewController: AttachmentManagerDelegate, AttachmentManagerDataSo
         } else if !active && topStackView.arrangedSubviews.contains(attachmentManager.attachmentView) {
             topStackView.removeArrangedSubview(attachmentManager.attachmentView)
             messagesCollectionView.layoutSubviews()
-            setAddAttachmentBtn(isAnyAttachmentSelected: false)
+            setInputBarButtons(isAnyAttachmentSelected: false)
             viewModel.selectedImage = nil
             viewModel.selectedFile = nil
         }
