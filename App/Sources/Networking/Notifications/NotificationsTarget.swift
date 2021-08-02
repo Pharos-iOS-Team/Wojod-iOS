@@ -18,7 +18,7 @@ extension NotificationsTarget: TargetType {
         case .markAsRead(let id):
             return "/notifications/\(id)"
         case .registerDeviceToken:
-            return "device_token"
+            return "/device_token"
         case .readAllNotifications:
             return "/notifications/mark_all_as_read"
         }

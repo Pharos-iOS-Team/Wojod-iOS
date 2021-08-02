@@ -4,6 +4,6 @@ import UIKit
 
 struct DeviceToken: Encodable {
     var deviceToken: String
-    var deviceType: String = "ios"
+    var deviceType: Int = 0
     var deviceId: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
 }
