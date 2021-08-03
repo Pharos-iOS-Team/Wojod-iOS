@@ -6,6 +6,8 @@
 
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
+"shared.alerts.microphone.message" = "Wojood need to access Microphone";
+
 "shared.alerts.error" = "Error";
 
 "shared.action.cancel" = "Cancel";

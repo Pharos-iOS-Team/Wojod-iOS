@@ -41,7 +41,40 @@ final class AccessPermissionHandler {
         }
     }
 
+    func showMissingAudioAutorization(successHandler: @escaping () -> Void) {
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case AVAudioSessionRecordPermission.granted:
+            successHandler()
+        case AVAudioSessionRecordPermission.denied:
+            showMissingAudioPermissionAlert()
+        case AVAudioSessionRecordPermission.undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        successHandler()
+                    } else {
+                        showMissingAudioPermissionAlert()
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
+
     private func showMissingPhotoLibraryPermissionAlert(pickImageFrom: UIImagePickerController.SourceType) {
+        let errorPopup = ErrorView()
+        errorPopup.configureTexts(pickImageFrom: pickImageFrom)
+        SwiftEntryKit.display(entry: errorPopup, using: configureAttributes())
+    }
+
+    private func showMissingAudioPermissionAlert() {
+        let errorPopup = ErrorView()
+        errorPopup.configureAudioTexts()
+        SwiftEntryKit.display(entry: errorPopup, using: configureAttributes())
+    }
+
+    private func configureAttributes() -> EKAttributes {
         var attributes = EKAttributes.centerFloat
         attributes.displayDuration = .infinity
         attributes.screenInteraction = .dismiss
@@ -56,8 +89,6 @@ final class AccessPermissionHandler {
                 radius: 8
             )
         )
-        let errorPopup = ErrorView()
-        errorPopup.configureTexts(pickImageFrom: pickImageFrom)
-        SwiftEntryKit.display(entry: errorPopup, using: attributes)
+        return attributes
     }
 }

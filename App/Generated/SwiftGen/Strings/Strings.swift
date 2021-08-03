@@ -391,6 +391,12 @@ internal enum L10n {
             return L10n.tr("Localizable", "shared.alerts.camera.title")
           }
       }
+      internal enum Microphone {
+        /// Wojood need to access Microphone
+        internal static var message: String {
+            return L10n.tr("Localizable", "shared.alerts.microphone.message")
+          }
+      }
       internal enum Photos {
         /// Wojood need to access Photos
         internal static var message: String {

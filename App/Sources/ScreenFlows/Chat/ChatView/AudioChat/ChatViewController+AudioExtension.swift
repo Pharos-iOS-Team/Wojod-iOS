@@ -16,8 +16,8 @@ extension ChatViewController: MessageCellDelegate {
     open func didTapPlayButton(in cell: AudioMessageCell) {
         guard let indexPath = messagesCollectionView.indexPath(for: cell),
               let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath, in: messagesCollectionView) else { return }
-        resetLastClickedAudioCellToDefault(currentIndexPath: indexPath)
-        lastAudioIndexPathClicked = indexPath
+//        resetLastClickedAudioCellToDefault(currentIndexPath: indexPath)
+//        lastAudioIndexPathClicked = indexPath
         guard audioController?.state != .stopped else {
             // There is no audio sound playing - prepare to start playing for given audio message
             startPlayingAudio(for: message, in: cell)
