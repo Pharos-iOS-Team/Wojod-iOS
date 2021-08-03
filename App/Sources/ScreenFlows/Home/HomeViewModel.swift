@@ -34,13 +34,15 @@ class HomeViewModel {
     }
 
     func loadRelatedCourses(isBeingScrolled: Bool, isMyCourses: Bool, subjectID: Int?, completion: @escaping (RelatedCoursesResponse?) -> Void) {
-        model.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: relatedCoursesPage, limit: limit) { result in
-            switch result {
-            case .success(let relatedCourses as RelatedCoursesResponse):
-                completion(relatedCourses)
-                self.relatedCoursesPage += 1
-            default:
-                return
+        DispatchQueue.global().async { [unowned self] in
+            model.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: relatedCoursesPage, limit: limit) { result in
+                switch result {
+                case .success(let relatedCourses as RelatedCoursesResponse):
+                    completion(relatedCourses)
+                    self.relatedCoursesPage += 1
+                default:
+                    return
+                }
             }
         }
     }
@@ -59,13 +61,15 @@ class HomeViewModel {
     }
 
     func loadExploreMoreCourses(isBeingScrolled: Bool, isMyCourses: Bool, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
-        model.loadExploreMoreCourses(isMyCourses: isMyCourses, page: exploreMorePage, limit: limit) { result in
-            switch result {
-            case .success(let exploreMoreCourses as ExploreMoreCoursesResponse):
-                completion(exploreMoreCourses)
-                self.exploreMorePage += 1
-            default:
-                return
+        DispatchQueue.global().async { [unowned self] in
+            model.loadExploreMoreCourses(isMyCourses: isMyCourses, page: exploreMorePage, limit: limit) { result in
+                switch result {
+                case .success(let exploreMoreCourses as ExploreMoreCoursesResponse):
+                    completion(exploreMoreCourses)
+                    self.exploreMorePage += 1
+                default:
+                    return
+                }
             }
         }
     }
