@@ -17,6 +17,7 @@ class HomeApiClient {
         }
     }
 
+    // swiftlint:disable:next function_parameter_count
     func loadRelatedCourses(
         isMyCourses: Bool,
         subjectID: Int?,
@@ -24,12 +25,14 @@ class HomeApiClient {
         limit: Int,
         completion: @escaping (Response?, MoyaError?) -> Void
     ) {
-        homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit)) { result in
-            switch result {
-            case .success(let response):
-                completion(response, nil)
-            case .failure(let error):
-                completion(nil, error)
+        DispatchQueue.global().async {
+            self.homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit)) { result in
+                switch result {
+                case .success(let response):
+                    completion(response, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
             }
         }
     }
@@ -53,12 +56,14 @@ class HomeApiClient {
     }
 
     func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
-        homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit)) { result in
-            switch result {
-            case .success(let response):
-                completion(response, nil)
-            case .failure(let error):
-                completion(nil, error)
+        DispatchQueue.global().async {
+            self.homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit)) { result in
+                switch result {
+                case .success(let response):
+                    completion(response, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
             }
         }
     }
