@@ -1,14 +1,15 @@
+// MARK: - Alerts
+
 "shared.alerts.camera.title" = "Camera Permission";
-
 "shared.alerts.camera.message" = "Wojood need to access camera";
-
 "shared.alerts.photos.title" = "Gallery Permission";
-
 "shared.alerts.photos.message" = "Wojood need to access Photos";
 
 "shared.alerts.microphone.message" = "Wojood need to access Microphone";
 
 "shared.alerts.error" = "Error";
+"shared.alerts.screenshotsNotAllowed" = "Screenshots Aren't Allowed!";
+"shared.alerts.appWillTerminate" = "App will terminate.";
 
 "shared.action.cancel" = "Cancel";
 

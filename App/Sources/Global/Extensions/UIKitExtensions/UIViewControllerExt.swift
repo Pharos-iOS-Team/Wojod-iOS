@@ -70,4 +70,20 @@ extension UIViewController {
         )
         return appAlertViewController
     }
+
+    func preventScreenshot() -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(
+            forName: UIApplication.userDidTakeScreenshotNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { notification in
+            self.showAlert(
+                imageName: Images.danger.name,
+                title: L10n.Shared.Alerts.screenshotsNotAllowed,
+                message: L10n.Shared.Alerts.appWillTerminate
+            ) {
+                exit(-1)
+            }
+        }
+    }
 }

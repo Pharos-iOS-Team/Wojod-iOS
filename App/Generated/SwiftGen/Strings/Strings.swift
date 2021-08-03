@@ -720,9 +720,17 @@ internal enum L10n {
         }
     }
     internal enum Alerts {
+      /// App will terminate.
+      internal static var appWillTerminate: String {
+          return L10n.tr("Localizable", "shared.alerts.appWillTerminate")
+        }
       /// Error
       internal static var error: String {
           return L10n.tr("Localizable", "shared.alerts.error")
+        }
+      /// Screenshots Aren't Allowed!
+      internal static var screenshotsNotAllowed: String {
+          return L10n.tr("Localizable", "shared.alerts.screenshotsNotAllowed")
         }
       internal enum Camera {
         /// Wojood need to access camera
