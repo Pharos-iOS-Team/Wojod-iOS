@@ -43,11 +43,11 @@ final class AccessPermissionHandler {
 
     func showMissingAudioAutorization(successHandler: @escaping () -> Void) {
         switch AVAudioSession.sharedInstance().recordPermission {
-        case AVAudioSessionRecordPermission.granted:
+        case AVAudioSession.RecordPermission.granted:
             successHandler()
-        case AVAudioSessionRecordPermission.denied:
+        case AVAudioSession.RecordPermission.denied:
             showMissingAudioPermissionAlert()
-        case AVAudioSessionRecordPermission.undetermined:
+        case AVAudioSession.RecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
                 DispatchQueue.main.async {
                     if allowed {
