@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="height" constant="26" id="jCA-NA-cQs"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Zc-EwW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Zc-EwW">
                                 <rect key="frame" x="59" y="25.5" width="22.5" height="14"/>
                                 <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -45,6 +45,9 @@
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="gUh-RC-eA8">
                                 <rect key="frame" x="255" y="22.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="sI1-Is-jhv"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Qh-8hd">
                                 <rect key="frame" x="221" y="25.5" width="24" height="14"/>
@@ -56,6 +59,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KeQ-Zc-EwW" firstAttribute="centerY" secondItem="HEb-s7-ios" secondAttribute="centerY" id="5WZ-MD-Bri"/>
+                            <constraint firstItem="ygf-Qh-8hd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KeQ-Zc-EwW" secondAttribute="trailing" constant="5" id="5qY-Ld-5g1"/>
                             <constraint firstItem="HEb-s7-ios" firstAttribute="leading" secondItem="mMT-Gg-hxf" secondAttribute="leading" constant="25" id="BL5-MV-cTH"/>
                             <constraint firstItem="KeQ-Zc-EwW" firstAttribute="leading" secondItem="HEb-s7-ios" secondAttribute="trailing" constant="10" id="H9j-aC-MNb"/>
                             <constraint firstItem="gUh-RC-eA8" firstAttribute="centerY" secondItem="mMT-Gg-hxf" secondAttribute="centerY" id="Heq-2f-ofr"/>
