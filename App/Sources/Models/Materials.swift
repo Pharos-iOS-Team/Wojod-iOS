@@ -3,7 +3,7 @@
 import Foundation
 
 struct Materials: Codable {
-    var quizzes: [MaterialsQuiz]?
+    var quizzes: [Assessment]?
     var assignments: [MaterialsAssignment]?
     var videos: [MaterialsVideo]?
     var documents: [MaterialsDocument]?

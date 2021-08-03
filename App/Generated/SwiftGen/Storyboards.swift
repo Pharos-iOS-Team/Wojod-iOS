@@ -12,6 +12,21 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum AppAlert: StoryboardType {
+    internal static let storyboardName = "AppAlert"
+
+    internal static let appAlertViewController = SceneType<Wojood.AppAlertViewController>(storyboard: AppAlert.self, identifier: "AppAlertViewController")
+  }
+  internal enum AssessmentDetailOverview: StoryboardType {
+    internal static let storyboardName = "AssessmentDetailOverview"
+
+    internal static let assessmentDetailOverViewViewController = SceneType<Wojood.AssessmentDetailOverViewViewController>(storyboard: AssessmentDetailOverview.self, identifier: "AssessmentDetailOverViewViewController")
+  }
+  internal enum AssessmentDetails: StoryboardType {
+    internal static let storyboardName = "AssessmentDetails"
+
+    internal static let assessmentDetailsViewController = SceneType<Wojood.AssessmentDetailsViewController>(storyboard: AssessmentDetails.self, identifier: "assessmentDetailsViewController")
+  }
   internal enum AvatarsList: StoryboardType {
     internal static let storyboardName = "AvatarsList"
 

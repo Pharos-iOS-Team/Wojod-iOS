@@ -97,10 +97,38 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
+
+    func addShadow(
+        with color: UIColor?,
+        offset: CGSize = CGSize.zero,
+        radius: CGFloat = 0.0,
+        opacity: Float = 1.0
+    ) {
+        layer.shadowColor = color?.cgColor
+        layer.shadowOffset = offset
+        layer.shadowRadius = radius
+        layer.shadowOpacity = opacity
+    }
 }
 
 extension UIView {
     func addSubviews(_ subviews: UIView...) {
         subviews.forEach { addSubview($0) }
+    }
+}
+
+extension UIView {
+    enum FrameShape {
+        case circular
+        case square
+    }
+
+    func setFrameShape(_ frameShape: FrameShape) {
+        switch frameShape {
+        case .circular:
+            self.layer.cornerRadius = self.frame.height / 2
+        default:
+            break
+        }
     }
 }

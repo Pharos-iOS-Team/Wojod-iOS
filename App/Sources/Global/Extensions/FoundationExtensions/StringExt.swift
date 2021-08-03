@@ -4,6 +4,32 @@ import MobileCoreServices
 import UIKit
 
 extension String {
+    var enToArDigits: String {
+        let arabicNumbers = [
+            "0": "٠",
+            "1": "١",
+            "2": "٢",
+            "3": "٣",
+            "4": "٤",
+            "5": "٥",
+            "6": "٦",
+            "7": "٧",
+            "8": "٨",
+            "9": "٩"
+        ]
+        var txt = self
+        _ = arabicNumbers.map {
+            txt = txt.replacingOccurrences(of: $0, with: $1)
+        }
+        return txt
+    }
+
+    var dominantTextAlignment: NSTextAlignment {
+        return NSLinguisticTagger.dominantLanguage(for: self) == "ar"
+            ? .right
+            : .left
+    }
+
     var isValid: Bool {
         return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
@@ -44,5 +70,12 @@ extension String {
             data = modifiedFont.data(using: .unicode, allowLossyConversion: false) ?? Data()
         }
         return try? NSAttributedString(data: data, documentType: .html).newlinesTrimmed
+    }
+
+    func englishToArabicText() -> String {
+        let arabicNumbers = ["٠": "0", "١": "1", "٢": "2", "٣": "3", "٤": "4", "٥": "5", "٦": "6", "٧": "7", "٨": "8", "٩": "9"]
+        var text = self
+        _ = arabicNumbers.map { text = text.replacingOccurrences(of: $1, with: $0) }
+        return text
     }
 }

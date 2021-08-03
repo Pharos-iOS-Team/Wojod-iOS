@@ -10,6 +10,10 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Quizzes
+  internal static var quizzes: String {
+      return L10n.tr("Localizable", "quizzes")
+    }
 
   internal enum Chat {
     /// Camera
@@ -331,6 +335,345 @@ internal enum L10n {
     /// specialization
     internal static var specialization: String {
         return L10n.tr("Localizable", "profile.specialization")
+      }
+  }
+
+  internal enum Quizzes {
+    /// 1 hr ago
+    internal static var _1hour: String {
+        return L10n.tr("Localizable", "quizzes.1hour")
+      }
+    /// 1 minute ago
+    internal static var _1min: String {
+        return L10n.tr("Localizable", "quizzes.1min")
+      }
+    /// 2 hrs
+    internal static var _2hrs: String {
+        return L10n.tr("Localizable", "quizzes.2hrs")
+      }
+    /// 2 minutes
+    internal static var _2mins: String {
+        return L10n.tr("Localizable", "quizzes.2mins")
+      }
+    /// If you are not ready please cancel and return back before the due date
+    internal static var alertSubTitle: String {
+        return L10n.tr("Localizable", "quizzes.alertSubTitle")
+      }
+    /// By starting the exam there is no turning back!
+    internal static var alertTitle: String {
+        return L10n.tr("Localizable", "quizzes.alertTitle")
+      }
+    /// Answered
+    internal static var answered: String {
+        return L10n.tr("Localizable", "quizzes.answered")
+      }
+    /// Open
+    internal static var available: String {
+        return L10n.tr("Localizable", "quizzes.available")
+      }
+    /// By
+    internal static var by: String {
+        return L10n.tr("Localizable", "quizzes.by")
+      }
+    /// Choose %@ answers
+    internal static func chooseMultipleAnswers(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.chooseMultipleAnswers", String(describing: p1))
+    }
+    /// Choose 1 answer
+    internal static var chooseOneAnswer: String {
+        return L10n.tr("Localizable", "quizzes.chooseOneAnswer")
+      }
+    /// Choose one or more answers
+    internal static var chooseOneOrMoreAnswers: String {
+        return L10n.tr("Localizable", "quizzes.chooseOneOrMoreAnswers")
+      }
+    /// Choose %@ answers
+    internal static func chooseThreeToTenAnswers(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.chooseThreeToTenAnswers", String(describing: p1))
+    }
+    /// Choose 2 answers
+    internal static var chooseTwoAnswers: String {
+        return L10n.tr("Localizable", "quizzes.chooseTwoAnswers")
+      }
+    /// Closed
+    internal static var closed: String {
+        return L10n.tr("Localizable", "quizzes.closed")
+      }
+    /// Continue grading
+    internal static var continueGrading: String {
+        return L10n.tr("Localizable", "quizzes.continueGrading")
+      }
+    /// Due: 
+    internal static var due: String {
+        return L10n.tr("Localizable", "quizzes.due")
+      }
+    /// Duration:
+    internal static var duration: String {
+        return L10n.tr("Localizable", "quizzes.duration")
+      }
+    /// No Quizzes
+    internal static var empty: String {
+        return L10n.tr("Localizable", "quizzes.empty")
+      }
+    /// All submissions are checked
+    internal static var emptyUnchecked: String {
+        return L10n.tr("Localizable", "quizzes.emptyUnchecked")
+      }
+    /// end in %@ hours
+    internal static func endIn2Hours(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.endIn2Hours", String(describing: p1))
+    }
+    /// ends in %@ hours
+    internal static func endInMoreThan10Hours(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.endInMoreThan10Hours", String(describing: p1))
+    }
+    /// ends in %@ days
+    internal static func endInMoreThan1Day(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.endInMoreThan1Day", String(describing: p1))
+    }
+    /// ends in %@ hours
+    internal static func endInMoreThan1HourAndLessThan11Hours(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.endInMoreThan1HourAndLessThan11Hours", String(describing: p1))
+    }
+    /// ends in 1 day
+    internal static var endInOneDay: String {
+        return L10n.tr("Localizable", "quizzes.endInOneDay")
+      }
+    /// end in 1 hour
+    internal static var endInOneHour: String {
+        return L10n.tr("Localizable", "quizzes.endInOneHour")
+      }
+    /// ends in 1 week
+    internal static var endInOneWeek: String {
+        return L10n.tr("Localizable", "quizzes.endInOneWeek")
+      }
+    /// ends in %@
+    internal static func endsIn(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.endsIn", String(describing: p1))
+    }
+    /// a few seconds ago
+    internal static var fewSeconds: String {
+        return L10n.tr("Localizable", "quizzes.fewSeconds")
+      }
+    /// Finalized
+    internal static var finalized: String {
+        return L10n.tr("Localizable", "quizzes.finalized")
+      }
+    /// Finish
+    internal static var finish: String {
+        return L10n.tr("Localizable", "quizzes.finish")
+      }
+    /// Are you sure you want to submit?
+    internal static var finishMessage: String {
+        return L10n.tr("Localizable", "quizzes.finishMessage")
+      }
+    /// Go back anyway
+    internal static var goBackAnyway: String {
+        return L10n.tr("Localizable", "quizzes.goBackAnyway")
+      }
+    /// This grade will not be saved
+    internal static var gradeWontSaved: String {
+        return L10n.tr("Localizable", "quizzes.gradeWontSaved")
+      }
+    /// hour
+    internal static var hour: String {
+        return L10n.tr("Localizable", "quizzes.hour")
+      }
+    /// hrs
+    internal static var hours: String {
+        return L10n.tr("Localizable", "quizzes.hours")
+      }
+    /// Instructions:
+    internal static var instructions: String {
+        return L10n.tr("Localizable", "quizzes.instructions")
+      }
+    /// instructions attached
+    internal static var instructionsAttached: String {
+        return L10n.tr("Localizable", "quizzes.instructionsAttached")
+      }
+    /// Are you sure you want to mark this quiz as checked?
+    internal static var markAsCheckedAlert: String {
+        return L10n.tr("Localizable", "quizzes.markAsCheckedAlert")
+      }
+    /// minute
+    internal static var minute: String {
+        return L10n.tr("Localizable", "quizzes.minute")
+      }
+    /// minutes
+    internal static var minutes: String {
+        return L10n.tr("Localizable", "quizzes.minutes")
+      }
+    /// Next
+    internal static var next: String {
+        return L10n.tr("Localizable", "quizzes.next")
+      }
+    /// There is no quiz assigned yet
+    internal static var noData: String {
+        return L10n.tr("Localizable", "quizzes.noData")
+      }
+    /// Non-finalized
+    internal static var nonFinialized: String {
+        return L10n.tr("Localizable", "quizzes.nonFinialized")
+      }
+    /// There are questions not graded yet!. Please finish grading all questions.
+    internal static var notAllGradedError: String {
+        return L10n.tr("Localizable", "quizzes.notAllGradedError")
+      }
+    /// Not answered
+    internal static var notAnswered: String {
+        return L10n.tr("Localizable", "quizzes.notAnswered")
+      }
+    /// This grade is not final
+    internal static var notFinalGrade: String {
+        return L10n.tr("Localizable", "quizzes.notFinalGrade")
+      }
+    /// Not graded yet
+    internal static var notGradedYet: String {
+        return L10n.tr("Localizable", "quizzes.notGradedYet")
+      }
+    /// Not submitted
+    internal static var notSubmitted: String {
+        return L10n.tr("Localizable", "quizzes.notSubmitted")
+      }
+    /// %@ Questions
+    internal static func numberOfQuestions(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "quizzes.numberOfQuestions", String(describing: p1))
+    }
+    /// Open
+    internal static var `open`: String {
+        return L10n.tr("Localizable", "quizzes.open")
+      }
+    /// Please enter grade
+    internal static var pleaseEnterGrade: String {
+        return L10n.tr("Localizable", "quizzes.pleaseEnterGrade")
+      }
+    /// point
+    internal static var point: String {
+        return L10n.tr("Localizable", "quizzes.point")
+      }
+    /// points
+    internal static var points: String {
+        return L10n.tr("Localizable", "quizzes.points")
+      }
+    /// Question
+    internal static var question: String {
+        return L10n.tr("Localizable", "quizzes.question")
+      }
+    /// Comment
+    internal static var questionComment: String {
+        return L10n.tr("Localizable", "quizzes.questionComment")
+      }
+    /// Questions
+    internal static var questions: String {
+        return L10n.tr("Localizable", "quizzes.questions")
+      }
+    /// Quiz grade
+    internal static var quizGrade: String {
+        return L10n.tr("Localizable", "quizzes.quizGrade")
+      }
+    /// Reviewed
+    internal static var reviewed: String {
+        return L10n.tr("Localizable", "quizzes.reviewed")
+      }
+    /// Save & Continue
+    internal static var saveAndContinue: String {
+        return L10n.tr("Localizable", "quizzes.saveAndContinue")
+      }
+    /// Show only unchecked submissions
+    internal static var showOnlyUnchecked: String {
+        return L10n.tr("Localizable", "quizzes.showOnlyUnchecked")
+      }
+    /// since
+    internal static var since: String {
+        return L10n.tr("Localizable", "quizzes.since")
+      }
+    /// Start
+    internal static var start: String {
+        return L10n.tr("Localizable", "quizzes.start")
+      }
+    /// Submit
+    internal static var submitButtonTitle: String {
+        return L10n.tr("Localizable", "quizzes.submitButtonTitle")
+      }
+    /// Submit
+    internal static var submitButtonTitleForTeacherAlert: String {
+        return L10n.tr("Localizable", "quizzes.submitButtonTitleForTeacherAlert")
+      }
+    /// Submitted
+    internal static var submitted: String {
+        return L10n.tr("Localizable", "quizzes.submitted")
+      }
+    /// Your answers will be submitted once you have a working internet connection
+    internal static var submittedAlertConnectionMessage: String {
+        return L10n.tr("Localizable", "quizzes.submittedAlertConnectionMessage")
+      }
+    /// Grades will be uploaded soon
+    internal static var submittedAlertMessage: String {
+        return L10n.tr("Localizable", "quizzes.submittedAlertMessage")
+      }
+    /// Thanks for you Submitting
+    internal static var submittedAlertTitle: String {
+        return L10n.tr("Localizable", "quizzes.submittedAlertTitle")
+      }
+    /// The answer
+    internal static var theAnswer: String {
+        return L10n.tr("Localizable", "quizzes.theAnswer")
+      }
+    /// This question's grade
+    internal static var thisQuestionGrade: String {
+        return L10n.tr("Localizable", "quizzes.thisQuestionGrade")
+      }
+    /// Questions
+    internal static var threeToTenQuestions: String {
+        return L10n.tr("Localizable", "quizzes.threeToTenQuestions")
+      }
+    /// Time duration
+    internal static var timeDuration: String {
+        return L10n.tr("Localizable", "quizzes.timeDuration")
+      }
+    /// Your answeres have been submitted
+    internal static var timeOutDescription: String {
+        return L10n.tr("Localizable", "quizzes.timeOutDescription")
+      }
+    /// We are sorry! time is out!
+    internal static var timeOutTitle: String {
+        return L10n.tr("Localizable", "quizzes.timeOutTitle")
+      }
+    /// Quizzes
+    internal static var title: String {
+        return L10n.tr("Localizable", "quizzes.title")
+      }
+    /// 2 points
+    internal static var twoPoints: String {
+        return L10n.tr("Localizable", "quizzes.twoPoints")
+      }
+    /// 2 Questions
+    internal static var twoQuestions: String {
+        return L10n.tr("Localizable", "quizzes.twoQuestions")
+      }
+    /// View all
+    internal static var viewAll: String {
+        return L10n.tr("Localizable", "quizzes.viewAll")
+      }
+    /// This grade will not be saved
+    internal static var wontSaveGradeError: String {
+        return L10n.tr("Localizable", "quizzes.wontSaveGradeError")
+      }
+    /// Write your answer
+    internal static var writeAnswer: String {
+        return L10n.tr("Localizable", "quizzes.writeAnswer")
+      }
+    /// Yesterday
+    internal static var yesterday: String {
+        return L10n.tr("Localizable", "quizzes.yesterday")
+      }
+    /// Your answer
+    internal static var yourAnswer: String {
+        return L10n.tr("Localizable", "quizzes.yourAnswer")
+      }
+    /// Your grade
+    internal static var yourGrade: String {
+        return L10n.tr("Localizable", "quizzes.yourGrade")
       }
   }
 

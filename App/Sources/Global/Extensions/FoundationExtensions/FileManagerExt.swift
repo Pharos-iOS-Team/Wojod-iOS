@@ -20,4 +20,14 @@ extension FileManager {
             try removeItem(atPath: file)
         }
     }
+
+    public func moveItem(_ itemName: String, at url: URL, to searchPathDirectory: SearchPathDirectory = .documentDirectory) throws -> URL {
+        let documentDirectory = try self.url(for: searchPathDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let destinationUrl = documentDirectory.appendingPathComponent(itemName)
+        if fileExists(atPath: destinationUrl.path) {
+            try removeItem(at: destinationUrl)
+        }
+        try moveItem(at: url, to: destinationUrl)
+        return destinationUrl
+    }
 }

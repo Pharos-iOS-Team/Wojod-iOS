@@ -30,4 +30,17 @@ extension NumberFormatter {
         guard let string = string, let double = Double(string) else { preconditionFailure("String not in correct format") }
         return localizedFormatter.string(for: double)
     }
+
+    static func getDecimalFormattedString(fromDouble number: Double, maximumFractionDigits: Int = 2) -> String? {
+        let formatter = localizedFormatter
+        formatter.locale = Locale(identifier: Language.currentLanguage.rawValue)
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: number))
+    }
+
+    static func getFormattedString(fromInt number: Int) -> String? {
+        return localizedFormatter.string(from: NSNumber(value: number))
+    }
 }

@@ -8,6 +8,12 @@ extension UITableView {
     func dequeueCell<Cell: UITableViewCell>(for indexPath: IndexPath) -> Cell {
         return dequeueCell(ofType: Cell.self, for: indexPath) ?? Cell()
     }
+
+    func reloadTableViewSections(withAnimation: Bool) {
+        let range = NSMakeRange(0, self.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        withAnimation ? self.reloadSections(sections as IndexSet, with: .automatic) : self.reloadSections(sections as IndexSet, with: .none)
+    }
 }
 
 // MARK: - Scrolling
