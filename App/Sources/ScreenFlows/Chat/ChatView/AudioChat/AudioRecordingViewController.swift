@@ -55,26 +55,8 @@ class AudioRecordingViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     func startRecording() {
-        switch AVAudioSession.sharedInstance().recordPermission {
-        case AVAudioSessionRecordPermission.granted:
-            isAudioRecordingGranted = true
-            audioRecorderAction()
-        case AVAudioSessionRecordPermission.denied:
-            isAudioRecordingGranted = false
-        case AVAudioSessionRecordPermission.undetermined:
-            AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.isAudioRecordingGranted = true
-                        self.audioRecorderAction()
-                    } else {
-                        self.isAudioRecordingGranted = false
-                    }
-                }
-            }
-        default:
-            break
-        }
+        self.isAudioRecordingGranted = true
+        self.audioRecorderAction()
     }
 
     func audioRecorderAction() {
