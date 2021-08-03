@@ -138,15 +138,23 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    private func coursePrice() -> String {
+        if course?.price == nil || course?.price?.isEmpty ?? true {
+            return L10n.Home.Course.returnToTeacher
+        } else {
+            return "\(L10n.Home.Course.price) \(course?.price ?? "")"
+        }
+    }
+
     // MARK: - Public Functions
 
     func configure(with course: Course?, isMyCourses: Bool) {
         self.course = course
         self.isMyCourses = isMyCourses
         titleLabel.text = course?.name
-        priceLabel.text = "\(L10n.Home.Course.price) \(course?.price ?? "")"
+        priceLabel.text = coursePrice()
         activityIndicator.startAnimating()
-        loadImage(from: course?.media?.thumbnailUrl ?? "") { image in
+        loadImage(from: course?.media?.fileUrl ?? "") { image in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.imageView.image = image

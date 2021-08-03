@@ -195,6 +195,7 @@
 "home.view" = "عرض";
 "home.course.price" = "ج.م.";
 "home.course.seeReceipt" = "عرض الايصال";
+"home.course.returnToTeacher" = "ارجع للمدرس";
 
 // MARK: - Notifications
 
