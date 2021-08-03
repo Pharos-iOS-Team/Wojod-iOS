@@ -82,6 +82,7 @@ class CourseDetailsViewController: UIViewController {
     private var activeScreen: ActiveScreen?
     private var viewModel: CourseDetailsViewModel?
     private var quizzesViewModel: AssessmentsOverViewViewModel?
+    private var assignemntsViewModel: AssessmentsOverViewViewModel?
     private var lessonsList: [Lesson]?
     private var lessonNumbersList: [Int]?
     private var reviewsList: [Review]?
@@ -114,6 +115,7 @@ class CourseDetailsViewController: UIViewController {
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
+        assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         configureActionButtonAccordingToState()
         configureVisibilityOfButtonsAccordingToState()
         loadCourseLessons()

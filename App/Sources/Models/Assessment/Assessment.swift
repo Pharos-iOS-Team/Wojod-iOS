@@ -13,6 +13,5 @@ struct Assessment: Codable {
     var started: Bool?
     var status: String?
     var type: String?
-    // var assessmentType: AssessmentType = .quiz
     var publishedAt: String?
 }
