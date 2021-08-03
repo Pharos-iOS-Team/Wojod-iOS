@@ -87,7 +87,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="hra-SU-9pv" secondAttribute="bottom" id="nD7-Le-3Gs"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt4-uv-6fX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt4-uv-6fX">
                                             <rect key="frame" x="25" y="320" width="115" height="58.5"/>
                                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -207,6 +207,9 @@
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-as-Grv">
                                             <rect key="frame" x="307" y="308.5" width="82" height="82"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="82" id="45c-hR-Gm8"/>
+                                            </constraints>
                                             <state key="normal" image="messageButton"/>
                                             <connections>
                                                 <action selector="didTapChat:" destination="s5u-w3-yVK" eventType="touchUpInside" id="7DU-ye-ZqT"/>
