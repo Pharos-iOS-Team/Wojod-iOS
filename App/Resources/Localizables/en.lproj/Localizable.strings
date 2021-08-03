@@ -195,6 +195,7 @@ No worries!";
 "home.view" = "View";
 "home.course.price" = "EGP";
 "home.course.seeReceipt" = "See Receipt";
+"home.course.returnToTeacher" = "Return to teacher";
 
 // MARK: - Notifications
 
