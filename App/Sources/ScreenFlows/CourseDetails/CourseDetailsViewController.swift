@@ -75,6 +75,7 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private var thirdReviewStar: UIImageView!
     @IBOutlet private var fourthReviewStar: UIImageView!
     @IBOutlet private var fifthReviewStar: UIImageView!
+    @IBOutlet private var chatButton: UIButton!
 
     // MARK: - Private Properties
 
@@ -118,6 +119,7 @@ class CourseDetailsViewController: UIViewController {
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         configureActionButtonAccordingToState()
         configureVisibilityOfButtonsAccordingToState()
+        configureChatButtonAccordingToState()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
@@ -243,6 +245,10 @@ class CourseDetailsViewController: UIViewController {
 
     private func configureVisibilityOfButtonsAccordingToState() {
         materialsButton.isHidden = state != .booked
+    }
+
+    private func configureChatButtonAccordingToState() {
+        chatButton.isHidden = state != .booked
     }
 
     private func blurView() {
