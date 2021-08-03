@@ -320,6 +320,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
         isInSearchMode = true
         showLoadingIndicator()
         viewModel.searchCourses(value: searchBar.text ?? "") { resultCourses in
