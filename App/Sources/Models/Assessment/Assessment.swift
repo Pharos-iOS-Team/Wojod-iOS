@@ -8,10 +8,11 @@ struct Assessment: Codable {
     var instructions: String?
     var passMark: Double?
     var studentMark: Double?
-    var gradeIsFinal: Bool?
+    var gradeFinal: Bool?
     var duration: Int?
     var started: Bool?
     var status: String?
     var type: String?
     var publishedAt: String?
+    var numberOfQuesions: Int?
 }

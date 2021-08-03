@@ -4,31 +4,31 @@ import Foundation
 
 struct Materials: Codable {
     var quizzes: [Assessment]?
-    var assignments: [MaterialsAssignment]?
+    var assignments: [Assessment]?
     var videos: [MaterialsVideo]?
     var documents: [MaterialsDocument]?
 }
 
-struct MaterialsQuiz: Codable {
-    var id: Int?
-    var title: String?
-    var instructions: String?
-    var duration: Int?
-    var numberOfQuestions: Int?
-    var mark: Int?
-    var publishedAt: String?
-    var type: String?
-}
-
-struct MaterialsAssignment: Codable {
-    var id: Int?
-    var title: String?
-    var instructions: String?
-    var duration: Int?
-    var numberOfQuestions: Int?
-    var publishedAt: String?
-    var type: String?
-}
+//struct MaterialsQuiz: Codable {
+//    var id: Int?
+//    var title: String?
+//    var instructions: String?
+//    var duration: Int?
+//    var numberOfQuestions: Int?
+//    var mark: Int?
+//    var publishedAt: String?
+//    var type: String?
+//}
+//
+//struct MaterialsAssignment: Codable {
+//    var id: Int?
+//    var title: String?
+//    var instructions: String?
+//    var duration: Int?
+//    var numberOfQuestions: Int?
+//    var publishedAt: String?
+//    var type: String?
+//}
 
 struct MaterialsVideo: Codable {
     var id: Int?
