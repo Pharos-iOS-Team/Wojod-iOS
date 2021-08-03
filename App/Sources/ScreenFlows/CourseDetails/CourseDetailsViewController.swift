@@ -100,6 +100,7 @@ class CourseDetailsViewController: UIViewController {
     private var numberOfSectionsInMaterials: Int = 4
     private var allAttachmentsOfLesson: [Any] = []
     private var alertViewController: AppAlertViewController?
+    private var selectedAssessment: Assessment?
 
     // MARK: - Public Properties
 
@@ -461,21 +462,16 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
-    private func startAssessment(at indexPath: IndexPath) {
-        guard let assessment = quizzesViewModel?.assessments[indexPath.row]
+    private func startAssessment(for type: AssessmentType, at indexPath: IndexPath) {
+        guard let assessment = type == .quiz ? quizzesViewModel?.assessments[indexPath.row] : assignemntsViewModel?.assessments[indexPath.row]
         else { return }
         switch assessment.type {
         case "Quiz":
-            // tableView.deselectRow(at: indexPath, animated: false)
             showStartQuizAlert(assessment)
         default:
-            guard let cell = tableView.cellForRow(at: indexPath) as? LoadableView
-            else { return }
             tableView.isUserInteractionEnabled = false
-            cell.startLoading()
-            quizzesViewModel?.startAssessment(with: assessment) { [weak self] in
+            assignemntsViewModel?.startAssessment(with: assessment) { [weak self] in
                 self?.tableView.isUserInteractionEnabled = true
-                cell.stopLoading()
             }
         }
     }
@@ -494,7 +490,11 @@ class CourseDetailsViewController: UIViewController {
 
     private func startAssessment(with assessment: Assessment) {
         alertViewController?.startPrimaryButtonLoading()
-        quizzesViewModel?.startAssessment(with: assessment)
+        if assessment.type == "Quiz" {
+            quizzesViewModel?.startAssessment(with: assessment)
+        } else {
+            assignemntsViewModel?.startAssessment(with: assessment)
+        }
     }
 
     private func showResultForRow(at indexPath: IndexPath) {
@@ -508,14 +508,20 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func bindStartAssessmentHandler() {
-        quizzesViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, type in
-            switch type {
-            case .quiz:
-                self?.dismissAlertView { [weak self] in
-                    self?.alertViewController = nil
-                    self?.openAssessmentDetails(.quizzes, assessmentID, assessmentDetails)
+        if selectedAssessment?.type == "Quiz" {
+            quizzesViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, type in
+                switch type {
+                case .quiz:
+                    self?.dismissAlertView { [weak self] in
+                        self?.alertViewController = nil
+                        self?.openAssessmentDetails(.quizzes, assessmentID, assessmentDetails)
+                    }
+                case .assignment:
+                    self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
                 }
-            case .assignment:
+            }
+        } else {
+            assignemntsViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
                 self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
             }
         }
@@ -526,7 +532,8 @@ class CourseDetailsViewController: UIViewController {
             let module: AssessmentsOverViewViewModel.Module = type == .quiz
                 ? .quizzes
                 : .assignments
-            self?.present(
+            self?.navigationController?.navigationBar.isHidden = false
+            self?.navigationController?.pushViewController(
                 AssessmentDetailsConfigurator.configure(
                     status: .closed,
                     module: module,
@@ -547,7 +554,8 @@ class CourseDetailsViewController: UIViewController {
             assessmentDetails: assessmentDetails,
             delegate: self
         )
-        self.present(viewCtrl, animated: true)
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(viewCtrl, animated: true)
     }
 
     private func dismissAlertView(completion: (() -> Void)? = nil) {
@@ -719,14 +727,20 @@ extension CourseDetailsViewController: UITableViewDelegate {
             case .quizzes:
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
                 let quiz = materials?.quizzes?[indexPath.row]
+                selectedAssessment = quiz
                 switch quiz?.status {
                 case "open":
-                    self.startAssessment(at: indexPath)
+                    self.startAssessment(for: .quiz, at: indexPath)
                 case "closed":
                     self.showResultForRow(at: indexPath)
                 default:
                     return
                 }
+
+            case .assignments:
+                assignemntsViewModel?.assessments = materials?.assignments ?? []
+                selectedAssessment = materials?.assignments?[indexPath.row]
+                startAssessment(for: .assignment, at: indexPath)
 
             default:
                 return

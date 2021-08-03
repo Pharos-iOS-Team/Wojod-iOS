@@ -294,7 +294,10 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         viewCtrl.course = course
         viewCtrl.teacherName = teacherName
         viewCtrl.teacherID = subjectCourse?.teacher?.id
-        present(viewCtrl, animated: true)
+        let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
+        navigationCtrl.modalPresentationStyle = .fullScreen
+        navigationCtrl.navigationBar.isHidden = true
+        present(navigationCtrl, animated: true)
     }
 }
 

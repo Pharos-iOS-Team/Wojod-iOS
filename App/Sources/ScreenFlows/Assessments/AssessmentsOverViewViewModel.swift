@@ -99,7 +99,7 @@ class AssessmentsOverViewViewModel {
             deviceToken: deviceToken,
             module: module.rawValue
         ) { [weak self] assessmentDetails, error in
-            let assessmentType: AssessmentType = .quiz
+            let assessmentType: AssessmentType = assessment.type == "Quiz" ? .quiz : .assignment
             self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessmentType)
         }
     }
