@@ -10,7 +10,7 @@ final class PushNotificationsManager {
 
     func sendUserDeviceToken(_ tokenData: String?) {
         guard let tokenData = tokenData, !tokenData.isEmpty else { return }
-        let deviceToken = DeviceToken(deviceTokenNew: tokenData)
+        let deviceToken = DeviceToken(deviceToken: tokenData)
         apiClient.registerDeviceToken(deviceToken: deviceToken)
     }
 }

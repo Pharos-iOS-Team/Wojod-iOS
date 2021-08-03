@@ -33,6 +33,13 @@ class NotificationsApiClient {
     }
 
     func registerDeviceToken(deviceToken: DeviceToken) {
-        notificationsProvider.request(.registerDeviceToken(tokenModel: deviceToken)) { _ in }
+        notificationsProvider.request(.registerDeviceToken(tokenModel: deviceToken)) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+            default:
+                return
+            }
+        }
     }
 }

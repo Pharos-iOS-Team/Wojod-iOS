@@ -154,6 +154,7 @@
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
 		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
 		38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */; };
+		38B1318F26B0291A00D5966A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38B1318E26B0291A00D5966A /* GoogleService-Info.plist */; };
 		38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B1319726B03FD300D5966A /* FiltersViewController.swift */; };
 		38B131A326B0400400D5966A /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B131A226B0400400D5966A /* Filters.storyboard */; };
 		38B131B726B098C400D5966A /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B131B626B098C400D5966A /* FiltersViewModel.swift */; };
@@ -241,7 +242,6 @@
 		778E7271261DC3E1009D7B35 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726E261DC3E1009D7B35 /* Assets.swift */; };
 		778E7272261DC3E1009D7B35 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726F261DC3E1009D7B35 /* Storyboards.swift */; };
 		778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E727C261DCA9A009D7B35 /* ViewController.swift */; };
-		778E7288261DCB4C009D7B35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */; };
 		778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */; };
 		778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */; };
 		778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72AD261DD4D1009D7B35 /* Attachable.swift */; };
@@ -536,6 +536,7 @@
 		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		38B1318E26B0291A00D5966A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38B1319726B03FD300D5966A /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		38B131A226B0400400D5966A /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		38B131B626B098C400D5966A /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
@@ -616,7 +617,6 @@
 		778E726E261DC3E1009D7B35 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		778E726F261DC3E1009D7B35 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		778E727C261DCA9A009D7B35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolExt.swift; sourceTree = "<group>"; };
 		778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExt.swift; sourceTree = "<group>"; };
 		778E72AD261DD4D1009D7B35 /* Attachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
@@ -1334,7 +1334,7 @@
 			children = (
 				7723ADCB261C7339007C0B97 /* Configurations */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
-				778E7287261DCB4C009D7B35 /* GoogleService-Info.plist */,
+				38B1318E26B0291A00D5966A /* GoogleService-Info.plist */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
 			);
@@ -2138,13 +2138,13 @@
 				BC767159262C54E50012155C /* CoursesTabBar.storyboard in Resources */,
 				380B13AD26B807F700CB5811 /* AssignmentQuestionStateView.xib in Resources */,
 				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
-				778E7288261DCB4C009D7B35 /* GoogleService-Info.plist in Resources */,
 				380B13A226B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.xib in Resources */,
 				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
 				380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
+				38B1318F26B0291A00D5966A /* GoogleService-Info.plist in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
 				380B139926B807F700CB5811 /* TeacherCommentHeaderTableViewCell.xib in Resources */,
 				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
