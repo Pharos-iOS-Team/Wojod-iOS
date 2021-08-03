@@ -41,8 +41,10 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
 
     private func playSound(audioCell: AudioMessageCell, message: MessageType, item: AudioItem, completion: (() -> Void)? = nil) {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let destinationURL = documentsPath.appendingPathComponent(item.url.lastPathComponent)
-        if let fileLocalUrl = FileManager.default.localUrl(ofFileName: item.url.lastPathComponent) {
+        let pathComponentsCount = item.url.pathComponents.count
+        let urlPathToSave = item.url.pathComponents[pathComponentsCount - 2] + item.url.pathComponents[pathComponentsCount - 1]
+        let destinationURL = documentsPath.appendingPathComponent(urlPathToSave)
+        if let fileLocalUrl = FileManager.default.localUrl(ofFileName: urlPathToSave) {
             handleDownloadingAudioSuccess(audioCell: audioCell, message: message, downloadedURL: fileLocalUrl, item: item, completion: completion)
         } else {
             downloadAudio(audioCell: audioCell, message: message, item: item, destinationUrl: destinationURL, completion: completion)
@@ -68,19 +70,20 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     private func handleDownloadingAudioSuccess(audioCell: AudioMessageCell, message: MessageType, downloadedURL: URL?, item: AudioItem, completion: (() -> Void)? = nil) {
         playingCell = audioCell
         playingMessage = message
-        guard let url = downloadedURL,
-              let player = try? AVAudioPlayer(contentsOf: url)
-        else { return }
-        audioPlayer = player
-        audioPlayer?.prepareToPlay()
-        audioPlayer?.delegate = self
-        audioPlayer?.play()
-        state = .playing
-        audioCell.playButton.isSelected = true
-        startProgressTimer()
-        audioCell.delegate?.didStartAudio(in: audioCell)
-        if let completion = completion {
-            completion()
+        guard let url = downloadedURL else { return }
+        do {
+            let player = try AVAudioPlayer(contentsOf: url)
+            audioPlayer = player
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            state = .playing
+            audioCell.playButton.isSelected = true
+            startProgressTimer()
+            audioCell.delegate?.didStartAudio(in: audioCell)
+            if let completion = completion { completion() }
+        } catch {
+            print(error)
         }
     }
 

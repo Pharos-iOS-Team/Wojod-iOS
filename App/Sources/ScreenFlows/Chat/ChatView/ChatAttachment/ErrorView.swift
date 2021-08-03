@@ -48,4 +48,10 @@ class ErrorView: UIView, NibLoadable {
         settingsButton.setTitle(L10n.Global.Titles.settings, for: .normal)
         cancelButton.setTitle(L10n.Shared.Action.cancel, for: .normal)
     }
+
+    func configureAudioTexts() {
+        errorTitle.text = L10n.Shared.Alerts.Microphone.message
+        settingsButton.setTitle(L10n.Global.Titles.settings, for: .normal)
+        cancelButton.setTitle(L10n.Shared.Action.cancel, for: .normal)
+    }
 }

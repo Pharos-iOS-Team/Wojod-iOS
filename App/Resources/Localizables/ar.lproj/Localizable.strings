@@ -6,6 +6,8 @@
 
 "shared.alerts.photos.message" = "Wojood يحتاج الي الوصول للصور";
 
+"shared.alerts.microphone.message" = "Wojood يحتاج الي الوصول للميكروفون";
+
 "shared.alerts.error" = "خطأ";
 
 "shared.action.cancel" = "الغاء";
