@@ -30,6 +30,7 @@ class SettingsViewController: UIViewController {
         registerNib()
         setUserAvatar()
         navigateToProfileHandler()
+        preventScreenshot()
     }
 
     override func viewWillAppear(_ animated: Bool) {

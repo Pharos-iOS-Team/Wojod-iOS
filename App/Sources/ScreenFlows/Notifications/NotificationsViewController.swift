@@ -31,6 +31,7 @@ class NotificationsViewController: UIViewController {
         configureTableView()
         loadNotifications()
         documentInteractionController.delegate = self
+        preventScreenshot()
     }
 
     // MARK: - IBActions

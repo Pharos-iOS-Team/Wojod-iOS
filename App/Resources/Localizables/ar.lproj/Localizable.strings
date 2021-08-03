@@ -1,14 +1,15 @@
+// MARK: - Alerts
+
 "shared.alerts.camera.title" = "السماح للكاميرا";
-
 "shared.alerts.camera.message" = "Wojood يحتاج الي الوصول للكاميرا";
-
 "shared.alerts.photos.title" = "السماح للصور";
-
 "shared.alerts.photos.message" = "Wojood يحتاج الي الوصول للصور";
 
 "shared.alerts.microphone.message" = "Wojood يحتاج الي الوصول للميكروفون";
 
 "shared.alerts.error" = "خطأ";
+"shared.alerts.screenshotsNotAllowed" = "غير مسموح بأخذ لقطة شاشة!";
+"shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 
 "shared.action.cancel" = "الغاء";
 

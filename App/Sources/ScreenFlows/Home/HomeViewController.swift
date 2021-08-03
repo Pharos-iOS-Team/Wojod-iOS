@@ -63,6 +63,7 @@ class HomeViewController: UIViewController {
         configureTableView()
         configureRefreshControl()
         loadUserProfile()
+        preventScreenshot()
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -41,6 +41,7 @@ class ProfileViewController: UIViewController {
         viewModel.loadCountries()
         reloadCountriesCell()
         reloadCitiesCell()
+        preventScreenshot()
     }
 
     override func viewWillAppear(_ animated: Bool) {
