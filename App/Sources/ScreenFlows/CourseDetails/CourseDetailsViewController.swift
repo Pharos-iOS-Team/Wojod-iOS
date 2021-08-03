@@ -526,7 +526,8 @@ class CourseDetailsViewController: UIViewController {
             let module: AssessmentsOverViewViewModel.Module = type == .quiz
                 ? .quizzes
                 : .assignments
-            self?.present(
+            self?.navigationController?.navigationBar.isHidden = false
+            self?.navigationController?.pushViewController(
                 AssessmentDetailsConfigurator.configure(
                     status: .closed,
                     module: module,
@@ -547,7 +548,8 @@ class CourseDetailsViewController: UIViewController {
             assessmentDetails: assessmentDetails,
             delegate: self
         )
-        self.present(viewCtrl, animated: true)
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(viewCtrl, animated: true)
     }
 
     private func dismissAlertView(completion: (() -> Void)? = nil) {

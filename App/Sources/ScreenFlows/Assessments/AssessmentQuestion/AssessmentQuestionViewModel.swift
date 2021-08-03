@@ -254,6 +254,15 @@ class AssessmentQuestionViewModel {
                 guard let type = assessmentQuestion?.type,
                       let optionID = assessmentQuestion?.choices?[indexPath.row].id
                 else { return }
+                switch type {
+                case .trueOrFalse:
+                    self.assessmentQuestion?.selectedChoices = [optionID]
+                case .mcq:
+                    self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
+                default:
+                    return
+                }
+                self.reloadDataSource()
             }
         default:
             return
