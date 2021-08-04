@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
     private let viewModel = HomeViewModel()
     private var subjects: [Subject]?
     private var selectedSubject: Subject?
+    private var selectedSubjectIndexPath: IndexPath?
     private var subjectRelatedCourses: [SubjectCourses] = []
     private var exploreMoreCourses: [SubjectCourses] = []
     private var searchResultsCourses: [SubjectCourses]?
@@ -275,6 +276,7 @@ extension HomeViewController: UITableViewDataSource {
         headerView?.configureCollectionViews()
         headerView?.configureSearchBar()
         headerView?.setSubjects(self.subjects)
+        headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
         if isFirstScreenLoad && self.subjects != nil {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
@@ -348,6 +350,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
         if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
             subjectCell.isSelected = true
         }
+        selectedSubjectIndexPath = indexPath
         subjectRelatedCourses.removeAll()
         viewModel.relatedCoursesPage = 1
         selectedSubject = subjects?[indexPath.item]
