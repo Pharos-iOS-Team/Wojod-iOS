@@ -508,22 +508,15 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func bindStartAssessmentHandler() {
-        if selectedAssessment?.type == "Quiz" {
-            quizzesViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, type in
-                switch type {
-                case .quiz:
-                    self?.dismissAlertView { [weak self] in
-                        self?.alertViewController = nil
-                        self?.openAssessmentDetails(.quizzes, assessmentID, assessmentDetails)
-                    }
-                case .assignment:
-                    self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
-                }
+        quizzesViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
+            self?.dismissAlertView { [weak self] in
+                self?.alertViewController = nil
+                self?.openAssessmentDetails(.quizzes, assessmentID, assessmentDetails)
             }
-        } else {
-            assignemntsViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
-                self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
-            }
+        }
+
+        assignemntsViewModel?.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
+            self?.openAssessmentDetails(.assignments, assessmentID, assessmentDetails)
         }
     }
 
