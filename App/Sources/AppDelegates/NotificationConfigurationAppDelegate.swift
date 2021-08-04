@@ -81,7 +81,13 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
                     let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
                     UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
                 default:
-                    return
+                    if let courseID = userinfo["entity_id"] as? String {
+                        CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
+                            let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+                            viewCtrl.course = course
+                            UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+                        }
+                    }
                 }
             }
         }

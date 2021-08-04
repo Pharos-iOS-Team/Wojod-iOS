@@ -82,4 +82,15 @@ class CourseDetailsApiClient {
             }
         }
     }
+
+    func loadCourse(courseID: String, completion: @escaping (Response?, MoyaError?) -> Void) {
+        courseDetailsProvider.request(.loadCourse(courseID: courseID)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
 }
