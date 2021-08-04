@@ -48,10 +48,11 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     @IBOutlet private var adsCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var subjectsCollectionViewHeightConstraint: NSLayoutConstraint!
 
-    // MARK: - Private Properties
+    // MARK: - Properties
 
     weak var delegate: HomeTableViewHeaderDelegate?
     var subjects: [Subject]?
+    var selectedSubjectIndexPath: IndexPath?
     private var isFirstLoad: Bool = true
 
     // MARK: - IBActions
@@ -126,6 +127,9 @@ extension HomeTableViewHeader: UICollectionViewDataSource {
             let cell: SubjectCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
             let subject = subjects?[indexPath.item]
             cell.setSubject(subject?.name ?? "")
+            if indexPath == selectedSubjectIndexPath {
+                cell.selectSubject()
+            }
             if isFirstLoad && !(subjects?.isEmpty ?? true) && indexPath.item == 0 {
                 isFirstLoad = false
                 cell.isSelected = true
