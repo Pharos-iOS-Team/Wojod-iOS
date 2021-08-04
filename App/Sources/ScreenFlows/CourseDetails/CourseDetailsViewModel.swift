@@ -62,12 +62,14 @@ class CourseDetailsViewModel {
     }
 
     func loadMaterials(courseID: Int, completion: @escaping (Materials) -> Void) {
-        model.loadMaterials(courseID: courseID) { result in
-            switch result {
-            case .success(let materials as Materials):
-                completion(materials)
-            default:
-                return
+        DispatchQueue.global().async { [unowned self] in
+            model.loadMaterials(courseID: courseID) { result in
+                switch result {
+                case .success(let materials as Materials):
+                    completion(materials)
+                default:
+                    return
+                }
             }
         }
     }
