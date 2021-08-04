@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssessmentFreeTextTableViewCell" rowHeight="215" id="KGk-i7-Jjw" customClass="AssessmentFreeTextTableViewCell" customModule="De_la_salle" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssessmentFreeTextTableViewCell" rowHeight="215" id="KGk-i7-Jjw" customClass="AssessmentFreeTextTableViewCell" customModule="Wojood" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -27,8 +28,8 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-W9-IrJ">
                                 <rect key="frame" x="20" y="10" width="210" height="150"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -66,7 +67,7 @@
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-9z-aT1" customClass="RPCircularProgress" customModule="RPCircularProgress">
                                 <rect key="frame" x="250" y="104.5" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1MB-Jv-n3U"/>
                                     <constraint firstAttribute="height" constant="40" id="ejM-pc-978"/>
@@ -76,7 +77,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lnk-W9-IrJ" firstAttribute="top" secondItem="87W-Rh-NU2" secondAttribute="top" constant="10" id="5Oc-3G-FFV"/>
                             <constraint firstItem="Os4-7s-Z9s" firstAttribute="trailing" secondItem="EdG-2L-BKB" secondAttribute="trailing" constant="5" id="6km-Qw-zoj"/>
@@ -118,7 +119,6 @@
                 <outlet property="attachmentImageViewWidthConstraint" destination="g09-5o-Gxm" id="dgt-X9-SVj"/>
                 <outlet property="cancelUploadButton" destination="Os4-7s-Z9s" id="GNf-da-u5g"/>
                 <outlet property="containerView" destination="87W-Rh-NU2" id="k7p-dB-82j"/>
-                <outlet property="uploadProgressView" destination="Mce-9z-aT1" id="OO7-0I-hDa"/>
                 <outlet property="yourAnswerLabel" destination="1Qp-Cl-OlK" id="tca-8K-fnW"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150.33482142857142"/>
@@ -128,5 +128,11 @@
         <image name="attach" width="25" height="26"/>
         <image name="attachmentUploadPlaceholder" width="34" height="40"/>
         <image name="closeBold" width="24" height="24"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
