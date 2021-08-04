@@ -71,4 +71,15 @@ class CourseDetailsViewModel {
             }
         }
     }
+
+    func loadCourse(courseID: String, completion: @escaping (Course?) -> Void) {
+        model.loadCourse(courseID: courseID) { result in
+            switch result {
+            case .success(let course as CourseDetailsResponse):
+                completion(course.course)
+            default:
+                return
+            }
+        }
+    }
 }

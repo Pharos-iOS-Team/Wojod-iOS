@@ -37,7 +37,6 @@ extension NotificationsTarget: TargetType {
         switch self {
         case .getNotifications:
             return .requestPlain
-            // return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         case .markAsRead, .readAllNotifications:
             return .requestPlain
         case let .registerDeviceToken(tokenModel: tokenModel):

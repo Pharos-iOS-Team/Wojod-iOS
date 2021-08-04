@@ -13,6 +13,10 @@ struct Teacher: Codable {
     var initials: String?
 }
 
+struct CourseDetailsResponse: Codable {
+    var course: Course?
+}
+
 struct Course: Codable {
     var id: Int?
     var batchID: Int?
