@@ -105,7 +105,7 @@ class FiltersViewController: UIViewController {
 
     @IBAction private func didTapApplyButton(_ sender: UIButton) {
         let batchID = academicLevel == .schoolStudent ? selectedYear?.key : selectedAcademicYear?.key
-        viewModel?.loadFilteredCourses(subjectID: selectedSubject?.id ?? 0, batchID: batchID ?? 0, specializationID: selectedField?.key) { courses in
+        viewModel?.loadFilteredCourses(subjectID: selectedSubject?.id, batchID: batchID ?? 0, specializationID: selectedField?.key) { courses in
             self.dismiss(animated: true) {
                 self.delegate?.loadFilteredCourses(courses)
             }

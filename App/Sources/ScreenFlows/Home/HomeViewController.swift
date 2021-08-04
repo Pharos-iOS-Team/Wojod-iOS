@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
     private var subjectRelatedCourses: [SubjectCourses] = []
     private var exploreMoreCourses: [SubjectCourses] = []
     private var searchResultsCourses: [SubjectCourses]?
+    private var filteredResultsCourses: [SubjectCourses] = []
     private var mode: HomeMode = .relatedCourses
     private var isInSearchMode = false
     private var loadingHud: JGProgressHUD?
@@ -133,11 +134,13 @@ class HomeViewController: UIViewController {
     }
 
     private func configureInfiniteScrolling() {
-        coursesTableView.addInfiniteScroll {  _ in
-            if self.mode == .relatedCourses {
-                self.loadRelatedCourses(isBeingScrolled: true)
-            } else {
-                self.loadExploreMoreCourses(isBeingScrolled: true)
+        if !isFiltersSelected {
+            coursesTableView.addInfiniteScroll { [unowned self]  _ in
+                if self.mode == .relatedCourses {
+                    self.loadRelatedCourses(isBeingScrolled: true)
+                } else {
+                    self.loadExploreMoreCourses(isBeingScrolled: true)
+                }
             }
         }
     }
@@ -213,7 +216,11 @@ class HomeViewController: UIViewController {
         case .relatedCourses:
             return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses[index]
         case .exploreMore:
-            return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses[index]
+            if isFiltersSelected && !isMyCourses {
+                return filteredResultsCourses[index]
+            } else {
+                return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses[index]
+            }
         }
     }
 
@@ -242,7 +249,11 @@ extension HomeViewController: UITableViewDataSource {
         case .relatedCourses:
             return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count 
+            if isFiltersSelected && !isMyCourses {
+                return filteredResultsCourses.count
+            } else {
+                return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
+            }
         }
     }
 
@@ -361,8 +372,8 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
 // MARK: - Filters Delegate
 extension HomeViewController: FiltersDelegate {
     func loadFilteredCourses(_ courses: ExploreMoreCoursesResponse?) {
-        exploreMoreCourses = courses?.teachersCourses ?? []
-        self.coursesTableView.reloadData()
         configureFiltersButtonWhenFiltersAreSelected()
+        filteredResultsCourses = courses?.teachersCourses ?? []
+        self.coursesTableView.reloadData()
     }
 }

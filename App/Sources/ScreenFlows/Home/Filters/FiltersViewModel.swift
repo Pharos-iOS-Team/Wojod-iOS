@@ -45,7 +45,7 @@ class FiltersViewModel {
         }
     }
 
-    internal func loadFilteredCourses(subjectID: Int, batchID: Int, specializationID: Int?, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
+    internal func loadFilteredCourses(subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
         filtersModel.loadFilteredCourses(isMyCourses: false, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { result in
             switch result {
             case .success(let courses as ExploreMoreCoursesResponse):

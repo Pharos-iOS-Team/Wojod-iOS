@@ -5,7 +5,7 @@ import Foundation
 class FiltersModel: ModelDecodable {
     private let apiClient = FiltersApiClient()
 
-    func loadFilteredCourses(isMyCourses: Bool, subjectID: Int, batchID: Int, specializationID: Int?, completion: @escaping (Result) -> Void) {
+    func loadFilteredCourses(isMyCourses: Bool, subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (Result) -> Void) {
         apiClient.loadFilteredCourses(isMyCourses: isMyCourses, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
