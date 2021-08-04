@@ -15,11 +15,12 @@ class SubjectCollectionViewCell: UICollectionViewCell {
     }
 
     override var isSelected: Bool {
-        didSet {
-            if self.isSelected {
+        willSet {
+            super.isSelected = newValue
+            if newValue {
                 selectSubject()
             } else {
-                unselect()
+                unselectSubject()
             }
         }
     }
@@ -33,7 +34,7 @@ class SubjectCollectionViewCell: UICollectionViewCell {
         underLinedView.isHidden = false
     }
 
-    func unselect() {
+    func unselectSubject() {
         subjectLabel.textColor = Colors.labelGreyColor.color
         underLinedView.isHidden = true
     }

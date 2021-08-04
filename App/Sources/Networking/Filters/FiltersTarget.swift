@@ -4,7 +4,7 @@ import Foundation
 import Moya
 
 enum FiltersTarget {
-    case loadFilteredCourses(isMyCourses: Bool, subjectID: Int, batchID: Int, specializationID: Int?)
+    case loadFilteredCourses(isMyCourses: Bool, subjectID: Int?, batchID: Int, specializationID: Int?)
 }
 
 extension FiltersTarget: TargetType {
@@ -20,10 +20,14 @@ extension FiltersTarget: TargetType {
         switch self {
         case let .loadFilteredCourses(isMyCourses, subjectID, batchID, specializationID):
             var parameters: [String: Any] = [:]
-            if specializationID == nil {
-                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID, "batch_id": batchID]
+            if subjectID == nil && specializationID != nil {
+                parameters = ["my_courses": isMyCourses.description, "batch_id": batchID, "specialization_id": specializationID!]
+            } else if specializationID == nil && subjectID != nil {
+                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID!, "batch_id": batchID]
+            } else if subjectID == nil && specializationID == nil {
+                parameters = ["my_courses": isMyCourses.description, "batch_id": batchID]
             } else {
-                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID, "batch_id": batchID, "specialization_id": specializationID!]
+                parameters = ["my_courses": isMyCourses.description, "subject_id": subjectID!, "batch_id": batchID, "specialization_id": specializationID!]
             }
             return .requestParameters(
                 parameters: parameters,

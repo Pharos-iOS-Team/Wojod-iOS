@@ -12,15 +12,12 @@ class FilterCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    override var isSelected: Bool{
-        willSet{
+    override var isSelected: Bool {
+        willSet {
             super.isSelected = newValue
-            if newValue
-            {
+            if newValue {
                 selectFilter()
-            }
-            else
-            {
+            } else {
                 unselectFilter()
             }
         }
