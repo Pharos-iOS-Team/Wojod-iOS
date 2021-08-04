@@ -74,6 +74,16 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        completionHandler()
+        if let userinfo = response.notification.request.content.userInfo as? [String: Any] {
+            if let notificationType = userinfo["entity_name"] as? String {
+                switch notificationType {
+                case "Notifications":
+                    let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+                    UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+                default:
+                    return
+                }
+            }
+        }
     }
 }
