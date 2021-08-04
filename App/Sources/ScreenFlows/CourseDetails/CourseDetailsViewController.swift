@@ -205,9 +205,17 @@ class CourseDetailsViewController: UIViewController {
         courseImageView.image = getImage(from: course?.media?.fileUrl ?? "")
         courseTitle.text = course?.name
         descriptionLabel.text = course?.summary
-        priceLabel.text = "EGP \(course?.price ?? "")"
+        priceLabel.text = coursePrice()
         numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
         setRating(Int(course?.rating ?? 0.0))
+    }
+
+    private func coursePrice() -> String {
+        if course?.price == nil || course?.price?.isEmpty ?? true {
+            return L10n.Home.Course.returnToTeacher
+        } else {
+            return "\(L10n.Home.Course.price) \(course?.price ?? "")"
+        }
     }
 
     private func getReservationState() -> CourseState {
