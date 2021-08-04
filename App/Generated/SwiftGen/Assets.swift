@@ -99,6 +99,8 @@ internal enum Asset {
     internal static let coursesSelected = ImageAsset(name: "coursesSelected")
     internal static let settings = ImageAsset(name: "settings")
     internal static let settingsSelected = ImageAsset(name: "settingsSelected")
+    internal static let attach = ImageAsset(name: "attach")
+    internal static let attachmentUploadPlaceholder = ImageAsset(name: "attachmentUploadPlaceholder")
     internal static let audio = ImageAsset(name: "audio")
     internal static let boyAvatar = ImageAsset(name: "boyAvatar")
     internal static let close = ImageAsset(name: "close")
