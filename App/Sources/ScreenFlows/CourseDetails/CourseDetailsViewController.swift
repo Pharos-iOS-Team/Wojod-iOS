@@ -24,7 +24,7 @@ internal enum MaterialsSections: Int {
     case documents
 }
 
-internal enum AttachmentType {
+internal enum AttachmentType: Int {
     case assignments
     case quizzes
     case videos
@@ -378,7 +378,7 @@ class CourseDetailsViewController: UIViewController {
         if let assignment = attachment as? Assignment {
             cell?.setSubtitleLabel(assignment.title ?? "")
             cell?.setAttachmentImageView(Images.quiz.image)
-        } else if let quiz = attachment as? Quiz {
+        } else if let quiz = attachment as? Assessment {
             cell?.setSubtitleLabel(quiz.title ?? "")
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
@@ -745,6 +745,29 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
             default:
                 return
+            }
+        } else if activeScreen == .details {
+            let attachment = allAttachmentsOfLesson[indexPath.row]
+            if let assignment = attachment as? Assessment, assignment.type != "Quiz" {
+                assignemntsViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.assignments ?? []
+                startAssessment(for: .assignment, at: indexPath)
+            } else if let quiz = attachment as? Assessment, quiz.type == "Quiz"{
+                quizzesViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.quizzes ?? []
+                selectedAssessment = quiz
+                switch quiz.status {
+                case "open":
+                    self.startAssessment(for: .quiz, at: indexPath)
+                case "closed":
+                    self.showResultForRow(at: indexPath)
+                default:
+                    return
+                }
+            } else if let video = attachment as? Video {
+                let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
+                play(videoURL: videoURL)
+            } else if let document = attachment as? Document {
+                let documentURL = Environment.baseURL.appendingPathComponent(document.fileUrl ?? "")
+                storeAndShare(withURLString: "\(documentURL)")
             }
         }
     }
