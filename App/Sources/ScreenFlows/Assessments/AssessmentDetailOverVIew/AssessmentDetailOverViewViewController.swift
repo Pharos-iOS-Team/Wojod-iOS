@@ -43,8 +43,8 @@ class AssessmentDetailOverViewViewController: UIViewController {
     @IBOutlet private var viewAllLabel: UILabel! {
         didSet {
             viewAllLabel.text = module == .quizzes
-                ? "quizzes.viewAll".localiz()
-                : "assignment.viewDescription".localiz()
+                ? L10n.Quizzes.viewAll
+                : L10n.Quizzes.viewDescription
         }
     }
     @IBOutlet private var dragView: UIView! {

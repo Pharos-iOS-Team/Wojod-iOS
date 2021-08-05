@@ -301,3 +301,11 @@ No worries!";
 "quizzes.fileTitle" = "Files";
 "quizzes.gallery" = "Gallery";
 "quizzes.camera" = "Camera";
+"quizzes.viewDescription" = "View description";
+
+// MARK: - Assignments
+
+"assignment.pauseAlertTitle" = "Pause exercise for now";
+"assignment.pauseAlertMessage" = "Make sure to come back and submit before due date";
+"assignment.pauseAlertPauseButtonTitle" = "Pause exercise";
+"assignment.pauseAlertCancelButtonTitle" = "Return";

@@ -301,3 +301,11 @@
 "quizzes.fileTitle" = "الملفات";
 "quizzes.gallery" = "البوم";
 "quizzes.camera" = "كاميرا";
+"quizzes.viewDescription" = "التفاصيل";
+
+// MARK: - Assignments
+
+"assignment.pauseAlertTitle" = "وقف التدريب للوقت الحالي";
+"assignment.pauseAlertMessage" = "تأكد من العودة و الارسال في الميعاد المحدد";
+"assignment.pauseAlertPauseButtonTitle" = "وقف التدريب";
+"assignment.pauseAlertCancelButtonTitle" = "العودة";
