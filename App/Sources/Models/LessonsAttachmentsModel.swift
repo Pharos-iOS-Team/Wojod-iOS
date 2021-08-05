@@ -3,8 +3,8 @@
 import Foundation
 
 struct LessonAttachmentsModel: Codable {
-    var quizzes: [Quiz]?
-    var assignments: [Assignment]?
+    var quizzes: [Assessment]?
+    var assignments: [Assessment]?
     var videos: [Video]?
     var documents: [Document]?
 }
