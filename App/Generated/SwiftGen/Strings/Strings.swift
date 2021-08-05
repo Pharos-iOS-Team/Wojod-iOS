@@ -15,6 +15,25 @@ internal enum L10n {
       return L10n.tr("Localizable", "quizzes")
     }
 
+  internal enum Assignment {
+    /// Return
+    internal static var pauseAlertCancelButtonTitle: String {
+        return L10n.tr("Localizable", "assignment.pauseAlertCancelButtonTitle")
+      }
+    /// Make sure to come back and submit before due date
+    internal static var pauseAlertMessage: String {
+        return L10n.tr("Localizable", "assignment.pauseAlertMessage")
+      }
+    /// Pause exercise
+    internal static var pauseAlertPauseButtonTitle: String {
+        return L10n.tr("Localizable", "assignment.pauseAlertPauseButtonTitle")
+      }
+    /// Pause exercise for now
+    internal static var pauseAlertTitle: String {
+        return L10n.tr("Localizable", "assignment.pauseAlertTitle")
+      }
+  }
+
   internal enum Chat {
     /// Camera
     internal static var camera: String {
@@ -670,6 +689,10 @@ internal enum L10n {
     /// View all
     internal static var viewAll: String {
         return L10n.tr("Localizable", "quizzes.viewAll")
+      }
+    /// View description
+    internal static var viewDescription: String {
+        return L10n.tr("Localizable", "quizzes.viewDescription")
       }
     /// This grade will not be saved
     internal static var wontSaveGradeError: String {

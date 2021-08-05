@@ -132,18 +132,12 @@ class AssessmentDetailsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // addObservers()
         setupDetailOverView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         handleRemovingDragableView()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        // removeObservers()
     }
 
     // MARK: - Private functions
@@ -179,23 +173,15 @@ class AssessmentDetailsViewController: UIViewController {
         }
     }
 
-//    private func addObservers() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateRemainingTime), name: .applicationWillEnterForeground, object: nil)
-//    }
-//
-//    private func removeObservers() {
-//        NotificationCenter.default.removeObserver(self, name: .applicationWillEnterForeground, object: nil)
-//    }
-
     private func setupDetailOverView() {
         visualEffectView.frame = view.frame
-        let assessmentDetailOverViewController =
+        assessmentDetailOverViewController =
             StoryboardScene.AssessmentDetailOverview.assessmentDetailOverViewViewController.instantiate()
         setDetailData()
         initAssessmentDetailOverview()
-        assessmentDetailOverViewController.setQuestionsTableViewDetails()
-        assessmentDetailOverViewController.view.clipsToBounds = true
-        assessmentDetailOverViewController.handleGestures()
+        assessmentDetailOverViewController?.setQuestionsTableViewDetails()
+        assessmentDetailOverViewController?.view.clipsToBounds = true
+        assessmentDetailOverViewController?.handleGestures()
         bindBlurredBackgroundAnimationHandler()
         configureDetailOverviewState(state: detailState)
         bindDetailOverviewNextQuestionNavigation()
@@ -317,11 +303,10 @@ class AssessmentDetailsViewController: UIViewController {
 
     private func initAssessmentDetailOverview() {
         guard let assessmentDetailOverViewController = assessmentDetailOverViewController else { return }
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         visualEffectView.frame = view.frame
-        rootViewController?.view.addSubview(visualEffectView)
-        rootViewController?.addChild(assessmentDetailOverViewController)
-        rootViewController?.view.addSubview(assessmentDetailOverViewController.view)
+        self.view.addSubview(visualEffectView)
+        self.addChild(assessmentDetailOverViewController)
+        self.view.addSubview(assessmentDetailOverViewController.view)
         let assessmentDetailViewCollapsedBottomPadding: CGFloat = 5
         let assessmentDetailViewExpandedBottomPadding: CGFloat = 20
         let yPosition = UIScreen.main.bounds.height -
@@ -528,8 +513,8 @@ class AssessmentDetailsViewController: UIViewController {
                 imageName: imageName,
                 title: title,
                 message: message,
-                primaryButtonTitle: "app.OK".localiz(),
-                dismissButtonTitle: "app.cancel".localiz()
+                primaryButtonTitle: L10n.Global.Actions.ok,
+                dismissButtonTitle: L10n.Global.Actions.cancel
             ) { [weak self] in
                 self?.dismiss(animated: true) {
                     let message = self?.viewModel?.submittedAlertMessage ?? ""
