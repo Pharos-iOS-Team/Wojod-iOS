@@ -379,6 +379,10 @@ internal enum L10n {
     internal static var by: String {
         return L10n.tr("Localizable", "quizzes.by")
       }
+    /// Camera
+    internal static var camera: String {
+        return L10n.tr("Localizable", "quizzes.camera")
+      }
     /// Choose %@ answers
     internal static func chooseMultipleAnswers(_ p1: Any) -> String {
       return L10n.tr("Localizable", "quizzes.chooseMultipleAnswers", String(describing: p1))
@@ -459,6 +463,10 @@ internal enum L10n {
     internal static var fewSeconds: String {
         return L10n.tr("Localizable", "quizzes.fewSeconds")
       }
+    /// Files
+    internal static var fileTitle: String {
+        return L10n.tr("Localizable", "quizzes.fileTitle")
+      }
     /// Finalized
     internal static var finalized: String {
         return L10n.tr("Localizable", "quizzes.finalized")
@@ -470,6 +478,10 @@ internal enum L10n {
     /// Are you sure you want to submit?
     internal static var finishMessage: String {
         return L10n.tr("Localizable", "quizzes.finishMessage")
+      }
+    /// Gallery
+    internal static var gallery: String {
+        return L10n.tr("Localizable", "quizzes.gallery")
       }
     /// Go back anyway
     internal static var goBackAnyway: String {

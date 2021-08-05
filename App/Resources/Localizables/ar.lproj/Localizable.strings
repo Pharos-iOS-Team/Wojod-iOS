@@ -298,3 +298,6 @@
 "quizzes.endInMoreThan1Day" = "ينتهي في %@ أيام";
 "quizzes.endInOneWeek" = "ينتهي في أسبوع";
 "quizzes.endsIn" = "ينتهي في %@";
+"quizzes.fileTitle" = "الملفات";
+"quizzes.gallery" = "البوم";
+"quizzes.camera" = "كاميرا";

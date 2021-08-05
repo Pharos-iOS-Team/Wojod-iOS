@@ -298,3 +298,6 @@ No worries!";
 "quizzes.endInMoreThan1Day" = "ends in %@ days";
 "quizzes.endInOneWeek" = "ends in 1 week";
 "quizzes.endsIn" = "ends in %@";
+"quizzes.fileTitle" = "Files";
+"quizzes.gallery" = "Gallery";
+"quizzes.camera" = "Camera";

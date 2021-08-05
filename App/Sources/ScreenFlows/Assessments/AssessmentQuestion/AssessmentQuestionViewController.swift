@@ -111,22 +111,22 @@ class AssessmentQuestionViewController: UIViewController, UINavigationController
     private func showActionSheet(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(
-            UIAlertAction(title: "files.camera".localiz(), style: .default) { _ in
+            UIAlertAction(title: L10n.Quizzes.camera, style: .default) { _ in
                 self.openCamera()
             }
         )
         actionSheet.addAction(
-            UIAlertAction(title: "files.gallery".localiz(), style: .default) { _ in
+            UIAlertAction(title: L10n.Quizzes.gallery, style: .default) { _ in
                 self.openPhototLibrary()
             }
         )
         actionSheet.addAction(
-            UIAlertAction(title: "files.title".localiz(), style: .default) { _ in
+            UIAlertAction(title: L10n.Quizzes.fileTitle, style: .default) { _ in
                 self.showDocumentsPicker()
             }
         )
         actionSheet.addAction(
-            UIAlertAction(title: "app.cancel".localiz(), style: .cancel)
+            UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
         )
         if let popoverPresentationController = actionSheet.popoverPresentationController {
             popoverPresentationController.sourceView = sender
