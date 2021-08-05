@@ -4,6 +4,78 @@ import Foundation
 import UIKit
 
 extension UIView {
+    @IBInspectable var doneAccessory: Bool {
+        get {
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone {
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+
+    fileprivate func addDoneButtonOnKeyboard() {
+        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(title: "app.done".localiz(), style: .done, target: self, action: #selector(self.doneButtonAction))
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        switch self {
+        case let textView as UITextView:
+            textView.inputAccessoryView = doneToolbar
+        case let textField as UITextField:
+            textField.inputAccessoryView = doneToolbar
+        default:
+            return
+        }
+    }
+
+    @objc
+    fileprivate func doneButtonAction() {
+        resignFirstResponder()
+    }
+}
+
+extension UIView {
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+
+    @IBInspectable var borderColor: UIColor? {
+        get {
+            if let color = layer.borderColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                layer.borderColor = color.cgColor
+            } else {
+                layer.borderColor = nil
+            }
+        }
+    }
+
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+}
+
+extension UIView {
     func setBorder(color: UIColor, width: CGFloat, cornerRadius: CGFloat) {
         layer.borderColor = color.cgColor
         layer.borderWidth = width
