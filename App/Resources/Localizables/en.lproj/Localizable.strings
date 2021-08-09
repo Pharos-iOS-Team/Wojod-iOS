@@ -311,3 +311,5 @@ No worries!";
 "assignment.pauseAlertCancelButtonTitle" = "Return";
 "assignment.correctTitle" = "This answer is correct";
 "assignment.incorrectTitle" = "This question isn't correct";
+"assignment.questionIsPending" = "This question is pending";
+"assignment.pleaseEnterEvaluation" = "Please enter evaluation";

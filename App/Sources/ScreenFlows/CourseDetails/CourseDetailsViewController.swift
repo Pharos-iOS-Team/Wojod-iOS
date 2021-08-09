@@ -1,4 +1,5 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
+// swiftlint:disable all
 
 import AVKit
 import HandySwift
@@ -128,6 +129,17 @@ class CourseDetailsViewController: UIViewController {
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         preventScreenshot()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if activeScreen == .materials {
+            guard let courseID = course?.id else { return }
+            viewModel?.loadMaterials(courseID: courseID) { materials in
+                self.materials = materials
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - IBActions
