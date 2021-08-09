@@ -49,12 +49,8 @@ final class AccessPermissionHandler {
             showMissingAudioPermissionAlert()
         case AVAudioSession.RecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        successHandler()
-                    } else {
-                        showMissingAudioPermissionAlert()
-                    }
+                if allowed {
+                    successHandler()
                 }
             }
         default:
