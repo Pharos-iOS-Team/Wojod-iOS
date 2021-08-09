@@ -309,3 +309,5 @@
 "assignment.pauseAlertMessage" = "تأكد من العودة و الارسال في الميعاد المحدد";
 "assignment.pauseAlertPauseButtonTitle" = "وقف التدريب";
 "assignment.pauseAlertCancelButtonTitle" = "العودة";
+"assignment.correctTitle" = "هذه الاجابة صحيحة";
+"assignment.incorrectTitle" = "هذه الاجابة غير صحيحة";

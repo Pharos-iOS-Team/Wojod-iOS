@@ -16,6 +16,14 @@ internal enum L10n {
     }
 
   internal enum Assignment {
+    /// This answer is correct
+    internal static var correctTitle: String {
+        return L10n.tr("Localizable", "assignment.correctTitle")
+      }
+    /// This question isn't correct
+    internal static var incorrectTitle: String {
+        return L10n.tr("Localizable", "assignment.incorrectTitle")
+      }
     /// Return
     internal static var pauseAlertCancelButtonTitle: String {
         return L10n.tr("Localizable", "assignment.pauseAlertCancelButtonTitle")
