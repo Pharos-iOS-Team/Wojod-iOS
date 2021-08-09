@@ -83,6 +83,8 @@ class ChatViewModel {
         ) { [self] result in
             switch result {
             case .success(let conversation as ConversationReponseModel):
+                selectedImage = nil
+                selectedFile = nil
                 handleSuccessRequest(response: conversation)
                 handleSendingMessageSuccess?()
             case .failure(let error):

@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import AVFoundation
 import InputBarAccessoryView
 import SwiftEntryKit
 import UIKit
@@ -71,6 +72,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     private func goToRecordView() {
         let accessPermissionHandler = AccessPermissionHandler(presentingViewCtrl: self)
         accessPermissionHandler.showMissingAudioAutorization {
+            guard AVAudioSession.sharedInstance().recordPermission == AVAudioSession.RecordPermission.granted else { return }
             let viewCtrl = StoryboardScene.Chat.audioRecordingViewController.instantiate()
             viewCtrl.modalPresentationStyle = .overCurrentContext
             viewCtrl.modalTransitionStyle = .crossDissolve

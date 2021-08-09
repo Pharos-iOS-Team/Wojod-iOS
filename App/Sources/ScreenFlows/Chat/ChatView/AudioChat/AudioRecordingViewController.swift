@@ -27,7 +27,8 @@ class AudioRecordingViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction private func dismissRecordView() {
-        dismiss(animated: true)
+        self.handleSendingMessageSuccessfully?()
+        self.dismiss(animated: true)
     }
 
     @IBAction private func stopRecording() {
