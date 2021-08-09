@@ -505,13 +505,20 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
-    private func showResultForRow(at indexPath: IndexPath) {
+    private func showResultForRow(for type: String, at indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? LoadableView
         tableView.isUserInteractionEnabled = false
         cell?.startLoading()
-        quizzesViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
-            self?.tableView.isUserInteractionEnabled = true
-            cell?.stopLoading()
+        if type == "Quiz" {
+            quizzesViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
+                self?.tableView.isUserInteractionEnabled = true
+                cell?.stopLoading()
+            }
+        } else {
+            assignemntsViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
+                self?.tableView.isUserInteractionEnabled = true
+                cell?.stopLoading()
+            }
         }
     }
 
@@ -533,6 +540,21 @@ class CourseDetailsViewController: UIViewController {
             let module: AssessmentsOverViewViewModel.Module = type == .quiz
                 ? .quizzes
                 : .assignments
+            self?.navigationController?.navigationBar.isHidden = false
+            self?.navigationController?.pushViewController(
+                AssessmentDetailsConfigurator.configure(
+                    status: .closed,
+                    module: module,
+                    assessmentID: assessmentID,
+                    assessmentDetails: assessmentDetails,
+                    delegate: self
+                ),
+                animated: true
+            )
+        }
+
+        assignemntsViewModel?.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, type in
+            let module: AssessmentsOverViewViewModel.Module = .assignments
             self?.navigationController?.navigationBar.isHidden = false
             self?.navigationController?.pushViewController(
                 AssessmentDetailsConfigurator.configure(
@@ -733,15 +755,23 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 case "open":
                     self.startAssessment(for: .quiz, at: indexPath)
                 case "closed":
-                    self.showResultForRow(at: indexPath)
+                    self.showResultForRow(for: quiz?.type ?? "Quiz", at: indexPath)
                 default:
                     return
                 }
 
             case .assignments:
                 assignemntsViewModel?.assessments = materials?.assignments ?? []
-                selectedAssessment = materials?.assignments?[indexPath.row]
-                startAssessment(for: .assignment, at: indexPath)
+                let assignment = materials?.assignments?[indexPath.row]
+                selectedAssessment = assignment
+                switch assignment?.status {
+                case "open":
+                    self.startAssessment(for: .assignment, at: indexPath)
+                case "closed":
+                    self.showResultForRow(for: assignment?.type ?? "Assignment", at: indexPath)
+                default:
+                    return
+                }
 
             default:
                 return
@@ -758,7 +788,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 case "open":
                     self.startAssessment(for: .quiz, at: indexPath)
                 case "closed":
-                    self.showResultForRow(at: indexPath)
+                    self.showResultForRow(for: quiz.type ?? "Quiz", at: indexPath)
                 default:
                     return
                 }
