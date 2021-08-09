@@ -309,3 +309,5 @@ No worries!";
 "assignment.pauseAlertMessage" = "Make sure to come back and submit before due date";
 "assignment.pauseAlertPauseButtonTitle" = "Pause exercise";
 "assignment.pauseAlertCancelButtonTitle" = "Return";
+"assignment.correctTitle" = "This answer is correct";
+"assignment.incorrectTitle" = "This question isn't correct";
