@@ -12,6 +12,7 @@
 "shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 
 "shared.action.cancel" = "الغاء";
+"shared.action.dismiss" = "غلق";
 
 "login.welcome" = "مرحبًا!
 سجل الدخول للمتابعة";
@@ -313,3 +314,5 @@
 "assignment.incorrectTitle" = "هذه الاجابة غير صحيحة";
 "assignment.questionIsPending" = "هذا السؤال لم يتم تقييمه بعد";
 "assignment.pleaseEnterEvaluation" = "برجاء إدخال تقييمك";
+"assignment.submittedAlertTitle" = "تم إرسال التدريب!";
+"assignment.submittedAlertMessage" = "سوف نعود اليك قريبا!";

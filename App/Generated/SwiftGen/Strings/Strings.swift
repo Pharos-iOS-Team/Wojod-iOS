@@ -48,6 +48,14 @@ internal enum L10n {
     internal static var questionIsPending: String {
         return L10n.tr("Localizable", "assignment.questionIsPending")
       }
+    /// We will get back to you soon!
+    internal static var submittedAlertMessage: String {
+        return L10n.tr("Localizable", "assignment.submittedAlertMessage")
+      }
+    /// Exercise has been submitted!
+    internal static var submittedAlertTitle: String {
+        return L10n.tr("Localizable", "assignment.submittedAlertTitle")
+      }
   }
 
   internal enum Chat {
@@ -772,6 +780,10 @@ internal enum L10n {
       /// Cancel
       internal static var cancel: String {
           return L10n.tr("Localizable", "shared.action.cancel")
+        }
+      /// Dismiss
+      internal static var dismiss: String {
+          return L10n.tr("Localizable", "shared.action.dismiss")
         }
     }
     internal enum Alerts {

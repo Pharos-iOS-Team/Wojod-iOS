@@ -465,7 +465,7 @@ class AssessmentDetailsViewController: UIViewController {
         guard let row = lastUserIndex?.row else { return }
         if viewModel?.isLastQuestion(at: row) == true {
             assessmentFinishedForParentAndStudent(
-                imageName: "danger",
+                imageName: Images.danger.name,
                 title: "quizzes.finishMessage".localiz(),
                 message: nil
             )
@@ -492,7 +492,7 @@ class AssessmentDetailsViewController: UIViewController {
         } else {
             dismissPresentedIfNeeded { [weak self] in
                 self?.showAlert(
-                    imageName: "danger",
+                    imageName: Images.danger.name,
                     title: "",
                     message: "quizzes.notAllGradedError".localiz()
                 ) {
@@ -519,7 +519,7 @@ class AssessmentDetailsViewController: UIViewController {
                 self?.dismiss(animated: true) {
                     let message = self?.viewModel?.submittedAlertMessage ?? ""
                     self?.showAlert(
-                        imageName: "imgSuccess",
+                        imageName: Images.imgSuccess.name,
                         title: self?.viewModel?.submittedAlertTitle ?? "",
                         message: message
                     ) {
@@ -609,7 +609,7 @@ extension AssessmentDetailsViewController {
             timer?.invalidate()
             timerLabel.text = viewModel?.getCounterString(minutes: 0, seconds: 0)
             assessmentFinishedForParentAndStudent(
-                imageName: "timeOut",
+                imageName: Images.timeOut.name,
                 title: "quizzes.timeOutTitle".localiz(),
                 message: "quizzes.timeOutDescription".localiz(),
                 timesOut: true
@@ -621,7 +621,7 @@ extension AssessmentDetailsViewController {
 
     @objc private func finishAssessmentAssignmentForParentAndStudent() {
         assessmentFinishedForParentAndStudent(
-            imageName: "danger",
+            imageName: Images.danger.name,
             title: "quizzes.finishMessage".localiz(),
             message: nil
         )
@@ -657,7 +657,7 @@ extension AssessmentDetailsViewController {
 
     private func showAlertForFinishAllQuestionsCase() {
         appAlertViewController = showAndReturnAlert(
-            imageName: "danger",
+            imageName: Images.danger.name,
             title: nil,
             message: "quizzes.gradeWontSaved".localiz(),
             primaryButtonTitle: "quizzes.submitButtonTitleForTeacherAlert".localiz(),
@@ -674,7 +674,7 @@ extension AssessmentDetailsViewController {
 
     private func showAlertForSureToUploadGrades() {
         appAlertViewController = showAndReturnAlert(
-            imageName: "danger",
+            imageName: Images.danger.name,
             title: nil,
             message: "quizzes.markAsCheckedAlert".localiz(),
             primaryButtonTitle: "app.yes".localiz(),
@@ -685,7 +685,7 @@ extension AssessmentDetailsViewController {
 
     private func showAlertForNotFinishedQuestions() {
         appAlertViewController = showAndReturnAlert(
-            imageName: "danger",
+            imageName: Images.danger.name,
             title: nil,
             message: "quizzes.gradeWontSaved".localiz(),
             primaryButtonTitle: "quizzes.continueGrading".localiz(),
@@ -706,7 +706,7 @@ extension AssessmentDetailsViewController {
     private func pauseAssignment() {
         dismissPresentedIfNeeded { [weak self] in
             self?.showAlert(
-                imageName: "danger",
+                imageName: Images.danger.name,
                 title: "assignment.pauseAlertTitle".localiz(),
                 message: "assignment.pauseAlertMessage".localiz(),
                 primaryButtonTitle: "assignment.pauseAlertPauseButtonTitle".localiz(),
