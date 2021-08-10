@@ -2,30 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>need access for camera</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>need to access microphone</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>need photos access</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Inter-Medium.ttf</string>
-		<string>Inter-Regular.ttf</string>
-		<string>Inter-Black.ttf</string>
-		<string>Inter-Bold.ttf</string>
-	</array>
 	<key>BASE_URL</key>
-	<string>https://staging.wojodacademy.com</string>
+	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>Wojoud</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CHAT_BASE_URL</key>
-	<string>wss://staging.wojodacademy.com/cable</string>
+	<string>$(CHAT_BASE_URL)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -49,8 +31,21 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>need access for camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>need to access microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>need photos access</string>
 	<key>ROOT_URL</key>
-	<string>https://staging.wojodacademy.com/api/student/v1</string>
+	<string>$(ROOT_URL)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

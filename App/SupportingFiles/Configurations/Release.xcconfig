@@ -3,6 +3,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-ROOT_URL = https:/$()/drawneat.pharos-solutions.de/api/client/v1/
-BASE_URL = https:/$()/drawneat.pharos-solutions.de
-CHAT_BASE_URL = wss:/$()/drawneat.pharos-solutions.de/cable
+ROOT_URL = https:/$()/wojodacademy.com/api/student/v1
+BASE_URL = https:/$()/wojodacademy.com
+CHAT_BASE_URL = wss:/$()/wojodacademy.com/cable
