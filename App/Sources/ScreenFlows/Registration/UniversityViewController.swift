@@ -128,12 +128,14 @@ class UniversityViewController: UIViewController {
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
         self.academicLevel = .universityStudent
+        universityTextField.text?.removeAll()
         retrieveUniversities()
     }
 
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
         self.academicLevel = .graduate
+        universityTextField.text?.removeAll()
         retrieveUniversities()
     }
 
