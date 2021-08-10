@@ -105,11 +105,10 @@ class AssessmentsOverViewViewModel {
         }
     }
     
-    func assessmentResults(at index: Int, completion: @escaping () -> Void) {
-        let assessment = assessments[index]
-        guard let assessmentID = assessment.id else { return }
+    func assessmentResults(for assessment: Assessment?, completion: @escaping () -> Void) {
+        guard let assessmentID = assessment?.id else { return }
         let studentId = User.shared.id
-        let module: Module = assessment.type == "Quiz"
+        let module: Module = assessment?.type == "Quiz"
             ? .quizzes
             : .assignments
         model.assessmentResults(assessmentID: assessmentID, studentId: studentId, module: module.rawValue) { [weak self] assessmentDetails, error in

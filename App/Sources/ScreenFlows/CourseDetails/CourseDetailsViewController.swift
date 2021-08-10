@@ -485,15 +485,27 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func startAssessment(for type: AssessmentType, at indexPath: IndexPath) {
-        guard let assessment = type == .quiz ? quizzesViewModel?.assessments[indexPath.row] : assignemntsViewModel?.assessments[indexPath.row]
-        else { return }
-        switch assessment.type {
-        case "Quiz":
-            showStartQuizAlert(assessment)
-        default:
-            tableView.isUserInteractionEnabled = false
-            assignemntsViewModel?.startAssessment(with: assessment) { [weak self] in
-                self?.tableView.isUserInteractionEnabled = true
+        if activeScreen == .materials {
+            guard let assessment = type == .quiz ? quizzesViewModel?.assessments[indexPath.row] : assignemntsViewModel?.assessments[indexPath.row]
+            else { return }
+            switch assessment.type {
+            case "Quiz":
+                showStartQuizAlert(assessment)
+            default:
+                tableView.isUserInteractionEnabled = false
+                assignemntsViewModel?.startAssessment(with: assessment) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                }
+            }
+        } else {
+            let assessment = allAttachmentsOfLesson[indexPath.row]
+            if let assignment = assessment as? Assessment, assignment.type != "Quiz" {
+                tableView.isUserInteractionEnabled = false
+                assignemntsViewModel?.startAssessment(with: assignment) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                }
+            } else if let quiz = assessment as? Assessment, quiz.type == "Quiz"{
+                showStartQuizAlert(quiz)
             }
         }
     }
@@ -523,15 +535,31 @@ class CourseDetailsViewController: UIViewController {
         let cell = tableView.cellForRow(at: indexPath) as? LoadableView
         tableView.isUserInteractionEnabled = false
         cell?.startLoading()
-        if type == "Quiz" {
-            quizzesViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
-                self?.tableView.isUserInteractionEnabled = true
-                cell?.stopLoading()
+        if activeScreen == .materials {
+            if type == "Quiz" {
+                quizzesViewModel?.assessmentResults(for: quizzesViewModel?.assessments[indexPath.row]) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                    cell?.stopLoading()
+                }
+            } else {
+                assignemntsViewModel?.assessmentResults(for: assignemntsViewModel?.assessments[indexPath.row]) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                    cell?.stopLoading()
+                }
             }
         } else {
-            assignemntsViewModel?.assessmentResults(at: indexPath.row) { [weak self] in
-                self?.tableView.isUserInteractionEnabled = true
-                cell?.stopLoading()
+            if type == "Quiz" {
+                let assessment = allAttachmentsOfLesson[indexPath.row] as? Assessment
+                quizzesViewModel?.assessmentResults(for: assessment) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                    cell?.stopLoading()
+                }
+            } else {
+                let assessment = allAttachmentsOfLesson[indexPath.row] as? Assessment
+                assignemntsViewModel?.assessmentResults(for: assessment) { [weak self] in
+                    self?.tableView.isUserInteractionEnabled = true
+                    cell?.stopLoading()
+                }
             }
         }
     }
