@@ -108,6 +108,7 @@ class SchoolViewController: UIViewController {
     private var divisionsPickerView = PickerInputView<String>(height: 200)
     private var academicTypesPickerView = PickerInputView<String>(height: 200)
     private var academicYearPickerView = PickerInputView<String>(height: 200)
+    private var selectedDivision: Division?
 
     // MARK: - Lifecycle
 
@@ -155,6 +156,7 @@ class SchoolViewController: UIViewController {
         divisionsPickerView.didSelectAtIndex = { [unowned self] index in
             academicDivisionTextField.text = self.divisionsList[index]
             self.selectedDivisionIndexID = index
+            self.selectedDivision = viewModel?.divisions?[index]
             academicDivisionTextField.setNormalView()
         }
         academicTypesPickerView.didSelectAtIndex = { [unowned self] index in
@@ -181,12 +183,13 @@ class SchoolViewController: UIViewController {
         viewModel?.loadAcademicDivisions(for: .schoolStudent, in: self.selectedAcademicType?.key ?? 0) { divisions in
             self.activityIndicator.stopAnimating()
             self.divisionsList = divisions
-            self.retrieveAcademicYear()
         }
     }
 
     private func retrieveAcademicYear() {
-        viewModel?.loadBatches(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0 ) { batches in
+        activityIndicator.startAnimating()
+        viewModel?.loadBatches(for: selectedDivision?.key ?? 0) { batches in
+            self.activityIndicator.stopAnimating()
             self.academicYears = batches
         }
     }
@@ -204,8 +207,8 @@ class SchoolViewController: UIViewController {
     @objc
     private func academicDivisionPickerDoneTapped() {
         divisionsPickerView.resignFirstResponder()
-        User.shared.divisionId = selectedDivisionIndexID
-        academicDivisionTextField.text = divisionsList[User.shared.divisionId ?? 0]
+        User.shared.divisionId = selectedDivision?.key
+        academicDivisionTextField.text = selectedDivision?.value
         retrieveAcademicYear()
     }
 
@@ -254,7 +257,7 @@ class SchoolViewController: UIViewController {
         User.shared.parentNumber2 = secondParentNumberTextField.text
         User.shared.academicType = selectedAcademicType?.key
         User.shared.academicTypeName = academicTypeTextField.text
-        User.shared.divisionId = User.shared.divisionId ?? 0
+        User.shared.divisionId = selectedDivision?.key ?? 0
         User.shared.divisionName = academicDivisionTextField.text
         User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text

@@ -128,11 +128,13 @@ class UniversityViewController: UIViewController {
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
         self.academicLevel = .universityStudent
+        retrieveUniversities()
     }
 
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
         self.academicLevel = .graduate
+        retrieveUniversities()
     }
 
     // MARK: - Private Functions
@@ -252,7 +254,7 @@ class UniversityViewController: UIViewController {
     @objc
     private func fieldPickerDoneTapped() {
         fieldPickerView.resignFirstResponder()
-        fieldTextField.text = fields[selectedFieldIndex]
+        fieldTextField.text = fields.isEmpty ? "" : fields[selectedFieldIndex]
         configureNextButtonEnabling()
     }
 
