@@ -102,6 +102,7 @@ class CourseDetailsViewController: UIViewController {
     private var allAttachmentsOfLesson: [Any] = []
     private var alertViewController: AppAlertViewController?
     private var selectedAssessment: Assessment?
+    private var selectedAssessmentSection: Int?
 
     // MARK: - Public Properties
 
@@ -139,6 +140,11 @@ class CourseDetailsViewController: UIViewController {
             viewModel?.loadMaterials(courseID: courseID) { materials in
                 self.hideLoadingIndicator()
                 self.materials = materials
+                self.tableView.reloadData()
+            }
+        } else if activeScreen == .details {
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
                 self.tableView.reloadData()
             }
         }
@@ -821,9 +827,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
         } else if activeScreen == .details {
             let attachment = allAttachmentsOfLesson[indexPath.row]
             if let assignment = attachment as? Assessment, assignment.type != "Quiz" {
+                selectedAssessmentSection = indexPath.section
                 assignemntsViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.assignments ?? []
                 startAssessment(for: .assignment, at: indexPath)
             } else if let quiz = attachment as? Assessment, quiz.type == "Quiz"{
+                selectedAssessmentSection = indexPath.section
                 quizzesViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.quizzes ?? []
                 selectedAssessment = quiz
                 switch quiz.status {
