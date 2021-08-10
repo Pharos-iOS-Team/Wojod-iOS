@@ -135,7 +135,9 @@ class CourseDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         if activeScreen == .materials {
             guard let courseID = course?.id else { return }
+            showLoadingIndicator()
             viewModel?.loadMaterials(courseID: courseID) { materials in
+                self.hideLoadingIndicator()
                 self.materials = materials
                 self.tableView.reloadData()
             }
