@@ -40,6 +40,7 @@ class NotificationTableViewCell: UITableViewCell {
     // MARK: - Private Properties
 
     private var attachments: [Attachment]?
+    private var link: String?
 
     // MARK: - Lifecycle
 
@@ -48,6 +49,10 @@ class NotificationTableViewCell: UITableViewCell {
         configureCellAccordingToType()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        attachments = nil
+    }
     // MARK: - Public Functions
 
     internal func configureCellAccordingToType() {
@@ -64,6 +69,9 @@ class NotificationTableViewCell: UITableViewCell {
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = inputFormatter.date(from: notification.createdAt ?? "") ?? Date()
         attachments = notification.attachments
+        if notification.link != nil {
+            configureLink(in: notification)
+        }
         configureAttachments()
         teacherNameLabel.text = notification.creator
         notificationContentLabel.text = notification.message
@@ -88,6 +96,18 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
 
+    private func configureLink(in notification: Notification) {
+        let button = UIButton()
+        self.link = notification.link
+        button.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        button.contentHorizontalAlignment = Language.currentLanguage == .english ? .left : .right
+        button.setAttributedTitle(getLinkTitle(), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Inter", size: 14.0)
+        button.setTitleColor(Colors.darkGreyColor.color, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        attachmentsStackView.addArrangedSubview(button)
+    }
+
     private func getButtonTitle(for attachment: Attachment) -> NSMutableAttributedString {
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = getCorrespondingImage(for: attachment)
@@ -100,11 +120,30 @@ class NotificationTableViewCell: UITableViewCell {
         return completeText
     }
 
+    private func getLinkTitle() -> NSMutableAttributedString {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = Images.link.image
+        imageAttachment.bounds = CGRect(x: 0, y: -5, width: 20, height: 20)
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        let completeText = NSMutableAttributedString(string: "")
+        completeText.append(attachmentString)
+        let textAfterIcon = NSAttributedString(string: "  Link")
+        completeText.append(textAfterIcon)
+        return completeText
+    }
+
     @objc
     private func loadAttachment(button: UIButton) {
         let attachment = attachments?.first { $0.id == button.tag }
         let documentURL = Environment.baseURL.appendingPathComponent(attachment?.fileUrl ?? "")
         loadAttachmentsDelegate?.loadAttachment(of: "\(documentURL)")
+    }
+
+    @objc
+    private func openLink() {
+        if let url = URL(string: link ?? "") {
+            UIApplication.shared.open(url)
+        }
     }
 
     private func getCorrespondingImage(for attachment: Attachment?) -> UIImage {
