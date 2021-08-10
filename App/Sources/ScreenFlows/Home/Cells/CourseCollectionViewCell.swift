@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import AVKit
+import Kingfisher
 import UIKit
 
 protocol ViewCourseDetailsDelegate: AnyObject {
@@ -154,10 +155,9 @@ class CourseCollectionViewCell: UICollectionViewCell {
         titleLabel.text = course?.name
         priceLabel.text = coursePrice()
         activityIndicator.startAnimating()
-        loadImage(from: course?.media?.fileUrl ?? "") { image in
-            DispatchQueue.main.async {
+        if let url = URL(string: "\(Environment.baseURL)\(course?.media?.fileUrl ?? "")") {
+            imageView.kf.setImage(with: url) { _ in
                 self.activityIndicator.stopAnimating()
-                self.imageView.image = image
             }
         }
         playButton.isHidden = course?.video == nil
