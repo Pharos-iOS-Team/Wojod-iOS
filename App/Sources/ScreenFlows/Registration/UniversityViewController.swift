@@ -298,7 +298,7 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text
-        User.shared.specializationId = viewModel?.specializationsIDs[selectedFieldIndex]
+        User.shared.specializationId = viewModel?.specializationsIDs.isEmpty ?? true ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
         User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
     }
