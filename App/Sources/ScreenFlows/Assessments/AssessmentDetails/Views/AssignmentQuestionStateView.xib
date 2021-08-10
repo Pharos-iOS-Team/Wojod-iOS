@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AssignmentQuestionStateView" customModule="Al_Iman" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AssignmentQuestionStateView" customModule="Wojood" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -40,51 +41,6 @@
                         <constraint firstItem="MkV-AG-BzU" firstAttribute="leading" secondItem="k3R-Lw-pzS" secondAttribute="leading" id="RDC-gd-6pZ"/>
                     </constraints>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9HB-KI-4sh">
-                    <rect key="frame" x="311" y="30" width="84" height="36"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5p-s1-Nbw">
-                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh4-Nq-cil">
-                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                    <connections>
-                                        <action selector="falseButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="qBk-4T-bGS"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="Dh4-Nq-cil" firstAttribute="leading" secondItem="e5p-s1-Nbw" secondAttribute="leading" id="CDK-nc-sGh"/>
-                                <constraint firstAttribute="height" constant="36" id="MVi-Xc-Pam"/>
-                                <constraint firstItem="Dh4-Nq-cil" firstAttribute="top" secondItem="e5p-s1-Nbw" secondAttribute="top" id="OH6-Vh-NRb"/>
-                                <constraint firstAttribute="trailing" secondItem="Dh4-Nq-cil" secondAttribute="trailing" id="OnV-JY-FaZ"/>
-                                <constraint firstAttribute="width" constant="36" id="TyO-vt-XeK"/>
-                                <constraint firstAttribute="bottom" secondItem="Dh4-Nq-cil" secondAttribute="bottom" id="tGF-3A-gNE"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnT-Cj-gwW">
-                            <rect key="frame" x="48" y="0.0" width="36" height="36"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YS5-lA-BKi">
-                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                    <connections>
-                                        <action selector="trueButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="Vtl-IO-e2I"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="YS5-lA-BKi" firstAttribute="leading" secondItem="CnT-Cj-gwW" secondAttribute="leading" id="Q3d-O4-k5t"/>
-                                <constraint firstItem="YS5-lA-BKi" firstAttribute="top" secondItem="CnT-Cj-gwW" secondAttribute="top" id="bNH-G2-bdr"/>
-                                <constraint firstAttribute="trailing" secondItem="YS5-lA-BKi" secondAttribute="trailing" id="dSL-Hj-ZCO"/>
-                                <constraint firstAttribute="width" constant="36" id="fQS-Oj-Wyr"/>
-                                <constraint firstAttribute="bottom" secondItem="YS5-lA-BKi" secondAttribute="bottom" id="tAv-mH-4uy"/>
-                                <constraint firstAttribute="height" constant="36" id="z6a-hA-KTJ"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -92,21 +48,14 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="k3R-Lw-pzS" secondAttribute="trailing" constant="20" id="5T0-kC-1Cg"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="k3R-Lw-pzS" secondAttribute="bottom" constant="15" id="7Uw-qV-TdH"/>
                 <constraint firstItem="k3R-Lw-pzS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="7qj-pC-wcf"/>
-                <constraint firstItem="9HB-KI-4sh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="DZx-EL-YdT"/>
                 <constraint firstItem="k3R-Lw-pzS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ITo-F7-yIJ"/>
                 <constraint firstItem="k3R-Lw-pzS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Tzd-Km-qDt"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9HB-KI-4sh" secondAttribute="trailing" constant="19" id="Yyd-8h-oaX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="falseButton" destination="Dh4-Nq-cil" id="q5X-08-bZo"/>
-                <outlet property="falseContainerView" destination="e5p-s1-Nbw" id="lDF-gy-VM5"/>
                 <outlet property="questionCommentLabel" destination="MkV-AG-BzU" id="Cnp-tH-vSH"/>
                 <outlet property="questionStateLabel" destination="8Ex-y4-EA8" id="6Zo-Pc-wVN"/>
                 <outlet property="stackView" destination="k3R-Lw-pzS" id="kdM-SJ-flz"/>
-                <outlet property="trueAndFalseStackView" destination="9HB-KI-4sh" id="72x-AC-YUE"/>
-                <outlet property="trueButton" destination="YS5-lA-BKi" id="VJG-oD-b8n"/>
-                <outlet property="trueContainerView" destination="CnT-Cj-gwW" id="G17-yA-cOk"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="-185.49107142857142"/>
         </view>
