@@ -128,18 +128,23 @@ class UniversityViewController: UIViewController {
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
         self.academicLevel = .universityStudent
-        universityTextField.text?.removeAll()
+        resetEnteredData()
         retrieveUniversities()
     }
 
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
         self.academicLevel = .graduate
-        universityTextField.text?.removeAll()
+        resetEnteredData()
         retrieveUniversities()
     }
 
     // MARK: - Private Functions
+
+    private func resetEnteredData() {
+        universityTextField.text?.removeAll()
+        selectedDivisionIndex = 0
+    }
 
     private func configurePickerFields() {
         universityPickerView.items = { self.universities }
