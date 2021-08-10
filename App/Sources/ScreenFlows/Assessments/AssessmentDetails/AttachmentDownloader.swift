@@ -39,7 +39,6 @@ extension AttachmentDownloader: URLSessionDownloadDelegate {
     ) {
         let percentDownloaded = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
         DispatchQueue.main.async {
-            print(percentDownloaded)
             self.delegate?.didUpdateProgress(percentDownloaded, for: self.attachmentID)
         }
     }

@@ -42,8 +42,10 @@ class FormTextField: UITextField {
 
     private func configureView() {
         guard let labelText = labelText else { return }
-        let label = UILabel(frame: CGRect(width: 45, height: 25)).with {
+        let label = UILabel(frame: CGRect(width: 250, height: 25)).with {
             $0.font = UIFont(name: "Inter", size: 14)
+            $0.translatesAutoresizingMaskIntoConstraints = true
+            $0.numberOfLines = 1
             $0.text = labelText
             $0.textAlignment = Language.textAlignment
         }

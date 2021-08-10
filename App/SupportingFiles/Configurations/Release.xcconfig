@@ -3,6 +3,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-ROOT_URL = https:/$()/wojodacademy.com/api/student/v1
-BASE_URL = https:/$()/wojodacademy.com
-CHAT_BASE_URL = wss:/$()/wojodacademy.com/cable
+ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1
+BASE_URL = https:/$()/www.wojodacademy.com
+CHAT_BASE_URL = wss:/$()/www.wojodacademy.com/cable
