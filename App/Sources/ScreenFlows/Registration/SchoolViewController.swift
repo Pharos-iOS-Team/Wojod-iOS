@@ -268,7 +268,6 @@ class SchoolViewController: UIViewController {
         firstParentNumberTextField.text = User.shared.parentNumber
         secondParentNumberTextField.text = User.shared.parentNumber2
         academicTypeTextField.text = User.shared.academicTypeName
-        academicDivisionTextField.text = User.shared.divisionName
         academicYearTextField.text = User.shared.batchName
         schoolNameTextField.text = User.shared.schoolName
     }

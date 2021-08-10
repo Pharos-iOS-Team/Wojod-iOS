@@ -128,16 +128,23 @@ class UniversityViewController: UIViewController {
     @IBAction private func didChooseStudent(_ sender: UIButton) {
         configureStudentView()
         self.academicLevel = .universityStudent
+        resetEnteredData()
         retrieveUniversities()
     }
 
     @IBAction private func didChooseGraduate(_ sender: UIButton) {
         configureGraduateView()
         self.academicLevel = .graduate
+        resetEnteredData()
         retrieveUniversities()
     }
 
     // MARK: - Private Functions
+
+    private func resetEnteredData() {
+        universityTextField.text?.removeAll()
+        selectedDivisionIndex = 0
+    }
 
     private func configurePickerFields() {
         universityPickerView.items = { self.universities }
@@ -291,7 +298,7 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text
-        User.shared.specializationId = viewModel?.specializationsIDs[selectedFieldIndex]
+        User.shared.specializationId = viewModel?.specializationsIDs.isEmpty ?? true ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
         User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
     }
