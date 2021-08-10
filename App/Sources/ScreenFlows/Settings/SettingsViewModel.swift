@@ -5,7 +5,7 @@ import UIKit
 enum Settings: Int, CaseIterable {
     case version
     case privacyPolicy
-    case termsOfService
+    // case termsOfService
     case languages
 
     func getSettingsImage(forSettings settings: Int) -> UIImage {
@@ -14,8 +14,8 @@ enum Settings: Int, CaseIterable {
             return Images.setting.image
         case Settings.privacyPolicy.rawValue:
             return Images.privacy.image
-        case Settings.termsOfService.rawValue:
-            return Images.alert.image
+//        case Settings.termsOfService.rawValue:
+//            return Images.alert.image
         case Settings.languages.rawValue:
             return Images.gear.image
         default:
@@ -29,8 +29,8 @@ enum Settings: Int, CaseIterable {
             return L10n.Settings.version
         case Settings.privacyPolicy.rawValue:
             return L10n.Settings.privacyPolicy
-        case Settings.termsOfService.rawValue:
-            return L10n.Settings.termsOfService
+//        case Settings.termsOfService.rawValue:
+//            return L10n.Settings.termsOfService
         case Settings.languages.rawValue:
             return L10n.Settings.languages
         default:
@@ -63,8 +63,8 @@ class SettingsViewModel {
         switch index {
         case Settings.privacyPolicy.rawValue:
             return URL(string: "\(Environment.baseURLString)/privacy_policy")
-        case Settings.termsOfService.rawValue:
-            return URL(string: "\(Environment.baseURLString)/terms_services")
+//        case Settings.termsOfService.rawValue:
+//            return URL(string: "\(Environment.baseURLString)/terms_services")
         default:
             return URL(string: "")
         }

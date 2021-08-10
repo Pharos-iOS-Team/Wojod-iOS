@@ -102,10 +102,10 @@ extension SettingsViewController: UITableViewDataSource {
             guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
             let safariViewCtrl = SFSafariViewController(url: linkURL)
             self.present(safariViewCtrl, animated: true)
-        case .termsOfService:
-            guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
-            let safariViewCtrl = SFSafariViewController(url: linkURL)
-            self.present(safariViewCtrl, animated: true)
+//        case .termsOfService:
+//            guard let linkURL = viewModel.getUrl(forIndex: indexPath.row) else { return }
+//            let safariViewCtrl = SFSafariViewController(url: linkURL)
+//            self.present(safariViewCtrl, animated: true)
         default:
             return
         }
