@@ -5,4 +5,5 @@ import Foundation
 struct LoginRequestModel: Encodable {
     var mobileNumber: String
     var password: String
+    var locale: String = Language.currentLanguage.rawValue
 }
