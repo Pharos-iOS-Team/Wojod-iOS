@@ -356,6 +356,7 @@ extension AssessmentQuestionViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         urls.forEach { _ = $0.startAccessingSecurityScopedResource() }
         guard let url = urls.first, let permenantURL = saveFile(with: url) else { return }
+        viewModel?.setAttachedFileLocalURL(url: url)
         delegate?.didAttachFile(with: permenantURL, for: viewModel?.questionID)
     }
 }
@@ -367,6 +368,7 @@ extension AssessmentQuestionViewController: UIImagePickerControllerDelegate {
         let imageData = image?.compress(maxSize: 2000000, minSize: 1000000, times: 10)
         guard let savedImageURL = saveImage(imageData) else { return }
         picker.dismiss(animated: true)
+        viewModel?.setAttachedFileLocalURL(url: savedImageURL)
         delegate?.didAttachFile(with: savedImageURL, for: viewModel?.questionID)
     }
 }
