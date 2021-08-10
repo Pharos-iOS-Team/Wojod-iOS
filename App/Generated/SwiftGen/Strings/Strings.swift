@@ -24,6 +24,10 @@ internal enum L10n {
     internal static var incorrectTitle: String {
         return L10n.tr("Localizable", "assignment.incorrectTitle")
       }
+    /// Not graded yet
+    internal static var notGraded: String {
+        return L10n.tr("Localizable", "assignment.notGraded")
+      }
     /// Return
     internal static var pauseAlertCancelButtonTitle: String {
         return L10n.tr("Localizable", "assignment.pauseAlertCancelButtonTitle")
@@ -39,10 +43,6 @@ internal enum L10n {
     /// Pause exercise for now
     internal static var pauseAlertTitle: String {
         return L10n.tr("Localizable", "assignment.pauseAlertTitle")
-      }
-    /// Please enter evaluation
-    internal static var pleaseEnterEvaluation: String {
-        return L10n.tr("Localizable", "assignment.pleaseEnterEvaluation")
       }
     /// This question is pending
     internal static var questionIsPending: String {

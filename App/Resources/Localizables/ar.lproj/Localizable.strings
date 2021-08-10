@@ -313,6 +313,6 @@
 "assignment.correctTitle" = "هذه الاجابة صحيحة";
 "assignment.incorrectTitle" = "هذه الاجابة غير صحيحة";
 "assignment.questionIsPending" = "هذا السؤال لم يتم تقييمه بعد";
-"assignment.pleaseEnterEvaluation" = "برجاء إدخال تقييمك";
+"assignment.notGraded" = "لم تتم مراجعته بعد";
 "assignment.submittedAlertTitle" = "تم إرسال التدريب!";
 "assignment.submittedAlertMessage" = "سوف نعود اليك قريبا!";
