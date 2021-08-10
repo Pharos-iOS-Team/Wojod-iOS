@@ -137,7 +137,7 @@ class LocationInfoViewController: UIViewController {
             action: #selector(citiesPickerDoneTapped)
         )
         cityPickerView.didSelectAtIndex = { [unowned self] index in
-            self.cityTextField.text = cities[index]
+            self.cityTextField.text = cities.isEmpty ? "" : cities[index]
             self.selectedCityIndex = index
             cityTextField.setNormalView()
         }
@@ -172,7 +172,7 @@ class LocationInfoViewController: UIViewController {
         viewModel?.loadCities(for: viewModel?.countryCodes[selectedCountryIndex ?? 0] ?? "") { cities in
             self.loadingIndicator.stopAnimating()
             self.cities = cities
-            self.cityTextField.text = cities[0]
+            self.cityTextField.text = cities.isEmpty ? "" : cities[0]
         }
     }
 
@@ -180,12 +180,16 @@ class LocationInfoViewController: UIViewController {
     private func citiesPickerDoneTapped() {
         let selectedIndex = selectedCityIndex == nil ? 0 : selectedCityIndex
         cityPickerView.resignFirstResponder()
-        cityTextField.text = cities[selectedIndex ?? 0]
+        cityTextField.text = cities.isEmpty ? "" : cities[selectedIndex ?? 0]
         selectedCityIndex = selectedIndex
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
-        return !countryTextField.isEmpty && !cityTextField.isEmpty && !districtTextField.isEmpty
+        if cities.isEmpty {
+            return !countryTextField.isEmpty && !districtTextField.isEmpty
+        } else {
+            return !countryTextField.isEmpty && !cityTextField.isEmpty && !districtTextField.isEmpty
+        }
     }
 
     private func configureEmptyMandatoryFields() {

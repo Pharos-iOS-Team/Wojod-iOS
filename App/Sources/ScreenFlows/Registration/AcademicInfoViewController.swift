@@ -67,6 +67,8 @@ class AcademicInfoViewController: UIViewController {
         if isSchoolChosen {
             performSegue(withIdentifier: "segueToSchool", sender: sender)
         } else {
+            User.shared.divisionId = nil
+            User.shared.divisionName = nil
             performSegue(withIdentifier: "segueToUniversity", sender: sender)
         }
     }
