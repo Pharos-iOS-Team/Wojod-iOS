@@ -8,6 +8,7 @@ struct Notifications: Codable {
 
 struct Notification: Codable {
     var id: Int?
+    var link: String?
     var topic: String?
     var message: String?
     var creator: String?
