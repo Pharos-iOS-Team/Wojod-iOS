@@ -52,8 +52,8 @@ class AssignmentQuestionStateView: UIView {
         if questionType == .freeText, isAnswered, teacherSelction == nil {
             stackView.spacing = 5
             questionCommentLabel.font = UIFont(font: FontFamily.Inter.regular, size: 11)
-            questionCommentLabel.text = "assignment.pleaseEnterEvaluation".localiz()
-            questionCommentLabel.textAlignment = "assignment.pleaseEnterEvaluation".localiz().dominantTextAlignment
+            questionCommentLabel.text = "assignment.notGraded".localiz()
+            questionCommentLabel.textAlignment = "assignment.notGraded".localiz().dominantTextAlignment
             return
         }
         guard let comment = text, comment.isValid else {
