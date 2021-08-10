@@ -250,9 +250,9 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
         case .body(let items):
             switch items[indexPath.row] {
             case .selectableOption:
+                viewModel?.didSelectOption(at: indexPath)
                 delegate?.didAnswerQuestion(with: viewModel?.questionID)
                 selectedRowIndex = indexPath
-                viewModel?.didSelectOption(at: indexPath)
             default:
                 return
             }
