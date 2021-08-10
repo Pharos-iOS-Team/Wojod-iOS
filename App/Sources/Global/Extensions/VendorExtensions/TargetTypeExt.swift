@@ -34,6 +34,10 @@ extension TargetType {
         return encoder
     }
 
+    var sharedParameters: [String: Any] {
+        return ["locale": Language.currentLanguage.rawValue]
+    }
+
     var sampleData: Data {
         return Data()
     }
