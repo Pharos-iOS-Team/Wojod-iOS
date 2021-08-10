@@ -12,6 +12,7 @@
 "shared.alerts.appWillTerminate" = "App will terminate.";
 
 "shared.action.cancel" = "Cancel";
+"shared.action.dismiss" = "Dismiss";
 
 "login.welcome" = "Welcome!
 Sign in to continue";
@@ -313,3 +314,5 @@ No worries!";
 "assignment.incorrectTitle" = "This question isn't correct";
 "assignment.questionIsPending" = "This question is pending";
 "assignment.pleaseEnterEvaluation" = "Please enter evaluation";
+"assignment.submittedAlertTitle" = "Exercise has been submitted!";
+"assignment.submittedAlertMessage" = "We will get back to you soon!";

@@ -80,7 +80,7 @@ class AppAlertViewController: UIViewController {
     }
 
     func configureOneButtonForDismiss(
-        title: String = "Dismiss",
+        title: String = L10n.Shared.Action.dismiss,
         dismissAction: (() -> Void)? = nil
     ) {
         primaryButton.setTitle(title.localiz(), for: .normal)
@@ -130,7 +130,7 @@ extension AppAlertViewController {
     @IBAction private func didTapOnPrimaryButton(_ sender: Any) {
         primaryAction?()
     }
-    
+
     @IBAction private func didTapOnSecondaryButton(_ sender: Any) {
         if secondryAction == nil {
             dismissViewController { [weak self] in
