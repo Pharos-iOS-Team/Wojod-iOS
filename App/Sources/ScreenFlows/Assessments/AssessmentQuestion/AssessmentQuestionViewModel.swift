@@ -277,6 +277,11 @@ class AssessmentQuestionViewModel {
         return assessmentQuestion?.submittedFreeTextAnswer
     }
 
+    func setAttachedFileLocalURL(url: URL) {
+        self.assessmentQuestion?.submittedAttachment = url.absoluteString
+        self.reloadDataSource()
+    }
+
     func getAttachmentURL() -> (URL?, Bool) {
         guard let submittedAttachment = assessmentQuestion?.submittedAttachment else {
             return (nil, false)
