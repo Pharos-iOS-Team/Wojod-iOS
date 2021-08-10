@@ -14,11 +14,6 @@ class AssignmentQuestionStateView: UIView {
     var trueButtonTappedHandler: (() -> Void)?
     var falseButtonTappedHandler: (() -> Void)?
     @IBOutlet private var stackView: UIStackView!
-    @IBOutlet private var trueAndFalseStackView: UIStackView!
-    @IBOutlet private var trueButton: UIButton!
-    @IBOutlet private var trueContainerView: UIView!
-    @IBOutlet private var falseButton: UIButton!
-    @IBOutlet private var falseContainerView: UIView!
     @IBOutlet private var questionStateLabel: UILabel!
     @IBOutlet private var questionCommentLabel: UILabel!
     
@@ -28,20 +23,6 @@ class AssignmentQuestionStateView: UIView {
         super.awakeFromNib()
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
-        falseButton.setImage(Images.closeBold.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        trueButton.setImage(Images.correctBold.image.withRenderingMode(.alwaysTemplate), for: .normal)
-    }
-
-    @IBAction private func trueButtonTapped() {
-        trueButtonTappedHandler?()
-        teacherSelect(selection: true)
-        questionStateLabel.fadeTransition(0.4)
-    }
-
-    @IBAction private func falseButtonTapped() {
-        teacherSelect(selection: false)
-        falseButtonTappedHandler?()
-        questionStateLabel.fadeTransition(0.4)
     }
     
     class func instantiate() -> AssignmentQuestionStateView? {
@@ -90,7 +71,6 @@ class AssignmentQuestionStateView: UIView {
     }
 
     private func setupView(title: String, color: UIColor) {
-        trueAndFalseStackView.isHidden = true
         questionStateLabel.text = title
         questionStateLabel.textColor = color
         backgroundColor = color.withAlphaComponent(commentBackgroundAlpha)
@@ -103,7 +83,6 @@ class AssignmentQuestionStateView: UIView {
         layer.borderColor = Colors.superLightGrey.color.cgColor
         layer.cornerRadius = 10
         handleTeacherGradeSelection(teacherSelction: teacherSelction)
-        configureTrueAndFalseStackView(teacherSelction: teacherSelction)
     }
 
     private func handleTeacherGradeSelection(teacherSelction: AssessmentQuestion.AnswerState?) {
@@ -118,43 +97,6 @@ class AssignmentQuestionStateView: UIView {
             questionStateLabel.text = "assignment.questionIsPending".localiz()
             questionStateLabel.textColor = Colors.sendButtonColor.color
         }
-    }
-
-    private func configureTrueAndFalseStackView(teacherSelction: AssessmentQuestion.AnswerState?) {
-        trueAndFalseStackView.isHidden = false
-        trueContainerView.layer.cornerRadius = 4
-        falseContainerView.layer.cornerRadius = 4
-        switch teacherSelction {
-        case .correct:
-            teacherSelect(selection: true)
-        case .incorrect:
-            teacherSelect(selection: false)
-        default:
-            teacherSelect(selection: nil)
-        }
-    }
-
-    private func teacherSelect(selection: Bool?) {
-        guard let selection = selection else {
-            setReviewButtonsColor(trueColor: Asset.Colors.darkGreyColor.color, falseColor: Asset.Colors.darkGreyColor.color)
-            return
-        }
-        if selection {
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseIn]) {
-                self.setReviewButtonsColor(trueColor: .green, falseColor: Asset.Colors.darkGreyColor.color)
-            }
-        } else {
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseIn]) {
-                self.setReviewButtonsColor(trueColor: Asset.Colors.darkGreyColor.color, falseColor: .red)
-            }
-        }
-    }
-    
-    private func setReviewButtonsColor(trueColor: UIColor, falseColor: UIColor) {
-        self.trueButton.tintColor = trueColor
-        self.trueContainerView.backgroundColor = trueColor.withAlphaComponent(0.35)
-        self.falseButton.tintColor = falseColor
-        self.falseContainerView.backgroundColor = falseColor.withAlphaComponent(0.35)
     }
 }
 
