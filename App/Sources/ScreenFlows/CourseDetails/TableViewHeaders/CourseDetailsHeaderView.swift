@@ -47,4 +47,8 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     internal func setImageOfButton(_ image: UIImage) {
         expandCollapseButton.setImage(image)
     }
+
+    internal func configureVisibilityOfExpandButton(state: String?) {
+        expandCollapseButton.isHidden = state == nil
+    }
 }
