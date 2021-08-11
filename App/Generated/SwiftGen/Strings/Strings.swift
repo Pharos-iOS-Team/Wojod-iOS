@@ -16,17 +16,33 @@ internal enum L10n {
     }
 
   internal enum Assignment {
+    /// Correct
+    internal static var correct: String {
+        return L10n.tr("Localizable", "assignment.correct")
+      }
     /// This answer is correct
     internal static var correctTitle: String {
         return L10n.tr("Localizable", "assignment.correctTitle")
+      }
+    /// Not correct
+    internal static var incorrect: String {
+        return L10n.tr("Localizable", "assignment.incorrect")
       }
     /// This question isn't correct
     internal static var incorrectTitle: String {
         return L10n.tr("Localizable", "assignment.incorrectTitle")
       }
+    /// Needs improvement
+    internal static var needsImprovement: String {
+        return L10n.tr("Localizable", "assignment.needsImprovement")
+      }
     /// Not graded yet
     internal static var notGraded: String {
         return L10n.tr("Localizable", "assignment.notGraded")
+      }
+    /// Not reviewed
+    internal static var notReviewed: String {
+        return L10n.tr("Localizable", "assignment.notReviewed")
       }
     /// Return
     internal static var pauseAlertCancelButtonTitle: String {
