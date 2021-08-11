@@ -82,6 +82,10 @@ opt_in_rules:
 - force_unwrapping
 - function_body_length
 - implicit_getter
+- duplicate_enum_cases
+- prefer_zero_over_explicit_init
+- reduce_boolean
+- unused_enumerated
 
 included:
 - App/Sources
@@ -114,18 +118,69 @@ identifier_name:
 
 line_length: 160
 
+vertical_whitespace_closing_braces:
+  severity: error
+
+vertical_whitespace_opening_braces:
+  severity: error
+
+private_action:
+  severity: error
+
+private_outlet:
+  severity: error
+
+force_unwrapping:
+  severity: warning
+
+overridden_super_call:
+  severity: error
+
+weak_delegate:
+  severity: error
+
+unused_import:
+  severity: error
+
+function_body_length:
+  - 20 # warning
+  - 21 # error
+
+type_body_length:
+  - 300 # warning
+  - 400 # error
+
+function_parameter_count:
+  - 4 # warning
+  - 5 # error
+
 nesting:
   type_level: 4
   statement_level: 4
-
-trailing_comma:
-  mandatory_comma: true
 
 trailing_whitespace:
   ignores_comments: false
   
 file_name:
   suffix_pattern: "Ext"
+
+type_contents_order:
+  order:
+    - case
+    - type_alias
+    - associated_type
+    - subtype
+    - type_property
+    - type_method
+    - ib_inspectable
+    - ib_outlet
+    - instance_property
+    - initializer
+    - deinitializer
+    - view_life_cycle_method
+    - subscript
+    - ib_action
+    - other_method
 
 # Custom Rules
 # Source: https://github.com/JamitLabs/ProjLintTemplates/blob/master/JamitLabs/App/SwiftLint.stencil
@@ -220,12 +275,6 @@ custom_rules:
     name: "Singleton Shared Single Object"
     message: "Singletons with a `shared` object (real Singletons) should not have other static let properties. Use `default` instead (if needed)."
     severity: warning
-  toggle_bool:
-    included: ".*.swift"
-    regex: '(?<=\n)[ \t]*(?<VAR>\w+) *= *!\k<VAR>(?=\s)'
-    name: "Toggle Bool"
-    message: "Use `toggle()` instead of toggling manually."
-    severity: warning
   too_much_indentation:
     included: ".*.swift"
     regex: '\n {0}[^\s\/][^\n]*[^,|&]\n+ {5,}\S|\n {4}[^\s\/][^\n]*[^,|&]\n+ {9,}\S|\n {8}[^\s\/][^\n]*[^,|&]\n+ {13,}\S|\n {12}[^\s\/][^\n]*[^,|&]\n+ {17,}\S|\n {16}[^\s\/][^\n]*[^,|&]\n+ {21,}\S|\n {20}[^\s\/][^\n]*[^,|&]\n+ {25,}\S'
@@ -280,3 +329,8 @@ custom_rules:
     name: "Print Statement"
     message: "Don't avoid using print statements."
     severity: warning
+  get_in_functions:
+    included: ".*.swift"
+    regex: 'func get[^\s\(]+\([^\{\n]*\) \{$\n(?!^\s*$)'
+    name: "Get Keyword"
+    message: "Avoid using `get` keyword in function names"

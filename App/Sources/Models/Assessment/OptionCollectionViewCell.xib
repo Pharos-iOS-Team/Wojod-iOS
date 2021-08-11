@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="OptionCollectionViewCell" id="Bwe-Xf-TNv" customClass="OptionCollectionViewCell" customModule="School" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="122" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="122" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtP-e2-Q47">
+                        <rect key="frame" x="0.0" y="0.0" width="122" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="j6K-zw-F7Q">
+                                <rect key="frame" x="61" y="25" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lastLineFillPercent">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-ih-Dri">
+                                <rect key="frame" x="98" y="-5" width="34" height="25"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="JWC-PD-Adq"/>
+                                    <constraint firstAttribute="height" constant="25" id="kCX-aU-5FP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="2" minY="0.0" maxX="2" maxY="0.0"/>
+                                <state key="normal" title="+99">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j6K-zw-F7Q" firstAttribute="centerY" secondItem="ZtP-e2-Q47" secondAttribute="centerY" id="IIR-OS-Hrh"/>
+                            <constraint firstAttribute="trailing" secondItem="YvM-ih-Dri" secondAttribute="trailing" constant="-10" id="Jau-0X-dQI"/>
+                            <constraint firstItem="YvM-ih-Dri" firstAttribute="top" secondItem="ZtP-e2-Q47" secondAttribute="top" constant="-5" id="LZ3-IO-WoK"/>
+                            <constraint firstItem="j6K-zw-F7Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZtP-e2-Q47" secondAttribute="leading" constant="5" id="T0s-1W-TqK"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="j6K-zw-F7Q" secondAttribute="trailing" constant="10" id="cq3-fV-6w0"/>
+                            <constraint firstItem="j6K-zw-F7Q" firstAttribute="centerX" secondItem="ZtP-e2-Q47" secondAttribute="centerX" id="jD8-tB-9jl"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZtP-e2-Q47" firstAttribute="leading" secondItem="Bwe-Xf-TNv" secondAttribute="leading" id="Dcp-cG-gGn"/>
+                <constraint firstItem="ZtP-e2-Q47" firstAttribute="top" secondItem="Bwe-Xf-TNv" secondAttribute="top" id="UBz-sL-UJC"/>
+                <constraint firstAttribute="trailing" secondItem="ZtP-e2-Q47" secondAttribute="trailing" id="jQl-SH-C7m"/>
+                <constraint firstAttribute="bottom" secondItem="ZtP-e2-Q47" secondAttribute="bottom" id="zJ1-yO-YqK"/>
+            </constraints>
+            <size key="customSize" width="122" height="50"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="badgeButton" destination="YvM-ih-Dri" id="4WW-ym-ttn"/>
+                <outlet property="titleLabel" destination="j6K-zw-F7Q" id="wml-eA-y8Q"/>
+            </connections>
+            <point key="canvasLocation" x="81.159420289855078" y="39.508928571428569"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -1,0 +1,124 @@
+// Copyright © 2021 Pharos Solutions. All rights reserved.
+
+import Foundation
+
+class HomeModel: ModelDecodable {
+    private let homeApiClient = HomeApiClient()
+    private let profileApiClient = ProfileApiClient()
+
+    private func cacheAccessToken(headers: [AnyHashable: Any]?) {
+        guard let token = headers?["access-token"] as? String,
+        let client = headers?["client"] as? String,
+        let uid = headers?["uid"] as? String
+        else { return }
+        User.shared.setLoggedIn(token: token, client: client, uid: uid)
+    }
+
+    func loadSubjects(batchID: Int, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadSubjects(batchID: batchID) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: Subjects.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func loadRelatedCourses(
+        isMyCourses: Bool,
+        subjectID: Int?,
+        page: Int,
+        limit: Int,
+        completion: @escaping (Result) -> Void
+    ) {
+        DispatchQueue.global().async {
+            self.homeApiClient.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
+                if let response = response {
+                    if response.statusCode < 300 {
+                        self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
+                            completion(result)
+                        }
+                    } else {
+                        self.decodeError(response: response, completionHandler: completion)
+                    }
+                } else if let error = error {
+                    completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                }
+            }
+        }
+    }
+
+    func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
+        DispatchQueue.global().async {
+            self.homeApiClient.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit) { response, error in
+                if let response = response {
+                    if response.statusCode < 300 {
+                        self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
+                            completion(result)
+                        }
+                    } else {
+                        self.decodeError(response: response, completionHandler: completion)
+                    }
+                } else if let error = error {
+                    completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                }
+            }
+        }
+    }
+
+    // swiftlint:disable:next function_parameter_count
+    func loadExploreMoreCoursesForTeacher(teacherID: Int, isMyCourses: Bool, subjectID: Int, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadRelatedCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func searchCourses(value: String, completion: @escaping (Result) -> Void) {
+        homeApiClient.searchCourses(value: value) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func fetchUserProfile(id: Int, completionHandler: @escaping (Result) -> Void) {
+        profileApiClient.fetchProfile(id: String(User.shared.id ?? 62)) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.cacheAccessToken(headers: response.response?.allHeaderFields)
+                    self.decode(modelType: StudentModel.self, from: response) { result in
+                        completionHandler(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completionHandler)
+                }
+            } else if let error = error {
+                self.handleMoyaError(error: error, completionHandler: completionHandler)
+            }
+        }
+    }
+}

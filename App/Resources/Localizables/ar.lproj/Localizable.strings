@@ -1,7 +1,323 @@
-/* 
-  Localizable.strings
-  Wojood
+// MARK: - Alerts
 
-  Created by Ramy Rizkalla on 4/6/21.
-  Copyright © 2021 Pharos Solutions. All rights reserved.
-*/
+"shared.alerts.camera.title" = "السماح للكاميرا";
+"shared.alerts.camera.message" = "Wojood يحتاج الي الوصول للكاميرا";
+"shared.alerts.photos.title" = "السماح للصور";
+"shared.alerts.photos.message" = "Wojood يحتاج الي الوصول للصور";
+
+"shared.alerts.microphone.message" = "Wojood يحتاج الي الوصول للميكروفون";
+
+"shared.alerts.error" = "خطأ";
+"shared.alerts.screenshotsNotAllowed" = "غير مسموح بأخذ لقطة شاشة!";
+"shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
+
+"shared.action.cancel" = "الغاء";
+"shared.action.dismiss" = "غلق";
+
+"login.welcome" = "مرحبًا!
+سجل الدخول للمتابعة";
+
+"login.signIn" = "تسجيل الدخول";
+
+"login.mobileNumber" = "رقم الهاتف";
+
+"login.phoneNumber" = "رقم الهاتف";
+
+"login.password" = "كلمة المرور";
+
+"login.forgotPasswordTitle" = "هل نسيت كلمة المرور؟
+لا داعى للقلق";
+
+"login.forgotPassword" = "نسيت كلمة المرور؟";
+
+"login.noAccount" = "ليس لديك حساب؟  سجل الآن";
+
+"login.mobileNumberIsEmpty" = "برجاء إدخال رقم الهاتف المحمول";
+
+"login.passwordIsEmpty" = "برجاء ادخال كلمة المرور";
+
+"login.bothAreEmpty" = "برجاء ادخال رقم الهاتف و كلمة المرور";
+
+"login.invalidCredentials" = "رقم الهاتف المحمول أو كلمة المرور التي تم إدخالها غير صحيحة";
+
+"login.send" = "ارسل";
+
+"login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كلمة مرور جديدة إلى هاتفك المحمول";
+
+"createPassword.passwordsDontMatch" = "كلمات المرور التي تم ادخالهم غير متطابقين";
+
+"createPassword.passwordLengthTooShort" = "يرجي التأكد ان كلمة المرور مكونة من ٦ احرف علي الأقل";
+
+"createPassword.bothAreEmpty" = "جميع الحقول مطلوبة";
+
+"createPassword.setNewPassword" = "قم بتعيين كلمة مرور جديدة";
+
+"createPassword.confirmPassword" = "تأكيد كلمة المرور";
+
+"verifyOtp.pleaseEnterOTP" = "برجاء ادخال الكود المرسل الي هاتفك";
+
+"verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
+
+"verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
+
+"verifyOtp.continue" = "استمرار";
+
+"verifyOtp.resendCode" = "إعادة إرسال كود التفعيل";
+
+"tabBar.home" = "القائمة الرئيسية";
+
+"tabBar.myCourses" = "كورساتي";
+
+"tabBar.settings" = "الاعدادات";
+
+"settings.version" = "رقم الإصدار";
+
+"settings.privacyPolicy" = "سياسة الخصوصية";
+
+"settings.notification" = "الإشعارات";
+
+"settings.termsOfService" = "شروط الخدمة";
+
+"settings.languages" = "اللغات";
+
+"settings.english" = "الانجليزية";
+
+"settings.arabic" = "العربية";
+
+"settings.chooseALanguage" = "اختر اللغة";
+
+"profile.changePassword" = "تغيير كلمة المرور";
+
+"profile.editedSuccessfully" = "تم تغيير ملفك بنجاح";
+
+"profile.name" = "الاسم";
+
+"profile.mobileNumber" = "رقم الهاتف المحمول";
+
+"profile.mobileNumber2" = "رقم الهاتف المحمول الاخر";
+
+"profile.email" = "البريد الالكتروني";
+
+"profile.parentNumber" = "رقم هاتف ولي الامر";
+
+"profile.parentNumber2" = "رقم هاتف اخر لولي الامر";
+
+"profile.academicType" = "نوع الشهادة";
+
+"profile.batch" = "الدفعة / السنة الدراسية";
+
+"profile.division" = "الدفعة";
+
+"profile.specialization" = "التخصص";
+
+"profile.homePhone" = "رقم هاتف المنزل";
+
+"profile.country" = "البلد";
+
+"profile.region" = "المنطقة";
+
+"profile.city" = "المدينة";
+
+"profile.address" = "العنوان";
+
+"profile.selectItem" = "اختر واحدة من الاختيارات التالية";
+
+"profile.logout" = "تسجيل خروج";
+
+"profile.save" = "حفظ";
+
+// MARK: - Registration
+
+"signup.basicInfo.mandatoryFieldsHint" = "";
+"signup.basicInfo.whatsappNumberHint" = "رقم الهاتف يجب ان يكون مربوط بخدمة الواتس اب";
+"signup.basicInfo.name" = "الاسم*";
+"signup.basicInfo.mobileNumber" = "رقم الهاتف*";
+"signup.basicInfo.homeNumber" = "الرقم الارضي";
+"signup.basicInfo.email" = "البريد الالكتروني*";
+"signup.basicInfo.password" = "كلمه السر*";
+"signup.basicInfo.confirmPassword" = "تأكيد كلمة السر*";
+"signup.basicInfo.numberAlreadyExistsError" = "الهاتف المحمول الذي أدخلته له حساب بالفعل.";
+
+"signup.locationInfo.country" = "البلد*";
+"signup.locationInfo.city" = "المحافظة*";
+"signup.locationInfo.district" = "المنطقة*";
+"signup.locationInfo.address" = "العنوان";
+
+"signup.academicInfo.school" = "مدرسة";
+"signup.academicInfo.university" = "جامعة";
+
+"signup.universityScreen.student" = "طالب";
+"signup.universityScreen.graduate" = "خريج";
+"signup.universityScreen.university" = "جامعة*";
+"signup.universityScreen.field" = "المجال*";
+"signup.universityScreen.year" = "السنة الأكاديمية*";
+
+"signup.school.parentNumber" = "رقم ولي الأمر*";
+"signup.school.parentNumber2" = "رقم ولي الأمر ٢";
+"signup.school.academicType" = "النوع الأكاديمي*";
+"signup.school.academicDivision" = "القسم الأكاديمي*";
+"signup.school.academicYear" = "السنة الأكاديمية*";
+"signup.school.schoolName" = "اسم المدرسة*";
+
+"signup.addAvatar.submit" = "إرسال";
+"signup.addAvatar.skip" = "تخطي";
+
+// MARK: - Course Details
+
+"courseDetails.main.details" = "التفاصيل";
+"courseDetails.main.reviews" = "التقييمات";
+"courseDetails.main.materials" = "المحتوى";
+"courseDetails.main.bookNow" = "احجز الآن";
+"courseDetails.main.cancelBooking" = "إلغاء الحجز";
+"courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
+
+"courseDetails.receipt.receiptNumber" = "رقم الإيصال";
+"courseDetails.receipt.customerName" = "اسم العميل";
+"courseDetails.receipt.address" = "العنوان";
+"courseDetails.receipt.courseName" = "اسم الدورة";
+"courseDetails.receipt.teacherName" = "اسم المدرس";
+"courseDetails.receipt.done" = "تم";
+
+"courseDetails.cancelBooking.messageTitle" = "رسالة";
+"courseDetails.cancelBooking.message" = "هل أنت متأكد أنك تريد إلغاء حجز الدورة؟";
+"courseDetails.cancelBooking.cancelButton" = "إلغاء الحجز";
+"courseDetails.cancelBooking.returnButton" = "عودة";
+
+"courseDetails.courseReview.messageTitle" = "رسالة";
+"courseDetails.courseReview.rateContent" = "هل ترغب في تقييم المحتوى؟";
+"courseDetails.courseReview.describeCourse" = "صف الدورة ...";
+"courseDetails.courseReview.skipRating" = "تخطي التقييم";
+"courseDetails.courseReview.by" = "من قبل";
+
+// MARK: - Home & My courses
+
+"home.relatedCourses" = "الدورات ذات الصلة";
+"home.exploreMore" = "استكشاف المزيد";
+"home.helpCenter" = "مركز المساعدة";
+"home.view" = "عرض";
+"home.course.price" = "ج.م.";
+"home.course.seeReceipt" = "عرض الايصال";
+"home.course.returnToTeacher" = "ارجع للمدرس";
+
+// MARK: - Notifications
+
+"notifications.title" = "إشعارات";
+
+// MARK: - Chat
+
+"chat.send" = "ارسل";
+"chat.sending" = "ارسال";
+"chat.images" = "صور";
+"chat.files" = "ملفات";
+"chat.camera" = "كاميرا";
+"chat.endChat" = "إنهاء المحادثة";
+"chat.recording" = "جاري التسجيل...";
+
+// MARK: - Quizzes
+
+"quizzes" = "الاختبارات";
+"quizzes.title" = "الاختبارات";
+"quizzes.empty" = "لا يوجد اختبار";
+"quizzes.noData" = "لا يوجد اختبارات متاحة الان";
+"quizzes.alertTitle" = "عند بدأ الامتحان، لا يمكنك الرجوع للخطوة السابقة";
+"quizzes.alertSubTitle" = "اذ لم تكن جاهزا، برجاء الإلغاء و العودة لتاريخ الإستحقاق";
+"quizzes.timeDuration" = "المدة";
+"quizzes.point" = "درجة";
+"quizzes.points" = "درجات";
+"quizzes.twoPoints" = "درجتان";
+"quizzes.available" = "متاح";
+"quizzes.due" = "تاريخ الاستحقاق:";
+"quizzes.duration" = "المدة:";
+"quizzes.start" = "إبدأ";
+"quizzes.closed" = "تم الغلق";
+"quizzes.submitted" = "إرسال";
+"quizzes.notSubmitted" = "لم يرسل";
+"quizzes.open" = "إفتح";
+"quizzes.by" = "من";
+"quizzes.question" = "سؤال";
+"quizzes.twoQuestions" = "سؤالين";
+"quizzes.threeToTenQuestions" = "أسئلة";
+"quizzes.questions" = "أسئلة";
+"quizzes.instructions" = "التعليمات:";
+"quizzes.instructionsAttached" = "التعليمات مرفقة";
+"quizzes.next" = "التالي";
+"quizzes.answered" = "تمت الاجابة";
+"quizzes.notAnswered" = "لا يوجد اجابة";
+"quizzes.viewAll" = "عرض الكل";
+"quizzes.pleaseEnterGrade" = "برجاء ادخال الدرجة";
+"quizzes.gradeWontSaved" = "لن يتم حفظ هذه الدرجة";
+"quizzes.markAsCheckedAlert" = "هل انت متأكد أنك تريد وضع علامة تمت المراجعة على هذا التدريب؟";
+"quizzes.writeAnswer" = "اكتب الإجابة";
+"quizzes.saveAndContinue" = "حفظ ومتابعة";
+"quizzes.chooseOneAnswer" = "اختر إجابة واحدة";
+"quizzes.chooseTwoAnswers" = "اختر إجابتان";
+"quizzes.chooseThreeToTenAnswers" = "اختر %@ إجابات";
+"quizzes.chooseMultipleAnswers" = "اختر %@ إجابة";
+"quizzes.numberOfQuestions" = "%@ سؤال";
+"quizzes.chooseOneOrMoreAnswers" = "إختر اجابة او أكثر ";
+"quizzes.thisQuestionGrade" = "درجة هذا السؤال";
+"quizzes.questionComment" = "تعليق";
+"quizzes.yourGrade" = "الدرجة";
+"quizzes.finish" = "تم";
+"quizzes.finishMessage" = "هل أنت متأكد من طلب الارسال؟";
+"quizzes.timeOutTitle" = "نأسف! انتهى الوقت";
+"quizzes.timeOutDescription" = "تم إرسال الاجابات";
+"quizzes.notGradedYet" = "لم يتم تقييمه بعد";
+"quizzes.notFinalGrade" = "هذه الدرجة ليست نهائية";
+"quizzes.yourAnswer" = "إجابتك";
+"quizzes.submitButtonTitle" = "إرسال";
+"quizzes.submitButtonTitleForTeacherAlert" = "موافق";
+"quizzes.quizGrade" = "درجة الاختبار";
+"quizzes.submittedAlertTitle" = "نشكركم على الارسال";
+"quizzes.submittedAlertMessage" = "سيتم نشر الدرجات لاحقا";
+"quizzes.submittedAlertConnectionMessage" = "سيتم إرسال إجاباتك بمجرد أن يكون لديك اتصال فعال بالإنترنت";
+"quizzes.showOnlyUnchecked" = "إظهار التسليمات التى لم يتم مراجعتها فقط";
+"quizzes.emptyUnchecked" = "جميع التسليمات تمت مراجعتها";
+"quizzes.notAllGradedError" = "هناك أسئلة لم يتم تقييمها بعد برجاء الانتهاء من تقييم كل الأسئلة";
+"quizzes.wontSaveGradeError" = "لن يتم حفظ هذه الدرجة";
+"quizzes.goBackAnyway" = "العودة على أى حال";
+"quizzes.continueGrading" = "متابعة التقييم";
+"quizzes.finalized" = "نهائي";
+"quizzes.nonFinialized" = "غير نهائي";
+"quizzes.reviewed" = "تم مراجعته";
+"quizzes.theAnswer" = "الاجابة";
+"quizzes.minutes" = "دقائق";
+"quizzes.hours" = "ساعات";
+"quizzes.since" = "منذ";
+"quizzes.1hour" = "منذ ساعة";
+"quizzes.2hrs" = "ساعتين";
+"quizzes.hour" = "ساعة";
+"quizzes.1min" = "منذ دقيقة";
+"quizzes.2mins" = "دقيقتين";
+"quizzes.minute" = "دقيقة";
+"quizzes.yesterday" = "أمس";
+"quizzes.fewSeconds" = "قبل بضعة ثواني";
+"quizzes.endInOneHour" = "ينتهي في ساعة واحدة";
+"quizzes.endIn2Hours" = "ينتهي في يومين";
+"quizzes.endInMoreThan1HourAndLessThan11Hours" = "ينتهي في %@ ساعات";
+"quizzes.endInMoreThan10Hours" = "ينتهي في %@ ساعة";
+"quizzes.endInOneDay" = "ينتهي في يوم واحد";
+"quizzes.endInMoreThan1Day" = "ينتهي في %@ أيام";
+"quizzes.endInOneWeek" = "ينتهي في أسبوع";
+"quizzes.endsIn" = "ينتهي في %@";
+"quizzes.fileTitle" = "الملفات";
+"quizzes.gallery" = "البوم";
+"quizzes.camera" = "كاميرا";
+"quizzes.viewDescription" = "التفاصيل";
+
+// MARK: - Assignments
+
+"assignment.pauseAlertTitle" = "وقف التدريب للوقت الحالي";
+"assignment.pauseAlertMessage" = "تأكد من العودة و الارسال في الميعاد المحدد";
+"assignment.pauseAlertPauseButtonTitle" = "وقف التدريب";
+"assignment.pauseAlertCancelButtonTitle" = "العودة";
+"assignment.correctTitle" = "هذه الاجابة صحيحة";
+"assignment.incorrectTitle" = "هذه الاجابة غير صحيحة";
+"assignment.questionIsPending" = "هذا السؤال لم يتم تقييمه بعد";
+"assignment.notGraded" = "لم تتم مراجعته بعد";
+"assignment.submittedAlertTitle" = "تم إرسال التدريب!";
+"assignment.submittedAlertMessage" = "سوف نعود اليك قريبا!";
+"assignment.correct" = "الاجابة صحيحة";
+"assignment.incorrect" = "الاجابة خاطئة";
+"assignment.notReviewed" = "لم يتم مراجعته";
+"assignment.needsImprovement" = "يحتاج إلى التحسين";

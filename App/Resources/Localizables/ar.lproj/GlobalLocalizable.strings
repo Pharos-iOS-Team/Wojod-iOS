@@ -22,8 +22,18 @@
 
 "global.actions.delete" = "Delete";
 
-"global.titles.warning" = "Warning";
+"global.titles.warning" = "تنبيه";
 
 "global.alerts.logout" = "هل انت متاكد انك تريد تسجيل خروج؟";
 
 "global.actions.save" = "حفظ";
+
+"global.titles.settings" = "الإعدادات";
+
+"global.alerts.something_went_wrong" = "حدث خطأ ما، برجاء من التأكد من الاتصال بالإنترنت و اعادة المحاولة مرة اخرى";
+
+"global.alerts.no_internet_connection" = "يبدو انه لا يوجد اتصال بالإنترنت";
+
+"global.alerts.data_preparation_error" = "Something went wrong while preparing the data";
+
+"global.alerts.loading" = "جار التحميل";

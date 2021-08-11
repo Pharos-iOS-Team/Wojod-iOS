@@ -1,5 +1,7 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
+import FirebaseCore
+import FirebaseMessaging
 import Foundation
 import UIKit
 
@@ -19,7 +21,7 @@ enum AppDelegateFactory {
                 ScreensFlowConfigurationAppDelegate(),
                 ThirdPartiesConfiguratorAppDelegate(),
                 ReachabilityAppDelegate(),
-                NotificationConfigurationAppDelegate(),
+                NotificationConfigurationAppDelegate()
             ]
         )
     }

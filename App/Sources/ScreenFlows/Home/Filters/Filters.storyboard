@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W6N-zb-muz">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Light.ttf">
+            <string>Inter-Light</string>
+        </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Filters View Controller-->
+        <scene sceneID="Zy2-uN-brL">
+            <objects>
+                <viewController id="W6N-zb-muz" customClass="FiltersViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="INP-fD-6DZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gv1-2e-FWM">
+                                <rect key="frame" x="25" y="64" width="30" height="30"/>
+                                <state key="normal" image="BackIcon"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="DR5-b7-Jfn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ak1-9R-Uok">
+                                <rect key="frame" x="176" y="65.5" width="62.5" height="27"/>
+                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gV-bl-ZE4">
+                                <rect key="frame" x="340" y="61.5" width="49" height="35"/>
+                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="19"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" name="sendButtonColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapApplyButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="Vcn-7P-MvZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzv-Xg-KKI">
+                                <rect key="frame" x="70" y="142.5" width="95" height="114"/>
+                                <state key="normal" image="girlAvatar"/>
+                                <connections>
+                                    <action selector="didTapSchoolButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="uHA-eg-QDJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbe-Ed-ez7">
+                                <rect key="frame" x="251" y="142.5" width="93" height="114"/>
+                                <state key="normal" image="boyAvatar"/>
+                                <connections>
+                                    <action selector="didTapUniversityButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="J2X-kc-w0E"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYJ-bh-IJR">
+                                <rect key="frame" x="101.5" y="266.5" width="32" height="12"/>
+                                <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mad-V7-yLj">
+                                <rect key="frame" x="275.5" y="266.5" width="44.5" height="12"/>
+                                <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dl0-Ar-MeO">
+                                <rect key="frame" x="25" y="348.5" width="364" height="483.5"/>
+                                <color key="backgroundColor" name="superLightGrey"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-E3-oey">
+                                <rect key="frame" x="70" y="293.5" width="127" height="40"/>
+                                <color key="backgroundColor" name="lightGreyColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VYF-9r-VpT"/>
+                                </constraints>
+                                <state key="normal" title="Student">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapStudentButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="Y1O-do-dfp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k80-h9-gqk">
+                                <rect key="frame" x="217" y="293.5" width="127" height="40"/>
+                                <color key="backgroundColor" name="lightGreyColor"/>
+                                <state key="normal" title="Graduated">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapGraduatedButton:" destination="W6N-zb-muz" eventType="touchUpInside" id="wvL-Wk-dNF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wl3-Ge-3p1"/>
+                        <color key="backgroundColor" name="superLightGrey"/>
+                        <constraints>
+                            <constraint firstItem="Ak1-9R-Uok" firstAttribute="centerX" secondItem="wl3-Ge-3p1" secondAttribute="centerX" id="057-5P-CWw"/>
+                            <constraint firstItem="k80-h9-gqk" firstAttribute="leading" secondItem="Smj-E3-oey" secondAttribute="trailing" constant="20" id="1Ia-gV-9HI"/>
+                            <constraint firstItem="Smj-E3-oey" firstAttribute="top" secondItem="k80-h9-gqk" secondAttribute="top" id="1Vp-9f-pfJ"/>
+                            <constraint firstItem="dl0-Ar-MeO" firstAttribute="top" secondItem="Smj-E3-oey" secondAttribute="bottom" constant="15" id="1rL-k7-aKg"/>
+                            <constraint firstItem="dl0-Ar-MeO" firstAttribute="trailing" secondItem="1gV-bl-ZE4" secondAttribute="trailing" id="45a-6n-Fw4"/>
+                            <constraint firstItem="wl3-Ge-3p1" firstAttribute="bottom" secondItem="dl0-Ar-MeO" secondAttribute="bottom" constant="30" id="9L3-mg-FNc"/>
+                            <constraint firstItem="mad-V7-yLj" firstAttribute="top" secondItem="dbe-Ed-ez7" secondAttribute="bottom" constant="10" id="AhW-p9-Szb"/>
+                            <constraint firstItem="Smj-E3-oey" firstAttribute="top" secondItem="BYJ-bh-IJR" secondAttribute="bottom" constant="15" id="Hqp-3N-CgO"/>
+                            <constraint firstItem="Smj-E3-oey" firstAttribute="leading" secondItem="bzv-Xg-KKI" secondAttribute="leading" id="Juw-9i-h6C"/>
+                            <constraint firstItem="bzv-Xg-KKI" firstAttribute="leading" secondItem="wl3-Ge-3p1" secondAttribute="leading" constant="70" id="T5U-gX-cF9"/>
+                            <constraint firstItem="1gV-bl-ZE4" firstAttribute="centerY" secondItem="Ak1-9R-Uok" secondAttribute="centerY" id="YJH-Kw-PUU"/>
+                            <constraint firstItem="Ak1-9R-Uok" firstAttribute="centerY" secondItem="Gv1-2e-FWM" secondAttribute="centerY" id="cU7-Nc-eHg"/>
+                            <constraint firstItem="BYJ-bh-IJR" firstAttribute="centerX" secondItem="bzv-Xg-KKI" secondAttribute="centerX" id="cd1-RG-Gu1"/>
+                            <constraint firstItem="BYJ-bh-IJR" firstAttribute="top" secondItem="bzv-Xg-KKI" secondAttribute="bottom" constant="10" id="fmI-72-jyd"/>
+                            <constraint firstItem="k80-h9-gqk" firstAttribute="height" secondItem="Smj-E3-oey" secondAttribute="height" id="jKX-b5-XLa"/>
+                            <constraint firstItem="wl3-Ge-3p1" firstAttribute="trailing" secondItem="dbe-Ed-ez7" secondAttribute="trailing" constant="70" id="jsf-2W-TCy"/>
+                            <constraint firstItem="dbe-Ed-ez7" firstAttribute="bottom" secondItem="bzv-Xg-KKI" secondAttribute="bottom" id="kYg-7O-eeD"/>
+                            <constraint firstItem="mad-V7-yLj" firstAttribute="centerX" secondItem="dbe-Ed-ez7" secondAttribute="centerX" id="oXH-By-1Gc"/>
+                            <constraint firstItem="bzv-Xg-KKI" firstAttribute="top" secondItem="Ak1-9R-Uok" secondAttribute="bottom" constant="50" id="pWT-NB-1Yj"/>
+                            <constraint firstItem="Gv1-2e-FWM" firstAttribute="top" secondItem="wl3-Ge-3p1" secondAttribute="top" constant="20" id="qMt-ld-ocy"/>
+                            <constraint firstItem="dl0-Ar-MeO" firstAttribute="leading" secondItem="Gv1-2e-FWM" secondAttribute="leading" id="sG1-nY-jBV"/>
+                            <constraint firstItem="wl3-Ge-3p1" firstAttribute="trailing" secondItem="1gV-bl-ZE4" secondAttribute="trailing" constant="25" id="t9J-jX-vst"/>
+                            <constraint firstItem="k80-h9-gqk" firstAttribute="width" secondItem="Smj-E3-oey" secondAttribute="width" id="uNF-XF-Y0Y"/>
+                            <constraint firstItem="Gv1-2e-FWM" firstAttribute="leading" secondItem="wl3-Ge-3p1" secondAttribute="leading" constant="25" id="vEA-pY-e3l"/>
+                            <constraint firstItem="k80-h9-gqk" firstAttribute="trailing" secondItem="dbe-Ed-ez7" secondAttribute="trailing" id="wtZ-kN-FzQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="applyButton" destination="1gV-bl-ZE4" id="XH9-kT-NAX"/>
+                        <outlet property="graduatedButton" destination="k80-h9-gqk" id="YWP-vO-mxk"/>
+                        <outlet property="schoolButton" destination="bzv-Xg-KKI" id="CmU-dE-fut"/>
+                        <outlet property="studentButton" destination="Smj-E3-oey" id="Xwe-L9-hBA"/>
+                        <outlet property="studentButtonHeightConstraint" destination="VYF-9r-VpT" id="TmP-MF-HX5"/>
+                        <outlet property="tableView" destination="dl0-Ar-MeO" id="dfC-jm-weE"/>
+                        <outlet property="universityButton" destination="dbe-Ed-ez7" id="Jvt-sR-GmI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eFO-68-caN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="163.768115942029" y="89.732142857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackIcon" width="30" height="30"/>
+        <image name="boyAvatar" width="93" height="114"/>
+        <image name="girlAvatar" width="95" height="114"/>
+        <namedColor name="lightGreyColor">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="superLightGrey">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

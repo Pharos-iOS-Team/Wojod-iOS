@@ -5,7 +5,7 @@ import SwiftyUserDefaults
 import UIKit
 
 enum ConnectionContext {
-    static var isDisconnectedBefore: Bool = false
+    static var isDisconnectedBefore = Bool()
 }
 
 enum ConnectionState {

@@ -1,7 +1,323 @@
-/* 
-  Localizable.strings
-  Wojood
+// MARK: - Alerts
 
-  Created by Ramy Rizkalla on 4/6/21.
-  Copyright © 2021 Pharos Solutions. All rights reserved.
-*/
+"shared.alerts.camera.title" = "Camera Permission";
+"shared.alerts.camera.message" = "Wojood need to access camera";
+"shared.alerts.photos.title" = "Gallery Permission";
+"shared.alerts.photos.message" = "Wojood need to access Photos";
+
+"shared.alerts.microphone.message" = "Wojood need to access Microphone";
+
+"shared.alerts.error" = "Error";
+"shared.alerts.screenshotsNotAllowed" = "Screenshots Aren't Allowed!";
+"shared.alerts.appWillTerminate" = "App will terminate.";
+
+"shared.action.cancel" = "Cancel";
+"shared.action.dismiss" = "Dismiss";
+
+"login.welcome" = "Welcome!
+Sign in to continue";
+
+"login.signIn" = "Sign in";
+
+"login.mobileNumber" = "Mobile number";
+
+"login.phoneNumber" = "Phone number";
+
+"login.password" = "Password";
+
+"login.forgotPassword" = "Forgot password?";
+
+"login.forgotPasswordTitle" = "Forgot password?
+No worries!";
+
+"login.noAccount" = "No account? Sign up";
+
+"login.mobileNumberIsEmpty" = "Please enter the mobile number";
+
+"login.passwordIsEmpty" = "Please enter the password";
+
+"login.bothAreEmpty" = "Please enter the mobile number and password";
+
+"login.invalidCredentials" = "Mobile number or password entered are not correct";
+
+"login.send" = "Send";
+
+"login.otpWillBeSent" = "Please enter your phone number, OTP will be sent to your mobile";
+
+"createPassword.passwordsDontMatch" = "The passwords you entered do not match";
+
+"createPassword.passwordLengthTooShort" = "Please make sure the password you entered is minimum 6 letters long";
+
+"createPassword.bothAreEmpty" = "All fields are required";
+
+"createPassword.setNewPassword" = "Set new password";
+
+"createPassword.confirmPassword" = "Confirm password";
+
+"verifyOtp.pleaseEnterOTP" = "Please enter the OTP sent to your phone";
+
+"verifyOtp.didNotGetACode" = "Didn’t receive a code?";
+
+"verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
+
+"verifyOtp.continue" = "Continue";
+
+"verifyOtp.resendCode" = "Resend code";
+
+"tabBar.home" = "Home";
+
+"tabBar.myCourses" = "My courses";
+
+"tabBar.settings" = "Settings";
+
+"settings.version" = "Version";
+
+"settings.privacyPolicy" = "Privacy policy";
+
+"settings.notification" = "Notification";
+
+"settings.termsOfService" = "Terms of service";
+
+"settings.languages" = "Languages";
+
+"settings.english" = "English";
+
+"settings.arabic" = "Arabic";
+
+"settings.chooseALanguage" = "Choose a language";
+
+"profile.changePassword" = "Change password";
+
+"profile.editedSuccessfully" = "Your profile has been edited successfully";
+
+"profile.name" = "Name";
+
+"profile.mobileNumber" = "Mobile number";
+
+"profile.mobileNumber2" = "Another mobile number";
+
+"profile.email" = "Email";
+
+"profile.parentNumber" = "Parent phone number";
+
+"profile.parentNumber2" = "Parent second phone number";
+
+"profile.academicType" = "Academic type";
+
+"profile.batch" = "Batch/Year";
+
+"profile.division" = "Division";
+
+"profile.specialization" = "specialization";
+
+"profile.homePhone" = "Home phone number";
+
+"profile.country" = "Country";
+
+"profile.region" = "Region";
+
+"profile.city" = "City";
+
+"profile.address" = "Address";
+
+"profile.selectItem" = "Select Item";
+
+"profile.logout" = "Logout";
+
+"profile.save" = "Save";
+
+// MARK: - Registration
+
+"signup.basicInfo.mandatoryFieldsHint" = "* Cells with asterisks must be filled.";
+"signup.basicInfo.whatsappNumberHint" = "Mobile number must be linked to whatsapp.";
+"signup.basicInfo.name" = "Name*";
+"signup.basicInfo.mobileNumber" = "Mobile number*";
+"signup.basicInfo.homeNumber" = "Home number";
+"signup.basicInfo.email" = "Email*";
+"signup.basicInfo.password" = "Password*";
+"signup.basicInfo.confirmPassword" = "Confirm password*";
+"signup.basicInfo.numberAlreadyExistsError" = "The mobile and/or email you've entered is already registered with another account";
+
+"signup.locationInfo.country" = "Country*";
+"signup.locationInfo.city" = "City*";
+"signup.locationInfo.district" = "District*";
+"signup.locationInfo.address" = "Address";
+
+"signup.academicInfo.school" = "SCHOOL";
+"signup.academicInfo.university" = "UNIVERSITY";
+
+"signup.universityScreen.student" = "Student";
+"signup.universityScreen.graduate" = "Graduate";
+"signup.universityScreen.university" = "University*";
+"signup.universityScreen.field" = "Field*";
+"signup.universityScreen.year" = "Year*";
+
+"signup.school.parentNumber" = "Parent Number*";
+"signup.school.parentNumber2" = "Parent Number 2";
+"signup.school.academicType" = "Academic Type*";
+"signup.school.academicDivision" = "Academic Division*";
+"signup.school.academicYear" = "Academic Year*";
+"signup.school.schoolName" = "School Name*";
+
+"signup.addAvatar.submit" = "Submit";
+"signup.addAvatar.skip" = "Skip";
+
+// MARK: - Course Details
+
+"courseDetails.main.details" = "Details";
+"courseDetails.main.reviews" = "Reviews";
+"courseDetails.main.materials" = "Materials";
+"courseDetails.main.bookNow" = "Book Now";
+"courseDetails.main.cancelBooking" = "Cancel Booking";
+"courseDetails.main.reviewCourse" = "Review Course";
+
+"courseDetails.receipt.receiptNumber" = "Receipt Number";
+"courseDetails.receipt.customerName" = "Customer Name";
+"courseDetails.receipt.address" = "Address";
+"courseDetails.receipt.courseName" = "Course Name";
+"courseDetails.receipt.teacherName" = "Teacher Name";
+"courseDetails.receipt.done" = "Done";
+
+"courseDetails.cancelBooking.messageTitle" = "Message";
+"courseDetails.cancelBooking.message" = "Are you sure you want to cancel booking of course?";
+"courseDetails.cancelBooking.cancelButton" = "Cancel Booking";
+"courseDetails.cancelBooking.returnButton" = "Return";
+
+"courseDetails.courseReview.messageTitle" = "Message";
+"courseDetails.courseReview.rateContent" = "Would you like to rate content?";
+"courseDetails.courseReview.describeCourse" = "Describe Course...";
+"courseDetails.courseReview.skipRating" = "Skip Rating";
+"courseDetails.courseReview.by" = "by";
+
+// MARK: - Home & My courses
+
+"home.relatedCourses" = "Related Courses";
+"home.exploreMore" = "Explore More";
+"home.helpCenter" = "Help Center";
+"home.view" = "View";
+"home.course.price" = "EGP";
+"home.course.seeReceipt" = "See Receipt";
+"home.course.returnToTeacher" = "Return to teacher";
+
+// MARK: - Notifications
+
+"notifications.title" = "Notifications";
+
+// MARK: - Chat
+
+"chat.send" = "Send";
+"chat.sending" = "Sending";
+"chat.images" = "Images";
+"chat.files" = "Files";
+"chat.camera" = "Camera";
+"chat.endChat" = "End chat";
+"chat.recording" = "Recording...";
+
+// MARK: - Quizzes
+
+"quizzes" = "Quizzes";
+"quizzes.title" = "Quizzes";
+"quizzes.empty" = "No Quizzes";
+"quizzes.noData" = "There is no quiz assigned yet";
+"quizzes.alertTitle" = "By starting the exam there is no turning back!";
+"quizzes.alertSubTitle" = "If you are not ready please cancel and return back before the due date";
+"quizzes.timeDuration" = "Time duration";
+"quizzes.point" = "point";
+"quizzes.points" = "points";
+"quizzes.twoPoints" = "2 points";
+"quizzes.available" = "Open";
+"quizzes.due" = "Due: ";
+"quizzes.duration" = "Duration:";
+"quizzes.start" = "Start";
+"quizzes.closed" = "Closed";
+"quizzes.submitted" = "Submitted";
+"quizzes.notSubmitted" = "Not submitted";
+"quizzes.open" = "Open";
+"quizzes.by" = "By";
+"quizzes.question" = "Question";
+"quizzes.twoQuestions" = "2 Questions";
+"quizzes.threeToTenQuestions" = "Questions";
+"quizzes.questions" = "Questions";
+"quizzes.instructions" = "Instructions:";
+"quizzes.instructionsAttached" = "instructions attached";
+"quizzes.next" = "Next";
+"quizzes.answered" = "Answered";
+"quizzes.notAnswered" = "Not answered";
+"quizzes.viewAll" = "View all";
+"quizzes.showOnlyUnchecked" = "Show only unchecked submissions";
+"quizzes.emptyUnchecked" = "All submissions are checked";
+"quizzes.notAllGradedError" = "There are questions not graded yet!. Please finish grading all questions.";
+"quizzes.wontSaveGradeError" = "This grade will not be saved";
+"quizzes.goBackAnyway" = "Go back anyway";
+"quizzes.continueGrading" = "Continue grading";
+"quizzes.pleaseEnterGrade" = "Please enter grade";
+"quizzes.gradeWontSaved" = "This grade will not be saved";
+"quizzes.markAsCheckedAlert" = "Are you sure you want to mark this quiz as checked?";
+"quizzes.writeAnswer" = "Write your answer";
+"quizzes.saveAndContinue" = "Save & Continue";
+"quizzes.chooseOneAnswer" = "Choose 1 answer";
+"quizzes.chooseTwoAnswers" = "Choose 2 answers";
+"quizzes.chooseThreeToTenAnswers" = "Choose %@ answers";
+"quizzes.chooseMultipleAnswers" = "Choose %@ answers";
+"quizzes.numberOfQuestions" = "%@ Questions";
+"quizzes.chooseOneOrMoreAnswers" = "Choose one or more answers";
+"quizzes.thisQuestionGrade" = "This question\'s grade";
+"quizzes.questionComment" = "Comment";
+"quizzes.yourGrade" = "Your grade";
+"quizzes.finish" = "Finish";
+"quizzes.finishMessage" = "Are you sure you want to submit?";
+"quizzes.timeOutTitle" = "We are sorry! time is out!";
+"quizzes.timeOutDescription" = "Your answeres have been submitted";
+"quizzes.notGradedYet" = "Not graded yet";
+"quizzes.notFinalGrade" = "This grade is not final";
+"quizzes.yourAnswer" = "Your answer";
+"quizzes.theAnswer" = "The answer";
+"quizzes.submitButtonTitle" = "Submit";
+"quizzes.submitButtonTitleForTeacherAlert" = "Submit";
+"quizzes.quizGrade" = "Quiz grade";
+"quizzes.submittedAlertTitle" = "Thanks for you Submitting";
+"quizzes.submittedAlertMessage" = "Grades will be uploaded soon";
+"quizzes.submittedAlertConnectionMessage" = "Your answers will be submitted once you have a working internet connection";
+"quizzes.finalized" = "Finalized";
+"quizzes.nonFinialized" = "Non-finalized";
+"quizzes.reviewed" = "Reviewed";
+"quizzes.minutes" = "minutes";
+"quizzes.hours" = "hrs";
+"quizzes.since" = "since";
+"quizzes.1hour" = "1 hr ago";
+"quizzes.2hrs" = "2 hrs";
+"quizzes.hour" = "hour";
+"quizzes.1min" = "1 minute ago";
+"quizzes.2mins" = "2 minutes";
+"quizzes.minute" = "minute";
+"quizzes.yesterday" = "Yesterday";
+"quizzes.fewSeconds" = "a few seconds ago";
+"quizzes.endInOneHour" = "end in 1 hour";
+"quizzes.endIn2Hours" = "end in %@ hours";
+"quizzes.endInMoreThan1HourAndLessThan11Hours" = "ends in %@ hours";
+"quizzes.endInMoreThan10Hours" = "ends in %@ hours";
+"quizzes.endInOneDay" = "ends in 1 day";
+"quizzes.endInMoreThan1Day" = "ends in %@ days";
+"quizzes.endInOneWeek" = "ends in 1 week";
+"quizzes.endsIn" = "ends in %@";
+"quizzes.fileTitle" = "Files";
+"quizzes.gallery" = "Gallery";
+"quizzes.camera" = "Camera";
+"quizzes.viewDescription" = "View description";
+
+// MARK: - Assignments
+
+"assignment.pauseAlertTitle" = "Pause exercise for now";
+"assignment.pauseAlertMessage" = "Make sure to come back and submit before due date";
+"assignment.pauseAlertPauseButtonTitle" = "Pause exercise";
+"assignment.pauseAlertCancelButtonTitle" = "Return";
+"assignment.correctTitle" = "This answer is correct";
+"assignment.incorrectTitle" = "This question isn't correct";
+"assignment.questionIsPending" = "This question is pending";
+"assignment.notGraded" = "Not graded yet";
+"assignment.submittedAlertTitle" = "Exercise has been submitted!";
+"assignment.submittedAlertMessage" = "We will get back to you soon!";
+"assignment.correct" = "Correct";
+"assignment.incorrect" = "Not correct";
+"assignment.notReviewed" = "Not reviewed";
+"assignment.needsImprovement" = "Needs improvement";
