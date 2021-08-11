@@ -317,3 +317,7 @@ No worries!";
 "assignment.notGraded" = "Not graded yet";
 "assignment.submittedAlertTitle" = "Exercise has been submitted!";
 "assignment.submittedAlertMessage" = "We will get back to you soon!";
+"assignment.correct" = "Correct";
+"assignment.incorrect" = "Not correct";
+"assignment.notReviewed" = "Not reviewed";
+"assignment.needsImprovement" = "Needs improvement";
