@@ -725,7 +725,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             case .documents:
                 let document = materials?.documents?[indexPath.row]
                 let date = inputFormatter.date(from: document?.publishedAt ?? "") ?? Date()
-                cell?.configure(title: document?.fileName ?? document?.title, date: date.formattedDateString, image: getCorrespondingImage(for: document))
+                cell?.configure(title: document?.title ?? document?.fileName, date: date.formattedDateString, image: getCorrespondingImage(for: document))
 
             default:
                 return cell ?? UITableViewCell()
