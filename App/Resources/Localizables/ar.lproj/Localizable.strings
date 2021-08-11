@@ -128,7 +128,7 @@
 
 // MARK: - Registration
 
-"signup.basicInfo.mandatoryFieldsHint" = "* يجب ملأ كل الحقول التي تنتهي ب";
+"signup.basicInfo.mandatoryFieldsHint" = "";
 "signup.basicInfo.whatsappNumberHint" = "رقم الهاتف يجب ان يكون مربوط بخدمة الواتس اب";
 "signup.basicInfo.name" = "الاسم*";
 "signup.basicInfo.mobileNumber" = "رقم الهاتف*";
