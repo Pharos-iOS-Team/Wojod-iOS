@@ -65,10 +65,16 @@ class AcademicInfoViewController: UIViewController {
 
     @IBAction private func didTapOnNext(_ sender: SendButton) {
         if isSchoolChosen {
+            User.shared.divisionId = nil
+            User.shared.divisionName = nil
+            User.shared.batch = nil
+            User.shared.batchName = nil
             performSegue(withIdentifier: "segueToSchool", sender: sender)
         } else {
             User.shared.divisionId = nil
             User.shared.divisionName = nil
+            User.shared.batch = nil
+            User.shared.batchName = nil
             performSegue(withIdentifier: "segueToUniversity", sender: sender)
         }
     }

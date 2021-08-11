@@ -166,6 +166,7 @@ No worries!";
 
 "courseDetails.main.details" = "Details";
 "courseDetails.main.reviews" = "Reviews";
+"courseDetails.main.materials" = "Materials";
 "courseDetails.main.bookNow" = "Book Now";
 "courseDetails.main.cancelBooking" = "Cancel Booking";
 "courseDetails.main.reviewCourse" = "Review Course";

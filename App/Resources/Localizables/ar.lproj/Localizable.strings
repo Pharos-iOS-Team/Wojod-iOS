@@ -166,6 +166,7 @@
 
 "courseDetails.main.details" = "التفاصيل";
 "courseDetails.main.reviews" = "التقييمات";
+"courseDetails.main.materials" = "المواد";
 "courseDetails.main.bookNow" = "احجز الآن";
 "courseDetails.main.cancelBooking" = "إلغاء الحجز";
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";

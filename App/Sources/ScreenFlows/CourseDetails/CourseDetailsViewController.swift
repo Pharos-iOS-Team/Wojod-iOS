@@ -49,6 +49,7 @@ class CourseDetailsViewController: UIViewController {
     }
     @IBOutlet private var materialsButton: UIButton! {
         didSet {
+            materialsButton.setTitle(L10n.CourseDetails.Main.materials)
             materialsButton.layer.cornerRadius = UIConstants.cornerRadius
             materialsButton.isHidden = !(self.state == .booked)
         }
