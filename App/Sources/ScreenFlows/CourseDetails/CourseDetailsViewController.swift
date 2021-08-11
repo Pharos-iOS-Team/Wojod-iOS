@@ -5,6 +5,7 @@ import AVKit
 import HandySwift
 import JGProgressHUD
 import UIKit
+import SafariServices
 
 internal enum CourseState {
     case normal
@@ -406,7 +407,8 @@ class CourseDetailsViewController: UIViewController {
             cell?.setSubtitleLabel(video.title ?? "")
         } else if let document = attachment as? Document {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
-            cell?.setAttachmentImageView(Images.pdf.image)
+            let image = getCorrespondingImage(for: document)
+            cell?.setAttachmentImageView(image)
         }
     }
 
@@ -419,7 +421,28 @@ class CourseDetailsViewController: UIViewController {
         case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             return Images.wordExtension.image
         default:
-            return Images.unknownExtension.image
+            if document?.link != nil {
+                return Images.link.image
+            } else {
+                return Images.unknownExtension.image
+            }
+        }
+    }
+
+    private func getCorrespondingImage(for document: Document?) -> UIImage {
+        switch document?.contentType {
+        case "application/pdf":
+            return Images.pdfExtension.image
+        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+            return Images.excelExtension.image
+        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            return Images.wordExtension.image
+        default:
+            if document?.link != nil {
+                return Images.link.image
+            } else {
+                return Images.unknownExtension.image
+            }
         }
     }
 
@@ -794,8 +817,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 play(videoURL: videoURL)
 
             case .documents:
-                let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
-                storeAndShare(withURLString: "\(documentURL)")
+                if let linkURL = materials?.documents?[indexPath.row].link {
+                    let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
+                    present(safariViewCtrl, animated: true)
+                } else {
+                    let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
+                    storeAndShare(withURLString: documentURL.absoluteString)
+                }
 
             case .quizzes:
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
@@ -855,8 +883,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
                 play(videoURL: videoURL)
             } else if let document = attachment as? Document {
-                let documentURL = Environment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-                storeAndShare(withURLString: "\(documentURL)")
+                if let linkURL = document.link {
+                    let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
+                    present(safariViewCtrl, animated: true)
+                } else {
+                    let documentURL = Environment.baseURL.appendingPathComponent(document.fileUrl ?? "")
+                    storeAndShare(withURLString: documentURL.absoluteString)
+                }
             }
         }
     }
