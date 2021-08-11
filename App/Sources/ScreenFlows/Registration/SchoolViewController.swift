@@ -127,7 +127,7 @@ class SchoolViewController: UIViewController {
         super.viewWillAppear(animated)
         hideWrongCredentials()
         nextButton.backgroundColor = Colors.darkGreyColor.color
-        academicTypeTextField.text?.removeAll()
+        // academicTypeTextField.text?.removeAll()
     }
 
     // MARK: - IBActions
