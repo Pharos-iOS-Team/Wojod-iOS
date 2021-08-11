@@ -144,10 +144,10 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } else if activeScreen == .details {
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-                self.tableView.reloadData()
-            }
+//            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
+//                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
+//                self.tableView.reloadData()
+//            }
         }
     }
 
@@ -830,7 +830,14 @@ extension CourseDetailsViewController: UITableViewDelegate {
             if let assignment = attachment as? Assessment, assignment.type != "Quiz" {
                 selectedAssessmentSection = indexPath.section
                 assignemntsViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.assignments ?? []
-                startAssessment(for: .assignment, at: indexPath)
+                switch assignment.status {
+                case "open":
+                    self.startAssessment(for: .assignment, at: indexPath)
+                case "closed":
+                    self.showResultForRow(for: assignment.type ?? "Assignment", at: indexPath)
+                default:
+                    return
+                }
             } else if let quiz = attachment as? Assessment, quiz.type == "Quiz"{
                 selectedAssessmentSection = indexPath.section
                 quizzesViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.quizzes ?? []
