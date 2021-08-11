@@ -405,7 +405,7 @@ class CourseDetailsViewController: UIViewController {
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
         } else if let document = attachment as? Document {
-            cell?.setSubtitleLabel(document.fileName ?? "")
+            cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
             cell?.setAttachmentImageView(Images.pdf.image)
         }
     }
