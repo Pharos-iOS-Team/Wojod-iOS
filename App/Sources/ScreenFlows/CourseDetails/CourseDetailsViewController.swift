@@ -866,7 +866,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        if course?.reservationState != nil {
+        if course?.reservationState == "approved" {
             if expandedSections.contains(section) {
                 if let index = expandedSections.firstIndex(of: section) {
                     expandedSections.remove(at: index)
