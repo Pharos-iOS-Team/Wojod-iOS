@@ -359,6 +359,8 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
 
     func didSelectRelatedCourses() {
         mode = .relatedCourses
+        subjectRelatedCourses.removeAll()
+        coursesTableView.reloadData()
         viewModel.exploreMorePage = 1
         configureFilterButton()
         loadRelatedCourses(isBeingScrolled: false)
@@ -366,6 +368,8 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
 
     func didSelectExploreMore() {
         mode = .exploreMore
+        exploreMoreCourses.removeAll()
+        coursesTableView.reloadData()
         viewModel.relatedCoursesPage = 1
         configureFilterButton()
         loadExploreMoreCourses(isBeingScrolled: false)
