@@ -143,6 +143,10 @@ internal enum L10n {
       internal static var details: String {
           return L10n.tr("Localizable", "courseDetails.main.details")
         }
+      /// Materials
+      internal static var materials: String {
+          return L10n.tr("Localizable", "courseDetails.main.materials")
+        }
       /// Review Course
       internal static var reviewCourse: String {
           return L10n.tr("Localizable", "courseDetails.main.reviewCourse")

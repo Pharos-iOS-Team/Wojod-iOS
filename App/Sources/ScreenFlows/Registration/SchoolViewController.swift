@@ -127,6 +127,7 @@ class SchoolViewController: UIViewController {
         super.viewWillAppear(animated)
         hideWrongCredentials()
         nextButton.backgroundColor = Colors.darkGreyColor.color
+        academicTypeTextField.text?.removeAll()
     }
 
     // MARK: - IBActions
@@ -206,6 +207,9 @@ class SchoolViewController: UIViewController {
 
     @objc
     private func academicDivisionPickerDoneTapped() {
+        if selectedDivision == nil {
+            selectedDivision = viewModel?.divisions?[0]
+        }
         divisionsPickerView.resignFirstResponder()
         User.shared.divisionId = selectedDivision?.key
         academicDivisionTextField.text = selectedDivision?.value
