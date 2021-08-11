@@ -69,12 +69,16 @@ class AcademicInfoViewController: UIViewController {
             User.shared.divisionName = nil
             User.shared.batch = nil
             User.shared.batchName = nil
+            User.shared.academicType = nil
+            User.shared.academicTypeName = nil
             performSegue(withIdentifier: "segueToSchool", sender: sender)
         } else {
             User.shared.divisionId = nil
             User.shared.divisionName = nil
             User.shared.batch = nil
             User.shared.batchName = nil
+            User.shared.academicType = nil
+            User.shared.academicTypeName = nil
             performSegue(withIdentifier: "segueToUniversity", sender: sender)
         }
     }
