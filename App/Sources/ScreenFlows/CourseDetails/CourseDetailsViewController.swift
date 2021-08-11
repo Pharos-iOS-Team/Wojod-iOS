@@ -756,6 +756,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
             view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
             view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
             view?.assignSectionTagToButton(section)
+            view?.configureVisibilityOfExpandButton(state: course?.reservationState)
             if expandedSections.contains(section) {
                 view?.setImageOfButton(Images.collapse.image)
             } else {
@@ -865,17 +866,19 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        if expandedSections.contains(section) {
-            if let index = expandedSections.firstIndex(of: section) {
-                expandedSections.remove(at: index)
-            }
-            self.attachmentsOfLessons[section] = nil
-            self.tableView.reloadData()
-        } else {
-            expandedSections.append(section)
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
-                self.attachmentsOfLessons[section] = attachmentsModel
+        if course?.reservationState != nil {
+            if expandedSections.contains(section) {
+                if let index = expandedSections.firstIndex(of: section) {
+                    expandedSections.remove(at: index)
+                }
+                self.attachmentsOfLessons[section] = nil
                 self.tableView.reloadData()
+            } else {
+                expandedSections.append(section)
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
+                    self.attachmentsOfLessons[section] = attachmentsModel
+                    self.tableView.reloadData()
+                }
             }
         }
     }
