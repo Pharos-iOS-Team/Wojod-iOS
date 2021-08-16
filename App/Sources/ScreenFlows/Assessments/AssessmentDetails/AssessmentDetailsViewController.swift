@@ -524,8 +524,9 @@ class AssessmentDetailsViewController: UIViewController {
                         message: message
                     ) {
                         self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)
-                        self?.viewModel?.finishAssessment()
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.viewModel?.finishAssessment {
+                            self?.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             }
@@ -538,8 +539,9 @@ class AssessmentDetailsViewController: UIViewController {
             submitQuestionAnswer(at: lastUserIndex?.row)
             alert?.configureOneButtonForDismiss { [weak self] in
                 self?.dismiss(animated: true) {
-                    self?.viewModel?.finishAssessment()
-                    self?.navigationController?.popViewController(animated: true)
+                    self?.viewModel?.finishAssessment {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
