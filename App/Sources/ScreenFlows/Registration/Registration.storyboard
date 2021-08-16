@@ -944,6 +944,7 @@
                     <connections>
                         <outlet property="backButton" destination="u46-Xu-dCE" id="zJ3-Yb-NsW"/>
                         <outlet property="fieldTextField" destination="eKe-do-c3W" id="POP-Og-hmh"/>
+                        <outlet property="fieldTextFieldHeightConstraint" destination="lqv-8j-J8n" id="LTE-wc-qVK"/>
                         <outlet property="fourthMilestoneImageView" destination="Owz-ZR-zW2" id="hKu-gT-jeH"/>
                         <outlet property="graduateButton" destination="oI4-Dt-TiI" id="7cu-BO-rax"/>
                         <outlet property="letsKnowMoreTitleImageView" destination="8XG-NX-1pB" id="wQB-2Z-UDY"/>
@@ -1128,7 +1129,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="JMe-6k-e6W"/>
+        <segue reference="MBg-2b-cwf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AcademicInfoTitleEn" width="209" height="51"/>
