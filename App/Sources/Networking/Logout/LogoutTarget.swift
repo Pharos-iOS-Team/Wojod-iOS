@@ -13,7 +13,7 @@ extension LogoutTarget: TargetType {
     }
 
     var method: Moya.Method {
-        return .post
+        return .delete
     }
 
     var headers: [String: String]? {
@@ -27,7 +27,7 @@ extension LogoutTarget: TargetType {
     var task: Task {
         switch self {
         case .logout(let deviceId):
-            return .requestCustomJSONEncodable(deviceId, encoder: JSONEncoder.default)
+            return .requestParameters(parameters: ["device_id": deviceId], encoding: URLEncoding.queryString)
         }
     }
 }
