@@ -13,7 +13,7 @@ extension LogoutTarget: TargetType {
     }
 
     var method: Moya.Method {
-        return .post
+        return .delete
     }
 
     var headers: [String: String]? {
