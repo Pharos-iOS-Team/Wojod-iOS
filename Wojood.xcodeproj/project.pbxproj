@@ -47,6 +47,7 @@
 		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
 		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
 		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
+		3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802287726CBDB9F008E41D4 /* Advertisements.swift */; };
 		38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
 		380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A0261267248D300D01B06 /* CourseTableViewCell.xib */; };
@@ -435,6 +436,7 @@
 		26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentTypeActionSheet.xib; sourceTree = "<group>"; };
 		26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageRequestModel.swift; sourceTree = "<group>"; };
 		26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+AttachmentExtension.swift"; sourceTree = "<group>"; };
+		3802287726CBDB9F008E41D4 /* Advertisements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisements.swift; sourceTree = "<group>"; };
 		38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAttachmentLocalDataModel.swift; sourceTree = "<group>"; };
 		380A0260267248D300D01B06 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		380A0261267248D300D01B06 /* CourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseTableViewCell.xib; sourceTree = "<group>"; };
@@ -1450,6 +1452,7 @@
 				380A027A2680AADD00D01B06 /* ExploreMoreCoursesResponse.swift */,
 				3826BC782669086E00CF9357 /* Materials.swift */,
 				38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */,
+				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2280,6 +2283,7 @@
 				77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */,
 				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
 				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
+				3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */,
 				38659BEB26B6D2F900E3BFE9 /* SubjectsCollectionViewDataObject.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				388AA9A6269EF6BF00C61C0D /* HomeTableViewHeader.swift in Sources */,

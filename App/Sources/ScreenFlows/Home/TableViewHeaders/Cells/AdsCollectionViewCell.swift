@@ -1,10 +1,41 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Kingfisher
 import UIKit
 
 class AdsCollectionViewCell: UICollectionViewCell {
+    // MARK: - IBOutlets
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var viewMoreButton: UIButton! {
+        didSet {
+            viewMoreButton.layer.cornerRadius = UIConstants.slightCornerRadius
+            viewMoreButton.setTitle(L10n.Home.Ads.viewMore)
+        }
+    }
+
+    // MARK: - Properties
+
+    var advertisement: Advertisement?
+
+    // MARK: - IBActions
+
+    @IBAction private func didTapViewMore(_ sender: UIButton) {
+        if let url = URL(string: advertisement?.mobileLink ?? "") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    // MARK: - Public Functions
+
+    func configure(using advertisement: Advertisement) {
+        self.advertisement = advertisement
+        titleLabel.text = advertisement.title
+        descriptionLabel.text = advertisement.title
+        if let url = URL(string: "\(Environment.baseURL)\(advertisement.media?.fileUrl ?? "")") {
+            imageView.kf.setImage(with: url)
+        }
     }
 }

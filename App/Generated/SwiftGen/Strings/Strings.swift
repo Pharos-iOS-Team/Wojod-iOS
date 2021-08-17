@@ -240,6 +240,12 @@ internal enum L10n {
     internal static var view: String {
         return L10n.tr("Localizable", "home.view")
       }
+    internal enum Ads {
+      /// View more
+      internal static var viewMore: String {
+          return L10n.tr("Localizable", "home.ads.viewMore")
+        }
+    }
     internal enum Course {
       /// EGP
       internal static var price: String {
