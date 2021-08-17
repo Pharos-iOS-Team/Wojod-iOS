@@ -88,6 +88,11 @@ class CourseCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        firstRatingStar.image = Images.star.image
+        secondRatingStar.image = Images.star.image
+        thirdRatingStar.image = Images.star.image
+        fourthRatingStar.image = Images.star.image
+        fifthRatingStar.image = Images.star.image
     }
 
     // MARK: - Private Functions
@@ -101,11 +106,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     // swiftlint:disable function_body_length
-    private func configureRatingStars(_ rating: Double?) {
-        var ratingNumber = rating
-        ratingNumber?.round()
-
-        switch ratingNumber {
+    private func configureRatingStars(_ rating: Int?) {
+        switch rating {
         case 1:
             firstRatingStar.image = filledStar
         case 2:
@@ -161,7 +163,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
             }
         }
         playButton.isHidden = course?.video == nil
-        configureRatingStars(course?.rating)
+        configureRatingStars(Int(course?.rating ?? 0))
         configureVisibilityOfSeeReceiptButton()
     }
 
