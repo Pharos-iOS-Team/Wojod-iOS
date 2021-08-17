@@ -51,7 +51,8 @@ class NotificationTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        attachments = nil
+        attachments?.removeAll()
+        attachmentsStackView.subviews.forEach { $0.removeFromSuperview() }
     }
     // MARK: - Public Functions
 
