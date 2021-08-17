@@ -19,16 +19,20 @@ class ReviewCourseView: UIView {
         didSet {
             courseReviewTitleTextField.placeholder = L10n.CourseDetails.CourseReview.describeCourse
             courseReviewTitleTextField.textAlignment = Language.textAlignment
+            courseReviewTitleTextField.addTarget(self, action: #selector(self.edited), for: .editingChanged)
         }
     }
     @IBOutlet private var courseReviewCommentTextField: UITextField! {
         didSet {
             courseReviewCommentTextField.textAlignment = Language.textAlignment
+            courseReviewCommentTextField.addTarget(self, action: #selector(self.edited), for: .editingChanged)
         }
     }
     @IBOutlet private var sendButton: UIButton! {
         didSet {
             sendButton.layer.cornerRadius = UIConstants.cornerRadius
+            sendButton.isEnabled = false
+            sendButton.layer.backgroundColor = UIColor.lightGray.cgColor
         }
     }
     @IBOutlet private var messageTitleLabel: UILabel! {
@@ -130,5 +134,16 @@ class ReviewCourseView: UIView {
             rating: rating,
             comment: courseReviewCommentTextField.text
         )
+    }
+
+    @objc
+    private func edited() {
+        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty {
+            sendButton.isEnabled = true
+            sendButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
+        } else {
+            sendButton.isEnabled = false
+            sendButton.layer.backgroundColor = UIColor.lightGray.cgColor
+        }
     }
 }
