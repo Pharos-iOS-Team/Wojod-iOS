@@ -85,6 +85,17 @@ class HomeViewModel {
         }
     }
 
+    func loadAds(completion: @escaping (Advertisements?) -> Void) {
+        model.loadAds { result in
+            switch result {
+            case .success(let advertisements as Advertisements):
+                completion(advertisements)
+            default:
+                return
+            }
+        }
+    }
+
     private func setUserData(_ user: StudentModel) {
         User.shared.setUserData(user: user.student)
     }

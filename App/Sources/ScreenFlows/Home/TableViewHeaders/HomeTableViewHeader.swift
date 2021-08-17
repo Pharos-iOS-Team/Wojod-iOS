@@ -52,6 +52,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
 
     weak var delegate: HomeTableViewHeaderDelegate?
     var subjects: [Subject]?
+    var advertisements: [Advertisement] = []
     var selectedSubjectIndexPath: IndexPath?
     private var isFirstLoad: Bool = true
 
@@ -84,6 +85,11 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     func setSubjects(_ subjects: [Subject]?) {
         self.subjects = subjects
         subjectsCollectionView.reloadData()
+    }
+
+    func setAdvertisements(_ advertisements: [Advertisement]?) {
+        self.advertisements = advertisements ?? []
+        adsCollectionView.reloadData()
     }
 
     func selectRelatedCoursesButton() {
@@ -119,7 +125,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
 
 extension HomeTableViewHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == subjectsCollectionView ? subjects?.count ?? 0 : 1
+        return collectionView == subjectsCollectionView ? subjects?.count ?? 0 : advertisements.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,6 +144,8 @@ extension HomeTableViewHeader: UICollectionViewDataSource {
             return cell
         } else {
             let cell: AdsCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
+            let advertisement = advertisements[indexPath.item]
+            cell.configure(using: advertisement)
             return cell
         }
     }

@@ -78,4 +78,15 @@ class HomeApiClient {
             }
         }
     }
+
+    func loadAds(completion: @escaping (Response?, Error?) -> Void) {
+        homeProvider.request(.loadAdvertisements) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
 }

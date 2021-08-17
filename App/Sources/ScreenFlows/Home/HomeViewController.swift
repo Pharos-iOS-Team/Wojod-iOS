@@ -56,6 +56,7 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
     private var isFiltersSelected: Bool = false
+    private var advertisements: [Advertisement]?
 
     // MARK: - Lifecycle
 
@@ -66,6 +67,7 @@ class HomeViewController: UIViewController {
         configureRefreshControl()
         loadUserProfile()
         preventScreenshot()
+        loadAndConfigureAdvertisements()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -110,6 +112,12 @@ class HomeViewController: UIViewController {
         } else {
             filtersButton.isHidden = true
             filtersButtonHeightConstraint.constant = 0
+        }
+    }
+
+    private func loadAndConfigureAdvertisements() {
+        viewModel.loadAds { ads in
+            self.advertisements = ads?.advertisements
         }
     }
 
@@ -277,6 +285,7 @@ extension HomeViewController: UITableViewDataSource {
         headerView?.configureSearchBar()
         headerView?.setSubjects(self.subjects)
         headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
+        headerView?.setAdvertisements(self.advertisements)
         if isFirstScreenLoad && self.subjects != nil {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
