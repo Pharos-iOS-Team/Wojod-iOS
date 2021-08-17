@@ -67,6 +67,11 @@ class CourseDetailsViewController: UIViewController {
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
+    @IBOutlet private var backButton: UIButton! {
+        didSet {
+            backButton.setImage(Images.localizedWhiteBackButton)
+        }
+    }
     @IBOutlet private var courseTitle: UILabel!
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
