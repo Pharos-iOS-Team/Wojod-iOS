@@ -15,6 +15,15 @@ extension Images {
         }
     }
 
+    static var localizedWhiteBackButton: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return backIconWhite.image
+        case .arabic:
+            return backIconWhite.image.withHorizontallyFlippedOrientation()
+        }
+    }
+
     static var localizedDisclosureIndicatorButton: UIImage {
         switch Language.currentLanguage {
         case .english:
