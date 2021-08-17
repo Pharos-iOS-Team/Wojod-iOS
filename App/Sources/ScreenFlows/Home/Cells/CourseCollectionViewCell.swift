@@ -101,11 +101,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     // swiftlint:disable function_body_length
-    private func configureRatingStars(_ rating: Double?) {
-        var ratingNumber = rating
-        ratingNumber?.round()
-
-        switch ratingNumber {
+    private func configureRatingStars(_ rating: Int?) {
+        switch rating {
         case 1:
             firstRatingStar.image = filledStar
         case 2:
@@ -161,7 +158,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
             }
         }
         playButton.isHidden = course?.video == nil
-        configureRatingStars(course?.rating)
+        configureRatingStars(Int(course?.rating ?? 0))
         configureVisibilityOfSeeReceiptButton()
     }
 
