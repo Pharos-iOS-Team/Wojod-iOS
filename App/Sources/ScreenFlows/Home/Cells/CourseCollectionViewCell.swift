@@ -88,6 +88,11 @@ class CourseCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        firstRatingStar.image = Images.star.image
+        secondRatingStar.image = Images.star.image
+        thirdRatingStar.image = Images.star.image
+        fourthRatingStar.image = Images.star.image
+        fifthRatingStar.image = Images.star.image
     }
 
     // MARK: - Private Functions
