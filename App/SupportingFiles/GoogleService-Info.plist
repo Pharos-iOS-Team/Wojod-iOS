@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>974805202528-hroen15v17c9u6j1a9bmffjano4m4vsa.apps.googleusercontent.com</string>
+	<string>281105377893-0mvvg5f3ucngu3d6d8t8pv5i8q9o0dqj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.974805202528-hroen15v17c9u6j1a9bmffjano4m4vsa</string>
+	<string>com.googleusercontent.apps.281105377893-0mvvg5f3ucngu3d6d8t8pv5i8q9o0dqj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAoRinb4Hnr_pUNaJT2gNg7LLQjhHp1Yvg</string>
+	<string>AIzaSyDyZSSewvho8lSFG5X3eI8gVgmpY8ZsmcU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>974805202528</string>
+	<string>281105377893</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.wojoudacademy.wojoudApp</string>
 	<key>PROJECT_ID</key>
-	<string>courses-portal-595f9</string>
+	<string>wojood-courses-portal</string>
 	<key>STORAGE_BUCKET</key>
-	<string>courses-portal-595f9.appspot.com</string>
+	<string>wojood-courses-portal.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:974805202528:ios:909b601df6f744de23f505</string>
+	<string>1:281105377893:ios:38cbc670ea8346e41e348c</string>
 </dict>
 </plist>
