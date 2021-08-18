@@ -72,6 +72,11 @@ class CourseDetailsViewController: UIViewController {
             backButton.setImage(Images.localizedWhiteBackButton)
         }
     }
+    @IBOutlet private var emptyStateMessageLabel: UILabel! {
+        didSet {
+            emptyStateMessageLabel.isHidden = true
+        }
+    }
     @IBOutlet private var courseTitle: UILabel!
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
@@ -165,6 +170,7 @@ class CourseDetailsViewController: UIViewController {
         select(button: detailsButton)
         unselect(button: materialsButton)
         unselect(button: reviewsButton)
+        emptyStateMessageLabel.isHidden = true
     }
 
     @IBAction private func didTapChat(_ sender: UIButton) {
@@ -179,6 +185,7 @@ class CourseDetailsViewController: UIViewController {
         select(button: materialsButton)
         unselect(button: detailsButton)
         unselect(button: reviewsButton)
+        emptyStateMessageLabel.isHidden = true
 
         guard let courseID = course?.id else { return }
         viewModel?.loadMaterials(courseID: courseID) { materials in
@@ -661,6 +668,15 @@ class CourseDetailsViewController: UIViewController {
     private func dismissAlertView(completion: (() -> Void)? = nil) {
         alertViewController?.dismiss(animated: true, completion: completion)
     }
+
+    private func displayEmptyStateMessageIfNeeded(itemsCount: Int, message: String) {
+        if itemsCount == 0 {
+            emptyStateMessageLabel.isHidden = false
+            emptyStateMessageLabel.text = message
+        } else {
+            emptyStateMessageLabel.isHidden = true
+        }
+    }
 }
 
 // MARK: - Table View Data Source
@@ -680,6 +696,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
+            displayEmptyStateMessageIfNeeded(itemsCount: reviewsList?.count ?? 0, message: L10n.CourseDetails.CourseReview.emptyStateMessage)
             return reviewsList?.count ?? 0
 
         case .details:

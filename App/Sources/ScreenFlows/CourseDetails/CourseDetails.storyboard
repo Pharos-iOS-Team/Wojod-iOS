@@ -215,12 +215,19 @@
                                                 <action selector="didTapChat:" destination="s5u-w3-yVK" eventType="touchUpInside" id="7DU-ye-ZqT"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qck-h7-Eb5">
+                                            <rect key="frame" x="190" y="563" width="34.5" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" name="superLightGrey"/>
                                     <constraints>
                                         <constraint firstItem="Kt4-uv-6fX" firstAttribute="top" secondItem="Diu-FS-Nhf" secondAttribute="bottom" constant="30" id="0Xv-R8-68S"/>
                                         <constraint firstItem="n5W-Ox-rdW" firstAttribute="leading" secondItem="Kt4-uv-6fX" secondAttribute="leading" id="0v8-iS-YDu"/>
                                         <constraint firstItem="v47-w3-FDk" firstAttribute="baseline" secondItem="ImB-3V-22f" secondAttribute="firstBaseline" id="1Fj-05-zVf"/>
+                                        <constraint firstItem="qck-h7-Eb5" firstAttribute="top" secondItem="D2g-gM-a1h" secondAttribute="bottom" constant="15" id="3AK-IQ-URf"/>
                                         <constraint firstItem="v47-w3-FDk" firstAttribute="top" secondItem="Kt4-uv-6fX" secondAttribute="bottom" constant="28" id="3Y9-an-HOR"/>
                                         <constraint firstItem="Diu-FS-Nhf" firstAttribute="top" secondItem="w0B-7C-8OB" secondAttribute="top" id="5ZM-Dx-qfx"/>
                                         <constraint firstItem="ncl-VC-ptR" firstAttribute="leading" secondItem="7ZR-vA-mZS" secondAttribute="trailing" constant="2" id="7wZ-yG-2l4"/>
@@ -235,6 +242,7 @@
                                         <constraint firstItem="Dp9-fZ-Ee2" firstAttribute="top" secondItem="YS8-0c-SQA" secondAttribute="bottom" constant="13" id="MZf-TB-6V5"/>
                                         <constraint firstItem="Kt4-uv-6fX" firstAttribute="leading" secondItem="w0B-7C-8OB" secondAttribute="leading" constant="25" id="Mvu-3n-C76"/>
                                         <constraint firstItem="Dp9-fZ-Ee2" firstAttribute="leading" secondItem="Kt4-uv-6fX" secondAttribute="leading" id="N4b-9H-lRn"/>
+                                        <constraint firstItem="qck-h7-Eb5" firstAttribute="centerX" secondItem="w0B-7C-8OB" secondAttribute="centerX" id="NWU-hg-H72"/>
                                         <constraint firstItem="D2g-gM-a1h" firstAttribute="leading" secondItem="Dp9-fZ-Ee2" secondAttribute="leading" id="OCN-TU-x1x"/>
                                         <constraint firstItem="Q0C-6n-nHB" firstAttribute="firstBaseline" secondItem="pCp-l8-q2K" secondAttribute="firstBaseline" id="RMm-7n-5NI"/>
                                         <constraint firstItem="Dp9-fZ-Ee2" firstAttribute="trailing" secondItem="ImB-3V-22f" secondAttribute="trailing" id="UM4-q2-vek"/>
@@ -279,6 +287,7 @@
                         <outlet property="courseTitle" destination="Kt4-uv-6fX" id="Ceg-T5-IHe"/>
                         <outlet property="descriptionLabel" destination="Dp9-fZ-Ee2" id="NmE-ms-fNr"/>
                         <outlet property="detailsButton" destination="IIf-7Y-W30" id="Kx8-2L-NeG"/>
+                        <outlet property="emptyStateMessageLabel" destination="qck-h7-Eb5" id="uIp-ge-gWK"/>
                         <outlet property="fifthReviewStar" destination="Q0C-6n-nHB" id="Pde-Rg-opc"/>
                         <outlet property="firstReviewStar" destination="7ZR-vA-mZS" id="rre-km-oeq"/>
                         <outlet property="fourthReviewStar" destination="pCp-l8-q2K" id="QzW-8j-vCw"/>
