@@ -188,6 +188,7 @@ No worries!";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
 "courseDetails.courseReview.by" = "by";
+"courseDetails.courseReview.emptyStateMessage" = "No reviews yet.";
 
 // MARK: - Home & My courses
 
