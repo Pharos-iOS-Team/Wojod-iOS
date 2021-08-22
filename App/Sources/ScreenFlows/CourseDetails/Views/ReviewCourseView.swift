@@ -88,6 +88,7 @@ class ReviewCourseView: UIView {
         thirdStar.setImage(Images.star.image)
         fourthStar.setImage(Images.star.image)
         fifthStar.setImage(Images.star.image)
+        edited()
     }
 
     @IBAction private func didTapSecondStar(_ sender: UIButton) {
@@ -97,6 +98,7 @@ class ReviewCourseView: UIView {
         thirdStar.setImage(Images.star.image)
         fourthStar.setImage(Images.star.image)
         fifthStar.setImage(Images.star.image)
+        edited()
     }
 
     @IBAction private func didTapThirdStar(_ sender: UIButton) {
@@ -106,6 +108,7 @@ class ReviewCourseView: UIView {
         thirdStar.setImage(Images.filledStar.image)
         fourthStar.setImage(Images.star.image)
         fifthStar.setImage(Images.star.image)
+        edited()
     }
 
     @IBAction private func didTapFourthStar(_ sender: UIButton) {
@@ -115,6 +118,7 @@ class ReviewCourseView: UIView {
         thirdStar.setImage(Images.filledStar.image)
         fourthStar.setImage(Images.filledStar.image)
         fifthStar.setImage(Images.star.image)
+        edited()
     }
 
     @IBAction private func didTapFifthStar(_ sender: UIButton) {
@@ -124,6 +128,7 @@ class ReviewCourseView: UIView {
         thirdStar.setImage(Images.filledStar.image)
         fourthStar.setImage(Images.filledStar.image)
         fifthStar.setImage(Images.filledStar.image)
+        edited()
     }
 
     // MARK: - Private Functions
@@ -138,7 +143,7 @@ class ReviewCourseView: UIView {
 
     @objc
     private func edited() {
-        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty {
+        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty && rating != 0 {
             sendButton.isEnabled = true
             sendButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         } else {
