@@ -38,6 +38,7 @@ class ProfileViewController: UIViewController {
         editSuccessHandler()
         editErrorHandler()
         fetchAcademicInfo()
+        configureAcademicInfoSuccessHandler()
         viewModel.loadCountries()
         reloadCountriesCell()
         reloadCitiesCell()
@@ -107,6 +108,12 @@ class ProfileViewController: UIViewController {
     private func showSuccessAlert() {
         let alertHandler = AlertHandler(presentingViewCtrl: self)
         alertHandler.showInformationAlert(title: L10n.Global.Titles.warning, message: L10n.Profile.editedSuccessfully)
+    }
+
+    private func configureAcademicInfoSuccessHandler() {
+        viewModel.academicInfoSuccessHandler = { [unowned self] in
+            profileTableView.reloadData()
+        }
     }
 
     private func fetchAcademicInfo() {
@@ -228,15 +235,20 @@ extension ProfileViewController: UITableViewDelegate {
 }
 
 extension ProfileViewController: ProfileTableViwCellProtocol {
-    func didFieldChange(text: String, cell: UITableViewCell) {
+    func didFieldChange(text: String, cell: UITableViewCell, field: ProfileFields?) {
         guard let index = profileTableView.indexPath(for: cell) else { return }
         viewModel.editProfileFields(forIndexPath: index.row, withText: text)
+        if field == .country {
+            let cityCell = profileTableView.cellForRow(at: IndexPath(row: index.row + 1, section: index.section)) as? ProfileTableViewCell
+            cityCell?.configureDefaultSelectionForCity()
+        }
     }
 }
 
 extension ProfileViewController: AvatarsListDelegate {
     func setAvatar(avatar: Avatar) {
         guard let id = avatar.id else { return }
+        User.shared.avatar = avatar
         viewModel.setNewAvatar(avatarId: id)
         profileTableView.reloadData()
     }

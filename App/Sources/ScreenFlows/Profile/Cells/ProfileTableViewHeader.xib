@@ -29,6 +29,7 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jVf-Vd-x6Y">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" constant="130" id="7kS-2K-h3U"/>
                                         <constraint firstAttribute="height" constant="130" id="psL-li-c4F"/>
                                     </constraints>
                                 </imageView>
@@ -48,6 +49,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="jVf-Vd-x6Y" firstAttribute="leading" secondItem="SJm-L6-7bg" secondAttribute="leading" id="0dZ-Ep-yin"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
