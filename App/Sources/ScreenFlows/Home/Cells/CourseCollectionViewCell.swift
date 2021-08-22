@@ -36,12 +36,6 @@ class CourseCollectionViewCell: UICollectionViewCell {
             playButton.isHidden = true
         }
     }
-    @IBOutlet private var seeReceiptButton: UIButton! {
-        didSet {
-            seeReceiptButton.layer.cornerRadius = UIConstants.slightCornerRadius
-            seeReceiptButton.setTitle(L10n.Home.Course.seeReceipt)
-        }
-    }
     @IBOutlet private var activityIndicator: UIActivityIndicatorView! {
         didSet {
             activityIndicator.hidesWhenStopped = true
@@ -77,10 +71,6 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     @IBAction private func didTapViewCourse(_ sender: UIButton) {
         delegate?.showCourseDetails(for: course, with: teacherNameIndex ?? 0)
-    }
-
-    @IBAction private func didTapSeeReceipt(_ sender: UIButton) {
-        viewReceiptDelegate?.displayReceipt(course?.receipt ?? Receipt())
     }
 
     // MARK: - Lifecycle
@@ -133,11 +123,16 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private func configureVisibilityOfSeeReceiptButton() {
+    private func configureActionButtonAccordingToState() {
         if isMyCourses && course?.reservationState == "pending" {
-            seeReceiptButton.isHidden = false
+            viewButton.setTitle(L10n.Home.pending)
+            viewButton.layer.backgroundColor = Colors.orange.color.cgColor
+        } else if isMyCourses && course?.reservationState == "approved" {
+            viewButton.setTitle(L10n.Quizzes.open)
+            viewButton.layer.backgroundColor = Colors.green.color.cgColor
         } else {
-            seeReceiptButton.isHidden = true
+            viewButton.setTitle(L10n.Home.view)
+            viewButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         }
     }
 
@@ -164,7 +159,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
         playButton.isHidden = course?.video == nil
         configureRatingStars(Int(course?.rating ?? 0))
-        configureVisibilityOfSeeReceiptButton()
+        configureActionButtonAccordingToState()
     }
 
     func configureVideo(with url: String) {
