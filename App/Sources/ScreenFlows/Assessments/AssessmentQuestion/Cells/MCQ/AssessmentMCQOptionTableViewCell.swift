@@ -74,7 +74,7 @@ class AssessmentMCQOptionTableViewCell: UITableViewCell, UIDocumentInteractionCo
             return
         }
         optionContainerView.backgroundColor = isCorrectAnswer
-            ? UIColor.green.withAlphaComponent(0.2)
+            ? Colors.green.color.withAlphaComponent(0.2)
             : UIColor.red.withAlphaComponent(0.1)
         optionCheckBox.setCheckState(
             isCorrectAnswer
@@ -83,7 +83,7 @@ class AssessmentMCQOptionTableViewCell: UITableViewCell, UIDocumentInteractionCo
             animated: false
         )
         optionCheckBox.tintColor = .white
-        optionCheckBox.secondaryCheckmarkTintColor = .green
+        optionCheckBox.secondaryCheckmarkTintColor = Colors.green.color
         wrongAnswerMark.isHidden = isCorrectAnswer
     }
 

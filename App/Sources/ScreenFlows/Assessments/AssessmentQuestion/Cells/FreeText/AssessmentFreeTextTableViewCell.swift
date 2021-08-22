@@ -125,8 +125,8 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
             containerView.backgroundColor = UIColor.red.withAlphaComponent(0.1)
             containerView.layer.borderColor = UIColor.red.cgColor
         case question.mark:
-            containerView.backgroundColor = UIColor.green.withAlphaComponent(0.2)
-            containerView.layer.borderColor = UIColor.green.cgColor
+            containerView.backgroundColor = Colors.green.color.withAlphaComponent(0.2)
+            containerView.layer.borderColor = Colors.green.color.cgColor
         case nil:
             answerTextView.backgroundColor = .clear
             containerView.backgroundColor = .clear
@@ -183,8 +183,8 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
             answerTextView.backgroundColor = .clear
             containerView.layer.borderColor = Asset.Colors.sendButtonColor.color.cgColor.copy(alpha: 0.2)
         case .correct:
-            containerView.backgroundColor = UIColor.green.withAlphaComponent(commentBackgroundAlpha)
-            containerView.layer.borderColor = UIColor.green.cgColor
+            containerView.backgroundColor = Colors.green.color.withAlphaComponent(commentBackgroundAlpha)
+            containerView.layer.borderColor = Colors.green.color.cgColor
         }
     }
 }

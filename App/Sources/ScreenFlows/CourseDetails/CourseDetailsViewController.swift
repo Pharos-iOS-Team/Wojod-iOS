@@ -155,10 +155,10 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } else if activeScreen == .details {
-//            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-//                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-//                self.tableView.reloadData()
-//            }
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
+                self.tableView.reloadData()
+            }
         }
     }
 

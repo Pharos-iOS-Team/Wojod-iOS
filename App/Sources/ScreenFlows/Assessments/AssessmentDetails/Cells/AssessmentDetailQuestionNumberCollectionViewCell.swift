@@ -119,8 +119,8 @@ class AssessmentDetailQuestionNumberCollectionViewCell: UICollectionViewCell {
     }
 
     private func markAsRightAnswer() {
-        containerView.backgroundColor = UIColor.green.withAlphaComponent(answerLightColorAlpha)
-        textColor = .green
+        containerView.backgroundColor = Colors.green.color.withAlphaComponent(answerLightColorAlpha)
+        textColor = Colors.green.color
     }
 
     private func markAsWrongAnswer() {
