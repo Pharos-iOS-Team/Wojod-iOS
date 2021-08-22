@@ -200,6 +200,7 @@
 "home.course.seeReceipt" = "عرض الايصال";
 "home.course.returnToTeacher" = "ارجع للمدرس";
 "home.ads.viewMore" = "عرض المزيد";
+"home.pending" = "في حالة انتظار";
 
 // MARK: - Notifications
 

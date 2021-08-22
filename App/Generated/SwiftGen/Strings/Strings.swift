@@ -236,6 +236,10 @@ internal enum L10n {
     internal static var helpCenter: String {
         return L10n.tr("Localizable", "home.helpCenter")
       }
+    /// Pending
+    internal static var pending: String {
+        return L10n.tr("Localizable", "home.pending")
+      }
     /// Related Courses
     internal static var relatedCourses: String {
         return L10n.tr("Localizable", "home.relatedCourses")
