@@ -900,7 +900,7 @@ extension AssessmentDetailsViewController {
         case Double.zero:
             changeInformationViewColor(color: .red)
         case question?.mark:
-            changeInformationViewColor(color: .green)
+            changeInformationViewColor(color: Colors.green.color)
         case nil:
             turnOutletsToBlue()
         default:
