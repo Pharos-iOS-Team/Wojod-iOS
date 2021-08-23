@@ -223,7 +223,7 @@ No worries!";
 "quizzes.empty" = "No Quizzes";
 "quizzes.noData" = "There is no quiz assigned yet";
 "quizzes.alertTitle" = "By starting the exam there is no turning back!";
-"quizzes.alertSubTitle" = "If you are not ready please cancel and return back before the due date";
+"quizzes.alertSubTitle" = "If you are not ready please cancel and return back when you are.";
 "quizzes.timeDuration" = "Time duration";
 "quizzes.point" = "point";
 "quizzes.points" = "points";

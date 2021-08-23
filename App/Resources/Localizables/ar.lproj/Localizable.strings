@@ -223,7 +223,7 @@
 "quizzes.empty" = "لا يوجد اختبار";
 "quizzes.noData" = "لا يوجد اختبارات متاحة الان";
 "quizzes.alertTitle" = "عند بدأ الامتحان، لا يمكنك الرجوع للخطوة السابقة";
-"quizzes.alertSubTitle" = "اذ لم تكن جاهزا، برجاء الإلغاء و العودة لتاريخ الإستحقاق";
+"quizzes.alertSubTitle" = "إذا لم تكن جاهزا برجاء الإلغاء والعودة لاحقا";
 "quizzes.timeDuration" = "المدة";
 "quizzes.point" = "درجة";
 "quizzes.points" = "درجات";

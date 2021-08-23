@@ -436,7 +436,7 @@ internal enum L10n {
     internal static var _2mins: String {
         return L10n.tr("Localizable", "quizzes.2mins")
       }
-    /// If you are not ready please cancel and return back before the due date
+    /// If you are not ready please cancel and return back when you are.
     internal static var alertSubTitle: String {
         return L10n.tr("Localizable", "quizzes.alertSubTitle")
       }

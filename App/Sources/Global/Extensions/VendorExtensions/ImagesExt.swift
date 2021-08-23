@@ -41,6 +41,15 @@ extension Images {
             return nextIcon.image.withHorizontallyFlippedOrientation()
         }
     }
+
+    static var localizedNextArrowIndicator: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return nextIndicator.image
+        case .arabic:
+            return nextIndicator.image.withHorizontallyFlippedOrientation()
+        }
+    }
 }
 
 extension Images {
