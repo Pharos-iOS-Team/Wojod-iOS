@@ -22,6 +22,7 @@ class NotificationsViewController: UIViewController {
     private var notifications: [Notification] = []
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Lifecycle
 
@@ -29,6 +30,7 @@ class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         viewModel = NotificationsViewModel()
         configureTableView()
+        configureRefreshControl()
         loadNotifications()
         documentInteractionController.delegate = self
         preventScreenshot()
@@ -49,7 +51,9 @@ class NotificationsViewController: UIViewController {
     }
 
     private func loadNotifications() {
+        showLoadingIndicator()
         viewModel?.loadNotifications { notifications in
+            self.hideLoadingIndicator()
             self.notifications = notifications.notifications ?? []
             self.tableView.reloadData()
         }
@@ -92,6 +96,17 @@ class NotificationsViewController: UIViewController {
 
     private func hideLoadingIndicator() {
         loadingHud?.dismiss()
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        loadNotifications()
+        tableView.refreshControl?.endRefreshing()
     }
 }
 

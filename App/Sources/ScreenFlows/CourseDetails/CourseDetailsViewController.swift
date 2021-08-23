@@ -115,6 +115,7 @@ class CourseDetailsViewController: UIViewController {
     private var alertViewController: AppAlertViewController?
     private var selectedAssessment: Assessment?
     private var selectedAssessmentSection: Int?
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Public Properties
 
@@ -142,6 +143,7 @@ class CourseDetailsViewController: UIViewController {
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         preventScreenshot()
+        configureRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -675,6 +677,45 @@ class CourseDetailsViewController: UIViewController {
             emptyStateMessageLabel.text = message
         } else {
             emptyStateMessageLabel.isHidden = true
+        }
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        handleRefreshingAccordingToOpenedTab()
+    }
+
+    private func handleRefreshingAccordingToOpenedTab() {
+        switch activeScreen {
+        case .details:
+            loadCourseLessons()
+            tableView.refreshControl?.endRefreshing()
+
+        case .materials:
+            showLoadingIndicator()
+            viewModel?.loadMaterials(courseID: course?.id ?? 0) { materials in
+                self.hideLoadingIndicator()
+                self.materials = materials
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+            }
+
+        case .reviews:
+            showLoadingIndicator()
+            viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
+                self.hideLoadingIndicator()
+                self.reviewsList = result.reviews
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+            }
+
+        default:
+            return
         }
     }
 }
