@@ -160,14 +160,19 @@ class HomeViewController: UIViewController {
     }
 
     private func configureRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        coursesTableView.addSubview(refreshControl)
+        coursesTableView.refreshControl = refreshControl
     }
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        coursesTableView.reloadData()
+        if self.mode == .relatedCourses {
+            self.loadRelatedCourses(isBeingScrolled: true)
+            self.coursesTableView.refreshControl?.endRefreshing()
+        } else {
+            self.loadExploreMoreCourses(isBeingScrolled: true)
+            self.coursesTableView.refreshControl?.endRefreshing()
+        }
     }
 
     private func configureTableView() {
