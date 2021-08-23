@@ -45,14 +45,8 @@
                                                     <constraint firstAttribute="height" constant="63" id="r7t-3k-b9Y"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Cells with asterisks must be filled" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBv-yd-KNM">
-                                                <rect key="frame" x="41" y="265" width="198" height="14.5"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
-                                                <color key="textColor" name="sendButtonColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Mobile number must be linked to whatsapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nm5-Yh-f6P">
-                                                <rect key="frame" x="41" y="286.5" width="253" height="15"/>
+                                                <rect key="frame" x="41" y="276" width="253" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" name="sendButtonColor"/>
                                                 <nil key="highlightedColor"/>
@@ -134,7 +128,6 @@
                                             <constraint firstItem="Xur-dy-5dg" firstAttribute="height" secondItem="1ze-j0-xap" secondAttribute="height" id="8af-SR-00i"/>
                                             <constraint firstItem="a20-6w-a96" firstAttribute="leading" secondItem="DDz-Lq-Gou" secondAttribute="leading" id="9N4-Em-00V"/>
                                             <constraint firstItem="Tyt-rU-ObE" firstAttribute="leading" secondItem="1cg-8u-nZE" secondAttribute="leading" constant="35" id="E5b-mY-xdc"/>
-                                            <constraint firstItem="bBv-yd-KNM" firstAttribute="leading" secondItem="1cg-8u-nZE" secondAttribute="leading" constant="41" id="FgS-He-3D3"/>
                                             <constraint firstItem="nhD-Ur-fO8" firstAttribute="height" secondItem="gMg-I4-ko7" secondAttribute="height" id="G7P-xg-fmK"/>
                                             <constraint firstAttribute="trailing" secondItem="1ze-j0-xap" secondAttribute="trailing" constant="37" id="Kjd-eo-0Cb"/>
                                             <constraint firstItem="DDz-Lq-Gou" firstAttribute="trailing" secondItem="1ze-j0-xap" secondAttribute="trailing" id="LWk-n7-Lt3"/>
@@ -158,12 +151,11 @@
                                             <constraint firstItem="ds5-ce-Ibe" firstAttribute="height" secondItem="nhD-Ur-fO8" secondAttribute="height" id="lTq-lW-Mfq"/>
                                             <constraint firstItem="h3Q-qY-eE1" firstAttribute="leading" secondItem="a20-6w-a96" secondAttribute="leading" id="m8y-sI-RV7"/>
                                             <constraint firstItem="gMg-I4-ko7" firstAttribute="top" secondItem="h3Q-qY-eE1" secondAttribute="bottom" constant="12" id="nI2-5h-oiP"/>
-                                            <constraint firstItem="bBv-yd-KNM" firstAttribute="top" secondItem="is3-Jp-stJ" secondAttribute="bottom" constant="45" id="q42-jk-ZG6"/>
-                                            <constraint firstItem="nm5-Yh-f6P" firstAttribute="leading" secondItem="bBv-yd-KNM" secondAttribute="leading" id="q5r-FJ-QuH"/>
                                             <constraint firstItem="DDz-Lq-Gou" firstAttribute="top" secondItem="1ze-j0-xap" secondAttribute="bottom" constant="12" id="tJA-Ts-2gw"/>
-                                            <constraint firstItem="nm5-Yh-f6P" firstAttribute="top" secondItem="bBv-yd-KNM" secondAttribute="bottom" constant="7" id="vSh-n9-InB"/>
+                                            <constraint firstItem="nm5-Yh-f6P" firstAttribute="centerY" secondItem="1ze-j0-xap" secondAttribute="centerY" id="v4l-Zf-zWt"/>
                                             <constraint firstItem="ds5-ce-Ibe" firstAttribute="leading" secondItem="nhD-Ur-fO8" secondAttribute="leading" id="wZY-Fc-Wtn"/>
                                             <constraint firstItem="gMg-I4-ko7" firstAttribute="trailing" secondItem="h3Q-qY-eE1" secondAttribute="trailing" id="xrj-d8-Wtn"/>
+                                            <constraint firstItem="nm5-Yh-f6P" firstAttribute="leading" secondItem="1cg-8u-nZE" secondAttribute="leading" constant="41" id="yjc-XB-5UB"/>
                                             <constraint firstItem="is3-Jp-stJ" firstAttribute="top" secondItem="Tyt-rU-ObE" secondAttribute="bottom" constant="30" id="zzJ-CA-fXD"/>
                                         </constraints>
                                     </view>
@@ -227,8 +219,6 @@
                         <outlet property="firstMilestoneImageView" destination="vUl-FV-ErK" id="Rx3-nj-I7F"/>
                         <outlet property="hintContentView" destination="1ze-j0-xap" id="3BU-gi-ZeX"/>
                         <outlet property="homeNumberTextField" destination="h3Q-qY-eE1" id="HkE-r4-WPZ"/>
-                        <outlet property="mandatoryCellsHintLabel" destination="bBv-yd-KNM" id="Y7I-CW-w3Z"/>
-                        <outlet property="mandatoryFieldsHintLabel" destination="bBv-yd-KNM" id="JpQ-m7-dBl"/>
                         <outlet property="mobileLinkedToWhatsappHintLabel" destination="nm5-Yh-f6P" id="zoq-KW-iHc"/>
                         <outlet property="mobileNumberHintLabel" destination="nm5-Yh-f6P" id="cxt-g3-WIM"/>
                         <outlet property="mobileNumberTextField" destination="a20-6w-a96" id="eqV-pE-My0"/>
