@@ -12,7 +12,7 @@ struct ProfileTableViewCellDataModel {
 }
 
 protocol ProfileTableViwCellProtocol: AnyObject {
-    func didFieldChange(text: String, cell: UITableViewCell)
+    func didFieldChange(text: String, cell: UITableViewCell, field: ProfileFields?)
 }
 
 class ProfileTableViewCell: UITableViewCell {
@@ -44,7 +44,7 @@ class ProfileTableViewCell: UITableViewCell {
         profileTextField.keyboardType = .asciiCapableNumberPad
     }
 
-    func addPickerView() {
+    func addPickerView(field: ProfileFields) {
         guard let profileTextField = profileTextField else { return }
         let inputView = PickerInputView<String>(height: 250)
         inputView.items = { return (self.items ?? []) }
@@ -55,7 +55,7 @@ class ProfileTableViewCell: UITableViewCell {
         profileTextField.inputView = inputView
         profileTextField.inputAccessoryView = AccessoryView(L10n.Profile.selectItem, doneTapped: {
             profileTextField.resignFirstResponder()
-            self.delegate?.didFieldChange(text: self.selectedItem ?? "", cell: self)
+            self.delegate?.didFieldChange(text: self.selectedItem ?? "", cell: self, field: field)
         }
         )
     }
@@ -75,9 +75,13 @@ class ProfileTableViewCell: UITableViewCell {
             || dataModel.fields[dataModel.indexPath] == .division
             || dataModel.fields[dataModel.indexPath] == .specialization
             || dataModel.fields[dataModel.indexPath] == .country
-            ||  dataModel.fields[dataModel.indexPath] == .city {
-            addPickerView()
+            || dataModel.fields[dataModel.indexPath] == .city {
+            addPickerView(field: dataModel.fields[dataModel.indexPath])
         }
+    }
+
+    func configureDefaultSelectionForCity() {
+        profileTextField.text = self.items?.first
     }
 }
 
@@ -85,6 +89,6 @@ extension ProfileTableViewCell: UITextFieldDelegate {
     @objc
     private func textFieldDidChangeValue(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        delegate?.didFieldChange(text: text, cell: self)
+        delegate?.didFieldChange(text: text, cell: self, field: nil)
     }
 }
