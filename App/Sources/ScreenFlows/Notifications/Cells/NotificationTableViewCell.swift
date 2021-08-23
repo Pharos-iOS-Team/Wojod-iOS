@@ -51,9 +51,12 @@ class NotificationTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        attachments = nil
+        link = nil
         attachments?.removeAll()
         attachmentsStackView.subviews.forEach { $0.removeFromSuperview() }
     }
+
     // MARK: - Public Functions
 
     internal func configureCellAccordingToType() {
@@ -70,7 +73,7 @@ class NotificationTableViewCell: UITableViewCell {
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = inputFormatter.date(from: notification.createdAt ?? "") ?? Date()
         attachments = notification.attachments
-        if notification.link != nil {
+        if notification.link != nil && !(notification.link?.isEmpty ?? true) {
             configureLink(in: notification)
         }
         configureAttachments()
