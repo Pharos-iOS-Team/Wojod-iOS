@@ -116,6 +116,9 @@ class CourseDetailsViewController: UIViewController {
     private var selectedAssessment: Assessment?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     // MARK: - Public Properties
 
@@ -143,6 +146,7 @@ class CourseDetailsViewController: UIViewController {
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         preventScreenshot()
+        preventScreenRecording()
         configureRefreshControl()
     }
 
@@ -235,6 +239,15 @@ class CourseDetailsViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
 
     private func configure() {
         teacherNameLabel.text = teacherName

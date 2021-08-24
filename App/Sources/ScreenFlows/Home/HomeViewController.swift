@@ -57,6 +57,9 @@ class HomeViewController: UIViewController {
     private var blurredView: UIVisualEffectView?
     private var isFiltersSelected: Bool = false
     private var advertisements: [Advertisement]?
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     // MARK: - Lifecycle
 
@@ -67,6 +70,7 @@ class HomeViewController: UIViewController {
         configureRefreshControl()
         loadUserProfile()
         preventScreenshot()
+        preventScreenRecording()
         loadAndConfigureAdvertisements()
     }
 
@@ -113,6 +117,15 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
 
     private func configureFilterButton() {
         if !isMyCourses && mode == .exploreMore {

@@ -23,6 +23,9 @@ class NotificationsViewController: UIViewController {
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
     private let refreshControl = UIRefreshControl()
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     // MARK: - Lifecycle
 
@@ -34,6 +37,7 @@ class NotificationsViewController: UIViewController {
         loadNotifications()
         documentInteractionController.delegate = self
         preventScreenshot()
+        preventScreenRecording()
     }
 
     // MARK: - IBActions
@@ -43,6 +47,15 @@ class NotificationsViewController: UIViewController {
     }
 
     // MARK: - Private functions
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
 
     private func configureTableView() {
         tableView.registerCell(ofType: NotificationTableViewCell.self)
