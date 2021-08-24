@@ -9,8 +9,10 @@ internal protocol CollapseExpandDelegate: AnyObject {
 class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     // MARK: - Lifecycle
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        isUserInteractionEnabled = true
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnHeader)))
     }
 
     // MARK: - IBOutlets
@@ -27,7 +29,7 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     // MARK: - IBActions
 
     @IBAction private func didTapOnCollapseExpandButton(_ sender: UIButton) {
-        collapseExpandDelegate?.didTapOnCollapseExpand(in: expandCollapseButton.tag)
+        collapseExpandDelegate?.didTapOnCollapseExpand(in: self.tag)
     }
 
     // MARK: - Public Functions
@@ -50,5 +52,10 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
 
     internal func configureVisibilityOfExpandButton(state: String?, isAttachmentsEmpty: Bool) {
         expandCollapseButton.isHidden = state != "approved" || isAttachmentsEmpty
+    }
+
+    @objc
+    private func didTapOnHeader() {
+        collapseExpandDelegate?.didTapOnCollapseExpand(in: self.tag)
     }
 }
