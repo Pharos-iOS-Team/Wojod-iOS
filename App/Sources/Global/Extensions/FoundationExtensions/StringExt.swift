@@ -78,4 +78,15 @@ extension String {
         _ = arabicNumbers.map { text = text.replacingOccurrences(of: $1, with: $0) }
         return text
     }
+
+    func dashed() -> String {
+        var result = ""
+        for (offset, character) in self.enumerated() {
+            if offset != 0 && offset % 4 == 0 {
+                result.append("-")
+            }
+            result.append(character)
+        }
+        return result
+    }
 }
