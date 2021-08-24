@@ -77,6 +77,15 @@ class HomeViewController: UIViewController {
         loadRelatedCourses(isBeingScrolled: false)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        for cell in coursesTableView.visibleCells {
+            if let courseCell = cell as? CourseTableViewCell {
+                courseCell.stopAnyPlayingVideoIfAny()
+            }
+        }
+    }
+
     // MARK: - IBActions
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {

@@ -60,6 +60,14 @@ class CourseTableViewCell: UITableViewCell {
             }
         }
     }
+
+    func stopAnyPlayingVideoIfAny() {
+        for cell in coursesCollectionView.visibleCells {
+            if let courseCell = cell as? CourseCollectionViewCell {
+                courseCell.stopVideoIfTheresAnyPlaying()
+            }
+        }
+    }
 }
 
 // MARK: - Collection View Data Source
