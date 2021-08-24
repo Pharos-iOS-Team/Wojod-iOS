@@ -30,6 +30,9 @@ class ProfileViewController: UIViewController {
     private let viewModel = ProfileViewModel()
     var avatars: AvatarsModel?
     var user: StudentModel?
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,7 @@ class ProfileViewController: UIViewController {
         reloadCountriesCell()
         reloadCitiesCell()
         preventScreenshot()
+        preventScreenRecording()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +65,15 @@ class ProfileViewController: UIViewController {
         profileTableView.registerCell(ofType: ProfileTableViewCell.self)
         profileTableView.registerCell(ofType: ProfileEditAndLogoutTableViewCell.self)
         profileTableView.registerHeaderFooterView(ofType: ProfileTableViewHeader.self)
+    }
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
     }
 
     private func editProfile() {

@@ -161,7 +161,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
                 self.activityIndicator.stopAnimating()
             }
         }
-        playButton.isHidden = course?.video == nil
+        playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
         configureRatingStars(Int(course?.rating ?? 0))
         configureActionButtonAccordingToState()
     }
