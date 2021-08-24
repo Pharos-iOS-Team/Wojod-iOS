@@ -337,6 +337,7 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
     func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+        showLoadingIndicator()
         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
         let subjectCourse = appropriateSubjectCourse(index: teacherNameIndex)
         let teacherName = subjectCourse?.teacher?.name
@@ -347,6 +348,7 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         navigationCtrl.modalPresentationStyle = .fullScreen
         navigationCtrl.navigationBar.isHidden = true
         present(navigationCtrl, animated: true)
+        hideLoadingIndicator()
     }
 }
 
