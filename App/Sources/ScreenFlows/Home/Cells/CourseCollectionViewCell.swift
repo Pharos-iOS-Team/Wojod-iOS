@@ -55,6 +55,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     private let filledStar: UIImage = Images.filledStar.image
     private var course: Course?
     private var isMyCourses = Bool()
+    private var player: AVPlayer?
 
     // MARK: - Public Properties
 
@@ -77,7 +78,10 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        player = nil
         imageView.image = nil
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         firstRatingStar.image = Images.star.image
         secondRatingStar.image = Images.star.image
         thirdRatingStar.image = Images.star.image
@@ -165,10 +169,17 @@ class CourseCollectionViewCell: UICollectionViewCell {
     func configureVideo(with url: String) {
         playButton.isHidden = true
         let videoURL = URL(string: "\(Environment.baseURL)" + url)
-        let player = AVPlayer(url: videoURL!)
+        player = AVPlayer(url: videoURL!)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.imageView.bounds
         self.imageView.layer.addSublayer(playerLayer)
-        player.play()
+        player?.play()
+    }
+
+    func stopVideoIfTheresAnyPlaying() {
+        guard player != nil else { return }
+        player?.pause()
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
     }
 }
