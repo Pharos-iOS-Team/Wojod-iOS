@@ -78,7 +78,10 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        player = nil
         imageView.image = nil
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         firstRatingStar.image = Images.star.image
         secondRatingStar.image = Images.star.image
         thirdRatingStar.image = Images.star.image
@@ -176,5 +179,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     func stopVideoIfTheresAnyPlaying() {
         guard player != nil else { return }
         player?.pause()
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
     }
 }
