@@ -109,7 +109,7 @@ extension SettingsViewController: UITableViewDataSource {
         case .languages:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
             let cell = tableView.cellForRow(at: indexPath)
-            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: cell?.contentView ?? UIView()) { action in
+            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: cell?.contentView ?? UIView(), selectedLanguage: Language.currentLanguage) { action in
                 self.changeLanguage(action: action)
             }
         case .privacyPolicy:
