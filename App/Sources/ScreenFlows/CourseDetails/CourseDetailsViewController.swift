@@ -278,6 +278,25 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
+    @objc
+    private func handleAttachmentsExpantion(section: Int) {
+        if course?.reservationState == "approved" {
+            if expandedSections.contains(section) {
+                if let index = expandedSections.firstIndex(of: section) {
+                    expandedSections.remove(at: index)
+                }
+                self.attachmentsOfLessons[section] = nil
+                self.tableView.reloadData()
+            } else {
+                expandedSections.append(section)
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
+                    self.attachmentsOfLessons[section] = attachmentsModel
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
     private func showLoadingIndicator() {
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
@@ -852,11 +871,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
         switch activeScreen {
         case .details:
             let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+            view?.tag = section
             view?.collapseExpandDelegate = self
             let lesson = lessonsList?[section]
             view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
             view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
             view?.assignSectionTagToButton(section)
+            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: false)
             if expandedSections.contains(section) {
                 view?.setImageOfButton(Images.collapse.image)
             } else {
@@ -892,7 +913,6 @@ extension CourseDetailsViewController: UITableViewDelegate {
             case .videos:
                 let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
                 play(videoURL: videoURL)
-
             case .documents:
                 if let linkURL = materials?.documents?[indexPath.row].link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
@@ -901,7 +921,6 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
-
             case .quizzes:
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
                 let quiz = materials?.quizzes?[indexPath.row]
@@ -914,7 +933,6 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 default:
                     return
                 }
-
             case .assignments:
                 assignemntsViewModel?.assessments = materials?.assignments ?? []
                 let assignment = materials?.assignments?[indexPath.row]
@@ -976,21 +994,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        if course?.reservationState == "approved" {
-            if expandedSections.contains(section) {
-                if let index = expandedSections.firstIndex(of: section) {
-                    expandedSections.remove(at: index)
-                }
-                self.attachmentsOfLessons[section] = nil
-                self.tableView.reloadData()
-            } else {
-                expandedSections.append(section)
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
-                    self.attachmentsOfLessons[section] = attachmentsModel
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        handleAttachmentsExpantion(section: section)
     }
 }
 
