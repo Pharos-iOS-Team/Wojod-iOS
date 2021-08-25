@@ -64,6 +64,7 @@ public final class AlertHandler: NSObject {
     func showLanguageActionSheet(
         title: String,
         sourceView: UIView,
+        selectedLanguage: Language,
         handler: ((UIAlertAction) -> Void)? = nil
     ) {
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet).with {
@@ -73,8 +74,10 @@ public final class AlertHandler: NSObject {
         }
         let englishAction = UIAlertAction(title: L10n.Settings.english, style: .default, handler: handler)
         englishAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        englishAction.setValue(selectedLanguage == .english, forKey: "checked")
         let arabicAction = UIAlertAction(title: L10n.Settings.arabic, style: .default, handler: handler)
         arabicAction.setValue(Colors.sendButtonColor.color, forKey: "titleTextColor")
+        arabicAction.setValue(selectedLanguage == .arabic, forKey: "checked")
         let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
         cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
         alertController.addActions([englishAction, arabicAction, cancelAction])
