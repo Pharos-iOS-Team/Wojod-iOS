@@ -22,8 +22,12 @@ class SettingsViewController: UIViewController {
     }
     @IBOutlet private var tableViewFooter: UIView!
     @IBOutlet private var profileThumbnail: UIImageView!
+
     let viewModel = SettingsViewModel()
     var user: LoginApiResponseModel?
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +35,21 @@ class SettingsViewController: UIViewController {
         setUserAvatar()
         navigateToProfileHandler()
         preventScreenshot()
+        preventScreenRecording()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUserAvatar()
+    }
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
     }
 
     private func registerNib() {

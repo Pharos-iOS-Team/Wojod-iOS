@@ -3,6 +3,11 @@
 import UIKit
 
 class MaterialTableViewCell: UITableViewCell {
+    @IBOutlet private var nextArrowIndicator: UIImageView! {
+        didSet {
+            nextArrowIndicator.image = Images.localizedNextArrowIndicator
+        }
+    }
     @IBOutlet private var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = UIConstants.cornerRadius

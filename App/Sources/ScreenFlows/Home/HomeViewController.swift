@@ -56,6 +56,10 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
     private var isFiltersSelected: Bool = false
+    private var advertisements: [Advertisement]?
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     // MARK: - Lifecycle
 
@@ -66,6 +70,8 @@ class HomeViewController: UIViewController {
         configureRefreshControl()
         loadUserProfile()
         preventScreenshot()
+        preventScreenRecording()
+        loadAndConfigureAdvertisements()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +79,15 @@ class HomeViewController: UIViewController {
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         configureFilterButton()
         loadRelatedCourses(isBeingScrolled: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        for cell in coursesTableView.visibleCells {
+            if let courseCell = cell as? CourseTableViewCell {
+                courseCell.stopAnyPlayingVideoIfAny()
+            }
+        }
     }
 
     // MARK: - IBActions
@@ -103,6 +118,15 @@ class HomeViewController: UIViewController {
 
     // MARK: - Private Functions
 
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
+
     private func configureFilterButton() {
         if !isMyCourses && mode == .exploreMore {
             filtersButton.isHidden = false
@@ -110,6 +134,12 @@ class HomeViewController: UIViewController {
         } else {
             filtersButton.isHidden = true
             filtersButtonHeightConstraint.constant = 0
+        }
+    }
+
+    private func loadAndConfigureAdvertisements() {
+        viewModel.loadAds { ads in
+            self.advertisements = ads?.advertisements
         }
     }
 
@@ -152,14 +182,19 @@ class HomeViewController: UIViewController {
     }
 
     private func configureRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        coursesTableView.addSubview(refreshControl)
+        coursesTableView.refreshControl = refreshControl
     }
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        coursesTableView.reloadData()
+        if self.mode == .relatedCourses {
+            self.loadRelatedCourses(isBeingScrolled: true)
+            self.coursesTableView.refreshControl?.endRefreshing()
+        } else {
+            self.loadExploreMoreCourses(isBeingScrolled: true)
+            self.coursesTableView.refreshControl?.endRefreshing()
+        }
     }
 
     private func configureTableView() {
@@ -182,7 +217,7 @@ class HomeViewController: UIViewController {
         ) { [unowned self] relatedCourses in
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
-            let defaultSubjectName = subjects?[0].name ?? ""
+            let defaultSubjectName = subjects?.first?.name ?? ""
             if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
                 subjectRelatedCourses.append(contentsOf: subjectCourses)
             }
@@ -277,6 +312,7 @@ extension HomeViewController: UITableViewDataSource {
         headerView?.configureSearchBar()
         headerView?.setSubjects(self.subjects)
         headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
+        headerView?.setAdvertisements(self.advertisements)
         if isFirstScreenLoad && self.subjects != nil {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
@@ -301,6 +337,7 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
     func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+        showLoadingIndicator()
         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
         let subjectCourse = appropriateSubjectCourse(index: teacherNameIndex)
         let teacherName = subjectCourse?.teacher?.name
@@ -311,6 +348,7 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         navigationCtrl.modalPresentationStyle = .fullScreen
         navigationCtrl.navigationBar.isHidden = true
         present(navigationCtrl, animated: true)
+        hideLoadingIndicator()
     }
 }
 

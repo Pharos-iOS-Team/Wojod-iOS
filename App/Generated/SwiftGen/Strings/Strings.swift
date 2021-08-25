@@ -133,6 +133,10 @@ internal enum L10n {
       internal static var describeCourse: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.describeCourse")
         }
+      /// No reviews yet.
+      internal static var emptyStateMessage: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyStateMessage")
+        }
       /// Message
       internal static var messageTitle: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.messageTitle")
@@ -232,6 +236,10 @@ internal enum L10n {
     internal static var helpCenter: String {
         return L10n.tr("Localizable", "home.helpCenter")
       }
+    /// Pending
+    internal static var pending: String {
+        return L10n.tr("Localizable", "home.pending")
+      }
     /// Related Courses
     internal static var relatedCourses: String {
         return L10n.tr("Localizable", "home.relatedCourses")
@@ -240,6 +248,12 @@ internal enum L10n {
     internal static var view: String {
         return L10n.tr("Localizable", "home.view")
       }
+    internal enum Ads {
+      /// View more
+      internal static var viewMore: String {
+          return L10n.tr("Localizable", "home.ads.viewMore")
+        }
+    }
     internal enum Course {
       /// EGP
       internal static var price: String {
@@ -422,7 +436,7 @@ internal enum L10n {
     internal static var _2mins: String {
         return L10n.tr("Localizable", "quizzes.2mins")
       }
-    /// If you are not ready please cancel and return back before the due date
+    /// If you are not ready please cancel and return back when you are.
     internal static var alertSubTitle: String {
         return L10n.tr("Localizable", "quizzes.alertSubTitle")
       }

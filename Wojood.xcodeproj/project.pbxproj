@@ -47,6 +47,7 @@
 		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
 		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
 		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
+		3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802287726CBDB9F008E41D4 /* Advertisements.swift */; };
 		38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
 		380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A0261267248D300D01B06 /* CourseTableViewCell.xib */; };
@@ -149,12 +150,12 @@
 		38812C6D266F9E3900CCD924 /* TeacherCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C6C266F9E3800CCD924 /* TeacherCourse.swift */; };
 		388AA9A6269EF6BF00C61C0D /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AA9A5269EF6BF00C61C0D /* HomeTableViewHeader.swift */; };
 		388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */; };
+		3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
 		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
 		38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */; };
-		38B1318F26B0291A00D5966A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38B1318E26B0291A00D5966A /* GoogleService-Info.plist */; };
 		38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B1319726B03FD300D5966A /* FiltersViewController.swift */; };
 		38B131A326B0400400D5966A /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B131A226B0400400D5966A /* Filters.storyboard */; };
 		38B131B726B098C400D5966A /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B131B626B098C400D5966A /* FiltersViewModel.swift */; };
@@ -327,6 +328,8 @@
 		BC767169262D801F0012155C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767168262D801F0012155C /* SettingsViewModel.swift */; };
 		BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */; };
 		BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1E112643F63900F21515 /* FormTextField.swift */; };
+		BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */; };
+		BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */; };
 		BC91581026385CED00868BB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91580F26385CED00868BB0 /* Constants.swift */; };
 		BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9682482638631D009F8550 /* HomeViewModel.swift */; };
 		BC96824F26386329009F8550 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96824E26386329009F8550 /* HomeModel.swift */; };
@@ -435,6 +438,7 @@
 		26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentTypeActionSheet.xib; sourceTree = "<group>"; };
 		26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageRequestModel.swift; sourceTree = "<group>"; };
 		26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+AttachmentExtension.swift"; sourceTree = "<group>"; };
+		3802287726CBDB9F008E41D4 /* Advertisements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisements.swift; sourceTree = "<group>"; };
 		38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAttachmentLocalDataModel.swift; sourceTree = "<group>"; };
 		380A0260267248D300D01B06 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		380A0261267248D300D01B06 /* CourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseTableViewCell.xib; sourceTree = "<group>"; };
@@ -531,12 +535,12 @@
 		38812C6C266F9E3800CCD924 /* TeacherCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourse.swift; sourceTree = "<group>"; };
 		388AA9A5269EF6BF00C61C0D /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewHeader.xib; sourceTree = "<group>"; };
+		3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3898E4E8265E572E00295A43 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		38B03551265B9EF200C24479 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
-		38B1318E26B0291A00D5966A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38B1319726B03FD300D5966A /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		38B131A226B0400400D5966A /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		38B131B626B098C400D5966A /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
@@ -704,6 +708,8 @@
 		BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC7D1E112643F63900F21515 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
+		BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExt.swift; sourceTree = "<group>"; };
+		BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExt.swift; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC9682482638631D009F8550 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BC96824E26386329009F8550 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -1334,7 +1340,7 @@
 			children = (
 				7723ADCB261C7339007C0B97 /* Configurations */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
-				38B1318E26B0291A00D5966A /* GoogleService-Info.plist */,
+				3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
 			);
@@ -1450,6 +1456,7 @@
 				380A027A2680AADD00D01B06 /* ExploreMoreCoursesResponse.swift */,
 				3826BC782669086E00CF9357 /* Materials.swift */,
 				38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */,
+				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1558,6 +1565,7 @@
 		778E722C261DC11A009D7B35 /* UIKitExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */,
 				77E32B9D264A8BA80064B801 /* CGSizeExt.swift */,
 				77E32BCB264A8C670064B801 /* IndexPathExt.swift */,
 				778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */,
@@ -1574,6 +1582,7 @@
 				778E723A261DC2D3009D7B35 /* UIViewExt.swift */,
 				7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */,
 				E84E78DA26553DC8000902CB /* ViewControllerExt.swift */,
+				BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -1959,6 +1968,7 @@
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
+				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2140,11 +2150,11 @@
 				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
 				380B13A226B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.xib in Resources */,
 				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
+				3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
 				380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
-				38B1318F26B0291A00D5966A /* GoogleService-Info.plist in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
 				380B139926B807F700CB5811 /* TeacherCommentHeaderTableViewCell.xib in Resources */,
 				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
@@ -2232,6 +2242,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    arch -x86_64 swiftlint\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
 		};
+		7777D76B26D6B66A00B0C441 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2280,6 +2308,7 @@
 				77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */,
 				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
 				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
+				3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */,
 				38659BEB26B6D2F900E3BFE9 /* SubjectsCollectionViewDataObject.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				388AA9A6269EF6BF00C61C0D /* HomeTableViewHeader.swift in Sources */,
@@ -2378,6 +2407,7 @@
 				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,
 				38659BEF26B6D2F900E3BFE9 /* TeacherGradesForAssessment.swift in Sources */,
 				38659BE226B6D2F900E3BFE9 /* TimeCalculator.swift in Sources */,
+				BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */,
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
@@ -2405,6 +2435,7 @@
 				38659BE426B6D2F900E3BFE9 /* AssessmentSubject.swift in Sources */,
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
 				BC083B142641D51900A1E6A4 /* LogoutTarget.swift in Sources */,
+				BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */,
 				7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */,
 				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
 				38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */,
@@ -2713,7 +2744,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
+				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2739,7 +2770,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
+				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -77,13 +77,12 @@ class LocationInfoViewController: UIViewController {
             nextButton.isEnabled = false
         }
     }
-    
 
     // MARK: - Private Properties
 
     private var viewModel: RegistrationViewModel?
-    private var countries: [String] = []
-    private var cities: [String] = []
+    private var countries: [KeyName] = []
+    private var cities: [KeyName] = []
     private var selectedCountry: String?
     private var selectedCountryIndex: Int?
     private var selectedCityIndex: Int?
@@ -127,7 +126,7 @@ class LocationInfoViewController: UIViewController {
             action: #selector(countriesPickerDoneTapped)
         )
         countryPickerView.didSelectAtIndex = { [unowned self] index in
-            self.countryTextField.text = countries[index]
+            self.countryTextField.text = countries[index].name
             self.selectedCountryIndex = index
             countryTextField.setNormalView()
         }
@@ -137,42 +136,66 @@ class LocationInfoViewController: UIViewController {
             action: #selector(citiesPickerDoneTapped)
         )
         cityPickerView.didSelectAtIndex = { [unowned self] index in
-            self.cityTextField.text = cities.isEmpty ? "" : cities[index]
+            self.cityTextField.text = cities.isEmpty ? "" : cities[index].name
             self.selectedCityIndex = index
             cityTextField.setNormalView()
         }
     }
 
     private func configurePickerFields() {
-        countryPickerView.items = { self.countries }
-        cityPickerView.items = { self.cities }
+        countryPickerView.items = { self.countries.compactMap { $0.name } }
+        cityPickerView.items = { self.cities.compactMap { $0.name } }
     }
 
     private func retrieveCountriesList() {
         viewModel?.loadCountries { countries in
-            self.countries = countries
+            self.countries = countries ?? []
+            self.selectEgyptAsDefaultCountry()
             self.retrieveCitiesList()
         }
     }
 
     private func retrieveCitiesList() {
+        loadingIndicator.startAnimating()
         viewModel?.loadCities(for: User.shared.country ?? "EGY") { cities in
-            self.cities = cities
+            self.loadingIndicator.stopAnimating()
+            self.cities = cities ?? []
+            self.configureAlexandriaAsDefaultCity()
         }
+    }
+
+    private func selectEgyptAsDefaultCountry() {
+        guard User.shared.country == nil else { return }
+
+        let defaultCountryIndex = countries.firstIndex { $0.key == "EGY" }
+        let defaultCountry = countries.first { $0.key == "EGY" }
+        User.shared.country = defaultCountry?.key
+        User.shared.countryName = defaultCountry?.name
+        countryTextField.text = defaultCountry?.name
+        selectedCountryIndex = defaultCountryIndex
+    }
+
+    private func configureAlexandriaAsDefaultCity() {
+        guard User.shared.city == nil else { return }
+
+        let defaultCity = cities.first { $0.key == "ALX" }
+        User.shared.city = defaultCity?.key
+        User.shared.cityName = defaultCity?.name
+        self.cityTextField.text = defaultCity?.name
     }
 
     @objc
     private func countriesPickerDoneTapped() {
         let selectedIndex = selectedCountryIndex == nil ? 0 : selectedCountryIndex
         countryPickerView.resignFirstResponder()
-        countryTextField.text = countries[selectedIndex ?? 0]
+        countryTextField.text = countries[selectedIndex ?? 0].name
         selectedCountryIndex = selectedIndex
         self.selectedCountry = self.countryTextField.text
         loadingIndicator.startAnimating()
         viewModel?.loadCities(for: viewModel?.countryCodes[selectedCountryIndex ?? 0] ?? "") { cities in
             self.loadingIndicator.stopAnimating()
-            self.cities = cities
-            self.cityTextField.text = cities.isEmpty ? "" : cities[0]
+            self.cities = cities ?? []
+            self.cityTextField.text = cities?.isEmpty ?? true ? "" : cities?[0].name
         }
     }
 
@@ -180,7 +203,7 @@ class LocationInfoViewController: UIViewController {
     private func citiesPickerDoneTapped() {
         let selectedIndex = selectedCityIndex == nil ? 0 : selectedCityIndex
         cityPickerView.resignFirstResponder()
-        cityTextField.text = cities.isEmpty ? "" : cities[selectedIndex ?? 0]
+        cityTextField.text = cities.isEmpty ? "" : cities[selectedIndex ?? 0].name
         selectedCityIndex = selectedIndex
     }
 
@@ -205,10 +228,10 @@ class LocationInfoViewController: UIViewController {
     }
 
     private func retrieveDataEnteredFromUser() {
-        User.shared.country = countryTextField.isEmpty ? nil : viewModel?.countryCodes[selectedCountryIndex ?? 0]
-        User.shared.countryName = countryTextField.isEmpty ? nil : countries[selectedCountryIndex ?? 0]
-        User.shared.city = cityTextField.isEmpty ? nil : viewModel?.cityCodes[selectedCityIndex ?? 0]
-        User.shared.cityName = cityTextField.isEmpty ? nil : cities[selectedCityIndex ?? 0]
+        User.shared.country = countryTextField.isEmpty ? nil : countries[selectedCountryIndex ?? 0].key
+        User.shared.countryName = countryTextField.isEmpty ? nil : countries[selectedCountryIndex ?? 0].name
+        User.shared.city = cityTextField.isEmpty ? nil : cities[selectedCityIndex ?? 0].key
+        User.shared.cityName = cityTextField.isEmpty ? nil : cities[selectedCityIndex ?? 0].name
         User.shared.region = districtTextField.text
         User.shared.address = addressTextField.text
     }
@@ -252,7 +275,7 @@ class LocationInfoViewController: UIViewController {
     }
 }
 
-// MARK: -  Text Field Delegate
+// MARK: - Text Field Delegate
 
 extension LocationInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {

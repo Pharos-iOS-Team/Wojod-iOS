@@ -9,27 +9,6 @@ struct Materials: Codable {
     var documents: [MaterialsDocument]?
 }
 
-//struct MaterialsQuiz: Codable {
-//    var id: Int?
-//    var title: String?
-//    var instructions: String?
-//    var duration: Int?
-//    var numberOfQuestions: Int?
-//    var mark: Int?
-//    var publishedAt: String?
-//    var type: String?
-//}
-//
-//struct MaterialsAssignment: Codable {
-//    var id: Int?
-//    var title: String?
-//    var instructions: String?
-//    var duration: Int?
-//    var numberOfQuestions: Int?
-//    var publishedAt: String?
-//    var type: String?
-//}
-
 struct MaterialsVideo: Codable {
     var id: Int?
     var title: String?

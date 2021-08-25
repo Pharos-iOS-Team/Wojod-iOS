@@ -67,12 +67,19 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         downloadTask.resume()
     }
 
-    private func handleDownloadingAudioSuccess(audioCell: AudioMessageCell, message: MessageType, downloadedURL: URL?, item: AudioItem, completion: (() -> Void)? = nil) {
+    private func handleDownloadingAudioSuccess(
+        audioCell: AudioMessageCell,
+        message: MessageType,
+        downloadedURL: URL?,
+        item: AudioItem,
+        completion: (() -> Void)? = nil
+    ) {
         playingCell = audioCell
         playingMessage = message
         guard let url = downloadedURL else { return }
         do {
             let player = try AVAudioPlayer(contentsOf: url)
+            checkIfHeadPhonesIsConnected()
             audioPlayer = player
             audioPlayer?.prepareToPlay()
             audioPlayer?.delegate = self
@@ -84,6 +91,24 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             if let completion = completion { completion() }
         } catch {
             print(error)
+        }
+    }
+
+    private func checkIfHeadPhonesIsConnected() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playAndRecord, mode: .default, options: .allowBluetooth)
+            guard let availableInputs = session.availableInputs else { return }
+            for input in availableInputs {
+                if input.portType == .bluetoothHFP {
+                    try session.overrideOutputAudioPort(AVAudioSession.PortOverride.none)
+                } else {
+                    try session.overrideOutputAudioPort(.speaker)
+                }
+            }
+            try session.setActive(true)
+        } catch {
+            print("Couldn't override output audio port")
         }
     }
 
@@ -108,7 +133,7 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
 
     func stopAnyOngoingPlaying() {
         guard let player = audioPlayer,
-              let collectionView = messageCollectionView
+        let collectionView = messageCollectionView
         else { return }
         player.stop()
         state = .stopped

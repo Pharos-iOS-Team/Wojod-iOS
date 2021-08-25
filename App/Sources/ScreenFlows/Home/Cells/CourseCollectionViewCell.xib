@@ -106,17 +106,6 @@
                                     <action selector="didTapPlayVideo:" destination="gTV-IL-0wX" eventType="touchUpInside" id="RBM-5q-HBb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="03q-8x-ccX">
-                                <rect key="frame" x="103" y="152" width="58" height="28"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="See Receipt">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapSeeReceipt:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DGE-ZH-nsI"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RJ9-UB-Ppo">
                                 <rect key="frame" x="112.5" y="55.5" width="20" height="20"/>
                             </activityIndicatorView>
@@ -126,11 +115,9 @@
                             <constraint firstItem="RGw-VE-DT5" firstAttribute="leading" secondItem="waf-wk-xby" secondAttribute="leading" id="2sN-dw-Jnc"/>
                             <constraint firstItem="ynT-ac-HKi" firstAttribute="top" secondItem="RGw-VE-DT5" secondAttribute="bottom" constant="10" id="38H-aR-MOu"/>
                             <constraint firstItem="RJ9-UB-Ppo" firstAttribute="centerY" secondItem="waf-wk-xby" secondAttribute="centerY" id="5hB-gR-zse"/>
-                            <constraint firstItem="03q-8x-ccX" firstAttribute="height" secondItem="s2E-Az-Ail" secondAttribute="height" id="9nU-EB-MeR"/>
                             <constraint firstAttribute="bottom" secondItem="ynT-ac-HKi" secondAttribute="bottom" constant="10" id="9xH-or-pNb"/>
                             <constraint firstItem="s2E-Az-Ail" firstAttribute="trailing" secondItem="waf-wk-xby" secondAttribute="trailing" id="COp-fa-0ty"/>
                             <constraint firstItem="rMT-Nu-xl7" firstAttribute="trailing" secondItem="s2E-Az-Ail" secondAttribute="trailing" id="Cmm-ai-6Si"/>
-                            <constraint firstItem="03q-8x-ccX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ynT-ac-HKi" secondAttribute="trailing" priority="500" constant="10" id="DJm-5D-QgI"/>
                             <constraint firstItem="RJ9-UB-Ppo" firstAttribute="centerX" secondItem="waf-wk-xby" secondAttribute="centerX" id="I9R-Y7-rT7"/>
                             <constraint firstItem="RGw-VE-DT5" firstAttribute="top" secondItem="waf-wk-xby" secondAttribute="bottom" constant="10" id="QrE-HX-gWq"/>
                             <constraint firstItem="rMT-Nu-xl7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGw-VE-DT5" secondAttribute="trailing" constant="10" id="Sez-dH-FPy"/>
@@ -142,8 +129,6 @@
                             <constraint firstItem="waf-wk-xby" firstAttribute="top" secondItem="kFx-By-3Qx" secondAttribute="top" constant="10" id="d4r-LR-z1T"/>
                             <constraint firstItem="waf-wk-xby" firstAttribute="leading" secondItem="kFx-By-3Qx" secondAttribute="leading" constant="20" id="dta-Ks-tqU"/>
                             <constraint firstAttribute="bottom" secondItem="s2E-Az-Ail" secondAttribute="bottom" constant="10" id="kdm-Sm-nHn"/>
-                            <constraint firstItem="s2E-Az-Ail" firstAttribute="leading" secondItem="03q-8x-ccX" secondAttribute="trailing" constant="5" id="vHX-2t-Trq"/>
-                            <constraint firstItem="03q-8x-ccX" firstAttribute="top" secondItem="s2E-Az-Ail" secondAttribute="top" id="wCt-C0-tGz"/>
                             <constraint firstItem="waf-wk-xby" firstAttribute="centerX" secondItem="kFx-By-3Qx" secondAttribute="centerX" id="wnc-EE-IlS"/>
                         </constraints>
                     </view>
@@ -167,7 +152,6 @@
                 <outlet property="playButton" destination="ukD-6R-hMP" id="OT9-3y-3PZ"/>
                 <outlet property="priceLabel" destination="ynT-ac-HKi" id="bNg-rA-SIg"/>
                 <outlet property="secondRatingStar" destination="pl2-0z-gvk" id="OEj-lZ-5vr"/>
-                <outlet property="seeReceiptButton" destination="03q-8x-ccX" id="ci9-Ku-c4l"/>
                 <outlet property="thirdRatingStar" destination="Hxi-Zp-fCf" id="gLD-Hq-eaL"/>
                 <outlet property="titleLabel" destination="RGw-VE-DT5" id="7nm-3N-C4H"/>
                 <outlet property="viewButton" destination="s2E-Az-Ail" id="WmW-IY-HJk"/>
@@ -186,9 +170,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -15,6 +15,15 @@ extension Images {
         }
     }
 
+    static var localizedWhiteBackButton: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return backIconWhite.image
+        case .arabic:
+            return backIconWhite.image.withHorizontallyFlippedOrientation()
+        }
+    }
+
     static var localizedDisclosureIndicatorButton: UIImage {
         switch Language.currentLanguage {
         case .english:
@@ -30,6 +39,15 @@ extension Images {
             return nextIcon.image
         case .arabic:
             return nextIcon.image.withHorizontallyFlippedOrientation()
+        }
+    }
+
+    static var localizedNextArrowIndicator: UIImage {
+        switch Language.currentLanguage {
+        case .english:
+            return nextIndicator.image
+        case .arabic:
+            return nextIndicator.image.withHorizontallyFlippedOrientation()
         }
     }
 }

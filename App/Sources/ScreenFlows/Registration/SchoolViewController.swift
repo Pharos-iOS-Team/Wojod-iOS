@@ -103,8 +103,8 @@ class SchoolViewController: UIViewController {
     private var academicTypesList: [KeyValue]?
     private var selectedDivisionIndexID: Int = 0
     private var selectedYearIndexID: Int = 0
-    private var divisionsList: [String] = []
-    private var academicYears: [String] = []
+    private var divisionsList: [Division] = []
+    private var academicYears: [Batch] = []
     private var divisionsPickerView = PickerInputView<String>(height: 200)
     private var academicTypesPickerView = PickerInputView<String>(height: 200)
     private var academicYearPickerView = PickerInputView<String>(height: 200)
@@ -140,9 +140,9 @@ class SchoolViewController: UIViewController {
     // MARK: - Private Functions
 
     private func configurePickerFields() {
-        divisionsPickerView.items = { self.divisionsList }
+        divisionsPickerView.items = { self.divisionsList.compactMap { $0.value } }
         academicTypesPickerView.items = { (self.academicTypesList?.compactMap { $0.value } ?? [""]) }
-        academicYearPickerView.items = { self.academicYears }
+        academicYearPickerView.items = { self.academicYears.compactMap { $0.value } }
 
         academicTypeTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
         academicDivisionTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicDivisionPickerDoneTapped))
@@ -155,7 +155,7 @@ class SchoolViewController: UIViewController {
         academicYearPickerView.text = { $0 }
 
         divisionsPickerView.didSelectAtIndex = { [unowned self] index in
-            academicDivisionTextField.text = self.divisionsList[index]
+            academicDivisionTextField.text = self.divisionsList[index].value
             self.selectedDivisionIndexID = index
             self.selectedDivision = viewModel?.divisions?[index]
             academicDivisionTextField.setNormalView()
@@ -167,7 +167,7 @@ class SchoolViewController: UIViewController {
         }
         academicYearPickerView.didSelectAtIndex = { [unowned self] index in
             guard !academicYears.isEmpty else { return }
-            academicYearTextField.text = self.academicYears[index]
+            academicYearTextField.text = self.academicYears[index].value
             self.selectedYearIndexID = index
             academicYearTextField.setNormalView()
         }
@@ -176,6 +176,9 @@ class SchoolViewController: UIViewController {
     private func loadAcademicTypes() {
         viewModel?.loadAcademicTypes(for: .schoolStudent) { academicTypes in
             self.academicTypesList = academicTypes
+            self.selectedAcademicType = academicTypes?[0]
+            self.academicTypeTextField.text = academicTypes?[0].value
+            self.retrieveAcademicDivisions()
         }
     }
 
@@ -183,7 +186,12 @@ class SchoolViewController: UIViewController {
         activityIndicator.startAnimating()
         viewModel?.loadAcademicDivisions(for: .schoolStudent, in: self.selectedAcademicType?.key ?? 0) { divisions in
             self.activityIndicator.stopAnimating()
-            self.divisionsList = divisions
+            self.divisionsList = divisions ?? []
+            User.shared.divisionId = divisions?[0].key
+            User.shared.divisionName = divisions?[0].value
+            self.academicDivisionTextField.text = divisions?[0].value
+            self.selectedDivision = divisions?[0]
+            self.retrieveAcademicYear()
         }
     }
 
@@ -191,7 +199,9 @@ class SchoolViewController: UIViewController {
         activityIndicator.startAnimating()
         viewModel?.loadBatches(for: selectedDivision?.key ?? 0) { batches in
             self.activityIndicator.stopAnimating()
-            self.academicYears = batches
+            self.academicYears = batches ?? []
+            self.selectedYearIndexID = 0
+            self.academicYearTextField.text = batches?[0].value
         }
     }
 
@@ -220,7 +230,7 @@ class SchoolViewController: UIViewController {
     private func academicYearPickerDoneTapped() {
         guard !academicYears.isEmpty else { return }
         academicYearPickerView.resignFirstResponder()
-        academicYearTextField.text = academicYears[selectedYearIndexID]
+        academicYearTextField.text = academicYears[selectedYearIndexID].value
     }
 
     private func isMandatoryFieldsFilled() -> Bool {

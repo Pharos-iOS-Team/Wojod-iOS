@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import JGProgressHUD
 import UIKit
 
 class ProfileViewController: UIViewController {
@@ -28,8 +29,12 @@ class ProfileViewController: UIViewController {
     }
 
     private let viewModel = ProfileViewModel()
+    private var loadingHud: JGProgressHUD?
     var avatars: AvatarsModel?
     var user: StudentModel?
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +43,12 @@ class ProfileViewController: UIViewController {
         editSuccessHandler()
         editErrorHandler()
         fetchAcademicInfo()
+        configureAcademicInfoSuccessHandler()
         viewModel.loadCountries()
         reloadCountriesCell()
         reloadCitiesCell()
         preventScreenshot()
+        preventScreenRecording()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +67,25 @@ class ProfileViewController: UIViewController {
         profileTableView.registerCell(ofType: ProfileTableViewCell.self)
         profileTableView.registerCell(ofType: ProfileEditAndLogoutTableViewCell.self)
         profileTableView.registerHeaderFooterView(ofType: ProfileTableViewHeader.self)
+    }
+
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
+
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
+    }
+
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
     }
 
     private func editProfile() {
@@ -109,6 +135,12 @@ class ProfileViewController: UIViewController {
         alertHandler.showInformationAlert(title: L10n.Global.Titles.warning, message: L10n.Profile.editedSuccessfully)
     }
 
+    private func configureAcademicInfoSuccessHandler() {
+        viewModel.academicInfoSuccessHandler = { [unowned self] in
+            profileTableView.reloadData()
+        }
+    }
+
     private func fetchAcademicInfo() {
         viewModel.fetchEducationalTypes()
         viewModel.fetchDivisions()
@@ -117,11 +149,13 @@ class ProfileViewController: UIViewController {
     }
 
     private func navigateToAvatarsList() {
+        showLoadingIndicator()
         guard let avatars = avatars?.avatars else { return }
         let avatarsListViewCtrl = StoryboardScene.AvatarsList.avatarsListViewController.instantiate()
         avatarsListViewCtrl.avatars = avatars
         avatarsListViewCtrl.delegate = self
         present(avatarsListViewCtrl, animated: true, completion: nil)
+        hideLoadingIndicator()
     }
 
     private func getImage(from avatar: Avatar) -> UIImage {
@@ -228,15 +262,20 @@ extension ProfileViewController: UITableViewDelegate {
 }
 
 extension ProfileViewController: ProfileTableViwCellProtocol {
-    func didFieldChange(text: String, cell: UITableViewCell) {
+    func didFieldChange(text: String, cell: UITableViewCell, field: ProfileFields?) {
         guard let index = profileTableView.indexPath(for: cell) else { return }
         viewModel.editProfileFields(forIndexPath: index.row, withText: text)
+        if field == .country {
+            let cityCell = profileTableView.cellForRow(at: IndexPath(row: index.row + 1, section: index.section)) as? ProfileTableViewCell
+            cityCell?.configureDefaultSelectionForCity()
+        }
     }
 }
 
 extension ProfileViewController: AvatarsListDelegate {
     func setAvatar(avatar: Avatar) {
         guard let id = avatar.id else { return }
+        User.shared.avatar = avatar
         viewModel.setNewAvatar(avatarId: id)
         profileTableView.reloadData()
     }

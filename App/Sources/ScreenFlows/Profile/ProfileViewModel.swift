@@ -43,10 +43,12 @@ class ProfileViewModel {
     }
 
     var successHandler: ((StudentModel) -> Void)?
+    var academicInfoSuccessHandler: (() -> Void)?
     var avatarSuccessHandler: ((AvatarsModel) -> Void)?
     var errorHandler: ((WJError) -> Void)?
     var reloadCountriesCell: (() -> Void)?
     var reloadCitiesCell: ((Int) -> Void)?
+    private let group = DispatchGroup()
 
     func editProfile(id: String) {
         model.editProfile(id: id, profile: profile) { result in
@@ -76,54 +78,66 @@ class ProfileViewModel {
     }
 
     func fetchEducationalTypes() {
+        group.enter()
         academicInfoModel.fetchEducationalTypes { result in
             switch result {
             case .success(let educationalTypes as EducationalTypesModel):
                 AcademicInfo.shared.educationalTypes = educationalTypes
+                self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
             default:
                 return
             }
+            self.group.leave()
         }
     }
 
     func fetchDivisions() {
+        group.enter()
         academicInfoModel.fetchDivisions { result in
             switch result {
             case .success(let divisions as DivisionsModel):
                 AcademicInfo.shared.divisions = divisions
+                self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
             default:
                 return
             }
+            self.group.leave()
         }
     }
 
     func fetchBatches(id: String) {
+        group.enter()
         academicInfoModel.fetchBatches(id: id) { result in
             switch result {
             case .success(let batches as BatchesModel):
                 AcademicInfo.shared.batches = batches
+                self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
             default:
                 return
             }
+            self.group.leave()
         }
     }
 
     func fetchSpecializations(id: String) {
+        group.enter()
         academicInfoModel.fetchSpecializations(id: id) { result in
             switch result {
             case .success(let specializations as SpecializationsModel):
                 AcademicInfo.shared.specializations = specializations
+                self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
             default:
                 return
             }
+            self.group.leave()
         }
     }
 
@@ -139,6 +153,8 @@ class ProfileViewModel {
         NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
             let cities = response?.data
             self.cities = cities ?? [KeyName]()
+            User.shared.city = cities?.first?.name
+            self.profile.city = cities?.first?.key
             self.reloadCitiesCell?(index + 1)
         }
     }
@@ -251,12 +267,7 @@ class ProfileViewModel {
     }
 
     func shouldMakeTextFieldDisabled(forIndexPath index: Int) -> Bool {
-        switch validFields[index] {
-        case .name, .mobileNumber, .division:
-            return true
-        default:
-            return false
-        }
+        validFields[index] == .mobileNumber
     }
 
     func setNewPassword(oldPassword: String?, newPassword: String?, passwordConfirmation: String?) {
@@ -267,5 +278,11 @@ class ProfileViewModel {
 
     func setNewAvatar(avatarId: Int) {
         profile.avatarId = avatarId
+    }
+
+    func handleSuccessfulResponse() {
+        group.notify(queue: .main) {
+            self.academicInfoSuccessHandler?()
+        }
     }
 }

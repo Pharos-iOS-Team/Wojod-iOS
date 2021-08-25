@@ -188,6 +188,7 @@
 "courseDetails.courseReview.describeCourse" = "صف الدورة ...";
 "courseDetails.courseReview.skipRating" = "تخطي التقييم";
 "courseDetails.courseReview.by" = "من قبل";
+"courseDetails.courseReview.emptyStateMessage" = "لا توجد تقييمات بعد.";
 
 // MARK: - Home & My courses
 
@@ -198,6 +199,8 @@
 "home.course.price" = "ج.م.";
 "home.course.seeReceipt" = "عرض الايصال";
 "home.course.returnToTeacher" = "ارجع للمدرس";
+"home.ads.viewMore" = "عرض المزيد";
+"home.pending" = "في حالة انتظار";
 
 // MARK: - Notifications
 
@@ -220,7 +223,7 @@
 "quizzes.empty" = "لا يوجد اختبار";
 "quizzes.noData" = "لا يوجد اختبارات متاحة الان";
 "quizzes.alertTitle" = "عند بدأ الامتحان، لا يمكنك الرجوع للخطوة السابقة";
-"quizzes.alertSubTitle" = "اذ لم تكن جاهزا، برجاء الإلغاء و العودة لتاريخ الإستحقاق";
+"quizzes.alertSubTitle" = "إذا لم تكن جاهزا برجاء الإلغاء والعودة لاحقا";
 "quizzes.timeDuration" = "المدة";
 "quizzes.point" = "درجة";
 "quizzes.points" = "درجات";

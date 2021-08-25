@@ -188,6 +188,7 @@ No worries!";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
 "courseDetails.courseReview.by" = "by";
+"courseDetails.courseReview.emptyStateMessage" = "No reviews yet.";
 
 // MARK: - Home & My courses
 
@@ -198,6 +199,8 @@ No worries!";
 "home.course.price" = "EGP";
 "home.course.seeReceipt" = "See Receipt";
 "home.course.returnToTeacher" = "Return to teacher";
+"home.ads.viewMore" = "View more";
+"home.pending" = "Pending";
 
 // MARK: - Notifications
 
@@ -220,7 +223,7 @@ No worries!";
 "quizzes.empty" = "No Quizzes";
 "quizzes.noData" = "There is no quiz assigned yet";
 "quizzes.alertTitle" = "By starting the exam there is no turning back!";
-"quizzes.alertSubTitle" = "If you are not ready please cancel and return back before the due date";
+"quizzes.alertSubTitle" = "If you are not ready please cancel and return back when you are.";
 "quizzes.timeDuration" = "Time duration";
 "quizzes.point" = "point";
 "quizzes.points" = "points";

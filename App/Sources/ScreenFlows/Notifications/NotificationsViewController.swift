@@ -22,6 +22,10 @@ class NotificationsViewController: UIViewController {
     private var notifications: [Notification] = []
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
+    private let refreshControl = UIRefreshControl()
+    private var window: UIWindow? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    }
 
     // MARK: - Lifecycle
 
@@ -29,9 +33,11 @@ class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         viewModel = NotificationsViewModel()
         configureTableView()
+        configureRefreshControl()
         loadNotifications()
         documentInteractionController.delegate = self
         preventScreenshot()
+        preventScreenRecording()
     }
 
     // MARK: - IBActions
@@ -42,6 +48,15 @@ class NotificationsViewController: UIViewController {
 
     // MARK: - Private functions
 
+    private func preventScreenRecording() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        window?.isHidden = UIScreen.main.isCaptured
+    }
+
     private func configureTableView() {
         tableView.registerCell(ofType: NotificationTableViewCell.self)
         tableView.dataSource = self
@@ -49,7 +64,9 @@ class NotificationsViewController: UIViewController {
     }
 
     private func loadNotifications() {
+        showLoadingIndicator()
         viewModel?.loadNotifications { notifications in
+            self.hideLoadingIndicator()
             self.notifications = notifications.notifications ?? []
             self.tableView.reloadData()
         }
@@ -92,6 +109,17 @@ class NotificationsViewController: UIViewController {
 
     private func hideLoadingIndicator() {
         loadingHud?.dismiss()
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        loadNotifications()
+        tableView.refreshControl?.endRefreshing()
     }
 }
 

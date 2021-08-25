@@ -60,7 +60,7 @@ class AssignmentQuestionStateView: UIView {
         }
         switch state {
         case .correct:
-            setupView(title: "assignment.correctTitle".localiz(), color: .green)
+            setupView(title: "assignment.correctTitle".localiz(), color: Colors.green.color)
         case .incorrect:
             setupView(title: "assignment.incorrectTitle".localiz(), color: .red)
         case .notReviewed:
@@ -89,7 +89,7 @@ class AssignmentQuestionStateView: UIView {
         switch teacherSelction {
         case .correct:
             questionStateLabel.text = "assignment.correctTitle".localiz()
-            questionStateLabel.textColor = .green
+            questionStateLabel.textColor = Colors.green.color
         case .incorrect:
             questionStateLabel.text = "assignment.incorrectTitle".localiz()
             questionStateLabel.textColor = .red

@@ -36,12 +36,6 @@ class CourseCollectionViewCell: UICollectionViewCell {
             playButton.isHidden = true
         }
     }
-    @IBOutlet private var seeReceiptButton: UIButton! {
-        didSet {
-            seeReceiptButton.layer.cornerRadius = UIConstants.slightCornerRadius
-            seeReceiptButton.setTitle(L10n.Home.Course.seeReceipt)
-        }
-    }
     @IBOutlet private var activityIndicator: UIActivityIndicatorView! {
         didSet {
             activityIndicator.hidesWhenStopped = true
@@ -61,6 +55,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     private let filledStar: UIImage = Images.filledStar.image
     private var course: Course?
     private var isMyCourses = Bool()
+    private var player: AVPlayer?
 
     // MARK: - Public Properties
 
@@ -79,15 +74,19 @@ class CourseCollectionViewCell: UICollectionViewCell {
         delegate?.showCourseDetails(for: course, with: teacherNameIndex ?? 0)
     }
 
-    @IBAction private func didTapSeeReceipt(_ sender: UIButton) {
-        viewReceiptDelegate?.displayReceipt(course?.receipt ?? Receipt())
-    }
-
     // MARK: - Lifecycle
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        player = nil
         imageView.image = nil
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        firstRatingStar.image = Images.star.image
+        secondRatingStar.image = Images.star.image
+        thirdRatingStar.image = Images.star.image
+        fourthRatingStar.image = Images.star.image
+        fifthRatingStar.image = Images.star.image
     }
 
     // MARK: - Private Functions
@@ -101,11 +100,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     // swiftlint:disable function_body_length
-    private func configureRatingStars(_ rating: Double?) {
-        var ratingNumber = rating
-        ratingNumber?.round()
-
-        switch ratingNumber {
+    private func configureRatingStars(_ rating: Int?) {
+        switch rating {
         case 1:
             firstRatingStar.image = filledStar
         case 2:
@@ -131,11 +127,16 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private func configureVisibilityOfSeeReceiptButton() {
+    private func configureActionButtonAccordingToState() {
         if isMyCourses && course?.reservationState == "pending" {
-            seeReceiptButton.isHidden = false
+            viewButton.setTitle(L10n.Home.pending)
+            viewButton.layer.backgroundColor = Colors.orange.color.cgColor
+        } else if isMyCourses && course?.reservationState == "approved" {
+            viewButton.setTitle(L10n.Quizzes.open)
+            viewButton.layer.backgroundColor = Colors.green.color.cgColor
         } else {
-            seeReceiptButton.isHidden = true
+            viewButton.setTitle(L10n.Home.view)
+            viewButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         }
     }
 
@@ -160,18 +161,25 @@ class CourseCollectionViewCell: UICollectionViewCell {
                 self.activityIndicator.stopAnimating()
             }
         }
-        playButton.isHidden = course?.video == nil
-        configureRatingStars(course?.rating)
-        configureVisibilityOfSeeReceiptButton()
+        playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
+        configureRatingStars(Int(course?.rating ?? 0))
+        configureActionButtonAccordingToState()
     }
 
     func configureVideo(with url: String) {
         playButton.isHidden = true
         let videoURL = URL(string: "\(Environment.baseURL)" + url)
-        let player = AVPlayer(url: videoURL!)
+        player = AVPlayer(url: videoURL!)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.imageView.bounds
         self.imageView.layer.addSublayer(playerLayer)
-        player.play()
+        player?.play()
+    }
+
+    func stopVideoIfTheresAnyPlaying() {
+        guard player != nil else { return }
+        player?.pause()
+        imageView.subviews.forEach { $0.removeFromSuperview() }
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
     }
 }

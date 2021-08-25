@@ -7,11 +7,6 @@ class BasicInfoRegistrationViewController: UIViewController {
 
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
-    @IBOutlet private var mandatoryFieldsHintLabel: UILabel! {
-        didSet {
-            mandatoryCellsHintLabel.text = L10n.Signup.BasicInfo.mandatoryFieldsHint
-        }
-    }
     @IBOutlet private var mobileLinkedToWhatsappHintLabel: UILabel! {
         didSet {
             mobileLinkedToWhatsappHintLabel.text = L10n.Signup.BasicInfo.whatsappNumberHint
@@ -81,7 +76,6 @@ class BasicInfoRegistrationViewController: UIViewController {
         }
     }
     @IBOutlet private var hintContentView: UIView!
-    @IBOutlet private var mandatoryCellsHintLabel: UILabel!
     @IBOutlet private var mobileNumberHintLabel: UILabel!
     @IBOutlet private var nextButton: SendButton! {
         didSet {
@@ -160,14 +154,12 @@ class BasicInfoRegistrationViewController: UIViewController {
     private func configureView() {
         wrongCredentialsImageView.isHidden = true
         hintContentView.isHidden = false
-        mandatoryCellsHintLabel.isHidden = false
         mobileNumberHintLabel.isHidden = false
     }
 
     private func displayWrongCredentialsError() {
         wrongCredentialsImageView.isHidden = false
         hintContentView.isHidden = true
-        mandatoryCellsHintLabel.isHidden = true
         mobileNumberHintLabel.isHidden = true
     }
 

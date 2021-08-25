@@ -65,7 +65,7 @@ class ReceiptView: UIView {
     // MARK: - Public Functions
 
     internal func configure(with receiptData: BookingCourseResponseModel) {
-        receiptNumberLabel.text = receiptData.receiptNumber
+        receiptNumberLabel.text = receiptData.receiptNumber?.dashed()
         customerNameValueLabel.text = receiptData.studentName
         addressValueLabel.text = receiptData.address
         courseNameValueLabel.text = receiptData.courseName
@@ -73,7 +73,7 @@ class ReceiptView: UIView {
     }
 
     internal func configureInMyCourses(with receipt: Receipt) {
-        receiptNumberLabel.text = receipt.receiptNumber
+        receiptNumberLabel.text = receipt.receiptNumber?.dashed()
         customerNameValueLabel.text = receipt.studentName
         addressValueLabel.text = receipt.address
         courseNameValueLabel.text = receipt.courseName

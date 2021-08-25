@@ -43,7 +43,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
     private func setQuestionMark(_ mark: String, _ questionMarkStatus: QuestionStatus) {
         switch questionMarkStatus {
         case .correct:
-            numberOfPointsLabel.textColor = .green
+            numberOfPointsLabel.textColor = Colors.green.color
             numberOfPointsLabel.font = markFont
             numberOfPointsLabel.text = mark
         case .wrong:
@@ -99,7 +99,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
     private func setAssignmentQuestionStatus(_ status: AssessmentQuestion.AnswerState) {
         switch status {
         case .correct:
-            questionStatusLabel.textColor = .green
+            questionStatusLabel.textColor = Colors.green.color
             questionStatusLabel.font = statusFont
             questionStatusLabel.text = "assignment.correct".localiz()
         case .incorrect:

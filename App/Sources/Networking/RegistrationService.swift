@@ -72,11 +72,13 @@ extension RegistrationService: TargetType {
         switch self {
         case let .checkNumber(mobileNumber, email):
             return.requestParameters(parameters: ["mobile_number": mobileNumber, "email": email], encoding: URLEncoding.queryString)
-        case .countries, .batches, .specializations,
-        .avatars:
+        case .batches, .specializations,
+             .avatars:
             return .requestPlain
+        case .countries:
+            return .requestParameters(parameters: ["locale": Language.currentLanguage.rawValue], encoding: URLEncoding.queryString)
         case .cities(let countryName):
-            return .requestParameters(parameters: ["selected_country": countryName], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["locale": Language.currentLanguage.rawValue, "selected_country": countryName], encoding: URLEncoding.queryString)
         case .academicTypes(let academicLevel):
             return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
         case let .academicDivisions(academicLevel, educationType):

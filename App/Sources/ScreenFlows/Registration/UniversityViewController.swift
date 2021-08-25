@@ -79,11 +79,8 @@ class UniversityViewController: UIViewController {
             universityLabel.text = L10n.Signup.AcademicInfo.university
         }
     }
-    @IBOutlet private var nextButton: SendButton! {
-        didSet {
-            nextButton.isEnabled = false
-        }
-    }
+    @IBOutlet private var nextButton: SendButton!
+    @IBOutlet private var fieldTextFieldHeightConstraint: NSLayoutConstraint!
 
     // MARK: - Private Properties
 
@@ -92,9 +89,9 @@ class UniversityViewController: UIViewController {
     private var selectedDivisionIndex: Int = 0
     private var selectedFieldIndex: Int = 0
     private var selectedYearIndex: Int = 0
-    private var universities = [String]()
-    private var fields = [String]()
-    private var years = [String]()
+    private var universities = [Division]()
+    private var fields = [Specialization]()
+    private var years = [Batch]()
     private var universityPickerView = PickerInputView<String>(height: 200)
     private var fieldPickerView = PickerInputView<String>(height: 200)
     private var yearPickerView = PickerInputView<String>(height: 200)
@@ -115,7 +112,6 @@ class UniversityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideWrongCredentialsError()
-        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     // MARK: - IBActions
@@ -147,9 +143,9 @@ class UniversityViewController: UIViewController {
     }
 
     private func configurePickerFields() {
-        universityPickerView.items = { self.universities }
-        fieldPickerView.items = { self.fields }
-        yearPickerView.items = { self.years }
+        universityPickerView.items = { self.universities.compactMap { $0.value } }
+        fieldPickerView.items = { self.fields.compactMap { $0.value } }
+        yearPickerView.items = { self.years.compactMap { $0.value } }
 
         universityTextField.keyboardToolbar.doneBarButton.setTarget(
             self,
@@ -171,18 +167,18 @@ class UniversityViewController: UIViewController {
         yearPickerView.text = { $0 }
 
         universityPickerView.didSelectAtIndex = { [unowned self] index in
-            universityTextField.text = universities[index]
+            universityTextField.text = universities[index].value
             selectedDivisionIndex = index
             universityTextField.setNormalView()
         }
         fieldPickerView.didSelectAtIndex = { [unowned self] index in
-            fieldTextField.text = fields[index]
+            fieldTextField.text = fields[index].value
             selectedFieldIndex = index
             fieldTextField.setNormalView()
         }
         yearPickerView.didSelectAtIndex = { [unowned self] index in
             guard !years.isEmpty else { return }
-            yearTextField.text = years[index]
+            yearTextField.text = years[index].value
             selectedYearIndex = index
             yearTextField.setNormalView()
         }
@@ -230,69 +226,96 @@ class UniversityViewController: UIViewController {
 
     private func retrieveUniversities() {
         viewModel?.loadAcademicDivisions(for: self.academicLevel, in: 0) { universities in
-            self.universities = universities
+            self.universities = universities ?? []
+            self.selectDefaultUniversity()
             self.retrieveFields()
             self.retrieveYears()
         }
     }
 
     private func retrieveFields() {
-        viewModel?.loadSpecializations(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0) { fields in
-            self.fields = fields
+        viewModel?.loadSpecializations(for: User.shared.divisionId ?? universities[0].key ?? 0) { [unowned self] fields in
+            self.fields = fields ?? []
+            if self.fields.isEmpty {
+                fieldTextField.isHidden = true
+                fieldTextFieldHeightConstraint.constant = 0
+            } else {
+                fieldTextField.isHidden = false
+                fieldTextFieldHeightConstraint.constant = 50
+                selectedFieldIndex = 0
+                User.shared.specializationId = fields?[0].key
+                User.shared.specializationName = fields?[0].value
+                fieldTextField.text = fields?[0].value
+            }
         }
     }
 
     private func retrieveYears() {
-        viewModel?.loadBatches(for: User.shared.divisionId ?? viewModel?.divisionIDs[0] ?? 0) { years in
-            self.years = years
+        viewModel?.loadBatches(for: User.shared.divisionId ?? universities[0].key ?? 0) { years in
+            self.years = years ?? []
+            self.selectedYearIndex = 0
+            self.yearTextField.text = years?[0].value
+            User.shared.batch = years?[0].key
+            User.shared.batchName = years?[0].value
         }
+    }
+
+    private func selectDefaultUniversity() {
+        User.shared.divisionId = universities[0].key
+        User.shared.divisionName = universities[0].value
+        universityTextField.text = universities[0].value
     }
 
     @objc
     private func universityPickerDoneTapped() {
         universityPickerView.resignFirstResponder()
-        universityTextField.text = universities[selectedDivisionIndex]
+        universityTextField.text = universities[selectedDivisionIndex].value
         User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndex]
         retrieveFields()
         retrieveYears()
-        configureNextButtonEnabling()
+        // configureNextButtonEnabling()
     }
 
     @objc
     private func fieldPickerDoneTapped() {
         fieldPickerView.resignFirstResponder()
-        fieldTextField.text = fields.isEmpty ? "" : fields[selectedFieldIndex]
-        configureNextButtonEnabling()
+        fieldTextField.text = fields.isEmpty ? "" : fields[selectedFieldIndex].value
+        // configureNextButtonEnabling()
     }
 
     @objc
     private func yearPickerDoneTapped() {
         guard !years.isEmpty else { return }
         yearPickerView.resignFirstResponder()
-        yearTextField.text = years[selectedYearIndex]
-        configureNextButtonEnabling()
+        yearTextField.text = years[selectedYearIndex].value
+        // configureNextButtonEnabling()
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
         switch self.academicLevel {
         case .universityStudent:
-            return !universityTextField.isEmpty && !fieldTextField.isEmpty && !yearTextField.isEmpty
+            if fields.isEmpty {
+                return !universityTextField.isEmpty && !yearTextField.isEmpty
+            } else {
+                return !universityTextField.isEmpty && !fieldTextField.isEmpty && !yearTextField.isEmpty
+            }
+
         default:
             return !universityTextField.isEmpty && !fieldTextField.isEmpty
         }
     }
 
-    private func configureEmptyMandatoryFields() {
-        if universityTextField.isEmpty {
-            universityTextField.setErrorView()
-        }
-        if fieldTextField.isEmpty {
-            fieldTextField.setErrorView()
-        }
-        if yearTextField.isEmpty && academicLevel == .universityStudent {
-            yearTextField.setErrorView()
-        }
-    }
+//    private func configureEmptyMandatoryFields() {
+//        if universityTextField.isEmpty {
+//            universityTextField.setErrorView()
+//        }
+//        if fieldTextField.isEmpty {
+//            fieldTextField.setErrorView()
+//        }
+//        if yearTextField.isEmpty && academicLevel == .universityStudent {
+//            yearTextField.setErrorView()
+//        }
+//    }
 
     private func retrieveInputEnteredFromUser() {
         User.shared.academicType = self.academicLevel.rawValue
@@ -313,22 +336,22 @@ class UniversityViewController: UIViewController {
         wrongCredentialsImageViewHeight.constant = 0
     }
 
-    private func configureNextButtonEnabling() {
-        if isMandatoryFieldsFilled() {
-            nextButton.isEnabled = true
-            nextButton.backgroundColor = Colors.sendButtonColor.color
-        } else {
-            nextButton.isEnabled = false
-            nextButton.backgroundColor = Colors.darkGreyColor.color
-        }
-    }
+//    private func configureNextButtonEnabling() {
+//        if isMandatoryFieldsFilled() {
+//            nextButton.isEnabled = true
+//            nextButton.backgroundColor = Colors.sendButtonColor.color
+//        } else {
+//            nextButton.isEnabled = false
+//            nextButton.backgroundColor = Colors.darkGreyColor.color
+//        }
+//    }
 
     // MARK: - Segue
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard isMandatoryFieldsFilled() == true else {
             showWrongCredentialsError()
-            configureEmptyMandatoryFields()
+            // configureEmptyMandatoryFields()
             return false
         }
         return true
