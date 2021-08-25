@@ -72,6 +72,7 @@ class HomeViewController: UIViewController {
         preventScreenshot()
         preventScreenRecording()
         loadAndConfigureAdvertisements()
+        observeInternetConnection()
     }
 
     override func viewDidAppear(_ animated: Bool) {

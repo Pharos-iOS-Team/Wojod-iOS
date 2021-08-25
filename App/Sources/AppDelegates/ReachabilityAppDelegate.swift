@@ -36,9 +36,15 @@ class ReachabilityAppDelegate: AppDelegateType {
         guard let reachability = note.object as? Reachability else { return }
         if reachability.reachable, ConnectionContext.isDisconnectedBefore {
             ReachabilityAppDelegate.connectionState = .connected
+            NotificationCenter.default.post(name: .internetConnectionChangedNotification, object: nil)
         } else if !reachability.reachable {
             ConnectionContext.isDisconnectedBefore = true
             ReachabilityAppDelegate.connectionState = .notConnected
+            NotificationCenter.default.post(name: .internetConnectionChangedNotification, object: nil)
         }
     }
+}
+
+extension NSNotification.Name {
+    static let internetConnectionChangedNotification = NSNotification.Name("internetChangedNotification")
 }
