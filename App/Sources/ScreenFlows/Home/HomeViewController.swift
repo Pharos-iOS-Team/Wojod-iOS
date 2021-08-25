@@ -217,7 +217,7 @@ class HomeViewController: UIViewController {
         ) { [unowned self] relatedCourses in
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
-            let defaultSubjectName = subjects?[0].name ?? ""
+            let defaultSubjectName = subjects?.first?.name ?? ""
             if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
                 subjectRelatedCourses.append(contentsOf: subjectCourses)
             }
