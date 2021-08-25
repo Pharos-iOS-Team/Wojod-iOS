@@ -329,6 +329,7 @@
 		BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */; };
 		BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1E112643F63900F21515 /* FormTextField.swift */; };
 		BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */; };
+		BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */; };
 		BC91581026385CED00868BB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91580F26385CED00868BB0 /* Constants.swift */; };
 		BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9682482638631D009F8550 /* HomeViewModel.swift */; };
 		BC96824F26386329009F8550 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96824E26386329009F8550 /* HomeModel.swift */; };
@@ -708,6 +709,7 @@
 		BC7D1E112643F63900F21515 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExt.swift; sourceTree = "<group>"; };
+		BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExt.swift; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC9682482638631D009F8550 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BC96824E26386329009F8550 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -1563,6 +1565,7 @@
 		778E722C261DC11A009D7B35 /* UIKitExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */,
 				77E32B9D264A8BA80064B801 /* CGSizeExt.swift */,
 				77E32BCB264A8C670064B801 /* IndexPathExt.swift */,
 				778E72FE261DFF7F009D7B35 /* UIAlertActionExt.swift */,
@@ -2385,6 +2388,7 @@
 				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,
 				38659BEF26B6D2F900E3BFE9 /* TeacherGradesForAssessment.swift in Sources */,
 				38659BE226B6D2F900E3BFE9 /* TimeCalculator.swift in Sources */,
+				BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */,
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
@@ -2721,7 +2725,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
+				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2747,7 +2751,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
+				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
