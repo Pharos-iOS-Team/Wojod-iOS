@@ -328,6 +328,7 @@
 		BC767169262D801F0012155C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767168262D801F0012155C /* SettingsViewModel.swift */; };
 		BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */; };
 		BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1E112643F63900F21515 /* FormTextField.swift */; };
+		BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */; };
 		BC91581026385CED00868BB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91580F26385CED00868BB0 /* Constants.swift */; };
 		BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9682482638631D009F8550 /* HomeViewModel.swift */; };
 		BC96824F26386329009F8550 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC96824E26386329009F8550 /* HomeModel.swift */; };
@@ -706,6 +707,7 @@
 		BC7D1DF32643EDE000F21515 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC7D1E112643F63900F21515 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
+		BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExt.swift; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC9682482638631D009F8550 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BC96824E26386329009F8550 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -1577,6 +1579,7 @@
 				778E723A261DC2D3009D7B35 /* UIViewExt.swift */,
 				7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */,
 				E84E78DA26553DC8000902CB /* ViewControllerExt.swift */,
+				BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -2409,6 +2412,7 @@
 				38659BE426B6D2F900E3BFE9 /* AssessmentSubject.swift in Sources */,
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
 				BC083B142641D51900A1E6A4 /* LogoutTarget.swift in Sources */,
+				BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */,
 				7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */,
 				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
 				38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */,

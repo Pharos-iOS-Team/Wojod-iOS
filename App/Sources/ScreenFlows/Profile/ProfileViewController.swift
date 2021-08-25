@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import JGProgressHUD
 import UIKit
 
 class ProfileViewController: UIViewController {
@@ -28,6 +29,7 @@ class ProfileViewController: UIViewController {
     }
 
     private let viewModel = ProfileViewModel()
+    private var loadingHud: JGProgressHUD?
     var avatars: AvatarsModel?
     var user: StudentModel?
     private var window: UIWindow? {
@@ -74,6 +76,16 @@ class ProfileViewController: UIViewController {
     @objc
     private func hideScreenIfBeingRecorded() {
         window?.isHidden = UIScreen.main.isCaptured
+    }
+
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
+    }
+
+    private func hideLoadingIndicator() {
+        loadingHud?.dismiss()
     }
 
     private func editProfile() {
@@ -137,11 +149,13 @@ class ProfileViewController: UIViewController {
     }
 
     private func navigateToAvatarsList() {
+        showLoadingIndicator()
         guard let avatars = avatars?.avatars else { return }
         let avatarsListViewCtrl = StoryboardScene.AvatarsList.avatarsListViewController.instantiate()
         avatarsListViewCtrl.avatars = avatars
         avatarsListViewCtrl.delegate = self
         present(avatarsListViewCtrl, animated: true, completion: nil)
+        hideLoadingIndicator()
     }
 
     private func getImage(from avatar: Avatar) -> UIImage {

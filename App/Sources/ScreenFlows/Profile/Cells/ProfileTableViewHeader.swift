@@ -16,18 +16,25 @@ class ProfileTableViewHeader: UITableViewHeaderFooterView {
     @IBOutlet private var profileImageView: UIImageView!
     @IBOutlet private var profileNameLabel: UILabel!
     @IBOutlet private var profileUserTypeLabel: UILabel!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
 
     private weak var delegate: ProfileTableViewHeaderDelegate?
 
     func configure(model: ProfileHeaderModel, delegate: ProfileTableViewHeaderDelegate?) {
         if model.imageURL == nil {
-            profileImageView.image = Images.defaultAvatar.image.withAlignmentRectInsets(UIEdgeInsets(right: -200))
+            activityIndicator.stopLoading()
+            profileImageView.image = Images.defaultAvatar.image
         } else {
             guard var link = model.imageURL else { return }
             link = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             link = link.replacingOccurrences(of: "http", with: "https")
             let url = Environment.baseURL.appendingPathComponent(link)
-            profileImageView.kf.setImage(with: url)
+            profileImageView.isHidden = true
+            activityIndicator.startLoading()
+            profileImageView.kf.setImage(with: url) { [weak self] _ in
+                self?.activityIndicator.stopLoading()
+                self?.profileImageView.isHidden = false
+            }
         }
         profileNameLabel.text = model.name
         profileUserTypeLabel.text = model.type
