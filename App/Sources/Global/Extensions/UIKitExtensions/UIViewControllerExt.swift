@@ -2,6 +2,7 @@
 // swiftlint:disable all
 
 import UIKit
+import SwiftEntryKit
 
 extension UIViewController {
     var rootViewCtrl: UIViewController? {
@@ -84,6 +85,42 @@ extension UIViewController {
             ) {
                 exit(-1)
             }
+        }
+    }
+}
+
+extension UIViewController {
+    func observeInternetConnection() {
+        NotificationCenter.default.addObserver(self, selector: #selector(displayNoInternetBanner), name: .internetConnectionChangedNotification, object: nil)
+    }
+
+    // swiftlint:disable function_body_length
+    @objc
+    func displayNoInternetBanner() {
+        var attributes = EKAttributes.topNote
+        attributes.entryBackground = .color(color: EKColor(.red))
+        attributes.entranceAnimation = .translation
+        attributes.exitAnimation = .translation
+        attributes.displayDuration = .infinity
+        attributes.windowLevel = .statusBar
+        let title = EKProperty.LabelContent(
+            text: "No internet connection",
+            style: .init(
+                font: .systemFont(ofSize: 12),
+                color: .white,
+                alignment: .center,
+                displayMode: .inferred,
+                numberOfLines: 1
+            )
+        )
+        let description = EKProperty.LabelContent(text: "", style: .init(font: .systemFont(ofSize: 12), color: .white))
+        let simpleMessage = EKSimpleMessage(image: nil, title: title, description: description)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        if ReachabilityAppDelegate.connectionState == .notConnected {
+            SwiftEntryKit.display(entry: contentView, using: attributes)
+        } else {
+            SwiftEntryKit.dismiss()
         }
     }
 }

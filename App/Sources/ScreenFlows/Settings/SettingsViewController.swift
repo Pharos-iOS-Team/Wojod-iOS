@@ -36,6 +36,7 @@ class SettingsViewController: UIViewController {
         navigateToProfileHandler()
         preventScreenshot()
         preventScreenRecording()
+        observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {

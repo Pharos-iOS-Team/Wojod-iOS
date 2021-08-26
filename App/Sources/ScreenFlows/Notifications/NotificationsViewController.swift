@@ -38,6 +38,7 @@ class NotificationsViewController: UIViewController {
         documentInteractionController.delegate = self
         preventScreenshot()
         preventScreenRecording()
+        observeInternetConnection()
     }
 
     // MARK: - IBActions
