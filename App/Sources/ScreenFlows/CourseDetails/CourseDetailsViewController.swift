@@ -148,6 +148,7 @@ class CourseDetailsViewController: UIViewController {
         preventScreenshot()
         preventScreenRecording()
         configureRefreshControl()
+        observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {

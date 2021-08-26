@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
         reloadCitiesCell()
         preventScreenshot()
         preventScreenRecording()
+        observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
