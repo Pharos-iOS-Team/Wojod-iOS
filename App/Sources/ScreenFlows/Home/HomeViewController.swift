@@ -190,10 +190,12 @@ class HomeViewController: UIViewController {
     @objc
     private func refresh(_ sender: AnyObject) {
         if self.mode == .relatedCourses {
-            self.loadRelatedCourses(isBeingScrolled: true)
+            self.viewModel.relatedCoursesPage = 1
+            self.loadRelatedCourses(isBeingScrolled: false)
             self.coursesTableView.refreshControl?.endRefreshing()
         } else {
-            self.loadExploreMoreCourses(isBeingScrolled: true)
+            self.viewModel.exploreMorePage = 1
+            self.loadExploreMoreCourses(isBeingScrolled: false)
             self.coursesTableView.refreshControl?.endRefreshing()
         }
     }
@@ -219,6 +221,9 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
             let defaultSubjectName = subjects?.first?.name ?? ""
+            if !isBeingScrolled {
+                subjectRelatedCourses.removeAll()
+            }
             if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
                 subjectRelatedCourses.append(contentsOf: subjectCourses)
             }
@@ -230,6 +235,9 @@ class HomeViewController: UIViewController {
         showLoadingIndicator()
         viewModel.loadExploreMoreCourses(isBeingScrolled: isBeingScrolled, isMyCourses: isMyCourses) { [unowned self] courses in
             hideLoadingIndicator()
+            if !isBeingScrolled {
+                exploreMoreCourses.removeAll()
+            }
             if let exploreCourses = courses?.teachersCourses {
                 exploreMoreCourses.append(contentsOf: exploreCourses)
             }
