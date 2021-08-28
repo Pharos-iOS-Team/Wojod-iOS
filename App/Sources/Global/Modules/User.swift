@@ -109,8 +109,18 @@ final class User {
         homeNumber = user?.homeNumber
     }
 
+    func deleteUserLocationData() {
+        User.shared.country = nil
+        User.shared.countryName = nil
+        User.shared.city = nil
+        User.shared.cityName = nil
+        User.shared.address = nil
+        User.shared.region = nil
+    }
+
     func setLoggedOut() {
         isFirstHomeLoad = true
+        deleteUserLocationData()
         KeychainHandler.shared.deleteUserToken()
     }
 
