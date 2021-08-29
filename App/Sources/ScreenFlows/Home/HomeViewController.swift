@@ -284,6 +284,19 @@ class HomeViewController: UIViewController {
         filterSelectedLabel.isHidden = true
         clearLabel.isHidden = true
     }
+
+    private func displayEmptyStateForSearch() {
+        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: emptyView.bounds.size.width, height: emptyView.bounds.size.height))
+        emptyLabel.text = L10n.Home.noResults
+        emptyLabel.textColor = Colors.sendButtonColor.color
+        emptyLabel.textAlignment = .center
+        emptyView.center = coursesTableView.center
+        emptyView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+        emptyView.addSubview(emptyLabel)
+        coursesTableView.backgroundView = emptyView
+        coursesTableView.separatorStyle = .none
+    }
 }
 
 // MARK: - Table View Data Source
@@ -292,11 +305,21 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch mode {
         case .relatedCourses:
+            if isInSearchMode {
+                if searchResultsCourses?.isEmpty ?? true {
+                    displayEmptyStateForSearch()
+                }
+            }
             return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
             if isFiltersSelected && !isMyCourses {
                 return filteredResultsCourses.count
             } else {
+                if isInSearchMode {
+                    if searchResultsCourses?.isEmpty ?? true {
+                        displayEmptyStateForSearch()
+                    }
+                }
                 return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
             }
         }

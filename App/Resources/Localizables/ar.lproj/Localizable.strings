@@ -201,6 +201,7 @@
 "home.course.returnToTeacher" = "ارجع للمدرس";
 "home.ads.viewMore" = "عرض المزيد";
 "home.pending" = "في حالة انتظار";
+"home.noResults" = "لا نتائج";
 
 // MARK: - Notifications
 
