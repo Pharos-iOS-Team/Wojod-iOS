@@ -15,6 +15,11 @@ protocol ViewReceiptDelegate: AnyObject {
 class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
+    @IBOutlet private var badgeImageView: UIImageView! {
+        didSet {
+            badgeImageView.isHidden = true
+        }
+    }
     @IBOutlet private var courseContentView: UIView! {
         didSet {
             courseContentView.layer.cornerRadius = UIConstants.slightCornerRadius
@@ -148,6 +153,16 @@ class CourseCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    private func configureBadge() {
+        if isMyCourses && course?.reservationState == "approved" {
+            if course?.lessonsUnreadCount ?? 0 > 0 || course?.materialsUnreadCount ?? 0 > 0 {
+                badgeImageView.isHidden = false
+            } else {
+                badgeImageView.isHidden = true
+            }
+        }
+    }
+
     // MARK: - Public Functions
 
     func configure(with course: Course?, isMyCourses: Bool) {
@@ -164,6 +179,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
         playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
         configureRatingStars(Int(course?.rating ?? 0))
         configureActionButtonAccordingToState()
+        configureBadge()
     }
 
     func configureVideo(with url: String) {

@@ -103,6 +103,7 @@ internal enum Asset {
     internal static let attach = ImageAsset(name: "attach")
     internal static let attachmentUploadPlaceholder = ImageAsset(name: "attachmentUploadPlaceholder")
     internal static let audio = ImageAsset(name: "audio")
+    internal static let badge = ImageAsset(name: "badge")
     internal static let boyAvatar = ImageAsset(name: "boyAvatar")
     internal static let close = ImageAsset(name: "close")
     internal static let closeBold = ImageAsset(name: "closeBold")
