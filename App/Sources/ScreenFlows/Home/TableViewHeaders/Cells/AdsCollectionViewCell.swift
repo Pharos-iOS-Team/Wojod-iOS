@@ -11,8 +11,10 @@ class AdsCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var viewMoreButton: UIButton! {
         didSet {
+            viewMoreButton.layer.backgroundColor = Colors.sendButtonColor.color.withAlphaComponent(0.13).cgColor
             viewMoreButton.layer.cornerRadius = UIConstants.slightCornerRadius
             viewMoreButton.setTitle(L10n.Home.Ads.viewMore)
+            viewMoreButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
         }
     }
 

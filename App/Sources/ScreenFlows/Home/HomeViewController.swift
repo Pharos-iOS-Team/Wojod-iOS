@@ -189,6 +189,7 @@ class HomeViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
+        loadAndConfigureAdvertisements()
         if self.mode == .relatedCourses {
             self.viewModel.relatedCoursesPage = 1
             self.loadRelatedCourses(isBeingScrolled: false)

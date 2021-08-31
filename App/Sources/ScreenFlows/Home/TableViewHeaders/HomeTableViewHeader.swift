@@ -43,6 +43,8 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
             subjectsCollectionView.allowsMultipleSelection = false
         }
     }
+    @IBOutlet private var adsCollectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet private var dotsIndicator: UIPageControl!
     @IBOutlet private var adsCollectionView: UICollectionView!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var adsCollectionViewHeightConstraint: NSLayoutConstraint!
@@ -74,6 +76,14 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         subjectsCollectionView.dataSource = self
         subjectsCollectionView.delegate = self
         adsCollectionView.dataSource = self
+        adsCollectionView.delegate = self
+        adsCollectionView.dataSource = self
+        adsCollectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
+            $0.scrollDirection = .horizontal
+        }
+        subjectsCollectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
+            $0.scrollDirection = .horizontal
+        }
         subjectsCollectionView.register(UINib(nibName: "SubjectCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubjectCollectionViewCell")
         adsCollectionView.register(UINib(nibName: "AdsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdsCollectionViewCell")
     }
@@ -123,8 +133,11 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - Collection View Data Source
+
 extension HomeTableViewHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        dotsIndicator.numberOfPages = advertisements.count
         return collectionView == subjectsCollectionView ? subjects?.count ?? 0 : advertisements.count
     }
 
@@ -149,7 +162,13 @@ extension HomeTableViewHeader: UICollectionViewDataSource {
             return cell
         }
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        dotsIndicator.currentPage = Int(self.adsCollectionView.contentOffset.x) / Int(self.adsCollectionView.frame.width)
+    }
 }
+
+// MARK: - Collection View Delegate
 
 extension HomeTableViewHeader: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -159,12 +178,18 @@ extension HomeTableViewHeader: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Collection View Delegate Flow Layout
+
 extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.text = subjects?[indexPath.item].name
-        label.sizeToFit()
-        return CGSize(width: label.frame.width, height: 50)
+        if collectionView == subjectsCollectionView {
+            let label = UILabel(frame: CGRect.zero)
+            label.text = subjects?[indexPath.item].name
+            label.sizeToFit()
+            return CGSize(width: label.frame.width, height: 50)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }
     }
 
     func collectionView(
@@ -172,7 +197,6 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
-        guard collectionView == subjectsCollectionView else { return 0 }
         return 5.0
     }
 
@@ -185,6 +209,8 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - Search Bar Delegate
+
 extension HomeTableViewHeader: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         delegate?.searchBarSearchButtonClicked(searchBar)
@@ -192,5 +218,11 @@ extension HomeTableViewHeader: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         delegate?.textDidChange(in: searchBar)
+    }
+}
+
+class UICollectionViewLocalizableFlowLayout: UICollectionViewFlowLayout {
+    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+        return Language.currentLanguage == .arabic
     }
 }
