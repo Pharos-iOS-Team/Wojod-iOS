@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -75,13 +75,22 @@
                                                         <action selector="didTapBackButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="Zbb-Sz-o74"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qf-H0-jOF">
+                                                    <rect key="frame" x="183.5" y="121.5" width="47" height="47"/>
+                                                    <state key="normal" image="largePlayButton"/>
+                                                    <connections>
+                                                        <action selector="didTapPlayButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="YdX-Pi-fgK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemGray4Color"/>
                                             <constraints>
+                                                <constraint firstItem="6Qf-H0-jOF" firstAttribute="centerX" secondItem="Diu-FS-Nhf" secondAttribute="centerX" id="7hU-FH-pyE"/>
                                                 <constraint firstItem="d6B-yY-GCQ" firstAttribute="leading" secondItem="Diu-FS-Nhf" secondAttribute="leading" constant="25" id="Hq5-F1-XB1"/>
                                                 <constraint firstAttribute="height" constant="290" id="IjC-Tv-yDW"/>
                                                 <constraint firstItem="hra-SU-9pv" firstAttribute="top" secondItem="Diu-FS-Nhf" secondAttribute="top" id="PLv-sq-LE7"/>
                                                 <constraint firstItem="d6B-yY-GCQ" firstAttribute="top" secondItem="Diu-FS-Nhf" secondAttribute="top" constant="40" id="PXl-I8-CKw"/>
+                                                <constraint firstItem="6Qf-H0-jOF" firstAttribute="centerY" secondItem="Diu-FS-Nhf" secondAttribute="centerY" id="Qbh-FZ-m2k"/>
                                                 <constraint firstItem="hra-SU-9pv" firstAttribute="leading" secondItem="Diu-FS-Nhf" secondAttribute="leading" id="ggA-uA-YiE"/>
                                                 <constraint firstAttribute="trailing" secondItem="hra-SU-9pv" secondAttribute="trailing" id="iN2-0f-Xfh"/>
                                                 <constraint firstAttribute="bottom" secondItem="hra-SU-9pv" secondAttribute="bottom" id="nD7-Le-3Gs"/>
@@ -291,6 +300,7 @@
                         <outlet property="fourthReviewStar" destination="pCp-l8-q2K" id="QzW-8j-vCw"/>
                         <outlet property="materialsButton" destination="SQT-IX-3bs" id="5Pz-2f-jn3"/>
                         <outlet property="numberOfReviewsLabel" destination="v47-w3-FDk" id="VW2-Fr-Fkw"/>
+                        <outlet property="playButton" destination="6Qf-H0-jOF" id="KVH-39-b7L"/>
                         <outlet property="priceLabel" destination="ImB-3V-22f" id="jbC-xk-Mp7"/>
                         <outlet property="reviewsButton" destination="djD-0W-Eag" id="NyH-8k-AOc"/>
                         <outlet property="secondReviewStar" destination="ncl-VC-ptR" id="A0c-lN-Wqd"/>
@@ -306,6 +316,7 @@
     </scenes>
     <resources>
         <image name="BackIconWhite" width="25" height="25"/>
+        <image name="largePlayButton" width="47" height="47"/>
         <image name="messageButton" width="82" height="82"/>
         <image name="star" width="15" height="15"/>
         <namedColor name="avatarViewBackground">
