@@ -200,6 +200,7 @@ class ProfileViewController: UIViewController {
             sourceView: self.profileTableView
         ) { oldPassword, newPassword, passwordConfirmation in
             self.viewModel.setNewPassword(oldPassword: oldPassword, newPassword: newPassword, passwordConfirmation: passwordConfirmation)
+            self.editProfile()
         }
     }
 
