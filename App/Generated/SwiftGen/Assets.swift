@@ -120,6 +120,7 @@ internal enum Asset {
     internal static let icCloseDark = ImageAsset(name: "icCloseDark")
     internal static let imgQuizzes = ImageAsset(name: "imgQuizzes")
     internal static let imgSuccess = ImageAsset(name: "imgSuccess")
+    internal static let largePlayButton = ImageAsset(name: "largePlayButton")
     internal static let link = ImageAsset(name: "link")
     internal static let maximizeIcn = ImageAsset(name: "maximizeIcn")
     internal static let messageButton = ImageAsset(name: "messageButton")
