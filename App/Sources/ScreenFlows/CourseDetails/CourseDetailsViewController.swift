@@ -77,6 +77,11 @@ class CourseDetailsViewController: UIViewController {
             emptyStateMessageLabel.isHidden = true
         }
     }
+    @IBOutlet private var playButton: UIButton! {
+        didSet {
+            playButton.isHidden = true
+        }
+    }
     @IBOutlet private var courseTitle: UILabel!
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
@@ -92,6 +97,7 @@ class CourseDetailsViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private var player: AVPlayer?
     private var state: CourseState?
     private var activeScreen: ActiveScreen?
     private var viewModel: CourseDetailsViewModel?
@@ -239,6 +245,17 @@ class CourseDetailsViewController: UIViewController {
         dismiss(animated: true)
     }
 
+    @IBAction private func didTapPlayButton(_ sender: UIButton) {
+        playButton.isHidden = true
+        let courseVideoUrl = course?.video?.fileUrl ?? ""
+        let videoURL = URL(string: "\(Environment.baseURL)" + courseVideoUrl)
+        player = AVPlayer(url: videoURL!)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.courseImageView.bounds
+        self.courseImageView.layer.addSublayer(playerLayer)
+        player?.play()
+    }
+
     // MARK: - Private Functions
 
     private func preventScreenRecording() {
@@ -258,6 +275,7 @@ class CourseDetailsViewController: UIViewController {
         priceLabel.text = coursePrice()
         numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
         setRating(Int(course?.rating ?? 0.0))
+        playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
     }
 
     private func coursePrice() -> String {
