@@ -223,6 +223,10 @@ class ProfileViewModel {
             profile.parent1PhoneNumber = text
         case .parentNumber2:
             profile.parent2PhoneNumber = text
+        case .name:
+            profile.name = text
+        case .mobileNumber2:
+            profile.mobileNumber2 = text
         default:
             return
         }

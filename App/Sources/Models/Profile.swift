@@ -17,4 +17,6 @@ struct Profile: Codable {
     var homeNumber: String?
     var parent1PhoneNumber: String?
     var parent2PhoneNumber: String?
+    var mobileNumber2: String?
+    var name: String?
 }
