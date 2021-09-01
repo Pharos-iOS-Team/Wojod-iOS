@@ -225,7 +225,7 @@ class CourseDetailsViewController: UIViewController {
                 self.state = .pending
                 self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
                 self.blurView()
-                self.displayReceipt(bookingResponse)
+                self.displayReceipt(bookingResponse, coursePrice: self.course?.price ?? "")
             }
 
         case .pending:
@@ -356,13 +356,13 @@ class CourseDetailsViewController: UIViewController {
         self.view.addSubview(blurredView ?? blurEffectView)
     }
 
-    private func displayReceipt(_ receiptData: BookingCourseResponseModel) {
+    private func displayReceipt(_ receiptData: BookingCourseResponseModel, coursePrice: String) {
         let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
         view?.center = CGPoint(
             x: self.view.frame.size.width / 2,
             y: self.view.frame.size.height / 2
         )
-        view?.configure(with: receiptData)
+        view?.configure(with: receiptData, coursePrice: coursePrice)
         view?.receiptDoneButtonDelegate = self
         view?.addShadow()
         self.view.addSubview(view ?? UIView())

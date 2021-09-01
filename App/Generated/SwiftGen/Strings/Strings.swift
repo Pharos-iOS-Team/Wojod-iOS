@@ -263,6 +263,10 @@ internal enum L10n {
       internal static var price: String {
           return L10n.tr("Localizable", "home.course.price")
         }
+      /// Price
+      internal static var priceLabel: String {
+          return L10n.tr("Localizable", "home.course.priceLabel")
+        }
       /// Return to teacher
       internal static var returnToTeacher: String {
           return L10n.tr("Localizable", "home.course.returnToTeacher")

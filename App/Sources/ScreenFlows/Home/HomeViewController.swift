@@ -150,7 +150,7 @@ class HomeViewController: UIViewController {
             x: self.view.frame.size.width / 2,
             y: self.view.frame.size.height / 2
         )
-        view?.configureInMyCourses(with: receiptData)
+        view?.configureInMyCourses(with: receiptData, coursePrice: "")
         view?.receiptDoneButtonDelegate = self
         view?.addShadow()
         self.view.addSubview(view ?? UIView())

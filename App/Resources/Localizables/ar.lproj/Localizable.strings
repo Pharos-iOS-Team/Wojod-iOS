@@ -197,6 +197,7 @@
 "home.helpCenter" = "مركز المساعدة";
 "home.view" = "عرض";
 "home.course.price" = "ج.م.";
+"home.course.priceLabel" = "السعر";
 "home.course.seeReceipt" = "عرض الايصال";
 "home.course.returnToTeacher" = "ارجع للمدرس";
 "home.ads.viewMore" = "عرض المزيد";
