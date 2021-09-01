@@ -197,7 +197,7 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 5.0
+        return collectionView == subjectsCollectionView ? 20.0 : 5.0
     }
 
     func collectionView(
@@ -205,7 +205,7 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 5.0
+        return collectionView == subjectsCollectionView ? 20.0 : 5.0
     }
 }
 
