@@ -79,7 +79,13 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         configureFilterButton()
-        loadRelatedCourses(isBeingScrolled: false)
+        if self.mode == .relatedCourses {
+            self.viewModel.relatedCoursesPage = 1
+            self.loadRelatedCourses(isBeingScrolled: false)
+        } else {
+            self.viewModel.exploreMorePage = 1
+            self.loadExploreMoreCourses(isBeingScrolled: false)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
