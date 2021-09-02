@@ -111,6 +111,7 @@ internal enum Asset {
     internal static let danger = ImageAsset(name: "danger")
     internal static let defaultAvatar = ImageAsset(name: "defaultAvatar")
     internal static let download = ImageAsset(name: "download")
+    internal static let filters = ImageAsset(name: "filters")
     internal static let girlAvatar = ImageAsset(name: "girlAvatar")
     internal static let girlAvatarFaded = ImageAsset(name: "girlAvatarFaded")
     internal static let helpCenter = ImageAsset(name: "helpCenter")

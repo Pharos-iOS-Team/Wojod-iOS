@@ -23,14 +23,9 @@ class HomeViewController: UIViewController {
             helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
-    @IBOutlet private var filterSelectedLabel: UILabel! {
+    @IBOutlet private var clearFiltersButton: UIButton! {
         didSet {
-            filterSelectedLabel.isHidden = true
-        }
-    }
-    @IBOutlet private var clearLabel: UILabel! {
-        didSet {
-            clearLabel.isHidden = true
+            clearFiltersButton.isHidden = true
         }
     }
     @IBOutlet private var filtersButton: UIButton!
@@ -113,16 +108,16 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapFiltersButton(_ sender: UIButton) {
-        if isFiltersSelected {
-            loadExploreMoreCourses(isBeingScrolled: false)
-            configureFiltersButtonWhenNoFilterSelected()
-        } else {
-            let viewCtrl = StoryboardScene.Filters.initialScene.instantiate()
-            viewCtrl.delegate = self
-            present(viewCtrl, animated: true)
-        }
+        let viewCtrl = StoryboardScene.Filters.initialScene.instantiate()
+        viewCtrl.delegate = self
+        present(viewCtrl, animated: true)
     }
 
+    @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
+        loadExploreMoreCourses(isBeingScrolled: false)
+        configureFiltersButtonWhenNoFilterSelected()
+    }
+    
     // MARK: - Private Functions
 
     private func preventScreenRecording() {
@@ -278,18 +273,16 @@ class HomeViewController: UIViewController {
 
     private func configureFiltersButtonWhenFiltersAreSelected() {
         isFiltersSelected = true
+        clearFiltersButton.isHidden = false
         filtersButton.layer.backgroundColor = Colors.green.color.cgColor
-        filtersButton.setTitle("")
-        filterSelectedLabel.isHidden = false
-        clearLabel.isHidden = false
+        filtersButton.setTitle("4 filters")
     }
 
     private func configureFiltersButtonWhenNoFilterSelected() {
         isFiltersSelected = false
+        clearFiltersButton.isHidden = true
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         filtersButton.setTitle("Show Filters")
-        filterSelectedLabel.isHidden = true
-        clearLabel.isHidden = true
     }
 
     private func displayEmptyStateForSearch() {
