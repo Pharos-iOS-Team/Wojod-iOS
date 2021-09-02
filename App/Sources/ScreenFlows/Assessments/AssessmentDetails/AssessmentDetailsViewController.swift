@@ -458,7 +458,6 @@ class AssessmentDetailsViewController: UIViewController {
             let question = viewModel?.getQuestion(at: index) else { return }
         questionsViewController?.showQuestion(question)
         questionNumberCollectionView.reloadData()
-        scroll(questionNumberCollectionView, to: lastUserIndex)
     }
 
     private func navigateToNextQuestion() {
@@ -739,17 +738,7 @@ extension AssessmentDetailsViewController: UICollectionViewDelegate, UICollectio
         lastUserIndex = indexPath
         setQuestionMark(at: indexPath.row)
         collectionView.reloadData()
-        scroll(questionNumberCollectionView, to: indexPath)
         changeProgressViewColorForQuestion(at: indexPath.row)
-    }
-    
-    func scroll(_ collectionView: UICollectionView, to indexPath: IndexPath?) {
-        guard let indexPath = indexPath else { return }
-        collectionView.scrollToItem(
-            at: indexPath,
-            at: .left,
-            animated: true
-        )
     }
     
     func changeProgressViewColorForQuestion(at index: Int) {
