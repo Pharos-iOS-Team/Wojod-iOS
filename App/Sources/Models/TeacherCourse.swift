@@ -50,4 +50,5 @@ struct Receipt: Codable {
     var courseName: String?
     var address: String?
     var reservationState: String?
+    var price: String?
 }

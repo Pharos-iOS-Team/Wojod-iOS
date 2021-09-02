@@ -197,6 +197,7 @@ No worries!";
 "home.helpCenter" = "Help Center";
 "home.view" = "View";
 "home.course.price" = "EGP";
+"home.course.priceLabel" = "Price";
 "home.course.seeReceipt" = "See Receipt";
 "home.course.returnToTeacher" = "Return to teacher";
 "home.ads.viewMore" = "View more";
