@@ -2,6 +2,7 @@
 // swiftlint:disable all
 
 import AVKit
+import AVFoundation
 import HandySwift
 import JGProgressHUD
 import UIKit
@@ -82,6 +83,7 @@ class CourseDetailsViewController: UIViewController {
             playButton.isHidden = true
         }
     }
+    @IBOutlet private var mediaContainerView: UIView!
     @IBOutlet private var courseTitle: UILabel!
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
@@ -253,8 +255,8 @@ class CourseDetailsViewController: UIViewController {
         let playerController = AVPlayerViewController()
         playerController.player = player
         self.addChild(playerController)
-        courseImageView.addSubview(playerController.view)
         playerController.view.frame = self.courseImageView.frame
+        self.mediaContainerView.insertSubview(playerController.view, at: (self.mediaContainerView.subviews.firstIndex(of: courseImageView) ?? 0) + 1)
         player?.play()
     }
 
