@@ -250,9 +250,11 @@ class CourseDetailsViewController: UIViewController {
         let courseVideoUrl = course?.video?.fileUrl ?? ""
         let videoURL = URL(string: "\(Environment.baseURL)" + courseVideoUrl)
         player = AVPlayer(url: videoURL!)
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.courseImageView.bounds
-        self.courseImageView.layer.addSublayer(playerLayer)
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        self.addChild(playerController)
+        courseImageView.addSubview(playerController.view)
+        playerController.view.frame = self.courseImageView.frame
         player?.play()
     }
 
