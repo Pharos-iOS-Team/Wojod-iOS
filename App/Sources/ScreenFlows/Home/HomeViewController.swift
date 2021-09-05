@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
         loadExploreMoreCourses(isBeingScrolled: false)
         configureFiltersButtonWhenNoFilterSelected()
     }
-    
+
     // MARK: - Private Functions
 
     private func preventScreenRecording() {
