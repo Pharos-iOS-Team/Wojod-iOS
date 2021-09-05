@@ -106,6 +106,7 @@ class ProfileViewController: UIViewController {
     private func editSuccessHandler() {
         viewModel.successHandler = { [weak self] _ in
             self?.showSuccessAlert()
+            self?.profileTableView.reloadData()
         }
     }
 
