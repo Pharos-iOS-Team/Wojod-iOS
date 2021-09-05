@@ -35,7 +35,7 @@ class AdsCollectionViewCell: UICollectionViewCell {
     func configure(using advertisement: Advertisement) {
         self.advertisement = advertisement
         titleLabel.text = advertisement.title
-        descriptionLabel.text = advertisement.title
+        descriptionLabel.text = advertisement.description
         if let url = URL(string: "\(Environment.baseURL)\(advertisement.media?.fileUrl ?? "")") {
             imageView.kf.setImage(with: url)
         }
