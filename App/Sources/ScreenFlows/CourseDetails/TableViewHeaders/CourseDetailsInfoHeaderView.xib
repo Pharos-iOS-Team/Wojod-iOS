@@ -281,7 +281,7 @@
                 <outlet property="reviewsButton" destination="53m-Yd-98t" id="S4X-N0-kS5"/>
                 <outlet property="teacherNameLabel" destination="vJ9-Nj-L0t" id="AlB-pW-lmj"/>
             </connections>
-            <point key="canvasLocation" x="-56" y="25"/>
+            <point key="canvasLocation" x="-56.521739130434788" y="24.776785714285712"/>
         </view>
     </objects>
     <resources>

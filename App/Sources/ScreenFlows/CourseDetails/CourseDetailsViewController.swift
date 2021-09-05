@@ -8,6 +8,7 @@ import HandySwift
 import JGProgressHUD
 import UIKit
 import SafariServices
+import VdoCipherKit
 
 internal enum CourseState {
     case normal
@@ -43,6 +44,7 @@ protocol LoadableView: AnyObject {
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet weak var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
@@ -77,7 +79,12 @@ class CourseDetailsViewController: UIViewController {
     private var selectedAssessment: Assessment?
     private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
+    private var timer = Timer()
+    private var updateId: Int = .zero
+    private var videoId: String = ""
+    private let avPlayerController = AVPlayerViewController()
     private let refreshControl = UIRefreshControl()
+
     private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
@@ -861,9 +868,12 @@ extension CourseDetailsViewController: UITableViewDelegate {
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
-                play(videoURL: videoURL)
+                if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
+                    let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].link ?? "")
+                    play(videoURL: videoURL)
+                } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
+                }
             case .documents:
                 activeSubscreen = .file
                 if let linkURL = materials?.documents?[indexPath.row].link {
@@ -933,10 +943,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
-                play(videoURL: videoURL)
-            } else if let document = attachment as? MaterialsDocument {
+                if !(video.link?.isEmpty ?? true) {
+                    let videoURL = Environment.baseURL.appendingPathComponent(video.link ?? "")
+                    play(videoURL: videoURL)
+                } else if !(video.vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
+                }
+            } else if let document = attachment as? Document {
                 activeSubscreen = .file
                 if let linkURL = document.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
@@ -1016,6 +1029,83 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
     }
 }
 
+// MARK: - vdoCipher Functions
+
+extension CourseDetailsViewController {
+
+    func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
+        vdoPlayerView.player = player
+        viewModel?.fetchVideoDetails(videoId: videoId) { [weak self] encryptedVideoResponse in
+            if viewsCount > .zero {
+                do {
+                    try self?.vdoPlayerView.loadVideo(
+                        otp: encryptedVideoResponse?.otp ?? "",
+                        playbackInfo: encryptedVideoResponse?.playback ?? "",
+                        onPlayerReady: {
+                            guard let playerController = self?.avPlayerController else { return }
+                            playerController.player = self?.vdoPlayerView.player
+                            self?.present(playerController, animated: true, completion: {
+                                self?.updateId = encryptedVideoResponse?.updateId ?? .zero
+                                self?.videoId = videoId
+                                self?.checkForTime()
+                                self?.vdoPlayerView.player?.play()
+                                self?.checkForBufferedTime()
+                            })
+                        }
+                    )
+                }  catch {
+                    guard let self = self else { return }
+                    AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                        title: L10n.Global.Titles.error,
+                        message: L10n.Global.Alerts.somethingWentWrong
+                    )
+                }
+            } else {
+                guard let self = self else { return }
+                AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                    title: L10n.Global.Titles.error,
+                    message: L10n.CourseDetails.Main.notEnoughViews
+                )
+            }
+        }
+    }
+}
+
+extension CourseDetailsViewController {
+    private func checkForBufferedTime() {
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkForTime), userInfo: nil, repeats: true)
+    }
+
+    @objc
+    private func checkForTime() {
+        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
+        updateVideo(videoId: self.videoId, updateObject: updateObject)
+    }
+}
+
+extension AVPlayerItem {
+    public func totalBuffer() -> Double {
+        return self.loadedTimeRanges
+            .map({ $0.timeRangeValue })
+            .reduce(0, { acc, cur in
+                return acc + CMTimeGetSeconds(cur.start) + CMTimeGetSeconds(cur.duration)
+            })
+    }
+
+    public func currentBuffer() -> Double {
+        let currentTime = self.currentTime()
+        guard let timeRange = self.loadedTimeRanges.map({ $0.timeRangeValue })
+            .first(where: { $0.containsTime(currentTime) }) else { return -1 }
+        return CMTimeGetSeconds(timeRange.end) - currentTime.seconds
+    }
+
+}
+
+extension CourseDetailsViewController {
+    func updateVideo(videoId: String, updateObject: UpdateObject) {
+        viewModel?.updateVideo(videoId: videoId, updateObject: updateObject)
+    }
+}
 // MARK: - Course Details Info Delegate
 
 extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {

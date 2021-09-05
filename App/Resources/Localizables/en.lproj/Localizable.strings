@@ -172,6 +172,7 @@ No worries!";
 "courseDetails.main.bookNow" = "Book Now";
 "courseDetails.main.cancelBooking" = "Cancel Booking";
 "courseDetails.main.reviewCourse" = "Review Course";
+"courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
 
 "courseDetails.receipt.receiptNumber" = "Receipt Number";
 "courseDetails.receipt.customerName" = "Customer Name";

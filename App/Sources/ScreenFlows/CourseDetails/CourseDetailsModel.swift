@@ -127,6 +127,35 @@ class CourseDetailsModel: ModelDecodable {
         }
     }
 
+    func fetchVideo(videoId: String, completion: @escaping (Result) -> Void) {
+        apiClient.fetchVideo(videoId: videoId) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: EncryptedVideoResponse.self, from: response) { result in
+                        completion(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func updateVideo(videoId: String, updateObject: UpdateObject, completion: @escaping (Result) -> Void) {
+        apiClient.updateVideo(videoId: videoId, updateObject: updateObject) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                } else {
+                    self.decodeError(response: response, completionHandler: completion)
+                }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
     func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
         apiClient.screenshotAlert(screenName: screenName) { response, _ in
             if let response = response {

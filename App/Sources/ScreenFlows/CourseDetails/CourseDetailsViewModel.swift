@@ -87,6 +87,28 @@ class CourseDetailsViewModel {
         }
     }
 
+    func fetchVideoDetails(videoId: String, completion: @escaping (EncryptedVideoResponse?) -> Void) {
+        model.fetchVideo(videoId: videoId) { result in
+            switch result {
+            case .success(let encryptedViewResponse as EncryptedVideoResponse):
+                completion(encryptedViewResponse)
+            default:
+                return
+            }
+        }
+    }
+
+    func updateVideo(videoId: String, updateObject: UpdateObject) {
+        model.updateVideo(videoId: videoId, updateObject: updateObject) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            default:
+                return
+            }
+        }
+    }
+
     func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
         model.screenshotAlert(screenName: screenName) { isSentSuccessfully in
             completion(isSentSuccessfully)

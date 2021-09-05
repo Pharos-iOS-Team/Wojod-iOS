@@ -175,6 +175,10 @@ internal enum L10n {
       internal static var materials: String {
           return L10n.tr("Localizable", "courseDetails.main.materials")
         }
+      /// You have exceeded the number of views for this video
+      internal static var notEnoughViews: String {
+          return L10n.tr("Localizable", "courseDetails.main.notEnoughViews")
+        }
       /// Review Course
       internal static var reviewCourse: String {
           return L10n.tr("Localizable", "courseDetails.main.reviewCourse")

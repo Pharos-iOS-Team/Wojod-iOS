@@ -37,4 +37,14 @@ struct Video: Codable {
     var fileName: String?
     var contentType: String?
     var type: String?
+    var vdocipherId: String?
+    var duration: Int?
+    var link: String?
+    var viewsRemaining: Int?
+}
+
+struct EncryptedVideoResponse: Codable {
+    var otp: String?
+    var playback: String?
+    var updateId: Int?
 }

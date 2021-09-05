@@ -28,7 +28,11 @@ struct MaterialsVideo: Codable {
     var fileName: String?
     var contentType: String?
     var type: String?
-    var publishedAt: Date
+    var publishedAt: String?
+    var vdocipherId: String?
+    var duration: Int?
+    var link: String?
+    var viewsRemaining: Int?
 }
 
 struct MaterialsDocument: Codable {
