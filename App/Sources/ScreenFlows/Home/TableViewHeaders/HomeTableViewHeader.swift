@@ -121,6 +121,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     func showSubjectsAndAds() {
         subjectsCollectionView.isHidden = false
         adsCollectionView.isHidden = false
+        dotsIndicator.isHidden = false
         subjectsCollectionViewHeightConstraint.constant = 50
         adsCollectionViewHeightConstraint.constant = 150
     }
@@ -128,6 +129,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     func hideSubjectsAndAds() {
         subjectsCollectionView.isHidden = true
         adsCollectionView.isHidden = true
+        dotsIndicator.isHidden = true
         subjectsCollectionViewHeightConstraint.constant = 0
         adsCollectionViewHeightConstraint.constant = 0
     }
