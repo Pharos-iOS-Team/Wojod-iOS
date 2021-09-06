@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
 import UIKit
@@ -205,6 +206,8 @@ class HomeViewController: UIViewController {
     private func configureTableView() {
         coursesTableView.dataSource = self
         coursesTableView.delegate = self
+        coursesTableView.emptyDataSetSource = self
+        coursesTableView.emptyDataSetDelegate = self
         coursesTableView.registerCell(ofType: CourseTableViewCell.self)
         coursesTableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
     }
@@ -284,19 +287,6 @@ class HomeViewController: UIViewController {
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         filtersButton.setTitle("Show Filters")
     }
-
-    private func displayEmptyStateForSearch() {
-        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: emptyView.bounds.size.width, height: emptyView.bounds.size.height))
-        emptyLabel.text = L10n.Home.noResults
-        emptyLabel.textColor = Colors.sendButtonColor.color
-        emptyLabel.textAlignment = .center
-        emptyView.center = coursesTableView.center
-        emptyView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
-        emptyView.addSubview(emptyLabel)
-        coursesTableView.backgroundView = emptyView
-        coursesTableView.separatorStyle = .none
-    }
 }
 
 // MARK: - Table View Data Source
@@ -305,21 +295,11 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch mode {
         case .relatedCourses:
-            if isInSearchMode {
-                if searchResultsCourses?.isEmpty ?? true {
-                    displayEmptyStateForSearch()
-                }
-            }
             return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
         case .exploreMore:
             if isFiltersSelected && !isMyCourses {
                 return filteredResultsCourses.count
             } else {
-                if isInSearchMode {
-                    if searchResultsCourses?.isEmpty ?? true {
-                        displayEmptyStateForSearch()
-                    }
-                }
                 return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
             }
         }
@@ -349,6 +329,11 @@ extension HomeViewController: UITableViewDataSource {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
         }
+        if !isInSearchMode && mode == .relatedCourses {
+            headerView?.showSubjectsAndAds()
+        } else {
+            headerView?.hideSubjectsAndAds()
+        }
         return headerView
     }
 }
@@ -361,7 +346,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return mode == .exploreMore ? 150 : 380
+        return mode == .exploreMore || isInSearchMode ? 150 : 380
     }
 }
 
@@ -452,5 +437,33 @@ extension HomeViewController: FiltersDelegate {
         configureFiltersButtonWhenFiltersAreSelected()
         filteredResultsCourses = courses?.teachersCourses ?? []
         self.coursesTableView.reloadData()
+    }
+}
+
+// MARK: - DZN Empty State Data Source
+
+extension HomeViewController: DZNEmptyDataSetSource {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return Images.searchEmptyState.image
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSAttributedString(string: L10n.Home.Search.emptyStateTitle)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSAttributedString(string: L10n.Home.Search.emptyStateDescription)
+    }
+}
+
+// MARK: - DZN Empty State Delegate
+
+extension HomeViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        return (searchResultsCourses?.isEmpty ?? true) && isInSearchMode
     }
 }

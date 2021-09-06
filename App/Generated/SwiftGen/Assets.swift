@@ -134,6 +134,7 @@ internal enum Asset {
     internal static let person = ImageAsset(name: "person")
     internal static let playButton = ImageAsset(name: "playButton")
     internal static let plusIcn = ImageAsset(name: "plusIcn")
+    internal static let searchEmptyState = ImageAsset(name: "searchEmptyState")
     internal static let selectedRadioButton = ImageAsset(name: "selectedRadioButton")
     internal static let selectedRadioButton2 = ImageAsset(name: "selectedRadioButton2")
     internal static let sendArrow = ImageAsset(name: "sendArrow")

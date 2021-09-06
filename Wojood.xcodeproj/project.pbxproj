@@ -152,6 +152,7 @@
 		388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */; };
 		3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
+		38A61A5726E614610044AEA4 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = 38A61A5626E614610044AEA4 /* DZNEmptyDataSet */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
 		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
@@ -781,6 +782,7 @@
 				7723AD31261C6351007C0B97 /* SwiftyUserDefaults in Frameworks */,
 				7723AD3D261C63D2007C0B97 /* IQKeyboardManagerSwift in Frameworks */,
 				7723AD37261C6393007C0B97 /* HandyUIKit in Frameworks */,
+				38A61A5726E614610044AEA4 /* DZNEmptyDataSet in Frameworks */,
 				7723AD46261C64C4007C0B97 /* LanguageManager-iOS in Frameworks */,
 				38702FC4268B3F6F00547C9E /* UIScrollView_InfiniteScroll in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
@@ -1999,6 +2001,7 @@
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
 				380B135B26B7F93600CB5811 /* ObjectMapper */,
 				380B136126B7FAAD00CB5811 /* SkeletonView */,
+				38A61A5626E614610044AEA4 /* DZNEmptyDataSet */,
 			);
 			productName = Wojood;
 			productReference = 7723ACD7261C5E69007C0B97 /* Wojood.app */;
@@ -2096,6 +2099,7 @@
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
 				380B135A26B7F93500CB5811 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				380B136026B7FAAD00CB5811 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
 			);
 			productRefGroup = 7723ACD8261C5E69007C0B97 /* Products */;
 			projectDirPath = "";
@@ -2985,6 +2989,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
@@ -3131,6 +3143,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
 			productName = UIScrollView_InfiniteScroll;
+		};
+		38A61A5626E614610044AEA4 /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
 		};
 		7723AD30261C6351007C0B97 /* SwiftyUserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;

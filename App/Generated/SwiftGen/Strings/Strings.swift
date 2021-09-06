@@ -236,10 +236,6 @@ internal enum L10n {
     internal static var helpCenter: String {
         return L10n.tr("Localizable", "home.helpCenter")
       }
-    /// No Results
-    internal static var noResults: String {
-        return L10n.tr("Localizable", "home.noResults")
-      }
     /// Pending
     internal static var pending: String {
         return L10n.tr("Localizable", "home.pending")
@@ -274,6 +270,16 @@ internal enum L10n {
       /// See Receipt
       internal static var seeReceipt: String {
           return L10n.tr("Localizable", "home.course.seeReceipt")
+        }
+    }
+    internal enum Search {
+      /// We couldn't find what you searched for. Try again with different words.
+      internal static var emptyStateDescription: String {
+          return L10n.tr("Localizable", "home.search.emptyStateDescription")
+        }
+      /// Sorry
+      internal static var emptyStateTitle: String {
+          return L10n.tr("Localizable", "home.search.emptyStateTitle")
         }
     }
   }
