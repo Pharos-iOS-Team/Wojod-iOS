@@ -12,6 +12,7 @@ enum CourseDetailsTarget {
     case sendReview(courseID: Int, courseReview: CourseReview)
     case loadMaterials(courseID: Int)
     case loadCourse(courseID: String)
+    case screenshotAlert(screenName: String)
 }
 
 extension CourseDetailsTarget: TargetType {
@@ -33,12 +34,14 @@ extension CourseDetailsTarget: TargetType {
             return "/courses/\(courseID)/materials"
         case let .loadCourse(courseID):
             return "courses/\(courseID)"
+        case .screenshotAlert:
+            return "screenshot_alert"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .bookCourse, .sendReview:
+        case .bookCourse, .sendReview, .screenshotAlert:
             return .post
         case .cancelBookingCourse:
             return .delete
@@ -51,6 +54,8 @@ extension CourseDetailsTarget: TargetType {
         switch self {
         case let .sendReview(_, courseReview):
             return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
+        case let .screenshotAlert(screenName):
+            return .requestJSONEncodable(["screen_name": screenName])
         default:
             return .requestPlain
         }

@@ -153,6 +153,7 @@
 		3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
 		38A61A5726E614610044AEA4 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = 38A61A5626E614610044AEA4 /* DZNEmptyDataSet */; };
+		38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
 		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
@@ -538,6 +539,7 @@
 		388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewHeader.xib; sourceTree = "<group>"; };
 		3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3898E4E8265E572E00295A43 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsSubScreens.swift; sourceTree = "<group>"; };
 		38B03551265B9EF200C24479 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -1150,6 +1152,7 @@
 				38706CD2265E6DD300440B53 /* CourseDetails.storyboard */,
 				385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */,
 				385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */,
+				38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */,
 			);
 			path = CourseDetails;
 			sourceTree = "<group>";
@@ -2491,6 +2494,7 @@
 				385CC0C2265F92FA00A091FD /* CourseDetailsApiClient.swift in Sources */,
 				38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */,
 				38B131C826B173D800D5966A /* FiltersTableViewCell.swift in Sources */,
+				38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
 				380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */,
 				BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */,

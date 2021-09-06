@@ -124,6 +124,7 @@ class CourseDetailsViewController: UIViewController {
     private var selectedAssessment: Assessment?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
+    private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
     }
@@ -153,7 +154,7 @@ class CourseDetailsViewController: UIViewController {
         bindStartAssessmentHandler()
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        preventScreenshot()
+        handleScreenshot()
         preventScreenRecording()
         configureRefreshControl()
         observeInternetConnection()
@@ -181,6 +182,7 @@ class CourseDetailsViewController: UIViewController {
 
     @IBAction private func didTapDetails(_ sender: UIButton) {
         activeScreen = .details
+        activeSubscreen = .details
         tableView.reloadData()
         select(button: detailsButton)
         unselect(button: materialsButton)
@@ -197,6 +199,7 @@ class CourseDetailsViewController: UIViewController {
 
     @IBAction private func didTapMaterials(_ sender: UIButton) {
         activeScreen = .materials
+        activeSubscreen = .materials
         select(button: materialsButton)
         unselect(button: detailsButton)
         unselect(button: reviewsButton)
@@ -215,6 +218,7 @@ class CourseDetailsViewController: UIViewController {
             self.tableView.reloadData()
         }
         activeScreen = .reviews
+        activeSubscreen = .reviews
         select(button: reviewsButton)
         unselect(button: detailsButton)
         unselect(button: materialsButton)
@@ -261,6 +265,26 @@ class CourseDetailsViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+
+    private func handleScreenshot() -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(
+            forName: UIApplication.userDidTakeScreenshotNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { notification in
+            self.showLoadingIndicator()
+            self.viewModel?.screenshotAlert(screenName: self.activeSubscreen.rawValue) { _ in
+                self.hideLoadingIndicator()
+                self.showAlert(
+                    imageName: Images.danger.name,
+                    title: L10n.Shared.Alerts.screenshotsNotAllowed,
+                    message: L10n.Shared.Alerts.appWillTerminate
+                ) {
+                    exit(-1)
+                }
+            }
+        }
+    }
 
     private func preventScreenRecording() {
         NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
@@ -934,9 +958,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
+                activeSubscreen = .video
                 let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
                 play(videoURL: videoURL)
             case .documents:
+                activeSubscreen = .file
                 if let linkURL = materials?.documents?[indexPath.row].link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
@@ -945,6 +971,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
             case .quizzes:
+                activeSubscreen = .quiz
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
                 let quiz = materials?.quizzes?[indexPath.row]
                 selectedAssessment = quiz
@@ -957,6 +984,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             case .assignments:
+                activeSubscreen = .exercise
                 assignemntsViewModel?.assessments = materials?.assignments ?? []
                 let assignment = materials?.assignments?[indexPath.row]
                 selectedAssessment = assignment
@@ -975,6 +1003,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
         } else if activeScreen == .details {
             let attachment = allAttachmentsOfLesson[indexPath.row]
             if let assignment = attachment as? Assessment, assignment.type != "Quiz" {
+                activeSubscreen = .exercise
                 selectedAssessmentSection = indexPath.section
                 assignemntsViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.assignments ?? []
                 switch assignment.status {
@@ -986,6 +1015,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let quiz = attachment as? Assessment, quiz.type == "Quiz"{
+                activeSubscreen = .quiz
                 selectedAssessmentSection = indexPath.section
                 quizzesViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.quizzes ?? []
                 selectedAssessment = quiz
@@ -998,9 +1028,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
+                activeSubscreen = .video
                 let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
                 play(videoURL: videoURL)
             } else if let document = attachment as? Document {
+                activeSubscreen = .file
                 if let linkURL = document.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
