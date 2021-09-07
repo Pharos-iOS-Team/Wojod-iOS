@@ -126,4 +126,16 @@ class CourseDetailsModel: ModelDecodable {
             }
         }
     }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        apiClient.screenshotAlert(screenName: screenName) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
 }

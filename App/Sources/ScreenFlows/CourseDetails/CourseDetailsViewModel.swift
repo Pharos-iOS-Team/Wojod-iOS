@@ -84,4 +84,10 @@ class CourseDetailsViewModel {
             }
         }
     }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        model.screenshotAlert(screenName: screenName) { isSentSuccessfully in
+            completion(isSentSuccessfully)
+        }
+    }
 }

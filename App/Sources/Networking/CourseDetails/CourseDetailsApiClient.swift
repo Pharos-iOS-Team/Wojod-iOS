@@ -95,4 +95,15 @@ class CourseDetailsApiClient {
             }
         }
     }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Response?, MoyaError?) -> Void) {
+        courseDetailsProvider.request(.screenshotAlert(screenName: screenName)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
 }
