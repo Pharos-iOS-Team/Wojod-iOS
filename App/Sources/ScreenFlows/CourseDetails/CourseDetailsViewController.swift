@@ -248,6 +248,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func didTapBackButton(_ sender: UIButton) {
+        player?.pause()
         dismiss(animated: true)
     }
 
