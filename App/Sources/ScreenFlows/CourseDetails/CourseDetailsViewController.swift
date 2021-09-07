@@ -83,19 +83,6 @@ class CourseDetailsViewController: UIViewController {
             playButton.isHidden = true
         }
     }
-    @IBOutlet private var mediaContainerView: UIView!
-    @IBOutlet private var courseTitle: UILabel!
-    @IBOutlet private var teacherNameLabel: UILabel!
-    @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet private var numberOfReviewsLabel: UILabel!
-    @IBOutlet private var priceLabel: UILabel!
-    @IBOutlet private var courseImageView: UIImageView!
-    @IBOutlet private var firstReviewStar: UIImageView!
-    @IBOutlet private var secondReviewStar: UIImageView!
-    @IBOutlet private var thirdReviewStar: UIImageView!
-    @IBOutlet private var fourthReviewStar: UIImageView!
-    @IBOutlet private var fifthReviewStar: UIImageView!
-    @IBOutlet private var chatButton: UIButton!
 
     // MARK: - Private Properties
 
@@ -139,7 +126,6 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         state = getReservationState()
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
@@ -147,7 +133,6 @@ class CourseDetailsViewController: UIViewController {
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         configureActionButtonAccordingToState()
         configureVisibilityOfButtonsAccordingToState()
-        configureChatButtonAccordingToState()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
@@ -180,50 +165,6 @@ class CourseDetailsViewController: UIViewController {
 
     // MARK: - IBActions
 
-    @IBAction private func didTapDetails(_ sender: UIButton) {
-        activeScreen = .details
-        activeSubscreen = .details
-        tableView.reloadData()
-        select(button: detailsButton)
-        unselect(button: materialsButton)
-        unselect(button: reviewsButton)
-        emptyStateMessageLabel.isHidden = true
-    }
-
-    @IBAction private func didTapChat(_ sender: UIButton) {
-        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
-        viewCtrl.modalPresentationStyle = .fullScreen
-        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
-        present(viewCtrl, animated: true)
-    }
-
-    @IBAction private func didTapMaterials(_ sender: UIButton) {
-        activeScreen = .materials
-        activeSubscreen = .materials
-        select(button: materialsButton)
-        unselect(button: detailsButton)
-        unselect(button: reviewsButton)
-        emptyStateMessageLabel.isHidden = true
-
-        guard let courseID = course?.id else { return }
-        viewModel?.loadMaterials(courseID: courseID) { materials in
-            self.materials = materials
-            self.tableView.reloadData()
-        }
-    }
-
-    @IBAction private func didTapReviews(_ sender: UIButton) {
-        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
-            self.reviewsList = result.reviews
-            self.tableView.reloadData()
-        }
-        activeScreen = .reviews
-        activeSubscreen = .reviews
-        select(button: reviewsButton)
-        unselect(button: detailsButton)
-        unselect(button: materialsButton)
-    }
-
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
@@ -246,25 +187,6 @@ class CourseDetailsViewController: UIViewController {
             return
         }
     }
-
-    @IBAction private func didTapBackButton(_ sender: UIButton) {
-        player?.pause()
-        dismiss(animated: true)
-    }
-
-    @IBAction private func didTapPlayButton(_ sender: UIButton) {
-        playButton.isHidden = true
-        let courseVideoUrl = course?.video?.fileUrl ?? ""
-        let videoURL = URL(string: "\(Environment.baseURL)" + courseVideoUrl)
-        player = AVPlayer(url: videoURL!)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        self.addChild(playerController)
-        playerController.view.frame = self.courseImageView.frame
-        self.mediaContainerView.insertSubview(playerController.view, at: (self.mediaContainerView.subviews.firstIndex(of: courseImageView) ?? 0) + 1)
-        player?.play()
-    }
-
     // MARK: - Private Functions
 
     private func handleScreenshot() -> NSObjectProtocol {
@@ -294,17 +216,6 @@ class CourseDetailsViewController: UIViewController {
     @objc
     private func hideScreenIfBeingRecorded() {
         window?.isHidden = UIScreen.main.isCaptured
-    }
-
-    private func configure() {
-        teacherNameLabel.text = teacherName
-        courseImageView.image = getImage(from: course?.media?.fileUrl ?? "")
-        courseTitle.text = course?.name
-        descriptionLabel.text = course?.summary
-        priceLabel.text = coursePrice()
-        numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
-        setRating(Int(course?.rating ?? 0.0))
-        playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
     }
 
     private func coursePrice() -> String {
@@ -370,10 +281,6 @@ class CourseDetailsViewController: UIViewController {
 
     private func configureVisibilityOfButtonsAccordingToState() {
         materialsButton.isHidden = state != .booked
-    }
-
-    private func configureChatButtonAccordingToState() {
-        chatButton.isHidden = state != .booked
     }
 
     private func blurView() {
@@ -450,7 +357,7 @@ class CourseDetailsViewController: UIViewController {
 
     private func imageFromURL(_ imageURLString: String?) -> UIImage? {
         if let imageURLString = imageURLString, let imageURL = URL(string: "\(Environment.baseURL)\(imageURLString)"),
-        let imageData = try? Data(contentsOf: imageURL) {
+           let imageData = try? Data(contentsOf: imageURL) {
             return UIImage(data: imageData)
         }
         return nil
@@ -577,34 +484,6 @@ class CourseDetailsViewController: UIViewController {
         present(playerViewCtrl, animated: true) {
             self.hideLoadingIndicator()
             player.play()
-        }
-    }
-
-    // swiftlint:disable function_body_length
-    private func setRating(_ rating: Int) {
-        switch rating {
-        case 1:
-            firstReviewStar.image = Images.filledStar.image
-        case 2:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-        case 3:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-        case 4:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-        case 5:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-            fifthReviewStar.image = Images.filledStar.image
-        default:
-            return
         }
     }
 
@@ -806,9 +685,9 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return lessonsList?.count ?? 0
+            return lessonsList?.count ?? .zero + 1
         case .materials:
-            return numberOfSectionsInMaterials
+            return numberOfSectionsInMaterials + 1
         default:
             return 1
         }
@@ -1109,5 +988,42 @@ extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
 extension CourseDetailsViewController: AssessmentDetailsDelegate {
     func didFinishAssessment(with id: Int?) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - Course Details Info Delegate
+
+extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
+    func showDetails() {
+        activeScreen = .details
+        loadCourseLessons()
+    }
+    func showMaterials() {
+        activeScreen = .materials
+        guard let courseID = course?.id else { return }
+        viewModel?.loadMaterials(courseID: courseID) { materials in
+            self.materials = materials
+            self.tableView.reloadData()
+        }
+    }
+    func showReviews() {
+        activeScreen = .reviews
+        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
+            self.reviewsList = result.reviews
+            self.tableView.reloadData()
+        }
+    }
+    func goToChat() {
+        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
+        present(viewCtrl, animated: true)
+    }
+    func dismissView() {
+        dismiss(animated: true)
+    }
+
+    func playCourseVideo(playerController: AVPlayerViewController) {
+        addChild(playerController)
     }
 }

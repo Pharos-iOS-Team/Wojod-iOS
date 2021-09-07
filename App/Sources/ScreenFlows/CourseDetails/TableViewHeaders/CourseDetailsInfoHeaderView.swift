@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import AVKit
 import UIKit
 
 protocol CourseDetailsInfoHeaderDelegate: AnyObject {
@@ -8,19 +9,28 @@ protocol CourseDetailsInfoHeaderDelegate: AnyObject {
     func showReviews()
     func goToChat()
     func dismissView()
-    func giveReview()
+    func playCourseVideo(playerController: AVPlayerViewController)
+}
+
+enum DetailsButtonSelected {
+    case details
+    case materials
+    case reviews
 }
 
 struct CourseDetailsInfoModel {
     var courseTitle: String
     var teacherName: String
     var image: UIImage?
+    var video: Media?
     var description: String?
     var price: String
     var numberOfReviews: String
     var rating: Int
     var shouldHideMaterials: Bool
-    var delegate: CourseDetailsInfoHeaderDelegate
+    var buttonSelected: DetailsButtonSelected
+    var state: CourseState
+    weak var delegate: CourseDetailsInfoHeaderDelegate?
 }
 
 class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
@@ -72,11 +82,9 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBOutlet private var fifthReviewStar: UIImageView!
     @IBOutlet private var chatButton: UIButton!
 
-    var delegate: CourseDetailsInfoHeaderDelegate?
+    weak var delegate: CourseDetailsInfoHeaderDelegate?
+    var video: Media?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     @IBAction private func didTapDetails(_ sender: Any) {
         delegate?.showDetails()
     }
@@ -87,6 +95,23 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         delegate?.showReviews()
     }
     @IBAction private func didTapPlay(_ sender: Any) {
+        playButton.isHidden = true
+        let courseVideoUrl = video?.fileUrl ?? ""
+        guard let videoURL = URL(string: "\(Environment.baseURL)" + courseVideoUrl) else { return }
+        let player = AVPlayer(url: videoURL)
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        delegate?.playCourseVideo(playerController: playerController)
+        playerController.view.frame = self.courseImageView.frame
+        self.mediaContainerView.insertSubview(playerController.view, at: (self.mediaContainerView.subviews.firstIndex(of: courseImageView) ?? 0) + 1)
+        player.play()
+    }
+    @IBAction private func didTapChatButton(_ sender: Any) {
+        delegate?.goToChat()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 
     func configure(model: CourseDetailsInfoModel) {
@@ -97,10 +122,15 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         courseImageView.image = model.image
         priceLabel.text = model.price
         materialsButton.isHidden = model.shouldHideMaterials
+        configureChatButtonAccordingToState(state: model.state)
+        video = model.video
+        playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
         setRating(model.rating)
+        configureButtonSelected(buttonSelected: model.buttonSelected)
         delegate = model.delegate
     }
 
+    // swiftlint:disable function_body_length
     private func setRating(_ rating: Int) {
         switch rating {
         case 1:
@@ -126,5 +156,36 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         default:
             return
         }
+    }
+
+    private func configureButtonSelected(buttonSelected: DetailsButtonSelected) {
+        switch buttonSelected {
+        case .details:
+            selectButton(button: detailsButton)
+            unselectButton(button: materialsButton)
+            unselectButton(button: reviewsButton)
+        case .materials:
+            selectButton(button: materialsButton)
+            unselectButton(button: detailsButton)
+            unselectButton(button: reviewsButton)
+        case .reviews:
+            selectButton(button: reviewsButton)
+            unselectButton(button: materialsButton)
+            unselectButton(button: detailsButton)
+        }
+    }
+
+    private func selectButton(button: UIButton) {
+        button.layer.backgroundColor = Colors.lightAccentColor.color.cgColor
+        button.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+    }
+
+    private func unselectButton(button: UIButton) {
+        button.layer.backgroundColor = Colors.lightGreyColor.color.cgColor
+        button.setTitleColor(UIColor.black, for: .normal)
+    }
+
+    private func configureChatButtonAccordingToState(state: CourseState) {
+        chatButton.isHidden = state != .booked
     }
 }

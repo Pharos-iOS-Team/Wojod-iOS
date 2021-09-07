@@ -188,6 +188,10 @@
                                 <constraint firstAttribute="width" constant="82" id="BoH-04-dhS"/>
                             </constraints>
                             <state key="normal" image="messageButton"/>
+                            <connections>
+                                <action selector="didTapChatButton:" destination="sT2-0A-KSZ" eventType="touchUpInside" id="XFA-uT-k4j"/>
+                                <action selector="didTapChatButton:" destination="-1" eventType="touchUpInside" id="XkU-du-cQ8"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gce-B6-dFe">
                             <rect key="frame" x="25" y="405" width="364" height="73"/>
