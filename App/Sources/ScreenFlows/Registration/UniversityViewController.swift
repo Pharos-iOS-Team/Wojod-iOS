@@ -240,12 +240,13 @@ class UniversityViewController: UIViewController {
                 fieldTextField.isHidden = true
                 fieldTextFieldHeightConstraint.constant = 0
             } else {
+                self.fields.append(Specialization(key: nil, value: L10n.Signup.School.none))
                 fieldTextField.isHidden = false
                 fieldTextFieldHeightConstraint.constant = 50
                 selectedFieldIndex = 0
                 User.shared.specializationId = fields?[0].key
                 User.shared.specializationName = fields?[0].value
-                fieldTextField.text = fields?[0].value
+                fieldTextField.text = self.fields.first { $0.value == L10n.Signup.School.none }?.value
             }
         }
     }
@@ -320,8 +321,8 @@ class UniversityViewController: UIViewController {
     private func retrieveInputEnteredFromUser() {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
-        User.shared.specializationName = fieldTextField.text
-        User.shared.specializationId = viewModel?.specializationsIDs.isEmpty ?? true ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
+        User.shared.specializationName = fieldTextField.text == L10n.Signup.School.none ? nil : fieldTextField.text
+        User.shared.specializationId = viewModel?.specializationsIDs.isEmpty ?? true || fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
         User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
         User.shared.batchName = yearTextField.text
     }
