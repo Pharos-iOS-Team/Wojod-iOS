@@ -1,7 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import AVKit
-import UIKit
+import HandyUIKit
 
 protocol CourseDetailsInfoHeaderDelegate: AnyObject {
     func showDetails()
@@ -19,16 +19,18 @@ enum DetailsButtonSelected {
 }
 
 struct CourseDetailsInfoModel {
-    var courseTitle: String
-    var teacherName: String
-    var image: UIImage?
+    var courseTitle: String?
+    var teacherName: String?
+    var image: String?
     var video: Media?
     var description: String?
-    var price: String
-    var numberOfReviews: String
-    var rating: Int
+    var price: String?
+    var numberOfReviews: String?
+    var rating: Double?
     var shouldHideMaterials: Bool
-    var buttonSelected: DetailsButtonSelected
+    var buttonSelected: ActiveScreen
+    var dataSourceCount: Int?
+    var message: String?
     var state: CourseState
     weak var delegate: CourseDetailsInfoHeaderDelegate?
 }
@@ -58,11 +60,6 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             backButton.setImage(Images.localizedWhiteBackButton)
         }
     }
-    @IBOutlet private var emptyStateMessageLabel: UILabel! {
-        didSet {
-            emptyStateMessageLabel.isHidden = true
-        }
-    }
     @IBOutlet private var playButton: UIButton! {
         didSet {
             playButton.isHidden = true
@@ -86,12 +83,15 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     var video: Media?
 
     @IBAction private func didTapDetails(_ sender: Any) {
+        configureButtonSelected(buttonSelected: .details)
         delegate?.showDetails()
     }
     @IBAction private func didTapMaterials(_ sender: Any) {
+        configureButtonSelected(buttonSelected: .materials)
         delegate?.showMaterials()
     }
     @IBAction private func didTapReviews(_ sender: Any) {
+        configureButtonSelected(buttonSelected: .reviews)
         delegate?.showReviews()
     }
     @IBAction private func didTapPlay(_ sender: Any) {
@@ -109,6 +109,9 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBAction private func didTapChatButton(_ sender: Any) {
         delegate?.goToChat()
     }
+    @IBAction private func didTapBack(_ sender: Any) {
+        delegate?.dismissView()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -119,15 +122,32 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         teacherNameLabel.text = model.teacherName
         descriptionLabel.text = model.description
         numberOfReviewsLabel.text = model.numberOfReviews
-        courseImageView.image = model.image
+        courseImageView.kf.setImage(with: Environment.baseURL.appendingPathComponent(model.image ?? ""))
         priceLabel.text = model.price
         materialsButton.isHidden = model.shouldHideMaterials
         configureChatButtonAccordingToState(state: model.state)
         video = model.video
         playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
-        setRating(model.rating)
+        setRating(Int(model.rating ?? .zero))
         configureButtonSelected(buttonSelected: model.buttonSelected)
         delegate = model.delegate
+    }
+
+    private func configureButtonSelected(buttonSelected: ActiveScreen) {
+        switch buttonSelected {
+        case .details:
+            selectButton(button: detailsButton)
+            unselectButton(button: materialsButton)
+            unselectButton(button: reviewsButton)
+        case .materials:
+            selectButton(button: materialsButton)
+            unselectButton(button: detailsButton)
+            unselectButton(button: reviewsButton)
+        case .reviews:
+            selectButton(button: reviewsButton)
+            unselectButton(button: materialsButton)
+            unselectButton(button: detailsButton)
+        }
     }
 
     // swiftlint:disable function_body_length
@@ -155,23 +175,6 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             fifthReviewStar.image = Images.filledStar.image
         default:
             return
-        }
-    }
-
-    private func configureButtonSelected(buttonSelected: DetailsButtonSelected) {
-        switch buttonSelected {
-        case .details:
-            selectButton(button: detailsButton)
-            unselectButton(button: materialsButton)
-            unselectButton(button: reviewsButton)
-        case .materials:
-            selectButton(button: materialsButton)
-            unselectButton(button: detailsButton)
-            unselectButton(button: reviewsButton)
-        case .reviews:
-            selectButton(button: reviewsButton)
-            unselectButton(button: materialsButton)
-            unselectButton(button: detailsButton)
         }
     }
 

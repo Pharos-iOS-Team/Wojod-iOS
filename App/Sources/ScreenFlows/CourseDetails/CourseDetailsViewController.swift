@@ -43,44 +43,10 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var detailsButton: UIButton! {
-        didSet {
-            detailsButton.setTitle(L10n.CourseDetails.Main.details)
-            detailsButton.layer.cornerRadius = UIConstants.cornerRadius
-        }
-    }
-    @IBOutlet private var materialsButton: UIButton! {
-        didSet {
-            materialsButton.setTitle(L10n.CourseDetails.Main.materials)
-            materialsButton.layer.cornerRadius = UIConstants.cornerRadius
-            materialsButton.isHidden = !(self.state == .booked)
-        }
-    }
-    @IBOutlet private var reviewsButton: UIButton! {
-        didSet {
-            reviewsButton.setTitle(L10n.CourseDetails.Main.reviews)
-            reviewsButton.layer.cornerRadius = UIConstants.cornerRadius
-        }
-    }
     @IBOutlet private var actionButton: UIButton! {
         didSet {
             actionButton.layer.cornerRadius = UIConstants.cornerRadius
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
-        }
-    }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.setImage(Images.localizedWhiteBackButton)
-        }
-    }
-    @IBOutlet private var emptyStateMessageLabel: UILabel! {
-        didSet {
-            emptyStateMessageLabel.isHidden = true
-        }
-    }
-    @IBOutlet private var playButton: UIButton! {
-        didSet {
-            playButton.isHidden = true
         }
     }
 
@@ -109,6 +75,7 @@ class CourseDetailsViewController: UIViewController {
     private var allAttachmentsOfLesson: [Any] = []
     private var alertViewController: AppAlertViewController?
     private var selectedAssessment: Assessment?
+    private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
@@ -132,7 +99,6 @@ class CourseDetailsViewController: UIViewController {
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         configureActionButtonAccordingToState()
-        configureVisibilityOfButtonsAccordingToState()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
@@ -156,9 +122,11 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } else if activeScreen == .details {
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-                self.tableView.reloadData()
+            if !(lessonsList?.isEmpty ?? true) {
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
+                    self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -248,7 +216,7 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             } else {
                 expandedSections.append(section)
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
                     self.tableView.reloadData()
                 }
@@ -277,10 +245,6 @@ class CourseDetailsViewController: UIViewController {
         default:
             return
         }
-    }
-
-    private func configureVisibilityOfButtonsAccordingToState() {
-        materialsButton.isHidden = state != .booked
     }
 
     private func blurView() {
@@ -327,18 +291,9 @@ class CourseDetailsViewController: UIViewController {
         tableView.registerCell(ofType: ReviewTableViewCell.self)
         tableView.registerCell(ofType: MaterialTableViewCell.self)
         tableView.registerHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+        tableView.registerHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
-    }
-
-    private func select(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightAccentColor.color.cgColor
-        button.setTitleColor(Colors.sendButtonColor.color, for: .normal)
-    }
-
-    private func unselect(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightGreyColor.color.cgColor
-        button.setTitleColor(UIColor.black, for: .normal)
     }
 
     private func loadCourseLessons() {
@@ -364,7 +319,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func numberOfRowsInLessonSection(_ sectionNumber: Int) -> Int {
-        let attachments = attachmentsOfLessons[sectionNumber]
+        let attachments = attachmentsOfLessons[sectionNumber - 1]
         let documentsCount = attachments?.documents?.count ?? 0
         let assignmentsCount = attachments?.assignments?.count ?? 0
         let videosCount = attachments?.videos?.count ?? 0
@@ -630,15 +585,6 @@ class CourseDetailsViewController: UIViewController {
         alertViewController?.dismiss(animated: true, completion: completion)
     }
 
-    private func displayEmptyStateMessageIfNeeded(itemsCount: Int, message: String) {
-        if itemsCount == 0 {
-            emptyStateMessageLabel.isHidden = false
-            emptyStateMessageLabel.text = message
-        } else {
-            emptyStateMessageLabel.isHidden = true
-        }
-    }
-
     private func configureRefreshControl() {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -685,7 +631,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return lessonsList?.count ?? .zero + 1
+            return (lessonsList?.count ?? 1) + 1
         case .materials:
             return numberOfSectionsInMaterials + 1
         default:
@@ -696,11 +642,10 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
-            displayEmptyStateMessageIfNeeded(itemsCount: reviewsList?.count ?? 0, message: L10n.CourseDetails.CourseReview.emptyStateMessage)
             return reviewsList?.count ?? 0
 
         case .details:
-            return numberOfRowsInLessonSection(section)
+            return numberOfRowsInLessonSection(section + 1)
 
         case .materials:
             switch MaterialsSections(rawValue: section) {
@@ -795,14 +740,32 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch activeScreen {
-        case .details:
+        if section == .zero {
+            let detailsView = tableView.dequeueHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
+            detailsView?.configure(
+                model: CourseDetailsInfoModel(
+                    courseTitle: course?.name,
+                    teacherName: teacherName,
+                    image: course?.media?.fileUrl,
+                    video: course?.video,
+                    description: course?.summary,
+                    price: coursePrice(),
+                    numberOfReviews: String(course?.reviewsCount ?? .zero),
+                    rating: course?.rating,
+                    shouldHideMaterials: state != .booked,
+                    buttonSelected: activeScreen ?? .details,
+                    state: state ?? .normal,
+                    delegate: self
+                )
+            )
+            return detailsView
+        } else if activeScreen == .details && section != .zero {
             let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-            view?.tag = section
+            view?.tag = section + 1
             view?.collapseExpandDelegate = self
-            let lesson = lessonsList?[section]
-            view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
-            view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
+            let lesson = lessonsList?[section - 1]
+            view?.setLessonTitleLabel(lesson?.name ?? "")
+            view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
             view?.assignSectionTagToButton(section)
             view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: false)
             if expandedSections.contains(section) {
@@ -811,14 +774,26 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 view?.setImageOfButton(Images.expand.image)
             }
             return view
-
-        default:
+        } else {
             return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return activeScreen == .details ? detailsHeaderHeight : 0
+        if section == .zero {
+            return UITableView.automaticDimension
+        } else if section != .zero && activeScreen == .details {
+            return detailsHeaderHeight
+        } else {
+            return .zero
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        if section == .zero {
+            return 600
+        }
+        return 60
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -929,7 +904,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        handleAttachmentsExpantion(section: section)
+        handleAttachmentsExpantion(section: section - 1)
     }
 }
 
@@ -996,7 +971,8 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
 extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
     func showDetails() {
         activeScreen = .details
-        loadCourseLessons()
+        self.tableView.reloadData()
+
     }
     func showMaterials() {
         activeScreen = .materials
