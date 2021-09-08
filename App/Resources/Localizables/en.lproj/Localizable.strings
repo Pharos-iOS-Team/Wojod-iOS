@@ -157,7 +157,9 @@ No worries!";
 "signup.school.academicType" = "Academic Type*";
 "signup.school.academicDivision" = "Academic Division*";
 "signup.school.academicYear" = "Academic Year*";
+"signup.school.field" = "Field";
 "signup.school.schoolName" = "School Name*";
+"signup.school.none" = "None";
 
 "signup.addAvatar.submit" = "Submit";
 "signup.addAvatar.skip" = "Skip";

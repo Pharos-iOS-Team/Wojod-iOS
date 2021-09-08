@@ -157,7 +157,9 @@
 "signup.school.academicType" = "النوع الأكاديمي*";
 "signup.school.academicDivision" = "القسم الأكاديمي*";
 "signup.school.academicYear" = "السنة الأكاديمية*";
+"signup.school.field" = "تخصص";
 "signup.school.schoolName" = "اسم المدرسة*";
+"signup.school.none" = "لا بوجد";
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
