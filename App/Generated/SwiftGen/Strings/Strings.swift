@@ -966,6 +966,14 @@ internal enum L10n {
       internal static var academicYear: String {
           return L10n.tr("Localizable", "signup.school.academicYear")
         }
+      /// Field
+      internal static var field: String {
+          return L10n.tr("Localizable", "signup.school.field")
+        }
+      /// None
+      internal static var `none`: String {
+          return L10n.tr("Localizable", "signup.school.none")
+        }
       /// Parent Number*
       internal static var parentNumber: String {
           return L10n.tr("Localizable", "signup.school.parentNumber")
