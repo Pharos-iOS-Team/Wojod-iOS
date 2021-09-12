@@ -769,7 +769,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
             view?.setLessonTitleLabel(lesson?.name ?? "")
             view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
             view?.assignSectionTagToButton(section)
-            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: false)
+            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
             if expandedSections.contains(section) {
                 view?.setImageOfButton(Images.collapse.image)
             } else {
