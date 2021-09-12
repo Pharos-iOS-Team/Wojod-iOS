@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfb-AV-uUo">
-                        <rect key="frame" x="0.0" y="10" width="42" height="21"/>
+                        <rect key="frame" x="0.0" y="10" width="42" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vbz-Gp-VZx">
-                        <rect key="frame" x="0.0" y="41" width="320" height="39"/>
+                        <rect key="frame" x="0.0" y="40" width="320" height="50"/>
                         <color key="backgroundColor" name="superLightGrey"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="39" id="zYR-25-FNz"/>
+                            <constraint firstAttribute="height" constant="50" id="zYR-25-FNz"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HMK-cM-vZP">
                             <size key="itemSize" width="128" height="128"/>
@@ -42,7 +42,7 @@
                     <constraint firstItem="vbz-Gp-VZx" firstAttribute="top" secondItem="mfb-AV-uUo" secondAttribute="bottom" constant="10" id="0I3-CA-hnm"/>
                     <constraint firstItem="mfb-AV-uUo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1wV-8e-4tK"/>
                     <constraint firstItem="mfb-AV-uUo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6bx-q9-ST5"/>
-                    <constraint firstAttribute="bottom" secondItem="vbz-Gp-VZx" secondAttribute="bottom" constant="20" symbolic="YES" id="IRz-i0-KOE"/>
+                    <constraint firstAttribute="bottom" secondItem="vbz-Gp-VZx" secondAttribute="bottom" constant="10" id="IRz-i0-KOE"/>
                     <constraint firstItem="vbz-Gp-VZx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VkI-jP-KXy"/>
                     <constraint firstAttribute="trailing" secondItem="vbz-Gp-VZx" secondAttribute="trailing" id="Wpe-C7-tjc"/>
                 </constraints>
@@ -51,7 +51,6 @@
             <color key="backgroundColor" name="superLightGrey"/>
             <connections>
                 <outlet property="collectionView" destination="vbz-Gp-VZx" id="4jw-52-mo0"/>
-                <outlet property="collectionViewFlowLayout" destination="HMK-cM-vZP" id="VKY-5c-kfb"/>
                 <outlet property="label" destination="mfb-AV-uUo" id="DbA-ir-PfI"/>
             </connections>
             <point key="canvasLocation" x="71" y="46"/>

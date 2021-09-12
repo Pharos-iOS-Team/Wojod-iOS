@@ -38,7 +38,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Zc-EwW">
-                                <rect key="frame" x="59" y="18.5" width="25" height="15"/>
+                                <rect key="frame" x="59" y="19" width="22.5" height="14"/>
                                 <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Qh-8hd">
-                                <rect key="frame" x="219.5" y="18.5" width="25.5" height="15"/>
+                                <rect key="frame" x="221" y="19" width="24" height="14"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
                                 <color key="textColor" name="avatarViewBackground"/>
                                 <nil key="highlightedColor"/>
