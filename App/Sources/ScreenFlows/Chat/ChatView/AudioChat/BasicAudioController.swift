@@ -119,6 +119,8 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             _ = AVAudioSession.sharedInstance()
         case .oldDeviceUnavailable:
             if (userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription) != nil {
+                let session = AVAudioSession.sharedInstance()
+                try? session.overrideOutputAudioPort(.speaker)
             }
         default: ()
         }
