@@ -755,6 +755,8 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     shouldHideMaterials: state != .booked,
                     buttonSelected: activeScreen ?? .details,
                     state: state ?? .normal,
+                    lessonsUnreadCount: course?.lessonsUnreadCount,
+                    materialsUnreadCount: course?.materialsUnreadCount,
                     delegate: self
                 )
             )

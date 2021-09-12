@@ -32,6 +32,8 @@ struct CourseDetailsInfoModel {
     var dataSourceCount: Int?
     var message: String?
     var state: CourseState
+    var lessonsUnreadCount: Int?
+    var materialsUnreadCount: Int?
     weak var delegate: CourseDetailsInfoHeaderDelegate?
 }
 
@@ -54,7 +56,16 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             reviewsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
-
+    @IBOutlet private var detailsBadge: UIImageView! {
+        didSet {
+            detailsBadge.isHidden = true
+        }
+    }
+    @IBOutlet private var materialsBadge: UIImageView! {
+        didSet {
+            materialsBadge.isHidden = true
+        }
+    }
     @IBOutlet private var backButton: UIButton! {
         didSet {
             backButton.setImage(Images.localizedWhiteBackButton)
@@ -130,7 +141,17 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
         setRating(Int(model.rating ?? .zero))
         configureButtonSelected(buttonSelected: model.buttonSelected)
+        configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
+        configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
         delegate = model.delegate
+    }
+
+    private func configureLessonBadge(shouldHide: Bool) {
+        detailsBadge.isHidden = shouldHide
+    }
+
+    private func configureMaterialsBadge(shouldHide: Bool) {
+        materialsBadge.isHidden = shouldHide
     }
 
     private func configureButtonSelected(buttonSelected: ActiveScreen) {
