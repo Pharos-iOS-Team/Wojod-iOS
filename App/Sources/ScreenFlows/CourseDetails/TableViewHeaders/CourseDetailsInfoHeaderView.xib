@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -192,6 +192,20 @@
                                 <action selector="didTapChatButton:" destination="sT2-0A-KSZ" eventType="touchUpInside" id="VLq-Fy-FZv"/>
                             </connections>
                         </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badge" translatesAutoresizingMaskIntoConstraints="NO" id="NaR-0C-7c5">
+                            <rect key="frame" x="124" y="530" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="VvY-ag-kxP"/>
+                                <constraint firstAttribute="height" constant="13" id="hzL-1S-UI6"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badge" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-G8-N0H">
+                            <rect key="frame" x="241" y="530" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="iI8-j0-TzY"/>
+                                <constraint firstAttribute="height" constant="13" id="nLU-po-Ujt"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -224,9 +238,13 @@
                         <constraint firstItem="gtD-Vs-ESq" firstAttribute="centerY" secondItem="Z3t-Be-2rN" secondAttribute="centerY" id="Xud-2r-jaV"/>
                         <constraint firstItem="S6x-LM-epm" firstAttribute="top" secondItem="EFo-V4-efR" secondAttribute="top" id="Z4Z-hJ-wyR"/>
                         <constraint firstAttribute="bottom" secondItem="cat-0a-yO7" secondAttribute="bottom" constant="20" id="ZtI-sd-Vl0"/>
+                        <constraint firstItem="NaR-0C-7c5" firstAttribute="trailing" secondItem="MmO-JH-UXo" secondAttribute="trailing" constant="5" id="aEK-yh-Jyh"/>
+                        <constraint firstItem="aeb-G8-N0H" firstAttribute="top" secondItem="8X8-eT-gCr" secondAttribute="top" constant="-5" id="aLk-1r-OY7"/>
                         <constraint firstItem="5co-Rj-lKb" firstAttribute="firstBaseline" secondItem="KaK-rt-1Wx" secondAttribute="firstBaseline" id="awI-vo-K3Q"/>
+                        <constraint firstItem="NaR-0C-7c5" firstAttribute="top" secondItem="MmO-JH-UXo" secondAttribute="top" constant="-5" id="dPH-Ec-0kN"/>
                         <constraint firstItem="9q7-pM-aMt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eqt-dZ-OGD" secondAttribute="trailing" constant="20" id="fE2-cC-Swr"/>
                         <constraint firstItem="gtD-Vs-ESq" firstAttribute="leading" secondItem="Z3t-Be-2rN" secondAttribute="trailing" constant="5" id="fER-o7-Z8s"/>
+                        <constraint firstItem="aeb-G8-N0H" firstAttribute="trailing" secondItem="8X8-eT-gCr" secondAttribute="trailing" constant="5" id="jvK-Hi-r5c"/>
                         <constraint firstItem="Gce-B6-dFe" firstAttribute="top" secondItem="XNt-fK-gLK" secondAttribute="bottom" constant="8" id="mMX-mb-O3R"/>
                         <constraint firstItem="S6x-LM-epm" firstAttribute="leading" secondItem="EFo-V4-efR" secondAttribute="leading" id="rgc-WN-RM6"/>
                         <constraint firstItem="cat-0a-yO7" firstAttribute="trailing" secondItem="Gce-B6-dFe" secondAttribute="trailing" id="tWT-ao-5my"/>
@@ -250,10 +268,12 @@
                 <outlet property="courseImageView" destination="6xi-YC-l1W" id="ZHu-RG-3Gq"/>
                 <outlet property="courseTitle" destination="eqt-dZ-OGD" id="Upa-iT-X1F"/>
                 <outlet property="descriptionLabel" destination="Gce-B6-dFe" id="eje-yk-juZ"/>
+                <outlet property="detailsBadge" destination="NaR-0C-7c5" id="yZv-ve-vQE"/>
                 <outlet property="detailsButton" destination="MmO-JH-UXo" id="CkQ-5m-atj"/>
                 <outlet property="fifthReviewStar" destination="5co-Rj-lKb" id="b46-Gy-CED"/>
                 <outlet property="firstReviewStar" destination="XHV-4U-Yjh" id="2CO-3W-aHd"/>
                 <outlet property="fourthReviewStar" destination="KaK-rt-1Wx" id="e63-rk-os6"/>
+                <outlet property="materialsBadge" destination="aeb-G8-N0H" id="KjQ-Up-n7K"/>
                 <outlet property="materialsButton" destination="8X8-eT-gCr" id="NPo-Ms-3oj"/>
                 <outlet property="mediaContainerView" destination="S6x-LM-epm" id="BLh-QV-lOE"/>
                 <outlet property="numberOfReviewsLabel" destination="Z3t-Be-2rN" id="dAD-5M-aiO"/>
@@ -269,6 +289,7 @@
     </objects>
     <resources>
         <image name="BackIconWhite" width="25" height="25"/>
+        <image name="badge" width="14" height="14"/>
         <image name="largePlayButton" width="47" height="47"/>
         <image name="messageButton" width="82" height="82"/>
         <image name="star" width="15" height="15"/>
