@@ -3,10 +3,10 @@
 import Foundation
 
 struct Notifications: Codable {
-    var notifications: [Notification]?
+    var notifications: [NotificationDataModel]?
 }
 
-struct Notification: Codable {
+struct NotificationDataModel: Codable {
     var id: Int?
     var link: String?
     var topic: String?

@@ -19,7 +19,7 @@ class NotificationsViewController: UIViewController {
 
     private var rowHeight: CGFloat = 120
     private var viewModel: NotificationsViewModel?
-    private var notifications: [Notification] = []
+    private var notifications: [NotificationDataModel] = []
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
     private let refreshControl = UIRefreshControl()
