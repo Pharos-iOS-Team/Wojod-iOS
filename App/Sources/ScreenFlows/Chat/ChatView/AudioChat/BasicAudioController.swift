@@ -23,6 +23,7 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     init(messageCollectionView: MessagesCollectionView) {
         self.messageCollectionView = messageCollectionView
         super.init()
+        setupNotifications()
     }
 
     // MARK: - Methods
@@ -79,7 +80,6 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         guard let url = downloadedURL else { return }
         do {
             let player = try AVAudioPlayer(contentsOf: url)
-            checkIfHeadPhonesIsConnected()
             audioPlayer = player
             audioPlayer?.prepareToPlay()
             audioPlayer?.delegate = self
@@ -94,22 +94,38 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    private func checkIfHeadPhonesIsConnected() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playAndRecord, mode: .default, options: .allowBluetooth)
-            guard let availableInputs = session.availableInputs else { return }
-            for input in availableInputs {
-                if input.portType == .bluetoothHFP {
-                    try session.overrideOutputAudioPort(AVAudioSession.PortOverride.none)
-                } else {
-                    try session.overrideOutputAudioPort(.speaker)
-                }
-            }
-            try session.setActive(true)
-        } catch {
-            print("Couldn't override output audio port")
+    func setupNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil
+        )
+    }
+
+    @objc
+    func handleRouteChange(notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+            let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+            return
         }
+
+        // Switch over the route change reason.
+        switch reason {
+        case .newDeviceAvailable:
+            _ = AVAudioSession.sharedInstance()
+        case .oldDeviceUnavailable:
+            if (userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription) != nil {
+            }
+        default: ()
+        }
+    }
+
+    func hasHeadphones(in routeDescription: AVAudioSessionRouteDescription) -> Bool {
+        return !routeDescription.outputs.filter{ $0.portType == .headphones }.isEmpty
     }
 
     func playSound(for message: MessageType, in audioCell: AudioMessageCell, completion: (() -> Void)? = nil) {

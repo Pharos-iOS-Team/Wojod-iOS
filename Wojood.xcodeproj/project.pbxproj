@@ -172,7 +172,7 @@
 		38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4A426677B6C00CD8934 /* CourseReview.swift */; };
 		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
-		38F7D4D52668EBE400CD8934 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* Notification.swift */; };
+		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -560,7 +560,7 @@
 		38F7D4A426677B6C00CD8934 /* CourseReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseReview.swift; sourceTree = "<group>"; };
 		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
-		38F7D4D42668EBE400CD8934 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACD7261C5E69007C0B97 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1454,7 +1454,7 @@
 				E86753022642890D005ABF77 /* Specializations.swift */,
 				BC5ED0B42626E34800774E54 /* UserDataModel.swift */,
 				7744F6C62656741800F429F5 /* HTTPStatusCode.swift */,
-				38F7D4D42668EBE400CD8934 /* Notification.swift */,
+				38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */,
 				E85C1F21264890B4003D4BF5 /* UserSignupRequest.swift */,
 				385CC0D5265FAB1500A091FD /* Lessons.swift */,
 				385CC0EA26601A6600A091FD /* Reviews.swift */,
@@ -2426,7 +2426,7 @@
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
-				38F7D4D52668EBE400CD8934 /* Notification.swift in Sources */,
+				38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
 				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
 				7723AE3B261C8261007C0B97 /* Strings.swift in Sources */,

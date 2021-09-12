@@ -68,7 +68,7 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
 
-    internal func configure(using notification: Notification) {
+    internal func configure(using notification: NotificationDataModel) {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = inputFormatter.date(from: notification.createdAt ?? "") ?? Date()
@@ -100,7 +100,7 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
 
-    private func configureLink(in notification: Notification) {
+    private func configureLink(in notification: NotificationDataModel) {
         let button = UIButton()
         self.link = notification.link
         button.addTarget(self, action: #selector(openLink), for: .touchUpInside)
