@@ -536,11 +536,10 @@ class AssessmentDetailsViewController: UIViewController {
     private func handleTimeOutOfQuiz(timesOut: Bool, alert: AppAlertViewController?) {
         if timesOut {
             submitQuestionAnswer(at: lastUserIndex?.row)
-            alert?.configureOneButtonForDismiss { [weak self] in
-                self?.dismiss(animated: true) {
-                    self?.viewModel?.finishAssessment {
-                        self?.navigationController?.popViewController(animated: true)
-                    }
+            alert?.configureOneButton(buttonTitle: L10n.Quizzes.submitButtonTitle) {
+                self.viewModel?.finishAssessment { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                    alert?.dismiss(animated: true)
                 }
             }
         }
