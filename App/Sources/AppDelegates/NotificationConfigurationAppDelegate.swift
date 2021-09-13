@@ -75,18 +75,15 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         if let userinfo = response.notification.request.content.userInfo as? [String: Any] {
-            if let notificationType = userinfo["entity_name"] as? String {
-                switch notificationType {
-                case "Notifications":
-                    let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
-                    UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
-                default:
-                    if let courseID = userinfo["entity_id"] as? String {
-                        CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
-                            let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
-                            viewCtrl.course = course
-                            UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
-                        }
+            if let notificationType = userinfo["entity_name"] as? String, notificationType == "Notifications" {
+                let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+                UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+            } else {
+                if let courseID = userinfo["course_id"] as? String {
+                    CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
+                        let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+                        viewCtrl.course = course
+                        UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
                     }
                 }
             }
