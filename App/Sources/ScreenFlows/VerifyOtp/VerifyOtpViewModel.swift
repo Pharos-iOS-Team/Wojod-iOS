@@ -19,8 +19,8 @@ class VerifyOtpViewModel {
         showIndicator?()
         model.verifyOtp(otp: otp) { result in
             switch result {
-            case .success (let user as LoginApiResponseModel):
-                User.shared.setUserData(user: user.data)
+            case .success:
+                // User.shared.setUserData(user: user.data)
                 self.successHandler?()
             case .failure(let error):
                 self.errorHandler?(error)
