@@ -232,7 +232,8 @@ class SchoolViewController: UIViewController {
         viewModel?.loadSpecializations(for: selectedDivision?.key ?? 0) { fields in
             self.activityIndicator.stopAnimating()
             self.fields = fields ?? []
-            self.fieldTextField.text = self.fields.isEmpty ? "None" : fields?[0].value
+            self.fieldTextField.text = "None"
+            self.fields.append(Specialization(key: nil, value: "None"))
         }
     }
 
@@ -268,7 +269,7 @@ class SchoolViewController: UIViewController {
     @objc
     private func fieldPickerDoneTapped() {
         if selectedField == nil {
-            selectedField = fields.isEmpty ? Specialization(key: nil, value: "None") : fields[0]
+            selectedField = fields[0]
         }
         fieldsPickerView.resignFirstResponder()
         User.shared.specializationId = selectedField?.key
@@ -318,8 +319,8 @@ class SchoolViewController: UIViewController {
         User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text
         User.shared.schoolName = schoolNameTextField.text
-        User.shared.specializationId = self.fields.isEmpty ? nil : selectedField?.key
-        User.shared.specializationName = self.fields.isEmpty ? nil : selectedField?.value
+        User.shared.specializationId = selectedField?.key
+        User.shared.specializationName = selectedField?.value == "None" ? nil : selectedField?.value
     }
 
     private func displayAlreadyEnteredDataIfAny() {
