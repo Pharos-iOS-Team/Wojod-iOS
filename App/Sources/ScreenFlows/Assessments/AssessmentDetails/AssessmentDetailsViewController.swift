@@ -523,7 +523,7 @@ class AssessmentDetailsViewController: UIViewController {
                         message: message
                     ) {
                         self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)
-                        self?.viewModel?.finishAssessment {
+                        self?.viewModel?.finishAssessment { _ in
                             self?.navigationController?.popViewController(animated: true)
                         }
                     }
@@ -537,9 +537,13 @@ class AssessmentDetailsViewController: UIViewController {
         if timesOut {
             submitQuestionAnswer(at: lastUserIndex?.row)
             alert?.configureOneButton(buttonTitle: L10n.Quizzes.submitButtonTitle) {
-                self.viewModel?.finishAssessment { [weak self] in
-                    self?.navigationController?.popViewController(animated: true)
-                    alert?.dismiss(animated: true)
+                alert?.startPrimaryButtonLoading()
+                self.viewModel?.finishAssessment { [weak self] error in
+                    alert?.stopPrimaryButtonLoading()
+                    if error == nil {
+                        self?.navigationController?.popViewController(animated: true)
+                        alert?.dismiss(animated: true)
+                    }
                 }
             }
         }

@@ -280,13 +280,14 @@ class AssessmentDetailsViewModel {
         submitAnswer(for: questionID)
     }
 
-    func finishAssessment(_ completion: @escaping () -> Void) {
+    func finishAssessment(_ completion: @escaping (Error?) -> Void) {
         guard let assissmentID = assissmentID else { return }
         model.finishAssessment(assessmentID: assissmentID, module: module.rawValue) { error in
             if error != nil {
+                completion(error)
                 print("Failed, should retry")
             } else {
-                completion()
+                completion(nil)
             }
         }
     }
