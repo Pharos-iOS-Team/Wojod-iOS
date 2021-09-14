@@ -161,23 +161,39 @@ class ProfileViewModel {
         }
     }
 
-    func loadDivisions(for selectedAcademicType: Int, index: Int) {
-        NetworkProvider.shared.request(target: .academicDivisions(User.shared.educationLevel, selectedAcademicType), type: DataResponse.self) { response, _ in
-            let divisions = response?.data
-            self.divisions = divisions ?? [KeyName]()
-            User.shared.divisionName = divisions?.first?.name
-            self.profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == User.shared.divisionName }?.key
-            self.loadBatches(for: self.profile.divisionId ?? .zero, index: index)
-            self.reloadCitiesCell?(index + 1)
+    func fetchSpecifiedDivisions(for selectedAcademicType: Int, index: Int) {
+        model.fetchDivisions(academicLevel: User.shared.educationLevel, academicType: selectedAcademicType) { result in
+            switch result {
+            case .success(let divisions as DivisionsModel):
+                AcademicInfo.shared.divisions = divisions
+                User.shared.divisionName = divisions.divisions.first?.value
+                User.shared.divisionId = divisions.divisions.first?.key
+                self.profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == User.shared.divisionName }?.key
+                self.reloadCitiesCell?(index + 1)
+                self.fetchSpecifiedBatches(for: self.profile.divisionId ?? .zero, index: index)
+                self.reloadCitiesCell?(index + 2)
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
         }
     }
 
-    func loadBatches(for selectedDivision: Int, index: Int) {
-        NetworkProvider.shared.request(target: .batches(selectedDivision), type: DataResponse.self) { response, _ in
-            let batches = response?.data
-            self.batches = batches ?? [KeyName]()
-            User.shared.batchName = batches?.first?.name
-            self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
+    func fetchSpecifiedBatches(for selectedDivision: Int, index: Int) {
+        model.fetchBatches(id: String(selectedDivision)) { result in
+            switch result {
+            case .success(let batches as BatchesModel):
+                AcademicInfo.shared.batches = batches
+                User.shared.batchName = batches.batches.first?.value
+                User.shared.batch = batches.batches.first?.key
+                self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
+                self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 2 : index + 1 )
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
         }
     }
 
@@ -250,10 +266,11 @@ class ProfileViewModel {
         case .mobileNumber2:
             profile.mobileNumber2 = text
         case .academicType:
+            fetchSpecifiedDivisions(for: AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key ?? .zero, index: index)
             profile.educationalType = AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key
-            loadDivisions(for: profile.educationalType ?? .zero, index: index)
         case .division:
             profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == text }?.key
+            fetchSpecifiedBatches(for: profile.divisionId ?? .zero, index: index)
         default:
             return
         }

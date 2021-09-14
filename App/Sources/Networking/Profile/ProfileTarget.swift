@@ -6,6 +6,8 @@ import Moya
 enum ProfileTarget {
     case getProfile(id: String)
     case editProfile(id: String, profile: Profile)
+    case fetchDivisions(academicLevel: Int, academicType: Int)
+    case fetchBatches(id: String)
 }
 
 extension ProfileTarget: TargetType {
@@ -13,15 +15,18 @@ extension ProfileTarget: TargetType {
         switch self {
         case .getProfile(let id):
             return "/students/\(id)"
-
         case .editProfile(let id, _):
             return "/students/\(id)"
+        case .fetchDivisions:
+            return "/divisions"
+        case .fetchBatches(let id):
+            return "/divisions/\(id)/batches"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getProfile:
+        case .getProfile, .fetchDivisions, .fetchBatches:
             return .get
         case .editProfile:
             return .put
@@ -34,6 +39,10 @@ extension ProfileTarget: TargetType {
             return .requestParameters(parameters: ["id": id], encoding: URLEncoding.default)
         case let .editProfile(_, profile):
             return .requestCustomJSONEncodable(profile, encoder: JSONEncoder.default)
+        case let .fetchDivisions(academicLevel, academicType):
+            return .requestParameters(parameters: ["education_level": String(academicLevel), "education_type": String(academicType)], encoding: URLEncoding.default)
+        default:
+            return .requestPlain
         }
     }
 }

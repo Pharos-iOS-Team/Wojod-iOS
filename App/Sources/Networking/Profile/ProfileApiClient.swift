@@ -27,4 +27,26 @@ class ProfileApiClient {
             }
         }
     }
+
+    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping(Response?, MoyaError?) -> Void) {
+        profileProvider.request(.fetchDivisions(academicLevel: academicLevel, academicType: academicType)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+
+    func fetchBatches(id: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        profileProvider.request(.fetchBatches(id: id)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
