@@ -29,6 +29,8 @@ class ProfileViewModel {
     var profile = Profile()
     var countries = [KeyName]()
     var cities = [KeyName]()
+    var divisions = [KeyName]()
+    var batches = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
         case EducationLevel.school.rawValue:
@@ -159,6 +161,42 @@ class ProfileViewModel {
         }
     }
 
+    func fetchSpecifiedDivisions(for selectedAcademicType: Int, index: Int) {
+        model.fetchDivisions(academicLevel: User.shared.educationLevel, academicType: selectedAcademicType) { result in
+            switch result {
+            case .success(let divisions as DivisionsModel):
+                AcademicInfo.shared.divisions = divisions
+                User.shared.divisionName = divisions.divisions.first?.value
+                User.shared.divisionId = divisions.divisions.first?.key
+                self.profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == User.shared.divisionName }?.key
+                self.reloadCitiesCell?(index + 1)
+                self.fetchSpecifiedBatches(for: self.profile.divisionId ?? .zero, index: index)
+                self.reloadCitiesCell?(index + 2)
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
+        }
+    }
+
+    func fetchSpecifiedBatches(for selectedDivision: Int, index: Int) {
+        model.fetchBatches(id: String(selectedDivision)) { result in
+            switch result {
+            case .success(let batches as BatchesModel):
+                AcademicInfo.shared.batches = batches
+                User.shared.batchName = batches.batches.first?.value
+                User.shared.batch = batches.batches.first?.key
+                self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
+                self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 2 : index + 1 )
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
+        }
+    }
+
     // swiftlint:disable function_body_length
     func setTextFieldInfo(forIndexPath index: Int) -> String? {
         switch validFields[index] {
@@ -227,6 +265,12 @@ class ProfileViewModel {
             profile.name = text
         case .mobileNumber2:
             profile.mobileNumber2 = text
+        case .academicType:
+            fetchSpecifiedDivisions(for: AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key ?? .zero, index: index)
+            profile.educationalType = AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key
+        case .division:
+            profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == text }?.key
+            fetchSpecifiedBatches(for: profile.divisionId ?? .zero, index: index)
         default:
             return
         }

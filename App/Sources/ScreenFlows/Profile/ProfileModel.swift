@@ -20,4 +20,36 @@ class ProfileModel: ModelDecodable {
             }
         }
     }
+
+    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping (Result) -> Void) {
+        apiClient.fetchDivisions(academicLevel: academicLevel, academicType: academicType) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: DivisionsModel.self, from: response) { result in
+                        completionHandler(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completionHandler)
+                }
+            } else if let error = error {
+                self.handleMoyaError(error: error, completionHandler: completionHandler)
+            }
+        }
+    }
+
+    func fetchBatches(id: String, completionHandler: @escaping (Result) -> Void) {
+        apiClient.fetchBatches(id: id) { response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self.decode(modelType: BatchesModel.self, from: response) { result in
+                        completionHandler(result)
+                    }
+                } else {
+                    self.decodeError(response: response, completionHandler: completionHandler)
+                }
+            } else if let error = error {
+                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription.replacingOccurrences(of: "URLSessionTask failed with error:", with: ""))))
+            }
+        }
+    }
 }

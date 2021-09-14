@@ -11,8 +11,10 @@ struct Profile: Codable {
     var city: String?
     var region: String?
     var address: String?
+    var educationalType: Int?
     var batchId: Int?
     var specializationId: Int?
+    var divisionId: Int?
     var avatarId: Int?
     var homeNumber: String?
     var parent1PhoneNumber: String?
