@@ -29,6 +29,8 @@ class ProfileViewModel {
     var profile = Profile()
     var countries = [KeyName]()
     var cities = [KeyName]()
+    var divisions = [KeyName]()
+    var batches = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
         case EducationLevel.school.rawValue:
@@ -159,6 +161,26 @@ class ProfileViewModel {
         }
     }
 
+    func loadDivisions(for selectedAcademicType: Int, index: Int) {
+        NetworkProvider.shared.request(target: .academicDivisions(User.shared.educationLevel, selectedAcademicType), type: DataResponse.self) { response, _ in
+            let divisions = response?.data
+            self.divisions = divisions ?? [KeyName]()
+            User.shared.divisionName = divisions?.first?.name
+            self.profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == User.shared.divisionName }?.key
+            self.loadBatches(for: self.profile.divisionId ?? .zero, index: index)
+            self.reloadCitiesCell?(index + 1)
+        }
+    }
+
+    func loadBatches(for selectedDivision: Int, index: Int) {
+        NetworkProvider.shared.request(target: .batches(selectedDivision), type: DataResponse.self) { response, _ in
+            let batches = response?.data
+            self.batches = batches ?? [KeyName]()
+            User.shared.batchName = batches?.first?.name
+            self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
+        }
+    }
+
     // swiftlint:disable function_body_length
     func setTextFieldInfo(forIndexPath index: Int) -> String? {
         switch validFields[index] {
@@ -227,6 +249,11 @@ class ProfileViewModel {
             profile.name = text
         case .mobileNumber2:
             profile.mobileNumber2 = text
+        case .academicType:
+            profile.educationalType = AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key
+            loadDivisions(for: profile.educationalType ?? .zero, index: index)
+        case .division:
+            profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == text }?.key
         default:
             return
         }
