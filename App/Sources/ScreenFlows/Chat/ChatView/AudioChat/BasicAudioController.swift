@@ -83,6 +83,7 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             audioPlayer = player
             audioPlayer?.prepareToPlay()
             audioPlayer?.delegate = self
+            NotificationCenter.default.post(name: AVAudioSession.routeChangeNotification, object: nil)
             audioPlayer?.play()
             state = .playing
             audioCell.playButton.isSelected = true
@@ -110,6 +111,8 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             let userInfo = notification.userInfo,
             let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
             let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: .defaultToSpeaker)
+            try? AVAudioSession.sharedInstance().setActive(true)
             return
         }
 
@@ -122,7 +125,9 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
                 let session = AVAudioSession.sharedInstance()
                 try? session.overrideOutputAudioPort(.speaker)
             }
-        default: ()
+        default:
+            let session = AVAudioSession.sharedInstance()
+            try? session.overrideOutputAudioPort(.none)
         }
     }
 
