@@ -78,6 +78,7 @@ class CourseDetailsViewController: UIViewController {
     private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
+    private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
@@ -120,13 +121,6 @@ class CourseDetailsViewController: UIViewController {
                 self.hideLoadingIndicator()
                 self.materials = materials
                 self.tableView.reloadData()
-            }
-        } else if activeScreen == .details {
-            if !(lessonsList?.isEmpty ?? true) {
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-                    self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-                    self.tableView.reloadData()
-                }
             }
         }
     }
@@ -218,6 +212,14 @@ class CourseDetailsViewController: UIViewController {
                 expandedSections.append(section)
                 viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
+                    if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                        self.doesLessonContainAttachments[section] = false
+                    } else {
+                        self.doesLessonContainAttachments[section] = true
+                    }
                     self.tableView.reloadData()
                 }
             }
@@ -300,7 +302,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
-            self.tableView.reloadData()
+            self.didTapOnCollapseExpand(in: 2)
         }
     }
 
@@ -769,11 +771,8 @@ extension CourseDetailsViewController: UITableViewDelegate {
             view?.assignSectionTagToButton(section)
             view?.configureVisibilityOfExpandButton(
                 state: course?.reservationState,
-                isAttachmentsEmpty:
-                    attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
-                    attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
-                    attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
-                    attachmentsOfLessons[section]?.videos?.isEmpty ?? true
+                doesContainAttachments:
+                    doesLessonContainAttachments[section] ?? false
             )
             if expandedSections.contains(section) {
                 view?.setImageOfButton(Images.collapse.image)
