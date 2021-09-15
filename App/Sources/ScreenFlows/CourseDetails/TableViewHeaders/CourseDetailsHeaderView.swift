@@ -51,7 +51,7 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     }
 
     internal func configureVisibilityOfExpandButton(state: String?, isAttachmentsEmpty: Bool) {
-        expandCollapseButton.isHidden = state != "approved" || (state == "approved" && isAttachmentsEmpty)
+        expandCollapseButton.isHidden = state != "approved" || isAttachmentsEmpty
     }
 
     @objc

@@ -673,9 +673,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             configureAttachments(in: indexPath.section)
             let cell = tableView.dequeueCell(ofType: AttachmentTableViewCell.self, for: indexPath)
             let attachment = allAttachmentsOfLesson[indexPath.row]
-            let headerView = tableView.headerView(forSection: indexPath.section) as? CourseDetailsHeaderView
             configureLessonDetails(cell: cell, with: attachment)
-            headerView?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
             return cell ?? UITableViewCell()
 
         case .reviews:
@@ -769,7 +767,14 @@ extension CourseDetailsViewController: UITableViewDelegate {
             view?.setLessonTitleLabel(lesson?.name ?? "")
             view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
             view?.assignSectionTagToButton(section)
-            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
+            view?.configureVisibilityOfExpandButton(
+                state: course?.reservationState,
+                isAttachmentsEmpty:
+                    attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                    attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                    attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                    attachmentsOfLessons[section]?.videos?.isEmpty ?? true
+            )
             if expandedSections.contains(section) {
                 view?.setImageOfButton(Images.collapse.image)
             } else {
