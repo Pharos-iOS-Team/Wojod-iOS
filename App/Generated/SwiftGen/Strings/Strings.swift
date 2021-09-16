@@ -618,6 +618,14 @@ internal enum L10n {
     internal static var noData: String {
         return L10n.tr("Localizable", "quizzes.noData")
       }
+    /// Check your internet connection and try again in a while.
+    internal static var noInternetMessage: String {
+        return L10n.tr("Localizable", "quizzes.noInternetMessage")
+      }
+    /// No Internet!
+    internal static var noInternetTitle: String {
+        return L10n.tr("Localizable", "quizzes.noInternetTitle")
+      }
     /// Non-finalized
     internal static var nonFinialized: String {
         return L10n.tr("Localizable", "quizzes.nonFinialized")

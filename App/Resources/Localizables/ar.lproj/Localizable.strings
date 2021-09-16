@@ -312,6 +312,8 @@
 "quizzes.gallery" = "البوم";
 "quizzes.camera" = "كاميرا";
 "quizzes.viewDescription" = "التفاصيل";
+"quizzes.noInternetTitle" = "لا يوجد اتصال بالإنترنت";
+"quizzes.noInternetMessage" = "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.";
 
 // MARK: - Assignments
 

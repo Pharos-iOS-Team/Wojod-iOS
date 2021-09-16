@@ -312,6 +312,8 @@ No worries!";
 "quizzes.gallery" = "Gallery";
 "quizzes.camera" = "Camera";
 "quizzes.viewDescription" = "View description";
+"quizzes.noInternetTitle" = "No Internet!";
+"quizzes.noInternetMessage" = "Check your internet connection and try again in a while.";
 
 // MARK: - Assignments
 

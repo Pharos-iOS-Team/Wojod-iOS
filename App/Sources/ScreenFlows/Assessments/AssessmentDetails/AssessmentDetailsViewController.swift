@@ -516,16 +516,24 @@ class AssessmentDetailsViewController: UIViewController {
                 dismissButtonTitle: L10n.Global.Actions.cancel
             ) { [weak self] in
                 self?.dismiss(animated: true) {
-                    let message = self?.viewModel?.submittedAlertMessage ?? ""
-                    self?.showAlert(
-                        imageName: Images.imgSuccess.name,
-                        title: self?.viewModel?.submittedAlertTitle ?? "",
-                        message: message
-                    ) {
-                        self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)
-                        self?.viewModel?.finishAssessment { _ in
-                            self?.navigationController?.popViewController(animated: true)
+                    if ReachabilityAppDelegate.connectionState == .connected {
+                        let message = self?.viewModel?.submittedAlertMessage ?? ""
+                        self?.showAlert(
+                            imageName: Images.imgSuccess.name,
+                            title: self?.viewModel?.submittedAlertTitle ?? "",
+                            message: message
+                        ) {
+                            self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)
+                            self?.viewModel?.finishAssessment { _ in
+                                self?.navigationController?.popViewController(animated: true)
+                            }
                         }
+                    } else {
+                        self?.showAlert(
+                            imageName: Images.danger.name,
+                            title: L10n.Quizzes.noInternetTitle,
+                            message: L10n.Quizzes.noInternetMessage
+                        )
                     }
                 }
             }
