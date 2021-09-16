@@ -83,7 +83,10 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
                     CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
                         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
                         viewCtrl.course = course
-                        UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+                        let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
+                        navigationCtrl.modalPresentationStyle = .fullScreen
+                        navigationCtrl.navigationBar.isHidden = true
+                        UIApplication.shared.keyWindow?.rootViewController?.present(navigationCtrl, animated: true)
                     }
                 }
             }
