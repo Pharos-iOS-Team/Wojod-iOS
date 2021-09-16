@@ -34,7 +34,7 @@ internal enum AttachmentType: Int {
     case documents
 }
 
-protocol LoadableView: class {
+protocol LoadableView: AnyObject {
     func startLoading()
     func stopLoading()
 }
@@ -226,6 +226,26 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
+    @objc
+    private func handlePlusButtonAppearance(section: Int) {
+        if course?.reservationState == "approved" {
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[section] = attachmentsModel
+                if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                    self.doesLessonContainAttachments[section] = false
+                    self.attachmentsOfLessons[section] = nil
+                } else {
+                    self.doesLessonContainAttachments[section] = true
+                    self.attachmentsOfLessons[section] = nil
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     private func showLoadingIndicator() {
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
@@ -302,7 +322,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
-            self.didTapOnCollapseExpand(in: 2)
+            self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0) }
         }
     }
 
@@ -633,7 +653,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return (lessonsList?.count ?? 1) + 1
+            return lessonsList?.count ?? .zero > .zero ? (lessonsList?.count ?? .zero) + 1 : 1
         case .materials:
             return numberOfSectionsInMaterials + 1
         default:
@@ -762,24 +782,28 @@ extension CourseDetailsViewController: UITableViewDelegate {
             )
             return detailsView
         } else if activeScreen == .details && section != .zero {
-            let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-            view?.tag = section + 1
-            view?.collapseExpandDelegate = self
-            let lesson = lessonsList?[section - 1]
-            view?.setLessonTitleLabel(lesson?.name ?? "")
-            view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
-            view?.assignSectionTagToButton(section)
-            view?.configureVisibilityOfExpandButton(
-                state: course?.reservationState,
-                doesContainAttachments:
-                    doesLessonContainAttachments[section] ?? false
-            )
-            if expandedSections.contains(section) {
-                view?.setImageOfButton(Images.collapse.image)
+            if !(lessonsList?.isEmpty ?? false) {
+                let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+                view?.tag = section + 1
+                view?.collapseExpandDelegate = self
+                let lesson = lessonsList?[section - 1]
+                view?.setLessonTitleLabel(lesson?.name ?? "")
+                view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
+                view?.assignSectionTagToButton(section)
+                view?.configureVisibilityOfExpandButton(
+                    state: course?.reservationState,
+                    doesContainAttachments:
+                        doesLessonContainAttachments[section] ?? false
+                )
+                if expandedSections.contains(section) {
+                    view?.setImageOfButton(Images.collapse.image)
+                } else {
+                    view?.setImageOfButton(Images.expand.image)
+                }
+                return view
             } else {
-                view?.setImageOfButton(Images.expand.image)
+                return nil
             }
-            return view
         } else {
             return nil
         }
