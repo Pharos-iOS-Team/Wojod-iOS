@@ -274,8 +274,8 @@ No worries!";
 "quizzes.yourGrade" = "Your grade";
 "quizzes.finish" = "Finish";
 "quizzes.finishMessage" = "Are you sure you want to submit?";
-"quizzes.timeOutTitle" = "We are sorry! time is out!";
-"quizzes.timeOutDescription" = "Your answeres have been submitted";
+"quizzes.timeOutTitle" = "We are sorry! Time is out";
+"quizzes.timeOutDescription" = "Your answers will be submitted!";
 "quizzes.notGradedYet" = "Not graded yet";
 "quizzes.notFinalGrade" = "This grade is not final";
 "quizzes.yourAnswer" = "Your answer";
@@ -312,6 +312,8 @@ No worries!";
 "quizzes.gallery" = "Gallery";
 "quizzes.camera" = "Camera";
 "quizzes.viewDescription" = "View description";
+"quizzes.noInternetTitle" = "No Internet!";
+"quizzes.noInternetMessage" = "Check your internet connection and try again in a while.";
 
 // MARK: - Assignments
 
