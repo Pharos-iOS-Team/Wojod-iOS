@@ -34,7 +34,7 @@ internal enum AttachmentType: Int {
     case documents
 }
 
-protocol LoadableView: class {
+protocol LoadableView: AnyObject {
     func startLoading()
     func stopLoading()
 }
@@ -78,6 +78,7 @@ class CourseDetailsViewController: UIViewController {
     private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
+    private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
@@ -120,13 +121,6 @@ class CourseDetailsViewController: UIViewController {
                 self.hideLoadingIndicator()
                 self.materials = materials
                 self.tableView.reloadData()
-            }
-        } else if activeScreen == .details {
-            if !(lessonsList?.isEmpty ?? true) {
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-                    self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-                    self.tableView.reloadData()
-                }
             }
         }
     }
@@ -218,8 +212,36 @@ class CourseDetailsViewController: UIViewController {
                 expandedSections.append(section)
                 viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
+                    if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                        self.doesLessonContainAttachments[section] = false
+                    } else {
+                        self.doesLessonContainAttachments[section] = true
+                    }
                     self.tableView.reloadData()
                 }
+            }
+        }
+    }
+
+    @objc
+    private func handlePlusButtonAppearance(section: Int) {
+        if course?.reservationState == "approved" {
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[section] = attachmentsModel
+                if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                    self.doesLessonContainAttachments[section] = false
+                    self.attachmentsOfLessons[section] = nil
+                } else {
+                    self.doesLessonContainAttachments[section] = true
+                    self.attachmentsOfLessons[section] = nil
+                }
+                self.tableView.reloadData()
             }
         }
     }
@@ -300,7 +322,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
-            self.tableView.reloadData()
+            self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0) }
         }
     }
 
@@ -631,7 +653,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return (lessonsList?.count ?? 1) + 1
+            return lessonsList?.count ?? .zero > .zero ? (lessonsList?.count ?? .zero) + 1 : 1
         case .materials:
             return numberOfSectionsInMaterials + 1
         default:
@@ -673,9 +695,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             configureAttachments(in: indexPath.section)
             let cell = tableView.dequeueCell(ofType: AttachmentTableViewCell.self, for: indexPath)
             let attachment = allAttachmentsOfLesson[indexPath.row]
-            let headerView = tableView.headerView(forSection: indexPath.section) as? CourseDetailsHeaderView
             configureLessonDetails(cell: cell, with: attachment)
-            headerView?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
             return cell ?? UITableViewCell()
 
         case .reviews:
@@ -762,20 +782,28 @@ extension CourseDetailsViewController: UITableViewDelegate {
             )
             return detailsView
         } else if activeScreen == .details && section != .zero {
-            let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-            view?.tag = section + 1
-            view?.collapseExpandDelegate = self
-            let lesson = lessonsList?[section - 1]
-            view?.setLessonTitleLabel(lesson?.name ?? "")
-            view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
-            view?.assignSectionTagToButton(section)
-            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
-            if expandedSections.contains(section) {
-                view?.setImageOfButton(Images.collapse.image)
+            if !(lessonsList?.isEmpty ?? false) {
+                let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+                view?.tag = section + 1
+                view?.collapseExpandDelegate = self
+                let lesson = lessonsList?[section - 1]
+                view?.setLessonTitleLabel(lesson?.name ?? "")
+                view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
+                view?.assignSectionTagToButton(section)
+                view?.configureVisibilityOfExpandButton(
+                    state: course?.reservationState,
+                    doesContainAttachments:
+                        doesLessonContainAttachments[section] ?? false
+                )
+                if expandedSections.contains(section) {
+                    view?.setImageOfButton(Images.collapse.image)
+                } else {
+                    view?.setImageOfButton(Images.expand.image)
+                }
+                return view
             } else {
-                view?.setImageOfButton(Images.expand.image)
+                return nil
             }
-            return view
         } else {
             return nil
         }
