@@ -738,11 +738,11 @@ internal enum L10n {
     internal static var timeDuration: String {
         return L10n.tr("Localizable", "quizzes.timeDuration")
       }
-    /// Your answeres have been submitted
+    /// Your answers will be submitted!
     internal static var timeOutDescription: String {
         return L10n.tr("Localizable", "quizzes.timeOutDescription")
       }
-    /// We are sorry! time is out!
+    /// We are sorry! Time is out
     internal static var timeOutTitle: String {
         return L10n.tr("Localizable", "quizzes.timeOutTitle")
       }

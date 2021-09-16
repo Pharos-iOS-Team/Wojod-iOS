@@ -269,7 +269,7 @@
 "quizzes.finish" = "تم";
 "quizzes.finishMessage" = "هل أنت متأكد من طلب الارسال؟";
 "quizzes.timeOutTitle" = "نأسف! انتهى الوقت";
-"quizzes.timeOutDescription" = "تم إرسال الاجابات";
+"quizzes.timeOutDescription" = "سيتم تقديم إجاباتك !";
 "quizzes.notGradedYet" = "لم يتم تقييمه بعد";
 "quizzes.notFinalGrade" = "هذه الدرجة ليست نهائية";
 "quizzes.yourAnswer" = "إجابتك";
