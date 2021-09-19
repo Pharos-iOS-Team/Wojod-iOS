@@ -25,6 +25,7 @@ class FiltersTableViewCell: UITableViewCell {
     // MARK: - Private Functions
 
     private var selectedIndexPath: IndexPath?
+    private var previouslySelectedItemPath: Int?
 
     // MARK: - Lifecycle
 
@@ -52,6 +53,10 @@ class FiltersTableViewCell: UITableViewCell {
         self.currentUniversitySection = section
         collectionView.reloadData()
     }
+
+    func selectOldEntry(for item: Int?) {
+        previouslySelectedItemPath = item
+    }
 }
 
 extension FiltersTableViewCell: UICollectionViewDataSource {
@@ -62,6 +67,9 @@ extension FiltersTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FilterCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         cell.configure(with: filters[indexPath.item])
+        if previouslySelectedItemPath != nil, indexPath.item == previouslySelectedItemPath {
+            cell.selectFilter()
+        }
         return cell
     }
 }

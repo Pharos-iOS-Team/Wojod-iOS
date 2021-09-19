@@ -116,6 +116,7 @@ class HomeViewController: UIViewController {
 
     @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
         loadExploreMoreCourses(isBeingScrolled: false)
+        clearPreviouslyChosenFilters()
         configureFiltersButtonWhenNoFilterSelected()
     }
 
@@ -286,6 +287,15 @@ class HomeViewController: UIViewController {
         clearFiltersButton.isHidden = true
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         filtersButton.setTitle("Show Filters")
+    }
+
+    private func clearPreviouslyChosenFilters() {
+        Filters.shared.academicLevel = nil
+        Filters.shared.academicType = nil
+        Filters.shared.academicDivision = nil
+        Filters.shared.academicYear = nil
+        Filters.shared.field = nil
+        Filters.shared.subject = nil
     }
 }
 
