@@ -93,6 +93,7 @@ class AssessmentDetailsViewController: UIViewController {
     }
     private var counter = 0.0 {
         didSet {
+            saveAnswersManagedObjects()
             if counter <= totalDuration * quizFinishTimePercentage,
                 viewModel?.status == .open {
                 turnOutletsToRed()
@@ -591,6 +592,11 @@ class AssessmentDetailsViewController: UIViewController {
             timerLabel?.text = viewModel?.getCounterString(minutes: 0, seconds: 0)
             timer?.invalidate()
         }
+    }
+
+    private func saveAnswersManagedObjects() {
+        guard counter > 0, counter.truncatingRemainder(dividingBy: 120) == 0 else { return }
+        viewModel?.saveAnswersManagedObjects()
     }
 
     private func share(url: URL) {

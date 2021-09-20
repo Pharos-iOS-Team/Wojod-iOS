@@ -167,6 +167,8 @@ class AssessmentDetailsViewModel {
         model.submitAnswer(assessmentID: assessmentID, parameters: parameters, module: module.rawValue) { error in
             if let error = error {
                 print(error)
+            } else {
+                question.deleteAnswerManagedObject()
             }
         }
     }
@@ -208,6 +210,10 @@ class AssessmentDetailsViewModel {
             module: module.rawValue,
             progressCompletion: progressCompletion
         ) { [weak self] question, error in
+            if error == nil {
+                let question = self?.assessmentDetails?.questions?.first { $0.id == questionID }
+                question?.deleteAnswerManagedObject()
+            }
             completion(question, error)
         }
     }
@@ -387,10 +393,9 @@ class AssessmentDetailsViewModel {
         question?.submittedAttachment = url.absoluteString
     }
 
-//    func saveAnswersManagedObjects() {
-//        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-//        try? appDelegate?.persistentContainer.viewContext.save()
-//    }
+    func saveAnswersManagedObjects() {
+        try? LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext.save()
+    }
 
     func updateQuestionAnsweredStatus(_ questionID: Int?) {
         let question = assessmentDetails?.questions?.first { $0.id == questionID }

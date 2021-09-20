@@ -40,6 +40,12 @@ class CompositeAppDelegate: AppDelegateType {
         return true
     }
 
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        appDelegates.forEach {
+            _ = $0.application?(application, performFetchWithCompletionHandler: completionHandler)
+        }
+    }
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         appDelegates.forEach { _ = $0.application?(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken) }
     }

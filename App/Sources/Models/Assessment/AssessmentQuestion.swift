@@ -21,14 +21,29 @@ class AssessmentQuestion: Codable {
     let maximumAllowedChoices: Int?
     let questionAttachment: String?
     var choices: [AssessmentChoice]?
+    var answerManagedObject: AssessmentAnswer?
     var isAnswered = false
     var assessmentID: Int?
     var questioAnswerState: String?
     var answerState: AnswerState = .notReviewed
     var submissionId: Int?
-    var submittedAttachment: String?
-    var submittedFreeTextAnswer: String?
-    var selectedChoices: [Int32] = []
+    var submittedAttachment: String? {
+        didSet {
+            answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
+            answerManagedObject?.setValue(submittedFreeTextAnswer, forKey: "freeText")
+        }
+    }
+    var submittedFreeTextAnswer: String? {
+        didSet {
+            answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
+            answerManagedObject?.setValue(submittedFreeTextAnswer, forKey: "freeText")
+        }
+    }
+    var selectedChoices: [Int32] = [] {
+        didSet {
+            answerManagedObject?.setValue(selectedChoices, forKey: "choices")
+        }
+    }
 
     var type: QuestionType {
         return QuestionType(rawValue: questionType ?? "") ?? .none
@@ -132,22 +147,22 @@ class AssessmentQuestion: Codable {
         }
     }
 
-//    func initAnswerManagedObjectIfNeeded(module: String, completion: @escaping () -> Void) {
-//        guard let assessmentID = assessmentID else { return }
-//        if answerManagedObject != nil {
-//            completion()
-//        } else {
-//            AssessmentAnswer().createIfNeeded(assessmentID: assessmentID, studentID: User.instance.id, questionID: id, module: module) { answerManagedObject in
-//                self.answerManagedObject = answerManagedObject
-//                completion()
-//            }
-//        }
-//    }
+    func initAnswerManagedObjectIfNeeded(module: String, completion: @escaping () -> Void) {
+        guard let assessmentID = assessmentID else { return }
+        if answerManagedObject != nil {
+            completion()
+        } else {
+            AssessmentAnswer(context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).createIfNeeded(assessmentID: assessmentID, studentID: User.shared.id, questionID: id, module: module) { answerManagedObject in
+                self.answerManagedObject = answerManagedObject
+                completion()
+            }
+        }
+    }
 
-//    func deleteAnswerManagedObject() {
-//        answerManagedObject?.delete()
-//        answerManagedObject = nil
-//    }
+    func deleteAnswerManagedObject() {
+        answerManagedObject?.delete()
+        answerManagedObject = nil
+    }
 
     func deleteAttachment() {
         submittedAttachment = nil

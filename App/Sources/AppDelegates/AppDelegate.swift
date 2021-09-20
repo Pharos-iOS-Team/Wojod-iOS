@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import CoreData
 import FirebaseCore
 import FirebaseMessaging
 import UIKit
@@ -19,5 +20,13 @@ class AppDelegate: AppDelegateType {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = appDelegateComposer.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
+    }
+
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if application.applicationState == .background && ReachabilityAppDelegate.connectionState == .connected {
+            AssessmentSynchronization().startSynchronization()
+        }
+        completionHandler(.noData)
+        // appDelegateComposer.application(application, performFetchWithCompletionHandler: completionHandler)
     }
 }

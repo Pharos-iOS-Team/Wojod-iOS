@@ -215,7 +215,6 @@ class AssessmentQuestionViewModel {
             appendMCQSection(question: question)
         case .freeText:
             appendFreeTextSection(for: question, answer: question.submittedFreeTextAnswer, isCorrectAnswer: isCorrectFreeTextAnswer(for: question))
-            // appendTeacherCommentPartIfNeeded(for: question)
             if module == .quizzes,
                 assessmentStatus == .closed,
                 let comment = question.comment,
@@ -254,15 +253,17 @@ class AssessmentQuestionViewModel {
                 guard let type = assessmentQuestion?.type,
                       let optionID = assessmentQuestion?.choices?[indexPath.row].id
                 else { return }
-                switch type {
-                case .trueOrFalse:
-                    self.assessmentQuestion?.selectedChoices = [optionID]
-                case .mcq:
-                    self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
-                default:
-                    return
+                assessmentQuestion?.initAnswerManagedObjectIfNeeded(module: module.rawValue) {
+                    switch type {
+                    case .trueOrFalse:
+                        self.assessmentQuestion?.selectedChoices = [optionID]
+                    case .mcq:
+                        self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
+                    default:
+                        return
+                    }
+                    self.reloadDataSource()
                 }
-                self.reloadDataSource()
             }
         default:
             return
@@ -270,7 +271,9 @@ class AssessmentQuestionViewModel {
     }
 
     func setFreeTextAnswer(_ text: String?) {
-        self.assessmentQuestion?.submittedFreeTextAnswer = text ?? ""
+        assessmentQuestion?.initAnswerManagedObjectIfNeeded(module: module.rawValue) {
+            self.assessmentQuestion?.submittedFreeTextAnswer = text ?? ""
+        }
     }
 
     func getFreeTextAnswer() -> String? {
@@ -278,8 +281,10 @@ class AssessmentQuestionViewModel {
     }
 
     func setAttachedFileLocalURL(url: URL) {
-        self.assessmentQuestion?.submittedAttachment = url.absoluteString
-        self.reloadDataSource()
+        assessmentQuestion?.initAnswerManagedObjectIfNeeded(module: module.rawValue) {
+            self.assessmentQuestion?.submittedAttachment = url.absoluteString
+            self.reloadDataSource()
+        }
     }
 
     func getAttachmentURL() -> (URL?, Bool) {
@@ -291,6 +296,14 @@ class AssessmentQuestionViewModel {
             return (actualURL, false)
         } else {
             return (URL(string: "\(Environment.baseURL)\(submittedAttachment)"), true)
+        }
+    }
+
+    func deleteQuestionAttachment() {
+        assessmentQuestion?.initAnswerManagedObjectIfNeeded(module: module.rawValue) {
+            let freeTextAnswer = self.assessmentQuestion?.submittedFreeTextAnswer
+            self.assessmentQuestion?.deleteAttachment()
+            self.assessmentQuestion?.submittedFreeTextAnswer = freeTextAnswer
         }
     }
 }
