@@ -44,7 +44,6 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-VY-3TQ">
                                 <rect key="frame" x="0.0" y="44" width="414" height="772"/>
-                                <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="superLightGrey"/>
                             </tableView>
                         </subviews>
