@@ -21,10 +21,10 @@ internal enum ActiveScreen {
 }
 
 internal enum MaterialsSections: Int {
-    case assignments
-    case quizzes
-    case videos
-    case documents
+    case assignments = 1
+    case quizzes = 2
+    case videos = 3
+    case documents = 4
 }
 
 internal enum AttachmentType: Int {
@@ -657,18 +657,16 @@ extension CourseDetailsViewController: UITableViewDataSource {
         case .materials:
             return numberOfSectionsInMaterials + 1
         default:
-            return 1
+            return 2
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
-            return reviewsList?.count ?? 0
-
+            return section == .zero ? .zero : reviewsList?.count ?? .zero
         case .details:
             return numberOfRowsInLessonSection(section + 1)
-
         case .materials:
             switch MaterialsSections(rawValue: section) {
             case .assignments:
@@ -682,7 +680,6 @@ extension CourseDetailsViewController: UITableViewDataSource {
             default:
                 return 0
             }
-
         default:
             return 0
         }
@@ -821,13 +818,16 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         if section == .zero {
-            return 600
+            return 505
+        } else if section != .zero && activeScreen == .details {
+            return 60
+        } else {
+            return .zero
         }
-        return 60
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if activeScreen == .details {
+        if activeScreen != .materials {
             let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
             view.backgroundColor = Colors.lightGreyColor.color
             return view
@@ -836,7 +836,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return activeScreen == .details ? footerHeight : 0
+        return activeScreen != .materials ? footerHeight : 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -76,6 +76,8 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             playButton.isHidden = true
         }
     }
+    @IBOutlet private var mainBackgroundView: UIView!
+    @IBOutlet private var mainView: UIView!
     @IBOutlet private var mediaContainerView: UIView!
     @IBOutlet private var courseTitle: UILabel!
     @IBOutlet private var teacherNameLabel: UILabel!
