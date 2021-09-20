@@ -3,6 +3,7 @@
 
 import AVKit
 import AVFoundation
+import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
 import UIKit
@@ -316,6 +317,8 @@ class CourseDetailsViewController: UIViewController {
         tableView.registerHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
 
     private func loadCourseLessons() {
@@ -1032,5 +1035,64 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
+    }
+}
+
+// MARK: - DZN Empty State Data Source
+
+extension CourseDetailsViewController: DZNEmptyDataSetSource {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return nil
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        nil
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        switch activeScreen {
+        case .details:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyDetails)
+
+        case .materials:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyMaterials)
+
+        case .reviews:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyReviews)
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - DZN Empty State Delegate
+
+extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
+        return 200
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        if state == .booked {
+            switch activeScreen {
+            case .details:
+                return lessonsList?.isEmpty ?? true
+            case .materials:
+                return materials?.assignments?.isEmpty ?? true
+                    && materials?.documents?.isEmpty ?? true
+                    && materials?.quizzes?.isEmpty ?? true
+                    && materials?.videos?.isEmpty ?? true
+            case .reviews:
+                return reviewsList?.isEmpty ?? true
+            default:
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }

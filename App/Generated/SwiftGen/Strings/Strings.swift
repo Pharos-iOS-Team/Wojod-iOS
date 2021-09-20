@@ -133,9 +133,17 @@ internal enum L10n {
       internal static var describeCourse: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.describeCourse")
         }
+      /// No details yet.
+      internal static var emptyDetails: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyDetails")
+        }
+      /// No materials yet.
+      internal static var emptyMaterials: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyMaterials")
+        }
       /// No reviews yet.
-      internal static var emptyStateMessage: String {
-          return L10n.tr("Localizable", "courseDetails.courseReview.emptyStateMessage")
+      internal static var emptyReviews: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyReviews")
         }
       /// Message
       internal static var messageTitle: String {

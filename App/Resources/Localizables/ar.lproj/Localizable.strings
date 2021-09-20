@@ -190,7 +190,10 @@
 "courseDetails.courseReview.describeCourse" = "صف الدورة ...";
 "courseDetails.courseReview.skipRating" = "تخطي التقييم";
 "courseDetails.courseReview.by" = "من قبل";
-"courseDetails.courseReview.emptyStateMessage" = "لا توجد تقييمات بعد.";
+"courseDetails.courseReview.emptyReviews" = "لا توجد تقييمات بعد.";
+"courseDetails.courseReview.emptyDetails" = "لا توجد تفاصيل بعد.";
+"courseDetails.courseReview.emptyMaterials" = "لا توجد مواد بعد.";
+
 
 // MARK: - Home & My courses
 

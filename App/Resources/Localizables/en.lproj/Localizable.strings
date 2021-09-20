@@ -190,7 +190,9 @@ No worries!";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
 "courseDetails.courseReview.by" = "by";
-"courseDetails.courseReview.emptyStateMessage" = "No reviews yet.";
+"courseDetails.courseReview.emptyReviews" = "No reviews yet.";
+"courseDetails.courseReview.emptyDetails" = "No details yet.";
+"courseDetails.courseReview.emptyMaterials" = "No materials yet.";
 
 // MARK: - Home & My courses
 
