@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H1030" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AssessmentAnswer" representedClassName="AssessmentAnswer" syncable="YES" codeGenerationType="class">
+        <attribute name="assessmentId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="attachmentURL" optional="YES" attributeType="String"/>
+        <attribute name="choices" optional="YES" attributeType="Transformable"/>
+        <attribute name="freeText" optional="YES" attributeType="String"/>
+        <attribute name="isFreeText" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="module" optional="YES" attributeType="String"/>
+        <attribute name="questionId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="studentId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="AssessmentAnswer" positionX="-63" positionY="-18" width="128" height="163"/>
+    </elements>
+</model>
