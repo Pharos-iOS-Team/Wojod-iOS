@@ -322,6 +322,8 @@
 		BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */; };
 		BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */; };
 		BC6231D52638183C00792869 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6231D42638183C00792869 /* User.swift */; };
+		BC75549A26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */; };
+		BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */; };
 		BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */; };
 		BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC76713A262C521E0012155C /* CoursesListViewController.swift */; };
 		BC767140262C524B0012155C /* CoursesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC76713F262C524B0012155C /* CoursesList.storyboard */; };
@@ -709,6 +711,8 @@
 		BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiClient.swift; sourceTree = "<group>"; };
 		BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTarget.swift; sourceTree = "<group>"; };
 		BC6231D42638183C00792869 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherQuestionCommentTableViewCell.swift; sourceTree = "<group>"; };
+		BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherQuestionCommentTableViewCell.xib; sourceTree = "<group>"; };
 		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
 		BC76713A262C521E0012155C /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
 		BC76713F262C524B0012155C /* CoursesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoursesList.storyboard; sourceTree = "<group>"; };
@@ -967,6 +971,7 @@
 		380B136E26B807F500CB5811 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				BC75549726FB7D0200A7C0AC /* TeacherQuestionComment */,
 				380B136F26B807F500CB5811 /* MCQ */,
 				380B137226B807F500CB5811 /* FreeText */,
 				380B137526B807F500CB5811 /* TeacherCommentHeaderCell */,
@@ -1804,6 +1809,15 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		BC75549726FB7D0200A7C0AC /* TeacherQuestionComment */ = {
+			isa = PBXGroup;
+			children = (
+				BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */,
+				BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */,
+			);
+			path = TeacherQuestionComment;
+			sourceTree = "<group>";
+		};
 		BC767131262C4D030012155C /* CoursesTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2183,6 +2197,7 @@
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
 				380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */,
+				BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
 				380B139926B807F700CB5811 /* TeacherCommentHeaderTableViewCell.xib in Resources */,
@@ -2383,6 +2398,7 @@
 				38659BE126B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift in Sources */,
 				BC5ED0B52626E34800774E54 /* UserDataModel.swift in Sources */,
 				778E7254261DC2D4009D7B35 /* URLExt.swift in Sources */,
+				BC75549A26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift in Sources */,
 				380A026926725A4B00D01B06 /* CourseCollectionViewCell.swift in Sources */,
 				7723AD5D261C65F0007C0B97 /* KeychainHandler.swift in Sources */,
 				77E32BB4264A8BF80064B801 /* ImagesExt.swift in Sources */,
