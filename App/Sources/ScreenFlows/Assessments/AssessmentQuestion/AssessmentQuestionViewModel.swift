@@ -225,7 +225,7 @@ class AssessmentQuestionViewModel {
         default:
             return
         }
-        if !(question.note?.isEmpty ?? true) {
+        if !(question.note?.isEmpty ?? true) && assessmentStatus == .closed {
             dataSource.append(.note(question.note))
         }
     }
