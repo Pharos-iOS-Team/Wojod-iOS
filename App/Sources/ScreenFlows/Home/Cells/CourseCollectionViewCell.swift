@@ -72,7 +72,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - IBActions
 
     @IBAction private func didTapPlayVideo(_ sender: UIButton) {
-        self.playVideo!()
+        self.playVideo?()
     }
 
     @IBAction private func didTapViewCourse(_ sender: UIButton) {

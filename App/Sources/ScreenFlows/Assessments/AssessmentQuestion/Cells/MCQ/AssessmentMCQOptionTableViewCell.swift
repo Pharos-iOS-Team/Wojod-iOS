@@ -5,7 +5,7 @@
 import UIKit
 import M13Checkbox
 
-protocol PreviewQuestionImageDelegate: class {
+protocol PreviewQuestionImageDelegate: AnyObject {
     func previewImage(imageView: UIImageView, image: UIImage)
 }
 

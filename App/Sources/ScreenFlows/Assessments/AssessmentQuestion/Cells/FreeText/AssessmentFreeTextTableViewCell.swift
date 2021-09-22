@@ -4,9 +4,8 @@
 
 import UIKit
 import LanguageManager_iOS
-// import RPCircularProgress
 
-protocol AssessmentFreeTextDelegate: class {
+protocol AssessmentFreeTextDelegate: AnyObject {
     func didTapAttach(_ sender: UIButton)
     func didTapDeleteAttachment()
     func didOpenAttachment()
@@ -19,7 +18,6 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
     @IBOutlet private var attachmentImageView: UIImageView!
     @IBOutlet private var attachFileButton: UIButton!
     @IBOutlet private var cancelUploadButton: UIButton!
-    // @IBOutlet private var uploadProgressView: RPCircularProgress!
     @IBOutlet private var attachmentImageViewWidthConstraint: NSLayoutConstraint!
 
     private weak var delegate: AssessmentFreeTextDelegate?

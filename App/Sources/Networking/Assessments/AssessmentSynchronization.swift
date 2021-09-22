@@ -1,17 +1,46 @@
 // Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
-// swiftlint:disable all
 
-import Foundation
-import CoreData
 import UIKit
+import CoreData
+
+// swiftlint:disable all
 
 class AssessmentSynchronization {
     private let model = AssessmentDetailsModel()
     private var managedObjects = [NSManagedObject]()
     private var totalAnswersCount = 0
+    var synchronizationCompletionHandler: (() -> Void)?
+
+    func startSynchronizationForQuiz(id: Int) {
+        AssessmentAnswer().fetchAll { [weak self] managedObjects in
+            guard let self = self else { return }
+            let quizManagedObject = self.currentQuizManagedObjects(quizID: id, allAnswers: managedObjects)
+            self.managedObjects = quizManagedObject
+            self.totalAnswersCount = quizManagedObject.count
+            guard self.totalAnswersCount > 0 else {
+                self.synchronizationCompletionHandler?()
+                return
+            }
+            self.sendRequest(with: quizManagedObject[self.totalAnswersCount - 1])
+        }
+    }
 
     func startSynchronization() {
         fetchAnswers()
+    }
+
+    private func currentQuizManagedObjects(quizID: Int, allAnswers: [NSManagedObject]) -> [NSManagedObject] {
+        var filteredManagedObjects = [NSManagedObject]()
+        for item in allAnswers {
+            guard
+                let answer = item as? AssessmentAnswer,
+                let assessmentID = answer.value(forKey: "assessmentId") as? Int
+            else { return [] }
+            if assessmentID == quizID {
+                filteredManagedObjects.append(item)
+            }
+        }
+        return filteredManagedObjects
     }
 
     private func getContext() -> NSManagedObjectContext? {
@@ -19,20 +48,38 @@ class AssessmentSynchronization {
     }
 
     private func fetchAnswers() {
-        AssessmentAnswer(context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).fetchAll { managedObjects in
+        AssessmentAnswer().fetchAll { [weak self] managedObjects in
+            guard let self = self else { return }
             self.managedObjects = managedObjects
             self.totalAnswersCount = managedObjects.count
-            guard self.totalAnswersCount > 0 else { return }
+            guard self.totalAnswersCount > 0 else {
+                self.synchronizationCompletionHandler?()
+                return
+            }
             self.sendRequest(with: managedObjects[self.totalAnswersCount - 1])
         }
     }
-    
-    private func sendAnswerRequest(_ assessmentID: Int, _ questionID: Int, _ selectedChoices: [Int], _ freeTextAnswer: String?, ignoreAttachment: Bool, module: String) {
-        submitAnswerWithoutAttachment(assessmentID: assessmentID, questionID: questionID, selectedChoices: selectedChoices, freeTextAnswer: freeTextAnswer, ignoreAttachment: ignoreAttachment, module: module) { error in
+
+    private func sendAnswerRequest(
+        _ assessmentID: Int,
+        _ questionID: Int,
+        _ selectedChoices: [Int],
+        _ freeTextAnswer: String?,
+        ignoreAttachment: Bool,
+        module: String
+    ) {
+        submitAnswerWithoutAttachment(
+            assessmentID: assessmentID,
+            questionID: questionID,
+            selectedChoices: selectedChoices,
+            freeTextAnswer: freeTextAnswer,
+            ignoreAttachment: ignoreAttachment,
+            module: module
+        ) { error in
             self.moveToNextAnswer(shouldRemoveCurrentRequest: (error == nil))
         }
     }
-    
+
     private func sendRequest(with managedObject: NSManagedObject?) {
         guard let answer = managedObject as? AssessmentAnswer,
             let assessmentID = answer.value(forKey: "assessmentId") as? Int,
@@ -116,6 +163,8 @@ class AssessmentSynchronization {
             totalAnswersCount -= 1
             if totalAnswersCount > 0 {
                 sendRequest(with: managedObjects[self.totalAnswersCount - 1])
+            } else {
+                synchronizationCompletionHandler?()
             }
         } catch {
             print(error)

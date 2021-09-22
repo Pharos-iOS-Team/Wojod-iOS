@@ -2,7 +2,7 @@
 
 import Foundation
 
-class Filters {
+final class Filters {
     static let shared = Filters()
 
     var isDataBeingRetrieved: Bool = false

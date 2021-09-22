@@ -12,12 +12,6 @@ protocol HomeTableViewHeaderDelegate: AnyObject {
 }
 
 class HomeTableViewHeader: UITableViewHeaderFooterView {
-    // MARK: - Lifecycle
-
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     // MARK: - IBOutlets
 
     @IBOutlet private var subjectCollectionViewFlowLayout: UICollectionViewFlowLayout! {
@@ -220,11 +214,5 @@ extension HomeTableViewHeader: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         delegate?.textDidChange(in: searchBar)
-    }
-}
-
-class UICollectionViewLocalizableFlowLayout: UICollectionViewFlowLayout {
-    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
-        return Language.currentLanguage == .arabic
     }
 }

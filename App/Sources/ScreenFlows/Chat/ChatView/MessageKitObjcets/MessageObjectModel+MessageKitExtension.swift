@@ -41,8 +41,10 @@ extension MessageObjectModel: MessageType {
 
 extension MessageObjectModel: AudioItem {
     var url: URL {
-        guard let attachmentPath = attachments?.first?.fileUrl,
-              let audioURL = URL(string: Environment.baseURLString + attachmentPath) else {
+        guard
+            let attachmentPath = attachments?.first?.fileUrl,
+            let audioURL = URL(string: Environment.baseURLString + attachmentPath)
+        else {
             fatalError("MessagesDisplayDelegate has not been set.")
         }
         return audioURL

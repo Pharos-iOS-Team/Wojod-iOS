@@ -27,6 +27,5 @@ class AppDelegate: AppDelegateType {
             AssessmentSynchronization().startSynchronization()
         }
         completionHandler(.noData)
-        // appDelegateComposer.application(application, performFetchWithCompletionHandler: completionHandler)
     }
 }

@@ -39,3 +39,9 @@
 "global.alerts.data_preparation_error" = "Something went wrong while preparing the data";
 
 "global.alerts.loading" = "Loading";
+
+"global.alerts.not_found" = "Not Found";
+
+"global.titles.unauthorized_access" = "Unauthorized Access";
+
+"global.titles.server_not_responding" = "Server Not Responding";

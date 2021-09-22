@@ -1,12 +1,9 @@
-// Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2020 Pharos Solutions. All rights reserved.
 
-// swiftlint:disable all
-
-import HandySwift
-import UIKit
 import LanguageManager_iOS
+import UIKit
 
-protocol AssessmentQuestionsDelegate: class {
+protocol AssessmentQuestionsDelegate: AnyObject {
     func didAnswerQuestion(with questionID: Int?)
     func didAttachFile(with url: URL, for questionID: Int?)
     func didDeleteAttachedFile(for questionID: Int?)
@@ -19,6 +16,7 @@ enum AssessmentDetailOverViewState {
     case collapsed
 }
 
+// swiftlint:disable all
 class AssessmentDetailsViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private var progressLabel: UILabel!
@@ -105,11 +103,10 @@ class AssessmentDetailsViewController: UIViewController {
 
     // MARK: - Public properties
 
-    var isClosed = false
     var detailState: AssessmentDetailOverViewState = .collapsed
-    
+
     // MARK: - Clouseres
-    
+
     var teacherEndUploadingGrades: ((_: AssessmentSubmissionsResponse?) -> Void)?
 
     // MARK: - Lifecycle
@@ -133,12 +130,18 @@ class AssessmentDetailsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addObservers()
         setupDetailOverView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         handleRemovingDragableView()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
     }
 
     // MARK: - Private functions
@@ -174,10 +177,17 @@ class AssessmentDetailsViewController: UIViewController {
         }
     }
 
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRemainingTime), name: .applicationWillEnterForeground, object: nil)
+    }
+
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: .applicationWillEnterForeground, object: nil)
+    }
+
     private func setupDetailOverView() {
         visualEffectView.frame = view.frame
-        assessmentDetailOverViewController =
-            StoryboardScene.AssessmentDetailOverview.assessmentDetailOverViewViewController.instantiate()
+        assessmentDetailOverViewController = StoryboardScene.AssessmentDetailOverview.assessmentDetailOverViewViewController.instantiate()
         setDetailData()
         initAssessmentDetailOverview()
         assessmentDetailOverViewController?.setQuestionsTableViewDetails()
@@ -345,13 +355,9 @@ class AssessmentDetailsViewController: UIViewController {
     private func showError(_ title: String?, _ message: String?) {
         showAlert(imageName: "danger", title: title, message: message)
     }
-    
+
     private func registerNib() {
-        let questionNumberCollectionViewCellNib = UINib(nibName: Nib.assessmentDetailQuestionTableViewCell.rawValue, bundle: nil)
-        questionNumberCollectionView.register(
-            questionNumberCollectionViewCellNib,
-            forCellWithReuseIdentifier: "AssessmentDetailQuestionNumberCollectionViewCell"
-        )
+        questionNumberCollectionView.registerCell(ofType: AssessmentDetailQuestionNumberCollectionViewCell.self)
     }
 
     private func setCollectionViewContentDirection() {
@@ -459,6 +465,7 @@ class AssessmentDetailsViewController: UIViewController {
             let question = viewModel?.getQuestion(at: index) else { return }
         questionsViewController?.showQuestion(question)
         questionNumberCollectionView.reloadData()
+        scroll(questionNumberCollectionView, to: lastUserIndex)
     }
 
     private func navigateToNextQuestion() {
@@ -484,23 +491,6 @@ class AssessmentDetailsViewController: UIViewController {
         guard let viewModel = viewModel, let index = index, viewModel.status == .open else { return }
         viewModel.submitQuestionAnswer(at: index)
     }
-    
-    private func assessmentFinishedForTeacher() {
-        guard let viewModel = viewModel else { return }
-        if viewModel.isAllQuestionsGradedFromTeacher() {
-            showAlertForSureToUploadGrades()
-        } else {
-            dismissPresentedIfNeeded { [weak self] in
-                self?.showAlert(
-                    imageName: Images.danger.name,
-                    title: "",
-                    message: "quizzes.notAllGradedError".localiz()
-                ) {
-                    self?.dismiss(animated: true)
-                }
-            }
-        }
-    }
 
     private func assessmentFinishedForParentAndStudent(
         imageName: String,
@@ -508,62 +498,84 @@ class AssessmentDetailsViewController: UIViewController {
         message: String?,
         timesOut: Bool = false
     ) {
-        dismissPresentedIfNeeded { [weak self] in
-            let alert = self?.showAndReturnAlert(
-                imageName: imageName,
-                title: title,
-                message: message,
-                primaryButtonTitle: L10n.Global.Actions.ok,
-                dismissButtonTitle: L10n.Global.Actions.cancel
-            ) { [weak self] in
-                self?.dismiss(animated: true) {
-                    if ReachabilityAppDelegate.connectionState == .connected {
-                        let message = self?.viewModel?.submittedAlertMessage ?? ""
-                        self?.showAlert(
-                            imageName: Images.imgSuccess.name,
-                            title: self?.viewModel?.submittedAlertTitle ?? "",
-                            message: message
-                        ) {
-                            self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)
-                            self?.viewModel?.finishAssessment { _ in
-                                self?.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                    } else {
-                        self?.showAlert(
-                            imageName: Images.danger.name,
-                            title: L10n.Quizzes.noInternetTitle,
-                            message: L10n.Quizzes.noInternetMessage
-                        )
-                    }
+        appAlertViewController = showAndReturnAlert(
+            imageName: imageName,
+            title: title,
+            message: message,
+            primaryButtonTitle: L10n.Global.Actions.ok,
+            dismissButtonTitle: L10n.Global.Actions.cancel,
+            secondryButtonCompletionHandler: {
+                self.dismiss(animated: true)
+            }, primaryButtonCompletionHandler: { [weak self] in
+                guard let self = self else { return }
+                guard ReachabilityAppDelegate.connectionState == .connected else {
+                    self.handleFininshAssessmentInOfflineMode()
+                    return
                 }
+                self.appAlertViewController?.startPrimaryButtonLoading()
+                self.handleEndingAssessment()
             }
-            self?.handleTimeOutOfQuiz(timesOut: timesOut, alert: alert)
+        )
+        handleTimeOutOfQuiz(timesOut: timesOut, alert: appAlertViewController)
+    }
+
+    private func handleEndingAssessment() {
+        submitQuestionAnswer(at: lastUserIndex?.row)
+        let assessmentSynchronization = AssessmentSynchronization()
+        assessmentSynchronization.synchronizationCompletionHandler = {
+            self.viewModel?.finishAssessment {
+                self.handleFinishAssessmentSuccess()
+            }
+        }
+        assessmentSynchronization.startSynchronizationForQuiz(id: viewModel?.assissmentID ?? 0)
+    }
+
+    private func handleFinishAssessmentSuccess() {
+        appAlertViewController?.dismiss(animated: true) {
+            self.showAlert(
+                imageName: "imgSuccess",
+                title: self.viewModel?.submittedAlertTitle ?? "",
+                message: self.viewModel?.submittedAlertMessage ?? ""
+            ) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+
+    private func handleFininshAssessmentInOfflineMode() {
+        let submittedMessage = self.viewModel?.submittedAlertMessage ?? ""
+        let internetIssueMessage = "quizzes.submittedAlertConnectionMessage".localiz()
+        appAlertViewController?.dismiss(animated: true) {
+            self.showAlert(
+                imageName: "imgSuccess",
+                title: self.viewModel?.submittedAlertTitle ?? "",
+                message: "\(submittedMessage). \(internetIssueMessage)"
+            ) {
+                self.submitQuestionAnswer(at: self.lastUserIndex?.row)
+                self.viewModel?.finishAssessment()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 
     private func handleTimeOutOfQuiz(timesOut: Bool, alert: AppAlertViewController?) {
         if timesOut {
             submitQuestionAnswer(at: lastUserIndex?.row)
-            alert?.configureOneButton(buttonTitle: L10n.Quizzes.submitButtonTitle) {
-                alert?.startPrimaryButtonLoading()
-                self.viewModel?.finishAssessment { [weak self] error in
-                    alert?.stopPrimaryButtonLoading()
-                    if error == nil {
-                        self?.navigationController?.popViewController(animated: true)
-                        alert?.dismiss(animated: true)
-                    }
+            alert?.configureOneButtonForDismiss { [weak self] in
+                self?.dismiss(animated: true) {
+                    self?.viewModel?.finishAssessment()
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
         }
     }
 
     private func dismissPresentedIfNeeded(completion: @escaping () -> Void) {
-        guard let presentedViewController = presentedViewController else {
+        guard let presentedViewCtrl = presentedViewController else {
             completion()
             return
         }
-        presentedViewController.dismiss(animated: true) {
+        presentedViewCtrl.dismiss(animated: true) {
             completion()
         }
     }
@@ -586,7 +598,7 @@ class AssessmentDetailsViewController: UIViewController {
         let minute = Int(floor(counter / 60))
         let second = Int(floor(counter.truncatingRemainder(dividingBy: 60)))
         timerLabel?.text = viewModel?.getCounterString(minutes: minute, seconds: second)
-        
+
         if counter <= 0.0 {
             isTimerRunning = false
             timerLabel?.text = viewModel?.getCounterString(minutes: 0, seconds: 0)
@@ -618,7 +630,8 @@ class AssessmentDetailsViewController: UIViewController {
 
 // MARK: - Selectors
 extension AssessmentDetailsViewController {
-    @objc private func updateRemainingTime() {
+    @objc
+    private func updateRemainingTime() {
         guard viewModel?.module == .quizzes,
             let remainingTime = viewModel?.getUpdatedRemainingTimeInSeconds()
             else { return }
@@ -645,10 +658,6 @@ extension AssessmentDetailsViewController {
         )
     }
 
-    @objc private func finishAssessmentAssignmentForTeacher() {
-        assessmentFinishedForTeacher()
-    }
-    
     @objc private func backButtonTapped() {
         handleBackClickForParentAndStudent()
     }
@@ -662,60 +671,6 @@ extension AssessmentDetailsViewController {
         default:
             return
         }
-    }
-
-    private func handleBackClickForTeahcer() {
-        guard let viewModel = viewModel else { return }
-        if viewModel.isAllQuestionsGradedFromTeacher() {
-            showAlertForFinishAllQuestionsCase()
-        } else {
-            showAlertForNotFinishedQuestions()
-        }
-    }
-
-    private func showAlertForFinishAllQuestionsCase() {
-        appAlertViewController = showAndReturnAlert(
-            imageName: Images.danger.name,
-            title: nil,
-            message: "quizzes.gradeWontSaved".localiz(),
-            primaryButtonTitle: "quizzes.submitButtonTitleForTeacherAlert".localiz(),
-            dismissButtonTitle: "quizzes.goBackAnyway".localiz(),
-            secondryButtonCompletionHandler: {
-                self.dismiss(animated: true) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }, primaryButtonCompletionHandler: {
-                self.appAlertViewController?.startPrimaryButtonLoading()
-            }
-        )
-    }
-
-    private func showAlertForSureToUploadGrades() {
-        appAlertViewController = showAndReturnAlert(
-            imageName: Images.danger.name,
-            title: nil,
-            message: "quizzes.markAsCheckedAlert".localiz(),
-            primaryButtonTitle: "app.yes".localiz(),
-            dismissButtonTitle: "app.cancel".localiz()) {
-            self.appAlertViewController?.startPrimaryButtonLoading()
-        }
-    }
-
-    private func showAlertForNotFinishedQuestions() {
-        appAlertViewController = showAndReturnAlert(
-            imageName: Images.danger.name,
-            title: nil,
-            message: "quizzes.gradeWontSaved".localiz(),
-            primaryButtonTitle: "quizzes.continueGrading".localiz(),
-            dismissButtonTitle: "quizzes.goBackAnyway".localiz(),
-            secondryButtonCompletionHandler: {
-                self.dismiss(animated: true) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }, primaryButtonCompletionHandler: {
-                self.dismiss(animated: true)
-            }
-        )
     }
 }
 
@@ -755,9 +710,19 @@ extension AssessmentDetailsViewController: UICollectionViewDelegate, UICollectio
         lastUserIndex = indexPath
         setQuestionMark(at: indexPath.row)
         collectionView.reloadData()
+        scroll(questionNumberCollectionView, to: indexPath)
         changeProgressViewColorForQuestion(at: indexPath.row)
     }
-    
+
+    func scroll(_ collectionView: UICollectionView, to indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        collectionView.scrollToItem(
+            at: indexPath,
+            at: .left,
+            animated: true
+        )
+    }
+
     func changeProgressViewColorForQuestion(at index: Int) {
         guard let question = viewModel?.getQuestion(at: index), viewModel?.module == .quizzes else { return }
         currentSelectedQuestion = question
@@ -853,37 +818,6 @@ extension AssessmentDetailsViewController {
         handleInformationViewForStudentAndParent(question)
     }
 
-    private func handleInformationViewForTeacher(studentMark: Double?, questionMark: Double?, selectedIndex: Int) {
-        handleDesignForInformationViewForTeacher()
-        guard let questionMark = questionMark else { return }
-        if let studentMark = studentMark {
-            setViewForGradedQuestionForTeacher(studentMark: studentMark, questionMark: questionMark)
-        } else {
-            setViewForNotGradedQuestionForTeacher(questionMark: questionMark)
-        }
-    }
-
-    private func setViewForGradedQuestionForTeacher(studentMark: Double, questionMark: Double) {
-        questionIsPendingLabel.isHidden = true
-        gradeInfoForTeacher.text = "quizzes.thisQuestionGrade".localiz()
-        let grade = Grade(currentMark: studentMark, totalMark: questionMark)
-        gradeLabel.text = grade.description
-    }
-
-    private func setViewForNotGradedQuestionForTeacher(questionMark: Double) {
-        var questionMarkString = ""
-        if let localizedQuestionGrade = NumberFormatter.getDecimalFormattedString(fromDouble: questionMark) {
-            questionMarkString = localizedQuestionGrade
-        }
-        questionIsPendingLabel.isHidden = false
-        questionIsPendingLabel.text = "assignment.questionIsPending".localiz()
-        gradeInfoForTeacher.text = "\("quizzes.pleaseEnterGrade".localiz()) : \(questionMarkString) \("quizzes.points".localiz())"
-        let gradeLabelText = Language.currentLanguage == .arabic ?
-            "\(questionMarkString) / -":
-            "- / \(questionMarkString)"
-        gradeLabel.text = gradeLabelText
-    }
-
     private func handleDesignForInformationViewForTeacher() {
         informationViewForTeacherGrade.isHidden = false
         informationView.isHidden = true
@@ -935,7 +869,7 @@ extension AssessmentDetailsViewController: AssessmentQuestionsDelegate {
         currentSelectedQuestion?.comment = comment
         refreshViewForTeacherChanges()
     }
-    
+
     func didAnswerQuestion(with questionID: Int?) {
         viewModel?.updateQuestionAnsweredStatus(questionID)
     }

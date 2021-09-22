@@ -1,16 +1,13 @@
-// Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
-
-// swiftlint:disable all
+// Copyright © 2020 Pharos Solutions. All rights reserved.
 
 import Foundation
-import UIKit
 
 class AssessmentDetailsViewModel {
     // MARK: - Private properties
 
     private let model = AssessmentDetailsModel()
     private var assessmentDetails: AssessmentDetails?
-    private var assissmentID: Int?
+    var assissmentID: Int?
 
     // MARK: - Public properties
 
@@ -45,19 +42,15 @@ class AssessmentDetailsViewModel {
     }
 
     var shouldShowFinishButton: Bool {
-        return status == .open
+        return (status == .open)
     }
-
-    // MARK: - Delegate
-
-    private weak var delegate: AssessmentDetailsDelegate?
 
     // MARK: - Closures
 
     var updateAnsweredQuestions:(() -> Void)?
     var teacherUploadGradesSuccessHandler:((_: AssessmentSubmissionsResponse?) -> Void)?
     var invokeErrorHandler:((_ title: String, _ message: String) -> Void)?
-    
+
     // MARK: - Initializers
 
     init(
@@ -65,40 +58,16 @@ class AssessmentDetailsViewModel {
         module: AssessmentsOverViewViewModel.Module,
         assessmentID: Int?,
         assessmentDetails: AssessmentDetails?,
-        delegate: AssessmentDetailsDelegate? = nil,
         submittedStudentData: AssessmentSubmittedStudents? = nil
     ) {
         self.status = status
         self.module = module
         self.assissmentID = assessmentID
         self.assessmentDetails = assessmentDetails
-        self.delegate = delegate
         self.submittedStudentData = submittedStudentData
-        // generateTeacherLocalGrades()
     }
 
     // MARK: - Private functions
-    
-//    private func generateTeacherLocalGrades() {
-//        guard User.instance.userRole == .teacher,
-//              let allQuestions = assessmentDetails?.questions
-//        else { return }
-//        var counter = 0
-//        for question in allQuestions {
-//            if question.type == .freeText {
-//                let teacherLocalGradesObject = TeacherLocalGradesForAssessment(
-//                    indexPathRow: counter,
-//                    mark: question.studentMark,
-//                    teacherComment: question.comment ?? "",
-//                    submissionID: question.submissionId ?? 0,
-//                    status: getExcersiseStatusFor(question: question)
-//                )
-//                teacherLocalGrades.append(teacherLocalGradesObject)
-//            }
-//            counter += 1
-//        }
-//        isTeacherMadeAnyChange = false
-//    }
 
     private func getExcersiseStatusFor(question: AssessmentQuestion) -> AssessmentQuestion.AnswerState? {
         switch question.answerState {
@@ -164,9 +133,9 @@ class AssessmentDetailsViewModel {
             let parameters = question.getSubmittedAnswerParameters(ignoreAttachment: true)
         else { return }
 
-        model.submitAnswer(assessmentID: assessmentID, parameters: parameters, module: module.rawValue) { error in
+        model.submitAnswer(assessmentID: assessmentID, parameters: parameters, module: module.rawValue) { [weak self] error in
             if let error = error {
-                print(error)
+                self?.handleError(error)
             } else {
                 question.deleteAnswerManagedObject()
             }
@@ -178,9 +147,9 @@ class AssessmentDetailsViewModel {
             let question = assessmentDetails?.questions?.first(where: { $0.id == questionID }),
             let parameters = question.getSubmittedAnswerParameters(ignoreAttachment: false)
             else { return }
-        model.submitAnswer(assessmentID: assessmentID, parameters: parameters, module: module.rawValue) { error in
+        model.submitAnswer(assessmentID: assessmentID, parameters: parameters, module: module.rawValue) { [weak self] error in
             if let error = error {
-                print(error)
+                self?.handleError(error)
             }
         }
     }
@@ -281,19 +250,25 @@ class AssessmentDetailsViewModel {
         deleteAnswerAttachment(questionID: questionID)
     }
 
+    private func handleError(_ error: Error?) {
+        guard let error = error else { return }
+
+        let alertData = ErrorParser.retrieveAlertData(fromError: error as NSError?)
+        if !alertData.shouldDiscard {
+            invokeErrorHandler?(alertData.title, alertData.message)
+        }
+    }
+
     func submitQuestionAnswer(at index: Int) {
         let questionID = assessmentDetails?.questions?[index].id
         submitAnswer(for: questionID)
     }
 
-    func finishAssessment(_ completion: @escaping (Error?) -> Void) {
+    func finishAssessment(completion: (() -> Void)? = nil) {
         guard let assissmentID = assissmentID else { return }
         model.finishAssessment(assessmentID: assissmentID, module: module.rawValue) { error in
-            if error != nil {
-                completion(error)
-                print("Failed, should retry")
-            } else {
-                completion(nil)
+            if error == nil {
+                if let completion = completion { completion() }
             }
         }
     }
@@ -306,8 +281,7 @@ class AssessmentDetailsViewModel {
     }
 
     func getNumberOfAnsweredQuestionsText() -> String? {
-        guard let totalQuestionsNumber = assessmentDetails?.questions?.count
-            else { return nil }
+        guard let totalQuestionsNumber = assessmentDetails?.questions?.count else { return nil }
         let answeredQuestionsCount = assessmentDetails?.questions?
             .filter { $0.isAnswered == true }.count
         let answeredQuestionsNumberText = NumberFormatter.getFormattedString(fromInt: answeredQuestionsCount ?? 0) ?? ""
@@ -359,12 +333,12 @@ class AssessmentDetailsViewModel {
         if minutes < 10 {
             minutesString = "\(NumberFormatter.getFormattedString(fromInt: 0) ?? "0")\(minutesString)"
         }
-        
+
         var secondsString = NumberFormatter.getFormattedString(fromInt: seconds) ?? "00"
         if seconds < 10 {
             secondsString = "\(NumberFormatter.getFormattedString(fromInt: 0) ?? "0")\(secondsString)"
         }
-        
+
         return "\(minutesString):\(secondsString)"
     }
 
