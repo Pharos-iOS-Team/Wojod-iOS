@@ -67,6 +67,7 @@ class AssessmentQuestionViewModel {
     enum QuestionSection {
         case header(_ title: String, _ image: UIImage?, _ hasImage: Bool)
         case body(_ items: [QuestionSectionItem])
+        case note(_ note: String?)
     }
     
     enum QuestionSectionItem {
@@ -224,6 +225,9 @@ class AssessmentQuestionViewModel {
         default:
             return
         }
+        if !(question.note?.isEmpty ?? true) {
+            dataSource.append(.note(question.note))
+        }
     }
 
     func setAssessmentStatus(_ status: AssessmentStatus?) {
@@ -241,6 +245,8 @@ class AssessmentQuestionViewModel {
             return 1
         case .body(let items):
             return items.count
+        case .note(_):
+            return 1
         }
     }
 

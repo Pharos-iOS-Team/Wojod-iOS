@@ -9,6 +9,7 @@ class AssessmentQuestion: Codable {
     let id: Int?
     let title: String?
     var comment: String?
+    var note: String?
     let questionType: String?
     var mark: Double?
     var studentMark: Double?
@@ -85,7 +86,7 @@ class AssessmentQuestion: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, title, choices, comment
+        case id, title, choices, comment, note
         case mark, position, difficulty
         case studentMark = "student_mark"
         case fileName = "file_name"
@@ -109,6 +110,7 @@ class AssessmentQuestion: Codable {
         submissionId = try values.decodeIfPresent(Int.self, forKey: .submissionId)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         comment = try values.decodeIfPresent(String.self, forKey: .comment)
+        note = try values.decodeIfPresent(String.self, forKey: .note)
         questionType = try values.decodeIfPresent(String.self, forKey: .questionType)
         mark = try values.decodeIfPresent(Double.self, forKey: .mark)
         studentMark = try values.decodeIfPresent(Double.self, forKey: .studentMark)
