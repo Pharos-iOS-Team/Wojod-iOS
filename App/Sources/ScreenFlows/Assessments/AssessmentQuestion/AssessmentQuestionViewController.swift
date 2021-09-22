@@ -331,6 +331,7 @@ extension AssessmentQuestionViewController: AssessmentFreeTextDelegate {
     }
     
     func didTapDeleteAttachment() {
+        viewModel?.deleteQuestionAttachment()
         viewModel?.attachmentsProgressStatus.removeValue(forKey: viewModel?.questionID ?? -1)
         delegate?.didDeleteAttachedFile(for: viewModel?.questionID)
     }

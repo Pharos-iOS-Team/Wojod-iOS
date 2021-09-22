@@ -159,6 +159,10 @@
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
 		38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */; };
 		38B03562265BA4F800C24479 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */; };
+		38B06A7426F8B47F001F6E08 /* AssessmentSynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06A7326F8B47F001F6E08 /* AssessmentSynchronization.swift */; };
+		38B06A7A26F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06A7826F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift */; };
+		38B06A7B26F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B06A7926F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift */; };
+		38B06A8826F8B7D1001F6E08 /* Wojood.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */; };
 		38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B1319726B03FD300D5966A /* FiltersViewController.swift */; };
 		38B131A326B0400400D5966A /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B131A226B0400400D5966A /* Filters.storyboard */; };
 		38B131B726B098C400D5966A /* FiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B131B626B098C400D5966A /* FiltersViewModel.swift */; };
@@ -548,6 +552,10 @@
 		38B03559265B9F0A00C24479 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		38B0355F265BA4F800C24479 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		38B03560265BA4F800C24479 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		38B06A6B26F8B18A001F6E08 /* Wojood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wojood.xcdatamodel; sourceTree = "<group>"; };
+		38B06A7326F8B47F001F6E08 /* AssessmentSynchronization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentSynchronization.swift; sourceTree = "<group>"; };
+		38B06A7826F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssessmentAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		38B06A7926F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssessmentAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		38B1319726B03FD300D5966A /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		38B131A226B0400400D5966A /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		38B131B626B098C400D5966A /* FiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewModel.swift; sourceTree = "<group>"; };
@@ -1107,6 +1115,7 @@
 				38659BB326B6D2E600E3BFE9 /* APIClient.swift */,
 				38659BB426B6D2E600E3BFE9 /* AssessmentDetailsAPIClient.swift */,
 				38659BB526B6D2E600E3BFE9 /* ApiManager.swift */,
+				38B06A7326F8B47F001F6E08 /* AssessmentSynchronization.swift */,
 			);
 			path = Assessments;
 			sourceTree = "<group>";
@@ -1352,6 +1361,9 @@
 		7723AD56261C6584007C0B97 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				38B06A7826F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift */,
+				38B06A7926F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift */,
+				38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */,
 				7723ADCB261C7339007C0B97 /* Configurations */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
 				3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */,
@@ -2129,6 +2141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B06A8826F8B7D1001F6E08 /* Wojood.xcdatamodeld in Resources */,
 				26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */,
 				38659BF126B6D2F900E3BFE9 /* OptionCollectionViewCell.xib in Resources */,
 				BC767161262C6F870012155C /* SettingsTableViewCell.xib in Resources */,
@@ -2289,6 +2302,7 @@
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
 				26CF48D9269B350100DDA29F /* MessagesDisplayHandler.swift in Sources */,
 				26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */,
+				38B06A7B26F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
 				BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */,
@@ -2316,6 +2330,7 @@
 				E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */,
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
 				385CC0B7265ED63A00A091FD /* CourseDetailsHeaderView.swift in Sources */,
+				38B06A7426F8B47F001F6E08 /* AssessmentSynchronization.swift in Sources */,
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
 				385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */,
@@ -2440,6 +2455,7 @@
 				38659BE326B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift in Sources */,
 				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
 				38659BE626B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift in Sources */,
+				38B06A7A26F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift in Sources */,
 				26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */,
 				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */,
@@ -3241,6 +3257,19 @@
 			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				38B06A6B26F8B18A001F6E08 /* Wojood.xcdatamodel */,
+			);
+			currentVersion = 38B06A6B26F8B18A001F6E08 /* Wojood.xcdatamodel */;
+			path = Wojood.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7723ACCF261C5E68007C0B97 /* Project object */;
 }
