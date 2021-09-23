@@ -9,6 +9,7 @@ import JGProgressHUD
 import UIKit
 import SafariServices
 import VdoCipherKit
+import Photos
 
 internal enum CourseState {
     case normal
@@ -1044,6 +1045,18 @@ extension CourseDetailsViewController {
                         onPlayerReady: {
                             guard let playerController = self?.avPlayerController else { return }
                             playerController.player = self?.vdoPlayerView.player
+                            let playerLayer = AVPlayerLayer(player: playerController.player)
+                            let titleLayer = CATextLayer()
+                            titleLayer.string = "Islam 3ateya courses app"
+                            titleLayer.font = UIFont(name: "Helvetica", size: 28)
+                            titleLayer.shadowOpacity = 0.5
+                            titleLayer.alignmentMode = CATextLayerAlignmentMode.center
+                            titleLayer.frame = CGRect(x: 100, y: 100, width: 200, height: 200)
+                            playerLayer.videoGravity = .resizeAspect
+                            playerLayer.frame = CGRect(origin: .zero, size: .squared(dimension: 50))
+                            playerLayer.backgroundColor = UIColor.red.cgColor
+                            playerController.view.layer.addSublayer(playerLayer)
+                            playerController.view.layer.addSublayer(titleLayer)
                             self?.present(playerController, animated: true, completion: {
                                 self?.updateId = encryptedVideoResponse?.updateId ?? .zero
                                 self?.videoId = videoId
@@ -1095,7 +1108,7 @@ extension AVPlayerItem {
     public func currentBuffer() -> Double {
         let currentTime = self.currentTime()
         guard let timeRange = self.loadedTimeRanges.map({ $0.timeRangeValue })
-            .first(where: { $0.containsTime(currentTime) }) else { return -1 }
+                .first(where: { $0.containsTime(currentTime) }) else { return -1 }
         return CMTimeGetSeconds(timeRange.end) - currentTime.seconds
     }
 
@@ -1193,4 +1206,17 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
             return false
         }
     }
+}
+
+extension FileManager {
+func removeItemIfExisted(_ url:URL) -> Void {
+    if FileManager.default.fileExists(atPath: url.path) {
+        do {
+            try FileManager.default.removeItem(atPath: url.path)
+        }
+        catch {
+            print("Failed to delete file")
+        }
+    }
+}
 }
