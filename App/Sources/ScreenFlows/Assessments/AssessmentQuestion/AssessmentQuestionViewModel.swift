@@ -264,7 +264,11 @@ class AssessmentQuestionViewModel {
                     case .trueOrFalse:
                         self.assessmentQuestion?.selectedChoices = [optionID]
                     case .mcq:
-                        self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
+                        if self.assessmentQuestion?.isSingleChoice ?? false {
+                            self.assessmentQuestion?.selectedChoices = [optionID]
+                        } else {
+                            self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
+                        }
                     default:
                         return
                     }
