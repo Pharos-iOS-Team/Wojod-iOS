@@ -860,6 +860,8 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
             case .quizzes:
+                let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                cell?.startLoadingIndicator()
                 activeSubscreen = .quiz
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
                 let quiz = materials?.quizzes?[indexPath.row]

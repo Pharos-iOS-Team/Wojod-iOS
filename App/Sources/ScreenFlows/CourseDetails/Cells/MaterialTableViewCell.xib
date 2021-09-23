@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -55,6 +55,9 @@
                                 <color key="textColor" name="avatarViewBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tBa-BC-mxd">
+                                <rect key="frame" x="255" y="16" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -67,6 +70,8 @@
                             <constraint firstItem="gUh-RC-eA8" firstAttribute="leading" secondItem="ygf-Qh-8hd" secondAttribute="trailing" constant="10" id="Rxn-gx-Yom"/>
                             <constraint firstItem="HEb-s7-ios" firstAttribute="centerY" secondItem="mMT-Gg-hxf" secondAttribute="centerY" id="kf3-jY-Dt3"/>
                             <constraint firstItem="ygf-Qh-8hd" firstAttribute="firstBaseline" secondItem="KeQ-Zc-EwW" secondAttribute="firstBaseline" id="kxR-39-MPf"/>
+                            <constraint firstItem="tBa-BC-mxd" firstAttribute="centerY" secondItem="gUh-RC-eA8" secondAttribute="centerY" id="p0i-oj-hVF"/>
+                            <constraint firstItem="tBa-BC-mxd" firstAttribute="centerX" secondItem="gUh-RC-eA8" secondAttribute="centerX" id="tnQ-cp-CLC"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -83,6 +88,7 @@
                 <outlet property="containerView" destination="mMT-Gg-hxf" id="yQv-7N-oYG"/>
                 <outlet property="dateLabel" destination="ygf-Qh-8hd" id="4gs-bF-kg4"/>
                 <outlet property="iconImageView" destination="HEb-s7-ios" id="a5e-0e-RYx"/>
+                <outlet property="loadingIndicator" destination="tBa-BC-mxd" id="czj-DY-1Sw"/>
                 <outlet property="nextArrowIndicator" destination="gUh-RC-eA8" id="H1L-QS-YaW"/>
                 <outlet property="titleLabel" destination="KeQ-Zc-EwW" id="TJC-Wd-BbL"/>
             </connections>
