@@ -595,7 +595,7 @@ class AssessmentDetailsViewController: UIViewController {
     }
 
     private func saveAnswersManagedObjects() {
-        guard counter > 0, counter.truncatingRemainder(dividingBy: 120) == 0 else { return }
+        guard counter > 0, counter.truncatingRemainder(dividingBy: 10) == 0 else { return }
         viewModel?.saveAnswersManagedObjects()
     }
 
