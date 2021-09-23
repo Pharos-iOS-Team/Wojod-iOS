@@ -24,6 +24,7 @@ class AssessmentQuestion: Codable {
     var choices: [AssessmentChoice]?
     var answerManagedObject: AssessmentAnswer?
     var isAnswered = false
+    var isSingleChoice: Bool?
     var assessmentID: Int?
     var questioAnswerState: String?
     var answerState: AnswerState = .notReviewed
@@ -101,6 +102,7 @@ class AssessmentQuestion: Codable {
         case selectedChoices = "submitted_choices"
         case questioAnswerState = "answer_state"
         case submissionId = "submission_id"
+        case isSingleChoice = "is_single_choice"
     }
 
     // swiftlint:disable function_body_length
@@ -129,6 +131,7 @@ class AssessmentQuestion: Codable {
         questioAnswerState = try values.decodeIfPresent(String.self, forKey: .questioAnswerState)
         configureAnswerStatus(state: questioAnswerState)
         isAnswered = isQuestionAnswered()
+        isSingleChoice = try values.decodeIfPresent(Bool.self, forKey: .isSingleChoice)
     }
 
     private func configureAnswerStatus(state: String?) {
