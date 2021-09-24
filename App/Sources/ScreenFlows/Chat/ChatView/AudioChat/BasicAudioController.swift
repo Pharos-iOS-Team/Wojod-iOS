@@ -132,7 +132,7 @@ class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     }
 
     func hasHeadphones(in routeDescription: AVAudioSessionRouteDescription) -> Bool {
-        return !routeDescription.outputs.filter{ $0.portType == .headphones }.isEmpty
+        return !routeDescription.outputs.filter { $0.portType == .headphones }.isEmpty
     }
 
     func playSound(for message: MessageType, in audioCell: AudioMessageCell, completion: (() -> Void)? = nil) {

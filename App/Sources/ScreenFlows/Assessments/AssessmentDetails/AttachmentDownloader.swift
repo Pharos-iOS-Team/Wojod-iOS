@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol AttachmentDownloaderDelegate: class {
+protocol AttachmentDownloaderDelegate: AnyObject {
     func didDownloadAttachment(at url: URL, attachmentID: Int?)
     func didUpdateProgress(_ progress: Double, for attachmentID: Int?)
 }

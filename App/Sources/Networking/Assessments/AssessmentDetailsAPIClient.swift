@@ -8,7 +8,7 @@ class AssessmentDetailsAPIClient: ApiManager {
         assessmentID: Int,
         deviceToken: String,
         module: String,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         var url = "\(hostUrl)/\(module)/\(assessmentID)/start"
         url = appendStudentIDIfNeeded(url: &url)
@@ -23,12 +23,12 @@ class AssessmentDetailsAPIClient: ApiManager {
         )
         .responseJSON(completionHandler: completionHandler)
     }
-    
+
     func submitAnswer(
         assessmentID: Int,
         parameters: [String: Any],
         module: String,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         var url = "\(hostUrl)/\(module)/\(assessmentID)/submit_one_answer"
         url = appendStudentIDIfNeeded(url: &url)
@@ -42,12 +42,12 @@ class AssessmentDetailsAPIClient: ApiManager {
         )
         request.responseJSON(completionHandler: completionHandler)
     }
-    
+
     func finishAssessment(
         assessmentID: Int,
         parameters: [String: Any],
         module: String,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         var url = "\(hostUrl)/\(module)/\(assessmentID)/finish"
         url = appendStudentIDIfNeeded(url: &url)
@@ -61,12 +61,12 @@ class AssessmentDetailsAPIClient: ApiManager {
         )
         request.responseJSON(completionHandler: completionHandler)
     }
-    
+
     func assessmentResults(
         assessmentID: Int,
         studentId: Int? = nil,
         module: String,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         var url = "\(hostUrl)/\(module)/\(assessmentID)/results"
         APIClient.shared.appendStudentIdToURLIfNeeded(url: &url, studentId: studentId)
@@ -79,7 +79,7 @@ class AssessmentDetailsAPIClient: ApiManager {
         )
         request.responseJSON(completionHandler: completionHandler)
     }
-    
+
     func downloadAttachment(
         with url: URL,
         delegate: URLSessionDownloadDelegate
@@ -90,7 +90,7 @@ class AssessmentDetailsAPIClient: ApiManager {
         let downloadTask = session.downloadTask(with: url)
         downloadTask.resume()
     }
-    
+
     // swiftlint:disable function_parameter_count
     func uploadDocumentAnswer(
         assessmentID: Int,
@@ -107,7 +107,7 @@ class AssessmentDetailsAPIClient: ApiManager {
         url = appendStudentIDIfNeeded(url: &url)
         let headers = APIClient.shared.getHeaders()
         let request = manager.upload(
-            multipartFormData: { (multipartFormData) in
+            multipartFormData: { multipartFormData in
                 if let data = fileData, !data.isEmpty {
                     multipartFormData.append(data, withName: "attachment", fileName: fileName, mimeType: mimeType)
                 }

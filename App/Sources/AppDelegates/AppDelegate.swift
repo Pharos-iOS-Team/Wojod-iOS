@@ -23,10 +23,9 @@ class AppDelegate: AppDelegateType {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if application.applicationState == .background && ReachabilityAppDelegate.connectionState == .connected {
+        if ReachabilityAppDelegate.connectionState == .connected {
             AssessmentSynchronization().startSynchronization()
         }
         completionHandler(.noData)
-        // appDelegateComposer.application(application, performFetchWithCompletionHandler: completionHandler)
     }
 }

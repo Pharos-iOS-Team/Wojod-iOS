@@ -3,7 +3,7 @@
 import Foundation
 
 class CourseDetailsViewModel {
-    let model = CourseDetailsModel()
+    private let model = CourseDetailsModel()
 
     func loadLessons(courseID: Int, completion: @escaping (LessonsModel) -> Void) {
         model.loadLessons(courseID: courseID) { result in
@@ -62,14 +62,14 @@ class CourseDetailsViewModel {
     }
 
     func loadMaterials(courseID: Int, completion: @escaping (Materials) -> Void) {
-        DispatchQueue.global().async { [unowned self] in
-            model.loadMaterials(courseID: courseID) { result in
-                switch result {
-                case .success(let materials as Materials):
-                    completion(materials)
-                default:
-                    return
-                }
+        model.loadMaterials(courseID: courseID) { result in
+            switch result {
+            case let .success(materials):
+                guard var materials = materials as? Materials else { return }
+                materials.sort()
+                completion(materials)
+            default:
+                return
             }
         }
     }

@@ -4,7 +4,6 @@ import Foundation
 import HandySwift
 
 extension DateFormatter {
-
     static var isoDateFormatter: DateFormatter {
         return DateFormatter().with {
             $0.locale = Language.locale

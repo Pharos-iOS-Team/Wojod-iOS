@@ -83,6 +83,10 @@ extension L10n {
       internal static var noInternetConnection: String {
           return L10n.tr("GlobalLocalizable", "global.alerts.no_internet_connection")
         }
+      /// Not Found
+      internal static var notFound: String {
+          return L10n.tr("GlobalLocalizable", "global.alerts.not_found")
+        }
       /// Something went wrong, check your connection and try again in a while
       internal static var somethingWentWrong: String {
           return L10n.tr("GlobalLocalizable", "global.alerts.something_went_wrong")
@@ -93,9 +97,17 @@ extension L10n {
       internal static var error: String {
           return L10n.tr("GlobalLocalizable", "global.titles.error")
         }
+      /// Server Not Responding
+      internal static var serverNotResponding: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.server_not_responding")
+        }
       /// Settings
       internal static var settings: String {
           return L10n.tr("GlobalLocalizable", "global.titles.settings")
+        }
+      /// Unauthorized Access
+      internal static var unauthorizedAccess: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.unauthorized_access")
         }
       /// Warning
       internal static var warning: String {

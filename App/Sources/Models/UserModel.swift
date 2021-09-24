@@ -59,8 +59,6 @@ struct Avatar: Codable {
     var name: String?
     var fileUrl: String?
     var thumbnailUrl: String?
-    var createdUrl: String?
-    var updatedAt: String?
 }
 
 struct DevicesInfo: Codable {}
