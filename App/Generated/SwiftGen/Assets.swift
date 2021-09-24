@@ -57,6 +57,7 @@ internal enum Asset {
     internal static let unknownExtension = ImageAsset(name: "UnknownExtension")
     internal static let videoExtension = ImageAsset(name: "VideoExtension")
     internal static let wordExtension = ImageAsset(name: "WordExtension")
+    internal static let zipExtension = ImageAsset(name: "ZipExtension")
     internal static let adImage = ImageAsset(name: "adImage")
     internal static let coursesLogo = ImageAsset(name: "CoursesLogo")
     internal static let welcomeJohnSignInToContinueCopy = ImageAsset(name: "Welcome John! Sign in to continue Copy")

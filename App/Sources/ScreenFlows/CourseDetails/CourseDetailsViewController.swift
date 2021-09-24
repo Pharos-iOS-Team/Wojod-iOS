@@ -66,9 +66,8 @@ class CourseDetailsViewController: UIViewController {
     private var expandedSections: [Int] = []
     private var blurredView: UIVisualEffectView?
     private let detailsRowHeight: CGFloat = 65
-    private let reviewsRowHeight: CGFloat = 100
+    private let reviewsRowHeight: CGFloat = 90
     private let detailsHeaderHeight: CGFloat = 60
-    private let footerHeight: CGFloat = 1
     private var materials: Materials?
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
@@ -152,6 +151,7 @@ class CourseDetailsViewController: UIViewController {
     }
     // MARK: - Private Functions
 
+    @discardableResult
     private func handleScreenshot() -> NSObjectProtocol {
         return NotificationCenter.default.addObserver(
             forName: UIApplication.userDidTakeScreenshotNotification,
@@ -386,7 +386,7 @@ class CourseDetailsViewController: UIViewController {
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
-        } else if let document = attachment as? Document {
+        } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
             let image = getCorrespondingImage(for: document)
             cell?.setAttachmentImageView(image)
@@ -401,23 +401,10 @@ class CourseDetailsViewController: UIViewController {
             return Images.excelExtension.image
         case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             return Images.wordExtension.image
-        default:
-            if document?.link != nil {
-                return Images.link.image
-            } else {
-                return Images.unknownExtension.image
-            }
-        }
-    }
-
-    private func getCorrespondingImage(for document: Document?) -> UIImage {
-        switch document?.contentType {
-        case "application/pdf":
-            return Images.pdfExtension.image
-        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-            return Images.excelExtension.image
-        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            return Images.wordExtension.image
+        case "image/png", "image/jpeg", "image/jpg":
+            return Images.imageExtension.image
+        case "application/zip":
+            return Images.zipExtension.image
         default:
             if document?.link != nil {
                 return Images.link.image
@@ -487,7 +474,7 @@ class CourseDetailsViewController: UIViewController {
                 assignemntsViewModel?.startAssessment(with: assignment) { [weak self] in
                     self?.tableView.isUserInteractionEnabled = true
                 }
-            } else if let quiz = assessment as? Assessment, quiz.type == "Quiz"{
+            } else if let quiz = assessment as? Assessment, quiz.type == "Quiz" {
                 showStartQuizAlert(quiz)
             }
         }
@@ -707,7 +694,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             cell?.setTitle(review?.title ?? "")
             cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
-            cell?.setRating(review?.rating ?? 0)
+            cell?.setRating(review?.rating ?? 0.0)
             DispatchQueue.global().async {
                 let image = self.getImage(from: review?.reviewer?.avatar?.fileUrl ?? "")
                 cell?.setAvatarImage(image)
@@ -716,28 +703,26 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
         case .materials:
             let cell = tableView.dequeueCell(ofType: MaterialTableViewCell.self, for: indexPath)
-            let inputFormatter = DateFormatter()
-            inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
             switch MaterialsSections(rawValue: indexPath.section) {
             case .assignments:
                 let assignment = materials?.assignments?[indexPath.row]
-                let date = inputFormatter.date(from: assignment?.publishedAt ?? "") ?? Date()
+                let date = assignment?.publishedAt ?? Date()
                 cell?.configure(title: assignment?.title, date: date.formattedDateString, image: Images.quiz.image)
 
             case .quizzes:
                 let quiz = materials?.quizzes?[indexPath.row]
-                let date = inputFormatter.date(from: quiz?.publishedAt ?? "") ?? Date()
+                let date = quiz?.publishedAt ?? Date()
                 cell?.configure(title: quiz?.title, date: date.formattedDateString, image: Images.quiz.image)
 
             case .videos:
                 let video = materials?.videos?[indexPath.row]
-                let date = inputFormatter.date(from: video?.publishedAt ?? "") ?? Date()
+                let date = video?.publishedAt ?? Date()
                 cell?.configure(title: video?.title, date: date.formattedDateString, image: Images.videoExtension.image)
 
             case .documents:
                 let document = materials?.documents?[indexPath.row]
-                let date = inputFormatter.date(from: document?.publishedAt ?? "") ?? Date()
+                let date = document?.publishedAt ?? Date()
                 cell?.configure(title: document?.title ?? document?.fileName, date: date.formattedDateString, image: getCorrespondingImage(for: document))
 
             default:
@@ -755,8 +740,24 @@ extension CourseDetailsViewController: UITableViewDataSource {
 // MARK: - Table View Delegate
 
 extension CourseDetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch activeScreen! {
+        case .details:
+            return detailsRowHeight
+        case .materials, .reviews:
+            return reviewsRowHeight
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return activeScreen == .details ? detailsRowHeight : reviewsRowHeight
+        switch activeScreen! {
+        case .details:
+            return detailsRowHeight
+        case .materials:
+            return reviewsRowHeight
+        case .reviews:
+            return UITableView.automaticDimension
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -839,7 +840,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return activeScreen != .materials ? footerHeight : 0
+        return activeScreen != .materials ? 1 : 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -922,7 +923,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 activeSubscreen = .video
                 let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
                 play(videoURL: videoURL)
-            } else if let document = attachment as? Document {
+            } else if let document = attachment as? MaterialsDocument {
                 activeSubscreen = .file
                 if let linkURL = document.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
@@ -1010,6 +1011,7 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
         self.tableView.reloadData()
 
     }
+
     func showMaterials() {
         activeScreen = .materials
         guard let courseID = course?.id else { return }
@@ -1018,6 +1020,7 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
             self.tableView.reloadData()
         }
     }
+
     func showReviews() {
         activeScreen = .reviews
         viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
@@ -1025,12 +1028,14 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
             self.tableView.reloadData()
         }
     }
+
     func goToChat() {
         let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
         viewCtrl.modalPresentationStyle = .fullScreen
         viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
         present(viewCtrl, animated: true)
     }
+
     func dismissView() {
         dismiss(animated: true)
     }
@@ -1043,14 +1048,6 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 // MARK: - DZN Empty State Data Source
 
 extension CourseDetailsViewController: DZNEmptyDataSetSource {
-    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-        return nil
-    }
-
-    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        nil
-    }
-
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         switch activeScreen {
         case .details:

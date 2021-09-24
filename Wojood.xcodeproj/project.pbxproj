@@ -268,6 +268,7 @@
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
+		77936F0E26FD588D00EDE395 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 77936F0D26FD588D00EDE395 /* Cosmos */; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
@@ -820,6 +821,7 @@
 				7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */,
 				7723AD40261C63F3007C0B97 /* KeychainAccess in Frameworks */,
 				26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */,
+				77936F0E26FD588D00EDE395 /* Cosmos in Frameworks */,
 				7723AE47261C869A007C0B97 /* Moya in Frameworks */,
 				38659C5726B7F6A700E3BFE9 /* AlamofireImage in Frameworks */,
 				7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */,
@@ -2041,6 +2043,7 @@
 				380B135B26B7F93600CB5811 /* ObjectMapper */,
 				380B136126B7FAAD00CB5811 /* SkeletonView */,
 				38A61A5626E614610044AEA4 /* DZNEmptyDataSet */,
+				77936F0D26FD588D00EDE395 /* Cosmos */,
 			);
 			productName = Wojood;
 			productReference = 7723ACD7261C5E69007C0B97 /* Wojood.app */;
@@ -2139,6 +2142,7 @@
 				380B135A26B7F93500CB5811 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				380B136026B7FAAD00CB5811 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 7723ACD8261C5E69007C0B97 /* Products */;
 			projectDirPath = "";
@@ -3145,6 +3149,14 @@
 				minimumVersion = 14.0.1;
 			};
 		};
+		77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
 		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Datt1994/DPOTPView.git";
@@ -3270,6 +3282,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		77936F0D26FD588D00EDE395 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
 		};
 		77DBFD5F2631C7AA0060BACA /* DPOTPView */ = {
 			isa = XCSwiftPackageProductDependency;

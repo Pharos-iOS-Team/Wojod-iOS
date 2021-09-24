@@ -48,7 +48,7 @@ class ReviewTableViewCell: UITableViewCell {
     }
 
     // swiftlint:disable function_body_length
-    internal func setRating(_ rating: Int) {
+    internal func setRating(_ rating: Double) {
         switch rating {
         case 1:
             firstStarImageView.image = Images.filledStar.image
