@@ -12,6 +12,17 @@ extension UICollectionView {
         return myCell
     }
 
+    /// Registers a nib with the name of `cellType` if it exists or registers the class of type `cellType` as reusable cell.
+    func registerCell<Cell: UICollectionViewCell>(ofType cellType: Cell.Type) {
+        let cellTypeName = String(describing: cellType)
+
+        if Bundle.main.path(forResource: cellTypeName, ofType: "nib") != nil {
+            register(UINib(nibName: cellTypeName, bundle: .main), forCellWithReuseIdentifier: cellTypeName)
+        } else {
+            register(cellType, forCellWithReuseIdentifier: cellTypeName)
+        }
+    }
+
     func dequeueReusableHeader<Header: UICollectionReusableView>(indexPath: IndexPath) -> Header {
         guard
             let header = dequeueReusableSupplementaryView(

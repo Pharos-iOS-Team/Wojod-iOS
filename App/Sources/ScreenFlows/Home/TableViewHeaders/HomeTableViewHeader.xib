@@ -17,11 +17,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="HomeTableViewHeader" id="doB-wh-F1p" customClass="HomeTableViewHeader" customModule="Wojood" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="370"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="420"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBX-wo-6JW">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="370"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="420"/>
                     <subviews>
                         <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Qqm-AT-yol">
                             <rect key="frame" x="0.0" y="20" width="414" height="56"/>
@@ -70,7 +70,7 @@
                             </collectionViewFlowLayout>
                             <cells/>
                         </collectionView>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BUX-EB-0r3">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BUX-EB-0r3">
                             <rect key="frame" x="6" y="208" width="402" height="150"/>
                             <color key="backgroundColor" name="superLightGrey"/>
                             <constraints>
@@ -84,6 +84,11 @@
                             </collectionViewFlowLayout>
                             <cells/>
                         </collectionView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Vrx-a0-bGt">
+                            <rect key="frame" x="145.5" y="363" width="123" height="28"/>
+                            <color key="pageIndicatorTintColor" name="labelGreyColor"/>
+                            <color key="currentPageIndicatorTintColor" name="sendButtonColor"/>
+                        </pageControl>
                     </subviews>
                     <color key="backgroundColor" name="superLightGrey"/>
                     <constraints>
@@ -95,10 +100,12 @@
                         <constraint firstItem="qWQ-R4-kWP" firstAttribute="trailing" secondItem="TgK-gR-bK0" secondAttribute="trailing" id="E1t-Ss-vf5"/>
                         <constraint firstItem="ODC-QO-AZi" firstAttribute="top" secondItem="Qqm-AT-yol" secondAttribute="bottom" constant="10" id="Hm9-F4-lhf"/>
                         <constraint firstAttribute="trailing" secondItem="TgK-gR-bK0" secondAttribute="trailing" constant="6" id="NiW-89-BeV"/>
+                        <constraint firstItem="Vrx-a0-bGt" firstAttribute="centerX" secondItem="BUX-EB-0r3" secondAttribute="centerX" id="Rie-TP-UAo"/>
                         <constraint firstItem="TgK-gR-bK0" firstAttribute="leading" secondItem="ODC-QO-AZi" secondAttribute="trailing" constant="10" id="UAW-aF-2zH"/>
                         <constraint firstItem="Qqm-AT-yol" firstAttribute="leading" secondItem="dBX-wo-6JW" secondAttribute="leading" id="dZj-xu-BYQ"/>
                         <constraint firstItem="BUX-EB-0r3" firstAttribute="top" secondItem="qWQ-R4-kWP" secondAttribute="bottom" constant="20" id="duE-ik-hB0"/>
                         <constraint firstAttribute="trailing" secondItem="Qqm-AT-yol" secondAttribute="trailing" id="fkp-Wf-AmM"/>
+                        <constraint firstItem="Vrx-a0-bGt" firstAttribute="top" secondItem="BUX-EB-0r3" secondAttribute="bottom" constant="5" id="mjK-2p-o8M"/>
                         <constraint firstItem="qWQ-R4-kWP" firstAttribute="top" secondItem="ODC-QO-AZi" secondAttribute="bottom" constant="2" id="nQG-vn-Ell"/>
                         <constraint firstItem="BUX-EB-0r3" firstAttribute="leading" secondItem="qWQ-R4-kWP" secondAttribute="leading" id="nku-Vn-Kvr"/>
                         <constraint firstItem="Qqm-AT-yol" firstAttribute="top" secondItem="dBX-wo-6JW" secondAttribute="top" constant="20" id="rGq-l1-YIm"/>
@@ -116,7 +123,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="adsCollectionView" destination="BUX-EB-0r3" id="0ZT-qG-q1b"/>
+                <outlet property="adsCollectionViewFlowLayout" destination="vJb-Uu-7U8" id="BRo-U0-AfC"/>
                 <outlet property="adsCollectionViewHeightConstraint" destination="Qwy-AC-pWv" id="K2S-t1-hF0"/>
+                <outlet property="dotsIndicator" destination="Vrx-a0-bGt" id="JW0-b8-F9X"/>
                 <outlet property="exploreMoreButton" destination="TgK-gR-bK0" id="V0f-T9-IS2"/>
                 <outlet property="relatedCoursesButton" destination="ODC-QO-AZi" id="dCD-zr-m4v"/>
                 <outlet property="searchBar" destination="Qqm-AT-yol" id="wWY-hV-G3R"/>
@@ -130,6 +139,12 @@
     <resources>
         <namedColor name="backgroundLightGreyColor">
             <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="labelGreyColor">
+            <color red="0.69803921568627447" green="0.69803921568627447" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="superLightGrey">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

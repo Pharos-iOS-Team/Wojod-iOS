@@ -45,7 +45,8 @@ class HomeApiClient {
         page: Int,
         limit: Int,
         completion: @escaping (Response?, MoyaError?) -> Void
-    ) { homeProvider.request(.loadRelatedCoursesForTeacher(teacherID: teacherID, subjectID: subjectID, isMyCourses: isMyCourses, page: page, limit: limit)) { result in
+    ) {
+        homeProvider.request(.loadRelatedCoursesForTeacher(teacherID: teacherID, subjectID: subjectID, isMyCourses: isMyCourses, page: page, limit: limit)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)

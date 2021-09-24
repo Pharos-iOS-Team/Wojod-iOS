@@ -9,6 +9,7 @@ class AssessmentQuestion: Codable {
     let id: Int?
     let title: String?
     var comment: String?
+    var note: String?
     let questionType: String?
     var mark: Double?
     var studentMark: Double?
@@ -21,14 +22,30 @@ class AssessmentQuestion: Codable {
     let maximumAllowedChoices: Int?
     let questionAttachment: String?
     var choices: [AssessmentChoice]?
+    var answerManagedObject: AssessmentAnswer?
     var isAnswered = false
+    var isSingleChoice: Bool?
     var assessmentID: Int?
     var questioAnswerState: String?
     var answerState: AnswerState = .notReviewed
     var submissionId: Int?
-    var submittedAttachment: String?
-    var submittedFreeTextAnswer: String?
-    var selectedChoices: [Int32] = []
+    var submittedAttachment: String? {
+        didSet {
+            answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
+            answerManagedObject?.setValue(submittedFreeTextAnswer, forKey: "freeText")
+        }
+    }
+    var submittedFreeTextAnswer: String? {
+        didSet {
+            answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
+            answerManagedObject?.setValue(submittedFreeTextAnswer, forKey: "freeText")
+        }
+    }
+    var selectedChoices: [Int32] = [] {
+        didSet {
+            answerManagedObject?.setValue(selectedChoices, forKey: "choices")
+        }
+    }
 
     var type: QuestionType {
         return QuestionType(rawValue: questionType ?? "") ?? .none
@@ -70,7 +87,7 @@ class AssessmentQuestion: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, title, choices, comment
+        case id, title, choices, comment, note
         case mark, position, difficulty
         case studentMark = "student_mark"
         case fileName = "file_name"
@@ -85,6 +102,7 @@ class AssessmentQuestion: Codable {
         case selectedChoices = "submitted_choices"
         case questioAnswerState = "answer_state"
         case submissionId = "submission_id"
+        case isSingleChoice = "is_single_choice"
     }
 
     // swiftlint:disable function_body_length
@@ -94,6 +112,7 @@ class AssessmentQuestion: Codable {
         submissionId = try values.decodeIfPresent(Int.self, forKey: .submissionId)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         comment = try values.decodeIfPresent(String.self, forKey: .comment)
+        note = try values.decodeIfPresent(String.self, forKey: .note)
         questionType = try values.decodeIfPresent(String.self, forKey: .questionType)
         mark = try values.decodeIfPresent(Double.self, forKey: .mark)
         studentMark = try values.decodeIfPresent(Double.self, forKey: .studentMark)
@@ -112,6 +131,7 @@ class AssessmentQuestion: Codable {
         questioAnswerState = try values.decodeIfPresent(String.self, forKey: .questioAnswerState)
         configureAnswerStatus(state: questioAnswerState)
         isAnswered = isQuestionAnswered()
+        isSingleChoice = try values.decodeIfPresent(Bool.self, forKey: .isSingleChoice)
     }
 
     private func configureAnswerStatus(state: String?) {
@@ -132,22 +152,22 @@ class AssessmentQuestion: Codable {
         }
     }
 
-//    func initAnswerManagedObjectIfNeeded(module: String, completion: @escaping () -> Void) {
-//        guard let assessmentID = assessmentID else { return }
-//        if answerManagedObject != nil {
-//            completion()
-//        } else {
-//            AssessmentAnswer().createIfNeeded(assessmentID: assessmentID, studentID: User.instance.id, questionID: id, module: module) { answerManagedObject in
-//                self.answerManagedObject = answerManagedObject
-//                completion()
-//            }
-//        }
-//    }
+    func initAnswerManagedObjectIfNeeded(module: String, completion: @escaping () -> Void) {
+        guard let assessmentID = assessmentID else { return }
+        if answerManagedObject != nil {
+            completion()
+        } else {
+            AssessmentAnswer(context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).createIfNeeded(assessmentID: assessmentID, studentID: User.shared.id, questionID: id, module: module) { answerManagedObject in
+                self.answerManagedObject = answerManagedObject
+                completion()
+            }
+        }
+    }
 
-//    func deleteAnswerManagedObject() {
-//        answerManagedObject?.delete()
-//        answerManagedObject = nil
-//    }
+    func deleteAnswerManagedObject() {
+        answerManagedObject?.delete()
+        answerManagedObject = nil
+    }
 
     func deleteAttachment() {
         submittedAttachment = nil

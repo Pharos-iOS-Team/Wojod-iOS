@@ -56,6 +56,18 @@ class AssessmentDetails: Codable {
         isGradeFinal = try values.decodeIfPresent(Bool.self, forKey: .isGradeFinal)
         questions?.forEach { $0.assessmentID = id }
     }
+
+    private func setDefaultValues(module: String) {
+        guard let assessmentID = id else { return }
+        questions?.forEach { question in
+            AssessmentAnswer(context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).fetchExistingAnswer(assessmentID: assessmentID, studentID: User.shared.id, questionID: id, module: module) { answer in
+                guard answer != nil else { return }
+                question.selectedChoices = answer?.value(forKey: "choices") as? [Int32] ?? []
+                question.submittedAttachment = answer?.value(forKey: "attachmentURL") as? String
+                question.submittedFreeTextAnswer = answer?.value(forKey: "freeText") as? String
+            }
+        }
+    }
 }
 
 // MARK: - AnsweredQuestion

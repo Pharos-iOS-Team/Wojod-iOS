@@ -11,8 +11,10 @@ class AdsCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var viewMoreButton: UIButton! {
         didSet {
+            viewMoreButton.layer.backgroundColor = Colors.sendButtonColor.color.withAlphaComponent(0.13).cgColor
             viewMoreButton.layer.cornerRadius = UIConstants.slightCornerRadius
             viewMoreButton.setTitle(L10n.Home.Ads.viewMore)
+            viewMoreButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
         }
     }
 
@@ -33,7 +35,7 @@ class AdsCollectionViewCell: UICollectionViewCell {
     func configure(using advertisement: Advertisement) {
         self.advertisement = advertisement
         titleLabel.text = advertisement.title
-        descriptionLabel.text = advertisement.title
+        descriptionLabel.text = advertisement.description
         if let url = URL(string: "\(Environment.baseURL)\(advertisement.media?.fileUrl ?? "")") {
             imageView.kf.setImage(with: url)
         }

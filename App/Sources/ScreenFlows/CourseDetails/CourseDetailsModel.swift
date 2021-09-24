@@ -94,19 +94,17 @@ class CourseDetailsModel: ModelDecodable {
     }
 
     func loadMaterials(courseID: Int, completion: @escaping (Result) -> Void) {
-        DispatchQueue.global().async {
-            self.apiClient.loadMaterials(courseID: courseID) { response, error in
-                if let response = response {
-                    if response.statusCode < 300 {
-                        self.decode(modelType: Materials.self, from: response) { result in
-                            completion(result)
-                        }
-                    } else {
-                        self.decodeError(response: response, completionHandler: completion)
+        apiClient.loadMaterials(courseID: courseID) { [weak self] response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self?.decode(modelType: Materials.self, from: response) { result in
+                        completion(result)
                     }
-                } else if let error = error {
-                    completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+                } else {
+                    self?.decodeError(response: response, completionHandler: completion)
                 }
+            } else if let error = error {
+                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
             }
         }
     }
@@ -123,6 +121,18 @@ class CourseDetailsModel: ModelDecodable {
                 }
             } else if let error = error {
                 completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+            }
+        }
+    }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        apiClient.screenshotAlert(screenName: screenName) { response, _ in
+            if let response = response {
+                if response.statusCode < 300 {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
             }
         }
     }

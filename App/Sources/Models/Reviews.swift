@@ -10,7 +10,7 @@ struct Review: Codable {
     var id: Int
     var title: String?
     var comment: String?
-    var rating: Int?
+    var rating: Double?
     var createdAt: String?
     var reviewer: Reviewer?
 }

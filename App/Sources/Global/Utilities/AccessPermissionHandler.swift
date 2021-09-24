@@ -48,7 +48,7 @@ final class AccessPermissionHandler {
         case AVAudioSession.RecordPermission.denied:
             showMissingAudioPermissionAlert()
         case AVAudioSession.RecordPermission.undetermined:
-            AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] allowed in
+            AVAudioSession.sharedInstance().requestRecordPermission { allowed in
                 if allowed {
                     successHandler()
                 }

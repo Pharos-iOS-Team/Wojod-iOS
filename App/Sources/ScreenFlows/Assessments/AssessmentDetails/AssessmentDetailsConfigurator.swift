@@ -10,8 +10,7 @@ class AssessmentDetailsConfigurator {
             status: status,
             module: module,
             assessmentID: assessmentID,
-            assessmentDetails: assessmentDetails,
-            delegate: delegate
+            assessmentDetails: assessmentDetails
         )
         let assessmentDetailsViewController = StoryboardScene.AssessmentDetails.assessmentDetailsViewController.instantiate()
         assessmentDetailsViewController.setViewModel(viewModel)

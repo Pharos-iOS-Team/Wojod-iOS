@@ -37,3 +37,9 @@
 "global.alerts.data_preparation_error" = "Something went wrong while preparing the data";
 
 "global.alerts.loading" = "جار التحميل";
+
+"global.alerts.not_found" = "لا يوجد";
+
+"global.titles.unauthorized_access" = "دخول غير صحيح";
+
+"global.titles.server_not_responding" = "خطأ في السيرفر";

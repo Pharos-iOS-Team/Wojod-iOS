@@ -13,7 +13,6 @@ class FiltersTableViewCell: UITableViewCell {
 
     @IBOutlet private var label: UILabel!
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet private var collectionViewFlowLayout: UICollectionViewFlowLayout!
 
     // MARK: - Public Properties
 
@@ -26,6 +25,7 @@ class FiltersTableViewCell: UITableViewCell {
     // MARK: - Private Functions
 
     private var selectedIndexPath: IndexPath?
+    private var previouslySelectedItemPath: Int?
 
     // MARK: - Lifecycle
 
@@ -34,6 +34,10 @@ class FiltersTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+        collectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
+            $0.scrollDirection = .horizontal
+            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
     }
 
     func configure(title: String, filters: [String], section: SchoolSection) {
@@ -49,6 +53,10 @@ class FiltersTableViewCell: UITableViewCell {
         self.currentUniversitySection = section
         collectionView.reloadData()
     }
+
+    func selectOldEntry(for item: Int?) {
+        previouslySelectedItemPath = item
+    }
 }
 
 extension FiltersTableViewCell: UICollectionViewDataSource {
@@ -59,6 +67,9 @@ extension FiltersTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FilterCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         cell.configure(with: filters[indexPath.item])
+        if previouslySelectedItemPath != nil, indexPath.item == previouslySelectedItemPath {
+            cell.selectFilter()
+        }
         return cell
     }
 }
@@ -72,16 +83,5 @@ extension FiltersTableViewCell: UICollectionViewDelegate {
         } else {
             delegate?.didSelectFilterInUniversity(indexPath.item, in: currentUniversitySection)
         }
-    }
-}
-
-// MARK: - Collection View Delegate Flow Layout
-
-extension FiltersTableViewCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.text = filters[indexPath.item]
-        label.sizeToFit()
-        return CGSize(width: label.frame.width + 10, height: 50)
     }
 }

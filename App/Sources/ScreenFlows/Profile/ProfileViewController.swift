@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
         reloadCitiesCell()
         preventScreenshot()
         preventScreenRecording()
+        observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +106,7 @@ class ProfileViewController: UIViewController {
     private func editSuccessHandler() {
         viewModel.successHandler = { [weak self] _ in
             self?.showSuccessAlert()
+            self?.profileTableView.reloadData()
         }
     }
 
@@ -199,6 +201,7 @@ class ProfileViewController: UIViewController {
             sourceView: self.profileTableView
         ) { oldPassword, newPassword, passwordConfirmation in
             self.viewModel.setNewPassword(oldPassword: oldPassword, newPassword: newPassword, passwordConfirmation: passwordConfirmation)
+            self.editProfile()
         }
     }
 

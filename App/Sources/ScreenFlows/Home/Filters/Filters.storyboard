@@ -79,9 +79,10 @@
                                 <color key="backgroundColor" name="superLightGrey"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-E3-oey">
-                                <rect key="frame" x="70" y="293.5" width="127" height="40"/>
+                                <rect key="frame" x="57.5" y="293.5" width="120" height="40"/>
                                 <color key="backgroundColor" name="lightGreyColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="FZj-vy-lb3"/>
                                     <constraint firstAttribute="height" constant="40" id="VYF-9r-VpT"/>
                                 </constraints>
                                 <state key="normal" title="Student">
@@ -92,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k80-h9-gqk">
-                                <rect key="frame" x="217" y="293.5" width="127" height="40"/>
+                                <rect key="frame" x="237.5" y="293.5" width="120" height="40"/>
                                 <color key="backgroundColor" name="lightGreyColor"/>
                                 <state key="normal" title="Graduated">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,19 +107,19 @@
                         <color key="backgroundColor" name="superLightGrey"/>
                         <constraints>
                             <constraint firstItem="Ak1-9R-Uok" firstAttribute="centerX" secondItem="wl3-Ge-3p1" secondAttribute="centerX" id="057-5P-CWw"/>
-                            <constraint firstItem="k80-h9-gqk" firstAttribute="leading" secondItem="Smj-E3-oey" secondAttribute="trailing" constant="20" id="1Ia-gV-9HI"/>
                             <constraint firstItem="Smj-E3-oey" firstAttribute="top" secondItem="k80-h9-gqk" secondAttribute="top" id="1Vp-9f-pfJ"/>
                             <constraint firstItem="dl0-Ar-MeO" firstAttribute="top" secondItem="Smj-E3-oey" secondAttribute="bottom" constant="15" id="1rL-k7-aKg"/>
+                            <constraint firstItem="Smj-E3-oey" firstAttribute="centerX" secondItem="bzv-Xg-KKI" secondAttribute="centerX" id="3IQ-xj-LG7"/>
                             <constraint firstItem="dl0-Ar-MeO" firstAttribute="trailing" secondItem="1gV-bl-ZE4" secondAttribute="trailing" id="45a-6n-Fw4"/>
                             <constraint firstItem="wl3-Ge-3p1" firstAttribute="bottom" secondItem="dl0-Ar-MeO" secondAttribute="bottom" constant="30" id="9L3-mg-FNc"/>
                             <constraint firstItem="mad-V7-yLj" firstAttribute="top" secondItem="dbe-Ed-ez7" secondAttribute="bottom" constant="10" id="AhW-p9-Szb"/>
                             <constraint firstItem="Smj-E3-oey" firstAttribute="top" secondItem="BYJ-bh-IJR" secondAttribute="bottom" constant="15" id="Hqp-3N-CgO"/>
-                            <constraint firstItem="Smj-E3-oey" firstAttribute="leading" secondItem="bzv-Xg-KKI" secondAttribute="leading" id="Juw-9i-h6C"/>
                             <constraint firstItem="bzv-Xg-KKI" firstAttribute="leading" secondItem="wl3-Ge-3p1" secondAttribute="leading" constant="70" id="T5U-gX-cF9"/>
                             <constraint firstItem="1gV-bl-ZE4" firstAttribute="centerY" secondItem="Ak1-9R-Uok" secondAttribute="centerY" id="YJH-Kw-PUU"/>
                             <constraint firstItem="Ak1-9R-Uok" firstAttribute="centerY" secondItem="Gv1-2e-FWM" secondAttribute="centerY" id="cU7-Nc-eHg"/>
                             <constraint firstItem="BYJ-bh-IJR" firstAttribute="centerX" secondItem="bzv-Xg-KKI" secondAttribute="centerX" id="cd1-RG-Gu1"/>
                             <constraint firstItem="BYJ-bh-IJR" firstAttribute="top" secondItem="bzv-Xg-KKI" secondAttribute="bottom" constant="10" id="fmI-72-jyd"/>
+                            <constraint firstItem="k80-h9-gqk" firstAttribute="centerX" secondItem="dbe-Ed-ez7" secondAttribute="centerX" id="g2j-m8-jsh"/>
                             <constraint firstItem="k80-h9-gqk" firstAttribute="height" secondItem="Smj-E3-oey" secondAttribute="height" id="jKX-b5-XLa"/>
                             <constraint firstItem="wl3-Ge-3p1" firstAttribute="trailing" secondItem="dbe-Ed-ez7" secondAttribute="trailing" constant="70" id="jsf-2W-TCy"/>
                             <constraint firstItem="dbe-Ed-ez7" firstAttribute="bottom" secondItem="bzv-Xg-KKI" secondAttribute="bottom" id="kYg-7O-eeD"/>
@@ -129,7 +130,6 @@
                             <constraint firstItem="wl3-Ge-3p1" firstAttribute="trailing" secondItem="1gV-bl-ZE4" secondAttribute="trailing" constant="25" id="t9J-jX-vst"/>
                             <constraint firstItem="k80-h9-gqk" firstAttribute="width" secondItem="Smj-E3-oey" secondAttribute="width" id="uNF-XF-Y0Y"/>
                             <constraint firstItem="Gv1-2e-FWM" firstAttribute="leading" secondItem="wl3-Ge-3p1" secondAttribute="leading" constant="25" id="vEA-pY-e3l"/>
-                            <constraint firstItem="k80-h9-gqk" firstAttribute="trailing" secondItem="dbe-Ed-ez7" secondAttribute="trailing" id="wtZ-kN-FzQ"/>
                         </constraints>
                     </view>
                     <connections>

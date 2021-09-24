@@ -14,10 +14,11 @@ extension ChatViewController: MessageCellDelegate {
     }
 
     open func didTapPlayButton(in cell: AudioMessageCell) {
-        guard let indexPath = messagesCollectionView.indexPath(for: cell),
-              let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath, in: messagesCollectionView) else { return }
-//        resetLastClickedAudioCellToDefault(currentIndexPath: indexPath)
-//        lastAudioIndexPathClicked = indexPath
+        guard
+            let indexPath = messagesCollectionView.indexPath(for: cell),
+            let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath, in: messagesCollectionView)
+        else { return }
+
         guard audioController?.state != .stopped else {
             // There is no audio sound playing - prepare to start playing for given audio message
             startPlayingAudio(for: message, in: cell)
@@ -47,9 +48,11 @@ extension ChatViewController: MessageCellDelegate {
     }
 
     private func resetLastClickedAudioCellToDefault(currentIndexPath: IndexPath) {
-        if let lastClickedIndexPath = lastAudioIndexPathClicked,
-           lastClickedIndexPath != currentIndexPath,
-           let previousClickedMessage = messagesCollectionView.messagesDataSource?.messageForItem(at: lastClickedIndexPath, in: messagesCollectionView) {
+        if
+            let lastClickedIndexPath = lastAudioIndexPathClicked,
+            lastClickedIndexPath != currentIndexPath,
+            let previousClickedMessage = messagesCollectionView.messagesDataSource?.messageForItem(at: lastClickedIndexPath, in: messagesCollectionView)
+        {
             let previousClickedCell: AudioMessageCell = messagesCollectionView.dequeueReusableCell(AudioMessageCell.self, for: lastClickedIndexPath)
             previousClickedCell.activityIndicatorView.stopAnimating()
             previousClickedCell.playButton.isHidden = false

@@ -28,7 +28,7 @@ class CancelBookingView: UIView {
             returnButton.setTitle(L10n.CourseDetails.CancelBooking.returnButton)
         }
     }
-    
+
     // MARK: - Public Properties
 
     internal weak var delegate: CancelBookingViewDelegate?

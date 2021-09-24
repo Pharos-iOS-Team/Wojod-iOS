@@ -2,6 +2,8 @@
 // swiftlint:disable all
 
 import AVKit
+import AVFoundation
+import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
 import UIKit
@@ -20,10 +22,10 @@ internal enum ActiveScreen {
 }
 
 internal enum MaterialsSections: Int {
-    case assignments
-    case quizzes
-    case videos
-    case documents
+    case assignments = 1
+    case quizzes = 2
+    case videos = 3
+    case documents = 4
 }
 
 internal enum AttachmentType: Int {
@@ -33,7 +35,7 @@ internal enum AttachmentType: Int {
     case documents
 }
 
-protocol LoadableView: class {
+protocol LoadableView: AnyObject {
     func startLoading()
     func stopLoading()
 }
@@ -42,56 +44,16 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var detailsButton: UIButton! {
-        didSet {
-            detailsButton.setTitle(L10n.CourseDetails.Main.details)
-            detailsButton.layer.cornerRadius = UIConstants.cornerRadius
-        }
-    }
-    @IBOutlet private var materialsButton: UIButton! {
-        didSet {
-            materialsButton.setTitle(L10n.CourseDetails.Main.materials)
-            materialsButton.layer.cornerRadius = UIConstants.cornerRadius
-            materialsButton.isHidden = !(self.state == .booked)
-        }
-    }
-    @IBOutlet private var reviewsButton: UIButton! {
-        didSet {
-            reviewsButton.setTitle(L10n.CourseDetails.Main.reviews)
-            reviewsButton.layer.cornerRadius = UIConstants.cornerRadius
-        }
-    }
     @IBOutlet private var actionButton: UIButton! {
         didSet {
             actionButton.layer.cornerRadius = UIConstants.cornerRadius
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.setImage(Images.localizedWhiteBackButton)
-        }
-    }
-    @IBOutlet private var emptyStateMessageLabel: UILabel! {
-        didSet {
-            emptyStateMessageLabel.isHidden = true
-        }
-    }
-    @IBOutlet private var courseTitle: UILabel!
-    @IBOutlet private var teacherNameLabel: UILabel!
-    @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet private var numberOfReviewsLabel: UILabel!
-    @IBOutlet private var priceLabel: UILabel!
-    @IBOutlet private var courseImageView: UIImageView!
-    @IBOutlet private var firstReviewStar: UIImageView!
-    @IBOutlet private var secondReviewStar: UIImageView!
-    @IBOutlet private var thirdReviewStar: UIImageView!
-    @IBOutlet private var fourthReviewStar: UIImageView!
-    @IBOutlet private var fifthReviewStar: UIImageView!
-    @IBOutlet private var chatButton: UIButton!
 
     // MARK: - Private Properties
 
+    private var player: AVPlayer?
     private var state: CourseState?
     private var activeScreen: ActiveScreen?
     private var viewModel: CourseDetailsViewModel?
@@ -104,9 +66,8 @@ class CourseDetailsViewController: UIViewController {
     private var expandedSections: [Int] = []
     private var blurredView: UIVisualEffectView?
     private let detailsRowHeight: CGFloat = 65
-    private let reviewsRowHeight: CGFloat = 100
+    private let reviewsRowHeight: CGFloat = 90
     private let detailsHeaderHeight: CGFloat = 60
-    private let footerHeight: CGFloat = 1
     private var materials: Materials?
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
@@ -114,8 +75,11 @@ class CourseDetailsViewController: UIViewController {
     private var allAttachmentsOfLesson: [Any] = []
     private var alertViewController: AppAlertViewController?
     private var selectedAssessment: Assessment?
+    private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
     private let refreshControl = UIRefreshControl()
+    private var doesLessonContainAttachments: [Int: Bool] = [:]
+    private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
     }
@@ -130,24 +94,22 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         state = getReservationState()
         activeScreen = .details
         viewModel = CourseDetailsViewModel()
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         configureActionButtonAccordingToState()
-        configureVisibilityOfButtonsAccordingToState()
-        configureChatButtonAccordingToState()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
         bindStartAssessmentHandler()
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        preventScreenshot()
+        handleScreenshot()
         preventScreenRecording()
         configureRefreshControl()
+        observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -160,56 +122,10 @@ class CourseDetailsViewController: UIViewController {
                 self.materials = materials
                 self.tableView.reloadData()
             }
-        } else if activeScreen == .details {
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[selectedAssessmentSection ?? 0].id ?? 0) { attachmentsModel in
-                self.attachmentsOfLessons[self.selectedAssessmentSection ?? 0] = attachmentsModel
-                self.tableView.reloadData()
-            }
         }
     }
 
     // MARK: - IBActions
-
-    @IBAction private func didTapDetails(_ sender: UIButton) {
-        activeScreen = .details
-        tableView.reloadData()
-        select(button: detailsButton)
-        unselect(button: materialsButton)
-        unselect(button: reviewsButton)
-        emptyStateMessageLabel.isHidden = true
-    }
-
-    @IBAction private func didTapChat(_ sender: UIButton) {
-        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
-        viewCtrl.modalPresentationStyle = .fullScreen
-        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
-        present(viewCtrl, animated: true)
-    }
-
-    @IBAction private func didTapMaterials(_ sender: UIButton) {
-        activeScreen = .materials
-        select(button: materialsButton)
-        unselect(button: detailsButton)
-        unselect(button: reviewsButton)
-        emptyStateMessageLabel.isHidden = true
-
-        guard let courseID = course?.id else { return }
-        viewModel?.loadMaterials(courseID: courseID) { materials in
-            self.materials = materials
-            self.tableView.reloadData()
-        }
-    }
-
-    @IBAction private func didTapReviews(_ sender: UIButton) {
-        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
-            self.reviewsList = result.reviews
-            self.tableView.reloadData()
-        }
-        activeScreen = .reviews
-        select(button: reviewsButton)
-        unselect(button: detailsButton)
-        unselect(button: materialsButton)
-    }
 
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
@@ -218,7 +134,7 @@ class CourseDetailsViewController: UIViewController {
                 self.state = .pending
                 self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
                 self.blurView()
-                self.displayReceipt(bookingResponse)
+                self.displayReceipt(bookingResponse, coursePrice: self.course?.price ?? "")
             }
 
         case .pending:
@@ -233,12 +149,28 @@ class CourseDetailsViewController: UIViewController {
             return
         }
     }
-
-    @IBAction private func didTapBackButton(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-
     // MARK: - Private Functions
+
+    @discardableResult
+    private func handleScreenshot() -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(
+            forName: UIApplication.userDidTakeScreenshotNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { notification in
+            self.showLoadingIndicator()
+            self.viewModel?.screenshotAlert(screenName: self.activeSubscreen.rawValue) { _ in
+                self.hideLoadingIndicator()
+                self.showAlert(
+                    imageName: Images.danger.name,
+                    title: L10n.Shared.Alerts.screenshotsNotAllowed,
+                    message: L10n.Shared.Alerts.appWillTerminate
+                ) {
+                    exit(-1)
+                }
+            }
+        }
+    }
 
     private func preventScreenRecording() {
         NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
@@ -247,16 +179,6 @@ class CourseDetailsViewController: UIViewController {
     @objc
     private func hideScreenIfBeingRecorded() {
         window?.isHidden = UIScreen.main.isCaptured
-    }
-
-    private func configure() {
-        teacherNameLabel.text = teacherName
-        courseImageView.image = getImage(from: course?.media?.fileUrl ?? "")
-        courseTitle.text = course?.name
-        descriptionLabel.text = course?.summary
-        priceLabel.text = coursePrice()
-        numberOfReviewsLabel.text = "\(course?.reviewsCount ?? 0)"
-        setRating(Int(course?.rating ?? 0.0))
     }
 
     private func coursePrice() -> String {
@@ -289,10 +211,38 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             } else {
                 expandedSections.append(section)
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section].id ?? 0) { attachmentsModel in
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
+                    if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                            self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                        self.doesLessonContainAttachments[section] = false
+                    } else {
+                        self.doesLessonContainAttachments[section] = true
+                    }
                     self.tableView.reloadData()
                 }
+            }
+        }
+    }
+
+    @objc
+    private func handlePlusButtonAppearance(section: Int) {
+        if course?.reservationState == "approved" {
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
+                self.attachmentsOfLessons[section] = attachmentsModel
+                if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                    self.doesLessonContainAttachments[section] = false
+                    self.attachmentsOfLessons[section] = nil
+                } else {
+                    self.doesLessonContainAttachments[section] = true
+                    self.attachmentsOfLessons[section] = nil
+                }
+                self.tableView.reloadData()
             }
         }
     }
@@ -320,14 +270,6 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
-    private func configureVisibilityOfButtonsAccordingToState() {
-        materialsButton.isHidden = state != .booked
-    }
-
-    private func configureChatButtonAccordingToState() {
-        chatButton.isHidden = state != .booked
-    }
-
     private func blurView() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -337,13 +279,13 @@ class CourseDetailsViewController: UIViewController {
         self.view.addSubview(blurredView ?? blurEffectView)
     }
 
-    private func displayReceipt(_ receiptData: BookingCourseResponseModel) {
+    private func displayReceipt(_ receiptData: BookingCourseResponseModel, coursePrice: String) {
         let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
         view?.center = CGPoint(
             x: self.view.frame.size.width / 2,
             y: self.view.frame.size.height / 2
         )
-        view?.configure(with: receiptData)
+        view?.configure(with: receiptData, coursePrice: coursePrice)
         view?.receiptDoneButtonDelegate = self
         view?.addShadow()
         self.view.addSubview(view ?? UIView())
@@ -372,25 +314,18 @@ class CourseDetailsViewController: UIViewController {
         tableView.registerCell(ofType: ReviewTableViewCell.self)
         tableView.registerCell(ofType: MaterialTableViewCell.self)
         tableView.registerHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+        tableView.registerHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
-    }
-
-    private func select(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightAccentColor.color.cgColor
-        button.setTitleColor(Colors.sendButtonColor.color, for: .normal)
-    }
-
-    private func unselect(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightGreyColor.color.cgColor
-        button.setTitleColor(UIColor.black, for: .normal)
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
 
     private func loadCourseLessons() {
         viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
-            self.tableView.reloadData()
+            self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0) }
         }
     }
 
@@ -402,14 +337,14 @@ class CourseDetailsViewController: UIViewController {
 
     private func imageFromURL(_ imageURLString: String?) -> UIImage? {
         if let imageURLString = imageURLString, let imageURL = URL(string: "\(Environment.baseURL)\(imageURLString)"),
-        let imageData = try? Data(contentsOf: imageURL) {
+           let imageData = try? Data(contentsOf: imageURL) {
             return UIImage(data: imageData)
         }
         return nil
     }
 
     private func numberOfRowsInLessonSection(_ sectionNumber: Int) -> Int {
-        let attachments = attachmentsOfLessons[sectionNumber]
+        let attachments = attachmentsOfLessons[sectionNumber - 1]
         let documentsCount = attachments?.documents?.count ?? 0
         let assignmentsCount = attachments?.assignments?.count ?? 0
         let videosCount = attachments?.videos?.count ?? 0
@@ -451,7 +386,7 @@ class CourseDetailsViewController: UIViewController {
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
-        } else if let document = attachment as? Document {
+        } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
             let image = getCorrespondingImage(for: document)
             cell?.setAttachmentImageView(image)
@@ -466,23 +401,10 @@ class CourseDetailsViewController: UIViewController {
             return Images.excelExtension.image
         case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             return Images.wordExtension.image
-        default:
-            if document?.link != nil {
-                return Images.link.image
-            } else {
-                return Images.unknownExtension.image
-            }
-        }
-    }
-
-    private func getCorrespondingImage(for document: Document?) -> UIImage {
-        switch document?.contentType {
-        case "application/pdf":
-            return Images.pdfExtension.image
-        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-            return Images.excelExtension.image
-        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            return Images.wordExtension.image
+        case "image/png", "image/jpeg", "image/jpg":
+            return Images.imageExtension.image
+        case "application/zip":
+            return Images.zipExtension.image
         default:
             if document?.link != nil {
                 return Images.link.image
@@ -532,34 +454,6 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
-    // swiftlint:disable function_body_length
-    private func setRating(_ rating: Int) {
-        switch rating {
-        case 1:
-            firstReviewStar.image = Images.filledStar.image
-        case 2:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-        case 3:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-        case 4:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-        case 5:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-            fifthReviewStar.image = Images.filledStar.image
-        default:
-            return
-        }
-    }
-
     private func startAssessment(for type: AssessmentType, at indexPath: IndexPath) {
         if activeScreen == .materials {
             guard let assessment = type == .quiz ? quizzesViewModel?.assessments[indexPath.row] : assignemntsViewModel?.assessments[indexPath.row]
@@ -580,7 +474,7 @@ class CourseDetailsViewController: UIViewController {
                 assignemntsViewModel?.startAssessment(with: assignment) { [weak self] in
                     self?.tableView.isUserInteractionEnabled = true
                 }
-            } else if let quiz = assessment as? Assessment, quiz.type == "Quiz"{
+            } else if let quiz = assessment as? Assessment, quiz.type == "Quiz" {
                 showStartQuizAlert(quiz)
             }
         }
@@ -703,15 +597,6 @@ class CourseDetailsViewController: UIViewController {
         alertViewController?.dismiss(animated: true, completion: completion)
     }
 
-    private func displayEmptyStateMessageIfNeeded(itemsCount: Int, message: String) {
-        if itemsCount == 0 {
-            emptyStateMessageLabel.isHidden = false
-            emptyStateMessageLabel.text = message
-        } else {
-            emptyStateMessageLabel.isHidden = true
-        }
-    }
-
     private func configureRefreshControl() {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -758,23 +643,20 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return lessonsList?.count ?? 0
+            return lessonsList?.count ?? .zero > .zero ? (lessonsList?.count ?? .zero) + 1 : 1
         case .materials:
-            return numberOfSectionsInMaterials
+            return numberOfSectionsInMaterials + 1
         default:
-            return 1
+            return 2
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
-            displayEmptyStateMessageIfNeeded(itemsCount: reviewsList?.count ?? 0, message: L10n.CourseDetails.CourseReview.emptyStateMessage)
-            return reviewsList?.count ?? 0
-
+            return section == .zero ? .zero : reviewsList?.count ?? .zero
         case .details:
-            return numberOfRowsInLessonSection(section)
-
+            return numberOfRowsInLessonSection(section + 1)
         case .materials:
             switch MaterialsSections(rawValue: section) {
             case .assignments:
@@ -788,7 +670,6 @@ extension CourseDetailsViewController: UITableViewDataSource {
             default:
                 return 0
             }
-
         default:
             return 0
         }
@@ -801,9 +682,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             configureAttachments(in: indexPath.section)
             let cell = tableView.dequeueCell(ofType: AttachmentTableViewCell.self, for: indexPath)
             let attachment = allAttachmentsOfLesson[indexPath.row]
-            let headerView = tableView.headerView(forSection: indexPath.section) as? CourseDetailsHeaderView
             configureLessonDetails(cell: cell, with: attachment)
-            headerView?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: allAttachmentsOfLesson.isEmpty)
             return cell ?? UITableViewCell()
 
         case .reviews:
@@ -815,7 +694,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
             cell?.setTitle(review?.title ?? "")
             cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
-            cell?.setRating(review?.rating ?? 0)
+            cell?.setRating(review?.rating ?? 0.0)
             DispatchQueue.global().async {
                 let image = self.getImage(from: review?.reviewer?.avatar?.fileUrl ?? "")
                 cell?.setAvatarImage(image)
@@ -824,28 +703,26 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
         case .materials:
             let cell = tableView.dequeueCell(ofType: MaterialTableViewCell.self, for: indexPath)
-            let inputFormatter = DateFormatter()
-            inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
             switch MaterialsSections(rawValue: indexPath.section) {
             case .assignments:
                 let assignment = materials?.assignments?[indexPath.row]
-                let date = inputFormatter.date(from: assignment?.publishedAt ?? "") ?? Date()
+                let date = assignment?.publishedAt ?? Date()
                 cell?.configure(title: assignment?.title, date: date.formattedDateString, image: Images.quiz.image)
 
             case .quizzes:
                 let quiz = materials?.quizzes?[indexPath.row]
-                let date = inputFormatter.date(from: quiz?.publishedAt ?? "") ?? Date()
+                let date = quiz?.publishedAt ?? Date()
                 cell?.configure(title: quiz?.title, date: date.formattedDateString, image: Images.quiz.image)
 
             case .videos:
                 let video = materials?.videos?[indexPath.row]
-                let date = inputFormatter.date(from: video?.publishedAt ?? "") ?? Date()
+                let date = video?.publishedAt ?? Date()
                 cell?.configure(title: video?.title, date: date.formattedDateString, image: Images.videoExtension.image)
 
             case .documents:
                 let document = materials?.documents?[indexPath.row]
-                let date = inputFormatter.date(from: document?.publishedAt ?? "") ?? Date()
+                let date = document?.publishedAt ?? Date()
                 cell?.configure(title: document?.title ?? document?.fileName, date: date.formattedDateString, image: getCorrespondingImage(for: document))
 
             default:
@@ -863,39 +740,98 @@ extension CourseDetailsViewController: UITableViewDataSource {
 // MARK: - Table View Delegate
 
 extension CourseDetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch activeScreen! {
+        case .details:
+            return detailsRowHeight
+        case .materials, .reviews:
+            return reviewsRowHeight
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return activeScreen == .details ? detailsRowHeight : reviewsRowHeight
+        switch activeScreen! {
+        case .details:
+            return detailsRowHeight
+        case .materials:
+            return reviewsRowHeight
+        case .reviews:
+            return UITableView.automaticDimension
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch activeScreen {
-        case .details:
-            let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-            view?.tag = section
-            view?.collapseExpandDelegate = self
-            let lesson = lessonsList?[section]
-            view?.setLessonTitleLabel(lesson?.name ?? "Lesson")
-            view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
-            view?.assignSectionTagToButton(section)
-            view?.configureVisibilityOfExpandButton(state: course?.reservationState, isAttachmentsEmpty: false)
-            if expandedSections.contains(section) {
-                view?.setImageOfButton(Images.collapse.image)
+        if section == .zero {
+            let detailsView = tableView.dequeueHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
+            detailsView?.configure(
+                model: CourseDetailsInfoModel(
+                    courseTitle: course?.name,
+                    teacherName: teacherName,
+                    image: course?.media?.fileUrl,
+                    video: course?.video,
+                    description: course?.summary,
+                    price: coursePrice(),
+                    numberOfReviews: String(course?.reviewsCount ?? .zero),
+                    rating: course?.rating,
+                    shouldHideMaterials: state != .booked,
+                    buttonSelected: activeScreen ?? .details,
+                    state: state ?? .normal,
+                    lessonsUnreadCount: course?.lessonsUnreadCount,
+                    materialsUnreadCount: course?.materialsUnreadCount,
+                    delegate: self
+                )
+            )
+            return detailsView
+        } else if activeScreen == .details && section != .zero {
+            if !(lessonsList?.isEmpty ?? false) {
+                let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+                view?.tag = section + 1
+                view?.collapseExpandDelegate = self
+                let lesson = lessonsList?[section - 1]
+                view?.setLessonTitleLabel(lesson?.name ?? "")
+                view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
+                view?.assignSectionTagToButton(section)
+                view?.configureVisibilityOfExpandButton(
+                    state: course?.reservationState,
+                    doesContainAttachments:
+                        doesLessonContainAttachments[section] ?? false
+                )
+                if expandedSections.contains(section) {
+                    view?.setImageOfButton(Images.collapse.image)
+                } else {
+                    view?.setImageOfButton(Images.expand.image)
+                }
+                return view
             } else {
-                view?.setImageOfButton(Images.expand.image)
+                return nil
             }
-            return view
-
-        default:
+        } else {
             return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return activeScreen == .details ? detailsHeaderHeight : 0
+        if section == .zero {
+            return UITableView.automaticDimension
+        } else if section != .zero && activeScreen == .details {
+            return detailsHeaderHeight
+        } else {
+            return .zero
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        if section == .zero {
+            return 505
+        } else if section != .zero && activeScreen == .details {
+            return 60
+        } else {
+            return .zero
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if activeScreen == .details {
+        if activeScreen != .materials {
             let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
             view.backgroundColor = Colors.lightGreyColor.color
             return view
@@ -904,16 +840,19 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return activeScreen == .details ? footerHeight : 0
+        return activeScreen != .materials ? 1 : 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        configureAttachments(in: indexPath.section)
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
+                activeSubscreen = .video
                 let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
                 play(videoURL: videoURL)
             case .documents:
+                activeSubscreen = .file
                 if let linkURL = materials?.documents?[indexPath.row].link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
@@ -922,6 +861,9 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
             case .quizzes:
+                let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                cell?.startLoadingIndicator()
+                activeSubscreen = .quiz
                 quizzesViewModel?.assessments = materials?.quizzes ?? []
                 let quiz = materials?.quizzes?[indexPath.row]
                 selectedAssessment = quiz
@@ -934,6 +876,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             case .assignments:
+                activeSubscreen = .exercise
                 assignemntsViewModel?.assessments = materials?.assignments ?? []
                 let assignment = materials?.assignments?[indexPath.row]
                 selectedAssessment = assignment
@@ -952,6 +895,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
         } else if activeScreen == .details {
             let attachment = allAttachmentsOfLesson[indexPath.row]
             if let assignment = attachment as? Assessment, assignment.type != "Quiz" {
+                activeSubscreen = .exercise
                 selectedAssessmentSection = indexPath.section
                 assignemntsViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.assignments ?? []
                 switch assignment.status {
@@ -963,6 +907,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let quiz = attachment as? Assessment, quiz.type == "Quiz"{
+                activeSubscreen = .quiz
                 selectedAssessmentSection = indexPath.section
                 quizzesViewModel?.assessments = attachmentsOfLessons[indexPath.section]?.quizzes ?? []
                 selectedAssessment = quiz
@@ -975,9 +920,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
+                activeSubscreen = .video
                 let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
                 play(videoURL: videoURL)
-            } else if let document = attachment as? Document {
+            } else if let document = attachment as? MaterialsDocument {
+                activeSubscreen = .file
                 if let linkURL = document.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
@@ -994,7 +941,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        handleAttachmentsExpantion(section: section)
+        handleAttachmentsExpantion(section: section - 1)
     }
 }
 
@@ -1053,5 +1000,98 @@ extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
 extension CourseDetailsViewController: AssessmentDetailsDelegate {
     func didFinishAssessment(with id: Int?) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - Course Details Info Delegate
+
+extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
+    func showDetails() {
+        activeScreen = .details
+        self.tableView.reloadData()
+
+    }
+
+    func showMaterials() {
+        activeScreen = .materials
+        guard let courseID = course?.id else { return }
+        viewModel?.loadMaterials(courseID: courseID) { materials in
+            self.materials = materials
+            self.tableView.reloadData()
+        }
+    }
+
+    func showReviews() {
+        activeScreen = .reviews
+        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
+            self.reviewsList = result.reviews
+            self.tableView.reloadData()
+        }
+    }
+
+    func goToChat() {
+        let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
+        viewCtrl.modalPresentationStyle = .fullScreen
+        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
+        present(viewCtrl, animated: true)
+    }
+
+    func dismissView() {
+        dismiss(animated: true)
+    }
+
+    func playCourseVideo(playerController: AVPlayerViewController) {
+        addChild(playerController)
+    }
+}
+
+// MARK: - DZN Empty State Data Source
+
+extension CourseDetailsViewController: DZNEmptyDataSetSource {
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        switch activeScreen {
+        case .details:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyDetails)
+
+        case .materials:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyMaterials)
+
+        case .reviews:
+            return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyReviews)
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - DZN Empty State Delegate
+
+extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
+        return 200
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        if state == .booked {
+            switch activeScreen {
+            case .details:
+                return lessonsList?.isEmpty ?? true
+            case .materials:
+                return materials?.assignments?.isEmpty ?? true
+                    && materials?.documents?.isEmpty ?? true
+                    && materials?.quizzes?.isEmpty ?? true
+                    && materials?.videos?.isEmpty ?? true
+            case .reviews:
+                return reviewsList?.isEmpty ?? true
+            default:
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }

@@ -157,7 +157,9 @@ No worries!";
 "signup.school.academicType" = "Academic Type*";
 "signup.school.academicDivision" = "Academic Division*";
 "signup.school.academicYear" = "Academic Year*";
+"signup.school.field" = "Field";
 "signup.school.schoolName" = "School Name*";
+"signup.school.none" = "None";
 
 "signup.addAvatar.submit" = "Submit";
 "signup.addAvatar.skip" = "Skip";
@@ -188,7 +190,9 @@ No worries!";
 "courseDetails.courseReview.describeCourse" = "Describe Course...";
 "courseDetails.courseReview.skipRating" = "Skip Rating";
 "courseDetails.courseReview.by" = "by";
-"courseDetails.courseReview.emptyStateMessage" = "No reviews yet.";
+"courseDetails.courseReview.emptyReviews" = "No reviews yet.";
+"courseDetails.courseReview.emptyDetails" = "No details yet.";
+"courseDetails.courseReview.emptyMaterials" = "No materials yet.";
 
 // MARK: - Home & My courses
 
@@ -197,10 +201,13 @@ No worries!";
 "home.helpCenter" = "Help Center";
 "home.view" = "View";
 "home.course.price" = "EGP";
+"home.course.priceLabel" = "Price";
 "home.course.seeReceipt" = "See Receipt";
 "home.course.returnToTeacher" = "Return to teacher";
 "home.ads.viewMore" = "View more";
 "home.pending" = "Pending";
+"home.search.emptyStateTitle" = "Sorry";
+"home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
 
 // MARK: - Notifications
 
@@ -269,8 +276,8 @@ No worries!";
 "quizzes.yourGrade" = "Your grade";
 "quizzes.finish" = "Finish";
 "quizzes.finishMessage" = "Are you sure you want to submit?";
-"quizzes.timeOutTitle" = "We are sorry! time is out!";
-"quizzes.timeOutDescription" = "Your answeres have been submitted";
+"quizzes.timeOutTitle" = "We are sorry! Time is out";
+"quizzes.timeOutDescription" = "Your answers will be submitted!";
 "quizzes.notGradedYet" = "Not graded yet";
 "quizzes.notFinalGrade" = "This grade is not final";
 "quizzes.yourAnswer" = "Your answer";
@@ -307,6 +314,8 @@ No worries!";
 "quizzes.gallery" = "Gallery";
 "quizzes.camera" = "Camera";
 "quizzes.viewDescription" = "View description";
+"quizzes.noInternetTitle" = "No Internet!";
+"quizzes.noInternetMessage" = "Check your internet connection and try again in a while.";
 
 // MARK: - Assignments
 

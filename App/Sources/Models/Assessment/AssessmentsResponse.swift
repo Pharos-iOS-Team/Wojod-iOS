@@ -2,17 +2,6 @@
 
 import Foundation
 
-struct TeacherAssessmentsResponse: Codable {
-    var quizzes: [Assessment]?
-    var assignments: [Assessment]?
-    var all: [Assessment]?
-
-    private enum CodingKeys: String, CodingKey {
-        case quizzes, assignments
-        case all = "assignments_quizzes"
-    }
-}
-
 struct AssessmentsResponse: Codable {
     var quizzes: [String: [String: [Assessment]]]?
     var assignments: [String: [String: [Assessment]]]?

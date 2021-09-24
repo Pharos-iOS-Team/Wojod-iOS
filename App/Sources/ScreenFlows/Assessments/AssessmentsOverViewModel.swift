@@ -77,23 +77,6 @@ class AssessmentsOverViewModel {
         return getAssessments(fromResponse: response, subjectId: subjectId, module: module, allSubjectAssessments: allSubjectAssessments)
     }
 
-    private func decodeAssessmentsForTeacher(fromResponse response: AFDataResponse<Any>, module: AssessmentsOverViewViewModel.Module) -> [Assessment]? {
-        guard let data = response.data else { return nil }
-        do {
-            let assessments = try decoder.decode(TeacherAssessmentsResponse.self, from: data)
-            switch module {
-            case .all:
-                return assessments.all
-            case .quizzes:
-                return assessments.quizzes
-            case .assignments:
-                return assessments.assignments
-            }
-        } catch {
-            return nil
-        }
-    }
-
     private func getAssessments(
         fromResponse response: AFDataResponse<Any>,
         subjectId: Int?,

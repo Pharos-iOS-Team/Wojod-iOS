@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pCi-GB-J7N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pCi-GB-J7N">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,67 +51,65 @@
                                 <rect key="frame" x="239" y="60" width="15" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-4d-Zb1">
-                                <rect key="frame" x="259" y="59.5" width="79.5" height="17"/>
+                                <rect key="frame" x="259" y="59.5" width="75" height="17"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-fQ-iuP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-fQ-iuP">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" name="sendButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1fB-hC-z1h"/>
                                 </constraints>
-                                <state key="normal" title="Show Filters">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Show Filters" image="filters">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapFiltersButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="Dr2-ow-MOe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBg-4l-KFL">
-                                <rect key="frame" x="15" y="826.5" width="58" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8m-7Q-LDY">
-                                <rect key="frame" x="359" y="826.5" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y76-rP-T4a">
+                                <rect key="frame" x="207" y="812" width="207" height="50"/>
+                                <color key="backgroundColor" name="green"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapClearFiltersButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="GMP-OX-aUa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mQs-D6-wzv"/>
                         <color key="backgroundColor" name="superLightGrey"/>
                         <constraints>
+                            <constraint firstItem="Y76-rP-T4a" firstAttribute="bottom" secondItem="rqP-fQ-iuP" secondAttribute="bottom" id="26d-aF-hv8"/>
                             <constraint firstItem="Ys3-Rv-O80" firstAttribute="centerY" secondItem="d28-A6-w5m" secondAttribute="centerY" id="2vL-DV-kSy"/>
-                            <constraint firstItem="FBg-4l-KFL" firstAttribute="leading" secondItem="mQs-D6-wzv" secondAttribute="leading" constant="15" id="3bB-at-Cll"/>
                             <constraint firstItem="doz-wx-tBw" firstAttribute="top" secondItem="mQs-D6-wzv" secondAttribute="top" id="4Zn-vH-Eaf"/>
                             <constraint firstItem="mQs-D6-wzv" firstAttribute="trailing" secondItem="rqP-fQ-iuP" secondAttribute="trailing" id="5dm-4v-3Cd"/>
                             <constraint firstItem="iDj-vZ-gEt" firstAttribute="trailing" secondItem="m04-iN-YQq" secondAttribute="trailing" id="B7K-e7-p36"/>
-                            <constraint firstItem="mQs-D6-wzv" firstAttribute="trailing" secondItem="c8m-7Q-LDY" secondAttribute="trailing" constant="15" id="HOy-Za-ZLR"/>
+                            <constraint firstItem="Y76-rP-T4a" firstAttribute="trailing" secondItem="rqP-fQ-iuP" secondAttribute="trailing" id="Cnh-yC-8Ty"/>
                             <constraint firstItem="iDj-vZ-gEt" firstAttribute="leading" secondItem="doz-wx-tBw" secondAttribute="leading" id="LGc-Nd-hnj"/>
                             <constraint firstItem="Ys3-Rv-O80" firstAttribute="leading" secondItem="d28-A6-w5m" secondAttribute="leading" constant="10" id="NIy-0x-aFA"/>
                             <constraint firstItem="iDj-vZ-gEt" firstAttribute="top" secondItem="doz-wx-tBw" secondAttribute="bottom" constant="10" id="Oeg-Cm-2rW"/>
                             <constraint firstItem="sQb-4d-Zb1" firstAttribute="leading" secondItem="Ys3-Rv-O80" secondAttribute="trailing" constant="5" id="SdE-wx-db8"/>
                             <constraint firstItem="d28-A6-w5m" firstAttribute="centerY" secondItem="doz-wx-tBw" secondAttribute="centerY" id="U4L-PO-qOL"/>
+                            <constraint firstItem="Y76-rP-T4a" firstAttribute="width" secondItem="rqP-fQ-iuP" secondAttribute="width" multiplier="0.5" id="XZd-SD-0Fo"/>
                             <constraint firstItem="rqP-fQ-iuP" firstAttribute="top" secondItem="iDj-vZ-gEt" secondAttribute="bottom" id="YEy-4x-W34"/>
                             <constraint firstItem="doz-wx-tBw" firstAttribute="leading" secondItem="mQs-D6-wzv" secondAttribute="leading" constant="22" id="cKP-Ia-P53"/>
                             <constraint firstItem="m04-iN-YQq" firstAttribute="trailing" secondItem="Kkm-F3-9QR" secondAttribute="trailingMargin" id="eDN-fV-eKm"/>
                             <constraint firstItem="m04-iN-YQq" firstAttribute="centerY" secondItem="d28-A6-w5m" secondAttribute="centerY" id="h9A-qJ-cLv"/>
                             <constraint firstItem="m04-iN-YQq" firstAttribute="leading" secondItem="d28-A6-w5m" secondAttribute="trailing" constant="15" id="ksR-eN-nwa"/>
+                            <constraint firstItem="Y76-rP-T4a" firstAttribute="top" secondItem="rqP-fQ-iuP" secondAttribute="top" id="lJ1-JA-DAV"/>
                             <constraint firstItem="sQb-4d-Zb1" firstAttribute="centerY" secondItem="Ys3-Rv-O80" secondAttribute="centerY" id="mf9-T0-dU1"/>
-                            <constraint firstItem="c8m-7Q-LDY" firstAttribute="centerY" secondItem="rqP-fQ-iuP" secondAttribute="centerY" id="nxO-tU-VOx"/>
                             <constraint firstItem="rqP-fQ-iuP" firstAttribute="leading" secondItem="mQs-D6-wzv" secondAttribute="leading" id="pLm-U8-OYI"/>
                             <constraint firstItem="mQs-D6-wzv" firstAttribute="bottom" secondItem="rqP-fQ-iuP" secondAttribute="bottom" id="tdx-IK-O2d"/>
-                            <constraint firstItem="FBg-4l-KFL" firstAttribute="centerY" secondItem="rqP-fQ-iuP" secondAttribute="centerY" id="vpM-pF-f46"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="clearLabel" destination="c8m-7Q-LDY" id="Bzg-Md-PM2"/>
+                        <outlet property="clearFiltersButton" destination="Y76-rP-T4a" id="21h-i5-L1a"/>
                         <outlet property="coursesTableView" destination="iDj-vZ-gEt" id="BCw-ZQ-B6B"/>
-                        <outlet property="filterSelectedLabel" destination="FBg-4l-KFL" id="Hii-EC-mpZ"/>
                         <outlet property="filtersButton" destination="rqP-fQ-iuP" id="Oxc-34-w85"/>
                         <outlet property="filtersButtonHeightConstraint" destination="1fB-hC-z1h" id="Z07-ue-J80"/>
                         <outlet property="helpCenterButton" destination="d28-A6-w5m" id="dEW-sf-03R"/>
@@ -124,11 +122,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="filters" width="20" height="20"/>
         <image name="helpCenter" width="15" height="16"/>
         <image name="homeNotification" width="30" height="30"/>
         <image name="small" width="46" height="48"/>
         <namedColor name="backgroundLightPurple">
             <color red="0.93725490196078431" green="0.92941176470588238" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="green">
+            <color red="0.18431372549019609" green="0.75686274509803919" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sendButtonColor">
             <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

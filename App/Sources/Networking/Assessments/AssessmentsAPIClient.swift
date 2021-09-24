@@ -6,7 +6,7 @@ import Alamofire
 class AssessmentsAPIClient: ApiManager {
     func getAssessmentSubmissions(
         requestData: AssessmentSubmissionRequestModel,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         let url = "\(hostUrl)/\(requestData.module.rawValue)/\(requestData.assessmentID)"
         let headers = APIClient.shared.getHeaders()
@@ -23,7 +23,7 @@ class AssessmentsAPIClient: ApiManager {
 
     func getSubmissionDetails(
         requestModel: AssessmentSubmissionDetailsRequestModel,
-        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> ()
+        completionHandler: @escaping (_ response: AFDataResponse<Any>) -> Void
     ) {
         let url = "\(hostUrl)/\(requestModel.module.rawValue)/\(requestModel.assessmentID)/student_submission_details"
         let headers = APIClient.shared.getHeaders()
@@ -60,7 +60,7 @@ class AssessmentsAPIClient: ApiManager {
         )
             .responseJSON(completionHandler: completionHandler)
     }
-    
+
     private func getParameters(subjectID: Int? = nil) -> [String: Any] {
         var parameters = [String: Any]()
         parameters["student_id"] = User.shared.id
@@ -76,7 +76,7 @@ class AssessmentsAPIClient: ApiManager {
                 "comment": grade.comment,
                 "mark": grade.mark,
                 "status": grade.status
-            ] as [String : Any]
+            ] as [String: Any]
             arrayOfGrades.append(gradeDictionary)
         }
         return ["grades": arrayOfGrades]

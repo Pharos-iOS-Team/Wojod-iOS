@@ -12,12 +12,6 @@ protocol HomeTableViewHeaderDelegate: AnyObject {
 }
 
 class HomeTableViewHeader: UITableViewHeaderFooterView {
-    // MARK: - Lifecycle
-
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     // MARK: - IBOutlets
 
     @IBOutlet private var subjectCollectionViewFlowLayout: UICollectionViewFlowLayout! {
@@ -43,6 +37,8 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
             subjectsCollectionView.allowsMultipleSelection = false
         }
     }
+    @IBOutlet private var adsCollectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet private var dotsIndicator: UIPageControl!
     @IBOutlet private var adsCollectionView: UICollectionView!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var adsCollectionViewHeightConstraint: NSLayoutConstraint!
@@ -74,6 +70,14 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         subjectsCollectionView.dataSource = self
         subjectsCollectionView.delegate = self
         adsCollectionView.dataSource = self
+        adsCollectionView.delegate = self
+        adsCollectionView.dataSource = self
+        adsCollectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
+            $0.scrollDirection = .horizontal
+        }
+        subjectsCollectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
+            $0.scrollDirection = .horizontal
+        }
         subjectsCollectionView.register(UINib(nibName: "SubjectCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubjectCollectionViewCell")
         adsCollectionView.register(UINib(nibName: "AdsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdsCollectionViewCell")
     }
@@ -111,6 +115,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     func showSubjectsAndAds() {
         subjectsCollectionView.isHidden = false
         adsCollectionView.isHidden = false
+        dotsIndicator.isHidden = false
         subjectsCollectionViewHeightConstraint.constant = 50
         adsCollectionViewHeightConstraint.constant = 150
     }
@@ -118,13 +123,17 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     func hideSubjectsAndAds() {
         subjectsCollectionView.isHidden = true
         adsCollectionView.isHidden = true
+        dotsIndicator.isHidden = true
         subjectsCollectionViewHeightConstraint.constant = 0
         adsCollectionViewHeightConstraint.constant = 0
     }
 }
 
+// MARK: - Collection View Data Source
+
 extension HomeTableViewHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        dotsIndicator.numberOfPages = advertisements.count
         return collectionView == subjectsCollectionView ? subjects?.count ?? 0 : advertisements.count
     }
 
@@ -149,7 +158,13 @@ extension HomeTableViewHeader: UICollectionViewDataSource {
             return cell
         }
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        dotsIndicator.currentPage = Int(self.adsCollectionView.contentOffset.x) / Int(self.adsCollectionView.frame.width)
+    }
 }
+
+// MARK: - Collection View Delegate
 
 extension HomeTableViewHeader: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -159,12 +174,18 @@ extension HomeTableViewHeader: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Collection View Delegate Flow Layout
+
 extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.text = subjects?[indexPath.item].name
-        label.sizeToFit()
-        return CGSize(width: label.frame.width, height: 50)
+        if collectionView == subjectsCollectionView {
+            let label = UILabel(frame: CGRect.zero)
+            label.text = subjects?[indexPath.item].name
+            label.sizeToFit()
+            return CGSize(width: label.frame.width, height: 50)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }
     }
 
     func collectionView(
@@ -172,8 +193,7 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
-        guard collectionView == subjectsCollectionView else { return 0 }
-        return 5.0
+        return collectionView == subjectsCollectionView ? 20.0 : 5.0
     }
 
     func collectionView(
@@ -181,9 +201,11 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 5.0
+        return collectionView == subjectsCollectionView ? 20.0 : 5.0
     }
 }
+
+// MARK: - Search Bar Delegate
 
 extension HomeTableViewHeader: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

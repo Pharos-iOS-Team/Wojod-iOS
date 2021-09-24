@@ -13,6 +13,12 @@ class MaterialTableViewCell: UITableViewCell {
             containerView.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView! {
+        didSet {
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.isHidden = true
+        }
+    }
     @IBOutlet private var iconImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
@@ -22,8 +28,14 @@ class MaterialTableViewCell: UITableViewCell {
     }
 
     internal func configure(title: String?, date: String?, image: UIImage?) {
+        nextArrowIndicator.isHidden = false
         titleLabel.text = title
         dateLabel.text = date
         iconImageView.image = image
+    }
+
+    func startLoadingIndicator() {
+        nextArrowIndicator.isHidden = true
+        loadingIndicator.startAnimating()
     }
 }

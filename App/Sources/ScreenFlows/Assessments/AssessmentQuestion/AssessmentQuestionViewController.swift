@@ -71,6 +71,7 @@ class AssessmentQuestionViewController: UIViewController, UINavigationController
         tableView.registerCell(ofType: QuestionHeaderTableViewCell.self)
         tableView.registerCell(ofType: AssessmentMCQOptionTableViewCell.self)
         tableView.registerCell(ofType: AssessmentFreeTextTableViewCell.self)
+        tableView.registerCell(ofType: TeacherQuestionCommentTableViewCell.self)
     }
 
     private func setTableViewMultiSelection() {
@@ -240,6 +241,10 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
         case .body(let items):
             let item = items[indexPath.row]
             return configureBodySection(for: item, at: indexPath)
+        case let .note(note):
+            let cell: TeacherQuestionCommentTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(note: note ?? "")
+            return cell
         }
     }
 
@@ -331,6 +336,7 @@ extension AssessmentQuestionViewController: AssessmentFreeTextDelegate {
     }
     
     func didTapDeleteAttachment() {
+        viewModel?.deleteQuestionAttachment()
         viewModel?.attachmentsProgressStatus.removeValue(forKey: viewModel?.questionID ?? -1)
         delegate?.didDeleteAttachedFile(for: viewModel?.questionID)
     }

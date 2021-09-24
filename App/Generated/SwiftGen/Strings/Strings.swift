@@ -133,9 +133,17 @@ internal enum L10n {
       internal static var describeCourse: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.describeCourse")
         }
+      /// No details yet.
+      internal static var emptyDetails: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyDetails")
+        }
+      /// No materials yet.
+      internal static var emptyMaterials: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyMaterials")
+        }
       /// No reviews yet.
-      internal static var emptyStateMessage: String {
-          return L10n.tr("Localizable", "courseDetails.courseReview.emptyStateMessage")
+      internal static var emptyReviews: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.emptyReviews")
         }
       /// Message
       internal static var messageTitle: String {
@@ -259,6 +267,10 @@ internal enum L10n {
       internal static var price: String {
           return L10n.tr("Localizable", "home.course.price")
         }
+      /// Price
+      internal static var priceLabel: String {
+          return L10n.tr("Localizable", "home.course.priceLabel")
+        }
       /// Return to teacher
       internal static var returnToTeacher: String {
           return L10n.tr("Localizable", "home.course.returnToTeacher")
@@ -266,6 +278,16 @@ internal enum L10n {
       /// See Receipt
       internal static var seeReceipt: String {
           return L10n.tr("Localizable", "home.course.seeReceipt")
+        }
+    }
+    internal enum Search {
+      /// We couldn't find what you searched for. Try again with different words.
+      internal static var emptyStateDescription: String {
+          return L10n.tr("Localizable", "home.search.emptyStateDescription")
+        }
+      /// Sorry
+      internal static var emptyStateTitle: String {
+          return L10n.tr("Localizable", "home.search.emptyStateTitle")
         }
     }
   }
@@ -604,6 +626,14 @@ internal enum L10n {
     internal static var noData: String {
         return L10n.tr("Localizable", "quizzes.noData")
       }
+    /// Check your internet connection and try again in a while.
+    internal static var noInternetMessage: String {
+        return L10n.tr("Localizable", "quizzes.noInternetMessage")
+      }
+    /// No Internet!
+    internal static var noInternetTitle: String {
+        return L10n.tr("Localizable", "quizzes.noInternetTitle")
+      }
     /// Non-finalized
     internal static var nonFinialized: String {
         return L10n.tr("Localizable", "quizzes.nonFinialized")
@@ -724,11 +754,11 @@ internal enum L10n {
     internal static var timeDuration: String {
         return L10n.tr("Localizable", "quizzes.timeDuration")
       }
-    /// Your answeres have been submitted
+    /// Your answers will be submitted!
     internal static var timeOutDescription: String {
         return L10n.tr("Localizable", "quizzes.timeOutDescription")
       }
-    /// We are sorry! time is out!
+    /// We are sorry! Time is out
     internal static var timeOutTitle: String {
         return L10n.tr("Localizable", "quizzes.timeOutTitle")
       }
@@ -951,6 +981,14 @@ internal enum L10n {
       /// Academic Year*
       internal static var academicYear: String {
           return L10n.tr("Localizable", "signup.school.academicYear")
+        }
+      /// Field
+      internal static var field: String {
+          return L10n.tr("Localizable", "signup.school.field")
+        }
+      /// None
+      internal static var `none`: String {
+          return L10n.tr("Localizable", "signup.school.none")
         }
       /// Parent Number*
       internal static var parentNumber: String {

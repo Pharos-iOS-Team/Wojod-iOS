@@ -78,6 +78,16 @@ class SchoolViewController: UIViewController {
             academicYearTextField.textAlignment = Language.textAlignment
         }
     }
+    @IBOutlet private var fieldTextField: NoCutPasteTextField! {
+        didSet {
+            fieldTextField.addRightIcon(Images.path.image, width: 10, height: 6)
+            fieldTextField.isMandatoryTextField = false
+            fieldTextField.placeholder = L10n.Signup.School.field
+            fieldTextField.inputView = fieldsPickerView
+            fieldTextField.semanticContentAttribute = Language.semanticContent
+            fieldTextField.textAlignment = Language.textAlignment
+        }
+    }
     @IBOutlet private var wrongCredentialsImageView: UIImageView! {
         didSet {
             wrongCredentialsImageView.isHidden = true
@@ -105,10 +115,13 @@ class SchoolViewController: UIViewController {
     private var selectedYearIndexID: Int = 0
     private var divisionsList: [Division] = []
     private var academicYears: [Batch] = []
+    private var fields: [Specialization] = []
     private var divisionsPickerView = PickerInputView<String>(height: 200)
     private var academicTypesPickerView = PickerInputView<String>(height: 200)
     private var academicYearPickerView = PickerInputView<String>(height: 200)
+    private var fieldsPickerView = PickerInputView<String>(height: 200)
     private var selectedDivision: Division?
+    private var selectedField: Specialization?
 
     // MARK: - Lifecycle
 
@@ -127,7 +140,6 @@ class SchoolViewController: UIViewController {
         super.viewWillAppear(animated)
         hideWrongCredentials()
         nextButton.backgroundColor = Colors.darkGreyColor.color
-        // academicTypeTextField.text?.removeAll()
     }
 
     // MARK: - IBActions
@@ -143,16 +155,20 @@ class SchoolViewController: UIViewController {
         divisionsPickerView.items = { self.divisionsList.compactMap { $0.value } }
         academicTypesPickerView.items = { (self.academicTypesList?.compactMap { $0.value } ?? [""]) }
         academicYearPickerView.items = { self.academicYears.compactMap { $0.value } }
+        fieldsPickerView.items = { self.fields.compactMap { $0.value } }
 
         academicTypeTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
         academicDivisionTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicDivisionPickerDoneTapped))
         academicYearTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicYearPickerDoneTapped))
+        fieldTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(fieldPickerDoneTapped))
     }
 
+    // swiftlint:disable function_body_length
     private func configurePickerViews() {
         divisionsPickerView.text = { $0 }
         academicTypesPickerView.text = { $0 }
         academicYearPickerView.text = { $0 }
+        fieldsPickerView.text = { $0 }
 
         divisionsPickerView.didSelectAtIndex = { [unowned self] index in
             academicDivisionTextField.text = self.divisionsList[index].value
@@ -170,6 +186,11 @@ class SchoolViewController: UIViewController {
             academicYearTextField.text = self.academicYears[index].value
             self.selectedYearIndexID = index
             academicYearTextField.setNormalView()
+        }
+        fieldsPickerView.didSelectAtIndex = { [unowned self] index in
+            fieldTextField.text = self.fields[index].value
+            selectedField = self.fields[index]
+            fieldTextField.setNormalView()
         }
     }
 
@@ -192,6 +213,7 @@ class SchoolViewController: UIViewController {
             self.academicDivisionTextField.text = divisions?[0].value
             self.selectedDivision = divisions?[0]
             self.retrieveAcademicYear()
+            self.retrieveFields()
         }
     }
 
@@ -202,6 +224,16 @@ class SchoolViewController: UIViewController {
             self.academicYears = batches ?? []
             self.selectedYearIndexID = 0
             self.academicYearTextField.text = batches?[0].value
+        }
+    }
+
+    private func retrieveFields() {
+        activityIndicator.startAnimating()
+        viewModel?.loadSpecializations(for: selectedDivision?.key ?? 0) { fields in
+            self.activityIndicator.stopAnimating()
+            self.fields = fields ?? []
+            self.fieldTextField.text = "None"
+            self.fields.append(Specialization(key: nil, value: "None"))
         }
     }
 
@@ -224,6 +256,7 @@ class SchoolViewController: UIViewController {
         User.shared.divisionId = selectedDivision?.key
         academicDivisionTextField.text = selectedDivision?.value
         retrieveAcademicYear()
+        retrieveFields()
     }
 
     @objc
@@ -231,6 +264,16 @@ class SchoolViewController: UIViewController {
         guard !academicYears.isEmpty else { return }
         academicYearPickerView.resignFirstResponder()
         academicYearTextField.text = academicYears[selectedYearIndexID].value
+    }
+
+    @objc
+    private func fieldPickerDoneTapped() {
+        if selectedField == nil {
+            selectedField = fields[0]
+        }
+        fieldsPickerView.resignFirstResponder()
+        User.shared.specializationId = selectedField?.key
+        fieldTextField.text = selectedField?.value
     }
 
     private func isMandatoryFieldsFilled() -> Bool {
@@ -276,6 +319,8 @@ class SchoolViewController: UIViewController {
         User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text
         User.shared.schoolName = schoolNameTextField.text
+        User.shared.specializationId = selectedField?.key
+        User.shared.specializationName = selectedField?.value == "None" ? nil : selectedField?.value
     }
 
     private func displayAlreadyEnteredDataIfAny() {
@@ -284,6 +329,7 @@ class SchoolViewController: UIViewController {
         academicTypeTextField.text = User.shared.academicTypeName
         academicYearTextField.text = User.shared.batchName
         schoolNameTextField.text = User.shared.schoolName
+        fieldTextField.text = User.shared.specializationName ?? ""
     }
 
     private func showWrongCredentials() {

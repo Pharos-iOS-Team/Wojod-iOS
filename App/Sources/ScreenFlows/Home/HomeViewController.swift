@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
 import UIKit
@@ -23,14 +24,9 @@ class HomeViewController: UIViewController {
             helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
-    @IBOutlet private var filterSelectedLabel: UILabel! {
+    @IBOutlet private var clearFiltersButton: UIButton! {
         didSet {
-            filterSelectedLabel.isHidden = true
-        }
-    }
-    @IBOutlet private var clearLabel: UILabel! {
-        didSet {
-            clearLabel.isHidden = true
+            clearFiltersButton.isHidden = true
         }
     }
     @IBOutlet private var filtersButton: UIButton!
@@ -72,13 +68,20 @@ class HomeViewController: UIViewController {
         preventScreenshot()
         preventScreenRecording()
         loadAndConfigureAdvertisements()
+        observeInternetConnection()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         configureFilterButton()
-        loadRelatedCourses(isBeingScrolled: false)
+        if self.mode == .relatedCourses {
+            self.viewModel.relatedCoursesPage = 1
+            self.loadRelatedCourses(isBeingScrolled: false)
+        } else {
+            self.viewModel.exploreMorePage = 1
+            self.loadExploreMoreCourses(isBeingScrolled: false)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,14 +109,15 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapFiltersButton(_ sender: UIButton) {
-        if isFiltersSelected {
-            loadExploreMoreCourses(isBeingScrolled: false)
-            configureFiltersButtonWhenNoFilterSelected()
-        } else {
-            let viewCtrl = StoryboardScene.Filters.initialScene.instantiate()
-            viewCtrl.delegate = self
-            present(viewCtrl, animated: true)
-        }
+        let viewCtrl = StoryboardScene.Filters.initialScene.instantiate()
+        viewCtrl.delegate = self
+        present(viewCtrl, animated: true)
+    }
+
+    @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
+        loadExploreMoreCourses(isBeingScrolled: false)
+        clearPreviouslyChosenFilters()
+        configureFiltersButtonWhenNoFilterSelected()
     }
 
     // MARK: - Private Functions
@@ -149,7 +153,7 @@ class HomeViewController: UIViewController {
             x: self.view.frame.size.width / 2,
             y: self.view.frame.size.height / 2
         )
-        view?.configureInMyCourses(with: receiptData)
+        view?.configureInMyCourses(with: receiptData, coursePrice: "")
         view?.receiptDoneButtonDelegate = self
         view?.addShadow()
         self.view.addSubview(view ?? UIView())
@@ -188,11 +192,14 @@ class HomeViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
+        loadAndConfigureAdvertisements()
         if self.mode == .relatedCourses {
-            self.loadRelatedCourses(isBeingScrolled: true)
+            self.viewModel.relatedCoursesPage = 1
+            self.loadRelatedCourses(isBeingScrolled: false)
             self.coursesTableView.refreshControl?.endRefreshing()
         } else {
-            self.loadExploreMoreCourses(isBeingScrolled: true)
+            self.viewModel.exploreMorePage = 1
+            self.loadExploreMoreCourses(isBeingScrolled: false)
             self.coursesTableView.refreshControl?.endRefreshing()
         }
     }
@@ -200,6 +207,8 @@ class HomeViewController: UIViewController {
     private func configureTableView() {
         coursesTableView.dataSource = self
         coursesTableView.delegate = self
+        coursesTableView.emptyDataSetSource = self
+        coursesTableView.emptyDataSetDelegate = self
         coursesTableView.registerCell(ofType: CourseTableViewCell.self)
         coursesTableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
     }
@@ -218,6 +227,9 @@ class HomeViewController: UIViewController {
             hideLoadingIndicator()
             subjects = relatedCourses?.subjects
             let defaultSubjectName = subjects?.first?.name ?? ""
+            if !isBeingScrolled {
+                subjectRelatedCourses.removeAll()
+            }
             if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
                 subjectRelatedCourses.append(contentsOf: subjectCourses)
             }
@@ -229,6 +241,9 @@ class HomeViewController: UIViewController {
         showLoadingIndicator()
         viewModel.loadExploreMoreCourses(isBeingScrolled: isBeingScrolled, isMyCourses: isMyCourses) { [unowned self] courses in
             hideLoadingIndicator()
+            if !isBeingScrolled {
+                exploreMoreCourses.removeAll()
+            }
             if let exploreCourses = courses?.teachersCourses {
                 exploreMoreCourses.append(contentsOf: exploreCourses)
             }
@@ -262,18 +277,25 @@ class HomeViewController: UIViewController {
 
     private func configureFiltersButtonWhenFiltersAreSelected() {
         isFiltersSelected = true
+        clearFiltersButton.isHidden = false
         filtersButton.layer.backgroundColor = Colors.green.color.cgColor
-        filtersButton.setTitle("")
-        filterSelectedLabel.isHidden = false
-        clearLabel.isHidden = false
+        filtersButton.setTitle("4 filters")
     }
 
     private func configureFiltersButtonWhenNoFilterSelected() {
         isFiltersSelected = false
+        clearFiltersButton.isHidden = true
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         filtersButton.setTitle("Show Filters")
-        filterSelectedLabel.isHidden = true
-        clearLabel.isHidden = true
+    }
+
+    private func clearPreviouslyChosenFilters() {
+        Filters.shared.academicLevel = nil
+        Filters.shared.academicType = nil
+        Filters.shared.academicDivision = nil
+        Filters.shared.academicYear = nil
+        Filters.shared.field = nil
+        Filters.shared.subject = nil
     }
 }
 
@@ -317,6 +339,11 @@ extension HomeViewController: UITableViewDataSource {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
         }
+        if !isInSearchMode && mode == .relatedCourses {
+            headerView?.showSubjectsAndAds()
+        } else {
+            headerView?.hideSubjectsAndAds()
+        }
         return headerView
     }
 }
@@ -329,7 +356,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return mode == .exploreMore ? 150 : 380
+        return mode == .exploreMore || isInSearchMode ? 150 : 380
     }
 }
 
@@ -420,5 +447,33 @@ extension HomeViewController: FiltersDelegate {
         configureFiltersButtonWhenFiltersAreSelected()
         filteredResultsCourses = courses?.teachersCourses ?? []
         self.coursesTableView.reloadData()
+    }
+}
+
+// MARK: - DZN Empty State Data Source
+
+extension HomeViewController: DZNEmptyDataSetSource {
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return Images.searchEmptyState.image
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSAttributedString(string: L10n.Home.Search.emptyStateTitle)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSAttributedString(string: L10n.Home.Search.emptyStateDescription)
+    }
+}
+
+// MARK: - DZN Empty State Delegate
+
+extension HomeViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        return (searchResultsCourses?.isEmpty ?? true) && isInSearchMode
     }
 }

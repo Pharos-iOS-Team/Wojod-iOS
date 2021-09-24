@@ -79,6 +79,13 @@ class AppAlertViewController: UIViewController {
         secondryAction = secondryButtonCompletionHandler
     }
 
+    func configureOneButton(buttonTitle: String, buttonCompletionHandler: @escaping () -> Void) {
+        primaryButton.setTitle(buttonTitle)
+        primaryButton.isHidden = false
+        secondaryButton.isHidden = true
+        primaryAction = buttonCompletionHandler
+    }
+
     func configureOneButtonForDismiss(
         title: String = L10n.Shared.Action.dismiss,
         dismissAction: (() -> Void)? = nil

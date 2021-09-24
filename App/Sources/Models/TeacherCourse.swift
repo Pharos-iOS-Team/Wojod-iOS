@@ -31,6 +31,8 @@ struct Course: Codable {
     var reviewsCount: Int?
     var reservationState: String?
     var receipt: Receipt?
+    var lessonsUnreadCount: Int?
+    var materialsUnreadCount: Int?
 }
 
 struct Media: Codable {
@@ -48,4 +50,5 @@ struct Receipt: Codable {
     var courseName: String?
     var address: String?
     var reservationState: String?
+    var price: String?
 }

@@ -50,6 +50,12 @@ class ReceiptView: UIView {
             doneButton.layer.cornerRadius = 5
         }
     }
+    @IBOutlet private var priceLabel: UILabel! {
+        didSet {
+            priceLabel.text = L10n.Home.Course.priceLabel
+        }
+    }
+    @IBOutlet private var priceValueLabel: UILabel!
 
     // MARK: - Public Properties
 
@@ -64,19 +70,29 @@ class ReceiptView: UIView {
 
     // MARK: - Public Functions
 
-    internal func configure(with receiptData: BookingCourseResponseModel) {
+    internal func configure(with receiptData: BookingCourseResponseModel, coursePrice: String) {
         receiptNumberLabel.text = receiptData.receiptNumber?.dashed()
         customerNameValueLabel.text = receiptData.studentName
         addressValueLabel.text = receiptData.address
         courseNameValueLabel.text = receiptData.courseName
         teacherNameValueLabel.text = receiptData.teacherName
+        priceValueLabel.text = getCoursePrice(coursePrice: coursePrice)
     }
 
-    internal func configureInMyCourses(with receipt: Receipt) {
+    internal func configureInMyCourses(with receipt: Receipt, coursePrice: String) {
         receiptNumberLabel.text = receipt.receiptNumber?.dashed()
         customerNameValueLabel.text = receipt.studentName
         addressValueLabel.text = receipt.address
         courseNameValueLabel.text = receipt.courseName
         teacherNameValueLabel.text = receipt.teacherName
+        priceValueLabel.text = getCoursePrice(coursePrice: receipt.price ?? "")
+    }
+
+    func getCoursePrice(coursePrice: String) -> String {
+        if coursePrice.isEmpty {
+            return L10n.Home.Course.returnToTeacher
+        } else {
+            return "\(coursePrice) \(L10n.Home.Course.price)"
+        }
     }
 }
