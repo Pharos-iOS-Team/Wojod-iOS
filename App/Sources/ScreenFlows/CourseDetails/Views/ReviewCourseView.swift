@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Cosmos
 import UIKit
 
 protocol ReviewCourseViewDelegate: AnyObject {
@@ -10,11 +11,6 @@ protocol ReviewCourseViewDelegate: AnyObject {
 class ReviewCourseView: UIView {
     // MARK: - IBOutlets
 
-    @IBOutlet private var firstStar: UIButton!
-    @IBOutlet private var secondStar: UIButton!
-    @IBOutlet private var thirdStar: UIButton!
-    @IBOutlet private var fourthStar: UIButton!
-    @IBOutlet private var fifthStar: UIButton!
     @IBOutlet private var courseReviewTitleTextField: UITextField! {
         didSet {
             courseReviewTitleTextField.placeholder = L10n.CourseDetails.CourseReview.describeCourse
@@ -60,14 +56,16 @@ class ReviewCourseView: UIView {
             nextIconImageView.image = Images.localizedNextButton
         }
     }
+    @IBOutlet private var starRatingsView: CosmosView! {
+        didSet {
+            starRatingsView.settings.fillMode = .precise
+            starRatingsView.settings.starMargin = 2
+        }
+    }
 
     // MARK: - Public Properties
 
     internal weak var delegate: ReviewCourseViewDelegate?
-
-    // MARK: - Private Properties
-
-    private var rating: Int = 0
 
     // MARK: - IBActions
 
@@ -81,69 +79,19 @@ class ReviewCourseView: UIView {
         delegate?.didTapSkipButton()
     }
 
-    @IBAction private func didTapFirstStar(_ sender: UIButton) {
-        rating = 1
-        firstStar.setImage(Images.filledStar.image)
-        secondStar.setImage(Images.star.image)
-        thirdStar.setImage(Images.star.image)
-        fourthStar.setImage(Images.star.image)
-        fifthStar.setImage(Images.star.image)
-        edited()
-    }
-
-    @IBAction private func didTapSecondStar(_ sender: UIButton) {
-        rating = 2
-        firstStar.setImage(Images.filledStar.image)
-        secondStar.setImage(Images.filledStar.image)
-        thirdStar.setImage(Images.star.image)
-        fourthStar.setImage(Images.star.image)
-        fifthStar.setImage(Images.star.image)
-        edited()
-    }
-
-    @IBAction private func didTapThirdStar(_ sender: UIButton) {
-        rating = 3
-        firstStar.setImage(Images.filledStar.image)
-        secondStar.setImage(Images.filledStar.image)
-        thirdStar.setImage(Images.filledStar.image)
-        fourthStar.setImage(Images.star.image)
-        fifthStar.setImage(Images.star.image)
-        edited()
-    }
-
-    @IBAction private func didTapFourthStar(_ sender: UIButton) {
-        rating = 4
-        firstStar.setImage(Images.filledStar.image)
-        secondStar.setImage(Images.filledStar.image)
-        thirdStar.setImage(Images.filledStar.image)
-        fourthStar.setImage(Images.filledStar.image)
-        fifthStar.setImage(Images.star.image)
-        edited()
-    }
-
-    @IBAction private func didTapFifthStar(_ sender: UIButton) {
-        rating = 5
-        firstStar.setImage(Images.filledStar.image)
-        secondStar.setImage(Images.filledStar.image)
-        thirdStar.setImage(Images.filledStar.image)
-        fourthStar.setImage(Images.filledStar.image)
-        fifthStar.setImage(Images.filledStar.image)
-        edited()
-    }
-
     // MARK: - Private Functions
 
     private func retrieveCourseReview() -> CourseReview {
         return CourseReview(
             title: courseReviewTitleTextField.text,
-            rating: rating,
+            rating: starRatingsView.rating,
             comment: courseReviewCommentTextField.text
         )
     }
 
     @objc
     private func edited() {
-        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty && rating != 0 {
+        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty && starRatingsView.rating != 0 {
             sendButton.isEnabled = true
             sendButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         } else {
