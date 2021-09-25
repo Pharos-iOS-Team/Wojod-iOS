@@ -4,6 +4,6 @@ import Foundation
 
 struct CourseReview: Codable {
     var title: String?
-    var rating: Int?
+    var rating: Double?
     var comment: String?
 }
