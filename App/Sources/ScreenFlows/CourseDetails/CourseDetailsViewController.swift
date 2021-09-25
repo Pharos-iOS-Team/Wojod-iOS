@@ -604,7 +604,13 @@ class CourseDetailsViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        handleRefreshingAccordingToOpenedTab()
+        viewModel?.loadCourse(courseID: "\(course?.id ?? 0)") { course in
+            self.course = course
+            self.state = self.getReservationState()
+            self.configureActionButtonAccordingToState()
+            self.tableView.reloadData()
+            self.handleRefreshingAccordingToOpenedTab()
+        }
     }
 
     private func handleRefreshingAccordingToOpenedTab() {
