@@ -72,15 +72,17 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     private func goToRecordView() {
         let accessPermissionHandler = AccessPermissionHandler(presentingViewCtrl: self)
         accessPermissionHandler.showMissingAudioAutorization {
-            guard AVAudioSession.sharedInstance().recordPermission == AVAudioSession.RecordPermission.granted else { return }
-            let viewCtrl = StoryboardScene.Chat.audioRecordingViewController.instantiate()
-            viewCtrl.modalPresentationStyle = .overCurrentContext
-            viewCtrl.modalTransitionStyle = .crossDissolve
-            viewCtrl.viewModel = self.viewModel
-            viewCtrl.handleSendingMessageSuccessfully = {
-                self.messageSentSuccessfully()
+            DispatchQueue.main.async {
+                guard AVAudioSession.sharedInstance().recordPermission == AVAudioSession.RecordPermission.granted else { return }
+                let viewCtrl = StoryboardScene.Chat.audioRecordingViewController.instantiate()
+                viewCtrl.modalPresentationStyle = .overCurrentContext
+                viewCtrl.modalTransitionStyle = .crossDissolve
+                viewCtrl.viewModel = self.viewModel
+                viewCtrl.handleSendingMessageSuccessfully = {
+                    self.messageSentSuccessfully()
+                }
+                self.present(viewCtrl, animated: true, completion: nil)
             }
-            self.present(viewCtrl, animated: true, completion: nil)
         }
     }
 
