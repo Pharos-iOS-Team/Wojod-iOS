@@ -224,7 +224,7 @@ class ProfileViewModel {
         case .address:
             return User.shared.address
         case .specialization:
-            return User.shared.specializationName
+            return User.shared.specializationName ?? AcademicInfo.shared.specializations?.specializations.first?.value
         case .homeNumber:
             return User.shared.homeNumber
         case .parentNumber2:
