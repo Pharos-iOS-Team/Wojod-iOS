@@ -33,8 +33,6 @@ class ProfileViewModel {
     var batches = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
-        case EducationLevel.school.rawValue:
-            return ProfileFields.allCases.filter { $0 != .specialization }
         case EducationLevel.facutly.rawValue:
             return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 }
         case EducationLevel.gradute.rawValue:
@@ -133,6 +131,7 @@ class ProfileViewModel {
             switch result {
             case .success(let specializations as SpecializationsModel):
                 AcademicInfo.shared.specializations = specializations
+                AcademicInfo.shared.specializations?.specializations.append(Specialization(key: nil, value: "None"))
                 self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
