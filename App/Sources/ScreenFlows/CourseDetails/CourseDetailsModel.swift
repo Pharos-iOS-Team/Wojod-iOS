@@ -61,7 +61,9 @@ class CourseDetailsModel: ModelDecodable {
                         completion(result)
                     }
                 } else {
-                    self.decodeError(response: response, completionHandler: completion)
+                    self.decodeError(response: response) { error in
+                        completion(error)
+                    }
                 }
             } else if let error = error {
                 completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))

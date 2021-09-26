@@ -133,11 +133,15 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse in
-                self.state = .pending
-                self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
-                self.blurView()
-                self.displayReceipt(bookingResponse, coursePrice: self.course?.price ?? "")
+            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse, error in
+                if error == nil {
+                    self.state = .pending
+                    self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
+                    self.blurView()
+                    self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+                } else if let error = error as? WJError {
+                    self.showAlert(imageName: Images.danger.name, title: "Error", message: error.message)
+                }
             }
 
         case .pending:
