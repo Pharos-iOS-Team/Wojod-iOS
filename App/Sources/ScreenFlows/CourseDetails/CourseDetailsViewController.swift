@@ -122,6 +122,9 @@ class CourseDetailsViewController: UIViewController {
                 self.materials = materials
                 self.tableView.reloadData()
             }
+        } else if activeScreen == .details {
+            guard let courseID = course?.id else { return }
+            loadCourseLessons()
         }
     }
 
