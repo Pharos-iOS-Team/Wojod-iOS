@@ -1085,21 +1085,17 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        if state == .booked {
-            switch activeScreen {
-            case .details:
-                return lessonsList?.isEmpty ?? true
-            case .materials:
-                return materials?.assignments?.isEmpty ?? true
-                    && materials?.documents?.isEmpty ?? true
-                    && materials?.quizzes?.isEmpty ?? true
-                    && materials?.videos?.isEmpty ?? true
-            case .reviews:
-                return reviewsList?.isEmpty ?? true
-            default:
-                return false
-            }
-        } else {
+        switch activeScreen {
+        case .details:
+            return lessonsList?.isEmpty ?? true
+        case .materials:
+            return materials?.assignments?.isEmpty ?? true
+                && materials?.documents?.isEmpty ?? true
+                && materials?.quizzes?.isEmpty ?? true
+                && materials?.videos?.isEmpty ?? true
+        case .reviews:
+            return reviewsList?.isEmpty ?? true
+        default:
             return false
         }
     }
