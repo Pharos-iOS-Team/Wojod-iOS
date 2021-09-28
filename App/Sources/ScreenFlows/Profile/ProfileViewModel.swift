@@ -188,6 +188,25 @@ class ProfileViewModel {
                 User.shared.batch = batches.batches.first?.key
                 self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
                 self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 2 : index + 1 )
+                self.fetchSpecifiedSpecializations(for: selectedDivision, index: index)
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
+        }
+    }
+
+    func fetchSpecifiedSpecializations(for selectedDivision: Int, index: Int) {
+        model.fetchSpecializations(id: String(selectedDivision)) { result in
+            switch result {
+            case .success(let specializations as SpecializationsModel):
+                AcademicInfo.shared.specializations = specializations
+                AcademicInfo.shared.specializations?.specializations.append(Specialization(key: nil, value: "None"))
+                User.shared.specializationName = specializations.specializations.first?.value
+                User.shared.specializationId = specializations.specializations.first?.key
+                self.profile.specializationId = AcademicInfo.shared.specializations?.specializations.first { $0.value == User.shared.specializationName }?.key
+                self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 3 : index + 2 )
             case .failure(let error):
                 self.errorHandler?(error)
             default:
@@ -252,6 +271,7 @@ class ProfileViewModel {
             profile.address = text
         case .batch:
             profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == text }?.key
+            fetchSpecifiedSpecializations(for: profile.divisionId ?? .zero, index: index)
         case .specialization:
             profile.specializationId = AcademicInfo.shared.specializations?.specializations.first { $0.value == text }?.key
         case .homeNumber:

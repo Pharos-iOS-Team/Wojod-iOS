@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import AVKit
+import Cosmos
 import HandyUIKit
 
 protocol CourseDetailsInfoHeaderDelegate: AnyObject {
@@ -85,11 +86,12 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBOutlet private var numberOfReviewsLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var courseImageView: UIImageView!
-    @IBOutlet private var firstReviewStar: UIImageView!
-    @IBOutlet private var secondReviewStar: UIImageView!
-    @IBOutlet private var thirdReviewStar: UIImageView!
-    @IBOutlet private var fourthReviewStar: UIImageView!
-    @IBOutlet private var fifthReviewStar: UIImageView!
+    @IBOutlet private var ratingView: CosmosView! {
+        didSet {
+            ratingView.settings.starMargin = 1
+            ratingView.settings.starSize = 20
+        }
+    }
     @IBOutlet private var chatButton: UIButton!
 
     weak var delegate: CourseDetailsInfoHeaderDelegate?
@@ -141,7 +143,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         configureChatButtonAccordingToState(state: model.state)
         video = model.video
         playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
-        setRating(Int(model.rating ?? .zero))
+        setRating(model.rating ?? .zero)
         configureButtonSelected(buttonSelected: model.buttonSelected)
         configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
         configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
@@ -174,31 +176,8 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     }
 
     // swiftlint:disable function_body_length
-    private func setRating(_ rating: Int) {
-        switch rating {
-        case 1:
-            firstReviewStar.image = Images.filledStar.image
-        case 2:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-        case 3:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-        case 4:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-        case 5:
-            firstReviewStar.image = Images.filledStar.image
-            secondReviewStar.image = Images.filledStar.image
-            thirdReviewStar.image = Images.filledStar.image
-            fourthReviewStar.image = Images.filledStar.image
-            fifthReviewStar.image = Images.filledStar.image
-        default:
-            return
-        }
+    private func setRating(_ rating: Double) {
+        ratingView.rating = rating
     }
 
     private func selectButton(button: UIButton) {

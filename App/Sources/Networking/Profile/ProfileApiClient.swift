@@ -49,4 +49,15 @@ class ProfileApiClient {
             }
         }
     }
+
+    func fetchSpecializations(id: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        profileProvider.request(.fetchSpecializations(id: id)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
