@@ -30,4 +30,15 @@ extension FileManager {
         try moveItem(at: url, to: destinationUrl)
         return destinationUrl
     }
+
+    func removeItemIfExisted(_ url:URL) -> Void {
+        if FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.removeItem(atPath: url.path)
+            }
+            catch {
+                print("Failed to delete file")
+            }
+        }
+    }
 }

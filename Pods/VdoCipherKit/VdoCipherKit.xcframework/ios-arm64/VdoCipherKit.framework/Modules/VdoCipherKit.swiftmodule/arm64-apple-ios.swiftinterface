@@ -1,0 +1,25 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.1 (swiftlang-1200.0.41 clang-1200.0.32.8)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name VdoCipherKit
+import AVFoundation
+import Foundation
+import Swift
+import UIKit
+@_exported import VdoCipherKit
+@_hasMissingDesignatedInitializers public class VdoCipherKit {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class VdoPlayerView : UIKit.UIView {
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public func willMove(toSuperview newSuperview: UIKit.UIView?)
+  @objc deinit
+  @objc public func loadVideo(otp: Swift.String, playbackInfo: Swift.String, onPlayerReady: @escaping () -> Swift.Void) throws
+  @objc public var player: AVFoundation.AVPlayer? {
+    @objc get
+    @objc set
+  }
+  @objc override public static var layerClass: Swift.AnyClass {
+    @objc get
+  }
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CourseDetailsFooterView" customModule="Wojood" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="503" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udo-O5-WjC">
+                    <rect key="frame" x="10" y="10" width="483" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTF-k8-sGV">
+                            <rect key="frame" x="12" y="2.5" width="459" height="55"/>
+                            <color key="backgroundColor" name="sendButtonColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="AAM-6y-hMC"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" name="collectionViewBackground"/>
+                            </state>
+                            <connections>
+                                <action selector="submitAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="uFf-tx-vwW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="96p-Dc-8XM"/>
+                        <constraint firstItem="TTF-k8-sGV" firstAttribute="centerY" secondItem="udo-O5-WjC" secondAttribute="centerY" id="eT9-PE-XS1"/>
+                        <constraint firstAttribute="trailing" secondItem="TTF-k8-sGV" secondAttribute="trailing" constant="12" id="w9x-X6-9By"/>
+                        <constraint firstItem="TTF-k8-sGV" firstAttribute="centerX" secondItem="udo-O5-WjC" secondAttribute="centerX" id="wGx-Nf-Mk9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="udo-O5-WjC" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-20" id="A9g-xK-38k"/>
+                <constraint firstAttribute="top" secondItem="udo-O5-WjC" secondAttribute="top" constant="-10" id="ZXq-eS-pZh"/>
+                <constraint firstItem="udo-O5-WjC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="bcL-PB-sLd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="udo-O5-WjC" secondAttribute="trailing" constant="10" id="s8I-Gr-pY9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="udo-O5-WjC" secondAttribute="top" constant="34" id="uy9-KC-MS8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="actionButton" destination="TTF-k8-sGV" id="F5e-sf-zVT"/>
+            </connections>
+            <point key="canvasLocation" x="196.37681159420291" y="350.22321428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="collectionViewBackground">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="superLightGreyBackgroundColor">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,6 +47,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="772"/>
                                 <color key="sectionIndexBackgroundColor" name="superLightGrey"/>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzZ-VZ-jsV" customClass="VdoPlayerView" customModule="VdoCipherKit">
+                                <rect key="frame" x="394" y="36" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YxP-J3-d9A"/>
                         <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
@@ -62,6 +68,7 @@
                     <connections>
                         <outlet property="actionButton" destination="6tM-9b-gyM" id="QLn-lw-q1K"/>
                         <outlet property="tableView" destination="YDd-VY-3TQ" id="hjN-MF-eH4"/>
+                        <outlet property="vdoPlayerView" destination="gzZ-VZ-jsV" id="aQq-ck-Ag7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctM-Kp-pXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -82,5 +89,8 @@
         <namedColor name="superLightGreyBackgroundColor">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

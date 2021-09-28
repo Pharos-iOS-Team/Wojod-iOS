@@ -1,0 +1,16 @@
+PODS:
+  - VdoCipherKit (1.2.4)
+
+DEPENDENCIES:
+  - VdoCipherKit (= 1.2.4)
+
+SPEC REPOS:
+  trunk:
+    - VdoCipherKit
+
+SPEC CHECKSUMS:
+  VdoCipherKit: 68632d648c4a521aae941a09bb25e6896ad7c334
+
+PODFILE CHECKSUM: f850096d6fc5cc2785fed54b1a86b85d3bcc22a9
+
+COCOAPODS: 1.11.0

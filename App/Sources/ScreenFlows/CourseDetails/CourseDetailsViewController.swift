@@ -8,6 +8,8 @@ import HandySwift
 import JGProgressHUD
 import UIKit
 import SafariServices
+import VdoCipherKit
+import Photos
 
 internal enum CourseState {
     case normal
@@ -43,6 +45,7 @@ protocol LoadableView: AnyObject {
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet weak var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
@@ -77,7 +80,12 @@ class CourseDetailsViewController: UIViewController {
     private var selectedAssessment: Assessment?
     private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
+    private var timer = Timer()
+    private var updateId: Int = .zero
+    private var videoId: String = ""
+    private var avPlayerController = AVPlayerViewController()
     private let refreshControl = UIRefreshControl()
+
     private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
@@ -125,6 +133,15 @@ class CourseDetailsViewController: UIViewController {
         } else if activeScreen == .details {
             guard let courseID = course?.id else { return }
             loadCourseLessons()
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avPlayerController.view.layer.sublayers?.forEach { layer in
+            if layer.isKind(of: CATextLayer.self) {
+                layer.removeFromSuperlayer()
+            }
         }
     }
 
@@ -861,9 +878,12 @@ extension CourseDetailsViewController: UITableViewDelegate {
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
-                play(videoURL: videoURL)
+                if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
+                    let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].link ?? "")
+                    play(videoURL: videoURL)
+                } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
+                }
             case .documents:
                 activeSubscreen = .file
                 if let linkURL = materials?.documents?[indexPath.row].link {
@@ -933,9 +953,12 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
-                play(videoURL: videoURL)
+                if !(video.link?.isEmpty ?? true) {
+                    let videoURL = Environment.baseURL.appendingPathComponent(video.link ?? "")
+                    play(videoURL: videoURL)
+                } else if !(video.vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
+                }
             } else if let document = attachment as? MaterialsDocument {
                 activeSubscreen = .file
                 if let linkURL = document.link {
@@ -1016,6 +1039,71 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
     }
 }
 
+// MARK: - vdoCipher Functions
+
+extension CourseDetailsViewController {
+
+    func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
+        vdoPlayerView.player = player
+        viewModel?.fetchVideoDetails(videoId: videoId) { [weak self] encryptedVideoResponse in
+            if viewsCount > .zero {
+                do {
+                    try self?.vdoPlayerView.loadVideo(
+                        otp: encryptedVideoResponse?.otp ?? "",
+                        playbackInfo: encryptedVideoResponse?.playback ?? "",
+                        onPlayerReady: {
+                            guard let playerController = self?.avPlayerController else { return }
+                            playerController.player = self?.vdoPlayerView.player
+                            self?.present(playerController, animated: true, completion: {
+                                let titleLayer = CATextLayer()
+                                titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
+                                titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
+                                titleLayer.alignmentMode = .left
+                                self?.setupPlayerLayerFrame(titleLayer)
+                                playerController.view.layer.addSublayer(titleLayer)
+                                self?.updateId = encryptedVideoResponse?.updateId ?? .zero
+                                self?.videoId = videoId
+                                self?.checkForTime()
+                                self?.vdoPlayerView.player?.play()
+                                self?.checkForBufferedTime()
+                            })
+                        }
+                    )
+                }  catch {
+                    guard let self = self else { return }
+                    AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                        title: L10n.Global.Titles.error,
+                        message: L10n.Global.Alerts.somethingWentWrong
+                    )
+                }
+            } else {
+                guard let self = self else { return }
+                AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                    title: L10n.Global.Titles.error,
+                    message: L10n.CourseDetails.Main.notEnoughViews
+                )
+            }
+        }
+    }
+}
+
+extension CourseDetailsViewController {
+    private func checkForBufferedTime() {
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkForTime), userInfo: nil, repeats: true)
+    }
+
+    @objc
+    private func checkForTime() {
+        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
+        updateVideo(videoId: self.videoId, updateObject: updateObject)
+    }
+}
+
+extension CourseDetailsViewController {
+    func updateVideo(videoId: String, updateObject: UpdateObject) {
+        viewModel?.updateVideo(videoId: videoId, updateObject: updateObject)
+    }
+}
 // MARK: - Course Details Info Delegate
 
 extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
@@ -1055,6 +1143,23 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.avPlayerController.view.layer.sublayers?.forEach { layer in
+                self.setupPlayerLayerFrame(layer)
+            }
+        }
+    }
+
+    private func setupPlayerLayerFrame(_ layer: CALayer) {
+        guard let layer = layer as? CATextLayer else { return }
+
+        let videoBounds = avPlayerController.videoBounds
+        let width: CGFloat = 175.0
+        let xPoint = videoBounds.maxX - width
+        layer.frame = CGRect(x: xPoint, y: videoBounds.minY + 30, width: width, height: 50)
     }
 }
 

@@ -172,6 +172,7 @@
 "courseDetails.main.bookNow" = "احجز الآن";
 "courseDetails.main.cancelBooking" = "إلغاء الحجز";
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
+"courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";
 
 "courseDetails.receipt.receiptNumber" = "رقم الإيصال";
 "courseDetails.receipt.customerName" = "اسم العميل";

@@ -1,0 +1,11 @@
+framework module VdoCipherKit {
+  umbrella header "VdoCipherKit.h"
+
+  export *
+  module * { export * }
+}
+
+module VdoCipherKit.Swift {
+    header "VdoCipherKit-Swift.h"
+    requires objc
+}
