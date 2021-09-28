@@ -538,14 +538,22 @@ class AssessmentDetailsViewController: UIViewController {
     }
 
     private func handleFinishAssessmentSuccess() {
-        appAlertViewController?.dismiss(animated: true) {
-            self.showAlert(
-                imageName: "imgSuccess",
-                title: self.viewModel?.submittedAlertTitle ?? "",
-                message: self.viewModel?.submittedAlertMessage ?? ""
-            ) {
-                self.navigationController?.popViewController(animated: true)
+        if let presentedViewCtrl = presentedViewController {
+            presentedViewCtrl.dismiss(animated: true) {
+                self.showSuccessfulSubmit()
             }
+        } else {
+            showSuccessfulSubmit()
+        }
+    }
+
+    private func showSuccessfulSubmit() {
+        self.showAlert(
+            imageName: "imgSuccess",
+            title: self.viewModel?.submittedAlertTitle ?? "",
+            message: self.viewModel?.submittedAlertMessage ?? ""
+        ) {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
