@@ -371,6 +371,7 @@
 		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
+		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -768,6 +769,7 @@
 		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -1570,6 +1572,7 @@
 		778E722A261DC104009D7B35 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BCF8F77027033F0C009593AA /* AVFoundationExtensions */,
 				778E722B261DC111009D7B35 /* FoundationExtensions */,
 				778E722C261DC11A009D7B35 /* UIKitExtensions */,
 				778E722D261DC122009D7B35 /* VendorExtensions */,
@@ -1973,6 +1976,14 @@
 				BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		BCF8F77027033F0C009593AA /* AVFoundationExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */,
+			);
+			path = AVFoundationExtensions;
 			sourceTree = "<group>";
 		};
 		D9D09DB50F944974E08942C1 /* Pods */ = {
@@ -2516,6 +2527,7 @@
 				3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */,
 				BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
+				BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */,
 				380B13A926B807F700CB5811 /* AssessmentDetailsViewController.swift in Sources */,
 				BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */,
 				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,

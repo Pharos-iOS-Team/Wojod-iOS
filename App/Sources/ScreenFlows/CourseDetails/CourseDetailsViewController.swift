@@ -83,7 +83,7 @@ class CourseDetailsViewController: UIViewController {
     private var timer = Timer()
     private var updateId: Int = .zero
     private var videoId: String = ""
-    private let avPlayerController = AVPlayerViewController()
+    private var avPlayerController = AVPlayerViewController()
     private let refreshControl = UIRefreshControl()
 
     private var doesLessonContainAttachments: [Int: Bool] = [:]
@@ -133,6 +133,15 @@ class CourseDetailsViewController: UIViewController {
         } else if activeScreen == .details {
             guard let courseID = course?.id else { return }
             loadCourseLessons()
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avPlayerController.view.layer.sublayers?.forEach { layer in
+            if layer.isKind(of: CATextLayer.self) {
+                layer.removeFromSuperlayer()
+            }
         }
     }
 
@@ -1045,19 +1054,13 @@ extension CourseDetailsViewController {
                         onPlayerReady: {
                             guard let playerController = self?.avPlayerController else { return }
                             playerController.player = self?.vdoPlayerView.player
-                            let playerLayer = AVPlayerLayer(player: playerController.player)
-                            let titleLayer = CATextLayer()
-                            titleLayer.string = "Islam 3ateya courses app"
-                            titleLayer.font = UIFont(name: "Helvetica", size: 28)
-                            titleLayer.shadowOpacity = 0.5
-                            titleLayer.alignmentMode = CATextLayerAlignmentMode.center
-                            titleLayer.frame = CGRect(x: 100, y: 100, width: 200, height: 200)
-                            playerLayer.videoGravity = .resizeAspect
-                            playerLayer.frame = CGRect(origin: .zero, size: .squared(dimension: 50))
-                            playerLayer.backgroundColor = UIColor.red.cgColor
-                            playerController.view.layer.addSublayer(playerLayer)
-                            playerController.view.layer.addSublayer(titleLayer)
                             self?.present(playerController, animated: true, completion: {
+                                let titleLayer = CATextLayer()
+                                titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
+                                titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
+                                titleLayer.alignmentMode = .left
+                                self?.setupPlayerLayerFrame(titleLayer)
+                                playerController.view.layer.addSublayer(titleLayer)
                                 self?.updateId = encryptedVideoResponse?.updateId ?? .zero
                                 self?.videoId = videoId
                                 self?.checkForTime()
@@ -1094,24 +1097,6 @@ extension CourseDetailsViewController {
         let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
         updateVideo(videoId: self.videoId, updateObject: updateObject)
     }
-}
-
-extension AVPlayerItem {
-    public func totalBuffer() -> Double {
-        return self.loadedTimeRanges
-            .map({ $0.timeRangeValue })
-            .reduce(0, { acc, cur in
-                return acc + CMTimeGetSeconds(cur.start) + CMTimeGetSeconds(cur.duration)
-            })
-    }
-
-    public func currentBuffer() -> Double {
-        let currentTime = self.currentTime()
-        guard let timeRange = self.loadedTimeRanges.map({ $0.timeRangeValue })
-                .first(where: { $0.containsTime(currentTime) }) else { return -1 }
-        return CMTimeGetSeconds(timeRange.end) - currentTime.seconds
-    }
-
 }
 
 extension CourseDetailsViewController {
@@ -1158,6 +1143,23 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.avPlayerController.view.layer.sublayers?.forEach { layer in
+                self.setupPlayerLayerFrame(layer)
+            }
+        }
+    }
+
+    private func setupPlayerLayerFrame(_ layer: CALayer) {
+        guard let layer = layer as? CATextLayer else { return }
+
+        let videoBounds = avPlayerController.videoBounds
+        let width: CGFloat = 175.0
+        let xPoint = videoBounds.maxX - width
+        layer.frame = CGRect(x: xPoint, y: videoBounds.minY + 30, width: width, height: 50)
     }
 }
 
@@ -1206,17 +1208,4 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
             return false
         }
     }
-}
-
-extension FileManager {
-func removeItemIfExisted(_ url:URL) -> Void {
-    if FileManager.default.fileExists(atPath: url.path) {
-        do {
-            try FileManager.default.removeItem(atPath: url.path)
-        }
-        catch {
-            print("Failed to delete file")
-        }
-    }
-}
 }
