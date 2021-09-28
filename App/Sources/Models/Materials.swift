@@ -11,7 +11,7 @@ struct Materials: Codable {
     mutating func sort() {
         quizzes?.sort { $0.publishedAt > $1.publishedAt }
         assignments?.sort { $0.publishedAt > $1.publishedAt }
-        videos?.sort { $0.publishedAt > $1.publishedAt }
+        videos?.sort { $0.publishedAt ?? Date() > $1.publishedAt ?? Date() }
         documents?.sort {
             if let date1 = $0.publishedAt, let date2 = $1.publishedAt {
                 return date1 > date2
@@ -28,7 +28,7 @@ struct MaterialsVideo: Codable {
     var fileName: String?
     var contentType: String?
     var type: String?
-    var publishedAt: String?
+    var publishedAt: Date?
     var vdocipherId: String?
     var duration: Int?
     var link: String?

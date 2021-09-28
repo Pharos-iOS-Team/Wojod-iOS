@@ -47,7 +47,7 @@
 		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
 		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
 		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
-		2E5BCA5FA162A3C56BBB35F3 /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E4D8F598F291C8779641B6 /* Pods_Wojood.framework */; };
+		35B37F5F6D6312DF48149BED /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE46903B77F6910E423E7460 /* Pods_Wojood.framework */; };
 		3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802287726CBDB9F008E41D4 /* Advertisements.swift */; };
 		38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
@@ -417,7 +417,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11F0B7421EB551EC9D52E9A1 /* Pods-Wojood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.debug.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"; sourceTree = "<group>"; };
 		262FA7592694B0FD00245D2C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		262FA75E2694B11F00245D2C /* ChatContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContainerViewController.swift; sourceTree = "<group>"; };
 		262FA7852694BD0B00245D2C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -580,6 +579,7 @@
 		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
+		572191E64188E2D8BD9B9DEF /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7723ACE1261C5E69007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -675,6 +675,7 @@
 		77E32BBE264A8C200064B801 /* UITableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
 		77E32BC3264A8C450064B801 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		77E32BCB264A8C670064B801 /* IndexPathExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPathExt.swift; sourceTree = "<group>"; };
+		7A1E28FA406FB46DCD779961 /* Pods-Wojood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.debug.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfo.swift; sourceTree = "<group>"; };
@@ -798,8 +799,7 @@
 		E8C9EF7C263DD2680023D2B1 /* KeyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyName.swift; sourceTree = "<group>"; };
 		E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTypes.swift; sourceTree = "<group>"; };
 		E8FB16972647FD5B00895DDC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F1E4D8F598F291C8779641B6 /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F83B0C269417B8B98D00C74F /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
+		FE46903B77F6910E423E7460 /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -832,7 +832,7 @@
 				38659C5726B7F6A700E3BFE9 /* AlamofireImage in Frameworks */,
 				7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */,
 				26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */,
-				2E5BCA5FA162A3C56BBB35F3 /* Pods_Wojood.framework in Frameworks */,
+				35B37F5F6D6312DF48149BED /* Pods_Wojood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,6 +959,14 @@
 				26CF48E8269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift */,
 			);
 			path = MessageKitObjcets;
+			sourceTree = "<group>";
+		};
+		26E25DC6348D8E0CDEDC9102 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE46903B77F6910E423E7460 /* Pods_Wojood.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		380B136C26B8074400CB5811 /* Assessments */ = {
@@ -1289,13 +1297,11 @@
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
 				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
-				E84E78C126552D81000902CB /* Recovered References */,
 				D9D09DB50F944974E08942C1 /* Pods */,
-				77CFBA5C1395C61EC8D5D61F /* Frameworks */,
 				BC8D4C0E26E4F74200033413 /* Wojood.app */,
 				BC8D4C0F26E4F74200033413 /* WojoodTests.xctest */,
 				BC8D4C1026E4F74200033413 /* WojoodUITests.xctest */,
-				7723ACD8261C5E69007C0B97 /* Products */,
+				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1671,14 +1677,6 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		77CFBA5C1395C61EC8D5D61F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F1E4D8F598F291C8779641B6 /* Pods_Wojood.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		77D013C026A0F6C5006EA602 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1989,8 +1987,8 @@
 		D9D09DB50F944974E08942C1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				11F0B7421EB551EC9D52E9A1 /* Pods-Wojood.debug.xcconfig */,
-				F83B0C269417B8B98D00C74F /* Pods-Wojood.release.xcconfig */,
+				7A1E28FA406FB46DCD779961 /* Pods-Wojood.debug.xcconfig */,
+				572191E64188E2D8BD9B9DEF /* Pods-Wojood.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2035,14 +2033,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD01261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "Wojood" */;
 			buildPhases = (
-				D9A70B2903C9E6DD35C91640 /* [CP] Check Pods Manifest.lock */,
+				493826800DBB500AF736A13E /* [CP] Check Pods Manifest.lock */,
 				7723AE25261C807B007C0B97 /* SwiftGen */,
 				7723AE26261C808C007C0B97 /* Swiftlint */,
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
-				93295C66FDB8AE42A2D451BE /* [CP] Embed Pods Frameworks */,
+				5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2150,19 +2148,19 @@
 			);
 			mainGroup = 7723ACCE261C5E68007C0B97;
 			packageReferences = (
-				7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
-				7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */,
-				7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
+				7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */,
+				7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */,
+				7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */,
 				7723AD3B261C63D2007C0B97 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
 				7723AD41261C64A1007C0B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
-				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */,
+				7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */,
+				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 				7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
-				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
+				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */,
+				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */,
 				38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 				26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */,
 				26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
@@ -2287,6 +2285,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		493826800DBB500AF736A13E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wojood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7723AE25261C807B007C0B97 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2340,45 +2377,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		93295C66FDB8AE42A2D451BE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9A70B2903C9E6DD35C91640 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Wojood-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3126,7 +3124,7 @@
 				kind = branch;
 			};
 		};
-		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
+		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
 			requirement = {
@@ -3134,7 +3132,7 @@
 				minimumVersion = 5.3.0;
 			};
 		};
-		7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */ = {
+		7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flinesoft/HandySwift.git";
 			requirement = {
@@ -3142,7 +3140,7 @@
 				minimumVersion = 3.3.0;
 			};
 		};
-		7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */ = {
+		7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flinesoft/HandyUIKit.git";
 			requirement = {
@@ -3158,7 +3156,7 @@
 				minimumVersion = 6.5.6;
 			};
 		};
-		7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+		7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -3174,7 +3172,7 @@
 				minimumVersion = 6.2.1;
 			};
 		};
-		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
+		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS.git";
 			requirement = {
@@ -3182,7 +3180,7 @@
 				minimumVersion = 1.2.3;
 			};
 		};
-		7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -3206,7 +3204,7 @@
 				minimumVersion = 3.6.0;
 			};
 		};
-		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -3214,7 +3212,7 @@
 				minimumVersion = 7.9.1;
 			};
 		};
-		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -3230,7 +3228,7 @@
 				minimumVersion = 23.0.0;
 			};
 		};
-		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
+		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Datt1994/DPOTPView.git";
 			requirement = {
@@ -3288,17 +3286,17 @@
 		};
 		7723AD30261C6351007C0B97 /* SwiftyUserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
+			package = 7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */;
 			productName = SwiftyUserDefaults;
 		};
 		7723AD33261C6370007C0B97 /* HandySwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */;
+			package = 7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */;
 			productName = HandySwift;
 		};
 		7723AD36261C6393007C0B97 /* HandyUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
+			package = 7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */;
 			productName = HandyUIKit;
 		};
 		7723AD3C261C63D2007C0B97 /* IQKeyboardManagerSwift */ = {
@@ -3308,7 +3306,7 @@
 		};
 		7723AD3F261C63F3007C0B97 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = 7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
 			productName = KeychainAccess;
 		};
 		7723AD42261C64A1007C0B97 /* Kingfisher */ = {
@@ -3318,12 +3316,12 @@
 		};
 		7723AD45261C64C4007C0B97 /* LanguageManager-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
+			package = 7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */;
 			productName = "LanguageManager-iOS";
 		};
 		7723AD48261C64D7007C0B97 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		7723AD4B261C6505007C0B97 /* JGProgressHUD */ = {
@@ -3338,22 +3336,22 @@
 		};
 		7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAnalytics;
 		};
 		7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseMessaging;
 		};
 		7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		7723AE46261C869A007C0B97 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */;
 			productName = Moya;
 		};
 		77936F0D26FD588D00EDE395 /* Cosmos */ = {
@@ -3363,7 +3361,7 @@
 		};
 		77DBFD5F2631C7AA0060BACA /* DPOTPView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */;
+			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */;
 			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */

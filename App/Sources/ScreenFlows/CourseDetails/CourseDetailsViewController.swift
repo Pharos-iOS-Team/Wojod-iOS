@@ -959,7 +959,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 } else if !(video.vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
                 }
-            } else if let document = attachment as? Document {
+            } else if let document = attachment as? MaterialsDocument {
                 activeSubscreen = .file
                 if let linkURL = document.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
