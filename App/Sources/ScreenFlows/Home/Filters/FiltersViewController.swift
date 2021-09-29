@@ -66,6 +66,11 @@ class FiltersViewController: UIViewController {
     var universitySubjects: [Subject] = []
     var selectedField: Specialization?
     var selectedSubject: Subject?
+    var shouldApplyButtonBeUnabled = false {
+        didSet {
+            configureApplyButton()
+        }
+    }
 
     // MARK: - Lifecycle
 
@@ -137,7 +142,18 @@ class FiltersViewController: UIViewController {
         tableView.dataSource = self
     }
 
+    private func configureApplyButton() {
+        if shouldApplyButtonBeUnabled {
+            applyButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+            applyButton.isEnabled = true
+        } else {
+            applyButton.setTitleColor(Colors.darkGreyColor.color, for: .disabled)
+            applyButton.isEnabled = false
+        }
+    }
+
     private func selectSchool() {
+        shouldApplyButtonBeUnabled = false
         academicLevel = .schoolStudent
         Filters.shared.academicLevel = .schoolStudent
         schoolButton.setImage(Images.girlAvatar.image)
@@ -149,6 +165,7 @@ class FiltersViewController: UIViewController {
     }
 
     private func selectUniversity() {
+        shouldApplyButtonBeUnabled = false
         schoolButton.setImage(Images.girlAvatarFaded.image)
         universityButton.setImage(Images.boyAvatar.image)
         studentButton.isHidden = false
@@ -318,6 +335,7 @@ extension FiltersViewController: UITableViewDataSource {
 extension FiltersViewController: SelectingFilterDelegate {
     // swiftlint:disable function_body_length
     func didSelectFilter(_ filterIndex: Int, in section: SchoolSection) {
+        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .academicType:
@@ -408,6 +426,7 @@ extension FiltersViewController: SelectingFilterDelegate {
     }
 
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
+        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .university:
