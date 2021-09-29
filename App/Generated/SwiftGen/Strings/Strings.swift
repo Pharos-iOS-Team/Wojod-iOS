@@ -650,6 +650,10 @@ internal enum L10n {
     internal static var notAnswered: String {
         return L10n.tr("Localizable", "quizzes.notAnswered")
       }
+    /// Note: 
+    internal static var note: String {
+        return L10n.tr("Localizable", "quizzes.note")
+      }
     /// This grade is not final
     internal static var notFinalGrade: String {
         return L10n.tr("Localizable", "quizzes.notFinalGrade")

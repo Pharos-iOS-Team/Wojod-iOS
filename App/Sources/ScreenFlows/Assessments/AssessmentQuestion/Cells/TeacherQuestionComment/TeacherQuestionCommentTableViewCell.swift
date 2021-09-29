@@ -5,13 +5,14 @@ import UIKit
 class TeacherQuestionCommentTableViewCell: UITableViewCell {
     @IBOutlet private var noteLabel: UILabel! {
         didSet {
-            noteLabel.text = "Note:"
+            noteLabel.text = L10n.Quizzes.note
         }
     }
     @IBOutlet private var noteContainerTextView: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         configureView()
     }
 
