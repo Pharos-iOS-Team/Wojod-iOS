@@ -194,6 +194,8 @@ No worries!";
 "courseDetails.courseReview.emptyReviews" = "No reviews yet.";
 "courseDetails.courseReview.emptyDetails" = "No details yet.";
 "courseDetails.courseReview.emptyMaterials" = "No materials yet.";
+"courseDetails.courseReview.playVideo" = "Are you sure you want to play the video?\n You have %@ views left.";
+
 
 // MARK: - Home & My courses
 

@@ -149,6 +149,10 @@ internal enum L10n {
       internal static var messageTitle: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.messageTitle")
         }
+      /// Are you sure you want to play the video?\n You have %@ views left.
+      internal static func playVideo(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "courseDetails.courseReview.playVideo", String(describing: p1))
+      }
       /// Would you like to rate content?
       internal static var rateContent: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.rateContent")
