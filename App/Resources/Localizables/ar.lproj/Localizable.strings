@@ -194,6 +194,7 @@
 "courseDetails.courseReview.emptyReviews" = "لا توجد تقييمات بعد.";
 "courseDetails.courseReview.emptyDetails" = "لا توجد تفاصيل بعد.";
 "courseDetails.courseReview.emptyMaterials" = "لا توجد مواد بعد.";
+"courseDetails.courseReview.playVideo" = "هل انت متأكد انك تريد تشغيل الفيديو؟\n تبقي لديك %@ مشاهدة";
 
 
 // MARK: - Home & My courses

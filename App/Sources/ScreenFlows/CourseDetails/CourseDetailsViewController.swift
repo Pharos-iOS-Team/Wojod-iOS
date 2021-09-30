@@ -1045,44 +1045,48 @@ extension CourseDetailsViewController {
 
     func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
         vdoPlayerView.player = player
+        if viewsCount > .zero {
         viewModel?.fetchVideoDetails(videoId: videoId) { [weak self] encryptedVideoResponse in
-            if viewsCount > .zero {
-                do {
-                    try self?.vdoPlayerView.loadVideo(
-                        otp: encryptedVideoResponse?.otp ?? "",
-                        playbackInfo: encryptedVideoResponse?.playback ?? "",
-                        onPlayerReady: {
-                            guard let playerController = self?.avPlayerController else { return }
-                            playerController.player = self?.vdoPlayerView.player
-                            self?.present(playerController, animated: true, completion: {
-                                let titleLayer = CATextLayer()
-                                titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
-                                titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
-                                titleLayer.alignmentMode = .left
-                                self?.setupPlayerLayerFrame(titleLayer)
-                                playerController.view.layer.addSublayer(titleLayer)
-                                self?.updateId = encryptedVideoResponse?.updateId ?? .zero
-                                self?.videoId = videoId
-                                self?.checkForTime()
-                                self?.vdoPlayerView.player?.play()
-                                self?.checkForBufferedTime()
-                            })
-                        }
-                    )
-                }  catch {
-                    guard let self = self else { return }
-                    AlertHandler(presentingViewCtrl: self).showConfirmAlert(
-                        title: L10n.Global.Titles.error,
-                        message: L10n.Global.Alerts.somethingWentWrong
-                    )
-                }
-            } else {
                 guard let self = self else { return }
-                AlertHandler(presentingViewCtrl: self).showConfirmAlert(
-                    title: L10n.Global.Titles.error,
-                    message: L10n.CourseDetails.Main.notEnoughViews
-                )
+            AlertHandler(presentingViewCtrl: self).showConfirmAlert(title: L10n.Global.Titles.warning, message: L10n.CourseDetails.CourseReview.playVideo(viewsCount), confirmButtonTitle: L10n.Global.Actions.confirm, handler: { _ in
+                    do {
+                        self.showLoadingIndicator()
+                        try self.vdoPlayerView.loadVideo(
+                            otp: encryptedVideoResponse?.otp ?? "",
+                            playbackInfo: encryptedVideoResponse?.playback ?? "",
+                            onPlayerReady: {
+                                self.hideLoadingIndicator()
+                                let playerController = self.avPlayerController
+                                playerController.player = self.vdoPlayerView.player
+                                self.present(playerController, animated: true, completion: {
+                                    let titleLayer = CATextLayer()
+                                    titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
+                                    titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
+                                    titleLayer.alignmentMode = .left
+                                    self.setupPlayerLayerFrame(titleLayer)
+                                    playerController.view.layer.addSublayer(titleLayer)
+                                    self.updateId = encryptedVideoResponse?.updateId ?? .zero
+                                    self.videoId = videoId
+                                    self.checkForTime()
+                                    self.vdoPlayerView.player?.play()
+                                    self.checkForBufferedTime()
+                                })
+                            }
+                        )
+                    }  catch {
+                        self.hideLoadingIndicator()
+                        AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                            title: L10n.Global.Titles.error,
+                            message: L10n.Global.Alerts.somethingWentWrong
+                        )
+                    }
+                })
             }
+        } else {
+            AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                title: L10n.Global.Titles.error,
+                message: L10n.CourseDetails.Main.notEnoughViews
+            )
         }
     }
 }
