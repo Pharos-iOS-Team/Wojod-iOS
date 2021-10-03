@@ -81,7 +81,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3K-Zr-2eR">
                     <rect key="frame" x="15" y="273" width="320" height="50"/>
-                    <color key="backgroundColor" name="sendButtonColor"/>
+                    <color key="backgroundColor" name="labelGreyColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="rDE-NE-tPq"/>
                     </constraints>
