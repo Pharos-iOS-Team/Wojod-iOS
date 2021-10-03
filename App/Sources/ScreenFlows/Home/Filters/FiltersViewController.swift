@@ -39,6 +39,7 @@ class FiltersViewController: UIViewController {
             graduatedButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
+    @IBOutlet private var filterLabel: UILabel!
     @IBOutlet private var applyButton: UIButton!
     @IBOutlet private var studentButtonHeightConstraint: NSLayoutConstraint!
 
@@ -79,6 +80,7 @@ class FiltersViewController: UIViewController {
         viewModel = FiltersViewModel()
         configureSelectionOfAcademicLevel()
         configureTableView()
+        configureTitles()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -150,6 +152,11 @@ class FiltersViewController: UIViewController {
             applyButton.setTitleColor(Colors.darkGreyColor.color, for: .disabled)
             applyButton.isEnabled = false
         }
+    }
+
+    private func configureTitles() {
+        applyButton.setTitle(L10n.Filters.apply)
+        filterLabel.text = L10n.Filters.filters
     }
 
     private func selectSchool() {

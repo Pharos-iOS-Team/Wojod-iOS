@@ -243,6 +243,17 @@ internal enum L10n {
       }
   }
 
+  internal enum Filters {
+    /// Apply
+    internal static var apply: String {
+        return L10n.tr("Localizable", "filters.apply")
+      }
+    /// Filters
+    internal static var filters: String {
+        return L10n.tr("Localizable", "filters.filters")
+      }
+  }
+
   internal enum Home {
     /// Explore More
     internal static var exploreMore: String {
