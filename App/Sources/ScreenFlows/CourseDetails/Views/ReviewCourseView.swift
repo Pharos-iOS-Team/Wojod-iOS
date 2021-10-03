@@ -60,6 +60,8 @@ class ReviewCourseView: UIView {
         didSet {
             starRatingsView.settings.fillMode = .precise
             starRatingsView.settings.starMargin = 2
+            starRatingsView.settings.minTouchRating = 0.5
+            starRatingsView.rating = 0.5
             starRatingsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(edited)))
         }
     }
@@ -92,7 +94,7 @@ class ReviewCourseView: UIView {
 
     @objc
     private func edited() {
-        if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty && starRatingsView.rating != 0 {
+        if !courseReviewTitleTextField.isEmpty && starRatingsView.rating != 0 {
             sendButton.isEnabled = true
             sendButton.backgroundColor = Colors.sendButtonColor.color
         } else {

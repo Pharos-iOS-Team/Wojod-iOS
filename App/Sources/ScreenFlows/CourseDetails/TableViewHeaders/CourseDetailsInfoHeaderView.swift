@@ -90,6 +90,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         didSet {
             ratingView.settings.starMargin = 1
             ratingView.settings.starSize = 20
+            ratingView.isUserInteractionEnabled = false
         }
     }
     @IBOutlet private var chatButton: UIButton!

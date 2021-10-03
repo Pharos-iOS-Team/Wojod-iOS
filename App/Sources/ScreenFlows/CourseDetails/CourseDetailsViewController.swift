@@ -148,6 +148,8 @@ class CourseDetailsViewController: UIViewController {
                 layer.removeFromSuperlayer()
             }
         }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     // MARK: - IBActions
