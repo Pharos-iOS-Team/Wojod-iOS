@@ -28,7 +28,7 @@ class ReviewCourseView: UIView {
         didSet {
             sendButton.layer.cornerRadius = UIConstants.cornerRadius
             sendButton.isEnabled = false
-            sendButton.layer.backgroundColor = UIColor.lightGray.cgColor
+            sendButton.backgroundColor = Colors.labelGreyColor.color
         }
     }
     @IBOutlet private var messageTitleLabel: UILabel! {
@@ -60,6 +60,7 @@ class ReviewCourseView: UIView {
         didSet {
             starRatingsView.settings.fillMode = .precise
             starRatingsView.settings.starMargin = 2
+            starRatingsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(edited)))
         }
     }
 
@@ -93,10 +94,10 @@ class ReviewCourseView: UIView {
     private func edited() {
         if !courseReviewTitleTextField.isEmpty && !courseReviewCommentTextField.isEmpty && starRatingsView.rating != 0 {
             sendButton.isEnabled = true
-            sendButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
+            sendButton.backgroundColor = Colors.sendButtonColor.color
         } else {
             sendButton.isEnabled = false
-            sendButton.layer.backgroundColor = UIColor.lightGray.cgColor
+            sendButton.backgroundColor = Colors.labelGreyColor.color
         }
     }
 }

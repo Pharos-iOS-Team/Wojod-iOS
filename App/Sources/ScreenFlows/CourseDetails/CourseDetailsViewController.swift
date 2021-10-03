@@ -131,9 +131,14 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } else if activeScreen == .details {
-            guard let courseID = course?.id else { return }
             loadCourseLessons()
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        expandedSections.removeAll()
+        tableView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -410,6 +415,9 @@ class CourseDetailsViewController: UIViewController {
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
+            if video.link != nil {
+                cell?.setAttachmentImageView(Images.link.image)
+            }
         } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
             let image = getCorrespondingImage(for: document)
@@ -879,8 +887,9 @@ extension CourseDetailsViewController: UITableViewDelegate {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
-                    let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].link ?? "")
-                    play(videoURL: videoURL)
+                    if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
+                        UIApplication.shared.open(url)
+                    }
                 } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
                 }
@@ -953,9 +962,8 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
-                if !(video.link?.isEmpty ?? true) {
-                    let videoURL = Environment.baseURL.appendingPathComponent(video.link ?? "")
-                    play(videoURL: videoURL)
+                if let url = URL(string: video.link ?? "") {
+                    UIApplication.shared.open(url)
                 } else if !(video.vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
                 }
@@ -1083,7 +1091,7 @@ extension CourseDetailsViewController {
                 })
             }
         } else {
-            AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+            AlertHandler(presentingViewCtrl: self).showInformationAlert(
                 title: L10n.Global.Titles.error,
                 message: L10n.CourseDetails.Main.notEnoughViews
             )
@@ -1194,7 +1202,7 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
     }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        return 200
+        return 250
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {

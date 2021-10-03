@@ -97,11 +97,11 @@ final class User {
         batchName = user?.batchName
         divisionName = user?.divisionName
         specializationName = user?.specializationName
+        specializationId = user?.specializationId
         educationLevel = user?.educationLevel ?? 0
         educationType = user?.educationalType ?? 0
         educationLevelName = user?.educationLevelName
         educationTypeName = user?.educationTypeName
-        specializationId = user?.specializationId
         country = user?.countryName
         city = user?.cityName
         region = user?.region
