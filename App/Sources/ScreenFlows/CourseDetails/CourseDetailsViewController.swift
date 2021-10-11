@@ -417,8 +417,10 @@ class CourseDetailsViewController: UIViewController {
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
-            if video.link != nil {
+            if !(video.link?.isEmpty ?? true) {
                 cell?.setAttachmentImageView(Images.link.image)
+            } else {
+                cell?.setAttachmentImageView(Images.videoExtension.image)
             }
         } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
@@ -758,7 +760,13 @@ extension CourseDetailsViewController: UITableViewDataSource {
             case .videos:
                 let video = materials?.videos?[indexPath.row]
                 let date = video?.publishedAt ?? Date()
-                cell?.configure(title: video?.title, date: date.formattedDateString, image: Images.videoExtension.image)
+                cell?.configure(
+                    title: video?.title,
+                    date: date.formattedDateString,
+                    image: !(video?.link?.isEmpty ?? true)
+                        ? Images.link.image
+                        : Images.videoExtension.image
+                )
 
             case .documents:
                 let document = materials?.documents?[indexPath.row]
