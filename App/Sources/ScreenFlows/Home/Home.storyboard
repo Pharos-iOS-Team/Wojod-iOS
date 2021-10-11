@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="50" id="1fB-hC-z1h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Show Filters" image="filters">
+                                <state key="normal" image="filters">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

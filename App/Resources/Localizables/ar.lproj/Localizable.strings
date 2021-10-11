@@ -214,6 +214,8 @@
 
 "filters.filters" = "الفلتر";
 "filters.apply" = "تأكيد";
+"filters.showFilters" = "اظهر التصنيفات";
+"filters.4filters" = "٤ تصنيفات";
 
 // MARK: - Notifications
 
