@@ -53,7 +53,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
         didSet {
             ratingView.settings.fillMode = .precise
             ratingView.settings.starMargin = 1
-            ratingView.settings.starSize = 17
+            ratingView.settings.starSize = 15
             ratingView.isUserInteractionEnabled = false
         }
     }
