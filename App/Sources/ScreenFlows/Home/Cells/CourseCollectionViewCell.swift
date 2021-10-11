@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import AVKit
+import Cosmos
 import Kingfisher
 import UIKit
 
@@ -48,11 +49,14 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
-    @IBOutlet private var firstRatingStar: UIImageView!
-    @IBOutlet private var secondRatingStar: UIImageView!
-    @IBOutlet private var thirdRatingStar: UIImageView!
-    @IBOutlet private var fourthRatingStar: UIImageView!
-    @IBOutlet private var fifthRatingStar: UIImageView!
+    @IBOutlet private var ratingView: CosmosView! {
+        didSet {
+            ratingView.settings.fillMode = .precise
+            ratingView.settings.starMargin = 1
+            ratingView.settings.starSize = 15
+            ratingView.isUserInteractionEnabled = false
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -87,11 +91,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         imageView.subviews.forEach { $0.removeFromSuperview() }
         imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        firstRatingStar.image = Images.star.image
-        secondRatingStar.image = Images.star.image
-        thirdRatingStar.image = Images.star.image
-        fourthRatingStar.image = Images.star.image
-        fifthRatingStar.image = Images.star.image
+        ratingView.rating = .zero
     }
 
     // MARK: - Private Functions
@@ -105,31 +105,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     // swiftlint:disable function_body_length
-    private func configureRatingStars(_ rating: Int?) {
-        switch rating {
-        case 1:
-            firstRatingStar.image = filledStar
-        case 2:
-            firstRatingStar.image = filledStar
-            secondRatingStar.image = filledStar
-        case 3:
-            firstRatingStar.image = filledStar
-            secondRatingStar.image = filledStar
-            thirdRatingStar.image = filledStar
-        case 4:
-            firstRatingStar.image = filledStar
-            secondRatingStar.image = filledStar
-            thirdRatingStar.image = filledStar
-            fourthRatingStar.image = filledStar
-        case 5:
-            firstRatingStar.image = filledStar
-            secondRatingStar.image = filledStar
-            thirdRatingStar.image = filledStar
-            fourthRatingStar.image = filledStar
-            fifthRatingStar.image = filledStar
-        default:
-            return
-        }
+    private func configureRatingStars(_ rating: Double?) {
+        ratingView.rating = rating ?? .zero
     }
 
     private func configureActionButtonAccordingToState() {
@@ -177,7 +154,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
             }
         }
         playButton.isHidden = course?.video?.fileUrl == nil || course?.video?.fileUrl?.isEmpty ?? true
-        configureRatingStars(Int(course?.rating ?? 0))
+        configureRatingStars(course?.rating ?? 0.0)
         configureActionButtonAccordingToState()
         configureBadge()
     }

@@ -88,6 +88,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBOutlet private var courseImageView: UIImageView!
     @IBOutlet private var ratingView: CosmosView! {
         didSet {
+            ratingView.settings.fillMode = .precise
             ratingView.settings.starMargin = 1
             ratingView.settings.starSize = 20
             ratingView.isUserInteractionEnabled = false
