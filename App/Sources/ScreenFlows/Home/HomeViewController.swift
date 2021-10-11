@@ -135,6 +135,7 @@ class HomeViewController: UIViewController {
         if !isMyCourses && mode == .exploreMore {
             filtersButton.isHidden = false
             filtersButtonHeightConstraint.constant = 50
+            filtersButton.setTitle(L10n.Filters.showFilters)
         } else {
             filtersButton.isHidden = true
             filtersButtonHeightConstraint.constant = 0
@@ -279,14 +280,14 @@ class HomeViewController: UIViewController {
         isFiltersSelected = true
         clearFiltersButton.isHidden = false
         filtersButton.layer.backgroundColor = Colors.green.color.cgColor
-        filtersButton.setTitle("4 filters")
+        filtersButton.setTitle(L10n.Filters._4filters)
     }
 
     private func configureFiltersButtonWhenNoFilterSelected() {
         isFiltersSelected = false
         clearFiltersButton.isHidden = true
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
-        filtersButton.setTitle("Show Filters")
+        filtersButton.setTitle(L10n.Filters.showFilters)
     }
 
     private func clearPreviouslyChosenFilters() {

@@ -244,6 +244,10 @@ internal enum L10n {
   }
 
   internal enum Filters {
+    /// 4 filters
+    internal static var _4filters: String {
+        return L10n.tr("Localizable", "filters.4filters")
+      }
     /// Apply
     internal static var apply: String {
         return L10n.tr("Localizable", "filters.apply")
@@ -251,6 +255,10 @@ internal enum L10n {
     /// Filters
     internal static var filters: String {
         return L10n.tr("Localizable", "filters.filters")
+      }
+    /// Show Filters
+    internal static var showFilters: String {
+        return L10n.tr("Localizable", "filters.showFilters")
       }
   }
 

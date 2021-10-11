@@ -214,6 +214,8 @@ No worries!";
 
 "filters.filters" = "Filters";
 "filters.apply" = "Apply";
+"filters.showFilters" = "Show Filters";
+"filters.4filters" = "4 filters";
 
 // MARK: - Notifications
 
