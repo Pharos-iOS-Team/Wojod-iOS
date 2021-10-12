@@ -118,6 +118,7 @@ class CourseDetailsViewController: UIViewController {
         preventScreenRecording()
         configureRefreshControl()
         observeInternetConnection()
+        showQuizAlert()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -1228,6 +1229,15 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
             return reviewsList?.isEmpty ?? true
         default:
             return false
+        }
+    }
+}
+
+extension CourseDetailsViewController {
+    func showQuizAlert() {
+        quizzesViewModel?.showQuizAlet = { [weak self] error in
+            self?.dismissAlertView()
+            self?.showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.error, message: error)
         }
     }
 }
