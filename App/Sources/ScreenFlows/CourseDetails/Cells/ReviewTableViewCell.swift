@@ -16,6 +16,7 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet private var commentLabel: UILabel!
     @IBOutlet private var ratingView: CosmosView! {
         didSet {
+            ratingView.semanticContentAttribute = Language.semanticContent
             ratingView.settings.fillMode = .precise
             ratingView.settings.starMargin = 2
             ratingView.isUserInteractionEnabled = false
