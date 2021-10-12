@@ -88,6 +88,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBOutlet private var courseImageView: UIImageView!
     @IBOutlet private var ratingView: CosmosView! {
         didSet {
+            ratingView.semanticContentAttribute = Language.semanticContent
             ratingView.settings.fillMode = .precise
             ratingView.settings.starMargin = 1
             ratingView.settings.starSize = 20

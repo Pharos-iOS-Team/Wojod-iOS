@@ -58,6 +58,7 @@ class ReviewCourseView: UIView {
     }
     @IBOutlet private var starRatingsView: CosmosView! {
         didSet {
+            starRatingsView.semanticContentAttribute = Language.semanticContent
             starRatingsView.settings.fillMode = .precise
             starRatingsView.settings.starMargin = 2
             starRatingsView.settings.minTouchRating = 0.5
