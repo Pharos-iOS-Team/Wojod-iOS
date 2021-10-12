@@ -62,6 +62,7 @@ class AssessmentsOverViewViewModel {
     var assessments = [Assessment]()
     var lastUserSelectedSubjectIndex: IndexPath?
     var currentModule: Module = .all
+    var showQuizAlet: ((String) -> Void)?
     var shouldShowSubjects: Bool {
         return true
     }
@@ -99,9 +100,13 @@ class AssessmentsOverViewViewModel {
             deviceToken: deviceToken,
             module: module.rawValue
         ) { [weak self] assessmentDetails, error in
+            if error == nil {
             completion?()
             let assessmentType: AssessmentType = assessment.type == "Quiz" ? .quiz : .assignment
             self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessmentType)
+            } else {
+                self?.showQuizAlet?(error ?? "")
+            }
         }
     }
     
