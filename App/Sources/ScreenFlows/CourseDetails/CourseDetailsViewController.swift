@@ -498,10 +498,14 @@ class CourseDetailsViewController: UIViewController {
             switch assessment.type {
             case "Quiz":
                 showStartQuizAlert(assessment)
+                let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                cell?.stopLoadingIndicator()
             default:
                 tableView.isUserInteractionEnabled = false
                 assignemntsViewModel?.startAssessment(with: assessment) { [weak self] in
                     self?.tableView.isUserInteractionEnabled = true
+                    let cell = self?.tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                    cell?.stopLoadingIndicator()
                 }
             }
         } else {

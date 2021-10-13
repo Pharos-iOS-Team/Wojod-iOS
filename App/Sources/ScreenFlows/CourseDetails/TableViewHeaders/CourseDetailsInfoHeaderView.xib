@@ -68,37 +68,37 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqt-dZ-OGD">
-                                    <rect key="frame" x="25" y="320" width="107.5" height="69.5"/>
+                                    <rect key="frame" x="25" y="320" width="115" height="65.5"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ9-Nj-L0t">
-                                    <rect key="frame" x="25" y="394.5" width="90" height="14.5"/>
+                                    <rect key="frame" x="25" y="390.5" width="96.5" height="15.5"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                     <color key="textColor" name="avatarViewBackground"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3t-Be-2rN">
-                                    <rect key="frame" x="137" y="417.5" width="33.5" height="20"/>
+                                    <rect key="frame" x="137" y="413.5" width="37.5" height="21.5"/>
                                     <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtD-Vs-ESq">
-                                    <rect key="frame" x="180.5" y="420.5" width="45" height="14"/>
+                                    <rect key="frame" x="184.5" y="417" width="47" height="15"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
                                     <color key="textColor" name="avatarViewBackground"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Return to Teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNt-fK-gLK">
-                                    <rect key="frame" x="261.5" y="418" width="127.5" height="19"/>
+                                    <rect key="frame" x="253.5" y="414.5" width="135.5" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                     <color key="textColor" name="sendButtonColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gce-B6-dFe">
-                                    <rect key="frame" x="25" y="445" width="364" height="70"/>
+                                    <rect key="frame" x="25" y="442" width="364" height="73"/>
                                     <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</string>
                                     <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -151,7 +151,7 @@
                                     </constraints>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9q7-pM-aMt">
-                                    <rect key="frame" x="307" y="314" width="82" height="82"/>
+                                    <rect key="frame" x="307" y="312" width="82" height="82"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="82" id="BoH-04-dhS"/>
                                     </constraints>
@@ -175,7 +175,7 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="AYD-K8-sOU" customClass="CosmosView" customModule="Cosmos">
-                                    <rect key="frame" x="27" y="415" width="100" height="25"/>
+                                    <rect key="frame" x="27" y="412" width="100" height="25"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="fhY-A4-bTZ"/>
@@ -276,6 +276,7 @@
                 <outlet property="materialsButton" destination="8X8-eT-gCr" id="NPo-Ms-3oj"/>
                 <outlet property="mediaContainerView" destination="S6x-LM-epm" id="BLh-QV-lOE"/>
                 <outlet property="numberOfReviewsLabel" destination="Z3t-Be-2rN" id="dAD-5M-aiO"/>
+                <outlet property="numberOfViewLabel" destination="gtD-Vs-ESq" id="NCi-xD-l89"/>
                 <outlet property="playButton" destination="TK6-gS-Qbv" id="f37-D8-6R8"/>
                 <outlet property="priceLabel" destination="XNt-fK-gLK" id="QnI-iO-whA"/>
                 <outlet property="ratingView" destination="AYD-K8-sOU" id="Cbp-RD-TTs"/>

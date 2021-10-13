@@ -144,8 +144,10 @@
                         <outlet property="schoolButton" destination="bzv-Xg-KKI" id="CmU-dE-fut"/>
                         <outlet property="studentButton" destination="Smj-E3-oey" id="Xwe-L9-hBA"/>
                         <outlet property="studentButtonHeightConstraint" destination="VYF-9r-VpT" id="TmP-MF-HX5"/>
+                        <outlet property="studentLabel" destination="BYJ-bh-IJR" id="2GC-ib-Lxo"/>
                         <outlet property="tableView" destination="dl0-Ar-MeO" id="dfC-jm-weE"/>
                         <outlet property="universityButton" destination="dbe-Ed-ez7" id="Jvt-sR-GmI"/>
+                        <outlet property="universityLabel" destination="mad-V7-yLj" id="A4i-8C-4cH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFO-68-caN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -42,6 +42,16 @@ class FiltersViewController: UIViewController {
     @IBOutlet private var filterLabel: UILabel!
     @IBOutlet private var applyButton: UIButton!
     @IBOutlet private var studentButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var studentLabel: UILabel! {
+        didSet {
+            studentLabel.text = L10n.Signup.AcademicInfo.school
+        }
+    }
+    @IBOutlet private var universityLabel: UILabel! {
+        didSet {
+            studentLabel.text = L10n.Signup.AcademicInfo.university
+        }
+    }
 
     // MARK: - Public Properties
 

@@ -157,6 +157,10 @@ internal enum L10n {
       internal static var rateContent: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.rateContent")
         }
+      /// Reviews
+      internal static var reviews: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.reviews")
+        }
       /// Skip Rating
       internal static var skipRating: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.skipRating")
@@ -256,9 +260,17 @@ internal enum L10n {
     internal static var filters: String {
         return L10n.tr("Localizable", "filters.filters")
       }
+    /// School
+    internal static var school: String {
+        return L10n.tr("Localizable", "filters.school")
+      }
     /// Show Filters
     internal static var showFilters: String {
         return L10n.tr("Localizable", "filters.showFilters")
+      }
+    /// University
+    internal static var university: String {
+        return L10n.tr("Localizable", "filters.university")
       }
   }
 

@@ -96,6 +96,11 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         }
     }
     @IBOutlet private var chatButton: UIButton!
+    @IBOutlet private var numberOfViewLabel: UILabel! {
+        didSet {
+            numberOfViewLabel.text = L10n.CourseDetails.CourseReview.reviews
+        }
+    }
 
     weak var delegate: CourseDetailsInfoHeaderDelegate?
     var video: Media?
@@ -130,7 +135,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBAction private func didTapBack(_ sender: Any) {
         delegate?.dismissView()
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

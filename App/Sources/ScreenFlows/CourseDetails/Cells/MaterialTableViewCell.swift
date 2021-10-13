@@ -38,4 +38,9 @@ class MaterialTableViewCell: UITableViewCell {
         nextArrowIndicator.isHidden = true
         loadingIndicator.startAnimating()
     }
+
+    func stopLoadingIndicator() {
+        nextArrowIndicator.isHidden = false
+        loadingIndicator.stopAnimating()
+    }
 }

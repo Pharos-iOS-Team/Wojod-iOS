@@ -146,6 +146,7 @@ No worries!";
 "signup.academicInfo.school" = "SCHOOL";
 "signup.academicInfo.university" = "UNIVERSITY";
 
+
 "signup.universityScreen.student" = "Student";
 "signup.universityScreen.graduate" = "Graduate";
 "signup.universityScreen.university" = "University*";
@@ -195,6 +196,8 @@ No worries!";
 "courseDetails.courseReview.emptyDetails" = "No details yet.";
 "courseDetails.courseReview.emptyMaterials" = "No materials yet.";
 "courseDetails.courseReview.playVideo" = "Are you sure you want to play the video?\n You have %@ views left.";
+"courseDetails.courseReview.reviews" = "Reviews";
+
 
 
 // MARK: - Home & My courses
@@ -216,6 +219,9 @@ No worries!";
 "filters.apply" = "Apply";
 "filters.showFilters" = "Show Filters";
 "filters.4filters" = "4 filters";
+"filters.school" = "School";
+"filters.university" = "University";
+
 
 // MARK: - Notifications
 
