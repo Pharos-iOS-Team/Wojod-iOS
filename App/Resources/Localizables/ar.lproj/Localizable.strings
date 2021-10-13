@@ -195,6 +195,7 @@
 "courseDetails.courseReview.emptyDetails" = "لا توجد تفاصيل بعد.";
 "courseDetails.courseReview.emptyMaterials" = "لا توجد مواد بعد.";
 "courseDetails.courseReview.playVideo" = "هل انت متأكد انك تريد تشغيل الفيديو؟\n تبقي لديك %@ مشاهدة";
+"courseDetails.courseReview.reviews" = "تقييم";
 
 
 // MARK: - Home & My courses
@@ -216,6 +217,9 @@
 "filters.apply" = "تأكيد";
 "filters.showFilters" = "اظهر التصنيفات";
 "filters.4filters" = "٤ تصنيفات";
+"filters.school" = "مدرسة";
+"filters.university" = "جامعة";
+
 
 // MARK: - Notifications
 
