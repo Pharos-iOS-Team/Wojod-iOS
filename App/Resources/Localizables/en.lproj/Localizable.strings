@@ -221,7 +221,8 @@ No worries!";
 "filters.4filters" = "4 filters";
 "filters.school" = "School";
 "filters.university" = "University";
-
+"filters.subject" = "Subject";
+"filters.clear" = "Clear";
 
 // MARK: - Notifications
 

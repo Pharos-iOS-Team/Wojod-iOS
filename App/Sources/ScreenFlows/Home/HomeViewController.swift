@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
     @IBOutlet private var clearFiltersButton: UIButton! {
         didSet {
             clearFiltersButton.isHidden = true
+            clearFiltersButton.setTitle(L10n.Filters.clear)
         }
     }
     @IBOutlet private var filtersButton: UIButton!

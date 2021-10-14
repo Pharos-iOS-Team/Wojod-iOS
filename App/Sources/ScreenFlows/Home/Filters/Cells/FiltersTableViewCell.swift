@@ -33,6 +33,7 @@ class FiltersTableViewCell: UITableViewCell {
         super.awakeFromNib()
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.semanticContentAttribute = Language.semanticContent
         collectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
         collectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
             $0.scrollDirection = .horizontal

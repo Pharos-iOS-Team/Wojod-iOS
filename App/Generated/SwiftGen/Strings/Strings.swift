@@ -256,6 +256,10 @@ internal enum L10n {
     internal static var apply: String {
         return L10n.tr("Localizable", "filters.apply")
       }
+    /// Clear
+    internal static var clear: String {
+        return L10n.tr("Localizable", "filters.clear")
+      }
     /// Filters
     internal static var filters: String {
         return L10n.tr("Localizable", "filters.filters")
@@ -267,6 +271,10 @@ internal enum L10n {
     /// Show Filters
     internal static var showFilters: String {
         return L10n.tr("Localizable", "filters.showFilters")
+      }
+    /// Subject
+    internal static var subject: String {
+        return L10n.tr("Localizable", "filters.subject")
       }
     /// University
     internal static var university: String {
