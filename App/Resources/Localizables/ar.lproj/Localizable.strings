@@ -219,6 +219,8 @@
 "filters.4filters" = "٤ تصنيفات";
 "filters.school" = "مدرسة";
 "filters.university" = "جامعة";
+"filters.subject" = "المادة";
+"filters.clear" = "مسح";
 
 
 // MARK: - Notifications
