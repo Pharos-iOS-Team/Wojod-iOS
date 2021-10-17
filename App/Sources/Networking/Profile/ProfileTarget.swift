@@ -8,6 +8,7 @@ enum ProfileTarget {
     case editProfile(id: String, profile: Profile)
     case fetchDivisions(academicLevel: Int, academicType: Int)
     case fetchBatches(id: String)
+    case fetchSpecializations(id: String)
 }
 
 extension ProfileTarget: TargetType {
@@ -21,12 +22,14 @@ extension ProfileTarget: TargetType {
             return "/divisions"
         case .fetchBatches(let id):
             return "/divisions/\(id)/batches"
+        case .fetchSpecializations(let id):
+            return "/divisions/\(id)/specializations"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .getProfile, .fetchDivisions, .fetchBatches:
+        case .getProfile, .fetchDivisions, .fetchBatches, .fetchSpecializations:
             return .get
         case .editProfile:
             return .put

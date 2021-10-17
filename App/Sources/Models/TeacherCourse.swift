@@ -40,6 +40,10 @@ struct Media: Codable {
     var fileUrl: String?
     var thumbnailUrl: String?
     var contentType: String?
+    var vdocipherId: String?
+    var duration: Int?
+    var link: String?
+    var viewsRemaining: Int?
 }
 
 struct Receipt: Codable {

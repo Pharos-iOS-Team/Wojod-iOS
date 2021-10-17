@@ -33,29 +33,31 @@ class AssessmentDetailsModel: ModelDecodable {
         assessmentID: Int,
         deviceToken: String,
         module: String,
-        completionHandler: @escaping (AssessmentDetails?, Error?) -> ()
+        completionHandler: @escaping (AssessmentDetails?, String?) -> ()
     ) {
         APIClient.shared.startAssessment(assessmentID: assessmentID, deviceToken: deviceToken, module: module) { response in
             switch response.result {
             case .success:
                 if let statusCode = response.response?.statusCode {
                     switch statusCode {
-                    case 200:
+                    case 200...300:
                         if let data = response.data {
                             do {
                                 let decoded = try self.decoder.decode(AssessmentDetails.self, from: data)
                                 completionHandler(decoded, nil)
                             } catch {
-                                completionHandler(nil, error)
+                                completionHandler(nil, error.localizedDescription)
                             }
                         }
                     default:
-                        completionHandler(nil, nil)
+                        if let error = self.decodeErrorResponse(from: response.data), error.message != nil {
+                            completionHandler(nil, error.message)
+                        }
                     }
                 }
             case.failure:
                 if let error = response.error {
-                    completionHandler(nil, error)
+                    completionHandler(nil, error.localizedDescription)
                 }
             }
         }
@@ -185,6 +187,19 @@ class AssessmentDetailsModel: ModelDecodable {
             return data
         } catch {
             // AppAnalytics.couldNotGetFileData(error: error)
+            return nil
+        }
+    }
+
+    private func decodeErrorResponse(from data: Data?) -> NetworkError? {
+        do {
+            guard let data = data else { return .none}
+            let errorResponse = try JSONDecoder().decode(
+                NetworkError.self,
+                from: data
+            )
+            return errorResponse
+        } catch {
             return nil
         }
     }

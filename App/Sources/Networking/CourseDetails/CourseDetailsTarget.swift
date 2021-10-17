@@ -3,6 +3,11 @@
 import Foundation
 import Moya
 
+struct UpdateObject: Codable {
+    var updateId: Int
+    var totalBuffered: Int
+}
+
 enum CourseDetailsTarget {
     case loadLessons(courseID: Int)
     case loadReviews(courseID: Int)
@@ -12,6 +17,8 @@ enum CourseDetailsTarget {
     case sendReview(courseID: Int, courseReview: CourseReview)
     case loadMaterials(courseID: Int)
     case loadCourse(courseID: String)
+    case fetchVideo(videoId: String)
+    case updateVideo(videoId: String, updateObject: UpdateObject)
     case screenshotAlert(screenName: String)
 }
 
@@ -34,6 +41,10 @@ extension CourseDetailsTarget: TargetType {
             return "/courses/\(courseID)/materials"
         case let .loadCourse(courseID):
             return "courses/\(courseID)"
+        case let .fetchVideo(videoId):
+            return "videos/\(videoId)"
+        case let .updateVideo(videoId, _):
+            return "videos/\(videoId)/seconds_viewed"
         case .screenshotAlert:
             return "screenshot_alert"
         }
@@ -45,6 +56,8 @@ extension CourseDetailsTarget: TargetType {
             return .post
         case .cancelBookingCourse:
             return .delete
+        case .updateVideo:
+            return .put
         default:
             return .get
         }
@@ -54,6 +67,8 @@ extension CourseDetailsTarget: TargetType {
         switch self {
         case let .sendReview(_, courseReview):
             return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
+        case let .updateVideo(_, updateObject):
+            return .requestCustomJSONEncodable(updateObject, encoder: JSONEncoder.default)
         case let .screenshotAlert(screenName):
             return .requestJSONEncodable(["screen_name": screenName])
         default:

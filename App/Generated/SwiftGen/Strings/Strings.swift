@@ -149,9 +149,17 @@ internal enum L10n {
       internal static var messageTitle: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.messageTitle")
         }
+      /// Are you sure you want to play the video?\n You have %@ views left.
+      internal static func playVideo(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "courseDetails.courseReview.playVideo", String(describing: p1))
+      }
       /// Would you like to rate content?
       internal static var rateContent: String {
           return L10n.tr("Localizable", "courseDetails.courseReview.rateContent")
+        }
+      /// Reviews
+      internal static var reviews: String {
+          return L10n.tr("Localizable", "courseDetails.courseReview.reviews")
         }
       /// Skip Rating
       internal static var skipRating: String {
@@ -174,6 +182,10 @@ internal enum L10n {
       /// Materials
       internal static var materials: String {
           return L10n.tr("Localizable", "courseDetails.main.materials")
+        }
+      /// You have exceeded the number of views for this video
+      internal static var notEnoughViews: String {
+          return L10n.tr("Localizable", "courseDetails.main.notEnoughViews")
         }
       /// Review Course
       internal static var reviewCourse: String {
@@ -232,6 +244,41 @@ internal enum L10n {
     /// Set new password
     internal static var setNewPassword: String {
         return L10n.tr("Localizable", "createPassword.setNewPassword")
+      }
+  }
+
+  internal enum Filters {
+    /// 4 filters
+    internal static var _4filters: String {
+        return L10n.tr("Localizable", "filters.4filters")
+      }
+    /// Apply
+    internal static var apply: String {
+        return L10n.tr("Localizable", "filters.apply")
+      }
+    /// Clear
+    internal static var clear: String {
+        return L10n.tr("Localizable", "filters.clear")
+      }
+    /// Filters
+    internal static var filters: String {
+        return L10n.tr("Localizable", "filters.filters")
+      }
+    /// School
+    internal static var school: String {
+        return L10n.tr("Localizable", "filters.school")
+      }
+    /// Show Filters
+    internal static var showFilters: String {
+        return L10n.tr("Localizable", "filters.showFilters")
+      }
+    /// Subject
+    internal static var subject: String {
+        return L10n.tr("Localizable", "filters.subject")
+      }
+    /// University
+    internal static var university: String {
+        return L10n.tr("Localizable", "filters.university")
       }
   }
 
@@ -645,6 +692,10 @@ internal enum L10n {
     /// Not answered
     internal static var notAnswered: String {
         return L10n.tr("Localizable", "quizzes.notAnswered")
+      }
+    /// Note: 
+    internal static var note: String {
+        return L10n.tr("Localizable", "quizzes.note")
       }
     /// This grade is not final
     internal static var notFinalGrade: String {

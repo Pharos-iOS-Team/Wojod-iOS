@@ -146,6 +146,7 @@ No worries!";
 "signup.academicInfo.school" = "SCHOOL";
 "signup.academicInfo.university" = "UNIVERSITY";
 
+
 "signup.universityScreen.student" = "Student";
 "signup.universityScreen.graduate" = "Graduate";
 "signup.universityScreen.university" = "University*";
@@ -172,6 +173,7 @@ No worries!";
 "courseDetails.main.bookNow" = "Book Now";
 "courseDetails.main.cancelBooking" = "Cancel Booking";
 "courseDetails.main.reviewCourse" = "Review Course";
+"courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
 
 "courseDetails.receipt.receiptNumber" = "Receipt Number";
 "courseDetails.receipt.customerName" = "Customer Name";
@@ -193,6 +195,10 @@ No worries!";
 "courseDetails.courseReview.emptyReviews" = "No reviews yet.";
 "courseDetails.courseReview.emptyDetails" = "No details yet.";
 "courseDetails.courseReview.emptyMaterials" = "No materials yet.";
+"courseDetails.courseReview.playVideo" = "Are you sure you want to play the video?\n You have %@ views left.";
+"courseDetails.courseReview.reviews" = "Reviews";
+
+
 
 // MARK: - Home & My courses
 
@@ -208,6 +214,15 @@ No worries!";
 "home.pending" = "Pending";
 "home.search.emptyStateTitle" = "Sorry";
 "home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
+
+"filters.filters" = "Filters";
+"filters.apply" = "Apply";
+"filters.showFilters" = "Show Filters";
+"filters.4filters" = "4 filters";
+"filters.school" = "School";
+"filters.university" = "University";
+"filters.subject" = "Subject";
+"filters.clear" = "Clear";
 
 // MARK: - Notifications
 
@@ -313,6 +328,7 @@ No worries!";
 "quizzes.fileTitle" = "Files";
 "quizzes.gallery" = "Gallery";
 "quizzes.camera" = "Camera";
+"quizzes.note" = "Note: ";
 "quizzes.viewDescription" = "View description";
 "quizzes.noInternetTitle" = "No Internet!";
 "quizzes.noInternetMessage" = "Check your internet connection and try again in a while.";

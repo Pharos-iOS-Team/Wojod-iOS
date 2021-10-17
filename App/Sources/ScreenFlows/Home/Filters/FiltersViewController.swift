@@ -26,7 +26,11 @@ class FiltersViewController: UIViewController {
 
     @IBOutlet private var schoolButton: UIButton!
     @IBOutlet private var universityButton: UIButton!
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView! {
+        didSet {
+            tableView.semanticContentAttribute = Language.semanticContent
+        }
+    }
     @IBOutlet private var studentButton: UIButton! {
         didSet {
             studentButton.isHidden = true
@@ -39,14 +43,25 @@ class FiltersViewController: UIViewController {
             graduatedButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
+    @IBOutlet private var filterLabel: UILabel!
     @IBOutlet private var applyButton: UIButton!
     @IBOutlet private var studentButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var studentLabel: UILabel! {
+        didSet {
+            studentLabel.text = L10n.Filters.school
+        }
+    }
+    @IBOutlet private var universityLabel: UILabel! {
+        didSet {
+            universityLabel.text = L10n.Filters.university
+        }
+    }
 
     // MARK: - Public Properties
 
     weak var delegate: FiltersDelegate?
-    var schoolSectionTitles: [String] = ["Academic Type"]
-    var universitySectionTitles: [String] = ["University"]
+    var schoolSectionTitles: [String] = [L10n.Profile.academicType]
+    var universitySectionTitles: [String] = [L10n.Filters.university]
     var viewModel: FiltersViewModel?
     var academicLevel: AcademicLevel = .schoolStudent
     var academicTypes: [KeyValue] = []
@@ -66,6 +81,11 @@ class FiltersViewController: UIViewController {
     var universitySubjects: [Subject] = []
     var selectedField: Specialization?
     var selectedSubject: Subject?
+    var shouldApplyButtonBeUnabled = false {
+        didSet {
+            configureApplyButton()
+        }
+    }
 
     // MARK: - Lifecycle
 
@@ -74,6 +94,7 @@ class FiltersViewController: UIViewController {
         viewModel = FiltersViewModel()
         configureSelectionOfAcademicLevel()
         configureTableView()
+        configureTitles()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +158,23 @@ class FiltersViewController: UIViewController {
         tableView.dataSource = self
     }
 
+    private func configureApplyButton() {
+        if shouldApplyButtonBeUnabled {
+            applyButton.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+            applyButton.isEnabled = true
+        } else {
+            applyButton.setTitleColor(Colors.darkGreyColor.color, for: .disabled)
+            applyButton.isEnabled = false
+        }
+    }
+
+    private func configureTitles() {
+        applyButton.setTitle(L10n.Filters.apply)
+        filterLabel.text = L10n.Filters.filters
+    }
+
     private func selectSchool() {
+        shouldApplyButtonBeUnabled = false
         academicLevel = .schoolStudent
         Filters.shared.academicLevel = .schoolStudent
         schoolButton.setImage(Images.girlAvatar.image)
@@ -149,6 +186,7 @@ class FiltersViewController: UIViewController {
     }
 
     private func selectUniversity() {
+        shouldApplyButtonBeUnabled = false
         schoolButton.setImage(Images.girlAvatarFaded.image)
         universityButton.setImage(Images.boyAvatar.image)
         studentButton.isHidden = false
@@ -222,39 +260,45 @@ extension FiltersViewController: UITableViewDataSource {
                         self.divisions = divisions ?? []
                         if self.schoolSection == .academicType {
                             self.schoolSection = .academicDivision
-                            self.schoolSectionTitles.append("Academic Divisions")
+                            self.schoolSectionTitles.append(L10n.Signup.School.academicDivision)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .academicDivision:
-                cell.configure(title: "Academic Division", filters: divisions.compactMap { $0.value }, section: .academicDivision)
+                cell.configure(title: L10n.Signup.School.academicDivision, filters: divisions.compactMap { $0.value }, section: .academicDivision)
                 if let division = Filters.shared.academicDivision, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: divisions.firstIndex { $0.key == division.key })
                     viewModel?.loadBatches(for: division.key ?? 0) { years in
                         self.years = years ?? []
                         if self.schoolSection == .academicDivision {
                             self.schoolSection = .academicYear
-                            self.schoolSectionTitles.append("Academic Year")
+                            self.schoolSectionTitles.append(L10n.Signup.School.academicYear)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .academicYear:
-                cell.configure(title: "Academic Year", filters: years.compactMap { $0.value }, section: .academicYear)
+                cell.configure(title: L10n.Signup.School.academicYear, filters: years.compactMap { $0.value }, section: .academicYear)
                 if let year = Filters.shared.academicYear, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: years.firstIndex { $0.key == year.key })
                     viewModel?.loadSubjects(forYear: year.key ?? 0) { subjects in
                         self.subjects = subjects.subjects ?? []
                         if self.schoolSection == .academicYear {
                             self.schoolSection = .subjects
-                            self.schoolSectionTitles.append("Subject")
+                            self.schoolSectionTitles.append(L10n.Filters.subject)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .subjects:
-                cell.configure(title: "Subject", filters: subjects.compactMap { $0.name }, section: .subjects)
+                cell.configure(title: L10n.Filters.subject, filters: subjects.compactMap { $0.name }, section: .subjects)
                 if let subject = Filters.shared.subject, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: subjects.firstIndex { $0.id == subject.id })
                 }
@@ -262,46 +306,52 @@ extension FiltersViewController: UITableViewDataSource {
         } else {
             switch universitySection {
             case .university:
-                cell.configureForUniveristy(title: "University", filters: universities.compactMap { $0.value }, section: .university)
+                cell.configureForUniveristy(title: L10n.Filters.university, filters: universities.compactMap { $0.value }, section: .university)
                 if let univeristy = Filters.shared.academicDivision, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: universities.firstIndex { $0.key == univeristy.key })
                     viewModel?.loadSpecializations(for: univeristy.key ?? 0) { fields in
                         self.fields = fields ?? []
                         if self.universitySection == .university {
                             self.universitySection = .field
-                            self.universitySectionTitles.append("Field")
+                            self.universitySectionTitles.append(L10n.Signup.School.field)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .field:
-                cell.configureForUniveristy(title: "Field", filters: fields.compactMap { $0.value }, section: .field)
+                cell.configureForUniveristy(title: L10n.Signup.School.field, filters: fields.compactMap { $0.value }, section: .field)
                 if let field = Filters.shared.field, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: fields.firstIndex { $0.key == field.key })
                     viewModel?.loadBatches(for: Filters.shared.academicDivision?.key ?? 0) { academicYears in
                         self.academicYears = academicYears ?? []
                         if self.universitySection == .field {
                             self.universitySection = .academicYear
-                            self.universitySectionTitles.append("Academic Year")
+                            self.universitySectionTitles.append(L10n.Signup.School.academicYear)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .academicYear:
-                cell.configureForUniveristy(title: "Academic Year", filters: academicYears.compactMap { $0.value }, section: .academicYear)
+                cell.configureForUniveristy(title: L10n.Signup.School.academicYear, filters: academicYears.compactMap { $0.value }, section: .academicYear)
                 if let academicYear = Filters.shared.academicYear, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: academicYears.firstIndex { $0.key == academicYear.key })
                     viewModel?.loadSubjects(forYear: academicYear.key ?? 0) { subjects in
                         self.universitySubjects = subjects.subjects ?? []
                         if self.universitySection == .academicYear {
                             self.universitySection = .subjects
-                            self.universitySectionTitles.append("Subject")
+                            self.universitySectionTitles.append(L10n.Filters.subject)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
             case .subjects:
-                cell.configureForUniveristy(title: "Subjects", filters: universitySubjects.compactMap { $0.name }, section: .subjects)
+                cell.configureForUniveristy(title: L10n.Filters.subject, filters: universitySubjects.compactMap { $0.name }, section: .subjects)
                 if let subject = Filters.shared.subject, Filters.shared.isDataBeingRetrieved {
                     cell.selectOldEntry(for: universitySubjects.firstIndex { $0.id == subject.id })
                 }
@@ -318,6 +368,7 @@ extension FiltersViewController: UITableViewDataSource {
 extension FiltersViewController: SelectingFilterDelegate {
     // swiftlint:disable function_body_length
     func didSelectFilter(_ filterIndex: Int, in section: SchoolSection) {
+        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .academicType:
@@ -328,11 +379,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadAcademicDivisions(for: academicLevel, in: selectedAcademicType?.key ?? 0) { divisions in
                     self.tableView.performBatchUpdates {
                         self.divisions = divisions ?? []
-                        if self.schoolSectionTitles.contains("Academic Divisions") {
+                        if self.schoolSectionTitles.contains(L10n.Signup.School.academicDivision) {
                             self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
                         } else {
-                            self.schoolSectionTitles.append("Academic Divisions")
+                            self.schoolSectionTitles.append(L10n.Signup.School.academicDivision)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
@@ -355,11 +408,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadBatches(for: selectedDivision?.key ?? 0) { years in
                     self.tableView.performBatchUpdates {
                         self.years = years ?? []
-                        if self.schoolSectionTitles.contains("Academic Year") {
+                        if self.schoolSectionTitles.contains(L10n.Signup.School.academicYear) {
                             self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
                         } else {
-                            self.schoolSectionTitles.append("Academic Year")
+                            self.schoolSectionTitles.append(L10n.Signup.School.academicYear)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
@@ -382,11 +437,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadSubjects(forYear: selectedYear?.key ?? 0) { subjects in
                     self.tableView.performBatchUpdates {
                         self.subjects = subjects.subjects ?? []
-                        if self.schoolSectionTitles.contains("Subject") {
+                        if self.schoolSectionTitles.contains(L10n.Filters.subject) {
                             self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
                         } else {
-                            self.schoolSectionTitles.append("Subject")
+                            self.schoolSectionTitles.append(L10n.Filters.subject)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
@@ -408,6 +465,7 @@ extension FiltersViewController: SelectingFilterDelegate {
     }
 
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
+        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .university:
@@ -418,11 +476,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { fields in
                     self.tableView.performBatchUpdates {
                         self.fields = fields ?? []
-                        if self.universitySectionTitles.contains("Field") {
+                        if self.universitySectionTitles.contains(L10n.Signup.School.field) {
                             self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
                         } else {
-                            self.universitySectionTitles.append("Field")
+                            self.universitySectionTitles.append(L10n.Signup.School.field)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
@@ -445,11 +505,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { academicYears in
                     self.tableView.performBatchUpdates {
                         self.academicYears = academicYears ?? []
-                        if self.universitySectionTitles.contains("Academic Year") {
+                        if self.universitySectionTitles.contains(L10n.Signup.School.academicYear) {
                             self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
                         } else {
-                            self.universitySectionTitles.append("Academic Year")
+                            self.universitySectionTitles.append(L10n.Signup.School.academicYear)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }
@@ -472,11 +534,13 @@ extension FiltersViewController: SelectingFilterDelegate {
                 viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
                     self.tableView.performBatchUpdates {
                         self.universitySubjects = subjects.subjects ?? []
-                        if self.universitySectionTitles.contains("Subjects") {
+                        if self.universitySectionTitles.contains(L10n.Filters.subject) {
                             self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
                         } else {
-                            self.universitySectionTitles.append("Subjects")
+                            self.universitySectionTitles.append(L10n.Filters.subject)
+                            self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
                         }
                     }
                 }

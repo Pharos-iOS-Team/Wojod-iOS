@@ -172,6 +172,7 @@
 "courseDetails.main.bookNow" = "احجز الآن";
 "courseDetails.main.cancelBooking" = "إلغاء الحجز";
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
+"courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";
 
 "courseDetails.receipt.receiptNumber" = "رقم الإيصال";
 "courseDetails.receipt.customerName" = "اسم العميل";
@@ -193,6 +194,8 @@
 "courseDetails.courseReview.emptyReviews" = "لا توجد تقييمات بعد.";
 "courseDetails.courseReview.emptyDetails" = "لا توجد تفاصيل بعد.";
 "courseDetails.courseReview.emptyMaterials" = "لا توجد مواد بعد.";
+"courseDetails.courseReview.playVideo" = "هل انت متأكد انك تريد تشغيل الفيديو؟\n تبقي لديك %@ مشاهدة";
+"courseDetails.courseReview.reviews" = "تقييم";
 
 
 // MARK: - Home & My courses
@@ -209,6 +212,16 @@
 "home.pending" = "في حالة انتظار";
 "home.search.emptyStateTitle" = "نأسف";
 "home.search.emptyStateDescription" = "لم نتمكن من العثور على ما تبحث عنه. حاول مرة أخرى بكلمات مختلفة.";
+
+"filters.filters" = "الفلتر";
+"filters.apply" = "تأكيد";
+"filters.showFilters" = "اظهر التصنيفات";
+"filters.4filters" = "٤ تصنيفات";
+"filters.school" = "مدرسة";
+"filters.university" = "جامعة";
+"filters.subject" = "المادة";
+"filters.clear" = "مسح";
+
 
 // MARK: - Notifications
 
@@ -314,6 +327,7 @@
 "quizzes.fileTitle" = "الملفات";
 "quizzes.gallery" = "البوم";
 "quizzes.camera" = "كاميرا";
+"quizzes.note" = "ملحوظة: ";
 "quizzes.viewDescription" = "التفاصيل";
 "quizzes.noInternetTitle" = "لا يوجد اتصال بالإنترنت";
 "quizzes.noInternetMessage" = "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.";

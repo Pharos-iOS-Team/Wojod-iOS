@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Cosmos
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
@@ -13,12 +14,14 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var commentLabel: UILabel!
-    @IBOutlet private var firstStarImageView: UIImageView!
-    @IBOutlet private var secondStarImageView: UIImageView!
-    @IBOutlet private var thirdStarImageView: UIImageView!
-    @IBOutlet private var fourthStarImageView: UIImageView!
-    @IBOutlet private var fifthStarImageView: UIImageView!
-
+    @IBOutlet private var ratingView: CosmosView! {
+        didSet {
+            ratingView.semanticContentAttribute = Language.semanticContent
+            ratingView.settings.fillMode = .precise
+            ratingView.settings.starMargin = 2
+            ratingView.isUserInteractionEnabled = false
+        }
+    }
     // MARK: - Lifecycle
 
     override func awakeFromNib() {
@@ -49,29 +52,6 @@ class ReviewTableViewCell: UITableViewCell {
 
     // swiftlint:disable function_body_length
     internal func setRating(_ rating: Double) {
-        switch rating {
-        case 1:
-            firstStarImageView.image = Images.filledStar.image
-        case 2:
-            firstStarImageView.image = Images.filledStar.image
-            secondStarImageView.image = Images.filledStar.image
-        case 3:
-            firstStarImageView.image = Images.filledStar.image
-            secondStarImageView.image = Images.filledStar.image
-            thirdStarImageView.image = Images.filledStar.image
-        case 4:
-            firstStarImageView.image = Images.filledStar.image
-            secondStarImageView.image = Images.filledStar.image
-            thirdStarImageView.image = Images.filledStar.image
-            fourthStarImageView.image = Images.filledStar.image
-        case 5:
-            firstStarImageView.image = Images.filledStar.image
-            secondStarImageView.image = Images.filledStar.image
-            thirdStarImageView.image = Images.filledStar.image
-            fourthStarImageView.image = Images.filledStar.image
-            fifthStarImageView.image = Images.filledStar.image
-        default:
-            return
-        }
+        ratingView.rating = rating
     }
 }

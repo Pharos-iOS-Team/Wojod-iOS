@@ -38,11 +38,13 @@ class CourseDetailsViewModel {
         }
     }
 
-    func bookCourses(courseID: Int, completion: @escaping (BookingCourseResponseModel) -> Void) {
+    func bookCourses(courseID: Int, completion: @escaping (BookingCourseResponseModel?, Error?) -> Void) {
         model.bookCourse(courseID: courseID) { result in
             switch result {
             case .success(let bookingResponse as BookingCourseResponseModel):
-                completion(bookingResponse)
+                completion(bookingResponse, nil)
+            case .failure(let error as Error):
+                completion(nil, error)
             default:
                 return
             }
@@ -79,6 +81,28 @@ class CourseDetailsViewModel {
             switch result {
             case .success(let course as CourseDetailsResponse):
                 completion(course.course)
+            default:
+                return
+            }
+        }
+    }
+
+    func fetchVideoDetails(videoId: String, completion: @escaping (EncryptedVideoResponse?) -> Void) {
+        model.fetchVideo(videoId: videoId) { result in
+            switch result {
+            case .success(let encryptedViewResponse as EncryptedVideoResponse):
+                completion(encryptedViewResponse)
+            default:
+                return
+            }
+        }
+    }
+
+    func updateVideo(videoId: String, updateObject: UpdateObject) {
+        model.updateVideo(videoId: videoId, updateObject: updateObject) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
             default:
                 return
             }

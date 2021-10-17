@@ -96,6 +96,28 @@ class CourseDetailsApiClient {
         }
     }
 
+    func fetchVideo(videoId: String, completion: @escaping (Response?, MoyaError?) -> Void) {
+        courseDetailsProvider.request(.fetchVideo(videoId: videoId)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    func updateVideo(videoId: String, updateObject: UpdateObject ,completion: @escaping (Response?, MoyaError?) -> Void) {
+        courseDetailsProvider.request(.updateVideo(videoId: videoId, updateObject: updateObject)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
     func screenshotAlert(screenName: String, completion: @escaping (Response?, MoyaError?) -> Void) {
         courseDetailsProvider.request(.screenshotAlert(screenName: screenName)) { result in
             switch result {

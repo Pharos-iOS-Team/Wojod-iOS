@@ -8,6 +8,8 @@ import HandySwift
 import JGProgressHUD
 import UIKit
 import SafariServices
+import VdoCipherKit
+import Photos
 
 internal enum CourseState {
     case normal
@@ -43,6 +45,7 @@ protocol LoadableView: AnyObject {
 class CourseDetailsViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet weak var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
@@ -77,7 +80,12 @@ class CourseDetailsViewController: UIViewController {
     private var selectedAssessment: Assessment?
     private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
+    private var timer = Timer()
+    private var updateId: Int = .zero
+    private var videoId: String = ""
+    private var avPlayerController = AVPlayerViewController()
     private let refreshControl = UIRefreshControl()
+
     private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
     private var window: UIWindow? {
@@ -110,6 +118,7 @@ class CourseDetailsViewController: UIViewController {
         preventScreenRecording()
         configureRefreshControl()
         observeInternetConnection()
+        showQuizAlert()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +131,26 @@ class CourseDetailsViewController: UIViewController {
                 self.materials = materials
                 self.tableView.reloadData()
             }
+        } else if activeScreen == .details {
+            loadCourseLessons()
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        expandedSections.removeAll()
+        tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avPlayerController.view.layer.sublayers?.forEach { layer in
+            if layer.isKind(of: CATextLayer.self) {
+                layer.removeFromSuperlayer()
+            }
+        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     // MARK: - IBActions
@@ -130,11 +158,15 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse in
-                self.state = .pending
-                self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
-                self.blurView()
-                self.displayReceipt(bookingResponse, coursePrice: self.course?.price ?? "")
+            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse, error in
+                if error == nil {
+                    self.state = .pending
+                    self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
+                    self.blurView()
+                    self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+                } else if let error = error as? WJError {
+                    self.showAlert(imageName: Images.danger.name, title: "Error", message: error.message)
+                }
             }
 
         case .pending:
@@ -386,6 +418,11 @@ class CourseDetailsViewController: UIViewController {
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title ?? "")
+            if !(video.link?.isEmpty ?? true) {
+                cell?.setAttachmentImageView(Images.link.image)
+            } else {
+                cell?.setAttachmentImageView(Images.videoExtension.image)
+            }
         } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
             let image = getCorrespondingImage(for: document)
@@ -461,10 +498,14 @@ class CourseDetailsViewController: UIViewController {
             switch assessment.type {
             case "Quiz":
                 showStartQuizAlert(assessment)
+                let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                cell?.stopLoadingIndicator()
             default:
                 tableView.isUserInteractionEnabled = false
                 assignemntsViewModel?.startAssessment(with: assessment) { [weak self] in
                     self?.tableView.isUserInteractionEnabled = true
+                    let cell = self?.tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                    cell?.stopLoadingIndicator()
                 }
             }
         } else {
@@ -604,7 +645,13 @@ class CourseDetailsViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        handleRefreshingAccordingToOpenedTab()
+        viewModel?.loadCourse(courseID: "\(course?.id ?? 0)") { course in
+            self.course = course
+            self.state = self.getReservationState()
+            self.configureActionButtonAccordingToState()
+            self.tableView.reloadData()
+            self.handleRefreshingAccordingToOpenedTab()
+        }
     }
 
     private func handleRefreshingAccordingToOpenedTab() {
@@ -718,7 +765,13 @@ extension CourseDetailsViewController: UITableViewDataSource {
             case .videos:
                 let video = materials?.videos?[indexPath.row]
                 let date = video?.publishedAt ?? Date()
-                cell?.configure(title: video?.title, date: date.formattedDateString, image: Images.videoExtension.image)
+                cell?.configure(
+                    title: video?.title,
+                    date: date.formattedDateString,
+                    image: !(video?.link?.isEmpty ?? true)
+                        ? Images.link.image
+                        : Images.videoExtension.image
+                )
 
             case .documents:
                 let document = materials?.documents?[indexPath.row]
@@ -848,9 +901,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(materials?.videos?[indexPath.row].fileUrl ?? "")
-                play(videoURL: videoURL)
+                if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
+                    if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
+                        UIApplication.shared.open(url)
+                    }
+                } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
+                }
             case .documents:
                 activeSubscreen = .file
                 if let linkURL = materials?.documents?[indexPath.row].link {
@@ -920,9 +977,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
-                activeSubscreen = .video
-                let videoURL = Environment.baseURL.appendingPathComponent(video.fileUrl ?? "")
-                play(videoURL: videoURL)
+                if let url = URL(string: video.link ?? "") {
+                    UIApplication.shared.open(url)
+                } else if !(video.vdocipherId?.isEmpty ?? true) {
+                    fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
+                }
             } else if let document = attachment as? MaterialsDocument {
                 activeSubscreen = .file
                 if let linkURL = document.link {
@@ -1003,6 +1062,75 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
     }
 }
 
+// MARK: - vdoCipher Functions
+
+extension CourseDetailsViewController {
+
+    func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
+        vdoPlayerView.player = player
+        if viewsCount > .zero {
+        viewModel?.fetchVideoDetails(videoId: videoId) { [weak self] encryptedVideoResponse in
+                guard let self = self else { return }
+            AlertHandler(presentingViewCtrl: self).showConfirmAlert(title: L10n.Global.Titles.warning, message: L10n.CourseDetails.CourseReview.playVideo(viewsCount), confirmButtonTitle: L10n.Global.Actions.confirm, handler: { _ in
+                    do {
+                        self.showLoadingIndicator()
+                        try self.vdoPlayerView.loadVideo(
+                            otp: encryptedVideoResponse?.otp ?? "",
+                            playbackInfo: encryptedVideoResponse?.playback ?? "",
+                            onPlayerReady: {
+                                self.hideLoadingIndicator()
+                                let playerController = self.avPlayerController
+                                playerController.player = self.vdoPlayerView.player
+                                self.present(playerController, animated: true, completion: {
+                                    let titleLayer = CATextLayer()
+                                    titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
+                                    titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
+                                    titleLayer.alignmentMode = .left
+                                    self.setupPlayerLayerFrame(titleLayer)
+                                    playerController.view.layer.addSublayer(titleLayer)
+                                    self.updateId = encryptedVideoResponse?.updateId ?? .zero
+                                    self.videoId = videoId
+                                    self.checkForTime()
+                                    self.vdoPlayerView.player?.play()
+                                    self.checkForBufferedTime()
+                                })
+                            }
+                        )
+                    }  catch {
+                        self.hideLoadingIndicator()
+                        AlertHandler(presentingViewCtrl: self).showConfirmAlert(
+                            title: L10n.Global.Titles.error,
+                            message: L10n.Global.Alerts.somethingWentWrong
+                        )
+                    }
+                })
+            }
+        } else {
+            AlertHandler(presentingViewCtrl: self).showInformationAlert(
+                title: L10n.Global.Titles.error,
+                message: L10n.CourseDetails.Main.notEnoughViews
+            )
+        }
+    }
+}
+
+extension CourseDetailsViewController {
+    private func checkForBufferedTime() {
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkForTime), userInfo: nil, repeats: true)
+    }
+
+    @objc
+    private func checkForTime() {
+        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
+        updateVideo(videoId: self.videoId, updateObject: updateObject)
+    }
+}
+
+extension CourseDetailsViewController {
+    func updateVideo(videoId: String, updateObject: UpdateObject) {
+        viewModel?.updateVideo(videoId: videoId, updateObject: updateObject)
+    }
+}
 // MARK: - Course Details Info Delegate
 
 extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
@@ -1043,6 +1171,23 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.avPlayerController.view.layer.sublayers?.forEach { layer in
+                self.setupPlayerLayerFrame(layer)
+            }
+        }
+    }
+
+    private func setupPlayerLayerFrame(_ layer: CALayer) {
+        guard let layer = layer as? CATextLayer else { return }
+
+        let videoBounds = avPlayerController.videoBounds
+        let width: CGFloat = 175.0
+        let xPoint = videoBounds.maxX - width
+        layer.frame = CGRect(x: xPoint, y: videoBounds.minY + 30, width: width, height: 50)
+    }
 }
 
 // MARK: - DZN Empty State Data Source
@@ -1072,26 +1217,31 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
     }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        return 200
+        return 250
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        if state == .booked {
-            switch activeScreen {
-            case .details:
-                return lessonsList?.isEmpty ?? true
-            case .materials:
-                return materials?.assignments?.isEmpty ?? true
-                    && materials?.documents?.isEmpty ?? true
-                    && materials?.quizzes?.isEmpty ?? true
-                    && materials?.videos?.isEmpty ?? true
-            case .reviews:
-                return reviewsList?.isEmpty ?? true
-            default:
-                return false
-            }
-        } else {
+        switch activeScreen {
+        case .details:
+            return lessonsList?.isEmpty ?? true
+        case .materials:
+            return materials?.assignments?.isEmpty ?? true
+                && materials?.documents?.isEmpty ?? true
+                && materials?.quizzes?.isEmpty ?? true
+                && materials?.videos?.isEmpty ?? true
+        case .reviews:
+            return reviewsList?.isEmpty ?? true
+        default:
             return false
+        }
+    }
+}
+
+extension CourseDetailsViewController {
+    func showQuizAlert() {
+        quizzesViewModel?.showQuizAlet = { [weak self] error in
+            self?.dismissAlertView()
+            self?.showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.error, message: error)
         }
     }
 }
