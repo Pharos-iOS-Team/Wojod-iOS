@@ -3,7 +3,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-#include "Pods/Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"
+//#include "Pods/Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"
 
 ROOT_URL = https:/$()/staging.wojodacademy.com/api/student/v1.1
 BASE_URL = https:/$()/staging.wojodacademy.com

@@ -2866,7 +2866,7 @@
 		};
 		7723AD02261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 778E72D0261DE641009D7B35 /* Debug.xcconfig */;
+			baseConfigurationReference = 7A1E28FA406FB46DCD779961 /* Pods-Wojood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2893,7 +2893,7 @@
 		};
 		7723AD03261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 778E72D1261DE6D8009D7B35 /* Release.xcconfig */;
+			baseConfigurationReference = 572191E64188E2D8BD9B9DEF /* Pods-Wojood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2920,6 +2920,7 @@
 		};
 		7723AD05261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A1E28FA406FB46DCD779961 /* Pods-Wojood.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2942,6 +2943,7 @@
 		};
 		7723AD06261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 572191E64188E2D8BD9B9DEF /* Pods-Wojood.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2964,6 +2966,7 @@
 		};
 		7723AD08261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A1E28FA406FB46DCD779961 /* Pods-Wojood.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2984,6 +2987,7 @@
 		};
 		7723AD09261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 572191E64188E2D8BD9B9DEF /* Pods-Wojood.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

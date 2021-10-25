@@ -21,7 +21,7 @@ class ErrorView: UIView, NibLoadable {
     }
 
     private func initWithNib() {
-        try? loadFromNib()
+        try? loadFromNib(bundle: Bundle.main)
         setupLayout()
     }
 
