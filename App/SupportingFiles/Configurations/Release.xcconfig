@@ -5,6 +5,6 @@
 
 //#include "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"
 
-ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1
+ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1.1
 BASE_URL = https:/$()/www.wojodacademy.com
 CHAT_BASE_URL = wss:/$()/www.wojodacademy.com/cable
