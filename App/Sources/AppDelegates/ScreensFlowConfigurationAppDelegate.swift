@@ -20,12 +20,23 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         }
         UIView.appearance().semanticContentAttribute = Language.semanticContent
         UINavigationBar.appearance().semanticContentAttribute = Language.semanticContent
-
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
             window.rootViewController = StoryboardScene.CoursesTabBar.coursesTabBarViewController.instantiate()
         } else {
             window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}, completion: nil)
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}) { _ in 
+            window.isHidden = UIScreen.main.isCaptured
+        }
+        addScreenRecordingPreventionObserver()
+    }
+
+    private func addScreenRecordingPreventionObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    @objc
+    private func hideScreenIfBeingRecorded() {
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = UIScreen.main.isCaptured
     }
 }

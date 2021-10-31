@@ -48,7 +48,6 @@ class ProfileViewController: UIViewController {
         reloadCountriesCell()
         reloadCitiesCell()
         preventScreenshot()
-        preventScreenRecording()
         observeInternetConnection()
     }
 
@@ -68,15 +67,6 @@ class ProfileViewController: UIViewController {
         profileTableView.registerCell(ofType: ProfileTableViewCell.self)
         profileTableView.registerCell(ofType: ProfileEditAndLogoutTableViewCell.self)
         profileTableView.registerHeaderFooterView(ofType: ProfileTableViewHeader.self)
-    }
-
-    private func preventScreenRecording() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        window?.isHidden = UIScreen.main.isCaptured
     }
 
     private func showLoadingIndicator() {

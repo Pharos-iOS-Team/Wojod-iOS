@@ -67,7 +67,6 @@ class HomeViewController: UIViewController {
         configureRefreshControl()
         loadUserProfile()
         preventScreenshot()
-        preventScreenRecording()
         loadAndConfigureAdvertisements()
         observeInternetConnection()
     }
@@ -122,15 +121,6 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Private Functions
-
-    private func preventScreenRecording() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        window?.isHidden = UIScreen.main.isCaptured
-    }
 
     private func configureFilterButton() {
         if !isMyCourses && mode == .exploreMore {
