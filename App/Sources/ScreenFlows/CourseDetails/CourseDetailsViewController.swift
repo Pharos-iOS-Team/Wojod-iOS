@@ -903,7 +903,12 @@ extension CourseDetailsViewController: UITableViewDelegate {
             case .videos:
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
-                        UIApplication.shared.open(url)
+                        if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false {
+                            let headerview = tableView.headerView(forSection: .zero) as? CourseDetailsInfoHeaderView
+                            headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
+                        } else {
+                            UIApplication.shared.open(url)
+                        }
                     }
                 } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
@@ -978,7 +983,12 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
             } else if let video = attachment as? Video {
                 if let url = URL(string: video.link ?? "") {
-                    UIApplication.shared.open(url)
+                    if video.link?.contains("youtu.be") ?? false {
+                        let headerview = tableView.headerView(forSection: 0) as? CourseDetailsInfoHeaderView
+                        headerview?.playYoutubeVideo(videoLink: video.link ?? "")
+                    } else {
+                        UIApplication.shared.open(url)
+                    }
                 } else if !(video.vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
                 }

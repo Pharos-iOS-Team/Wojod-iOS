@@ -3,6 +3,7 @@
 import AVKit
 import Cosmos
 import HandyUIKit
+import YouTubePlayer
 
 protocol CourseDetailsInfoHeaderDelegate: AnyObject {
     func showDetails()
@@ -101,6 +102,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             numberOfViewLabel.text = L10n.CourseDetails.CourseReview.reviews
         }
     }
+    @IBOutlet private var youtubePlayerView: YouTubePlayerView!
 
     weak var delegate: CourseDetailsInfoHeaderDelegate?
     var video: Media?
@@ -150,12 +152,28 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         materialsButton.isHidden = model.shouldHideMaterials
         configureChatButtonAccordingToState(state: model.state)
         video = model.video
-        playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
+        playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true || video?.fileUrl?.contains("youtu.be") ?? false
         setRating(model.rating ?? .zero)
         configureButtonSelected(buttonSelected: model.buttonSelected)
         configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
         configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
         delegate = model.delegate
+        youtubePlayerView.isHidden = video?.fileUrl?.contains("youtu.be") ?? false
+    }
+
+    func playYoutubeVideo(videoLink: String) {
+        let youtubeView = YouTubePlayerView(frame: mainView.frame)
+        mainView.addSubview(youtubeView)
+        youtubeView.bindEdgesToSuperview()
+        let videoID = extractID(from: videoLink)
+        youtubeView.loadVideoID(videoID)
+        youtubeView.play()
+    }
+
+    private func extractID(from videoURL: String) -> String {
+        guard let equalIndex = videoURL.firstIndex(of: "=") else { return "" }
+        let startIdindex = videoURL.index(equalIndex, offsetBy: 1)
+        return String(videoURL.suffix(from: startIdindex))
     }
 
     private func configureLessonBadge(shouldHide: Bool) {
