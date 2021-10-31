@@ -115,7 +115,6 @@ class CourseDetailsViewController: UIViewController {
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         handleScreenshot()
-        preventScreenRecording()
         configureRefreshControl()
         observeInternetConnection()
         showQuizAlert()
@@ -202,15 +201,6 @@ class CourseDetailsViewController: UIViewController {
                 }
             }
         }
-    }
-
-    private func preventScreenRecording() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        window?.isHidden = UIScreen.main.isCaptured
     }
 
     private func coursePrice() -> String {

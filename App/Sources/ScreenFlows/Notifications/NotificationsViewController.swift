@@ -37,7 +37,6 @@ class NotificationsViewController: UIViewController {
         loadNotifications()
         documentInteractionController.delegate = self
         preventScreenshot()
-        preventScreenRecording()
         observeInternetConnection()
     }
 
@@ -48,15 +47,6 @@ class NotificationsViewController: UIViewController {
     }
 
     // MARK: - Private functions
-
-    private func preventScreenRecording() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        window?.isHidden = UIScreen.main.isCaptured
-    }
 
     private func configureTableView() {
         tableView.registerCell(ofType: NotificationTableViewCell.self)
