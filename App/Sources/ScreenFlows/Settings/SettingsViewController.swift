@@ -34,23 +34,12 @@ class SettingsViewController: UIViewController {
         registerNib()
         setUserAvatar()
         navigateToProfileHandler()
-        preventScreenshot()
-        preventScreenRecording()
         observeInternetConnection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUserAvatar()
-    }
-
-    private func preventScreenRecording() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        window?.isHidden = UIScreen.main.isCaptured
     }
 
     private func registerNib() {
