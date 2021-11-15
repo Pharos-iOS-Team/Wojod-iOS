@@ -115,17 +115,28 @@ class FiltersViewController: UIViewController {
 
     @IBAction private func didTapUniversityButton(_ sender: UIButton) {
         clearPreviouslyChosenFilters()
+        shouldApplyButtonBeUnabled = false
         selectUniversity()
         selectStudentInUniversity()
     }
 
     @IBAction private func didTapStudentButton(_ sender: UIButton) {
         clearPreviouslyChosenFilters()
+        shouldApplyButtonBeUnabled = false
+        universitySection = .university
+        schoolSection = .academicType
+        universitySectionTitles = [L10n.Filters.university]
+        schoolSectionTitles = [L10n.Profile.academicType]
         selectStudentInUniversity()
     }
 
     @IBAction private func didTapGraduatedButton(_ sender: UIButton) {
         clearPreviouslyChosenFilters()
+        shouldApplyButtonBeUnabled = false
+        universitySection = .university
+        schoolSection = .academicType
+        universitySectionTitles = [L10n.Filters.university]
+        schoolSectionTitles = [L10n.Profile.academicType]
         selectGraduatedInUniversity()
     }
 
@@ -235,6 +246,13 @@ class FiltersViewController: UIViewController {
         Filters.shared.academicYear = nil
         Filters.shared.field = nil
         Filters.shared.subject = nil
+        selectedUniversity = nil
+        selectedYear = nil
+        selectedDivision = nil
+        selectedField = nil
+        selectedAcademicYear = nil
+        selectedAcademicType = nil
+        selectedSubject = nil
     }
 }
 
@@ -368,7 +386,6 @@ extension FiltersViewController: UITableViewDataSource {
 extension FiltersViewController: SelectingFilterDelegate {
     // swiftlint:disable function_body_length
     func didSelectFilter(_ filterIndex: Int, in section: SchoolSection) {
-        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .academicType:
@@ -459,13 +476,13 @@ extension FiltersViewController: SelectingFilterDelegate {
             }
 
         case .subjects:
+            shouldApplyButtonBeUnabled = true
             selectedSubject = subjects[filterIndex]
             Filters.shared.subject = selectedSubject
         }
     }
 
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
-        shouldApplyButtonBeUnabled = true
         Filters.shared.isDataBeingRetrieved = false
         switch section {
         case .university:
@@ -556,6 +573,7 @@ extension FiltersViewController: SelectingFilterDelegate {
             }
 
         case .subjects:
+            shouldApplyButtonBeUnabled = true
             selectedSubject = universitySubjects[filterIndex]
             Filters.shared.subject = selectedSubject
         }
