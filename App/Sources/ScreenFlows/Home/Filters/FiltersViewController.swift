@@ -121,22 +121,12 @@ class FiltersViewController: UIViewController {
     }
 
     @IBAction private func didTapStudentButton(_ sender: UIButton) {
-        clearPreviouslyChosenFilters()
-        shouldApplyButtonBeUnabled = false
-        universitySection = .university
-        schoolSection = .academicType
-        universitySectionTitles = [L10n.Filters.university]
-        schoolSectionTitles = [L10n.Profile.academicType]
+        resetTitles()
         selectStudentInUniversity()
     }
 
     @IBAction private func didTapGraduatedButton(_ sender: UIButton) {
-        clearPreviouslyChosenFilters()
-        shouldApplyButtonBeUnabled = false
-        universitySection = .university
-        schoolSection = .academicType
-        universitySectionTitles = [L10n.Filters.university]
-        schoolSectionTitles = [L10n.Profile.academicType]
+        resetTitles()
         selectGraduatedInUniversity()
     }
 
@@ -253,6 +243,15 @@ class FiltersViewController: UIViewController {
         selectedAcademicYear = nil
         selectedAcademicType = nil
         selectedSubject = nil
+    }
+
+    private func resetTitles() {
+        clearPreviouslyChosenFilters()
+        shouldApplyButtonBeUnabled = false
+        universitySection = .university
+        schoolSection = .academicType
+        universitySectionTitles = [L10n.Filters.university]
+        schoolSectionTitles = [L10n.Profile.academicType]
     }
 }
 
