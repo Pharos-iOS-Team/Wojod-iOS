@@ -1,20 +1,16 @@
 PODS:
   - VdoCipherKit (1.2.4)
-  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - VdoCipherKit (= 1.2.4)
-  - YouTubePlayer
 
 SPEC REPOS:
   trunk:
     - VdoCipherKit
-    - YouTubePlayer
 
 SPEC CHECKSUMS:
   VdoCipherKit: 68632d648c4a521aae941a09bb25e6896ad7c334
-  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: d4de681622b5bd2e4311b02036c8d6ec573da048
+PODFILE CHECKSUM: f850096d6fc5cc2785fed54b1a86b85d3bcc22a9
 
 COCOAPODS: 1.11.0

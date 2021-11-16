@@ -371,6 +371,8 @@
 		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
+		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
+		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
@@ -770,6 +772,11 @@
 		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		BCD4049F2743C65900B27F98 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		BCD404A02743C65900B27F98 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		BCD404A22743C65900B27F98 /* YouTubeiOSPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeiOSPlayerHelper.h; sourceTree = "<group>"; };
+		BCD404A32743C65900B27F98 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
+		BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wojood-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -1308,6 +1315,7 @@
 		7723ACD9261C5E69007C0B97 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				BCD404932743B7A400B27F98 /* ExternalFrameworks */,
 				7723AD53261C656A007C0B97 /* Sources */,
 				7723AD54261C656F007C0B97 /* Resources */,
 				7723AD55261C657B007C0B97 /* Generated */,
@@ -1390,6 +1398,7 @@
 				3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
+				BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -1976,6 +1985,33 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		BCD404932743B7A400B27F98 /* ExternalFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BCD4049E2743C65900B27F98 /* Youtube */,
+			);
+			path = ExternalFrameworks;
+			sourceTree = "<group>";
+		};
+		BCD4049E2743C65900B27F98 /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				BCD4049F2743C65900B27F98 /* YTPlayerView.h */,
+				BCD404A02743C65900B27F98 /* YTPlayerView.m */,
+				BCD404A12743C65900B27F98 /* youtube-ios-player-helper */,
+			);
+			path = Youtube;
+			sourceTree = "<group>";
+		};
+		BCD404A12743C65900B27F98 /* youtube-ios-player-helper */ = {
+			isa = PBXGroup;
+			children = (
+				BCD404A22743C65900B27F98 /* YouTubeiOSPlayerHelper.h */,
+				BCD404A32743C65900B27F98 /* Assets.bundle */,
+			);
+			path = "youtube-ios-player-helper";
+			sourceTree = "<group>";
+		};
 		BCF8F77027033F0C009593AA /* AVFoundationExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2255,6 +2291,7 @@
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */,
 				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
+				BCD404A62743C65900B27F98 /* Assets.bundle in Resources */,
 				BC083B2826429E4800A1E6A4 /* AvatarsList.storyboard in Resources */,
 				BC19E5892631762A00CFA142 /* ProfileTableViewCell.xib in Resources */,
 				385CC1052663D95D00A091FD /* Roboto in Resources */,
@@ -2639,6 +2676,7 @@
 				380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */,
 				BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */,
 				BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */,
+				BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */,
 				778E72DA261DF6C4009D7B35 /* ModelDecodable.swift in Sources */,
 				38659BE026B6D2F900E3BFE9 /* SubmissionsHeaderData.swift in Sources */,
 				E8C9EF632638D6940023D2B1 /* TextfieldExt.swift in Sources */,
@@ -2886,6 +2924,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2913,6 +2952,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

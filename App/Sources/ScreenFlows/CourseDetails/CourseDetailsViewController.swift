@@ -903,7 +903,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
             case .videos:
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
-                        if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false {
+                        if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
                             let headerview = tableView.headerView(forSection: .zero) as? CourseDetailsInfoHeaderView
                             headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
                         } else {
