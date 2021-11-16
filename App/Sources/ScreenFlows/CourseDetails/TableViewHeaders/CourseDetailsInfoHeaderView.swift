@@ -101,9 +101,11 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
             numberOfViewLabel.text = L10n.CourseDetails.CourseReview.reviews
         }
     }
+    private var youtubePlayerView: YTPlayerView!
 
     weak var delegate: CourseDetailsInfoHeaderDelegate?
     var video: Media?
+    var videoURL: String?
 
     @IBAction private func didTapDetails(_ sender: Any) {
         configureButtonSelected(buttonSelected: .details)
@@ -150,12 +152,42 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
         materialsButton.isHidden = model.shouldHideMaterials
         configureChatButtonAccordingToState(state: model.state)
         video = model.video
-        playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true
+        playButton.isHidden = video?.fileUrl == nil || video?.fileUrl?.isEmpty ?? true || video?.fileUrl?.contains("youtu.be") ?? false
         setRating(model.rating ?? .zero)
         configureButtonSelected(buttonSelected: model.buttonSelected)
         configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
         configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
         delegate = model.delegate
+    }
+
+    func playYoutubeVideo(videoLink: String) {
+        youtubePlayerView = YTPlayerView(frame: mediaContainerView.frame)
+        youtubePlayerView.delegate = self
+        videoURL = videoLink
+        mediaContainerView.addSubview(youtubePlayerView)
+        youtubePlayerView.bindEdgesToSuperview()
+        mediaContainerView.bringSubviewToFront(youtubePlayerView)
+        let videoID = extractID(from: videoLink)
+        youtubePlayerView.load(withVideoId: videoID, playerVars: ["playsinline": 1, "autoplay": 1])
+    }
+
+    private func extractID(from videoURL: String) -> String {
+        do {
+            let regex = try NSRegularExpression(
+                pattern: "(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)",
+                options: NSRegularExpression.Options.caseInsensitive
+            )
+            let match = regex.firstMatch(
+                in: videoURL,
+                options: NSRegularExpression.MatchingOptions.reportProgress,
+                range: NSMakeRange(0, videoURL.lengthOfBytes(using: String.Encoding.utf8))
+            )
+            let range = match?.range(at: 0)
+            let youTubeID = (videoURL as NSString).substring(with: range!)
+            return youTubeID
+        } catch {
+        }
+        return ""
     }
 
     private func configureLessonBadge(shouldHide: Bool) {
@@ -200,5 +232,13 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
 
     private func configureChatButtonAccordingToState(state: CourseState) {
         chatButton.isHidden = state != .booked
+    }
+}
+
+extension CourseDetailsInfoHeaderView: YTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        guard let videoURL = videoURL else { return }
+        let videoID = extractID(from: videoURL)
+        playerView.loadVideo(byId: videoID, startSeconds: .zero)
     }
 }
