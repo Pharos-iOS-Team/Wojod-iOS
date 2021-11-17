@@ -159,7 +159,7 @@
 "signup.school.academicYear" = "السنة الأكاديمية*";
 "signup.school.field" = "تخصص";
 "signup.school.schoolName" = "اسم المدرسة*";
-"signup.school.none" = "لا بوجد";
+"signup.school.none" = "لا يوجد";
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
