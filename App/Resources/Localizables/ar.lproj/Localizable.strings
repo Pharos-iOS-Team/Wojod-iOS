@@ -11,7 +11,7 @@
 "shared.alerts.screenshotsNotAllowed" = "غير مسموح بأخذ لقطة شاشة!";
 "shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 
-"shared.action.cancel" = "الغاء";
+"shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
 
 "login.welcome" = "مرحبًا!
@@ -209,7 +209,7 @@
 "home.course.seeReceipt" = "عرض الايصال";
 "home.course.returnToTeacher" = "ارجع للمدرس";
 "home.ads.viewMore" = "عرض المزيد";
-"home.pending" = "في حالة انتظار";
+"home.pending" = "محجوز";
 "home.search.emptyStateTitle" = "نأسف";
 "home.search.emptyStateDescription" = "لم نتمكن من العثور على ما تبحث عنه. حاول مرة أخرى بكلمات مختلفة.";
 
@@ -252,7 +252,7 @@
 "quizzes.available" = "متاح";
 "quizzes.due" = "تاريخ الاستحقاق:";
 "quizzes.duration" = "المدة:";
-"quizzes.start" = "إبدأ";
+"quizzes.start" = "ابدأ";
 "quizzes.closed" = "تم الغلق";
 "quizzes.submitted" = "إرسال";
 "quizzes.notSubmitted" = "لم يرسل";
@@ -348,3 +348,5 @@
 "assignment.incorrect" = "الاجابة خاطئة";
 "assignment.notReviewed" = "لم يتم مراجعته";
 "assignment.needsImprovement" = "يحتاج إلى التحسين";
+
+"navigation.back" = "رجوع";

@@ -349,3 +349,5 @@ No worries!";
 "assignment.incorrect" = "Not correct";
 "assignment.notReviewed" = "Not reviewed";
 "assignment.needsImprovement" = "Needs improvement";
+
+"navigation.back" = "Back";

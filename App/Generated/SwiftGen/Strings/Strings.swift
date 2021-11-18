@@ -398,6 +398,13 @@ internal enum L10n {
       }
   }
 
+  internal enum Navigation {
+    /// Back
+    internal static var back: String {
+        return L10n.tr("Localizable", "navigation.back")
+      }
+  }
+
   internal enum Notifications {
     /// Notifications
     internal static var title: String {
