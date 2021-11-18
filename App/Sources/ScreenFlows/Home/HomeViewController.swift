@@ -366,6 +366,9 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
         navigationCtrl.modalPresentationStyle = .fullScreen
         navigationCtrl.navigationBar.isHidden = true
+        let backButton = UIBarButtonItem()
+        backButton.title = L10n.Navigation.back
+        navigationCtrl.navigationBar.topItem?.backBarButtonItem = backButton
         present(navigationCtrl, animated: true)
         hideLoadingIndicator()
     }
