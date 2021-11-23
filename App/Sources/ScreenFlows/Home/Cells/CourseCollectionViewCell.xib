@@ -35,7 +35,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2E-Az-Ail">
                                 <rect key="frame" x="166" y="152" width="59" height="28"/>
-                                <color key="backgroundColor" name="sendButtonColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="8Lb-Vg-7Bx"/>
                                     <constraint firstAttribute="height" constant="28" id="kX7-zM-ga7"/>
