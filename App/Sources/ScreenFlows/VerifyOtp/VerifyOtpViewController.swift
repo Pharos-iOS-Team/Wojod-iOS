@@ -1,6 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import DPOTPView
+import OTPFieldView
 import JGProgressHUD
 import UIKit
 
@@ -31,7 +31,7 @@ class VerifyOtpViewController: UIViewController {
             backButton.setImage(Images.localizedBackButton)
         }
     }
-    @IBOutlet private var otpTextView: DPOTPView!
+    @IBOutlet private var otpTextView: OTPFieldView!
     @IBOutlet private var alertVIewHeightConstraint: NSLayoutConstraint! {
         didSet {
             alertViewHeight = alertVIewHeightConstraint.constant
@@ -39,7 +39,9 @@ class VerifyOtpViewController: UIViewController {
     }
 
     var mobileNumber: String = ""
+    var otp: String = ""
     var verifyUserFromLogin: Bool = false
+    var shouldSendButtonBeUnabled: Bool = false
     var alertViewHeight: CGFloat = 0
     let viewModel = VerifyOtpViewModel()
     let loadingHud = JGProgressHUD()
@@ -48,9 +50,11 @@ class VerifyOtpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupOtpView()
         configureErrorHandler()
         configureSuccessHandler()
         showLoadingIndicatorHandler()
+        configureSendButton()
     }
 
     @IBAction private func verifyOTP(_ sender: SendButton) {
@@ -65,11 +69,36 @@ class VerifyOtpViewController: UIViewController {
         AppDelegate.getAppDelegate()?.window?.rootViewController?.dismiss(animated: true)
     }
 
+    func setupOtpView() {
+        otpTextView.fieldsCount = 4
+        otpTextView.fieldBorderWidth = 2
+        otpTextView.defaultBorderColor = Colors.backgroundLightPurple.color
+        otpTextView.filledBorderColor = Colors.sendButtonColor.color
+        otpTextView.cursorColor = Colors.sendButtonColor.color
+        otpTextView.displayType = .underlinedBottom
+        otpTextView.fieldSize = 70
+        otpTextView.separatorSpace = 10
+        otpTextView.shouldAllowIntermediateEditing = false
+        otpTextView.delegate = self
+        otpTextView.initializeUI()
+    }
+
     private func confirmOTP() {
         hideAlertView()
-        guard let otp = otpTextView.text else { return }
         let otpModel = OtpVerification(mobileNumber: mobileNumber, otpCode: otp)
         verifyUserFromLogin ? viewModel.verifyOtpFromLogin(otp: otpModel) : viewModel.verifyOtp(otp: otpModel)
+    }
+
+    private func configureSendButton() {
+        if shouldSendButtonBeUnabled {
+            sendButton.setTitleColor(.white, for: .normal)
+            sendButton.backgroundColor = Colors.sendButtonColor.color
+            sendButton.isEnabled = true
+        } else {
+            sendButton.setTitleColor(Colors.lightGreyColor.color, for: .disabled)
+            sendButton.backgroundColor = Colors.labelGreyColor.color
+            sendButton.isEnabled = false
+        }
     }
 
     private func configureSuccessHandler() {
@@ -119,5 +148,21 @@ class VerifyOtpViewController: UIViewController {
     private func showAlert() {
         let alert = AlertHandler(presentingViewCtrl: self)
         alert.showInformationAlert(title: L10n.VerifyOtp.didNotGetACode, message: L10n.VerifyOtp.didNotGetACodeAlert)
+    }
+}
+
+extension VerifyOtpViewController: OTPFieldViewDelegate {
+    func shouldBecomeFirstResponderForOTP(otpTextFieldIndex index: Int) -> Bool {
+        true
+    }
+
+    func hasEnteredAllOTP(hasEnteredAll: Bool) -> Bool {
+        shouldSendButtonBeUnabled = hasEnteredAll
+        configureSendButton()
+        return hasEnteredAll
+    }
+
+    func enteredOTP(otp: String) {
+        self.otp = otp
     }
 }

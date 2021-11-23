@@ -7,5 +7,6 @@ target 'Wojood' do
 
   # Pods for Wojood
   pod 'VdoCipherKit', '1.2.4'
+  pod 'OTPFieldView'
 
 end
