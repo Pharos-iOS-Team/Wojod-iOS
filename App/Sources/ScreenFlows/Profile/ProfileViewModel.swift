@@ -343,7 +343,7 @@ class ProfileViewModel {
         profile.passwordConfirmation = passwordConfirmation
     }
 
-    func setNewAvatar(avatarId: Int) {
+    func setNewAvatar(avatarId: Int?) {
         profile.avatarId = avatarId
     }
 

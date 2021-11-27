@@ -3,7 +3,7 @@
 import UIKit
 
 protocol AvatarsListDelegate: AnyObject {
-    func setAvatar(avatar: Avatar)
+    func setAvatar(avatar: Avatar?)
 }
 
 class AvatarsListViewController: UIViewController {
@@ -13,13 +13,31 @@ class AvatarsListViewController: UIViewController {
             avatarsCollectionView.delegate = self
         }
     }
+    @IBOutlet private var confirmButton: UIButton! {
+        didSet {
+            confirmButton.setTitle(L10n.Global.Actions.confirm)
+        }
+    }
 
     var avatars = [Avatar]()
     weak var delegate: AvatarsListDelegate?
+    private var previouslySelectedAvatarIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    @IBAction private func didTapConfirm(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true) {
+            if self.previouslySelectedAvatarIndexPath == nil {
+                self.delegate?.setAvatar(avatar: nil)
+            } else {
+                self.delegate?.setAvatar(
+                    avatar: self.avatars[self.previouslySelectedAvatarIndexPath?.item ?? .zero]
+                )
+            }
+        }
+    }
+
     private func getImage(from avatar: Avatar) -> UIImage {
         guard let link = avatar.thumbnailUrl else { return UIImage() }
         let url = Environment.baseURL.appendingPathComponent(link)
@@ -41,13 +59,44 @@ extension AvatarsListViewController: UICollectionViewDataSource {
             ) as? AvatarCollectionViewCell ?? AvatarCollectionViewCell()
         )
         let image = getImage(from: avatars[indexPath.row])
-        cell.configure(image: image)
+        cell.configure(image: image, isSelected: isAvatarSelected(indexPath: indexPath))
+        if isAvatarSelected(indexPath: indexPath) {
+            self.collectionView(collectionView, didSelectItemAt: indexPath)
+        }
+        if User.shared.avatar?.id == nil {
+            for cell in collectionView.visibleCells {
+                if let avatarCell = cell as? AvatarCollectionViewCell {
+                    avatarCell.selectImage()
+                }
+            }
+        }
         return cell
     }
 
+    func isAvatarSelected(indexPath: IndexPath) -> Bool {
+        if avatars[indexPath.row].id == User.shared.avatar?.id || User.shared.avatar?.id == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presentingViewController?.dismiss(animated: true) {
-            self.delegate?.setAvatar(avatar: self.avatars[indexPath.row])
+        if indexPath == previouslySelectedAvatarIndexPath {
+            previouslySelectedAvatarIndexPath = nil
+            for cell in collectionView.visibleCells {
+                if let avatarCell = cell as? AvatarCollectionViewCell {
+                    avatarCell.selectImage()
+                    avatarCell.isCellSelected = false
+                }
+            }
+        } else {
+            previouslySelectedAvatarIndexPath = indexPath
+            for cell in collectionView.visibleCells {
+                if let avatarCell = cell as? AvatarCollectionViewCell {
+                    cell.isSelected ? avatarCell.selectImage() : avatarCell.unselectImage()
+                }
+            }
         }
     }
 }
