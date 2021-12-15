@@ -70,6 +70,7 @@ final class User {
     var homeNumber: String?
     var isSchoolStudent: Bool?
     let logoutApiClient = LogoutApiClient()
+    let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
     private init() {}
 
@@ -132,6 +133,18 @@ final class User {
         self.logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
             self?.setLoggedOut()
             completionHandler(response, error)
+        }
+    }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        screenShotAlertApiClient.screenshotAlert(screenName: screenName) { response, _ in
+            if let response = response {
+                if response.statusCode < 300 {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         }
     }
 }

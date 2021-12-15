@@ -9,6 +9,7 @@
 
 "shared.alerts.error" = "خطأ";
 "shared.alerts.screenshotsNotAllowed" = "غير مسموح بأخذ لقطة شاشة!";
+"shared.alerts.screenRecordingNotAllowed" = "غير مسموح بتسجيل الشاشة!";
 "shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 
 "shared.action.cancel" = "الغاء";
