@@ -127,6 +127,16 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         subjectsCollectionViewHeightConstraint.constant = 0
         adsCollectionViewHeightConstraint.constant = 0
     }
+
+    func hideAdvertisments() {
+        adsCollectionView.isHidden = true
+        adsCollectionViewHeightConstraint.constant = 0
+    }
+
+    func showAdvertisments() {
+        adsCollectionView.isHidden = true
+        adsCollectionViewHeightConstraint.constant = 150
+    }
 }
 
 // MARK: - Collection View Data Source
