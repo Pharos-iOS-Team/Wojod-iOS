@@ -85,12 +85,9 @@ extension UIViewController {
 
     private func handleSendingScreenshotAlert() {
         if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: self)) { isSentSuccessfully in
-                self.handleCrashingTheApp()
-            }
-        } else {
-            self.handleCrashingTheApp()
+            User.shared.screenshotAlert(screenName: String(describing: self)) { _ in }
         }
+        handleCrashingTheApp()
     }
 
     private func handleCrashingTheApp() {

@@ -134,7 +134,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     }
 
     func showAdvertisments() {
-        adsCollectionView.isHidden = true
+        adsCollectionView.isHidden = false
         adsCollectionViewHeightConstraint.constant = 150
     }
 }

@@ -37,15 +37,12 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
 
     @objc
     private func hideScreenIfBeingRecorded() {
-        if UIScreen.main.isCaptured {
-            if ReachabilityAppDelegate.connectionState == .connected {
-                User.shared.screenshotAlert(screenName: String(describing: (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController)) { _ in
-                    self.handleCrashingTheApp()
-                }
-            } else {
-                self.handleCrashingTheApp()
-            }
+        guard UIScreen.main.isCaptured else { return }
+
+        if ReachabilityAppDelegate.connectionState == .connected {
+            User.shared.screenshotAlert(screenName: String(describing: (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController)) { _ in }
         }
+        handleCrashingTheApp()
     }
 
     private func handleCrashingTheApp() {
