@@ -199,6 +199,9 @@ class ProfileViewController: UIViewController {
         let cell: ProfileEditAndLogoutTableViewCell =
             tableView.dequeueCell(for: indexPath)
         cell.configure(delegate: self)
+        cell.showError = { [weak self] error in
+            self?.showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.error, message: error.localizedDescription)
+        }
         return cell
     }
 

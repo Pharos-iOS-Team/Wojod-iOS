@@ -336,6 +336,11 @@ extension HomeViewController: UITableViewDataSource {
         } else {
             headerView?.hideSubjectsAndAds()
         }
+        if advertisements?.isEmpty ?? true {
+            headerView?.hideAdvertisments()
+        } else {
+            headerView?.showAdvertisments()
+        }
         return headerView
     }
 }
@@ -348,7 +353,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return mode == .exploreMore || isInSearchMode ? 150 : 380
+        return mode == .exploreMore || isInSearchMode || advertisements?.isEmpty ?? true ? 180 : 400
     }
 }
 

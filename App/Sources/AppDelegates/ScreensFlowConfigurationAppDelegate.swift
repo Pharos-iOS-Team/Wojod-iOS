@@ -25,8 +25,8 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         } else {
             window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {}) { _ in 
-            window.isHidden = UIScreen.main.isCaptured
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil) { _ in
+            self.hideScreenIfBeingRecorded()
         }
         addScreenRecordingPreventionObserver()
     }
@@ -37,6 +37,24 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
 
     @objc
     private func hideScreenIfBeingRecorded() {
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = UIScreen.main.isCaptured
+        guard UIScreen.main.isCaptured else { return }
+
+        if ReachabilityAppDelegate.connectionState == .connected {
+            User.shared.screenshotAlert(screenName: String(describing: (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController)) { _ in }
+        }
+        handleCrashingTheApp()
+    }
+
+    private func handleCrashingTheApp() {
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController?.showAlert(
+            imageName: Images.danger.name,
+            title: L10n.Shared.Alerts.screenRecordingNotAllowed,
+            message: L10n.Shared.Alerts.appWillTerminate
+        ) {
+            exit(-1)
+        }
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+            exit(-1)
+        }
     }
 }

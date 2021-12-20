@@ -70,6 +70,7 @@ final class User {
     var homeNumber: String?
     var isSchoolStudent: Bool?
     let logoutApiClient = LogoutApiClient()
+    let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
     private init() {}
 
@@ -118,7 +119,7 @@ final class User {
         User.shared.region = nil
     }
 
-    func setLoggedOut() {
+    private func setLoggedOut() {
         isFirstHomeLoad = true
         deleteUserLocationData()
         KeychainHandler.shared.deleteUserToken()
@@ -129,9 +130,23 @@ final class User {
     }
 
     func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
-        self.logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            self?.setLoggedOut()
+        logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
+            if error == nil {
+                self?.setLoggedOut()
+            }
             completionHandler(response, error)
+        }
+    }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        screenShotAlertApiClient.screenshotAlert(screenName: screenName) { response, _ in
+            if let response = response {
+                if response.statusCode < 300 {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         }
     }
 }
