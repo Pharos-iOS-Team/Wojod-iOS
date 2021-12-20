@@ -180,28 +180,6 @@ class CourseDetailsViewController: UIViewController {
         }
     }
     // MARK: - Private Functions
-
-    @discardableResult
-    private func handleScreenshot() -> NSObjectProtocol {
-        return NotificationCenter.default.addObserver(
-            forName: UIApplication.userDidTakeScreenshotNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { notification in
-            self.showLoadingIndicator()
-            self.viewModel?.screenshotAlert(screenName: self.activeSubscreen.rawValue) { _ in
-                self.hideLoadingIndicator()
-                self.showAlert(
-                    imageName: Images.danger.name,
-                    title: L10n.Shared.Alerts.screenshotsNotAllowed,
-                    message: L10n.Shared.Alerts.appWillTerminate
-                ) {
-                    exit(-1)
-                }
-            }
-        }
-    }
-
     private func coursePrice() -> String {
         if course?.price == nil || course?.price?.isEmpty ?? true {
             return L10n.Home.Course.returnToTeacher

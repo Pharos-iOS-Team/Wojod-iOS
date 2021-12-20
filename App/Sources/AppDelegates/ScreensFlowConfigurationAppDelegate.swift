@@ -29,10 +29,21 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
             self.hideScreenIfBeingRecorded()
         }
         addScreenRecordingPreventionObserver()
+        preventScreenshot()
     }
 
     private func addScreenRecordingPreventionObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+    }
+
+    func preventScreenshot() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.userDidTakeScreenshotNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { notification in
+            self.handleSendingScreenshotAlert()
+        }
     }
 
     @objc
@@ -42,10 +53,30 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         if ReachabilityAppDelegate.connectionState == .connected {
             User.shared.screenshotAlert(screenName: String(describing: (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController)) { _ in }
         }
-        handleCrashingTheApp()
+        handleCrashingTheAppForRecording()
     }
 
-    private func handleCrashingTheApp() {
+    private func handleSendingScreenshotAlert() {
+        if ReachabilityAppDelegate.connectionState == .connected {
+            User.shared.screenshotAlert(screenName: String(describing: (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController)) { _ in }
+        }
+        handleCrashingTheAppForTakingScreenshot()
+    }
+
+    private func handleCrashingTheAppForTakingScreenshot() {
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController?.showAlert(
+            imageName: Images.danger.name,
+            title: L10n.Shared.Alerts.screenshotsNotAllowed,
+            message: L10n.Shared.Alerts.appWillTerminate
+        ) {
+            exit(-1)
+        }
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+            exit(-1)
+        }
+    }
+
+    private func handleCrashingTheAppForRecording() {
         (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController?.showAlert(
             imageName: Images.danger.name,
             title: L10n.Shared.Alerts.screenRecordingNotAllowed,

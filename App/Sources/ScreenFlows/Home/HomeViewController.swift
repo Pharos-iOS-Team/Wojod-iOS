@@ -66,7 +66,6 @@ class HomeViewController: UIViewController {
         configureTableView()
         configureRefreshControl()
         loadUserProfile()
-        preventScreenshot()
         loadAndConfigureAdvertisements()
         observeInternetConnection()
     }
