@@ -3189,7 +3189,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.1;
+				minimumVersion = 7.1.2;
 			};
 		};
 		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
