@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import UIKit
+import Moya
 
 protocol ProfileChangePasswordDelegate: AnyObject {
     func changePasswordHandler()
@@ -26,13 +27,19 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
     }
 
     private weak var delegate: ProfileChangePasswordDelegate?
+    var showError: ((MoyaError) -> Void)?
 
     @IBAction private func changePasswordPressed(_ sender: Any) {
         delegate?.changePasswordHandler()
     }
+
     @IBAction private func logoutPressed(_ sender: Any) {
-        User.shared.logout { _, _ in
-            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+        User.shared.logout { [weak self] _, error in
+            if let error = error {
+                self?.showError?(error)
+            } else {
+                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+            }
         }
     }
 

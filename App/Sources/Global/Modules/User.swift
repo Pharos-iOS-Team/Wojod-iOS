@@ -119,7 +119,7 @@ final class User {
         User.shared.region = nil
     }
 
-    func setLoggedOut() {
+    private func setLoggedOut() {
         isFirstHomeLoad = true
         deleteUserLocationData()
         KeychainHandler.shared.deleteUserToken()
@@ -130,8 +130,10 @@ final class User {
     }
 
     func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
-        self.logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            self?.setLoggedOut()
+        logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
+            if error == nil {
+                self?.setLoggedOut()
+            }
             completionHandler(response, error)
         }
     }
