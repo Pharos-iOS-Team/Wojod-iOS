@@ -873,6 +873,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                         if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
                             let headerview = tableView.headerView(forSection: .zero) as? CourseDetailsInfoHeaderView
                             headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
+                            tableView.setContentOffset(.zero, animated: false)
                         } else {
                             UIApplication.shared.open(url)
                         }
@@ -953,6 +954,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     if video.link?.contains("youtu.be") ?? false {
                         let headerview = tableView.headerView(forSection: 0) as? CourseDetailsInfoHeaderView
                         headerview?.playYoutubeVideo(videoLink: video.link ?? "")
+                        tableView.setContentOffset(.zero, animated: false)
                     } else {
                         UIApplication.shared.open(url)
                     }
