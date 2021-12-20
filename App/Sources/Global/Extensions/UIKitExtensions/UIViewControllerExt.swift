@@ -2,6 +2,7 @@
 // swiftlint:disable all
 
 import UIKit
+import Reachability
 import SwiftEntryKit
 
 extension UIViewController {
@@ -78,13 +79,27 @@ extension UIViewController {
             object: nil,
             queue: OperationQueue.main
         ) { notification in
-            self.showAlert(
-                imageName: Images.danger.name,
-                title: L10n.Shared.Alerts.screenshotsNotAllowed,
-                message: L10n.Shared.Alerts.appWillTerminate
-            ) {
-                exit(-1)
-            }
+            self.handleSendingScreenshotAlert()
+        }
+    }
+
+    private func handleSendingScreenshotAlert() {
+        if ReachabilityAppDelegate.connectionState == .connected {
+            User.shared.screenshotAlert(screenName: String(describing: self)) { _ in }
+        }
+        handleCrashingTheApp()
+    }
+
+    private func handleCrashingTheApp() {
+        self.showAlert(
+            imageName: Images.danger.name,
+            title: L10n.Shared.Alerts.screenshotsNotAllowed,
+            message: L10n.Shared.Alerts.appWillTerminate
+        ) {
+            exit(-1)
+        }
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+            exit(-1)
         }
     }
 }

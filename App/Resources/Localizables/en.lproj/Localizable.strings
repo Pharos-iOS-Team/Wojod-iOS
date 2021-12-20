@@ -9,6 +9,7 @@
 
 "shared.alerts.error" = "Error";
 "shared.alerts.screenshotsNotAllowed" = "Screenshots Aren't Allowed!";
+"shared.alerts.screenRecordingNotAllowed" = "Screen recording is not Allowed!";
 "shared.alerts.appWillTerminate" = "App will terminate.";
 
 "shared.action.cancel" = "Cancel";

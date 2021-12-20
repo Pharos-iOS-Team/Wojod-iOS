@@ -917,6 +917,10 @@ internal enum L10n {
       internal static var error: String {
           return L10n.tr("Localizable", "shared.alerts.error")
         }
+      /// Screen recording is not Allowed!
+      internal static var screenRecordingNotAllowed: String {
+          return L10n.tr("Localizable", "shared.alerts.screenRecordingNotAllowed")
+        }
       /// Screenshots Aren't Allowed!
       internal static var screenshotsNotAllowed: String {
           return L10n.tr("Localizable", "shared.alerts.screenshotsNotAllowed")

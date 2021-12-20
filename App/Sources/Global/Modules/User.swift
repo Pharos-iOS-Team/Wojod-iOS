@@ -11,7 +11,7 @@ enum EducationLevel: Int, CaseIterable {
     case gradute
 }
 
-final class User {
+final class User: ModelDecodable {
     static let shared = User()
     private(set) var id: Int? {
         get {
@@ -70,6 +70,7 @@ final class User {
     var homeNumber: String?
     var isSchoolStudent: Bool?
     let logoutApiClient = LogoutApiClient()
+    let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
     private init() {}
 
@@ -118,7 +119,7 @@ final class User {
         User.shared.region = nil
     }
 
-    func setLoggedOut() {
+    private func setLoggedOut() {
         isFirstHomeLoad = true
         deleteUserLocationData()
         KeychainHandler.shared.deleteUserToken()
@@ -128,10 +129,30 @@ final class User {
         return KeychainHandler.shared.userToken ?? ""
     }
 
-    func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
-        self.logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            self?.setLoggedOut()
-            completionHandler(response, error)
+    func logout(completionHandler: @escaping (Result) -> Void) {
+        logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
+            if let response = response {
+                if response.statusCode < 300 {
+                    self?.setLoggedOut()
+                    completionHandler(.success(true))
+                } else {
+                    self?.decodeError(response: response, completionHandler: completionHandler)
+                }
+            } else if let error = error {
+                self?.handleMoyaError(error: error, completionHandler: completionHandler)
+            }
+        }
+    }
+
+    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
+        screenShotAlertApiClient.screenshotAlert(screenName: screenName) { response, _ in
+            if let response = response {
+                if response.statusCode < 300 {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         }
     }
 }

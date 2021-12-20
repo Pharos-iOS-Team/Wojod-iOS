@@ -9,9 +9,9 @@ class LogoutApiClient {
     func logout(deviceId: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         logoutProvider.request(.logout(deviceId: deviceId)) { result in
             switch result {
-            case .success(let response):
+            case let .success(response):
                 completionHandler(response, nil)
-            case .failure(let error):
+            case let .failure(error):
                 completionHandler(nil, error)
             }
         }
