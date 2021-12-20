@@ -19,7 +19,6 @@ enum CourseDetailsTarget {
     case loadCourse(courseID: String)
     case fetchVideo(videoId: String)
     case updateVideo(videoId: String, updateObject: UpdateObject)
-    case screenshotAlert(screenName: String)
 }
 
 extension CourseDetailsTarget: TargetType {
@@ -45,14 +44,12 @@ extension CourseDetailsTarget: TargetType {
             return "videos/\(videoId)"
         case let .updateVideo(videoId, _):
             return "videos/\(videoId)/seconds_viewed"
-        case .screenshotAlert:
-            return "screenshot_alert"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .bookCourse, .sendReview, .screenshotAlert:
+        case .bookCourse, .sendReview:
             return .post
         case .cancelBookingCourse:
             return .delete
@@ -69,8 +66,6 @@ extension CourseDetailsTarget: TargetType {
             return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
         case let .updateVideo(_, updateObject):
             return .requestCustomJSONEncodable(updateObject, encoder: JSONEncoder.default)
-        case let .screenshotAlert(screenName):
-            return .requestJSONEncodable(["screen_name": screenName])
         default:
             return .requestPlain
         }

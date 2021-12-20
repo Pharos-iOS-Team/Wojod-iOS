@@ -114,7 +114,6 @@ class CourseDetailsViewController: UIViewController {
         bindStartAssessmentHandler()
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        handleScreenshot()
         configureRefreshControl()
         observeInternetConnection()
         showQuizAlert()
