@@ -11,7 +11,7 @@ enum EducationLevel: Int, CaseIterable {
     case gradute
 }
 
-final class User {
+final class User: ModelDecodable {
     static let shared = User()
     private(set) var id: Int? {
         get {
@@ -129,12 +129,18 @@ final class User {
         return KeychainHandler.shared.userToken ?? ""
     }
 
-    func logout(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+    func logout(completionHandler: @escaping (Result) -> Void) {
         logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            if error == nil {
-                self?.setLoggedOut()
+            if let response = response {
+                if response.statusCode < 300 {
+                    self?.setLoggedOut()
+                    completionHandler(.success(true))
+                } else {
+                    self?.decodeError(response: response, completionHandler: completionHandler)
+                }
+            } else if let error = error {
+                self?.handleMoyaError(error: error, completionHandler: completionHandler)
             }
-            completionHandler(response, error)
         }
     }
 

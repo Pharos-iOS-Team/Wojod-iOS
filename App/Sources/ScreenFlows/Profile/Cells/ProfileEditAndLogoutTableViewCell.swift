@@ -27,18 +27,19 @@ class ProfileEditAndLogoutTableViewCell: UITableViewCell {
     }
 
     private weak var delegate: ProfileChangePasswordDelegate?
-    var showError: ((MoyaError) -> Void)?
+    var showError: ((String) -> Void)?
 
     @IBAction private func changePasswordPressed(_ sender: Any) {
         delegate?.changePasswordHandler()
     }
 
     @IBAction private func logoutPressed(_ sender: Any) {
-        User.shared.logout { [weak self] _, error in
-            if let error = error {
-                self?.showError?(error)
-            } else {
+        User.shared.logout { [weak self] result in
+            switch result {
+            case .success:
                 ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+            case let .failure(error):
+                self?.showError?(error.message)
             }
         }
     }
