@@ -36,7 +36,6 @@ class NotificationsViewController: UIViewController {
         configureRefreshControl()
         loadNotifications()
         documentInteractionController.delegate = self
-        preventScreenshot()
         observeInternetConnection()
     }
 

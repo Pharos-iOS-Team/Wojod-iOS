@@ -47,7 +47,6 @@ class ProfileViewController: UIViewController {
         viewModel.loadCountries()
         reloadCountriesCell()
         reloadCitiesCell()
-        preventScreenshot()
         observeInternetConnection()
     }
 

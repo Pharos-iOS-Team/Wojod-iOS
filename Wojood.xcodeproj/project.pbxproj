@@ -2198,19 +2198,19 @@
 			);
 			mainGroup = 7723ACCE261C5E68007C0B97;
 			packageReferences = (
-				7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */,
-				7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */,
-				7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */,
+				7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
+				7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */,
+				7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
 				7723AD3B261C63D2007C0B97 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
+				7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				7723AD41261C64A1007C0B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */,
-				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
+				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */,
 				7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */,
-				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */,
+				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
+				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
 				38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 				26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */,
 				26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
@@ -3180,7 +3180,7 @@
 				kind = branch;
 			};
 		};
-		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */ = {
+		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
 			requirement = {
@@ -3188,7 +3188,7 @@
 				minimumVersion = 5.3.0;
 			};
 		};
-		7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */ = {
+		7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flinesoft/HandySwift.git";
 			requirement = {
@@ -3196,7 +3196,7 @@
 				minimumVersion = 3.3.0;
 			};
 		};
-		7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */ = {
+		7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flinesoft/HandyUIKit.git";
 			requirement = {
@@ -3212,7 +3212,7 @@
 				minimumVersion = 6.5.6;
 			};
 		};
-		7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
+		7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -3228,7 +3228,7 @@
 				minimumVersion = 7.1.2;
 			};
 		};
-		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */ = {
+		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS.git";
 			requirement = {
@@ -3236,7 +3236,7 @@
 				minimumVersion = 1.2.3;
 			};
 		};
-		7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -3260,7 +3260,7 @@
 				minimumVersion = 3.6.0;
 			};
 		};
-		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -3268,7 +3268,7 @@
 				minimumVersion = 7.9.1;
 			};
 		};
-		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */ = {
+		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -3284,7 +3284,7 @@
 				minimumVersion = 23.0.0;
 			};
 		};
-		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */ = {
+		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Datt1994/DPOTPView.git";
 			requirement = {
@@ -3342,17 +3342,17 @@
 		};
 		7723AD30261C6351007C0B97 /* SwiftyUserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults.git" */;
+			package = 7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
 			productName = SwiftyUserDefaults;
 		};
 		7723AD33261C6370007C0B97 /* HandySwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift.git" */;
+			package = 7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */;
 			productName = HandySwift;
 		};
 		7723AD36261C6393007C0B97 /* HandyUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit.git" */;
+			package = 7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
 			productName = HandyUIKit;
 		};
 		7723AD3C261C63D2007C0B97 /* IQKeyboardManagerSwift */ = {
@@ -3362,7 +3362,7 @@
 		};
 		7723AD3F261C63F3007C0B97 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
+			package = 7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
 		7723AD42261C64A1007C0B97 /* Kingfisher */ = {
@@ -3372,12 +3372,12 @@
 		};
 		7723AD45261C64C4007C0B97 /* LanguageManager-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS.git" */;
+			package = 7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
 			productName = "LanguageManager-iOS";
 		};
 		7723AD48261C64D7007C0B97 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
 		7723AD4B261C6505007C0B97 /* JGProgressHUD */ = {
@@ -3392,22 +3392,22 @@
 		};
 		7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		7723AE46261C869A007C0B97 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya.git" */;
+			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
 		77936F0D26FD588D00EDE395 /* Cosmos */ = {
@@ -3417,7 +3417,7 @@
 		};
 		77DBFD5F2631C7AA0060BACA /* DPOTPView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView.git" */;
+			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */;
 			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */
