@@ -29,7 +29,6 @@
 		26CF48C4269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48C3269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift */; };
 		26CF48C9269B306A00DDA29F /* ChatViewController+SocketExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48C8269B306A00DDA29F /* ChatViewController+SocketExtension.swift */; };
 		26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48CD269B30E900DDA29F /* SocketManager.swift */; };
-		26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 26CF48D3269B31BF00DDA29F /* Starscream */; };
 		26CF48D9269B350100DDA29F /* MessagesDisplayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48D8269B350100DDA29F /* MessagesDisplayHandler.swift */; };
 		26CF48E1269B379B00DDA29F /* LoggedUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48E0269B379B00DDA29F /* LoggedUserDetails.swift */; };
 		26CF48E9269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF48E8269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift */; };
@@ -42,12 +41,10 @@
 		26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4910269B51D900DDA29F /* FileManagerExt.swift */; };
 		26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4923269C6ED700DDA29F /* DocumentContainerViewController.swift */; };
 		26CF492B269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF492A269C7C9E00DDA29F /* ChatViewController+InputBarExtension.swift */; };
-		26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 26CF4933269C7F3900DDA29F /* SwiftEntryKit */; };
 		26CF493A269C83B500DDA29F /* AttachmentTypeActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4938269C83B500DDA29F /* AttachmentTypeActionSheet.swift */; };
 		26CF493B269C83B500DDA29F /* AttachmentTypeActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4939269C83B500DDA29F /* AttachmentTypeActionSheet.xib */; };
 		26CF4944269CA7D200DDA29F /* AddMessageRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4943269CA7D200DDA29F /* AddMessageRequestModel.swift */; };
 		26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4997269CC3DB00DDA29F /* ChatViewController+AttachmentExtension.swift */; };
-		35B37F5F6D6312DF48149BED /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE46903B77F6910E423E7460 /* Pods_Wojood.framework */; };
 		3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802287726CBDB9F008E41D4 /* Advertisements.swift */; };
 		38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */; };
 		380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A0260267248D300D01B06 /* CourseTableViewCell.swift */; };
@@ -56,8 +53,6 @@
 		380A026A26725A4B00D01B06 /* CourseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380A026826725A4B00D01B06 /* CourseCollectionViewCell.xib */; };
 		380A027B2680AADE00D01B06 /* ExploreMoreCoursesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A027A2680AADD00D01B06 /* ExploreMoreCoursesResponse.swift */; };
 		380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */ = {isa = PBXBuildFile; productRef = 380B135526B7F89D00CB5811 /* DTPhotoViewerController */; };
-		380B135C26B7F93600CB5811 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = 380B135B26B7F93600CB5811 /* ObjectMapper */; };
-		380B136226B7FAAD00CB5811 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 380B136126B7FAAD00CB5811 /* SkeletonView */; };
 		380B139526B807F700CB5811 /* AssessmentMCQOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B137026B807F500CB5811 /* AssessmentMCQOptionTableViewCell.xib */; };
 		380B139626B807F700CB5811 /* AssessmentMCQOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137126B807F500CB5811 /* AssessmentMCQOptionTableViewCell.swift */; };
 		380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137326B807F500CB5811 /* AssessmentFreeTextTableViewCell.swift */; };
@@ -140,9 +135,6 @@
 		38659BF026B6D2F900E3BFE9 /* AssessmentChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BD826B6D2F900E3BFE9 /* AssessmentChoice.swift */; };
 		38659BF126B6D2F900E3BFE9 /* OptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38659BD926B6D2F900E3BFE9 /* OptionCollectionViewCell.xib */; };
 		38659C3F26B6E07600E3BFE9 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659C3E26B6E07600E3BFE9 /* Nib.swift */; };
-		38659C4B26B7F50500E3BFE9 /* M13Checkbox in Frameworks */ = {isa = PBXBuildFile; productRef = 38659C4A26B7F50500E3BFE9 /* M13Checkbox */; };
-		38659C5726B7F6A700E3BFE9 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 38659C5626B7F6A700E3BFE9 /* AlamofireImage */; };
-		38702FC4268B3F6F00547C9E /* UIScrollView_InfiniteScroll in Frameworks */ = {isa = PBXBuildFile; productRef = 38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */; };
 		38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */; };
 		38706CD3265E6DD300440B53 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38706CD2265E6DD300440B53 /* CourseDetails.storyboard */; };
 		38812C54266E9B0E00CCD924 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C53266E9B0E00CCD924 /* HomeTarget.swift */; };
@@ -154,7 +146,6 @@
 		388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */; };
 		3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
-		38A61A5726E614610044AEA4 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = 38A61A5626E614610044AEA4 /* DZNEmptyDataSet */; };
 		38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
 		38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B03559265B9F0A00C24479 /* Notifications.storyboard */; };
@@ -179,6 +170,7 @@
 		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
+		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
@@ -192,20 +184,7 @@
 		7723AD23261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1D261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift */; };
 		7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1E261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift */; };
 		7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1F261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift */; };
-		7723AD31261C6351007C0B97 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD30261C6351007C0B97 /* SwiftyUserDefaults */; };
-		7723AD34261C6370007C0B97 /* HandySwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD33261C6370007C0B97 /* HandySwift */; };
-		7723AD37261C6393007C0B97 /* HandyUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD36261C6393007C0B97 /* HandyUIKit */; };
-		7723AD3D261C63D2007C0B97 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD3C261C63D2007C0B97 /* IQKeyboardManagerSwift */; };
-		7723AD40261C63F3007C0B97 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD3F261C63F3007C0B97 /* KeychainAccess */; };
-		7723AD43261C64A1007C0B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD42261C64A1007C0B97 /* Kingfisher */; };
-		7723AD46261C64C4007C0B97 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD45261C64C4007C0B97 /* LanguageManager-iOS */; };
-		7723AD49261C64D7007C0B97 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD48261C64D7007C0B97 /* Reachability */; };
-		7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD4B261C6505007C0B97 /* JGProgressHUD */; };
-		7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD4E261C653E007C0B97 /* MessageKit */; };
 		7723AD5D261C65F0007C0B97 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD5C261C65F0007C0B97 /* KeychainHandler.swift */; };
-		7723AD99261C6FA2007C0B97 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */; };
-		7723AD9B261C6FA2007C0B97 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */; };
-		7723AD9D261C6FA2007C0B97 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */; };
 		7723AD9F261C6FC5007C0B97 /* WJError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD9E261C6FC5007C0B97 /* WJError.swift */; };
 		7723ADA4261C70D6007C0B97 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADA3261C70D6007C0B97 /* Language.swift */; };
 		7723ADA9261C70F8007C0B97 /* PushNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADA8261C70F8007C0B97 /* PushNotificationsManager.swift */; };
@@ -227,7 +206,7 @@
 		7723AE3B261C8261007C0B97 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE39261C8260007C0B97 /* Strings.swift */; };
 		7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE3A261C8260007C0B97 /* GlobalStrings.swift */; };
 		7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */; };
-		7723AE47261C869A007C0B97 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7723AE46261C869A007C0B97 /* Moya */; };
+		7729BCB12774B37D00702B0D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7729BCB02774B37D00702B0D /* MessageKit */; };
 		7731E1AD2642A30800F08FFD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7731E1AC2642A30800F08FFD /* .gitignore */; };
 		7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6C62656741800F429F5 /* HTTPStatusCode.swift */; };
 		7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */; };
@@ -269,12 +248,62 @@
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
-		77936F0E26FD588D00EDE395 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 77936F0D26FD588D00EDE395 /* Cosmos */; };
+		779635FE2771DFF200F31AAD /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 779635FD2771DFF000F31AAD /* Cartfile */; };
+		77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 77B569F22771FADE009E47D7 /* Cartfile.resolved */; };
+		77B56A6D2772141D009E47D7 /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */; };
+		77B56A712772141D009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
+		77B56A722772141D009E47D7 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */; };
+		77B56A732772141D009E47D7 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */; };
+		77B56A742772141D009E47D7 /* FirebaseMessaging.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */; };
+		77B56A772772141D009E47D7 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A602772141C009E47D7 /* nanopb.xcframework */; };
+		77B56A792772141D009E47D7 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */; };
+		77B56A7A2772141D009E47D7 /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A632772141C009E47D7 /* FirebaseCore.xcframework */; };
+		77B56A7C2772141D009E47D7 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */; };
+		77B56A7D2772141D009E47D7 /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */; };
+		77B56A7E2772141D009E47D7 /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */; };
+		77B56A812772141D009E47D7 /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */; };
+		77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; };
+		77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */; };
+		77B56A9127721796009E47D7 /* SwiftyUserDefaults.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; };
+		77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; };
+		77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; };
+		77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A98277217A1009E47D7 /* LanguageManager_iOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */; };
+		77B56A99277217A1009E47D7 /* LanguageManager_iOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; };
+		77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A592772141B009E47D7 /* KeychainAccess.xcframework */; };
+		77B56A9D277217A5009E47D7 /* KeychainAccess.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A592772141B009E47D7 /* KeychainAccess.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56A9E277217A6009E47D7 /* JGProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */; };
+		77B56A9F277217A7009E47D7 /* JGProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AA0277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */; };
+		77B56AA1277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */; };
+		77B56AA3277217AB009E47D7 /* HandyUIKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A642772141C009E47D7 /* HandySwift.xcframework */; };
+		77B56AA5277217AD009E47D7 /* HandySwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A642772141C009E47D7 /* HandySwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AA6277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */; };
+		77B56AA7277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AA8277217D4009E47D7 /* Cosmos.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5F2772141C009E47D7 /* Cosmos.xcframework */; };
+		77B56AA9277217D4009E47D7 /* Cosmos.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5F2772141C009E47D7 /* Cosmos.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; };
+		77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; };
+		77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56ABA27721DBE009E47D7 /* Reachability.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AB827721DB2009E47D7 /* Reachability.xcframework */; };
+		77B56ABB27721DBE009E47D7 /* Reachability.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AB827721DB2009E47D7 /* Reachability.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AC027721FCD009E47D7 /* M13Checkbox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */; };
+		77B56AC127721FCD009E47D7 /* M13Checkbox.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */; };
+		77B56AC5277220FD009E47D7 /* ObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
 		77D013D026A0F701006EA602 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CC26A0F701006EA602 /* SubjectCollectionViewCell.swift */; };
-		77DBFD602631C7AA0060BACA /* DPOTPView in Frameworks */ = {isa = PBXBuildFile; productRef = 77DBFD5F2631C7AA0060BACA /* DPOTPView */; };
 		77E32B83264A8AD30064B801 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32B82264A8AD30064B801 /* UserModel.swift */; };
 		77E32B91264A8B2C0064B801 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32B90264A8B2C0064B801 /* LoginModel.swift */; };
 		77E32B96264A8B430064B801 /* LoginApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32B95264A8B430064B801 /* LoginApiClient.swift */; };
@@ -419,6 +448,38 @@
 			remoteInfo = Wojood;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		77B56A8F27721795009E47D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				77B56A9127721796009E47D7 /* SwiftyUserDefaults.xcframework in Embed Frameworks */,
+				77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */,
+				77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */,
+				77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */,
+				77B56AA7277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Embed Frameworks */,
+				77B56ABB27721DBE009E47D7 /* Reachability.xcframework in Embed Frameworks */,
+				77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */,
+				77B56AA3277217AB009E47D7 /* HandyUIKit.xcframework in Embed Frameworks */,
+				77B56AA9277217D4009E47D7 /* Cosmos.xcframework in Embed Frameworks */,
+				77B56AC127721FCD009E47D7 /* M13Checkbox.xcframework in Embed Frameworks */,
+				77B56AA5277217AD009E47D7 /* HandySwift.xcframework in Embed Frameworks */,
+				77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */,
+				77B56A99277217A1009E47D7 /* LanguageManager_iOS.xcframework in Embed Frameworks */,
+				77B56A9F277217A7009E47D7 /* JGProgressHUD.xcframework in Embed Frameworks */,
+				77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */,
+				77B56AA1277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Embed Frameworks */,
+				77B56AC5277220FD009E47D7 /* ObjectMapper.xcframework in Embed Frameworks */,
+				77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */,
+				77B56A9D277217A5009E47D7 /* KeychainAccess.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		262FA7592694B0FD00245D2C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
@@ -584,6 +645,7 @@
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
+		726F61097298DC7F90F1539F /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7723ACE1261C5E69007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -666,6 +728,46 @@
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLocalizableFlowLayoutExt.swift; sourceTree = "<group>"; };
+		779635FD2771DFF000F31AAD /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		77B569F22771FADE009E47D7 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
+		77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = IQKeyboardManagerSwift.xcframework; path = Carthage/Build/IQKeyboardManagerSwift.xcframework; sourceTree = "<group>"; };
+		77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Carthage/Build/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
+		77B56A572772141B009E47D7 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LanguageManager_iOS.xcframework; path = Carthage/Build/LanguageManager_iOS.xcframework; sourceTree = "<group>"; };
+		77B56A592772141B009E47D7 /* KeychainAccess.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KeychainAccess.xcframework; path = Carthage/Build/KeychainAccess.xcframework; sourceTree = "<group>"; };
+		77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Carthage/Build/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
+		77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Carthage/Build/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
+		77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Carthage/Build/PromisesObjC.xcframework; sourceTree = "<group>"; };
+		77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseMessaging.xcframework; path = Carthage/Build/FirebaseMessaging.xcframework; sourceTree = "<group>"; };
+		77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Kingfisher.xcframework; path = Carthage/Build/Kingfisher.xcframework; sourceTree = "<group>"; };
+		77B56A5F2772141C009E47D7 /* Cosmos.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cosmos.xcframework; path = Carthage/Build/Cosmos.xcframework; sourceTree = "<group>"; };
+		77B56A602772141C009E47D7 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Carthage/Build/nanopb.xcframework; sourceTree = "<group>"; };
+		77B56A612772141C009E47D7 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Starscream.xcframework; path = Carthage/Build/Starscream.xcframework; sourceTree = "<group>"; };
+		77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Carthage/Build/GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		77B56A632772141C009E47D7 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Carthage/Build/FirebaseCore.xcframework; sourceTree = "<group>"; };
+		77B56A642772141C009E47D7 /* HandySwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandySwift.xcframework; path = Carthage/Build/HandySwift.xcframework; sourceTree = "<group>"; };
+		77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Carthage/Build/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Carthage/Build/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
+		77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = Carthage/Build/FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
+		77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DZNEmptyDataSet.xcframework; path = Carthage/Build/DZNEmptyDataSet.xcframework; sourceTree = "<group>"; };
+		77B56A692772141D009E47D7 /* SkeletonView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SkeletonView.xcframework; path = Carthage/Build/SkeletonView.xcframework; sourceTree = "<group>"; };
+		77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCrashlytics.xcframework; path = Carthage/Build/FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
+		77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandyUIKit.xcframework; path = Carthage/Build/HandyUIKit.xcframework; sourceTree = "<group>"; };
+		77B56A8327721422009E47D7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
+		77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftyUserDefaults.xcframework; path = Carthage/Build/SwiftyUserDefaults.xcframework; sourceTree = "<group>"; };
+		77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftEntryKit.xcframework; path = Carthage/Build/SwiftEntryKit.xcframework; sourceTree = "<group>"; };
+		77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = JGProgressHUD.xcframework; path = Carthage/Build/JGProgressHUD.xcframework; sourceTree = "<group>"; };
+		77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UIScrollView_InfiniteScroll.xcframework; path = Carthage/Build/UIScrollView_InfiniteScroll.xcframework; sourceTree = "<group>"; };
+		77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlamofireImage.xcframework; path = Carthage/Build/AlamofireImage.xcframework; sourceTree = "<group>"; };
+		77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DPOTPView.xcframework; path = Carthage/Build/DPOTPView.xcframework; sourceTree = "<group>"; };
+		77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = M13Checkbox.xcframework; path = Carthage/Build/M13Checkbox.xcframework; sourceTree = "<group>"; };
+		77B56AB6277219E7009E47D7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		77B56AB827721DB2009E47D7 /* Reachability.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Reachability.xcframework; path = Carthage/Build/Reachability.xcframework; sourceTree = "<group>"; };
+		77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ObjectMapper.xcframework; path = Carthage/Build/ObjectMapper.xcframework; sourceTree = "<group>"; };
+		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C88E2827722BC200E39AA0 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubjectCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -743,9 +845,6 @@
 		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExt.swift; sourceTree = "<group>"; };
 		BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExt.swift; sourceTree = "<group>"; };
-		BC8D4C0E26E4F74200033413 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC8D4C0F26E4F74200033413 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC8D4C1026E4F74200033413 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8D4C1826E76EF700033413 /* CourseDetailsInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsInfoHeaderView.swift; sourceTree = "<group>"; };
 		BC8D4C1A26E76F1400033413 /* CourseDetailsInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailsInfoHeaderView.xib; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -810,7 +909,6 @@
 		E8C9EF7C263DD2680023D2B1 /* KeyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyName.swift; sourceTree = "<group>"; };
 		E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTypes.swift; sourceTree = "<group>"; };
 		E8FB16972647FD5B00895DDC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		FE46903B77F6910E423E7460 /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -818,32 +916,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DBFD602631C7AA0060BACA /* DPOTPView in Frameworks */,
-				7723AD9B261C6FA2007C0B97 /* FirebaseMessaging in Frameworks */,
-				380B136226B7FAAD00CB5811 /* SkeletonView in Frameworks */,
-				38659C4B26B7F50500E3BFE9 /* M13Checkbox in Frameworks */,
-				7723AD43261C64A1007C0B97 /* Kingfisher in Frameworks */,
-				7723AD31261C6351007C0B97 /* SwiftyUserDefaults in Frameworks */,
-				7723AD3D261C63D2007C0B97 /* IQKeyboardManagerSwift in Frameworks */,
-				7723AD37261C6393007C0B97 /* HandyUIKit in Frameworks */,
-				38A61A5726E614610044AEA4 /* DZNEmptyDataSet in Frameworks */,
-				7723AD46261C64C4007C0B97 /* LanguageManager-iOS in Frameworks */,
-				38702FC4268B3F6F00547C9E /* UIScrollView_InfiniteScroll in Frameworks */,
+				77B56A7E2772141D009E47D7 /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
+				77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */,
+				77B56A772772141D009E47D7 /* nanopb.xcframework in Frameworks */,
+				77B56A9E277217A6009E47D7 /* JGProgressHUD.xcframework in Frameworks */,
+				77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */,
+				77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */,
+				77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */,
+				77B56A722772141D009E47D7 /* FirebaseAnalytics.xcframework in Frameworks */,
+				77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */,
+				77B56A7A2772141D009E47D7 /* FirebaseCore.xcframework in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
-				380B135C26B7F93600CB5811 /* ObjectMapper in Frameworks */,
-				7723AD49261C64D7007C0B97 /* Reachability in Frameworks */,
-				7723AD99261C6FA2007C0B97 /* FirebaseAnalytics in Frameworks */,
-				7723AD34261C6370007C0B97 /* HandySwift in Frameworks */,
-				7723AD9D261C6FA2007C0B97 /* FirebaseCrashlytics in Frameworks */,
-				7723AD4C261C6505007C0B97 /* JGProgressHUD in Frameworks */,
-				7723AD40261C63F3007C0B97 /* KeychainAccess in Frameworks */,
-				26CF4934269C7F3900DDA29F /* SwiftEntryKit in Frameworks */,
-				77936F0E26FD588D00EDE395 /* Cosmos in Frameworks */,
-				7723AE47261C869A007C0B97 /* Moya in Frameworks */,
-				38659C5726B7F6A700E3BFE9 /* AlamofireImage in Frameworks */,
-				7723AD4F261C653E007C0B97 /* MessageKit in Frameworks */,
-				26CF48D4269B31BF00DDA29F /* Starscream in Frameworks */,
-				35B37F5F6D6312DF48149BED /* Pods_Wojood.framework in Frameworks */,
+				77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */,
+				77B56A7D2772141D009E47D7 /* FirebaseInstallations.xcframework in Frameworks */,
+				77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */,
+				77B56A712772141D009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
+				77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */,
+				77B56AA8277217D4009E47D7 /* Cosmos.xcframework in Frameworks */,
+				77B56AA0277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Frameworks */,
+				77B56A6D2772141D009E47D7 /* GoogleDataTransport.xcframework in Frameworks */,
+				77B56A812772141D009E47D7 /* FirebaseCrashlytics.xcframework in Frameworks */,
+				77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */,
+				77B56A792772141D009E47D7 /* GoogleUtilities.xcframework in Frameworks */,
+				77B56A98277217A1009E47D7 /* LanguageManager_iOS.xcframework in Frameworks */,
+				7729BCB12774B37D00702B0D /* MessageKit in Frameworks */,
+				77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */,
+				77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */,
+				77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */,
+				77B56ABA27721DBE009E47D7 /* Reachability.xcframework in Frameworks */,
+				77B56AC027721FCD009E47D7 /* M13Checkbox.xcframework in Frameworks */,
+				77B56A732772141D009E47D7 /* PromisesObjC.xcframework in Frameworks */,
+				77B56A742772141D009E47D7 /* FirebaseMessaging.xcframework in Frameworks */,
+				77B56A7C2772141D009E47D7 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				77B56AA6277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Frameworks */,
+				41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,7 +1081,10 @@
 		26E25DC6348D8E0CDEDC9102 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FE46903B77F6910E423E7460 /* Pods_Wojood.framework */,
+				77B56AB727721A21009E47D7 /* libsqlite3.tbd */,
+				77B56AB6277219E7009E47D7 /* libc++.tbd */,
+				77B56A54277213B9009E47D7 /*  Carthage */,
+				726F61097298DC7F90F1539F /* Pods_Wojood.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1309,10 +1418,10 @@
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
 				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
 				D9D09DB50F944974E08942C1 /* Pods */,
-				BC8D4C0E26E4F74200033413 /* Wojood.app */,
-				BC8D4C0F26E4F74200033413 /* WojoodTests.xctest */,
-				BC8D4C1026E4F74200033413 /* WojoodUITests.xctest */,
 				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
+				77C88E2727722BC200E39AA0 /* Wojood.app */,
+				77C88E2827722BC200E39AA0 /* WojoodTests.xctest */,
+				77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1542,6 +1651,8 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
+				77B569F22771FADE009E47D7 /* Cartfile.resolved */,
+				779635FD2771DFF000F31AAD /* Cartfile */,
 				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
@@ -1689,6 +1800,46 @@
 				7723ADB2261C716D007C0B97 /* NotificationsTarget.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		77B56A54277213B9009E47D7 /*  Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				77B56A572772141B009E47D7 /* Alamofire.xcframework */,
+				77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */,
+				77B56A5F2772141C009E47D7 /* Cosmos.xcframework */,
+				77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */,
+				77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */,
+				77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */,
+				77B56A8327721422009E47D7 /* Firebase.framework */,
+				77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */,
+				77B56A632772141C009E47D7 /* FirebaseCore.xcframework */,
+				77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */,
+				77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */,
+				77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */,
+				77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */,
+				77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */,
+				77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */,
+				77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */,
+				77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */,
+				77B56A642772141C009E47D7 /* HandySwift.xcframework */,
+				77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */,
+				77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */,
+				77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */,
+				77B56A592772141B009E47D7 /* KeychainAccess.xcframework */,
+				77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */,
+				77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */,
+				77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */,
+				77B56A602772141C009E47D7 /* nanopb.xcframework */,
+				77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */,
+				77B56A692772141D009E47D7 /* SkeletonView.xcframework */,
+				77B56A612772141C009E47D7 /* Starscream.xcframework */,
+				77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */,
+				77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */,
+				77B56AB827721DB2009E47D7 /* Reachability.xcframework */,
+				77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */,
+			);
+			name = " Carthage";
 			sourceTree = "<group>";
 		};
 		77D013C026A0F6C5006EA602 /* Cells */ = {
@@ -2091,6 +2242,8 @@
 				7723ACD5261C5E69007C0B97 /* Resources */,
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 				5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */,
+				77B56A8F27721795009E47D7 /* Embed Frameworks */,
+				F1B2882CC486DB30EDB57933 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2098,34 +2251,11 @@
 			);
 			name = Wojood;
 			packageProductDependencies = (
-				7723AD30261C6351007C0B97 /* SwiftyUserDefaults */,
-				7723AD33261C6370007C0B97 /* HandySwift */,
-				7723AD36261C6393007C0B97 /* HandyUIKit */,
-				7723AD3C261C63D2007C0B97 /* IQKeyboardManagerSwift */,
-				7723AD3F261C63F3007C0B97 /* KeychainAccess */,
-				7723AD42261C64A1007C0B97 /* Kingfisher */,
-				7723AD45261C64C4007C0B97 /* LanguageManager-iOS */,
-				7723AD48261C64D7007C0B97 /* Reachability */,
-				7723AD4B261C6505007C0B97 /* JGProgressHUD */,
-				7723AD4E261C653E007C0B97 /* MessageKit */,
-				7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */,
-				7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */,
-				7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */,
-				7723AE46261C869A007C0B97 /* Moya */,
-				77DBFD5F2631C7AA0060BACA /* DPOTPView */,
-				38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */,
-				26CF48D3269B31BF00DDA29F /* Starscream */,
-				26CF4933269C7F3900DDA29F /* SwiftEntryKit */,
-				38659C4A26B7F50500E3BFE9 /* M13Checkbox */,
-				38659C5626B7F6A700E3BFE9 /* AlamofireImage */,
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
-				380B135B26B7F93600CB5811 /* ObjectMapper */,
-				380B136126B7FAAD00CB5811 /* SkeletonView */,
-				38A61A5626E614610044AEA4 /* DZNEmptyDataSet */,
-				77936F0D26FD588D00EDE395 /* Cosmos */,
+				7729BCB02774B37D00702B0D /* MessageKit */,
 			);
 			productName = Wojood;
-			productReference = BC8D4C0E26E4F74200033413 /* Wojood.app */;
+			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7723ACEC261C5E6C007C0B97 /* WojoodTests */ = {
@@ -2143,7 +2273,7 @@
 			);
 			name = WojoodTests;
 			productName = WojoodTests;
-			productReference = BC8D4C0F26E4F74200033413 /* WojoodTests.xctest */;
+			productReference = 77C88E2827722BC200E39AA0 /* WojoodTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		7723ACF7261C5E6C007C0B97 /* WojoodUITests */ = {
@@ -2161,7 +2291,7 @@
 			);
 			name = WojoodUITests;
 			productName = WojoodUITests;
-			productReference = BC8D4C1026E4F74200033413 /* WojoodUITests.xctest */;
+			productReference = 77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -2198,30 +2328,8 @@
 			);
 			mainGroup = 7723ACCE261C5E68007C0B97;
 			packageReferences = (
-				7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
-				7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */,
-				7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
-				7723AD3B261C63D2007C0B97 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				7723AD41261C64A1007C0B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
-				7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */,
-				7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
-				7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */,
-				7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */,
-				77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */,
-				38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
-				26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */,
-				26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
-				38659C4926B7F50400E3BFE9 /* XCRemoteSwiftPackageReference "M13Checkbox" */,
-				38659C4F26B7F5A900E3BFE9 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				38659C5526B7F6A700E3BFE9 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
-				380B135A26B7F93500CB5811 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
-				380B136026B7FAAD00CB5811 /* XCRemoteSwiftPackageReference "SkeletonView" */,
-				38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
-				77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2268,7 +2376,9 @@
 				388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */,
 				380B139526B807F700CB5811 /* AssessmentMCQOptionTableViewCell.xib in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
+				77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
+				779635FE2771DFF200F31AAD /* Cartfile in Resources */,
 				BC767140262C524B0012155C /* CoursesList.storyboard in Resources */,
 				BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */,
 				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
@@ -2427,7 +2537,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+			shellScript = "\"${PROJECT_DIR}/run\";\n";
+		};
+		F1B2882CC486DB30EDB57933 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2929,6 +3056,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2936,7 +3067,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.6;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2957,6 +3091,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2964,7 +3102,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.6;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3100,22 +3241,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/daltoniam/Starscream";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.4;
-			};
-		};
-		26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.7;
-			};
-		};
 		380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tungvoduc/DTPhotoViewerController";
@@ -3124,301 +3249,26 @@
 				minimumVersion = 3.1.1;
 			};
 		};
-		380B135A26B7F93500CB5811 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
-		380B136026B7FAAD00CB5811 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.21.2;
-			};
-		};
-		38659C4926B7F50400E3BFE9 /* XCRemoteSwiftPackageReference "M13Checkbox" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Marxon13/M13Checkbox";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.4.1;
-			};
-		};
-		38659C4F26B7F5A900E3BFE9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.3;
-			};
-		};
-		38659C5526B7F6A700E3BFE9 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
-		38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pronebird/UIScrollView-InfiniteScroll";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-		38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.0;
-			};
-		};
-		7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Flinesoft/HandySwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.3.0;
-			};
-		};
-		7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Flinesoft/HandyUIKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.2;
-			};
-		};
-		7723AD3B261C63D2007C0B97 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.6;
-			};
-		};
-		7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.2;
-			};
-		};
-		7723AD41261C64A1007C0B97 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.2;
-			};
-		};
-		7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.3;
-			};
-		};
-		7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
-		7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
-			};
-		};
-		7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+		7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.6.0;
-			};
-		};
-		7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.9.1;
-			};
-		};
-		7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.0.1;
-			};
-		};
-		77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/Cosmos";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 23.0.0;
-			};
-		};
-		77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Datt1994/DPOTPView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.11;
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		26CF48D3269B31BF00DDA29F /* Starscream */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26CF48D2269B31BE00DDA29F /* XCRemoteSwiftPackageReference "Starscream" */;
-			productName = Starscream;
-		};
-		26CF4933269C7F3900DDA29F /* SwiftEntryKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26CF4932269C7F3800DDA29F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
-			productName = SwiftEntryKit;
-		};
 		380B135526B7F89D00CB5811 /* DTPhotoViewerController */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */;
 			productName = DTPhotoViewerController;
 		};
-		380B135B26B7F93600CB5811 /* ObjectMapper */ = {
+		7729BCB02774B37D00702B0D /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 380B135A26B7F93500CB5811 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
-			productName = ObjectMapper;
-		};
-		380B136126B7FAAD00CB5811 /* SkeletonView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 380B136026B7FAAD00CB5811 /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
-		};
-		38659C4A26B7F50500E3BFE9 /* M13Checkbox */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38659C4926B7F50400E3BFE9 /* XCRemoteSwiftPackageReference "M13Checkbox" */;
-			productName = M13Checkbox;
-		};
-		38659C5626B7F6A700E3BFE9 /* AlamofireImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38659C5526B7F6A700E3BFE9 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
-			productName = AlamofireImage;
-		};
-		38702FC3268B3F6F00547C9E /* UIScrollView_InfiniteScroll */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38702FC2268B3F6D00547C9E /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
-			productName = UIScrollView_InfiniteScroll;
-		};
-		38A61A5626E614610044AEA4 /* DZNEmptyDataSet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38A61A5526E614600044AEA4 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
-			productName = DZNEmptyDataSet;
-		};
-		7723AD30261C6351007C0B97 /* SwiftyUserDefaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD2F261C6351007C0B97 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
-			productName = SwiftyUserDefaults;
-		};
-		7723AD33261C6370007C0B97 /* HandySwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD32261C6370007C0B97 /* XCRemoteSwiftPackageReference "HandySwift" */;
-			productName = HandySwift;
-		};
-		7723AD36261C6393007C0B97 /* HandyUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD35261C6393007C0B97 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
-			productName = HandyUIKit;
-		};
-		7723AD3C261C63D2007C0B97 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD3B261C63D2007C0B97 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
-		7723AD3F261C63F3007C0B97 /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD3E261C63F3007C0B97 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
-		};
-		7723AD42261C64A1007C0B97 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD41261C64A1007C0B97 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		7723AD45261C64C4007C0B97 /* LanguageManager-iOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD44261C64C4007C0B97 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
-			productName = "LanguageManager-iOS";
-		};
-		7723AD48261C64D7007C0B97 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD47261C64D7007C0B97 /* XCRemoteSwiftPackageReference "Reachability" */;
-			productName = Reachability;
-		};
-		7723AD4B261C6505007C0B97 /* JGProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD4A261C6505007C0B97 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
-			productName = JGProgressHUD;
-		};
-		7723AD4E261C653E007C0B97 /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD4D261C653E007C0B97 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			package = 7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */;
 			productName = MessageKit;
-		};
-		7723AD98261C6FA2007C0B97 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		7723AD9A261C6FA2007C0B97 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-		7723AD9C261C6FA2007C0B97 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AD97261C6FA2007C0B97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		7723AE46261C869A007C0B97 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7723AE45261C8699007C0B97 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
-		77936F0D26FD588D00EDE395 /* Cosmos */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 77936F0C26FD588D00EDE395 /* XCRemoteSwiftPackageReference "Cosmos" */;
-			productName = Cosmos;
-		};
-		77DBFD5F2631C7AA0060BACA /* DPOTPView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 77DBFD5E2631C7A90060BACA /* XCRemoteSwiftPackageReference "DPOTPView" */;
-			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

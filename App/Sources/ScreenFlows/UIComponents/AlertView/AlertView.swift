@@ -29,13 +29,13 @@ class AlertView: UIView, NibLoadable {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setBackGroundColorAndCornerRadius()
-        try? loadFromNib(bundle: Bundle.main)
+        try? loadFromNib()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setBackGroundColorAndCornerRadius()
-        try? loadFromNib(bundle: Bundle.main)
+        try? loadFromNib()
     }
 
     private func setBackGroundColorAndCornerRadius() {

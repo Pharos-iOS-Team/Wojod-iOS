@@ -1,20 +1,40 @@
 PODS:
+  - Alamofire (5.5.0)
+  - InputBarAccessoryView (5.4.0):
+    - InputBarAccessoryView/Core (= 5.4.0)
+  - InputBarAccessoryView/Core (5.4.0)
+  - MessageKit (3.7.0):
+    - InputBarAccessoryView (~> 5.4.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
   - OTPFieldView (1.0.1)
   - VdoCipherKit (1.2.4)
 
 DEPENDENCIES:
+  - MessageKit
+  - Moya (~> 15.0)
   - OTPFieldView
   - VdoCipherKit (= 1.2.4)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - InputBarAccessoryView
+    - MessageKit
+    - Moya
     - OTPFieldView
     - VdoCipherKit
 
 SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  InputBarAccessoryView: 74d471ab1fa1736806be50328df79257e52865a9
+  MessageKit: 8e76dd8d65ad44b49e1651c673497146416461e9
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
   VdoCipherKit: 68632d648c4a521aae941a09bb25e6896ad7c334
 
-PODFILE CHECKSUM: 54515cedf8ad836bdc5fad229e65434be8146f18
+PODFILE CHECKSUM: 712cf7a652ae36bc7d43fc90e332ffca0c67055c
 
 COCOAPODS: 1.11.0
