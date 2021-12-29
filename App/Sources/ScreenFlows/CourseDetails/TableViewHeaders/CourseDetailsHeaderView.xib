@@ -25,13 +25,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k66-hJ-9Vi">
-                            <rect key="frame" x="48" y="10" width="318" height="20.5"/>
+                            <rect key="frame" x="48" y="9.5" width="318" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhM-TZ-cqa">
-                            <rect key="frame" x="381" y="9.5" width="8" height="22"/>
+                            <rect key="frame" x="381" y="9" width="8" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="8" id="Sbc-nL-vWy"/>
                             </constraints>
@@ -46,8 +46,9 @@
                         <constraint firstAttribute="trailing" secondItem="HhM-TZ-cqa" secondAttribute="trailing" constant="25" id="Of9-6w-OSF"/>
                         <constraint firstItem="EgJ-Vb-Ps2" firstAttribute="centerY" secondItem="90d-c7-OgU" secondAttribute="centerY" id="Ou7-D0-2vx"/>
                         <constraint firstItem="HhM-TZ-cqa" firstAttribute="leading" secondItem="k66-hJ-9Vi" secondAttribute="trailing" constant="15" id="SgA-b2-PYk"/>
-                        <constraint firstItem="HhM-TZ-cqa" firstAttribute="centerY" secondItem="k66-hJ-9Vi" secondAttribute="centerY" id="Z4I-oQ-Epu"/>
+                        <constraint firstItem="HhM-TZ-cqa" firstAttribute="centerY" secondItem="k66-hJ-9Vi" secondAttribute="centerY" id="YpQ-uZ-FKh"/>
                         <constraint firstAttribute="bottom" secondItem="k66-hJ-9Vi" secondAttribute="bottom" constant="9.5" id="cTA-89-t9r"/>
+                        <constraint firstItem="k66-hJ-9Vi" firstAttribute="centerY" secondItem="EgJ-Vb-Ps2" secondAttribute="centerY" id="srR-YG-z2u"/>
                         <constraint firstItem="EgJ-Vb-Ps2" firstAttribute="leading" secondItem="90d-c7-OgU" secondAttribute="leading" constant="25" id="tSk-To-EQo"/>
                         <constraint firstItem="k66-hJ-9Vi" firstAttribute="leading" secondItem="EgJ-Vb-Ps2" secondAttribute="trailing" constant="15" id="vWE-rj-zIt"/>
                     </constraints>

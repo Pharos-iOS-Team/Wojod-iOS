@@ -2243,7 +2243,6 @@
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 				5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */,
 				77B56A8F27721795009E47D7 /* Embed Frameworks */,
-				F1B2882CC486DB30EDB57933 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2538,23 +2537,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PROJECT_DIR}/run\";\n";
-		};
-		F1B2882CC486DB30EDB57933 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

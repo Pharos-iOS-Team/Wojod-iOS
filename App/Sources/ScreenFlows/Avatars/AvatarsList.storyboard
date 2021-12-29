@@ -57,7 +57,7 @@
                                         </cells>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-cZ-kW6">
-                                        <rect key="frame" x="300" y="45" width="84" height="35"/>
+                                        <rect key="frame" x="354" y="45" width="30" height="35"/>
                                         <connections>
                                             <action selector="didTapConfirm:" destination="naC-Nl-H5i" eventType="touchUpInside" id="6lP-q9-YQ3"/>
                                         </connections>
@@ -67,7 +67,6 @@
                                 <constraints>
                                     <constraint firstItem="ErV-0B-1A0" firstAttribute="top" secondItem="l6U-cZ-kW6" secondAttribute="bottom" constant="10" id="82s-Dm-V1c"/>
                                     <constraint firstItem="ErV-0B-1A0" firstAttribute="leading" secondItem="mS0-A4-oDO" secondAttribute="leading" constant="30" id="Ox3-hE-28F"/>
-                                    <constraint firstItem="l6U-cZ-kW6" firstAttribute="leading" secondItem="mS0-A4-oDO" secondAttribute="leading" constant="300" id="Yx7-ro-CJU"/>
                                     <constraint firstAttribute="trailing" secondItem="ErV-0B-1A0" secondAttribute="trailing" constant="21" id="e8b-V1-3sb"/>
                                     <constraint firstAttribute="trailing" secondItem="l6U-cZ-kW6" secondAttribute="trailing" constant="30" id="jmu-hq-Xfg"/>
                                     <constraint firstItem="ErV-0B-1A0" firstAttribute="top" secondItem="mS0-A4-oDO" secondAttribute="top" constant="90" id="n0Q-rg-ICi"/>

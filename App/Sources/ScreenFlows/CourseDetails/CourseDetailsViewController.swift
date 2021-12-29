@@ -951,7 +951,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
             } else if let video = attachment as? Video {
                 if let url = URL(string: video.link ?? "") {
-                    if video.link?.contains("youtu.be") ?? false {
+                    if video.link?.contains("youtu.be") ?? false || video.link?.contains("youtube") ?? false {
                         let headerview = tableView.headerView(forSection: 0) as? CourseDetailsInfoHeaderView
                         headerview?.playYoutubeVideo(videoLink: video.link ?? "")
                         tableView.setContentOffset(.zero, animated: false)

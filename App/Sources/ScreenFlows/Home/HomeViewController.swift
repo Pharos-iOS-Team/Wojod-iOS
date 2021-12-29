@@ -352,7 +352,15 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return mode == .exploreMore || isInSearchMode || advertisements?.isEmpty ?? true ? 180 : 400
+        var headerHeight: CGFloat = .zero
+        if isInSearchMode || advertisements?.isEmpty ?? true {
+            headerHeight = 180
+        } else if mode == .exploreMore && !(advertisements?.isEmpty ?? true) {
+            headerHeight = 300
+        } else {
+            headerHeight = 400
+        }
+        return headerHeight
     }
 }
 
