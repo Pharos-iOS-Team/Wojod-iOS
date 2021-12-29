@@ -130,11 +130,13 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
 
     func hideAdvertisments() {
         adsCollectionView.isHidden = true
+        dotsIndicator.isHidden = true
         adsCollectionViewHeightConstraint.constant = 0
     }
 
     func showAdvertisments() {
         adsCollectionView.isHidden = false
+        dotsIndicator.isHidden = false
         adsCollectionViewHeightConstraint.constant = 150
     }
 }

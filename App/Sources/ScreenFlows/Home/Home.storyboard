@@ -51,7 +51,7 @@
                                 <rect key="frame" x="239" y="60" width="15" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-4d-Zb1">
-                                <rect key="frame" x="259" y="59.5" width="79.5" height="17"/>
+                                <rect key="frame" x="259" y="59.5" width="75" height="17"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>
