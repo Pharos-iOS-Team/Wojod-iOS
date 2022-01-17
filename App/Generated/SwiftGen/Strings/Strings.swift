@@ -412,6 +412,41 @@ internal enum L10n {
       }
   }
 
+  internal enum Organizations {
+    /// Accepted
+    internal static var accepted: String {
+        return L10n.tr("Localizable", "organizations.accepted")
+      }
+    /// Request sent successfully
+    internal static var applicationSuccessful: String {
+        return L10n.tr("Localizable", "organizations.applicationSuccessful")
+      }
+    /// Apply
+    internal static var apply: String {
+        return L10n.tr("Localizable", "organizations.apply")
+      }
+    /// Are you sure you want to apply to %@ ?
+    internal static func applyConfirmation(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "organizations.applyConfirmation", String(describing: p1))
+    }
+    /// There are no organizations yet at the moment
+    internal static var empty: String {
+        return L10n.tr("Localizable", "organizations.empty")
+      }
+    /// Pending
+    internal static var pending: String {
+        return L10n.tr("Localizable", "organizations.pending")
+      }
+    /// Rejected
+    internal static var rejected: String {
+        return L10n.tr("Localizable", "organizations.rejected")
+      }
+    /// Organizations
+    internal static var title: String {
+        return L10n.tr("Localizable", "organizations.title")
+      }
+  }
+
   internal enum Profile {
     /// Academic type
     internal static var academicType: String {

@@ -69,6 +69,7 @@ final class User: ModelDecodable {
     var address: String?
     var homeNumber: String?
     var isSchoolStudent: Bool?
+    var organizations: [Organization]?
     let logoutApiClient = LogoutApiClient()
     let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
@@ -108,6 +109,7 @@ final class User: ModelDecodable {
         region = user?.region
         address = user?.address
         homeNumber = user?.homeNumber
+        organizations = user?.organizations
     }
 
     func deleteUserLocationData() {

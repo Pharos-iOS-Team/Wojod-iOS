@@ -324,6 +324,14 @@
 		BC083B6726430E9500A1E6A4 /* AvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B6626430E9500A1E6A4 /* AvatarModel.swift */; };
 		BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B6C26430EB000A1E6A4 /* AvatarTarget.swift */; };
 		BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B7126430EBD00A1E6A4 /* AvatarApiClient.swift */; };
+		BC0F92B92785DC4F001C5B3A /* OrganizationsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0F92B82785DC4F001C5B3A /* OrganizationsList.storyboard */; };
+		BC0F92BB2785DC6A001C5B3A /* OrganizationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92BA2785DC6A001C5B3A /* OrganizationsListViewController.swift */; };
+		BC0F92BD2785DCBF001C5B3A /* OrganizationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92BC2785DCBF001C5B3A /* OrganizationsListViewModel.swift */; };
+		BC0F92BF2785DCCE001C5B3A /* OrganizationsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92BE2785DCCE001C5B3A /* OrganizationsListModel.swift */; };
+		BC0F92C22785DCF8001C5B3A /* OrganizationsListApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92C12785DCF8001C5B3A /* OrganizationsListApiClient.swift */; };
+		BC0F92C42785DD03001C5B3A /* OrganizationsListTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92C32785DD03001C5B3A /* OrganizationsListTarget.swift */; };
+		BC0F92C82785E7A1001C5B3A /* OrganizationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0F92C62785E7A1001C5B3A /* OrganizationsListTableViewCell.swift */; };
+		BC0F92C92785E7A1001C5B3A /* OrganizationsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0F92C72785E7A1001C5B3A /* OrganizationsListTableViewCell.xib */; };
 		BC18A00C266670C6001FDFFF /* ProfileTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18A00B266670C6001FDFFF /* ProfileTableViewHeader.swift */; };
 		BC18A011266670D8001FDFFF /* ProfileTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC18A010266670D8001FDFFF /* ProfileTableViewHeader.xib */; };
 		BC18A01726667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18A01526667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift */; };
@@ -793,6 +801,14 @@
 		BC083B6626430E9500A1E6A4 /* AvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarModel.swift; sourceTree = "<group>"; };
 		BC083B6C26430EB000A1E6A4 /* AvatarTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTarget.swift; sourceTree = "<group>"; };
 		BC083B7126430EBD00A1E6A4 /* AvatarApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarApiClient.swift; sourceTree = "<group>"; };
+		BC0F92B82785DC4F001C5B3A /* OrganizationsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OrganizationsList.storyboard; sourceTree = "<group>"; };
+		BC0F92BA2785DC6A001C5B3A /* OrganizationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListViewController.swift; sourceTree = "<group>"; };
+		BC0F92BC2785DCBF001C5B3A /* OrganizationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListViewModel.swift; sourceTree = "<group>"; };
+		BC0F92BE2785DCCE001C5B3A /* OrganizationsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListModel.swift; sourceTree = "<group>"; };
+		BC0F92C12785DCF8001C5B3A /* OrganizationsListApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListApiClient.swift; sourceTree = "<group>"; };
+		BC0F92C32785DD03001C5B3A /* OrganizationsListTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListTarget.swift; sourceTree = "<group>"; };
+		BC0F92C62785E7A1001C5B3A /* OrganizationsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsListTableViewCell.swift; sourceTree = "<group>"; };
+		BC0F92C72785E7A1001C5B3A /* OrganizationsListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrganizationsListTableViewCell.xib; sourceTree = "<group>"; };
 		BC18A00B266670C6001FDFFF /* ProfileTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewHeader.swift; sourceTree = "<group>"; };
 		BC18A010266670D8001FDFFF /* ProfileTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewHeader.xib; sourceTree = "<group>"; };
 		BC18A01526667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditAndLogoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -1531,6 +1547,7 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
+				BC0F92B72785DBBD001C5B3A /* OrganizationsList */,
 				380B136C26B8074400CB5811 /* Assessments */,
 				262FA7582694B0EA00245D2C /* Chat */,
 				38B03550265B9EC600C24479 /* Notifications */,
@@ -1556,6 +1573,7 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BC0F92C02785DCE7001C5B3A /* OrganizationsList */,
 				BC7101BF276FDF7F002607ED /* ScreenshotAlert */,
 				38659BB126B6D2E600E3BFE9 /* Assessments */,
 				38659ABC26B43D3B00E3BFE9 /* Filters */,
@@ -1896,6 +1914,36 @@
 				BC083B6C26430EB000A1E6A4 /* AvatarTarget.swift */,
 			);
 			path = Avatar;
+			sourceTree = "<group>";
+		};
+		BC0F92B72785DBBD001C5B3A /* OrganizationsList */ = {
+			isa = PBXGroup;
+			children = (
+				BC0F92C52785E785001C5B3A /* Cells */,
+				BC0F92B82785DC4F001C5B3A /* OrganizationsList.storyboard */,
+				BC0F92BA2785DC6A001C5B3A /* OrganizationsListViewController.swift */,
+				BC0F92BC2785DCBF001C5B3A /* OrganizationsListViewModel.swift */,
+				BC0F92BE2785DCCE001C5B3A /* OrganizationsListModel.swift */,
+			);
+			path = OrganizationsList;
+			sourceTree = "<group>";
+		};
+		BC0F92C02785DCE7001C5B3A /* OrganizationsList */ = {
+			isa = PBXGroup;
+			children = (
+				BC0F92C12785DCF8001C5B3A /* OrganizationsListApiClient.swift */,
+				BC0F92C32785DD03001C5B3A /* OrganizationsListTarget.swift */,
+			);
+			path = OrganizationsList;
+			sourceTree = "<group>";
+		};
+		BC0F92C52785E785001C5B3A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BC0F92C62785E7A1001C5B3A /* OrganizationsListTableViewCell.swift */,
+				BC0F92C72785E7A1001C5B3A /* OrganizationsListTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		BC19E56D2630368500CFA142 /* Profile */ = {
@@ -2385,6 +2433,7 @@
 				380B13AD26B807F700CB5811 /* AssignmentQuestionStateView.xib in Resources */,
 				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
 				380B13A226B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.xib in Resources */,
+				BC0F92B92785DC4F001C5B3A /* OrganizationsList.storyboard in Resources */,
 				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
 				3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
@@ -2410,6 +2459,7 @@
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
 				7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */,
+				BC0F92C92785E7A1001C5B3A /* OrganizationsListTableViewCell.xib in Resources */,
 				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */,
@@ -2586,6 +2636,7 @@
 				26CF48C4269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift in Sources */,
 				26CF48BF269B2DE400DDA29F /* ActivityIndicator.swift in Sources */,
 				38659BE926B6D2F900E3BFE9 /* SubjectsViewModel.swift in Sources */,
+				BC0F92C42785DD03001C5B3A /* OrganizationsListTarget.swift in Sources */,
 				380B13B126B807F700CB5811 /* AssessmentsOverViewViewModel.swift in Sources */,
 				77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */,
 				BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */,
@@ -2598,6 +2649,7 @@
 				38659BDF26B6D2F900E3BFE9 /* AssessmentSubmissions.swift in Sources */,
 				262FA75F2694B11F00245D2C /* ChatContainerViewController.swift in Sources */,
 				7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */,
+				BC0F92C82785E7A1001C5B3A /* OrganizationsListTableViewCell.swift in Sources */,
 				BC083B6726430E9500A1E6A4 /* AvatarModel.swift in Sources */,
 				38635B9B26EF79240040CAF4 /* Filters.swift in Sources */,
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
@@ -2612,6 +2664,7 @@
 				E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */,
 				38659BB926B6D2E600E3BFE9 /* ApiManager.swift in Sources */,
 				38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */,
+				BC0F92BD2785DCBF001C5B3A /* OrganizationsListViewModel.swift in Sources */,
 				385CC0C7265F930C00A091FD /* CourseDetailsTarget.swift in Sources */,
 				380B139E26B807F700CB5811 /* AssessmentQuestionViewModel.swift in Sources */,
 				38812C59266E9B1E00CCD924 /* HomeApiClient.swift in Sources */,
@@ -2620,6 +2673,7 @@
 				778E72FF261DFF7F009D7B35 /* UIAlertActionExt.swift in Sources */,
 				38659BEE26B6D2F900E3BFE9 /* AssessmentType.swift in Sources */,
 				380A027B2680AADE00D01B06 /* ExploreMoreCoursesResponse.swift in Sources */,
+				BC0F92BF2785DCCE001C5B3A /* OrganizationsListModel.swift in Sources */,
 				380B13B026B807F700CB5811 /* AssessmentsOverViewModel.swift in Sources */,
 				262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
@@ -2729,6 +2783,7 @@
 				38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */,
 				BC19E5D52631A36600CFA142 /* CreatePasswordViewController.swift in Sources */,
 				BC19E5CA26319D5B00CFA142 /* OtpVerification.swift in Sources */,
+				BC0F92C22785DCF8001C5B3A /* OrganizationsListApiClient.swift in Sources */,
 				380B13AB26B807F700CB5811 /* AssessmentDetailsConfigurator.swift in Sources */,
 				77E32BAF264A8BE50064B801 /* UIDeviceExt.swift in Sources */,
 				777F3A8B26FB5EE0000C5DFC /* NotificationNameExt.swift in Sources */,
@@ -2766,6 +2821,7 @@
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
 				38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */,
+				BC0F92BB2785DC6A001C5B3A /* OrganizationsListViewController.swift in Sources */,
 				26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */,
 				38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */,
 				38659BDB26B6D2F900E3BFE9 /* Grade.swift in Sources */,

@@ -62,6 +62,8 @@ internal enum Asset {
     internal static let coursesLogo = ImageAsset(name: "CoursesLogo")
     internal static let welcomeJohnSignInToContinueCopy = ImageAsset(name: "Welcome John! Sign in to continue Copy")
     internal static let welcome = ImageAsset(name: "Welcome")
+    internal static let organizationsEmpty = ImageAsset(name: "organizationsEmpty")
+    internal static let organizationsSettings = ImageAsset(name: "organizationsSettings")
     internal static let path = ImageAsset(name: "Path")
     internal static let academicInfoTitleAr = ImageAsset(name: "AcademicInfoTitleAr")
     internal static let academicInfoTitleEn = ImageAsset(name: "AcademicInfoTitleEn")

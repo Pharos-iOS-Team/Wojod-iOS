@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Organizations List View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="OrganizationsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="OrganizationsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-yZ-aAu">
+                                <rect key="frame" x="0.0" y="70" width="414" height="826"/>
+                                <color key="backgroundColor" name="lightGreyColor"/>
+                                <color key="sectionIndexBackgroundColor" name="lightGreyColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpT-XW-nAu">
+                                <rect key="frame" x="40" y="24" width="30" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="W4f-tY-kCu"/>
+                                    <constraint firstAttribute="height" constant="45" id="vHI-Gw-14q"/>
+                                </constraints>
+                                <state key="normal" image="BackIcon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageDirection">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismissView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IxT-pU-dtc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organizations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipY-wM-Hfe">
+                                <rect key="frame" x="154" y="36" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="lightGreyColor"/>
+                        <constraints>
+                            <constraint firstItem="ipY-wM-Hfe" firstAttribute="centerY" secondItem="KpT-XW-nAu" secondAttribute="centerY" id="5N8-PF-zkA"/>
+                            <constraint firstItem="cfy-yZ-aAu" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="DgJ-xp-9Yt"/>
+                            <constraint firstItem="ipY-wM-Hfe" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="HgB-do-vD6"/>
+                            <constraint firstItem="cfy-yZ-aAu" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="70" id="I2h-J4-xMh"/>
+                            <constraint firstAttribute="bottom" secondItem="cfy-yZ-aAu" secondAttribute="bottom" id="NIe-0c-0vk"/>
+                            <constraint firstItem="KpT-XW-nAu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="PZT-JK-yx6"/>
+                            <constraint firstAttribute="trailing" secondItem="cfy-yZ-aAu" secondAttribute="trailing" id="g4F-gR-S1I"/>
+                            <constraint firstAttribute="top" secondItem="KpT-XW-nAu" secondAttribute="top" constant="-24" id="iaz-ye-Hqw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="cfy-yZ-aAu" id="E49-0A-0Ry"/>
+                        <outlet property="titleLabel" destination="ipY-wM-Hfe" id="vmY-ZB-En4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66.666666666666671" y="46.875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackIcon" width="30" height="30"/>
+        <namedColor name="lightGreyColor">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

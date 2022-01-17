@@ -351,3 +351,13 @@
 "assignment.needsImprovement" = "يحتاج إلى التحسين";
 
 "navigation.back" = "رجوع";
+
+"organizations.title" = "المؤسسات";
+"organizations.applyConfirmation" = "هل انت متأكد من انك تريد الاشتراك في %@ ؟";
+"organizations.applicationSuccessful" = "تم ارسال الطلب الاشتراك بنجاح";
+"organizations.accepted" = "مقبول";
+"organizations.pending" = "في الانتظار";
+"organizations.rejected" = "مرفوض";
+"organizations.apply" = "اشتراك";
+"organizations.empty" = "لا يوجد مؤسسات في هذا الوقت";
+
