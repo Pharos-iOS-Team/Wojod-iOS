@@ -107,8 +107,9 @@ extension SettingsViewController: UITableViewDataSource {
             let safariViewCtrl = SFSafariViewController(url: linkURL)
             self.present(safariViewCtrl, animated: true)
         case .organizations:
-            let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
-            organizationsListViewCtrl.modalPresentationStyle = .fullScreen
+            let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate().with {
+                $0.modalPresentationStyle = .fullScreen
+            }
             self.present(organizationsListViewCtrl, animated: true)
         default:
             return

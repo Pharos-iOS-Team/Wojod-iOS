@@ -173,7 +173,6 @@
 		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
-		7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE0261C5E69007C0B97 /* Main.storyboard */; };
 		7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE3261C5E6B007C0B97 /* Images.xcassets */; };
 		7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */; };
 		7723ACF2261C5E6C007C0B97 /* WojoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACF1261C5E6C007C0B97 /* WojoodTests.swift */; };
@@ -232,7 +231,6 @@
 		778E7270261DC3E1009D7B35 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726D261DC3E1009D7B35 /* Fonts.swift */; };
 		778E7271261DC3E1009D7B35 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726E261DC3E1009D7B35 /* Assets.swift */; };
 		778E7272261DC3E1009D7B35 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E726F261DC3E1009D7B35 /* Storyboards.swift */; };
-		778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E727C261DCA9A009D7B35 /* ViewController.swift */; };
 		778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */; };
 		778E729B261DD03B009D7B35 /* NSAttributedStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */; };
 		778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E72AD261DD4D1009D7B35 /* Attachable.swift */; };
@@ -656,7 +654,6 @@
 		726F61097298DC7F90F1539F /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7723ACE1261C5E69007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7723ACE3261C5E6B007C0B97 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7723ACE6261C5E6B007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7723ACE8261C5E6B007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -718,7 +715,6 @@
 		778E726D261DC3E1009D7B35 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		778E726E261DC3E1009D7B35 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		778E726F261DC3E1009D7B35 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
-		778E727C261DCA9A009D7B35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolExt.swift; sourceTree = "<group>"; };
 		778E729A261DD03B009D7B35 /* NSAttributedStringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExt.swift; sourceTree = "<group>"; };
 		778E72AD261DD4D1009D7B35 /* Attachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
@@ -1564,8 +1560,6 @@
 				E84874532624B0E1006DF74C /* Registration */,
 				BC98F3D426231C5900032AC6 /* UIComponents */,
 				7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */,
-				7723ACE0261C5E69007C0B97 /* Main.storyboard */,
-				778E727C261DCA9A009D7B35 /* ViewController.swift */,
 			);
 			path = ScreenFlows;
 			sourceTree = "<group>";
@@ -2469,7 +2463,6 @@
 				BC19E5892631762A00CFA142 /* ProfileTableViewCell.xib in Resources */,
 				385CC1052663D95D00A091FD /* Roboto in Resources */,
 				380B13A726B807F700CB5811 /* AssessmentDetailQuestionNumberCollectionViewCell.xib in Resources */,
-				7723ACE2261C5E69007C0B97 /* Main.storyboard in Resources */,
 				38659BE826B6D2F900E3BFE9 /* AppAlert.storyboard in Resources */,
 				BC98F42F262454C300032AC6 /* Login.storyboard in Resources */,
 				38706CD3265E6DD300440B53 /* CourseDetails.storyboard in Resources */,
@@ -2760,7 +2753,6 @@
 				268BD94C269DBC13004758CE /* ImageAttachmentDetails.swift in Sources */,
 				38659BE326B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift in Sources */,
 				77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */,
-				778E727D261DCA9A009D7B35 /* ViewController.swift in Sources */,
 				38659BE626B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift in Sources */,
 				38B06A7A26F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift in Sources */,
 				26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */,
@@ -2926,14 +2918,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7723ACE0261C5E69007C0B97 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7723ACE1261C5E69007C0B97 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -4,7 +4,7 @@ import DZNEmptyDataSet
 import JGProgressHUD
 import UIKit
 
-class OrganizationsListViewController: ViewController {
+class OrganizationsListViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var titleLabel: UILabel!
 
