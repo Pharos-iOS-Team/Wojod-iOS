@@ -90,17 +90,15 @@ internal enum StoryboardScene {
 
     internal static let loginViewController = SceneType<Wojood.LoginViewController>(storyboard: Login.self, identifier: "LoginViewController")
   }
-  internal enum Main: StoryboardType {
-    internal static let storyboardName = "Main"
-
-    internal static let initialScene = InitialSceneType<Wojood.ViewController>(storyboard: Main.self)
-
-    internal static let viewController = SceneType<Wojood.ViewController>(storyboard: Main.self, identifier: "ViewController")
-  }
   internal enum Notifications: StoryboardType {
     internal static let storyboardName = "Notifications"
 
     internal static let initialScene = InitialSceneType<Wojood.NotificationsViewController>(storyboard: Notifications.self)
+  }
+  internal enum OrganizationsList: StoryboardType {
+    internal static let storyboardName = "OrganizationsList"
+
+    internal static let organizationsListViewController = SceneType<Wojood.OrganizationsListViewController>(storyboard: OrganizationsList.self, identifier: "OrganizationsListViewController")
   }
   internal enum Profile: StoryboardType {
     internal static let storyboardName = "Profile"

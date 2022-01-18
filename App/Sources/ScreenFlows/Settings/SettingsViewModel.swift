@@ -6,6 +6,7 @@ enum Settings: Int, CaseIterable {
     case version
     case privacyPolicy
     case languages
+    case organizations
 
     func getSettingsImage(forSettings settings: Int) -> UIImage {
         switch settings {
@@ -15,6 +16,8 @@ enum Settings: Int, CaseIterable {
             return Images.privacy.image
         case Settings.languages.rawValue:
             return Images.gear.image
+        case Settings.organizations.rawValue:
+            return Images.organizationsSettings.image
         default:
             return UIImage()
         }
@@ -28,6 +31,8 @@ enum Settings: Int, CaseIterable {
             return L10n.Settings.privacyPolicy
         case Settings.languages.rawValue:
             return L10n.Settings.languages
+        case Settings.organizations.rawValue:
+            return L10n.Organizations.title
         default:
             return ""
         }

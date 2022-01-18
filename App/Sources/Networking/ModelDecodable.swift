@@ -47,8 +47,9 @@ extension ModelDecodable {
         do {
             let decodedData = try JSONDecoder.default.decode(modelType, from: data)
             return (decodedData, nil)
-        } catch {
-            AnalyticsEventLogger.log(error: "Decoding error in module \(modelType). Error is \(error.localizedDescription)")
+        } catch (let catcedError) {
+            print(catcedError)
+            AnalyticsEventLogger.log(error: "Decoding error in module \(modelType). Error is \(catcedError.localizedDescription)")
             return (nil, L10n.Global.Alerts.dataPreparationError)
         }
     }
