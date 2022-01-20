@@ -111,10 +111,10 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureActionButtonAccordingToState() {
-        if isMyCourses && course?.reservationState == "pending" {
+        if course?.reservationState == "pending" {
             viewButton.setTitle(L10n.Home.pending)
             viewButton.layer.backgroundColor = Colors.orange.color.cgColor
-        } else if isMyCourses && course?.reservationState == "approved" {
+        } else if course?.reservationState == "approved" {
             viewButton.setTitle(L10n.Quizzes.open)
             viewButton.layer.backgroundColor = Colors.green.color.cgColor
         } else {
