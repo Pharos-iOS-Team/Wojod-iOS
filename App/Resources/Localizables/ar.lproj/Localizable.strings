@@ -360,4 +360,6 @@
 "organizations.rejected" = "مرفوض";
 "organizations.apply" = "اشتراك";
 "organizations.empty" = "لا يوجد مؤسسات في هذا الوقت";
+"organizations.firstApply" = "اشترك في مؤسسة";
+"organizations.emptyDescription" = "يجب الاشتراك في مؤسسة حتي يظهر الدروس الخاصة بها";
 

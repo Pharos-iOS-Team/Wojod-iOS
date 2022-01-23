@@ -65,9 +65,13 @@ class HomeViewController: UIViewController {
         configureInfiniteScrolling()
         configureTableView()
         configureRefreshControl()
+        observeInternetConnection()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         loadUserProfile()
         loadAndConfigureAdvertisements()
-        observeInternetConnection()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -134,7 +138,10 @@ class HomeViewController: UIViewController {
 
     private func loadAndConfigureAdvertisements() {
         viewModel.loadAds { ads in
-            self.advertisements = ads?.advertisements
+            if !(User.shared.organizations?.isEmpty ?? true) {
+                self.advertisements = ads?.advertisements
+                self.coursesTableView.reloadData()
+            }
         }
     }
 
@@ -294,15 +301,19 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch mode {
-        case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
-        case .exploreMore:
-            if isFiltersSelected && !isMyCourses {
-                return filteredResultsCourses.count
-            } else {
-                return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
+        if !(User.shared.organizations?.isEmpty ?? true) {
+            switch mode {
+            case .relatedCourses:
+                return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
+            case .exploreMore:
+                if isFiltersSelected && !isMyCourses {
+                    return filteredResultsCourses.count
+                } else {
+                    return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
+                }
             }
+        } else {
+            return .zero
         }
     }
 
@@ -323,6 +334,7 @@ extension HomeViewController: UITableViewDataSource {
         headerView?.delegate = self
         headerView?.configureCollectionViews()
         headerView?.configureSearchBar()
+        headerView?.shouldSearchBarAppear()
         headerView?.setSubjects(self.subjects)
         headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
         headerView?.setAdvertisements(self.advertisements)
@@ -353,10 +365,8 @@ extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         var headerHeight: CGFloat = .zero
-        if isInSearchMode || advertisements?.isEmpty ?? true {
-            headerHeight = 180
-        } else if mode == .exploreMore && !(advertisements?.isEmpty ?? true) {
-            headerHeight = 300
+        if isInSearchMode || advertisements?.isEmpty ?? true || User.shared.organizations?.isEmpty ?? true {
+            headerHeight = 150
         } else {
             headerHeight = 400
         }
@@ -469,7 +479,11 @@ extension HomeViewController: DZNEmptyDataSetSource {
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: L10n.Home.Search.emptyStateDescription)
+        return NSAttributedString(string: User.shared.organizations?.isEmpty ?? true ? L10n.Organizations.emptyDescription : L10n.Home.Search.emptyStateDescription)
+    }
+
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
+        return NSAttributedString(string: L10n.Organizations.firstApply)
     }
 }
 
@@ -481,6 +495,12 @@ extension HomeViewController: DZNEmptyDataSetDelegate {
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        return (searchResultsCourses?.isEmpty ?? true) && isInSearchMode
+        return ((searchResultsCourses?.isEmpty ?? true) && isInSearchMode) || User.shared.organizations?.isEmpty ?? true
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
+        organizationsListViewCtrl.modalPresentationStyle = .fullScreen
+        present(organizationsListViewCtrl, animated: true)
     }
 }

@@ -86,6 +86,10 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         searchBar.delegate = self
     }
 
+    func shouldSearchBarAppear() {
+        searchBar.isHidden = User.shared.organizations?.isEmpty ?? true
+    }
+
     func setSubjects(_ subjects: [Subject]?) {
         self.subjects = subjects
         subjectsCollectionView.reloadData()
