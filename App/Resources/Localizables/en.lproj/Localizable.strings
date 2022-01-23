@@ -361,3 +361,6 @@ No worries!";
 "organizations.rejected" = "Rejected";
 "organizations.apply" = "Apply";
 "organizations.empty" = "There are no organizations yet at the moment";
+"organizations.firstApply" = "Apply for an organization";
+"organizations.emptyDescription" = "You must apply to an organization in order to show its courses";
+

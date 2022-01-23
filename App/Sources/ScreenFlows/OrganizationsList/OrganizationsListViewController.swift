@@ -66,7 +66,7 @@ class OrganizationsListViewController: UIViewController {
     private func applyForOrganization(organizationId: Int, indexPath: IndexPath) {
         guard let organizationName = viewModel?.organizations?[indexPath.row].name else { return }
         showAlert(
-            imageName: "",
+            imageName: Images.danger.name,
             title: L10n.CourseDetails.CancelBooking.messageTitle,
             message: L10n.Organizations.applyConfirmation(organizationName),
             primaryButtonTitle: L10n.Organizations.apply,
@@ -78,7 +78,7 @@ class OrganizationsListViewController: UIViewController {
                     self.viewModel?.organizations?[indexPath.row].status = organization.studentOrganization?.status
                     self.hideLoadingIndicator()
                     let alert = AlertHandler(presentingViewCtrl: self)
-                    alert.showInformationAlert(title: L10n.Global.Titles.error, message: "success")
+                    alert.showInformationAlert(title: "", message: L10n.Organizations.applicationSuccessful)
                     self.tableView.reloadData()
                 }
             }

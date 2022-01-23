@@ -433,6 +433,14 @@ internal enum L10n {
     internal static var empty: String {
         return L10n.tr("Localizable", "organizations.empty")
       }
+    /// You must apply to an organization in order to show its courses
+    internal static var emptyDescription: String {
+        return L10n.tr("Localizable", "organizations.emptyDescription")
+      }
+    /// Apply for an organization
+    internal static var firstApply: String {
+        return L10n.tr("Localizable", "organizations.firstApply")
+      }
     /// Pending
     internal static var pending: String {
         return L10n.tr("Localizable", "organizations.pending")
