@@ -53,6 +53,8 @@ class OrganizationsListTableViewCell: UITableViewCell {
 
     private func makeImageViewCircular() {
         organizationImageView?.setFrameShape(.circular)
+        organizationImageView.layer.masksToBounds = false
+        organizationImageView.clipsToBounds = true
     }
 
     private func setImageView(url: URL?, doesContainImage: Bool) {
