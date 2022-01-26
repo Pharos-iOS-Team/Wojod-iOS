@@ -53,6 +53,7 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
     private var isFiltersSelected: Bool = false
+    private var isLoading: Bool = true
     private var advertisements: [Advertisement]?
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
@@ -231,6 +232,7 @@ class HomeViewController: UIViewController {
             if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
                 subjectRelatedCourses.append(contentsOf: subjectCourses)
             }
+            coursesTableView.reloadData()
             hideInfiniteScrolling()
         }
     }
@@ -251,12 +253,14 @@ class HomeViewController: UIViewController {
     }
 
     private func showLoadingIndicator() {
+        isLoading = true
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
         loadingHud?.show(in: self.view, animated: true)
     }
 
     private func hideLoadingIndicator() {
+        isLoading = false
         loadingHud?.dismiss()
     }
 
@@ -495,7 +499,7 @@ extension HomeViewController: DZNEmptyDataSetDelegate {
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        return ((searchResultsCourses?.isEmpty ?? true) && isInSearchMode) || User.shared.organizations?.isEmpty ?? true
+        return (((searchResultsCourses?.isEmpty ?? true) && isInSearchMode) || User.shared.organizations?.isEmpty ?? true) && !isLoading
     }
 
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {

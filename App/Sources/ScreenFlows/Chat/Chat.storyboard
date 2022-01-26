@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,10 +21,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Chat Container View Controller-->
+        <!--Chat-->
         <scene sceneID="Ah8-Os-mCY">
             <objects>
-                <viewController storyboardIdentifier="ChatContainerViewController" id="Zl2-Zz-NbS" customClass="ChatContainerViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatContainerViewController" title="Chat" id="Zl2-Zz-NbS" customClass="ChatContainerViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RfF-hx-o3b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,11 +247,6 @@
             <point key="canvasLocation" x="1584" y="128"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="7B3-SP-Aae">
-            <size key="intrinsicContentSize" width="38" height="31"/>
-        </designable>
-    </designables>
     <resources>
         <image name="BackIcon" width="30" height="30"/>
         <image name="Stop record" width="512" height="512"/>

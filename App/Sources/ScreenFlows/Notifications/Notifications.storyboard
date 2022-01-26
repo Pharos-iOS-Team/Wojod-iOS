@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notifications View Controller-->
+        <!--Notifications-->
         <scene sceneID="373-7r-uC7">
             <objects>
-                <viewController id="bKN-Zx-6rC" customClass="NotificationsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Notifications" id="bKN-Zx-6rC" customClass="NotificationsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fow-ov-PuI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
