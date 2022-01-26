@@ -76,8 +76,6 @@ internal enum StoryboardScene {
   internal enum Home: StoryboardType {
     internal static let storyboardName = "Home"
 
-    internal static let initialScene = InitialSceneType<Wojood.HomeViewController>(storyboard: Home.self)
-
     internal static let homeViewController = SceneType<Wojood.HomeViewController>(storyboard: Home.self, identifier: "HomeViewController")
   }
   internal enum LaunchScreen: StoryboardType {

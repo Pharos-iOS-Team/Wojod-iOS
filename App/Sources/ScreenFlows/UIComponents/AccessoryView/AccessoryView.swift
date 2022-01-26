@@ -1,18 +1,19 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import UIKit
+
 public class AccessoryView: UIView {
     let toolBar: UIToolbar = {
         let toolBar = UIToolbar()
         return toolBar
     }()
 
-    let doneItem: UIBarButtonItem = {
+    lazy var doneItem: UIBarButtonItem = {
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         return doneItem
     }()
 
-    let addItem: UIBarButtonItem = {
+    lazy var addItem: UIBarButtonItem = {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         return addItem
     }()

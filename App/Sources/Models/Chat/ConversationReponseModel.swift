@@ -1,7 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
-import MessageKit
 
 struct ConversationObjectModel: Codable {
     var id: Int

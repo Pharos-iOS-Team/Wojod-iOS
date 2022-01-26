@@ -137,7 +137,7 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     @IBAction private func didTapBack(_ sender: Any) {
         delegate?.dismissView()
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

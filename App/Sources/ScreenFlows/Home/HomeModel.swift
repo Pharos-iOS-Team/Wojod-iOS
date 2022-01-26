@@ -30,56 +30,11 @@ class HomeModel: ModelDecodable {
         }
     }
 
-    func loadRelatedCourses(
-        isMyCourses: Bool,
-        subjectID: Int?,
-        page: Int,
-        limit: Int,
-        completion: @escaping (Result) -> Void
-    ) {
-        DispatchQueue.global().async {
-            self.homeApiClient.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
-                if let response = response {
-                    if response.statusCode < 300 {
-                        self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
-                            completion(result)
-                        }
-                    } else {
-                        self.decodeError(response: response, completionHandler: completion)
-                    }
-                } else if let error = error {
-                    completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-                }
-            }
-        }
-    }
-
-    func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
-        DispatchQueue.global().async {
-            self.homeApiClient.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit) { response, error in
-                if let response = response {
-                    if response.statusCode < 300 {
-                        self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
-                            completion(result)
-                        }
-                    } else {
-                        self.decodeError(response: response, completionHandler: completion)
-                    }
-                } else if let error = error {
-                    completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-                }
-            }
-        }
-    }
-
-    // swiftlint:disable:next function_parameter_count
-    func loadExploreMoreCoursesForTeacher(teacherID: Int, isMyCourses: Bool, subjectID: Int, page: Int, limit: Int, completion: @escaping (Result) -> Void) {
-        homeApiClient.loadRelatedCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit) { response, error in
+    func loadCourses(requestModel: CoursesRequestModel, completion: @escaping (Result) -> Void) {
+        homeApiClient.loadCourses(requestModel: requestModel) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
-                    self.decode(modelType: RelatedCoursesResponse.self, from: response) { result in
-                        completion(result)
-                    }
+                    self.decode(modelType: CoursesResponse.self, from: response) { result in completion(result) }
                 } else {
                     self.decodeError(response: response, completionHandler: completion)
                 }
@@ -93,9 +48,7 @@ class HomeModel: ModelDecodable {
         homeApiClient.searchCourses(value: value) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
-                    self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
-                        completion(result)
-                    }
+                    self.decode(modelType: CoursesResponse.self, from: response) { result in completion(result) }
                 } else {
                     self.decodeError(response: response, completionHandler: completion)
                 }

@@ -31,7 +31,7 @@ extension FileManager {
         return destinationUrl
     }
 
-    func removeItemIfExisted(_ url:URL) -> Void {
+    func removeItemIfExisted(_ url:URL) {
         if FileManager.default.fileExists(atPath: url.path) {
             do {
                 try FileManager.default.removeItem(atPath: url.path)

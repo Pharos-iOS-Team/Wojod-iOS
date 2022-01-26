@@ -19,7 +19,10 @@ extension ScreenshotAlertTarget: TargetType {
     var task: Task {
         switch self {
         case let .screenshotAlert(screenName, isRecording, deviceType):
-            return .requestParameters(parameters: ["screen_name": screenName, "is_recording": isRecording, "device_type": deviceType], encoding: URLEncoding.queryString)
+            return .requestParameters(
+                parameters: ["screen_name": screenName, "is_recording": isRecording, "device_type": deviceType],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 }

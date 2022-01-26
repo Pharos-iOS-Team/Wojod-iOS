@@ -283,6 +283,10 @@ internal enum L10n {
   }
 
   internal enum Home {
+    /// No courses available
+    internal static var defaultEmptyState: String {
+        return L10n.tr("Localizable", "home.defaultEmptyState")
+      }
     /// Explore More
     internal static var exploreMore: String {
         return L10n.tr("Localizable", "home.exploreMore")

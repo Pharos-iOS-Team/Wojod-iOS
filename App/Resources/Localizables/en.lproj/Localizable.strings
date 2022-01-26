@@ -215,6 +215,7 @@ No worries!";
 "home.pending" = "Pending";
 "home.search.emptyStateTitle" = "Sorry";
 "home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
+"home.defaultEmptyState" = "No courses available";
 
 "filters.filters" = "Filters";
 "filters.apply" = "Apply";

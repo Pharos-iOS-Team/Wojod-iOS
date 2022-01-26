@@ -205,8 +205,8 @@
 		7723AE3B261C8261007C0B97 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE39261C8260007C0B97 /* Strings.swift */; };
 		7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE3A261C8260007C0B97 /* GlobalStrings.swift */; };
 		7723AE41261C82C7007C0B97 /* AnalyticsEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */; };
-		7729BCB12774B37D00702B0D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7729BCB02774B37D00702B0D /* MessageKit */; };
 		7731E1AD2642A30800F08FFD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7731E1AC2642A30800F08FFD /* .gitignore */; };
+		773DD40A27A34EFF00421524 /* HomeEmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773DD40927A34EFF00421524 /* HomeEmptyStateDelegate.swift */; };
 		7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6C62656741800F429F5 /* HTTPStatusCode.swift */; };
 		7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */; };
 		777F3A8926FB5D58000C5DFC /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777F3A8826FB5D58000C5DFC /* ErrorParser.swift */; };
@@ -691,6 +691,7 @@
 		7723AE3A261C8260007C0B97 /* GlobalStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStrings.swift; sourceTree = "<group>"; };
 		7723AE40261C82C7007C0B97 /* AnalyticsEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventLogger.swift; sourceTree = "<group>"; };
 		7731E1AC2642A30800F08FFD /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		773DD40927A34EFF00421524 /* HomeEmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyStateDelegate.swift; sourceTree = "<group>"; };
 		7744F6C62656741800F429F5 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
@@ -951,7 +952,6 @@
 				77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */,
 				77B56A792772141D009E47D7 /* GoogleUtilities.xcframework in Frameworks */,
 				77B56A98277217A1009E47D7 /* LanguageManager_iOS.xcframework in Frameworks */,
-				7729BCB12774B37D00702B0D /* MessageKit in Frameworks */,
 				77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */,
 				77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */,
 				77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */,
@@ -2083,6 +2083,7 @@
 				BC767144262C528D0012155C /* HomeViewController.swift */,
 				BC9682482638631D009F8550 /* HomeViewModel.swift */,
 				BC96824E26386329009F8550 /* HomeModel.swift */,
+				773DD40927A34EFF00421524 /* HomeEmptyStateDelegate.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2293,7 +2294,6 @@
 			name = Wojood;
 			packageProductDependencies = (
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
-				7729BCB02774B37D00702B0D /* MessageKit */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2370,7 +2370,6 @@
 			mainGroup = 7723ACCE261C5E68007C0B97;
 			packageReferences = (
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
-				7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2687,6 +2686,7 @@
 				38B131CF26B18ACC00D5966A /* FilterCollectionViewCell.swift in Sources */,
 				E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */,
 				7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */,
+				773DD40A27A34EFF00421524 /* HomeEmptyStateDelegate.swift in Sources */,
 				BC19E58F2631827C00CFA142 /* ProfileApiClient.swift in Sources */,
 				3826BC792669086E00CF9357 /* Materials.swift in Sources */,
 				26C2E85026B2CBA500988B1D /* AudioRecordingViewController.swift in Sources */,
@@ -3271,14 +3271,6 @@
 				minimumVersion = 3.1.1;
 			};
 		};
-		7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MessageKit/MessageKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3286,11 +3278,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */;
 			productName = DTPhotoViewerController;
-		};
-		7729BCB02774B37D00702B0D /* MessageKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7729BCAF2774B37D00702B0D /* XCRemoteSwiftPackageReference "MessageKit" */;
-			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

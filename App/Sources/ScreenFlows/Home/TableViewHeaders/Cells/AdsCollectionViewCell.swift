@@ -4,8 +4,7 @@ import Kingfisher
 import UIKit
 
 class AdsCollectionViewCell: UICollectionViewCell {
-    // MARK: - IBOutlets
-
+    @IBOutlet private var containerView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var imageView: UIImageView!
@@ -28,6 +27,11 @@ class AdsCollectionViewCell: UICollectionViewCell {
         if let url = URL(string: advertisement?.mobileLink ?? "") {
             UIApplication.shared.open(url)
         }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.roundCorners(.allCorners, radius: UIConstants.slightCornerRadius)
     }
 
     // MARK: - Public Functions

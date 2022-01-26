@@ -12,8 +12,6 @@ enum HomeMode {
 }
 
 class HomeViewController: UIViewController {
-    // MARK: - IBOutlets
-
     @IBOutlet private var helpCenterButton: UIButton! {
         didSet {
             helpCenterButton.layer.cornerRadius = UIConstants.slightCornerRadius
@@ -32,32 +30,31 @@ class HomeViewController: UIViewController {
     }
     @IBOutlet private var filtersButton: UIButton!
     @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private var coursesTableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
 
     // MARK: - Private Properties
 
     private let viewModel = HomeViewModel()
-    private var subjects: [Subject]?
-    private var selectedSubject: Subject?
-    private var selectedSubjectIndexPath: IndexPath?
-    private var subjectRelatedCourses: [SubjectCourses] = []
-    private var exploreMoreCourses: [SubjectCourses] = []
-    private var searchResultsCourses: [SubjectCourses]?
-    private var filteredResultsCourses: [SubjectCourses] = []
+    private var selectedSubjectIndexPath: IndexPath = .zero
     private var mode: HomeMode = .relatedCourses
-    private var isInSearchMode = false
     private var loadingHud: JGProgressHUD?
-    private var selectedTabBarItem: TabBarItems?
-    private var isMyCourses = false
-    private var isFirstScreenLoad = true
+    private var isFirstScreenLoad: Bool = true
     private let refreshControl = UIRefreshControl()
     private var blurredView: UIVisualEffectView?
     private var isFiltersSelected: Bool = false
-    private var isLoading: Bool = true
-    private var advertisements: [Advertisement]?
-    private var window: UIWindow? {
-        return (UIApplication.shared.delegate as? AppDelegate)?.window
+    private var advertisements: [Advertisement] = []
+    private var emptyStateDelegator: HomeEmptyStateDelegate!
+    private(set) var isLoading: Bool = true
+    var isMyCourses: Bool {
+        return viewModel.isMyCourses
     }
+    var isInSearchMode: Bool {
+        return searchText.isValid
+    }
+    var courses: [SubjectCourses] {
+        return viewModel.courses
+    }
+    private var searchText: String = ""
 
     // MARK: - Lifecycle
 
@@ -77,20 +74,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
+        viewModel.isMyCourses = tabBarController?.selectedIndex == TabBarItems.courses.rawValue
         configureFilterButton()
-        if self.mode == .relatedCourses {
-            self.viewModel.relatedCoursesPage = 1
-            self.loadRelatedCourses(isBeingScrolled: false)
-        } else {
-            self.viewModel.exploreMorePage = 1
-            self.loadExploreMoreCourses(isBeingScrolled: false)
-        }
+        viewModel.page = 1
+        loadCourses()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        for cell in coursesTableView.visibleCells {
+        for cell in tableView.visibleCells {
             if let courseCell = cell as? CourseTableViewCell {
                 courseCell.stopAnyPlayingVideoIfAny()
             }
@@ -119,7 +111,7 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
-        loadExploreMoreCourses(isBeingScrolled: false)
+        loadCourses()
         clearPreviouslyChosenFilters()
         configureFiltersButtonWhenNoFilterSelected()
     }
@@ -139,10 +131,8 @@ class HomeViewController: UIViewController {
 
     private func loadAndConfigureAdvertisements() {
         viewModel.loadAds { ads in
-            if !(User.shared.organizations?.isEmpty ?? true) {
-                self.advertisements = ads?.advertisements
-                self.coursesTableView.reloadData()
-            }
+            self.advertisements = ads?.advertisements ?? []
+            self.tableView.reloadData()
         }
     }
 
@@ -169,90 +159,62 @@ class HomeViewController: UIViewController {
 
     private func configureInfiniteScrolling() {
         if !isFiltersSelected {
-            coursesTableView.addInfiniteScroll { [unowned self]  _ in
-                if self.mode == .relatedCourses {
-                    self.loadRelatedCourses(isBeingScrolled: true)
-                } else {
-                    self.loadExploreMoreCourses(isBeingScrolled: true)
-                }
+            tableView.addInfiniteScroll { [unowned self]  _ in
+                self.loadCourses()
             }
         }
     }
 
     private func hideInfiniteScrolling() {
-        coursesTableView.finishInfiniteScroll()
-        self.coursesTableView.reloadData()
+        tableView.finishInfiniteScroll()
+        tableView.reloadData()
     }
 
     private func configureRefreshControl() {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        coursesTableView.refreshControl = refreshControl
+        tableView.refreshControl = refreshControl
     }
 
     @objc
     private func refresh(_ sender: AnyObject) {
         loadAndConfigureAdvertisements()
-        if self.mode == .relatedCourses {
-            self.viewModel.relatedCoursesPage = 1
-            self.loadRelatedCourses(isBeingScrolled: false)
-            self.coursesTableView.refreshControl?.endRefreshing()
-        } else {
-            self.viewModel.exploreMorePage = 1
-            self.loadExploreMoreCourses(isBeingScrolled: false)
-            self.coursesTableView.refreshControl?.endRefreshing()
-        }
+        viewModel.page = 1
+        loadCourses()
+        tableView.refreshControl?.endRefreshing()
     }
 
     private func configureTableView() {
-        coursesTableView.dataSource = self
-        coursesTableView.delegate = self
-        coursesTableView.emptyDataSetSource = self
-        coursesTableView.emptyDataSetDelegate = self
-        coursesTableView.registerCell(ofType: CourseTableViewCell.self)
-        coursesTableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
+        emptyStateDelegator = HomeEmptyStateDelegate(sourceViewCtrl: self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.emptyDataSetSource = emptyStateDelegator
+        tableView.emptyDataSetDelegate = emptyStateDelegator
+        tableView.registerCell(ofType: CourseTableViewCell.self)
+        tableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
     }
 
     private func loadUserProfile() {
         viewModel.fetchUserProfile(id: User.shared.id ?? 0)
     }
 
-    private func loadRelatedCourses(isBeingScrolled: Bool) {
+    @objc
+    private func loadCourses() {
         showLoadingIndicator()
-        viewModel.loadRelatedCourses(
-            isBeingScrolled: isBeingScrolled,
-            isMyCourses: isMyCourses,
-            subjectID: selectedSubject?.id
-        ) { [unowned self] relatedCourses in
-            hideLoadingIndicator()
-            subjects = relatedCourses?.subjects
-            let defaultSubjectName = subjects?.first?.name ?? ""
-            if !isBeingScrolled {
-                subjectRelatedCourses.removeAll()
+        if isInSearchMode {
+            viewModel.searchCourses(value: searchText) { [unowned self] in
+                hideLoadingIndicator()
+                hideInfiniteScrolling()
             }
-            if let subjectCourses = relatedCourses?.teachersCourses[selectedSubject?.name ?? defaultSubjectName] {
-                subjectRelatedCourses.append(contentsOf: subjectCourses)
+        } else {
+            viewModel.loadCourses(mode: mode) { [unowned self] in
+                hideLoadingIndicator()
+                hideInfiniteScrolling()
             }
-            coursesTableView.reloadData()
-            hideInfiniteScrolling()
-        }
-    }
-
-    private func loadExploreMoreCourses(isBeingScrolled: Bool) {
-        showLoadingIndicator()
-        viewModel.loadExploreMoreCourses(isBeingScrolled: isBeingScrolled, isMyCourses: isMyCourses) { [unowned self] courses in
-            hideLoadingIndicator()
-            if !isBeingScrolled {
-                exploreMoreCourses.removeAll()
-            }
-            if let exploreCourses = courses?.teachersCourses {
-                exploreMoreCourses.append(contentsOf: exploreCourses)
-            }
-            coursesTableView.reloadData()
-            hideInfiniteScrolling()
         }
     }
 
     private func showLoadingIndicator() {
+        guard viewModel.page == 1 else { return }
         isLoading = true
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
@@ -265,16 +227,7 @@ class HomeViewController: UIViewController {
     }
 
     private func appropriateSubjectCourse(index: Int) -> SubjectCourses? {
-        switch mode {
-        case .relatedCourses:
-            return isInSearchMode ? searchResultsCourses?[index] : subjectRelatedCourses[index]
-        case .exploreMore:
-            if isFiltersSelected && !isMyCourses {
-                return filteredResultsCourses[index]
-            } else {
-                return isInSearchMode ? searchResultsCourses?[index] : exploreMoreCourses[index]
-            }
-        }
+        return viewModel.courses[index]
     }
 
     private func configureFiltersButtonWhenFiltersAreSelected() {
@@ -305,20 +258,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !(User.shared.organizations?.isEmpty ?? true) {
-            switch mode {
-            case .relatedCourses:
-                return isInSearchMode ? searchResultsCourses?.count ?? 0: subjectRelatedCourses.count
-            case .exploreMore:
-                if isFiltersSelected && !isMyCourses {
-                    return filteredResultsCourses.count
-                } else {
-                    return isInSearchMode ? searchResultsCourses?.count ?? 0 : exploreMoreCourses.count
-                }
-            }
-        } else {
-            return .zero
-        }
+        return viewModel.courses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -336,26 +276,17 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
         headerView?.delegate = self
-        headerView?.configureCollectionViews()
-        headerView?.configureSearchBar()
-        headerView?.shouldSearchBarAppear()
-        headerView?.setSubjects(self.subjects)
+        headerView?.setSubjects(viewModel.subjects)
         headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
         headerView?.setAdvertisements(self.advertisements)
-        if isFirstScreenLoad && self.subjects != nil {
+        if isFirstScreenLoad && !viewModel.subjects.isEmpty {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
         }
-        if !isInSearchMode && mode == .relatedCourses {
-            headerView?.showSubjectsAndAds()
-        } else {
-            headerView?.hideSubjectsAndAds()
-        }
-        if advertisements?.isEmpty ?? true {
-            headerView?.hideAdvertisments()
-        } else {
-            headerView?.showAdvertisments()
-        }
+
+        headerView?.setButtonsVisibility(!isInSearchMode)
+        headerView?.setSubjectsVisibility(!isInSearchMode && mode == .relatedCourses && !isMyCourses)
+        headerView?.setAdvertisementsVisibility(!advertisements.isEmpty && !isMyCourses && !isInSearchMode)
         return headerView
     }
 }
@@ -367,14 +298,12 @@ extension HomeViewController: UITableViewDelegate {
         return 280
     }
 
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 125
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        var headerHeight: CGFloat = .zero
-        if isInSearchMode || advertisements?.isEmpty ?? true || User.shared.organizations?.isEmpty ?? true {
-            headerHeight = 150
-        } else {
-            headerHeight = 400
-        }
-        return headerHeight
+        return UITableView.automaticDimension
     }
 }
 
@@ -415,96 +344,53 @@ extension HomeViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegate {
 
 extension HomeViewController: HomeTableViewHeaderDelegate {
     func textDidChange(in searchBar: UISearchBar) {
-        if searchBar.text?.isEmpty ?? false {
-            isInSearchMode = false
-            coursesTableView.reloadData()
+        if !searchBar.text.isValid {
+            viewModel.page = 1
         }
+
+        self.searchText = searchBar.text ?? ""
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        perform(#selector(searchCourses(_:)), with: searchBar, afterDelay: 0.5)
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.view.endEditing(true)
-        isInSearchMode = true
-        showLoadingIndicator()
-        viewModel.searchCourses(value: searchBar.text ?? "") { resultCourses in
-            self.hideLoadingIndicator()
-            self.searchResultsCourses = resultCourses?.teachersCourses
-            self.coursesTableView.reloadData()
-        }
+    @objc
+    private func searchCourses(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        loadCourses()
     }
 
-    func didSelectSubject(in collectionView: UICollectionView, at indexPath: IndexPath) {
-        if let subjectCell = collectionView.cellForItem(at: indexPath) as? SubjectCollectionViewCell {
-            subjectCell.isSelected = true
-        }
+    func didSelectSubject(at indexPath: IndexPath) {
         selectedSubjectIndexPath = indexPath
-        subjectRelatedCourses.removeAll()
-        viewModel.relatedCoursesPage = 1
-        selectedSubject = subjects?[indexPath.item]
-        loadRelatedCourses(isBeingScrolled: false)
+        viewModel.courses.removeAll()
+        viewModel.page = 1
+        viewModel.selectedSubject = viewModel.subjects[indexPath.item]
+        loadCourses()
     }
 
     func didSelectRelatedCourses() {
         mode = .relatedCourses
-        subjectRelatedCourses.removeAll()
-        coursesTableView.reloadData()
-        viewModel.exploreMorePage = 1
+        viewModel.courses.removeAll()
+        tableView.reloadData()
+        viewModel.page = 1
         configureFilterButton()
-        loadRelatedCourses(isBeingScrolled: false)
+        loadCourses()
     }
 
     func didSelectExploreMore() {
         mode = .exploreMore
-        exploreMoreCourses.removeAll()
-        coursesTableView.reloadData()
-        viewModel.relatedCoursesPage = 1
+        viewModel.courses.removeAll()
+        tableView.reloadData()
+        viewModel.page = 1
         configureFilterButton()
-        loadExploreMoreCourses(isBeingScrolled: false)
+        loadCourses()
     }
 }
 
 // MARK: - Filters Delegate
 extension HomeViewController: FiltersDelegate {
-    func loadFilteredCourses(_ courses: ExploreMoreCoursesResponse?) {
+    func loadFilteredCourses(_ courses: CoursesResponse?) {
         configureFiltersButtonWhenFiltersAreSelected()
-        filteredResultsCourses = courses?.teachersCourses ?? []
-        self.coursesTableView.reloadData()
-    }
-}
-
-// MARK: - DZN Empty State Data Source
-
-extension HomeViewController: DZNEmptyDataSetSource {
-    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-        return Images.searchEmptyState.image
-    }
-
-    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: L10n.Home.Search.emptyStateTitle)
-    }
-
-    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: User.shared.organizations?.isEmpty ?? true ? L10n.Organizations.emptyDescription : L10n.Home.Search.emptyStateDescription)
-    }
-
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
-        return NSAttributedString(string: L10n.Organizations.firstApply)
-    }
-}
-
-// MARK: - DZN Empty State Delegate
-
-extension HomeViewController: DZNEmptyDataSetDelegate {
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
-        return true
-    }
-
-    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        return (((searchResultsCourses?.isEmpty ?? true) && isInSearchMode) || User.shared.organizations?.isEmpty ?? true) && !isLoading
-    }
-
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
-        organizationsListViewCtrl.modalPresentationStyle = .fullScreen
-        present(organizationsListViewCtrl, animated: true)
+        viewModel.courses = courses?.teachersCourses ?? []
+        tableView.reloadData()
     }
 }
