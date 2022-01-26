@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Organizations List View Controller-->
+        <!--OrganizationsList-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="OrganizationsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="OrganizationsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrganizationsListViewController" title="OrganizationsList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="OrganizationsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,9 +50,9 @@
                         <constraints>
                             <constraint firstItem="ipY-wM-Hfe" firstAttribute="centerY" secondItem="KpT-XW-nAu" secondAttribute="centerY" id="5N8-PF-zkA"/>
                             <constraint firstItem="cfy-yZ-aAu" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="DgJ-xp-9Yt"/>
-                            <constraint firstItem="ipY-wM-Hfe" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="HgB-do-vD6"/>
+                            <constraint firstItem="ipY-wM-Hfe" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="HgB-do-vD6"/>
                             <constraint firstAttribute="bottom" secondItem="cfy-yZ-aAu" secondAttribute="bottom" id="NIe-0c-0vk"/>
-                            <constraint firstItem="KpT-XW-nAu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="PZT-JK-yx6"/>
+                            <constraint firstItem="KpT-XW-nAu" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="40" id="PZT-JK-yx6"/>
                             <constraint firstItem="cfy-yZ-aAu" firstAttribute="top" secondItem="ipY-wM-Hfe" secondAttribute="bottom" constant="10" id="RxE-47-aGF"/>
                             <constraint firstAttribute="trailing" secondItem="cfy-yZ-aAu" secondAttribute="trailing" id="g4F-gR-S1I"/>
                             <constraint firstAttribute="top" secondItem="KpT-XW-nAu" secondAttribute="top" constant="-50" id="iaz-ye-Hqw"/>

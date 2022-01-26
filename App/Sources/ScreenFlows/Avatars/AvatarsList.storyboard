@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Avatars List View Controller-->
+        <!--AvatarsList-->
         <scene sceneID="GIA-lh-v5t">
             <objects>
-                <viewController storyboardIdentifier="AvatarsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="naC-Nl-H5i" customClass="AvatarsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AvatarsListViewController" title="AvatarsList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="naC-Nl-H5i" customClass="AvatarsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AOa-Af-2c1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
