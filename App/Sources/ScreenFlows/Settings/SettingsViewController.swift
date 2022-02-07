@@ -43,8 +43,7 @@ class SettingsViewController: UIViewController {
     }
 
     private func registerNib() {
-        let settingsTableViewCellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
-        settingsTableView.register(settingsTableViewCellNib, forCellReuseIdentifier: "SettingsTableViewCell")
+        settingsTableView.registerCell(ofType: SettingsTableViewCell.self)
     }
 
     private func setUserAvatar() {

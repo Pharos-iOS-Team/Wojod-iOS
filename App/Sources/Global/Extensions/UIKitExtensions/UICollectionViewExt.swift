@@ -1,6 +1,5 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
-import HandyUIKit
 import UIKit
 
 extension UICollectionView {

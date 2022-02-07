@@ -3,6 +3,14 @@
 import Foundation
 import Moya
 
+struct CoursesRequestModel {
+    let type: HomeMode
+    let isMyCourses: Bool
+    let subjectID: Int?
+    let page: Int
+    let limit: Int = 10
+}
+
 class HomeApiClient {
     let homeProvider = MoyaProvider<HomeTarget>()
 
@@ -17,36 +25,17 @@ class HomeApiClient {
         }
     }
 
-    // swiftlint:disable:next function_parameter_count
-    func loadRelatedCourses(
-        isMyCourses: Bool,
-        subjectID: Int?,
-        page: Int,
-        limit: Int,
-        completion: @escaping (Response?, MoyaError?) -> Void
-    ) {
-        DispatchQueue.global().async {
-            self.homeProvider.request(.loadRelatedCourses(isMyCourses: isMyCourses, subjectID: subjectID, page: page, limit: limit)) { result in
-                switch result {
-                case .success(let response):
-                    completion(response, nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-            }
+    func loadCourses(requestModel: CoursesRequestModel, completion: @escaping (Response?, MoyaError?) -> Void) {
+        switch requestModel.type {
+        case .relatedCourses:
+            loadRelatedCourses(requestModel: requestModel, completion: completion)
+        case .exploreMore:
+            loadExploreMoreCourses(requestModel: requestModel, completion: completion)
         }
     }
 
-    // swiftlint:disable:next function_parameter_count
-    func loadRelatedCoursesForTeacher(
-        teacherID: Int,
-        isMyCourses: Bool,
-        subjectID: Int,
-        page: Int,
-        limit: Int,
-        completion: @escaping (Response?, MoyaError?) -> Void
-    ) {
-        homeProvider.request(.loadRelatedCoursesForTeacher(teacherID: teacherID, subjectID: subjectID, isMyCourses: isMyCourses, page: page, limit: limit)) { result in
+    private func loadRelatedCourses(requestModel: CoursesRequestModel, completion: @escaping (Response?, MoyaError?) -> Void) {
+        homeProvider.request(.relatedCourses(requestModel: requestModel)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)
@@ -56,15 +45,13 @@ class HomeApiClient {
         }
     }
 
-    func loadExploreMoreCourses(isMyCourses: Bool, page: Int, limit: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
-        DispatchQueue.global().async {
-            self.homeProvider.request(.loadExploreMoreCourses(isMyCourses: isMyCourses, page: page, limit: limit)) { result in
-                switch result {
-                case .success(let response):
-                    completion(response, nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
+    private func loadExploreMoreCourses(requestModel: CoursesRequestModel, completion: @escaping (Response?, MoyaError?) -> Void) {
+        homeProvider.request(.exploreMoreCourses(requestModel: requestModel)) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }

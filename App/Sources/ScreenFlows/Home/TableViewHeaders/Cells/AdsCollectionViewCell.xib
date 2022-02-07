@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,16 +28,16 @@
                 <subviews>
                     <view alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMP-t1-shH">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="150"/>
-                        <color key="backgroundColor" name="backgroundLightPurple"/>
+                        <color key="backgroundColor" name="AdsBackground"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount 30%" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6y-Xq-9cJ">
-                        <rect key="frame" x="20" y="7" width="109.5" height="19.5"/>
-                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="16"/>
+                        <rect key="frame" x="20" y="7" width="143.5" height="25.5"/>
+                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="21"/>
                         <color key="textColor" name="sendButtonColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b8a-u1-CxS">
-                        <rect key="frame" x="180" y="5" width="170" height="140"/>
+                        <rect key="frame" x="190" y="0.0" width="170" height="150"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="170" id="8Yl-Zh-itW"/>
                         </constraints>
@@ -58,7 +58,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Book from Wojood" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOa-MY-EG9">
-                        <rect key="frame" x="20" y="31.5" width="104.5" height="15"/>
+                        <rect key="frame" x="20" y="37.5" width="104.5" height="15"/>
                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -71,19 +71,21 @@
                 <constraint firstItem="AfY-fZ-DXa" firstAttribute="leading" secondItem="JOa-MY-EG9" secondAttribute="leading" id="Dlb-Dq-f4I"/>
                 <constraint firstItem="b8a-u1-CxS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JOa-MY-EG9" secondAttribute="trailing" constant="5" id="Esq-zC-XWQ"/>
                 <constraint firstItem="JOa-MY-EG9" firstAttribute="leading" secondItem="U6y-Xq-9cJ" secondAttribute="leading" id="PbD-pd-BlY"/>
-                <constraint firstAttribute="trailing" secondItem="b8a-u1-CxS" secondAttribute="trailing" constant="10" id="Qil-nM-Q5q"/>
+                <constraint firstAttribute="trailing" secondItem="b8a-u1-CxS" secondAttribute="trailing" id="Qil-nM-Q5q"/>
                 <constraint firstItem="U6y-Xq-9cJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="UJf-XB-DvZ"/>
                 <constraint firstAttribute="trailing" secondItem="eMP-t1-shH" secondAttribute="trailing" id="Xqv-ZP-DAg"/>
                 <constraint firstItem="eMP-t1-shH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="a3o-je-uoY"/>
                 <constraint firstAttribute="bottom" secondItem="AfY-fZ-DXa" secondAttribute="bottom" constant="10" id="b38-C8-fre"/>
                 <constraint firstItem="AfY-fZ-DXa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JOa-MY-EG9" secondAttribute="bottom" constant="5" id="c0y-ZN-IHG"/>
                 <constraint firstItem="eMP-t1-shH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fCx-Ub-JTx"/>
-                <constraint firstAttribute="bottom" secondItem="b8a-u1-CxS" secondAttribute="bottom" constant="5" id="fJF-7M-GuZ"/>
-                <constraint firstItem="b8a-u1-CxS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="j3L-Rm-Vye"/>
+                <constraint firstAttribute="bottom" secondItem="b8a-u1-CxS" secondAttribute="bottom" id="fJF-7M-GuZ"/>
+                <constraint firstItem="b8a-u1-CxS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="j3L-Rm-Vye"/>
                 <constraint firstAttribute="bottom" secondItem="eMP-t1-shH" secondAttribute="bottom" id="jcU-nO-RIY"/>
+                <constraint firstItem="b8a-u1-CxS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="U6y-Xq-9cJ" secondAttribute="trailing" constant="5" id="q4h-gF-psN"/>
                 <constraint firstItem="U6y-Xq-9cJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7" id="vZP-ED-kMz"/>
             </constraints>
             <connections>
+                <outlet property="containerView" destination="eMP-t1-shH" id="oRa-ek-kzP"/>
                 <outlet property="descriptionLabel" destination="JOa-MY-EG9" id="PpD-2n-ney"/>
                 <outlet property="imageView" destination="b8a-u1-CxS" id="BZm-mh-uTl"/>
                 <outlet property="titleLabel" destination="U6y-Xq-9cJ" id="mIh-fe-9dy"/>
@@ -93,8 +95,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="backgroundLightPurple">
-            <color red="0.93725490196078431" green="0.92941176470588238" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="AdsBackground">
+            <color red="0.1764705882352941" green="0.16862745098039217" blue="0.69019607843137254" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sendButtonColor">
             <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

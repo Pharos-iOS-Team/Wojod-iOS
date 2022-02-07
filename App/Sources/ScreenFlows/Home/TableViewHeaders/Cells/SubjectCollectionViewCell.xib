@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +34,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWO-hJ-geN">
-                                <rect key="frame" x="80.5" y="15.5" width="39.5" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                 <color key="textColor" name="labelGreyColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,9 +44,11 @@
                         <constraints>
                             <constraint firstItem="aB6-IN-itx" firstAttribute="leading" secondItem="vRy-t5-80e" secondAttribute="leading" id="FhB-XK-LPT"/>
                             <constraint firstItem="aWO-hJ-geN" firstAttribute="centerX" secondItem="vRy-t5-80e" secondAttribute="centerX" id="Krm-V1-iJb"/>
+                            <constraint firstItem="aWO-hJ-geN" firstAttribute="leading" secondItem="vRy-t5-80e" secondAttribute="leading" id="SwT-f1-dET"/>
                             <constraint firstItem="aWO-hJ-geN" firstAttribute="centerY" secondItem="vRy-t5-80e" secondAttribute="centerY" id="TaB-P3-b6U"/>
                             <constraint firstAttribute="bottom" secondItem="aB6-IN-itx" secondAttribute="bottom" id="UnB-ga-aQt"/>
                             <constraint firstAttribute="trailing" secondItem="aB6-IN-itx" secondAttribute="trailing" id="adE-vm-NiC"/>
+                            <constraint firstItem="aWO-hJ-geN" firstAttribute="top" secondItem="vRy-t5-80e" secondAttribute="top" id="rY0-1D-bEH"/>
                         </constraints>
                     </view>
                 </subviews>

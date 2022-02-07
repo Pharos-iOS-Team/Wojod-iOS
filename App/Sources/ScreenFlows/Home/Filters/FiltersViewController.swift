@@ -4,7 +4,7 @@ import HandySwift
 import UIKit
 
 protocol FiltersDelegate: AnyObject {
-    func loadFilteredCourses(_ courses: ExploreMoreCoursesResponse?)
+    func loadFilteredCourses(_ courses: CoursesResponse?)
 }
 
 enum SchoolSection {

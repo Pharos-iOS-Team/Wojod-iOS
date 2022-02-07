@@ -38,17 +38,17 @@ class FiltersViewModel {
         }
     }
 
-    internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
+    func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
         NetworkProvider.shared.request(target: .specializations(divisionIndex), type: SpecializationsModel.self) { response, _ in
             let specializations = response?.specializations
             completion(specializations)
         }
     }
 
-    internal func loadFilteredCourses(subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (ExploreMoreCoursesResponse?) -> Void) {
+    func loadFilteredCourses(subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (CoursesResponse?) -> Void) {
         filtersModel.loadFilteredCourses(isMyCourses: false, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { result in
             switch result {
-            case .success(let courses as ExploreMoreCoursesResponse):
+            case let .success(courses as CoursesResponse):
                 completion(courses)
             default:
                 return

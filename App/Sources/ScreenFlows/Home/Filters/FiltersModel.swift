@@ -9,7 +9,7 @@ class FiltersModel: ModelDecodable {
         apiClient.loadFilteredCourses(isMyCourses: isMyCourses, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
-                    self.decode(modelType: ExploreMoreCoursesResponse.self, from: response) { result in
+                    self.decode(modelType: CoursesResponse.self, from: response) { result in
                         completion(result)
                     }
                 } else {
