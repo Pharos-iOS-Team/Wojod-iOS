@@ -114,7 +114,6 @@ class CourseDetailsViewController: UIViewController {
         bindStartAssessmentHandler()
         bindAssessmentResultsHandler()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        handleScreenshot()
         configureRefreshControl()
         observeInternetConnection()
         showQuizAlert()
@@ -181,28 +180,6 @@ class CourseDetailsViewController: UIViewController {
         }
     }
     // MARK: - Private Functions
-
-    @discardableResult
-    private func handleScreenshot() -> NSObjectProtocol {
-        return NotificationCenter.default.addObserver(
-            forName: UIApplication.userDidTakeScreenshotNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { notification in
-            self.showLoadingIndicator()
-            self.viewModel?.screenshotAlert(screenName: self.activeSubscreen.rawValue) { _ in
-                self.hideLoadingIndicator()
-                self.showAlert(
-                    imageName: Images.danger.name,
-                    title: L10n.Shared.Alerts.screenshotsNotAllowed,
-                    message: L10n.Shared.Alerts.appWillTerminate
-                ) {
-                    exit(-1)
-                }
-            }
-        }
-    }
-
     private func coursePrice() -> String {
         if course?.price == nil || course?.price?.isEmpty ?? true {
             return L10n.Home.Course.returnToTeacher
@@ -893,7 +870,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
             case .videos:
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
-                        UIApplication.shared.open(url)
+                        if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
+                            let headerview = tableView.headerView(forSection: .zero) as? CourseDetailsInfoHeaderView
+                            headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
+                            tableView.setContentOffset(.zero, animated: false)
+                        } else {
+                            UIApplication.shared.open(url)
+                        }
                     }
                 } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
@@ -968,7 +951,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
             } else if let video = attachment as? Video {
                 if let url = URL(string: video.link ?? "") {
-                    UIApplication.shared.open(url)
+                    if video.link?.contains("youtu.be") ?? false || video.link?.contains("youtube") ?? false {
+                        let headerview = tableView.headerView(forSection: 0) as? CourseDetailsInfoHeaderView
+                        headerview?.playYoutubeVideo(videoLink: video.link ?? "")
+                        tableView.setContentOffset(.zero, animated: false)
+                    } else {
+                        UIApplication.shared.open(url)
+                    }
                 } else if !(video.vdocipherId?.isEmpty ?? true) {
                     fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
                 }

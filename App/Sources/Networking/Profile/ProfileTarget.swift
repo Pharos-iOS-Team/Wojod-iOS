@@ -39,7 +39,7 @@ extension ProfileTarget: TargetType {
     var task: Task {
         switch self {
         case let .getProfile(id):
-            return .requestParameters(parameters: ["id": id], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["id": id, "locale": Language.currentLanguage.rawValue], encoding: URLEncoding.default)
         case let .editProfile(_, profile):
             return .requestCustomJSONEncodable(profile, encoder: JSONEncoder.default)
         case let .fetchDivisions(academicLevel, academicType):

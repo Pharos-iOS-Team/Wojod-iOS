@@ -11,11 +11,11 @@ class AudioRecordingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet private var stopRecordingButton: UIButton!
     @IBOutlet private var sendButton: LoadingButton!
 
-    private var canSendAudio = false
+    private var canSendAudio: Bool = false
     private var audioRecorder: AVAudioRecorder!
     private var audioFilename: URL?
     private var isAudioRecordingGranted: Bool!
-    private var timerCounter = 0
+    private var timerCounter: Int = 0
     private var timer = Timer()
     var viewModel: ChatViewModel?
     var handleSendingMessageSuccessfully: (() -> Void)?

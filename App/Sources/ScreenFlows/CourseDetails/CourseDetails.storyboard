@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Course Details View Controller-->
+        <!--Course-->
         <scene sceneID="mJ7-2d-lnS">
             <objects>
-                <viewController id="s5u-w3-yVK" customClass="CourseDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Course" id="s5u-w3-yVK" customClass="CourseDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" alpha="0.98999999999999999" contentMode="scaleToFill" id="ZZO-zO-dkI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

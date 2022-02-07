@@ -36,7 +36,7 @@ class CourseTableViewCell: UITableViewCell {
     // MARK: - Private Functions
 
     private func configureCollectionView() {
-        coursesCollectionView.register(UINib(nibName: "CourseCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CourseCollectionViewCell")
+        coursesCollectionView.registerCell(ofType: CourseCollectionViewCell.self)
         coursesCollectionView.dataSource = self
         coursesCollectionView.delegate = self
     }
@@ -51,14 +51,6 @@ class CourseTableViewCell: UITableViewCell {
         self.courses = courses
         self.isMyCourses = isMyCourses
         coursesCollectionView.reloadData()
-    }
-
-    func addInfiniteScroll(viewModel: HomeViewModel, selectedSubject: Subject, teacherID: Int, isMyCourses: Bool) {
-        coursesCollectionView.addInfiniteScroll { _ in
-            viewModel.loadRelatedCoursesForTeacher(teacherID: teacherID, isMyCourses: isMyCourses, subjectID: selectedSubject.id ?? 0) { relatedCourses in
-                print(relatedCourses)
-            }
-        }
     }
 
     func stopAnyPlayingVideoIfAny() {

@@ -283,6 +283,10 @@ internal enum L10n {
   }
 
   internal enum Home {
+    /// No courses available
+    internal static var defaultEmptyState: String {
+        return L10n.tr("Localizable", "home.defaultEmptyState")
+      }
     /// Explore More
     internal static var exploreMore: String {
         return L10n.tr("Localizable", "home.exploreMore")
@@ -398,10 +402,60 @@ internal enum L10n {
       }
   }
 
+  internal enum Navigation {
+    /// Back
+    internal static var back: String {
+        return L10n.tr("Localizable", "navigation.back")
+      }
+  }
+
   internal enum Notifications {
     /// Notifications
     internal static var title: String {
         return L10n.tr("Localizable", "notifications.title")
+      }
+  }
+
+  internal enum Organizations {
+    /// Accepted
+    internal static var accepted: String {
+        return L10n.tr("Localizable", "organizations.accepted")
+      }
+    /// Request sent successfully
+    internal static var applicationSuccessful: String {
+        return L10n.tr("Localizable", "organizations.applicationSuccessful")
+      }
+    /// Apply
+    internal static var apply: String {
+        return L10n.tr("Localizable", "organizations.apply")
+      }
+    /// Are you sure you want to apply to %@ ?
+    internal static func applyConfirmation(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "organizations.applyConfirmation", String(describing: p1))
+    }
+    /// There are no organizations yet at the moment
+    internal static var empty: String {
+        return L10n.tr("Localizable", "organizations.empty")
+      }
+    /// You must apply to an organization in order to show its courses
+    internal static var emptyDescription: String {
+        return L10n.tr("Localizable", "organizations.emptyDescription")
+      }
+    /// Apply for an organization
+    internal static var firstApply: String {
+        return L10n.tr("Localizable", "organizations.firstApply")
+      }
+    /// Pending
+    internal static var pending: String {
+        return L10n.tr("Localizable", "organizations.pending")
+      }
+    /// Rejected
+    internal static var rejected: String {
+        return L10n.tr("Localizable", "organizations.rejected")
+      }
+    /// Organizations
+    internal static var title: String {
+        return L10n.tr("Localizable", "organizations.title")
       }
   }
 

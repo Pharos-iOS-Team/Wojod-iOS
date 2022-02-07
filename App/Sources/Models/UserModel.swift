@@ -48,6 +48,7 @@ struct UserModel: Codable {
     var educationLevelName: String?
     var educationLevel: Int?
     var educationType: Int?
+    var organizations: [Organization]?
 }
 
 struct Preferences: Codable {
@@ -62,3 +63,30 @@ struct Avatar: Codable {
 }
 
 struct DevicesInfo: Codable {}
+
+struct Organizations: Codable {
+    let organizations: [Organization]?
+}
+
+// MARK: - Organization
+struct Organization: Codable {
+    var id: Int?
+    var address, name, status: String?
+    var media: OrganizationMedia?
+}
+
+struct OrganizationMedia: Codable {
+    var fileName: String?
+    var fileUrl: String?
+    var thumbnailUrl: String?
+    var contentType: String?
+}
+
+struct StudentOrganizationModel: Codable {
+    let studentOrganization: StudentOrganization?
+}
+
+struct StudentOrganization: Codable {
+    var id, studentId, organizationId: Int?
+    var status, createdAt, updatedAt: String?
+}

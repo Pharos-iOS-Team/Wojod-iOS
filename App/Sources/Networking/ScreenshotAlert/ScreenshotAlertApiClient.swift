@@ -6,8 +6,8 @@ import Moya
 class ScreenshotAlertApiClient {
     let screenshotAlertProvider = MoyaProvider<ScreenshotAlertTarget>()
 
-    func screenshotAlert(screenName: String, completion: @escaping (Response?, MoyaError?) -> Void) {
-        screenshotAlertProvider.request(.screenshotAlert(screenName: screenName)) { result in
+    func screenshotAlert(screenName: String, isRecording: Bool, completion: @escaping (Response?, MoyaError?) -> Void) {
+        screenshotAlertProvider.request(.screenshotAlert(screenName: screenName, isRecording: isRecording)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)

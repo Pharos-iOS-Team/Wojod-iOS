@@ -223,7 +223,10 @@ class SchoolViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             self.academicYears = batches ?? []
             self.selectedYearIndexID = 0
-            self.academicYearTextField.text = batches?[0].value
+            self.academicYearTextField.text = !(batches?.isEmpty ?? true) ? batches?[0].value : L10n.Signup.School.none
+            if batches?.isEmpty ?? true {
+                self.academicYears.append(Batch(key: nil, value: L10n.Signup.School.none))
+            }
         }
     }
 
@@ -232,8 +235,8 @@ class SchoolViewController: UIViewController {
         viewModel?.loadSpecializations(for: selectedDivision?.key ?? 0) { fields in
             self.activityIndicator.stopAnimating()
             self.fields = fields ?? []
-            self.fieldTextField.text = "None"
-            self.fields.append(Specialization(key: nil, value: "None"))
+            self.fieldTextField.text = L10n.Signup.School.none
+            self.fields.append(Specialization(key: nil, value: L10n.Signup.School.none))
         }
     }
 

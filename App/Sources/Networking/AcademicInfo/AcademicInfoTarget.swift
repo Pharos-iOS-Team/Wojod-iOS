@@ -31,11 +31,30 @@ extension AcademicInfoTarget: TargetType {
     var task: Task {
         switch self {
         case let .getAcademicType(educationLevel, educationType):
-            return .requestParameters(parameters: ["education_level": educationLevel, "education_type": educationType], encoding: URLEncoding.default)
+            return .requestParameters(
+                parameters: [
+                    "education_level": educationLevel,
+                    "education_type": educationType,
+                    "locale": Language.currentLanguage.rawValue
+                ],
+                encoding: URLEncoding.queryString
+            )
         case let .getDivisions(educationLevel, educationType):
-            return .requestParameters(parameters: ["education_level": educationLevel, "education_type": educationType], encoding: URLEncoding.default)
+            return .requestParameters(
+                parameters: [
+                    "education_level": educationLevel,
+                    "education_type": educationType,
+                    "locale": Language.currentLanguage.rawValue
+                ],
+                encoding: URLEncoding.queryString
+            )
         case .getBatches, .getSpecializations:
-            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+            return .requestParameters(
+                parameters: [
+                    "locale": Language.currentLanguage.rawValue
+                ],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 }

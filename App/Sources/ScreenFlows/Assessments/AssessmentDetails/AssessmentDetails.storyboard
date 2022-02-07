@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,10 +21,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Assessment Details View Controller-->
+        <!--Quizzes-->
         <scene sceneID="V6W-GK-UY9">
             <objects>
-                <viewController storyboardIdentifier="assessmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1td-R9-hiQ" customClass="AssessmentDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="assessmentDetailsViewController" title="Quizzes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1td-R9-hiQ" customClass="AssessmentDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wcz-9s-FOm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

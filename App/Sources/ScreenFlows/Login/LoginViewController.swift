@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import FirebaseMessaging
 import JGProgressHUD
 import UIKit
 
@@ -137,6 +138,7 @@ class LoginViewController: UIViewController {
         viewModel?.successHandler = { [weak self] user in
             self?.user = user
             self?.hideLoadingIndicator()
+            PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
             ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
         }
     }

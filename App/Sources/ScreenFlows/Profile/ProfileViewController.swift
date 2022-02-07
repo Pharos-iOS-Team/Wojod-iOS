@@ -47,7 +47,6 @@ class ProfileViewController: UIViewController {
         viewModel.loadCountries()
         reloadCountriesCell()
         reloadCitiesCell()
-        preventScreenshot()
         observeInternetConnection()
     }
 
@@ -269,10 +268,9 @@ extension ProfileViewController: ProfileTableViwCellProtocol {
 }
 
 extension ProfileViewController: AvatarsListDelegate {
-    func setAvatar(avatar: Avatar) {
-        guard let id = avatar.id else { return }
+    func setAvatar(avatar: Avatar?) {
         User.shared.avatar = avatar
-        viewModel.setNewAvatar(avatarId: id)
+        viewModel.setNewAvatar(avatarId: avatar?.id)
         profileTableView.reloadData()
     }
 }

@@ -1,2 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework
+${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework
+${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
+${BUILT_PRODUCTS_DIR}/OTPFieldView/OTPFieldView.framework
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/VdoCipherKit/VdoCipherKit.framework/VdoCipherKit

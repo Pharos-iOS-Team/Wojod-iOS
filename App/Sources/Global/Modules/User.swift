@@ -69,6 +69,7 @@ final class User: ModelDecodable {
     var address: String?
     var homeNumber: String?
     var isSchoolStudent: Bool?
+    var organizations: [Organization] = []
     let logoutApiClient = LogoutApiClient()
     let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
@@ -108,6 +109,7 @@ final class User: ModelDecodable {
         region = user?.region
         address = user?.address
         homeNumber = user?.homeNumber
+        organizations = user?.organizations ?? []
     }
 
     func deleteUserLocationData() {
@@ -144,15 +146,7 @@ final class User: ModelDecodable {
         }
     }
 
-    func screenshotAlert(screenName: String, completion: @escaping (Bool) -> Void) {
-        screenShotAlertApiClient.screenshotAlert(screenName: screenName) { response, _ in
-            if let response = response {
-                if response.statusCode < 300 {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
-            }
-        }
+    func screenshotAlert(screenName: String, isRecording: Bool) {
+        screenShotAlertApiClient.screenshotAlert(screenName: screenName, isRecording: isRecording) { _, _ in }
     }
 }

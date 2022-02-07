@@ -7,14 +7,6 @@ internal protocol CollapseExpandDelegate: AnyObject {
 }
 
 class CourseDetailsHeaderView: UITableViewHeaderFooterView {
-    // MARK: - Lifecycle
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        isUserInteractionEnabled = true
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnHeader)))
-    }
-
     // MARK: - IBOutlets
 
     @IBOutlet private var numberLabel: UILabel!
@@ -30,6 +22,14 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
 
     @IBAction private func didTapOnCollapseExpandButton(_ sender: UIButton) {
         collapseExpandDelegate?.didTapOnCollapseExpand(in: self.tag)
+    }
+
+    // MARK: - Lifecycle
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        isUserInteractionEnabled = true
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnHeader)))
     }
 
     // MARK: - Public Functions

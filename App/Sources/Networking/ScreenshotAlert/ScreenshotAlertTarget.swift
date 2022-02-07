@@ -4,7 +4,7 @@ import Foundation
 import Moya
 
 enum ScreenshotAlertTarget {
-   case screenshotAlert(screenName: String)
+    case screenshotAlert(screenName: String, isRecording: Bool, deviceType: Int = .zero)
 }
 
 extension ScreenshotAlertTarget: TargetType {
@@ -18,8 +18,11 @@ extension ScreenshotAlertTarget: TargetType {
 
     var task: Task {
         switch self {
-        case .screenshotAlert(let screenName):
-            return .requestJSONEncodable(["screen_name": screenName])
+        case let .screenshotAlert(screenName, isRecording, deviceType):
+            return .requestParameters(
+                parameters: ["screen_name": screenName, "is_recording": isRecording, "device_type": deviceType],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 }

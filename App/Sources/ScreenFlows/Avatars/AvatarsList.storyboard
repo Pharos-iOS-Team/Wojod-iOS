@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Avatars List View Controller-->
+        <!--AvatarsList-->
         <scene sceneID="GIA-lh-v5t">
             <objects>
-                <viewController storyboardIdentifier="AvatarsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="naC-Nl-H5i" customClass="AvatarsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AvatarsListViewController" title="AvatarsList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="naC-Nl-H5i" customClass="AvatarsListViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AOa-Af-2c1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ErV-0B-1A0">
-                                        <rect key="frame" x="30" y="52" width="363" height="802"/>
+                                        <rect key="frame" x="30" y="90" width="363" height="764"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L3H-PX-aKn">
                                             <size key="itemSize" width="128" height="128"/>
@@ -56,12 +56,21 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-cZ-kW6">
+                                        <rect key="frame" x="354" y="45" width="30" height="35"/>
+                                        <connections>
+                                            <action selector="didTapConfirm:" destination="naC-Nl-H5i" eventType="touchUpInside" id="6lP-q9-YQ3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="ErV-0B-1A0" firstAttribute="top" secondItem="l6U-cZ-kW6" secondAttribute="bottom" constant="10" id="82s-Dm-V1c"/>
                                     <constraint firstItem="ErV-0B-1A0" firstAttribute="leading" secondItem="mS0-A4-oDO" secondAttribute="leading" constant="30" id="Ox3-hE-28F"/>
                                     <constraint firstAttribute="trailing" secondItem="ErV-0B-1A0" secondAttribute="trailing" constant="21" id="e8b-V1-3sb"/>
-                                    <constraint firstItem="ErV-0B-1A0" firstAttribute="top" secondItem="mS0-A4-oDO" secondAttribute="top" constant="52" id="n0Q-rg-ICi"/>
+                                    <constraint firstAttribute="trailing" secondItem="l6U-cZ-kW6" secondAttribute="trailing" constant="30" id="jmu-hq-Xfg"/>
+                                    <constraint firstItem="ErV-0B-1A0" firstAttribute="top" secondItem="mS0-A4-oDO" secondAttribute="top" constant="90" id="n0Q-rg-ICi"/>
+                                    <constraint firstItem="l6U-cZ-kW6" firstAttribute="top" secondItem="mS0-A4-oDO" secondAttribute="top" constant="45" id="tzi-Cp-QCI"/>
                                     <constraint firstAttribute="bottom" secondItem="ErV-0B-1A0" secondAttribute="bottom" constant="42" id="ykd-Ty-LBf"/>
                                 </constraints>
                             </view>
@@ -77,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="avatarsCollectionView" destination="ErV-0B-1A0" id="o9N-Vu-6l0"/>
+                        <outlet property="confirmButton" destination="l6U-cZ-kW6" id="OhJ-GY-56X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6p-CG-Pq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

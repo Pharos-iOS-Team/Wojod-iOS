@@ -89,4 +89,8 @@ extension String {
         }
         return result
     }
+
+    func size(withAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> CGSize {
+        return (self as NSString).size(withAttributes: attrs)
+    }
 }

@@ -72,36 +72,6 @@ extension UIViewController {
         )
         return appAlertViewController
     }
-
-    func preventScreenshot() -> NSObjectProtocol {
-        return NotificationCenter.default.addObserver(
-            forName: UIApplication.userDidTakeScreenshotNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { notification in
-            self.handleSendingScreenshotAlert()
-        }
-    }
-
-    private func handleSendingScreenshotAlert() {
-        if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: self)) { _ in }
-        }
-        handleCrashingTheApp()
-    }
-
-    private func handleCrashingTheApp() {
-        self.showAlert(
-            imageName: Images.danger.name,
-            title: L10n.Shared.Alerts.screenshotsNotAllowed,
-            message: L10n.Shared.Alerts.appWillTerminate
-        ) {
-            exit(-1)
-        }
-        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
-            exit(-1)
-        }
-    }
 }
 
 extension UIViewController {

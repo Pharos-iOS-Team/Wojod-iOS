@@ -215,6 +215,7 @@ No worries!";
 "home.pending" = "Pending";
 "home.search.emptyStateTitle" = "Sorry";
 "home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
+"home.defaultEmptyState" = "No courses available";
 
 "filters.filters" = "Filters";
 "filters.apply" = "Apply";
@@ -350,3 +351,17 @@ No worries!";
 "assignment.incorrect" = "Not correct";
 "assignment.notReviewed" = "Not reviewed";
 "assignment.needsImprovement" = "Needs improvement";
+
+"navigation.back" = "Back";
+
+"organizations.title" = "Organizations";
+"organizations.applyConfirmation" = "Are you sure you want to apply to %@ ?";
+"organizations.applicationSuccessful" = "Request sent successfully";
+"organizations.accepted" = "Accepted";
+"organizations.pending" = "Pending";
+"organizations.rejected" = "Rejected";
+"organizations.apply" = "Apply";
+"organizations.empty" = "There are no organizations yet at the moment";
+"organizations.firstApply" = "Apply for an organization";
+"organizations.emptyDescription" = "You must apply to an organization in order to show its courses";
+

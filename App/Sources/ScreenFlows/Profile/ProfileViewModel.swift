@@ -34,7 +34,7 @@ class ProfileViewModel {
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
         case EducationLevel.facutly.rawValue:
-            return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 }
+            return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 && $0 != .academicType }
         case EducationLevel.gradute.rawValue:
             return [.name, .mobileNumber, .mobileNumber2, .email, .homeNumber, .batch, .division, .country, .city, .region, .address, .logout]
         default:
@@ -343,7 +343,7 @@ class ProfileViewModel {
         profile.passwordConfirmation = passwordConfirmation
     }
 
-    func setNewAvatar(avatarId: Int) {
+    func setNewAvatar(avatarId: Int?) {
         profile.avatarId = avatarId
     }
 

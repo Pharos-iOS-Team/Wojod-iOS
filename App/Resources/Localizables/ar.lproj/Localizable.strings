@@ -12,7 +12,7 @@
 "shared.alerts.screenRecordingNotAllowed" = "غير مسموح بتسجيل الشاشة!";
 "shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 
-"shared.action.cancel" = "الغاء";
+"shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
 
 "login.welcome" = "مرحبًا!
@@ -160,7 +160,7 @@
 "signup.school.academicYear" = "السنة الأكاديمية*";
 "signup.school.field" = "تخصص";
 "signup.school.schoolName" = "اسم المدرسة*";
-"signup.school.none" = "لا بوجد";
+"signup.school.none" = "لا يوجد";
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
@@ -210,9 +210,10 @@
 "home.course.seeReceipt" = "عرض الايصال";
 "home.course.returnToTeacher" = "ارجع للمدرس";
 "home.ads.viewMore" = "عرض المزيد";
-"home.pending" = "في حالة انتظار";
+"home.pending" = "محجوز";
 "home.search.emptyStateTitle" = "نأسف";
 "home.search.emptyStateDescription" = "لم نتمكن من العثور على ما تبحث عنه. حاول مرة أخرى بكلمات مختلفة.";
+"home.defaultEmptyState" = "لا توجد دورات متاحة";
 
 "filters.filters" = "الفلتر";
 "filters.apply" = "تأكيد";
@@ -253,7 +254,7 @@
 "quizzes.available" = "متاح";
 "quizzes.due" = "تاريخ الاستحقاق:";
 "quizzes.duration" = "المدة:";
-"quizzes.start" = "إبدأ";
+"quizzes.start" = "ابدأ";
 "quizzes.closed" = "تم الغلق";
 "quizzes.submitted" = "إرسال";
 "quizzes.notSubmitted" = "لم يرسل";
@@ -349,3 +350,17 @@
 "assignment.incorrect" = "الاجابة خاطئة";
 "assignment.notReviewed" = "لم يتم مراجعته";
 "assignment.needsImprovement" = "يحتاج إلى التحسين";
+
+"navigation.back" = "رجوع";
+
+"organizations.title" = "المؤسسات";
+"organizations.applyConfirmation" = "هل انت متأكد من انك تريد الاشتراك في %@ ؟";
+"organizations.applicationSuccessful" = "تم ارسال الطلب الاشتراك بنجاح";
+"organizations.accepted" = "مقبول";
+"organizations.pending" = "في الانتظار";
+"organizations.rejected" = "مرفوض";
+"organizations.apply" = "اشتراك";
+"organizations.empty" = "لا يوجد مؤسسات في هذا الوقت";
+"organizations.firstApply" = "اشترك في مؤسسة";
+"organizations.emptyDescription" = "يجب الاشتراك في مؤسسة حتي يظهر الدروس الخاصة بها";
+
