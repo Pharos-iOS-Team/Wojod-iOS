@@ -280,7 +280,7 @@ extension HomeViewController: UITableViewDataSource {
         headerView?.setSubjects(viewModel.subjects)
         headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
         headerView?.setAdvertisements(self.advertisements)
-        if isFirstScreenLoad && !viewModel.subjects.isEmpty {
+        if isFirstScreenLoad {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
         }
