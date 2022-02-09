@@ -367,8 +367,6 @@
 		BC75549A26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */; };
 		BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */; };
 		BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */; };
-		BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC76713A262C521E0012155C /* CoursesListViewController.swift */; };
-		BC767140262C524B0012155C /* CoursesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC76713F262C524B0012155C /* CoursesList.storyboard */; };
 		BC767145262C528D0012155C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767144262C528D0012155C /* HomeViewController.swift */; };
 		BC76714A262C52960012155C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC767149262C52960012155C /* Home.storyboard */; };
 		BC76714F262C53100012155C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC76714E262C53100012155C /* SettingsViewController.swift */; };
@@ -843,8 +841,6 @@
 		BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherQuestionCommentTableViewCell.swift; sourceTree = "<group>"; };
 		BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherQuestionCommentTableViewCell.xib; sourceTree = "<group>"; };
 		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
-		BC76713A262C521E0012155C /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
-		BC76713F262C524B0012155C /* CoursesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoursesList.storyboard; sourceTree = "<group>"; };
 		BC767144262C528D0012155C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BC767149262C52960012155C /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		BC76714E262C53100012155C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -1554,7 +1550,6 @@
 				BC19E56D2630368500CFA142 /* Profile */,
 				BC767139262C51E50012155C /* Settings */,
 				BC767138262C51E00012155C /* Home */,
-				BC767137262C51D90012155C /* CoursesList */,
 				BC5ED0C92628434900774E54 /* ForgotPassword */,
 				BC98F42D262454A000032AC6 /* Login */,
 				E84874532624B0E1006DF74C /* Registration */,
@@ -2063,15 +2058,6 @@
 			path = CoursesTabBar;
 			sourceTree = "<group>";
 		};
-		BC767137262C51D90012155C /* CoursesList */ = {
-			isa = PBXGroup;
-			children = (
-				BC76713A262C521E0012155C /* CoursesListViewController.swift */,
-				BC76713F262C524B0012155C /* CoursesList.storyboard */,
-			);
-			path = CoursesList;
-			sourceTree = "<group>";
-		};
 		BC767138262C51E00012155C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -2419,7 +2405,6 @@
 				77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
 				779635FE2771DFF200F31AAD /* Cartfile in Resources */,
-				BC767140262C524B0012155C /* CoursesList.storyboard in Resources */,
 				BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */,
 				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
 				BC767159262C54E50012155C /* CoursesTabBar.storyboard in Resources */,
@@ -2672,7 +2657,6 @@
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
 				BC76714F262C53100012155C /* SettingsViewController.swift in Sources */,
 				38659BDC26B6D2F900E3BFE9 /* ChoiceProtocol.swift in Sources */,
-				BC76713B262C521E0012155C /* CoursesListViewController.swift in Sources */,
 				26CF493A269C83B500DDA29F /* AttachmentTypeActionSheet.swift in Sources */,
 				38659BEA26B6D2F900E3BFE9 /* Assessment.swift in Sources */,
 				38659BE126B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift in Sources */,
