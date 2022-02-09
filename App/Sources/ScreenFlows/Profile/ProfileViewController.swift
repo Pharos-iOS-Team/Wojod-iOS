@@ -195,8 +195,7 @@ class ProfileViewController: UIViewController {
     }
 
     private func createLogoutCell(indexPath: IndexPath, tableView: UITableView) -> ProfileEditAndLogoutTableViewCell {
-        let cell: ProfileEditAndLogoutTableViewCell =
-            tableView.dequeueCell(for: indexPath)
+        let cell: ProfileEditAndLogoutTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(delegate: self)
         cell.showError = { [weak self] error in
             self?.showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.error, message: error)
@@ -231,7 +230,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if  viewModel.validFields[indexPath.row] == .logout {
+        if viewModel.validFields[indexPath.row] == .logout {
             return createLogoutCell(indexPath: indexPath, tableView: tableView)
         } else {
             return createProfileFields(indexPath: indexPath, tableView: tableView)

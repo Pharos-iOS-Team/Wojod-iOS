@@ -26,6 +26,7 @@ class AvatarsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction private func didTapConfirm(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true) {
             if self.previouslySelectedAvatarIndexPath == nil {
@@ -52,12 +53,7 @@ extension AvatarsListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: AvatarCollectionViewCell = (
-            collectionView.dequeueReusableCell(
-                withReuseIdentifier: "AvatarCollectionViewCell",
-                for: indexPath
-            ) as? AvatarCollectionViewCell ?? AvatarCollectionViewCell()
-        )
+        let cell: AvatarCollectionViewCell = collectionView.dequeCell(indexPath: indexPath)
         let image = getImage(from: avatars[indexPath.row])
         cell.configure(image: image, isSelected: isAvatarSelected(indexPath: indexPath))
         if isAvatarSelected(indexPath: indexPath) {
