@@ -13,12 +13,6 @@ protocol CourseDetailsInfoHeaderDelegate: AnyObject {
     func playCourseVideo(playerController: AVPlayerViewController)
 }
 
-enum DetailsButtonSelected {
-    case details
-    case materials
-    case reviews
-}
-
 struct CourseDetailsInfoModel {
     var courseTitle: String?
     var teacherName: String?
@@ -30,15 +24,13 @@ struct CourseDetailsInfoModel {
     var rating: Double?
     var shouldHideMaterials: Bool
     var buttonSelected: ActiveScreen
-    var dataSourceCount: Int?
-    var message: String?
     var state: CourseState
     var lessonsUnreadCount: Int?
     var materialsUnreadCount: Int?
     weak var delegate: CourseDetailsInfoHeaderDelegate?
 }
 
-class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
+class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     @IBOutlet private var detailsButton: UIButton! {
         didSet {
             detailsButton.setTitle(L10n.CourseDetails.Main.details)
@@ -106,6 +98,16 @@ class CourseDetailsInfoHeaderView: UITableViewHeaderFooterView {
     weak var delegate: CourseDetailsInfoHeaderDelegate?
     var video: Media?
     var videoURL: String?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        try? loadFromNib()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        try? loadFromNib()
+    }
 
     @IBAction private func didTapDetails(_ sender: Any) {
         configureButtonSelected(buttonSelected: .details)

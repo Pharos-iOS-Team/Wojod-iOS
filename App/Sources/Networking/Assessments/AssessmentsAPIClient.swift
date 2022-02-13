@@ -67,18 +67,4 @@ class AssessmentsAPIClient: ApiManager {
         parameters["subject_id"] = subjectID
         return parameters
     }
-
-    private func generateDictionaryBodyOfTeacherGrades(requestBody: TeacherSubmitGradeRequestModel) -> [String: Any] {
-        var arrayOfGrades: [[String: Any]] = []
-        for grade in requestBody.grades {
-            let gradeDictionary = [
-                "id": grade.submissionID,
-                "comment": grade.comment,
-                "mark": grade.mark,
-                "status": grade.status
-            ] as [String: Any]
-            arrayOfGrades.append(gradeDictionary)
-        }
-        return ["grades": arrayOfGrades]
-    }
 }

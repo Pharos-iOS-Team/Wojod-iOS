@@ -57,9 +57,6 @@
 		380B139626B807F700CB5811 /* AssessmentMCQOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137126B807F500CB5811 /* AssessmentMCQOptionTableViewCell.swift */; };
 		380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137326B807F500CB5811 /* AssessmentFreeTextTableViewCell.swift */; };
 		380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B137426B807F500CB5811 /* AssessmentFreeTextTableViewCell.xib */; };
-		380B139926B807F700CB5811 /* TeacherCommentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B137626B807F500CB5811 /* TeacherCommentHeaderTableViewCell.xib */; };
-		380B139A26B807F700CB5811 /* TeacherCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137726B807F500CB5811 /* TeacherCommentTableViewCell.swift */; };
-		380B139B26B807F700CB5811 /* TeacherCommentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137826B807F500CB5811 /* TeacherCommentHeaderTableViewCell.swift */; };
 		380B139C26B807F700CB5811 /* QuestionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137A26B807F500CB5811 /* QuestionHeaderTableViewCell.swift */; };
 		380B139D26B807F700CB5811 /* QuestionHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B137B26B807F500CB5811 /* QuestionHeaderTableViewCell.xib */; };
 		380B139E26B807F700CB5811 /* AssessmentQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B137C26B807F500CB5811 /* AssessmentQuestionViewModel.swift */; };
@@ -120,7 +117,6 @@
 		38659BE126B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BC826B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift */; };
 		38659BE226B6D2F900E3BFE9 /* TimeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BC926B6D2F900E3BFE9 /* TimeCalculator.swift */; };
 		38659BE326B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BCA26B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift */; };
-		38659BE426B6D2F900E3BFE9 /* AssessmentSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BCB26B6D2F900E3BFE9 /* AssessmentSubject.swift */; };
 		38659BE526B6D2F900E3BFE9 /* AssessmentsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BCC26B6D2F900E3BFE9 /* AssessmentsResponse.swift */; };
 		38659BE626B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BCD26B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift */; };
 		38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659BCF26B6D2F900E3BFE9 /* AppAlertViewController.swift */; };
@@ -535,9 +531,6 @@
 		380B137126B807F500CB5811 /* AssessmentMCQOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentMCQOptionTableViewCell.swift; sourceTree = "<group>"; };
 		380B137326B807F500CB5811 /* AssessmentFreeTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentFreeTextTableViewCell.swift; sourceTree = "<group>"; };
 		380B137426B807F500CB5811 /* AssessmentFreeTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentFreeTextTableViewCell.xib; sourceTree = "<group>"; };
-		380B137626B807F500CB5811 /* TeacherCommentHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherCommentHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		380B137726B807F500CB5811 /* TeacherCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCommentTableViewCell.swift; sourceTree = "<group>"; };
-		380B137826B807F500CB5811 /* TeacherCommentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCommentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		380B137A26B807F500CB5811 /* QuestionHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		380B137B26B807F500CB5811 /* QuestionHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		380B137C26B807F500CB5811 /* AssessmentQuestionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentQuestionViewModel.swift; sourceTree = "<group>"; };
@@ -598,7 +591,6 @@
 		38659BC826B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAssessmentListSections.swift; sourceTree = "<group>"; };
 		38659BC926B6D2F900E3BFE9 /* TimeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCalculator.swift; sourceTree = "<group>"; };
 		38659BCA26B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentSubmissionDetailsRequestModel.swift; sourceTree = "<group>"; };
-		38659BCB26B6D2F900E3BFE9 /* AssessmentSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentSubject.swift; sourceTree = "<group>"; };
 		38659BCC26B6D2F900E3BFE9 /* AssessmentsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentsResponse.swift; sourceTree = "<group>"; };
 		38659BCD26B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentSubmissionRequestModel.swift; sourceTree = "<group>"; };
 		38659BCF26B6D2F900E3BFE9 /* AppAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAlertViewController.swift; sourceTree = "<group>"; };
@@ -1125,7 +1117,6 @@
 				BC75549726FB7D0200A7C0AC /* TeacherQuestionComment */,
 				380B136F26B807F500CB5811 /* MCQ */,
 				380B137226B807F500CB5811 /* FreeText */,
-				380B137526B807F500CB5811 /* TeacherCommentHeaderCell */,
 				380B137926B807F500CB5811 /* QuestionHeader */,
 			);
 			path = Cells;
@@ -1147,16 +1138,6 @@
 				380B137426B807F500CB5811 /* AssessmentFreeTextTableViewCell.xib */,
 			);
 			path = FreeText;
-			sourceTree = "<group>";
-		};
-		380B137526B807F500CB5811 /* TeacherCommentHeaderCell */ = {
-			isa = PBXGroup;
-			children = (
-				380B137626B807F500CB5811 /* TeacherCommentHeaderTableViewCell.xib */,
-				380B137726B807F500CB5811 /* TeacherCommentTableViewCell.swift */,
-				380B137826B807F500CB5811 /* TeacherCommentHeaderTableViewCell.swift */,
-			);
-			path = TeacherCommentHeaderCell;
 			sourceTree = "<group>";
 		};
 		380B137926B807F500CB5811 /* QuestionHeader */ = {
@@ -1289,7 +1270,6 @@
 				38659BC826B6D2F900E3BFE9 /* TeacherAssessmentListSections.swift */,
 				38659BC926B6D2F900E3BFE9 /* TimeCalculator.swift */,
 				38659BCA26B6D2F900E3BFE9 /* AssessmentSubmissionDetailsRequestModel.swift */,
-				38659BCB26B6D2F900E3BFE9 /* AssessmentSubject.swift */,
 				38659BCC26B6D2F900E3BFE9 /* AssessmentsResponse.swift */,
 				38659BCD26B6D2F900E3BFE9 /* AssessmentSubmissionRequestModel.swift */,
 				38659BCE26B6D2F900E3BFE9 /* AppAlert */,
@@ -2420,7 +2400,6 @@
 				BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
-				380B139926B807F700CB5811 /* TeacherCommentHeaderTableViewCell.xib in Resources */,
 				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
 				BC767154262C531B0012155C /* Settings.storyboard in Resources */,
 				26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */,
@@ -2632,7 +2611,6 @@
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
 				7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */,
 				26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */,
-				380B139B26B807F700CB5811 /* TeacherCommentHeaderTableViewCell.swift in Sources */,
 				778E7270261DC3E1009D7B35 /* Fonts.swift in Sources */,
 				778E725A261DC2D4009D7B35 /* EncodableExt.swift in Sources */,
 				BC19E5DA2631A37100CFA142 /* CreatePasswordViewModel.swift in Sources */,
@@ -2750,7 +2728,6 @@
 				26CF4907269B4F9E00DDA29F /* LoadingButton.swift in Sources */,
 				7723ADA9261C70F8007C0B97 /* PushNotificationsManager.swift in Sources */,
 				7723AD20261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift in Sources */,
-				38659BE426B6D2F900E3BFE9 /* AssessmentSubject.swift in Sources */,
 				778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */,
 				BC083B142641D51900A1E6A4 /* LogoutTarget.swift in Sources */,
 				BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */,
@@ -2784,7 +2761,6 @@
 				E8C9EF5E2638CA2C0023D2B1 /* Student.swift in Sources */,
 				E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */,
 				26CF48B4269B0FF800DDA29F /* ChatModel.swift in Sources */,
-				380B139A26B807F700CB5811 /* TeacherCommentTableViewCell.swift in Sources */,
 				38659BF026B6D2F900E3BFE9 /* AssessmentChoice.swift in Sources */,
 				77D013D026A0F701006EA602 /* SubjectCollectionViewCell.swift in Sources */,
 				380B13A626B807F700CB5811 /* AssessmentDetailsModel.swift in Sources */,

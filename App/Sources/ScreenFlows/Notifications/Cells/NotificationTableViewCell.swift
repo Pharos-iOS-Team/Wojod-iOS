@@ -13,8 +13,6 @@ internal enum NotificationType {
 }
 
 class NotificationTableViewCell: UITableViewCell {
-    // MARK: - IBOutlets
-
     @IBOutlet private var teacherAvatarImageView: UIImageView!
     @IBOutlet private var teacherNameLabel: UILabel!
     @IBOutlet private var notificationContentLabel: UILabel!
