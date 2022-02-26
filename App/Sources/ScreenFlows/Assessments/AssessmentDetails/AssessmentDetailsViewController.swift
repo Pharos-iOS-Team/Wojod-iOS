@@ -841,21 +841,6 @@ extension AssessmentDetailsViewController {
         handleInformationViewForStudentAndParent(question)
     }
 
-    private func handleDesignForInformationViewForTeacher() {
-        informationViewForTeacherGrade.isHidden = false
-        informationView.isHidden = true
-        informationViewForTeacherGrade.addShadow(
-            with: .lightGray,
-            offset: CGSize(
-                width: UIConstants.oneShadowWidth,
-                height: UIConstants.oneShadowHeight
-            ),
-            radius: UIConstants.threeShadowRadius,
-            opacity: Float(UIConstants.shadowOpacity)
-        )
-        informationViewForTeacherGrade.layer.cornerRadius = 26
-    }
-
     private func handleInformationViewForStudentAndParent(_ question: AssessmentQuestion?) {
         informationViewForTeacherGrade.isHidden = true
         informationView.isHidden = false

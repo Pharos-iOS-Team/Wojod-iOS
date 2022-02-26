@@ -36,14 +36,6 @@ class ProfileTableViewCell: UITableViewCell {
         profileTextField.inputView = nil
     }
 
-    func makeTextFieldSecure() {
-        profileTextField.isSecureTextEntry = true
-    }
-
-    func makeTextFieldNumeric() {
-        profileTextField.keyboardType = .asciiCapableNumberPad
-    }
-
     func addPickerView(field: ProfileFields) {
         guard let profileTextField = profileTextField else { return }
         let inputView = PickerInputView<String>(height: 250)

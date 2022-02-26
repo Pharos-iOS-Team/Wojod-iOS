@@ -284,22 +284,6 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
             return UITableViewCell()
         }
     }
-
-    private func handleRemoveComment() {
-        showAlert(
-            imageName: "danger",
-            title: nil,
-            message: "homework.deleteCommentAlertMessage".localiz(),
-            primaryButtonTitle: "homework.deleteTitle".localiz(),
-            dismissButtonTitle: "app.cancel".localiz()
-        ) { [weak self] in
-            self?.dismiss(animated: true) {
-                self?.delegate?.teacherAddOrEditComment(comment: "")
-                self?.viewModel?.updateQuestionWith(comment: "")
-                self?.tableView.reloadTableViewSections(withAnimation: true)
-            }
-        }
-    }
 }
 
 // MARK: - UITableViewDelegate

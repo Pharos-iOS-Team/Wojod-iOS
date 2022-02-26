@@ -23,14 +23,7 @@ internal enum ActiveScreen {
     case materials
 }
 
-internal enum MaterialsSections: Int {
-    case assignments = 1
-    case quizzes = 2
-    case videos = 3
-    case documents = 4
-}
-
-internal enum AttachmentType: Int {
+internal enum MaterialsSections: Int, CaseIterable {
     case assignments
     case quizzes
     case videos
@@ -43,9 +36,7 @@ protocol LoadableView: AnyObject {
 }
 
 class CourseDetailsViewController: UIViewController {
-    // MARK: - IBOutlets
-
-    @IBOutlet weak var vdoPlayerView: VdoPlayerView!
+    @IBOutlet private var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
@@ -62,7 +53,7 @@ class CourseDetailsViewController: UIViewController {
     private var viewModel: CourseDetailsViewModel?
     private var quizzesViewModel: AssessmentsOverViewViewModel?
     private var assignemntsViewModel: AssessmentsOverViewViewModel?
-    private var lessonsList: [Lesson]?
+    private var lessonsList: [Lesson] = []
     private var lessonNumbersList: [Int]?
     private var reviewsList: [Review]?
     private var attachmentsOfLessons: [Int: LessonAttachmentsModel] = [:]
@@ -70,15 +61,12 @@ class CourseDetailsViewController: UIViewController {
     private var blurredView: UIVisualEffectView?
     private let detailsRowHeight: CGFloat = 65
     private let reviewsRowHeight: CGFloat = 90
-    private let detailsHeaderHeight: CGFloat = 60
-    private var materials: Materials?
+    private var materials: Materials!
     private var documentInteractionController = UIDocumentInteractionController()
     private var loadingHud: JGProgressHUD?
-    private var numberOfSectionsInMaterials: Int = 4
     private var allAttachmentsOfLesson: [Any] = []
     private var alertViewController: AppAlertViewController?
     private var selectedAssessment: Assessment?
-    private var detailsHeaderView: CourseDetailsInfoHeaderView?
     private var selectedAssessmentSection: Int?
     private var timer = Timer()
     private var updateId: Int = .zero
@@ -88,9 +76,6 @@ class CourseDetailsViewController: UIViewController {
 
     private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
-    private var window: UIWindow? {
-        return (UIApplication.shared.delegate as? AppDelegate)?.window
-    }
 
     // MARK: - Public Properties
 
@@ -117,10 +102,52 @@ class CourseDetailsViewController: UIViewController {
         configureRefreshControl()
         observeInternetConnection()
         showQuizAlert()
+        setHeader()
+    }
+
+    private func setHeader() {
+        let detailsView = CourseDetailsInfoHeaderView()
+        detailsView.configure(
+            model: CourseDetailsInfoModel(
+                courseTitle: course?.name,
+                teacherName: teacherName,
+                image: course?.media?.fileUrl,
+                video: course?.video,
+                description: course?.summary,
+                price: coursePrice(),
+                numberOfReviews: String(course?.reviewsCount ?? .zero),
+                rating: course?.rating,
+                shouldHideMaterials: state != .booked,
+                buttonSelected: activeScreen ?? .details,
+                state: state ?? .normal,
+                lessonsUnreadCount: course?.lessonsUnreadCount,
+                materialsUnreadCount: course?.materialsUnreadCount,
+                delegate: self
+            )
+        )
+        tableView.tableHeaderView = detailsView
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = tableView.tableHeaderView {
+
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+
         if activeScreen == .materials {
             guard let courseID = course?.id else { return }
             showLoadingIndicator()
@@ -199,7 +226,6 @@ class CourseDetailsViewController: UIViewController {
         }
     }
 
-    @objc
     private func handleAttachmentsExpantion(section: Int) {
         if course?.reservationState == "approved" {
             if expandedSections.contains(section) {
@@ -210,7 +236,7 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             } else {
                 expandedSections.append(section)
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section - 1].id) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
                     if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                             self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
@@ -229,7 +255,7 @@ class CourseDetailsViewController: UIViewController {
     @objc
     private func handlePlusButtonAppearance(section: Int) {
         if course?.reservationState == "approved" {
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList?[section - 1].id ?? 0) { attachmentsModel in
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section - 1].id) { attachmentsModel in
                 self.attachmentsOfLessons[section] = attachmentsModel
                 if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                     self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
@@ -313,7 +339,6 @@ class CourseDetailsViewController: UIViewController {
         tableView.registerCell(ofType: ReviewTableViewCell.self)
         tableView.registerCell(ofType: MaterialTableViewCell.self)
         tableView.registerHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-        tableView.registerHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.emptyDataSetSource = self
@@ -329,17 +354,8 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func generateLessonsNumbersList() {
-        guard lessonsList?.count ?? 0 >= 1 else { return }
-        let numberOfLessons = lessonsList?.count ?? 0
-        lessonNumbersList = Array(1 ... numberOfLessons)
-    }
-
-    private func imageFromURL(_ imageURLString: String?) -> UIImage? {
-        if let imageURLString = imageURLString, let imageURL = URL(string: "\(Environment.baseURL)\(imageURLString)"),
-           let imageData = try? Data(contentsOf: imageURL) {
-            return UIImage(data: imageData)
-        }
-        return nil
+        guard lessonsList.count >= 1 else { return }
+        lessonNumbersList = Array(1 ... lessonsList.count)
     }
 
     private func numberOfRowsInLessonSection(_ sectionNumber: Int) -> Int {
@@ -445,17 +461,6 @@ class CourseDetailsViewController: UIViewController {
         documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
         documentInteractionController.name = url.localizedName ?? url.lastPathComponent
         documentInteractionController.presentPreview(animated: true)
-    }
-
-    private func play(videoURL: URL) {
-        showLoadingIndicator()
-        let player = AVPlayer(url: videoURL)
-        let playerViewCtrl = AVPlayerViewController()
-        playerViewCtrl.player = player
-        present(playerViewCtrl, animated: true) {
-            self.hideLoadingIndicator()
-            player.play()
-        }
     }
 
     private func startAssessment(for type: AssessmentType, at indexPath: IndexPath) {
@@ -657,18 +662,18 @@ extension CourseDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch activeScreen {
         case .details:
-            return lessonsList?.count ?? .zero > .zero ? (lessonsList?.count ?? .zero) + 1 : 1
+            return lessonsList.count
         case .materials:
-            return numberOfSectionsInMaterials + 1
+            return MaterialsSections.allCases.count
         default:
-            return 2
+            return 0
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
-            return section == .zero ? .zero : reviewsList?.count ?? .zero
+            return reviewsList?.count ?? .zero
         case .details:
             return numberOfRowsInLessonSection(section + 1)
         case .materials:
@@ -781,34 +786,13 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == .zero {
-            let detailsView = tableView.dequeueHeaderFooterView(ofType: CourseDetailsInfoHeaderView.self)
-            detailsView?.configure(
-                model: CourseDetailsInfoModel(
-                    courseTitle: course?.name,
-                    teacherName: teacherName,
-                    image: course?.media?.fileUrl,
-                    video: course?.video,
-                    description: course?.summary,
-                    price: coursePrice(),
-                    numberOfReviews: String(course?.reviewsCount ?? .zero),
-                    rating: course?.rating,
-                    shouldHideMaterials: state != .booked,
-                    buttonSelected: activeScreen ?? .details,
-                    state: state ?? .normal,
-                    lessonsUnreadCount: course?.lessonsUnreadCount,
-                    materialsUnreadCount: course?.materialsUnreadCount,
-                    delegate: self
-                )
-            )
-            return detailsView
-        } else if activeScreen == .details && section != .zero {
-            if !(lessonsList?.isEmpty ?? false) {
+        if activeScreen == .details {
+            if !lessonsList.isEmpty {
                 let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
                 view?.tag = section + 1
                 view?.collapseExpandDelegate = self
-                let lesson = lessonsList?[section - 1]
-                view?.setLessonTitleLabel(lesson?.name ?? "")
+                let lesson = lessonsList[section - 1]
+                view?.setLessonTitleLabel(lesson.name)
                 view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
                 view?.assignSectionTagToButton(section)
                 view?.configureVisibilityOfExpandButton(
@@ -831,36 +815,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == .zero {
-            return UITableView.automaticDimension
-        } else if section != .zero && activeScreen == .details {
-            return detailsHeaderHeight
-        } else {
-            return .zero
-        }
+        return activeScreen == .details ? 60 : 0.0
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        if section == .zero {
-            return 505
-        } else if section != .zero && activeScreen == .details {
-            return 60
-        } else {
-            return .zero
-        }
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if activeScreen != .materials {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-            view.backgroundColor = Colors.lightGreyColor.color
-            return view
-        }
-        return nil
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return activeScreen != .materials ? 1 : 0
+        return activeScreen == .details ? 60 : 0.0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -871,7 +830,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
                         if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
-                            let headerview = tableView.headerView(forSection: .zero) as? CourseDetailsInfoHeaderView
+                            let headerview = tableView.tableHeaderView as? CourseDetailsInfoHeaderView
                             headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
                             tableView.setContentOffset(.zero, animated: false)
                         } else {
@@ -952,7 +911,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
             } else if let video = attachment as? Video {
                 if let url = URL(string: video.link ?? "") {
                     if video.link?.contains("youtu.be") ?? false || video.link?.contains("youtube") ?? false {
-                        let headerview = tableView.headerView(forSection: 0) as? CourseDetailsInfoHeaderView
+                        let headerview = tableView.tableHeaderView as? CourseDetailsInfoHeaderView
                         headerview?.playYoutubeVideo(videoLink: video.link ?? "")
                         tableView.setContentOffset(.zero, animated: false)
                     } else {
@@ -1044,7 +1003,6 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
 // MARK: - vdoCipher Functions
 
 extension CourseDetailsViewController {
-
     func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
         vdoPlayerView.player = player
         if viewsCount > .zero {
@@ -1202,7 +1160,7 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
         switch activeScreen {
         case .details:
-            return lessonsList?.isEmpty ?? true
+            return lessonsList.isEmpty
         case .materials:
             return materials?.assignments?.isEmpty ?? true
                 && materials?.documents?.isEmpty ?? true

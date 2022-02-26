@@ -61,8 +61,6 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private Properties
 
-    private let dimmedStar: UIImage = Images.star.image
-    private let filledStar: UIImage = Images.filledStar.image
     private var course: Course?
     private var isMyCourses = Bool()
     private var player: AVPlayer?
@@ -97,15 +95,6 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private Functions
 
-    private func loadImage(from url: String, completion: @escaping (UIImage?) -> Void) {
-        DispatchQueue.global().async {
-            let imageURL = Environment.baseURLString + url
-            guard let url = URL(string: imageURL), let data = try? Data(contentsOf: url) else { return }
-            completion(UIImage(data: data))
-        }
-    }
-
-    // swiftlint:disable function_body_length
     private func configureRatingStars(_ rating: Double?) {
         ratingView.rating = rating ?? .zero
     }

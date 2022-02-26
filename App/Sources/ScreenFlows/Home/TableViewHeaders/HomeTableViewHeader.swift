@@ -83,6 +83,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
         }
         subjectsCollectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
             $0.scrollDirection = .horizontal
+            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
 
         subjectsCollectionView.registerCell(ofType: SubjectCollectionViewCell.self)
@@ -176,7 +177,7 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == subjectsCollectionView {
             let attributes: [NSAttributedString.Key: Any] = [.font: FontFamily.Inter.regular.font(size: 16) ?? .systemFont(ofSize: 16)]
-            return subjects?[indexPath.item].name?.size(withAttributes: attributes) ?? .zero
+            return subjects?[indexPath.item].name?.size() ?? .zero
         } else {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }
@@ -195,7 +196,7 @@ extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 5.0
+        return 15.0
     }
 }
 

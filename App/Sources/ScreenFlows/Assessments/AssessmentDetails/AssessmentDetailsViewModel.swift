@@ -108,24 +108,6 @@ class AssessmentDetailsViewModel {
         }
     }
 
-    private func generateTeacherGradeBody() -> TeacherSubmitGradeRequestModel {
-        var grades: [GradeRequestModel] = []
-        for question in teacherLocalGrades {
-            var status = ""
-            if module == .assignments {
-                status = question.status?.rawValue ?? ""
-            }
-            let grade = GradeRequestModel(
-                mark: question.mark ?? 0,
-                comment: question.teacherComment ?? "",
-                status: status,
-                submissionID: question.submissionID ?? 0
-            )
-            grades.append(grade)
-        }
-        return TeacherSubmitGradeRequestModel(grades: grades)
-    }
-
     private func submitAnswerWithoutAttachment(questionID: Int) {
         guard
             let assessmentID = assissmentID,

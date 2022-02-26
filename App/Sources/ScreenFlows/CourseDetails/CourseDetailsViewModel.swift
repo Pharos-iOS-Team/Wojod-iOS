@@ -8,7 +8,7 @@ class CourseDetailsViewModel {
     func loadLessons(courseID: Int, completion: @escaping (LessonsModel) -> Void) {
         model.loadLessons(courseID: courseID) { result in
             switch result {
-            case .success(let lessons as LessonsModel):
+            case let .success(lessons as LessonsModel):
                 completion(lessons)
             default:
                 return
@@ -66,8 +66,7 @@ class CourseDetailsViewModel {
     func loadMaterials(courseID: Int, completion: @escaping (Materials) -> Void) {
         model.loadMaterials(courseID: courseID) { result in
             switch result {
-            case let .success(materials):
-                guard var materials = materials as? Materials else { return }
+            case var .success(materials as Materials):
                 materials.sort()
                 completion(materials)
             default:

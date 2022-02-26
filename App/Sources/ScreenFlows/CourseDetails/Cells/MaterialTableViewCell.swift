@@ -23,11 +23,7 @@ class MaterialTableViewCell: UITableViewCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    internal func configure(title: String?, date: String?, image: UIImage?) {
+    func configure(title: String?, date: String?, image: UIImage?) {
         nextArrowIndicator.isHidden = false
         titleLabel.text = title
         dateLabel.text = date
