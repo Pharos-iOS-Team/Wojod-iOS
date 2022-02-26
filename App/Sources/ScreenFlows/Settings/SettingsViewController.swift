@@ -24,10 +24,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet private var profileThumbnail: UIImageView!
 
     let viewModel = SettingsViewModel()
-    var user: LoginApiResponseModel?
-    private var window: UIWindow? {
-        return (UIApplication.shared.delegate as? AppDelegate)?.window
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

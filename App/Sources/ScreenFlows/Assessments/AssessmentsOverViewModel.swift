@@ -8,35 +8,6 @@ import Alamofire
 class AssessmentsOverViewModel {
     private let decoder = JSONDecoder()
 
-    func getAssessments(
-        studentId: Int?,
-        subjectId: Int?,
-        module: AssessmentsOverViewViewModel.Module,
-        allSubjectAssessments: [String: [Assessment]],
-        completion: @escaping ([String: [Assessment]],
-        [AssessmentSubject], Error?) -> Void
-    ) {
-        APIClient.shared.getAssessments(studentId: studentId, subjectId: subjectId, module: module) { [weak self] response in
-            var returnedAssessments = [String: [Assessment]]()
-            var subjects = [AssessmentSubject]()
-            switch response.result {
-            case .success:
-                if let statusCode = response.response?.statusCode {
-                    switch statusCode {
-                    case 200:
-                        returnedAssessments = self?.getAssessmentForUserRole(fromResponse: response, subjectId: subjectId, module: module, allSubjectAssessments: allSubjectAssessments) ?? [:]
-                        subjects = self?.getSubjectsNames(fromResponse: response).names ?? []
-                        completion(returnedAssessments, subjects, nil)
-                    default:
-                        completion(returnedAssessments, subjects, nil)
-                    }
-                }
-            case .failure:
-                completion(returnedAssessments, subjects, response.error)
-            }
-        }
-    }
-
     func assessmentResults(
         assessmentID: Int,
         studentId: Int? = nil,
@@ -112,23 +83,5 @@ class AssessmentsOverViewModel {
         case .assignments:
             return response.assignments
         }
-    }
-
-    private func getSubjectsNames(fromResponse response: AFDataResponse<Any>) -> (ids: [Int], names: [AssessmentSubject]) {
-        var subjectNames = [AssessmentSubject]()
-        var subjectIDs = [Int]()
-        if let data = response.data,
-            let tryResponseJSON = try? JSONSerialization.jsonObject(with: data, options: []),
-            let responseJSON = tryResponseJSON as? [String: Any],
-            let allSubjects = responseJSON["subjects"] as? [[String: Any]] {
-            for subject in allSubjects {
-                if let subject = AssessmentSubject(JSON: subject),
-                    let id = subject.id {
-                    subjectNames.append(subject)
-                    subjectIDs.append(id)
-                }
-            }
-        }
-        return (subjectIDs, subjectNames)
     }
 }

@@ -6,15 +6,9 @@ enum TabBarItems: Int {
     case home
     case courses
     case settings
-
-    var indexOfTab: Int {
-        return self.rawValue
-    }
 }
 
 class CoursesTabBarViewController: UITabBarController {
-    var user: LoginApiResponseModel?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBarTintColor()

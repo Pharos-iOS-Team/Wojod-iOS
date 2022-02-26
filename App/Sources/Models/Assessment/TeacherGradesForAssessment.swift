@@ -23,14 +23,3 @@ class TeacherLocalGradesForAssessment {
         self.status = status
     }
 }
-
-struct TeacherSubmitGradeRequestModel: Codable {
-    var grades: [GradeRequestModel]
-}
-
-struct GradeRequestModel: Codable {
-    var mark: Double
-    var comment: String
-    var status: String
-    var submissionID: Int
-}

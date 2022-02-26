@@ -1,6 +1,7 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
 import Foundation
+import HandyUIKit
 import UIKit
 
 extension UIView {
@@ -83,24 +84,6 @@ extension UIView {
     }
 
     func setTopCornerRadius(radius: CGFloat) {
-        layer.masksToBounds = true
-        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        layer.cornerRadius = radius
-    }
-
-    func setBottomCornerRadius(radius: CGFloat) {
-        layer.masksToBounds = true
-        layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        layer.cornerRadius = radius
-    }
-
-    func setLeftCornerRadius(radius: CGFloat) {
-        layer.masksToBounds = true
-        layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        layer.cornerRadius = radius
-    }
-
-    func setRightCornerRadius(radius: CGFloat) {
         layer.masksToBounds = true
         layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         layer.cornerRadius = radius

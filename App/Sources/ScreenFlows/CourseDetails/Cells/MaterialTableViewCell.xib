@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMT-Gg-hxf">
-                        <rect key="frame" x="10" y="0.0" width="300" height="52"/>
+                        <rect key="frame" x="20" y="10" width="280" height="52"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEb-s7-ios">
                                 <rect key="frame" x="25" y="13" width="24" height="26"/>
@@ -44,19 +44,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="gUh-RC-eA8">
-                                <rect key="frame" x="255" y="16" width="20" height="20"/>
+                                <rect key="frame" x="235" y="16" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="sI1-Is-jhv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Qh-8hd">
-                                <rect key="frame" x="219.5" y="18.5" width="25.5" height="15"/>
+                                <rect key="frame" x="199.5" y="18.5" width="25.5" height="15"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
                                 <color key="textColor" name="avatarViewBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tBa-BC-mxd">
-                                <rect key="frame" x="255" y="16" width="20" height="20"/>
+                                <rect key="frame" x="235" y="16" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -77,10 +77,10 @@
                 </subviews>
                 <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="mMT-Gg-hxf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6ZL-Ry-5xG"/>
-                    <constraint firstAttribute="bottom" secondItem="mMT-Gg-hxf" secondAttribute="bottom" constant="10" id="iHP-Os-RbH"/>
-                    <constraint firstItem="mMT-Gg-hxf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="med-qb-cA0"/>
-                    <constraint firstAttribute="trailing" secondItem="mMT-Gg-hxf" secondAttribute="trailing" constant="10" id="t4e-nz-p8h"/>
+                    <constraint firstItem="mMT-Gg-hxf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6ZL-Ry-5xG"/>
+                    <constraint firstAttribute="bottom" secondItem="mMT-Gg-hxf" secondAttribute="bottom" id="iHP-Os-RbH"/>
+                    <constraint firstItem="mMT-Gg-hxf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="med-qb-cA0"/>
+                    <constraint firstAttribute="trailing" secondItem="mMT-Gg-hxf" secondAttribute="trailing" constant="20" id="t4e-nz-p8h"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
