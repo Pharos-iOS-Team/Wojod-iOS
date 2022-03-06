@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CHAT_BASE_URL</key>
 	<string>$(CHAT_BASE_URL)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -34,11 +34,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>need access for camera</string>
+	<string>Wojod needs to access your camera to upload images with your requests</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>need to access microphone</string>
+	<string>Wojod needs to access microphone to send audio messages</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>need photos access</string>
+	<string>Wojod needs to access your photos to upload images with your requests</string>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UIAppFonts</key>
