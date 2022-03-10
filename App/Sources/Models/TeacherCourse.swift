@@ -18,21 +18,21 @@ struct CourseDetailsResponse: Codable {
 }
 
 struct Course: Codable {
-    var id: Int?
-    var batchID: Int?
-    var subjectID: Int?
-    var name: String?
-    var batchName: String?
-    var price: String?
-    var media: Media?
-    var video: Media?
-    var summary: String?
-    var rating: Double?
-    var reviewsCount: Int?
-    var reservationState: String?
-    var receipt: Receipt?
-    var lessonsUnreadCount: Int?
-    var materialsUnreadCount: Int?
+    let id: Int?
+    let batchID: Int?
+    let subjectID: Int?
+    let name: String?
+    let batchName: String?
+    let price: String?
+    let media: Media?
+    let video: Media?
+    let summary: String?
+    let rating: Double?
+    let reviewsCount: Int?
+    let reservationState: String?
+    let receipt: Receipt?
+    let lessonsUnreadCount: Int?
+    let materialsUnreadCount: Int?
 }
 
 struct Media: Codable {

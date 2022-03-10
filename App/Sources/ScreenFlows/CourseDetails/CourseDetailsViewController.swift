@@ -130,18 +130,7 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        if let headerView = tableView.tableHeaderView {
-
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                tableView.tableHeaderView = headerView
-            }
-        }
+        tableView.autoResizeTableHeaderView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -174,8 +163,6 @@ class CourseDetailsViewController: UIViewController {
                 layer.removeFromSuperlayer()
             }
         }
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 
     // MARK: - IBActions
@@ -236,7 +223,7 @@ class CourseDetailsViewController: UIViewController {
                 self.tableView.reloadData()
             } else {
                 expandedSections.append(section)
-                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section - 1].id) { attachmentsModel in
+                viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section].id) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
                     if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                             self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
@@ -255,7 +242,7 @@ class CourseDetailsViewController: UIViewController {
     @objc
     private func handlePlusButtonAppearance(section: Int) {
         if course?.reservationState == "approved" {
-            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section - 1].id) { attachmentsModel in
+            viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section].id) { attachmentsModel in
                 self.attachmentsOfLessons[section] = attachmentsModel
                 if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                     self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
@@ -349,7 +336,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
-            self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0) }
+            self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0 - 1) }
         }
     }
 
@@ -707,9 +694,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
         case .reviews:
             let cell = tableView.dequeueCell(ofType: ReviewTableViewCell.self, for: indexPath)
             let review = reviewsList?[indexPath.row]
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            let date = dateFormatter.date(from: review?.createdAt ?? "")
+            let date = DateFormatter.isoDateFormatter.date(from: review?.createdAt ?? "")
             cell?.setTitle(review?.title ?? "")
             cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review?.reviewer?.name ?? "")")
             cell?.setComment(review?.comment ?? "")
@@ -786,32 +771,26 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if activeScreen == .details {
-            if !lessonsList.isEmpty {
-                let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-                view?.tag = section + 1
-                view?.collapseExpandDelegate = self
-                let lesson = lessonsList[section - 1]
-                view?.setLessonTitleLabel(lesson.name)
-                view?.setNumberLabel(lessonNumbersList?[section - 1] ?? 0)
-                view?.assignSectionTagToButton(section)
-                view?.configureVisibilityOfExpandButton(
-                    state: course?.reservationState,
-                    doesContainAttachments:
-                        doesLessonContainAttachments[section] ?? false
-                )
-                if expandedSections.contains(section) {
-                    view?.setImageOfButton(Images.collapse.image)
-                } else {
-                    view?.setImageOfButton(Images.expand.image)
-                }
-                return view
-            } else {
-                return nil
-            }
+        guard activeScreen == .details, !lessonsList.isEmpty else { return nil }
+
+        let view = self.tableView.dequeueHeaderFooterView(ofType: CourseDetailsHeaderView.self)
+        view?.tag = section
+        view?.collapseExpandDelegate = self
+        let lesson = lessonsList[section]
+        view?.setLessonTitleLabel(lesson.name)
+        view?.setNumberLabel(lessonNumbersList?[section] ?? 0)
+        view?.assignSectionTagToButton(section)
+        view?.configureVisibilityOfExpandButton(
+            state: course?.reservationState,
+            doesContainAttachments:
+                doesLessonContainAttachments[section] ?? false
+        )
+        if expandedSections.contains(section) {
+            view?.setImageOfButton(Images.collapse.image)
         } else {
-            return nil
+            view?.setImageOfButton(Images.expand.image)
         }
+        return view
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -938,7 +917,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
 
 extension CourseDetailsViewController: CollapseExpandDelegate {
     func didTapOnCollapseExpand(in section: Int) {
-        handleAttachmentsExpantion(section: section - 1)
+        handleAttachmentsExpantion(section: section)
     }
 }
 
