@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,49 +22,46 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to measure temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTV-LX-6ex">
-                        <rect key="frame" x="50" y="10" width="164" height="15"/>
-                        <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6u7-py-xz4">
-                        <rect key="frame" x="50" y="35" width="18" height="21"/>
+                        <rect key="frame" x="50" y="20" width="22" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="EtS-Hz-XiZ"/>
-                            <constraint firstAttribute="height" constant="21" id="JFO-kR-OgE"/>
+                            <constraint firstAttribute="width" constant="22" id="EtS-Hz-XiZ"/>
+                            <constraint firstAttribute="height" constant="25" id="JFO-kR-OgE"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature.pdf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzX-a2-qti">
-                        <rect key="frame" x="78" y="38" width="93.5" height="15"/>
-                        <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
-                        <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gwZ-hj-jq5">
+                        <rect key="frame" x="82" y="25" width="93.5" height="15"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature.pdf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzX-a2-qti">
+                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhH-cu-JkM">
+                                <rect key="frame" x="0.0" y="15" width="93.5" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="6u7-py-xz4" firstAttribute="leading" secondItem="iTV-LX-6ex" secondAttribute="leading" id="5t2-gz-C17"/>
-                    <constraint firstItem="TzX-a2-qti" firstAttribute="leading" secondItem="6u7-py-xz4" secondAttribute="trailing" constant="10" id="Bd0-Tg-DGM"/>
-                    <constraint firstItem="iTV-LX-6ex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="HcD-xx-A5s"/>
-                    <constraint firstItem="iTV-LX-6ex" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LOE-dx-o1j"/>
-                    <constraint firstItem="TzX-a2-qti" firstAttribute="centerY" secondItem="6u7-py-xz4" secondAttribute="centerY" id="bsf-jc-6vj"/>
-                    <constraint firstItem="6u7-py-xz4" firstAttribute="top" secondItem="iTV-LX-6ex" secondAttribute="bottom" constant="10" id="qBG-oU-9cz"/>
+                    <constraint firstItem="gwZ-hj-jq5" firstAttribute="centerY" secondItem="6u7-py-xz4" secondAttribute="centerY" id="6FR-ED-M3y"/>
+                    <constraint firstItem="6u7-py-xz4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UHQ-ue-ROA"/>
+                    <constraint firstItem="gwZ-hj-jq5" firstAttribute="leading" secondItem="6u7-py-xz4" secondAttribute="trailing" constant="10" id="gPS-XS-GCM"/>
+                    <constraint firstItem="6u7-py-xz4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="jb4-xe-QXv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="attachmentImageView" destination="6u7-py-xz4" id="lE8-BA-jYo"/>
-                <outlet property="optionalTitleLabel" destination="iTV-LX-6ex" id="aIU-nx-zYE"/>
+                <outlet property="durationLabel" destination="hhH-cu-JkM" id="YSq-EQ-xgE"/>
                 <outlet property="subtitleLabel" destination="TzX-a2-qti" id="91V-ka-wZ7"/>
             </connections>
             <point key="canvasLocation" x="-197" y="68"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <namedColor name="superLightGreyBackgroundColor">
-            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

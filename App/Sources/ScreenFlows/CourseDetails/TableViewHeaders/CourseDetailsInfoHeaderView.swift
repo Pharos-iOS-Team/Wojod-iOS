@@ -16,6 +16,7 @@ protocol CourseDetailsInfoHeaderDelegate: AnyObject {
 struct CourseDetailsInfoModel {
     var courseTitle: String?
     var teacherName: String?
+    var batchName: String?
     var image: String?
     var video: Media?
     var description: String?
@@ -69,6 +70,8 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
             playButton.isHidden = true
         }
     }
+
+    @IBOutlet private var batchLabel: UITagLabel!
     @IBOutlet private var mainBackgroundView: UIView!
     @IBOutlet private var mainView: UIView!
     @IBOutlet private var mediaContainerView: UIView!
@@ -113,14 +116,17 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         configureButtonSelected(buttonSelected: .details)
         delegate?.showDetails()
     }
+
     @IBAction private func didTapMaterials(_ sender: Any) {
         configureButtonSelected(buttonSelected: .materials)
         delegate?.showMaterials()
     }
+
     @IBAction private func didTapReviews(_ sender: Any) {
         configureButtonSelected(buttonSelected: .reviews)
         delegate?.showReviews()
     }
+
     @IBAction private func didTapPlay(_ sender: Any) {
         playButton.isHidden = true
         let courseVideoUrl = video?.fileUrl ?? ""
@@ -133,20 +139,19 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         self.mediaContainerView.insertSubview(playerController.view, at: (self.mediaContainerView.subviews.firstIndex(of: courseImageView) ?? 0) + 1)
         player.play()
     }
+
     @IBAction private func didTapChatButton(_ sender: Any) {
         delegate?.goToChat()
     }
+
     @IBAction private func didTapBack(_ sender: Any) {
         delegate?.dismissView()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
 
     func configure(model: CourseDetailsInfoModel) {
         courseTitle.text = model.courseTitle
         teacherNameLabel.text = model.teacherName
+        batchLabel.text = model.batchName
         descriptionLabel.text = model.description
         numberOfReviewsLabel.text = model.numberOfReviews
         courseImageView.kf.setImage(with: Environment.baseURL.appendingPathComponent(model.image ?? ""))

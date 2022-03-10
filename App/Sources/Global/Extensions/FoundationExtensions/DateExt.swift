@@ -6,6 +6,7 @@ extension Date {
     var formattedDateString: String {
         let formatter = DateFormatter().with {
             $0.dateStyle = .medium
+            $0.locale = Language.locale
         }
         return formatter.string(from: self)
     }

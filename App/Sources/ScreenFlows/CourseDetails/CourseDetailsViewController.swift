@@ -23,7 +23,7 @@ internal enum ActiveScreen {
     case materials
 }
 
-internal enum MaterialsSections: Int, CaseIterable {
+enum MaterialsSections: Int, CaseIterable {
     case assignments
     case quizzes
     case videos
@@ -49,17 +49,17 @@ class CourseDetailsViewController: UIViewController {
 
     private var player: AVPlayer?
     private var state: CourseState?
-    private var activeScreen: ActiveScreen?
+    private var activeScreen: ActiveScreen = .details
     private var viewModel: CourseDetailsViewModel?
     private var quizzesViewModel: AssessmentsOverViewViewModel?
     private var assignemntsViewModel: AssessmentsOverViewViewModel?
     private var lessonsList: [Lesson] = []
     private var lessonNumbersList: [Int]?
-    private var reviewsList: [Review]?
+    private var reviewsList: [Review] = []
     private var attachmentsOfLessons: [Int: LessonAttachmentsModel] = [:]
     private var expandedSections: [Int] = []
     private var blurredView: UIVisualEffectView?
-    private let detailsRowHeight: CGFloat = 65
+    private let detailsRowHeight: CGFloat = 50
     private let reviewsRowHeight: CGFloat = 90
     private var materials: Materials!
     private var documentInteractionController = UIDocumentInteractionController()
@@ -79,7 +79,7 @@ class CourseDetailsViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    var course: Course?
+    var course: Course!
     var teacherName: String?
     var teacherID: Int?
 
@@ -88,7 +88,6 @@ class CourseDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         state = getReservationState()
-        activeScreen = .details
         viewModel = CourseDetailsViewModel()
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
@@ -111,6 +110,7 @@ class CourseDetailsViewController: UIViewController {
             model: CourseDetailsInfoModel(
                 courseTitle: course?.name,
                 teacherName: teacherName,
+                batchName: course?.batchName,
                 image: course?.media?.fileUrl,
                 video: course?.video,
                 description: course?.summary,
@@ -118,7 +118,7 @@ class CourseDetailsViewController: UIViewController {
                 numberOfReviews: String(course?.reviewsCount ?? .zero),
                 rating: course?.rating,
                 shouldHideMaterials: state != .booked,
-                buttonSelected: activeScreen ?? .details,
+                buttonSelected: activeScreen,
                 state: state ?? .normal,
                 lessonsUnreadCount: course?.lessonsUnreadCount,
                 materialsUnreadCount: course?.materialsUnreadCount,
@@ -170,7 +170,7 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: course?.id ?? 0) { bookingResponse, error in
+            viewModel?.bookCourses(courseID: course.id) { bookingResponse, error in
                 if error == nil {
                     self.state = .pending
                     self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
@@ -225,7 +225,7 @@ class CourseDetailsViewController: UIViewController {
                 expandedSections.append(section)
                 viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section].id) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
-                    if   self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                    if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                             self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
                             self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
                             self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
@@ -244,10 +244,12 @@ class CourseDetailsViewController: UIViewController {
         if course?.reservationState == "approved" {
             viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section].id) { attachmentsModel in
                 self.attachmentsOfLessons[section] = attachmentsModel
-                if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
+                if
+                    self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
                     self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
                     self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
-                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true
+                {
                     self.doesLessonContainAttachments[section] = false
                     self.attachmentsOfLessons[section] = nil
                 } else {
@@ -333,7 +335,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func loadCourseLessons() {
-        viewModel?.loadLessons(courseID: course?.id ?? 0) { lessonsModel in
+        viewModel?.loadLessons(courseID: course.id) { lessonsModel in
             self.lessonsList = lessonsModel.lessons
             self.generateLessonsNumbersList()
             self.lessonNumbersList?.forEach { self.handlePlusButtonAppearance(section: $0 - 1) }
@@ -381,13 +383,14 @@ class CourseDetailsViewController: UIViewController {
 
     private func configureLessonDetails(cell: AttachmentTableViewCell?, with attachment: Any) {
         if let assignment = attachment as? Assignment {
-            cell?.setSubtitleLabel(assignment.title ?? "")
+            cell?.setSubtitleLabel(assignment.title)
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let quiz = attachment as? Assessment {
-            cell?.setSubtitleLabel(quiz.title ?? "")
+            cell?.setSubtitleLabel(quiz.title)
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let video = attachment as? Video {
-            cell?.setSubtitleLabel(video.title ?? "")
+            cell?.setSubtitleLabel(video.title)
+            cell?.setDuration(video.duration)
             if !(video.link?.isEmpty ?? true) {
                 cell?.setAttachmentImageView(Images.link.image)
             } else {
@@ -604,7 +607,7 @@ class CourseDetailsViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        viewModel?.loadCourse(courseID: "\(course?.id ?? 0)") { course in
+        viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
@@ -621,7 +624,7 @@ class CourseDetailsViewController: UIViewController {
 
         case .materials:
             showLoadingIndicator()
-            viewModel?.loadMaterials(courseID: course?.id ?? 0) { materials in
+            viewModel?.loadMaterials(courseID: course.id) { materials in
                 self.hideLoadingIndicator()
                 self.materials = materials
                 self.tableView.reloadData()
@@ -630,15 +633,12 @@ class CourseDetailsViewController: UIViewController {
 
         case .reviews:
             showLoadingIndicator()
-            viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
+            viewModel?.loadReviews(courseID: course.id) { result in
                 self.hideLoadingIndicator()
-                self.reviewsList = result.reviews
+                self.reviewsList = result.reviews ?? []
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
             }
-
-        default:
-            return
         }
     }
 }
@@ -652,15 +652,15 @@ extension CourseDetailsViewController: UITableViewDataSource {
             return lessonsList.count
         case .materials:
             return MaterialsSections.allCases.count
-        default:
-            return 0
+        case .reviews:
+            return reviewsList.isEmpty ? 0 : 1
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch activeScreen {
         case .reviews:
-            return reviewsList?.count ?? .zero
+            return reviewsList.count
         case .details:
             return numberOfRowsInLessonSection(section + 1)
         case .materials:
@@ -676,8 +676,6 @@ extension CourseDetailsViewController: UITableViewDataSource {
             default:
                 return 0
             }
-        default:
-            return 0
         }
     }
 
@@ -693,14 +691,14 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
         case .reviews:
             let cell = tableView.dequeueCell(ofType: ReviewTableViewCell.self, for: indexPath)
-            let review = reviewsList?[indexPath.row]
-            let date = DateFormatter.isoDateFormatter.date(from: review?.createdAt ?? "")
-            cell?.setTitle(review?.title ?? "")
-            cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review?.reviewer?.name ?? "")")
-            cell?.setComment(review?.comment ?? "")
-            cell?.setRating(review?.rating ?? 0.0)
+            let review = reviewsList[indexPath.row]
+            let date = DateFormatter.isoDateFormatter.date(from: review.createdAt ?? "")
+            cell?.setTitle(review.title ?? "")
+            cell?.setSubtitle("\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review.reviewer?.name ?? "")")
+            cell?.setComment(review.comment ?? "")
+            cell?.setRating(review.rating ?? 0.0)
             DispatchQueue.global().async {
-                let image = self.getImage(from: review?.reviewer?.avatar?.fileUrl ?? "")
+                let image = self.getImage(from: review.reviewer?.avatar?.fileUrl ?? "")
                 cell?.setAvatarImage(image)
             }
             return cell ?? UITableViewCell()
@@ -708,41 +706,45 @@ extension CourseDetailsViewController: UITableViewDataSource {
         case .materials:
             let cell = tableView.dequeueCell(ofType: MaterialTableViewCell.self, for: indexPath)
 
-            switch MaterialsSections(rawValue: indexPath.section) {
+            switch MaterialsSections(rawValue: indexPath.section)! {
             case .assignments:
                 let assignment = materials?.assignments?[indexPath.row]
                 let date = assignment?.publishedAt ?? Date()
-                cell?.configure(title: assignment?.title, date: date.formattedDateString, image: Images.quiz.image)
-
+                cell?.model = MaterialTableCellData(
+                    title: assignment?.title,
+                    date: date.formattedDateString,
+                    image: Images.quiz.image
+                )
             case .quizzes:
                 let quiz = materials?.quizzes?[indexPath.row]
                 let date = quiz?.publishedAt ?? Date()
-                cell?.configure(title: quiz?.title, date: date.formattedDateString, image: Images.quiz.image)
+                cell?.model = MaterialTableCellData(
+                    title: quiz?.title,
+                    date: date.formattedDateString,
+                    image: Images.quiz.image
+                )
 
             case .videos:
                 let video = materials?.videos?[indexPath.row]
                 let date = video?.publishedAt ?? Date()
-                cell?.configure(
+                cell?.model = MaterialTableCellData(
                     title: video?.title,
                     date: date.formattedDateString,
-                    image: !(video?.link?.isEmpty ?? true)
-                        ? Images.link.image
-                        : Images.videoExtension.image
+                    image: !(video?.link?.isEmpty ?? true) ? Images.link.image : Images.videoExtension.image,
+                    duration: video?.duration
                 )
 
             case .documents:
                 let document = materials?.documents?[indexPath.row]
                 let date = document?.publishedAt ?? Date()
-                cell?.configure(title: document?.title ?? document?.fileName, date: date.formattedDateString, image: getCorrespondingImage(for: document))
-
-            default:
-                return cell ?? UITableViewCell()
+                cell?.model = MaterialTableCellData(
+                    title: document?.title ?? document?.fileName,
+                    date: date.formattedDateString,
+                    image: getCorrespondingImage(for: document)
+                )
             }
             cell?.selectionStyle = .none
             return cell ?? UITableViewCell()
-
-        default:
-            return UITableViewCell()
         }
     }
 }
@@ -751,7 +753,7 @@ extension CourseDetailsViewController: UITableViewDataSource {
 
 extension CourseDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch activeScreen! {
+        switch activeScreen {
         case .details:
             return detailsRowHeight
         case .materials, .reviews:
@@ -760,7 +762,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch activeScreen! {
+        switch activeScreen {
         case .details:
             return detailsRowHeight
         case .materials:
@@ -934,7 +936,7 @@ extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
 extension CourseDetailsViewController: CancelBookingViewDelegate {
     func didTapCancelBooking() {
         blurredView?.removeFromSuperview()
-        viewModel?.cancelBookingCourse(courseID: course?.id ?? 0) { isCancellingSuccessful in
+        viewModel?.cancelBookingCourse(courseID: course.id) { isCancellingSuccessful in
             if isCancellingSuccessful {
                 self.state = .normal
                 self.actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
@@ -1058,8 +1060,7 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func showMaterials() {
         activeScreen = .materials
-        guard let courseID = course?.id else { return }
-        viewModel?.loadMaterials(courseID: courseID) { materials in
+        viewModel?.loadMaterials(courseID: course.id) { materials in
             self.materials = materials
             self.tableView.reloadData()
         }
@@ -1067,8 +1068,8 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func showReviews() {
         activeScreen = .reviews
-        viewModel?.loadReviews(courseID: course?.id ?? 0) { result in
-            self.reviewsList = result.reviews
+        viewModel?.loadReviews(courseID: course.id) { result in
+            self.reviewsList = result.reviews ?? []
             self.tableView.reloadData()
         }
     }
@@ -1076,7 +1077,7 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
     func goToChat() {
         let viewCtrl = StoryboardScene.Chat.chatContainerViewController.instantiate()
         viewCtrl.modalPresentationStyle = .fullScreen
-        viewCtrl.chatType = .teacher(courseID: course?.id ?? 0, teacherID: teacherID ?? 0)
+        viewCtrl.chatType = .teacher(courseID: course.id, teacherID: teacherID ?? 0)
         present(viewCtrl, animated: true)
     }
 
@@ -1113,14 +1114,10 @@ extension CourseDetailsViewController: DZNEmptyDataSetSource {
         switch activeScreen {
         case .details:
             return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyDetails)
-
         case .materials:
             return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyMaterials)
-
         case .reviews:
             return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyReviews)
-        default:
-            return nil
         }
     }
 }
@@ -1133,7 +1130,8 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
     }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        return 250
+        guard let tableHeaderView = tableView.tableHeaderView else { return 200 }
+        return tableHeaderView.frame.size.height / 2
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
@@ -1146,9 +1144,7 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
                 && materials?.quizzes?.isEmpty ?? true
                 && materials?.videos?.isEmpty ?? true
         case .reviews:
-            return reviewsList?.isEmpty ?? true
-        default:
-            return false
+            return reviewsList.isEmpty
         }
     }
 }

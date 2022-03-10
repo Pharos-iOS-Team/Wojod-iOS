@@ -31,47 +31,58 @@
                         <rect key="frame" x="20" y="10" width="280" height="52"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEb-s7-ios">
-                                <rect key="frame" x="25" y="13" width="24" height="26"/>
+                                <rect key="frame" x="20" y="11" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="U0D-Cc-0oj"/>
-                                    <constraint firstAttribute="height" constant="26" id="jCA-NA-cQs"/>
+                                    <constraint firstAttribute="width" constant="30" id="U0D-Cc-0oj"/>
+                                    <constraint firstAttribute="height" constant="30" id="jCA-NA-cQs"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Zc-EwW">
-                                <rect key="frame" x="59" y="18.5" width="25" height="15"/>
-                                <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nYl-pu-s8r">
+                                <rect key="frame" x="60" y="18.5" width="149.5" height="15"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="251" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-Zc-EwW">
+                                        <rect key="frame" x="0.0" y="0.0" width="149.5" height="15"/>
+                                        <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNu-XY-ZXD">
+                                        <rect key="frame" x="0.0" y="15" width="149.5" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="avatarViewBackground"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="gUh-RC-eA8">
-                                <rect key="frame" x="235" y="16" width="20" height="20"/>
+                                <rect key="frame" x="250" y="16" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="sI1-Is-jhv"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Qh-8hd">
-                                <rect key="frame" x="199.5" y="18.5" width="25.5" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Qh-8hd">
+                                <rect key="frame" x="214.5" y="18.5" width="25.5" height="15"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
                                 <color key="textColor" name="avatarViewBackground"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tBa-BC-mxd">
-                                <rect key="frame" x="235" y="16" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tBa-BC-mxd">
+                                <rect key="frame" x="250" y="16" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KeQ-Zc-EwW" firstAttribute="centerY" secondItem="HEb-s7-ios" secondAttribute="centerY" id="5WZ-MD-Bri"/>
-                            <constraint firstItem="ygf-Qh-8hd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KeQ-Zc-EwW" secondAttribute="trailing" constant="5" id="5qY-Ld-5g1"/>
-                            <constraint firstItem="HEb-s7-ios" firstAttribute="leading" secondItem="mMT-Gg-hxf" secondAttribute="leading" constant="25" id="BL5-MV-cTH"/>
-                            <constraint firstItem="KeQ-Zc-EwW" firstAttribute="leading" secondItem="HEb-s7-ios" secondAttribute="trailing" constant="10" id="H9j-aC-MNb"/>
+                            <constraint firstItem="HEb-s7-ios" firstAttribute="leading" secondItem="mMT-Gg-hxf" secondAttribute="leading" constant="20" id="BL5-MV-cTH"/>
                             <constraint firstItem="gUh-RC-eA8" firstAttribute="centerY" secondItem="mMT-Gg-hxf" secondAttribute="centerY" id="Heq-2f-ofr"/>
-                            <constraint firstAttribute="trailing" secondItem="gUh-RC-eA8" secondAttribute="trailing" constant="25" id="KzV-aw-evg"/>
+                            <constraint firstAttribute="trailing" secondItem="gUh-RC-eA8" secondAttribute="trailing" constant="10" id="KzV-aw-evg"/>
                             <constraint firstItem="gUh-RC-eA8" firstAttribute="leading" secondItem="ygf-Qh-8hd" secondAttribute="trailing" constant="10" id="Rxn-gx-Yom"/>
+                            <constraint firstItem="ygf-Qh-8hd" firstAttribute="leading" secondItem="nYl-pu-s8r" secondAttribute="trailing" constant="5" id="ciy-3p-eOI"/>
                             <constraint firstItem="HEb-s7-ios" firstAttribute="centerY" secondItem="mMT-Gg-hxf" secondAttribute="centerY" id="kf3-jY-Dt3"/>
-                            <constraint firstItem="ygf-Qh-8hd" firstAttribute="firstBaseline" secondItem="KeQ-Zc-EwW" secondAttribute="firstBaseline" id="kxR-39-MPf"/>
                             <constraint firstItem="tBa-BC-mxd" firstAttribute="centerY" secondItem="gUh-RC-eA8" secondAttribute="centerY" id="p0i-oj-hVF"/>
+                            <constraint firstItem="nYl-pu-s8r" firstAttribute="centerY" secondItem="HEb-s7-ios" secondAttribute="centerY" id="r9a-Sw-Pjm"/>
                             <constraint firstItem="tBa-BC-mxd" firstAttribute="centerX" secondItem="gUh-RC-eA8" secondAttribute="centerX" id="tnQ-cp-CLC"/>
+                            <constraint firstItem="nYl-pu-s8r" firstAttribute="centerY" secondItem="ygf-Qh-8hd" secondAttribute="centerY" id="x2D-Lb-Bk3"/>
+                            <constraint firstItem="nYl-pu-s8r" firstAttribute="leading" secondItem="HEb-s7-ios" secondAttribute="trailing" constant="10" id="yw2-yC-xx4"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -91,6 +102,7 @@
                 <outlet property="loadingIndicator" destination="tBa-BC-mxd" id="czj-DY-1Sw"/>
                 <outlet property="nextArrowIndicator" destination="gUh-RC-eA8" id="H1L-QS-YaW"/>
                 <outlet property="titleLabel" destination="KeQ-Zc-EwW" id="TJC-Wd-BbL"/>
+                <outlet property="videoDurationLabel" destination="eNu-XY-ZXD" id="CTq-0x-JEG"/>
             </connections>
             <point key="canvasLocation" x="69.565217391304358" y="41.517857142857139"/>
         </tableViewCell>

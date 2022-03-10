@@ -3,40 +3,28 @@
 import UIKit
 
 class AttachmentTableViewCell: UITableViewCell {
-    // MARK: - IBOutlets
-
     @IBOutlet private var attachmentImageView: UIImageView!
-    @IBOutlet private var optionalTitleLabel: UILabel! {
-        didSet {
-            optionalTitleLabel.text = ""
-        }
-    }
     @IBOutlet private var subtitleLabel: UILabel!
-
-    // MARK: - Lifestyle
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    @IBOutlet private var durationLabel: UILabel!
 
     override func prepareForReuse() {
         super.prepareForReuse()
         attachmentImageView.image = nil
         subtitleLabel.text = nil
-        optionalTitleLabel.text = nil
+        durationLabel.isHidden = true
     }
 
-    // MARK: - Public Functions
-
-    internal func setAttachmentImageView(_ image: UIImage) {
+    func setAttachmentImageView(_ image: UIImage) {
         attachmentImageView.image = image
     }
 
-    internal func setOptionalTitleLabel(_ title: String) {
-        optionalTitleLabel.text = title
+    func setSubtitleLabel(_ subtitle: String?) {
+        subtitleLabel.text = subtitle
     }
 
-    internal func setSubtitleLabel(_ subtitle: String) {
-        subtitleLabel.text = subtitle
+    func setDuration(_ duration: Int?) {
+        guard let duration = duration else { return }
+        durationLabel.isHidden = false
+        durationLabel.text = "\(L10n.Quizzes.duration) \(TimeInterval(duration).format() ?? "-")"
     }
 }

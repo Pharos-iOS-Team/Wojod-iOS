@@ -18,7 +18,7 @@ struct CourseDetailsResponse: Codable {
 }
 
 struct Course: Codable {
-    let id: Int?
+    let id: Int
     let batchID: Int?
     let subjectID: Int?
     let name: String?
