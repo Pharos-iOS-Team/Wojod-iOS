@@ -102,6 +102,7 @@ class CourseDetailsViewController: UIViewController {
         observeInternetConnection()
         showQuizAlert()
         setHeader()
+        handleScreenCapture()
     }
 
     private func setHeader() {
