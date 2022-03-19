@@ -33,4 +33,16 @@ extension UITableView {
     func hasRowAtIndexPath(_ indexPath: IndexPath) -> Bool {
         return indexPath.section < self.numberOfSections && indexPath.row < self.numberOfRows(inSection: indexPath.section)
     }
+
+    func autoResizeTableHeaderView() {
+        guard let headerView = tableHeaderView else { return }
+
+        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        var headerFrame = headerView.frame
+        if height != headerFrame.size.height {
+            headerFrame.size.height = height
+            headerView.frame = headerFrame
+            self.tableHeaderView = headerView
+        }
+    }
 }

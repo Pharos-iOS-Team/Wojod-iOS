@@ -142,7 +142,7 @@ class HomeViewController: UIViewController {
             x: self.view.frame.size.width / 2,
             y: self.view.frame.size.height / 2
         )
-        view?.configureInMyCourses(with: receiptData, coursePrice: "")
+        view?.configureInMyCourses(with: receiptData)
         view?.receiptDoneButtonDelegate = self
         view?.addShadow()
         self.view.addSubview(view ?? UIView())
@@ -319,9 +319,10 @@ extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegat
         viewCtrl.course = course
         viewCtrl.teacherName = teacherName
         viewCtrl.teacherID = subjectCourse?.teacher?.id
-        let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
-        navigationCtrl.modalPresentationStyle = .fullScreen
-        navigationCtrl.navigationBar.isHidden = true
+        let navigationCtrl = UINavigationController(rootViewController: viewCtrl).with {
+            $0.modalPresentationStyle = .fullScreen
+            $0.navigationBar.isHidden = true
+        }
         let backButton = UIBarButtonItem()
         backButton.title = L10n.Navigation.back
         navigationCtrl.navigationBar.topItem?.backBarButtonItem = backButton
@@ -351,7 +352,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
 
         self.searchText = searchBar.text ?? ""
         NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(searchCourses(_:)), with: searchBar, afterDelay: 0.5)
+        perform(#selector(searchCourses(_:)), with: searchBar, afterDelay: 0.75)
     }
 
     @objc

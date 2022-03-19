@@ -2,6 +2,13 @@
 
 import UIKit
 
+struct MaterialTableCellData {
+    let title: String?
+    let date: String?
+    let image: UIImage
+    var duration: Int?
+}
+
 class MaterialTableViewCell: UITableViewCell {
     @IBOutlet private var nextArrowIndicator: UIImageView! {
         didSet {
@@ -15,28 +22,39 @@ class MaterialTableViewCell: UITableViewCell {
     }
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView! {
         didSet {
-            loadingIndicator.hidesWhenStopped = true
             loadingIndicator.isHidden = true
         }
     }
     @IBOutlet private var iconImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var videoDurationLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
 
-    func configure(title: String?, date: String?, image: UIImage?) {
-        nextArrowIndicator.isHidden = false
-        titleLabel.text = title
-        dateLabel.text = date
-        iconImageView.image = image
+    var model: MaterialTableCellData! {
+        didSet {
+            titleLabel.text = model.title
+            dateLabel.text = model.date
+            iconImageView.image = model.image
+            setDuration(model.duration)
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        videoDurationLabel.isHidden = true
+    }
+
+    private func setDuration(_ duration: Int?) {
+        guard let duration = duration else { return }
+        videoDurationLabel.isHidden = false
+        videoDurationLabel.text = "\(L10n.Quizzes.duration) \(TimeInterval(duration).format() ?? "-")"
     }
 
     func startLoadingIndicator() {
-        nextArrowIndicator.isHidden = true
         loadingIndicator.startAnimating()
     }
 
     func stopLoadingIndicator() {
-        nextArrowIndicator.isHidden = false
         loadingIndicator.stopAnimating()
     }
 }
