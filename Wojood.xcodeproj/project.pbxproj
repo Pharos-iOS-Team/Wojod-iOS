@@ -307,6 +307,9 @@
 		77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32BBE264A8C200064B801 /* UITableViewExt.swift */; };
 		77E32BC4264A8C450064B801 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32BC3264A8C450064B801 /* ForgotPasswordViewModel.swift */; };
 		77E32BCC264A8C680064B801 /* IndexPathExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E32BCB264A8C670064B801 /* IndexPathExt.swift */; };
+		77EE8B3D27DA411700B0CE45 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B3C27DA411700B0CE45 /* TagView.swift */; };
+		77EE8B3F27DA51B100B0CE45 /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */; };
+		77EE8B4127DA5C2800B0CE45 /* TimeIntervalExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */; };
 		BC083B032641725B00A1E6A4 /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B022641725B00A1E6A4 /* PickerInputView.swift */; };
 		BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B082641755A00A1E6A4 /* AccessoryView.swift */; };
 		BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */; };
@@ -776,6 +779,9 @@
 		77E32BBE264A8C200064B801 /* UITableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
 		77E32BC3264A8C450064B801 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		77E32BCB264A8C670064B801 /* IndexPathExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexPathExt.swift; sourceTree = "<group>"; };
+		77EE8B3C27DA411700B0CE45 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
+		77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExt.swift; sourceTree = "<group>"; };
 		9C66A10DD2CB267EF0EBD0AE /* Pods-Wojood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.debug.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
@@ -1519,22 +1525,22 @@
 		7723AD62261C661C007C0B97 /* ScreenFlows */ = {
 			isa = PBXGroup;
 			children = (
-				BC0F92B72785DBBD001C5B3A /* OrganizationsList */,
 				380B136C26B8074400CB5811 /* Assessments */,
+				BC083B2626429E2E00A1E6A4 /* Avatars */,
 				262FA7582694B0EA00245D2C /* Chat */,
-				38B03550265B9EC600C24479 /* Notifications */,
 				38706CD7265E6DE100440B53 /* CourseDetails */,
 				BC19E5CE2631A34500CFA142 /* CreatePassword */,
-				BC19E5A02631981000CFA142 /* VerifyOtp */,
-				BC083B2626429E2E00A1E6A4 /* Avatars */,
-				BC19E56D2630368500CFA142 /* Profile */,
-				BC767139262C51E50012155C /* Settings */,
-				BC767138262C51E00012155C /* Home */,
 				BC5ED0C92628434900774E54 /* ForgotPassword */,
-				BC98F42D262454A000032AC6 /* Login */,
-				E84874532624B0E1006DF74C /* Registration */,
-				BC98F3D426231C5900032AC6 /* UIComponents */,
+				BC767138262C51E00012155C /* Home */,
 				7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */,
+				BC98F42D262454A000032AC6 /* Login */,
+				38B03550265B9EC600C24479 /* Notifications */,
+				BC0F92B72785DBBD001C5B3A /* OrganizationsList */,
+				BC19E56D2630368500CFA142 /* Profile */,
+				E84874532624B0E1006DF74C /* Registration */,
+				BC767139262C51E50012155C /* Settings */,
+				BC98F3D426231C5900032AC6 /* UIComponents */,
+				BC19E5A02631981000CFA142 /* VerifyOtp */,
 			);
 			path = ScreenFlows;
 			sourceTree = "<group>";
@@ -1717,6 +1723,7 @@
 				778E7295261DCFF5009D7B35 /* StringProtocolExt.swift */,
 				778E723E261DC2D3009D7B35 /* URLExt.swift */,
 				E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */,
+				77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */,
 			);
 			path = FoundationExtensions;
 			sourceTree = "<group>";
@@ -2118,6 +2125,8 @@
 				E866815E2652B9F400B98155 /* PickerView */,
 				BC98F3F5262336F800032AC6 /* AlertView */,
 				BC98F3D826231DF900032AC6 /* SendButton */,
+				77EE8B3C27DA411700B0CE45 /* TagView.swift */,
+				77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -2612,6 +2621,8 @@
 				7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */,
 				26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */,
 				778E7270261DC3E1009D7B35 /* Fonts.swift in Sources */,
+				77EE8B4127DA5C2800B0CE45 /* TimeIntervalExt.swift in Sources */,
+				77EE8B3D27DA411700B0CE45 /* TagView.swift in Sources */,
 				778E725A261DC2D4009D7B35 /* EncodableExt.swift in Sources */,
 				BC19E5DA2631A37100CFA142 /* CreatePasswordViewModel.swift in Sources */,
 				7723AE3C261C8261007C0B97 /* GlobalStrings.swift in Sources */,
@@ -2824,6 +2835,7 @@
 				BC767145262C528D0012155C /* HomeViewController.swift in Sources */,
 				BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */,
 				38812C68266F9DF600CCD924 /* RelatedCoursesResponseModel.swift in Sources */,
+				77EE8B3F27DA51B100B0CE45 /* UIPaddingLabel.swift in Sources */,
 				778E724F261DC2D4009D7B35 /* UILabelExt.swift in Sources */,
 				BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */,
 				380B13A826B807F700CB5811 /* AssessmentDetailQuestionNumberCollectionViewCell.swift in Sources */,
@@ -3037,7 +3049,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3073,7 +3085,7 @@
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
