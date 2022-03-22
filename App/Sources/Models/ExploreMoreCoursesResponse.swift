@@ -21,7 +21,7 @@ struct CoursesResponse: Decodable {
 
         do {
             let coursesDictionary: [String: [SubjectCourses]] = try values.decode([String: [SubjectCourses]].self, forKey: .teachersCourses)
-            teachersCourses = Array(coursesDictionary.values) as? [SubjectCourses]
+            teachersCourses = coursesDictionary.flatMap { $0.value }
         } catch DecodingError.typeMismatch {
             teachersCourses = try values.decode([SubjectCourses].self, forKey: .teachersCourses)
         }

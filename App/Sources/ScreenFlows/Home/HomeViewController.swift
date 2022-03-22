@@ -286,7 +286,7 @@ extension HomeViewController: UITableViewDataSource {
         }
 
         headerView?.setButtonsVisibility(!isInSearchMode)
-        headerView?.setSubjectsVisibility(!isInSearchMode && mode == .relatedCourses && !isMyCourses)
+        headerView?.setSubjectsVisibility(!isInSearchMode && mode == .relatedCourses)
         headerView?.setAdvertisementsVisibility(!advertisements.isEmpty && !isMyCourses && !isInSearchMode)
         return headerView
     }
