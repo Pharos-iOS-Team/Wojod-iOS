@@ -112,8 +112,11 @@ extension UIViewController {
 
 extension UIViewController {
     func handleScreenCapture() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let window = appDelegate.window else { return }
+        guard
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let window = appDelegate.window
+        else { return }
+
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil) { _ in
             self.hideScreenIfBeingRecorded()
         }
@@ -154,6 +157,8 @@ extension UIViewController {
     }
 
     private func handleCrashingTheAppForTakingScreenshot() {
+        guard !isTestingAccount() else { return }
+
         (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController?.showAlert(
             imageName: Images.danger.name,
             title: L10n.Shared.Alerts.screenshotsNotAllowed,
@@ -164,6 +169,11 @@ extension UIViewController {
         _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
             exit(-1)
         }
+    }
+
+    /// Check if the current account is used for testing
+    private func isTestingAccount() -> Bool {
+        return User.shared.mobileNumber == "01280327473"
     }
 
     private func handleCrashingTheAppForRecording() {
