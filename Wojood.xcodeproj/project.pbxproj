@@ -167,6 +167,7 @@
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
 		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
+		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE3261C5E6B007C0B97 /* Images.xcassets */; };
@@ -645,6 +646,7 @@
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
 		726F61097298DC7F90F1539F /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7723ACE3261C5E6B007C0B97 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -1700,6 +1702,7 @@
 				778E722B261DC111009D7B35 /* FoundationExtensions */,
 				778E722C261DC11A009D7B35 /* UIKitExtensions */,
 				778E722D261DC122009D7B35 /* VendorExtensions */,
+				770209C82831C77600F9096F /* NSObjectExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2797,6 +2800,7 @@
 				38B131C826B173D800D5966A /* FiltersTableViewCell.swift in Sources */,
 				38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
+				770209C92831C77600F9096F /* NSObjectExt.swift in Sources */,
 				380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */,
 				BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */,
 				385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */,
