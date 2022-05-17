@@ -175,8 +175,10 @@ class CourseDetailsViewController: UIViewController {
                 if error == nil {
                     self.state = .pending
                     self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
-                    self.blurView()
-                    self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+                    if !self.isTestingAccount() {
+                        self.blurView()
+                        self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+                    }
                 } else if let error = error as? WJError {
                     self.showAlert(imageName: Images.danger.name, title: "Error", message: error.message)
                 }
@@ -196,6 +198,7 @@ class CourseDetailsViewController: UIViewController {
     }
     // MARK: - Private Functions
     private func coursePrice() -> String {
+        guard !isTestingAccount() else { return "" }
         if course?.price == nil || course?.price?.isEmpty ?? true {
             return L10n.Home.Course.returnToTeacher
         } else {

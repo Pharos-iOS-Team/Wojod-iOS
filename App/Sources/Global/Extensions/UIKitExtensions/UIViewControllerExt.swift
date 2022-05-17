@@ -171,11 +171,6 @@ extension UIViewController {
         }
     }
 
-    /// Check if the current account is used for testing
-    private func isTestingAccount() -> Bool {
-        return User.shared.mobileNumber == "01280327473"
-    }
-
     private func handleCrashingTheAppForRecording() {
         guard let viewController = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
         viewController.view.isHidden = true

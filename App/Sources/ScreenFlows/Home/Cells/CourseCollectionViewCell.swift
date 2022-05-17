@@ -113,6 +113,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func coursePrice() -> String {
+        guard !isTestingAccount() else { return "" }
+
         if course?.price == nil || course?.price?.isEmpty ?? true {
             return L10n.Home.Course.returnToTeacher
         } else {
