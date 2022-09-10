@@ -1,5 +1,6 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
+import AVFAudio
 import Foundation
 import UIKit
 
@@ -32,7 +33,18 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
     }
 
     private func addScreenRecordingPreventionObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(hideScreenIfBeingRecorded),
+            name: UIScreen.capturedDidChangeNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(hideScreenIfBeingAirPlayed(_:)),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil
+        )
     }
 
     @objc
@@ -43,6 +55,26 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
             User.shared.screenshotAlert(screenName: String(describing: viewCtrl.title ?? ""), isRecording: true)
         }
         handleCrashingTheAppForRecording()
+    }
+
+    @objc
+    private func hideScreenIfBeingAirPlayed(_ notification: NSNotification?) {
+        guard let viewCtrl = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
+
+        guard isAirplayOn() else { return }
+        if ReachabilityAppDelegate.connectionState == .connected {
+            User.shared.screenshotAlert(screenName: String(describing: viewCtrl.title ?? ""), isRecording: true)
+        }
+        handleCrashingTheAppForRecording()
+    }
+
+    private func isAirplayOn() -> Bool {
+        let audioSession = AVAudioSession.sharedInstance()
+        let currentRoute = audioSession.currentRoute
+        for outputPort in currentRoute.outputs where outputPort.portType == AVAudioSession.Port.airPlay {
+            return true
+        }
+        return false
     }
 
     private func handleCrashingTheAppForRecording() {
