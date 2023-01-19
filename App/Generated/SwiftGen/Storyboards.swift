@@ -45,6 +45,8 @@ internal enum StoryboardScene {
     internal static let storyboardName = "CourseDetails"
 
     internal static let initialScene = InitialSceneType<Wojood.CourseDetailsViewController>(storyboard: CourseDetails.self)
+
+    internal static let qrCodeScannerViewController = SceneType<Wojood.QRCodeScannerViewController>(storyboard: CourseDetails.self, identifier: "QRCodeScannerViewController")
   }
   internal enum CoursesTabBar: StoryboardType {
     internal static let storyboardName = "CoursesTabBar"
