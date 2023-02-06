@@ -171,6 +171,12 @@
 "courseDetails.main.reviews" = "التقييمات";
 "courseDetails.main.materials" = "المحتوى";
 "courseDetails.main.bookNow" = "احجز الآن";
+"courseDetails.main.bookByQR" = "احجز بالكود";
+"courseDetails.main.selectAnOption" = "آختر طريقة الحجز من فضلك";
+"courseDetails.main.qrCodeScanner" = "مسح الكود عن طريق الكاميرا";
+"courseDetails.main.CodeManually" = "ادخال الرمز يدويا";
+"courseDetails.main.PleaseEnterQRCode" = "من فضلك ادخل الرمز:";
+"courseDetails.main.qrCode" = "رمز ال QR";
 "courseDetails.main.cancelBooking" = "إلغاء الحجز";
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
 "courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";

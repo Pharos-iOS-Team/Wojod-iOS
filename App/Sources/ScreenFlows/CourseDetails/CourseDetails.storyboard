@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,30 +21,51 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTA-ov-VZE">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tM-9b-gyM">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Be2-As-rxk">
                                         <rect key="frame" x="12" y="5" width="390" height="50"/>
-                                        <color key="backgroundColor" name="sendButtonColor"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tM-9b-gyM">
+                                                <rect key="frame" x="0.0" y="0.0" width="189" height="50"/>
+                                                <color key="backgroundColor" name="sendButtonColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="vMS-5Y-OFM"/>
+                                                </constraints>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" name="collectionViewBackground"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnActionButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="xRL-YL-fLm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkI-1h-5eS">
+                                                <rect key="frame" x="201" y="0.0" width="189" height="50"/>
+                                                <color key="backgroundColor" name="sendButtonColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="QBf-bZ-qOg"/>
+                                                </constraints>
+                                                <state key="normal" title="Book by QR">
+                                                    <color key="titleColor" name="collectionViewBackground"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnQRCodeBooking:" destination="s5u-w3-yVK" eventType="touchUpInside" id="paP-VY-gTA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="vMS-5Y-OFM"/>
+                                            <constraint firstAttribute="height" constant="50" id="gpN-XB-NdX"/>
                                         </constraints>
-                                        <state key="normal" title="Button">
-                                            <color key="titleColor" name="collectionViewBackground"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapOnActionButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="xRL-YL-fLm"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6tM-9b-gyM" secondAttribute="trailing" constant="12" id="2fZ-WT-deG"/>
-                                    <constraint firstItem="6tM-9b-gyM" firstAttribute="centerY" secondItem="lTA-ov-VZE" secondAttribute="centerY" id="SGz-Uo-gL8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Be2-As-rxk" secondAttribute="trailing" constant="12" id="HRf-GA-f5i"/>
+                                    <constraint firstItem="Be2-As-rxk" firstAttribute="centerY" secondItem="lTA-ov-VZE" secondAttribute="centerY" id="Q9R-yV-GcC"/>
+                                    <constraint firstItem="Be2-As-rxk" firstAttribute="centerX" secondItem="lTA-ov-VZE" secondAttribute="centerX" id="Ver-Vj-TBi"/>
                                     <constraint firstAttribute="height" constant="60" id="Z4c-pd-O8T"/>
-                                    <constraint firstItem="6tM-9b-gyM" firstAttribute="centerX" secondItem="lTA-ov-VZE" secondAttribute="centerX" id="jDT-bH-PeP"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-VY-3TQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="754"/>
                                 <color key="backgroundColor" name="superLightGrey"/>
                                 <color key="sectionIndexBackgroundColor" name="superLightGrey"/>
                             </tableView>
@@ -68,6 +89,7 @@
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="6tM-9b-gyM" id="QLn-lw-q1K"/>
+                        <outlet property="bookByQRButton" destination="dkI-1h-5eS" id="pSq-wq-LLs"/>
                         <outlet property="tableView" destination="YDd-VY-3TQ" id="hjN-MF-eH4"/>
                         <outlet property="vdoPlayerView" destination="gzZ-VZ-jsV" id="aQq-ck-Ag7"/>
                     </connections>
@@ -76,8 +98,55 @@
             </objects>
             <point key="canvasLocation" x="108.69565217391305" y="65.625"/>
         </scene>
+        <!--Code Scanner View Controller-->
+        <scene sceneID="8AP-vo-5TG">
+            <objects>
+                <viewController storyboardIdentifier="QRCodeScannerViewController" id="4CK-rR-37o" customClass="QRCodeScannerViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aah-8S-PqY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-o8-N5e">
+                                <rect key="frame" x="20" y="56" width="40" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obr-m2-FPc">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark.circle" catalog="system"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.70221573110000002" green="0.69325137140000004" blue="0.7333385348" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="VkH-QA-C1A"/>
+                                    <constraint firstAttribute="height" constant="40" id="X9y-hL-Yk8"/>
+                                    <constraint firstItem="obr-m2-FPc" firstAttribute="top" secondItem="BxU-o8-N5e" secondAttribute="top" id="iTy-YZ-08u"/>
+                                    <constraint firstAttribute="trailing" secondItem="obr-m2-FPc" secondAttribute="trailing" id="j9l-Zs-jOZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="obr-m2-FPc" secondAttribute="bottom" id="lPw-Vn-Uxj"/>
+                                    <constraint firstItem="obr-m2-FPc" firstAttribute="leading" secondItem="BxU-o8-N5e" secondAttribute="leading" id="wBr-cU-iKC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j9G-gl-G1P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BxU-o8-N5e" firstAttribute="top" secondItem="j9G-gl-G1P" secondAttribute="top" constant="8" id="S6P-u2-DwB"/>
+                            <constraint firstItem="BxU-o8-N5e" firstAttribute="leading" secondItem="j9G-gl-G1P" secondAttribute="leading" constant="20" id="hgx-69-HSl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="obr-m2-FPc" id="Nb3-Mu-R8W"/>
+                        <outlet property="closeButtonContainerView" destination="BxU-o8-N5e" id="Fyn-FO-fSD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YhT-Dz-JJc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="66"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

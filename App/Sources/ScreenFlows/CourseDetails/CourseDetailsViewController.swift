@@ -44,6 +44,12 @@ class CourseDetailsViewController: UIViewController {
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
+  @IBOutlet private var bookByQRButton: UIButton! {
+      didSet {
+        bookByQRButton.layer.cornerRadius = UIConstants.cornerRadius
+        bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
+      }
+  }
 
     // MARK: - Private Properties
 
@@ -103,6 +109,7 @@ class CourseDetailsViewController: UIViewController {
         showQuizAlert()
         setHeader()
         handleScreenCapture()
+        shouldShowQRCodeScanner()
     }
 
     private func setHeader() {
@@ -171,32 +178,107 @@ class CourseDetailsViewController: UIViewController {
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
         switch state {
         case .normal:
-            viewModel?.bookCourses(courseID: course.id) { bookingResponse, error in
-                if error == nil {
-                    self.state = .pending
-                    self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
-                    if !self.isTestingAccount() {
-                        self.blurView()
-                        self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
-                    }
-                } else if let error = error as? WJError {
-                    self.showAlert(imageName: Images.danger.name, title: "Error", message: error.message)
-                }
-            }
+            bookCourse()
 
         case .pending:
-            self.blurView()
-            self.displayConfirmCancelBooking()
+            blurView()
+            displayConfirmCancelBooking()
 
         case .booked:
-            self.blurView()
-            self.displayReviewCoursePopup()
+            blurView()
+            displayReviewCoursePopup()
 
         default:
             return
         }
     }
+  
+  @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
+      QRCodeActionSheet()
+  }
+
     // MARK: - Private Functions
+    
+    private func QRCodeActionSheet() {
+        let alert = UIAlertController(title: L10n.CourseDetails.Main.bookByQR, message: "Please Select an Option", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: L10n.CourseDetails.Main.qrCodeScanner, style: .default , handler:{ _ in
+            self.openQRCodeScannerScreen() 
+        }))
+        alert.addAction(UIAlertAction(title: L10n.CourseDetails.Main.codeManually, style: .default , handler:{ _ in
+            self.openQRCodeManuallyScreen()
+        }))
+        alert.addAction(UIAlertAction(title: L10n.Shared.Action.dismiss, style: .cancel))    
+        alert.popoverPresentationController?.sourceView = self.view
+        self.present(alert, animated: true)
+    }
+    
+    private func openQRCodeScannerScreen() {
+        let viewCtrl = StoryboardScene.CourseDetails.qrCodeScannerViewController.instantiate()
+        viewCtrl.scanningCompletionHandler = { scannedCode in
+          self.bookCourse(qrCode: scannedCode)
+        }
+        present(viewCtrl, animated: true)
+    }
+    
+    private func openQRCodeManuallyScreen() {
+        self.blurView()
+        self.displayQRCodeManualScreen()
+    }
+    
+    private func displayQRCodeManualScreen() {
+        let view = UINib(nibName: "EnterQRCodeManuallyView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? EnterQRCodeManuallyView
+        view?.center = CGPoint(
+            x: self.view.frame.size.width / 2,
+            y: self.view.frame.size.height / 2
+        )
+        view?.addShadow()
+        view?.scanningCompletionHandler = { code in 
+            self.blurredView?.removeFromSuperview()
+            self.bookCourse(qrCode: code)
+        }
+        view?.scanningDismissed = {
+            self.blurredView?.removeFromSuperview()
+        }
+        self.view.addSubview(view ?? UIView())
+    }
+
+    private func shouldShowQRCodeScanner() {
+        let isQRCodeEnabled = (course.qrCodeEnabled ?? false)
+        let shouldShowButton = isQRCodeEnabled && state == .normal
+        bookByQRButton.isHidden = !shouldShowButton
+    }
+  
+    private func bookCourse(qrCode: String? = nil) {
+        viewModel?.bookCourses(qrCode: qrCode, courseID: course.id) { bookingResponse, error in
+            if error == nil {
+                if qrCode != nil {
+                    self.handleBookingSuccessWithQR(bookingResponse: bookingResponse)
+                } else {
+                    self.handleBookingSuccess(bookingResponse: bookingResponse)
+                }
+            } else if let error = error as? WJError {
+                self.showAlert(imageName: Images.danger.name, title: "Error", message: error.message)
+            }
+        }
+    }
+    
+    private func handleBookingSuccessWithQR(bookingResponse: BookingCourseResponseModel?) {
+        loadCourseDetails()
+        if !self.isTestingAccount() {
+            self.blurView()
+            self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+        }
+    }
+    
+    private func handleBookingSuccess(bookingResponse: BookingCourseResponseModel?) {
+        self.state = .pending
+        self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
+        if !self.isTestingAccount() {
+            self.blurView()
+            self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
+        }
+    }
+
     private func coursePrice() -> String {
         guard !isTestingAccount() else { return "" }
         if course?.price == nil || course?.price?.isEmpty ?? true {
@@ -308,7 +390,7 @@ class CourseDetailsViewController: UIViewController {
         view?.addShadow()
         self.view.addSubview(view ?? UIView())
     }
-
+    
     private func displayConfirmCancelBooking() {
         let view = UINib(nibName: "CancelBookingView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? CancelBookingView
         view?.layer.cornerRadius = UIConstants.cornerRadius
@@ -611,12 +693,17 @@ class CourseDetailsViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
+        loadCourseDetails()
+    }
+    
+    private func loadCourseDetails() {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
             self.handleRefreshingAccordingToOpenedTab()
+            self.shouldShowQRCodeScanner()
         }
     }
 
@@ -944,6 +1031,7 @@ extension CourseDetailsViewController: CancelBookingViewDelegate {
             if isCancellingSuccessful {
                 self.state = .normal
                 self.actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
+                self.shouldShowQRCodeScanner()
             }
         }
     }

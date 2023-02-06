@@ -94,6 +94,7 @@ disabled_rules:
   - discarded_notification_center_observer
   - computed_accessors_order
   - inclusive_language
+  - function_body_length
 
 # Rule Configurations
 conditional_returns_on_newline:

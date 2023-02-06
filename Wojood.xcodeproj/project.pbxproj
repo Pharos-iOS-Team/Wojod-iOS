@@ -167,6 +167,13 @@
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
 		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
+		536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */; };
+		537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 537955B8296EC99A0051682D /* LanguageManager-iOS */; };
+		537955BF296F15E20051682D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 537955BE296F15E20051682D /* FirebaseAnalytics */; };
+		537955C1296F15E20051682D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 537955C0296F15E20051682D /* FirebaseCrashlytics */; };
+		537955C3296F15E20051682D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 537955C2296F15E20051682D /* FirebaseMessaging */; };
+		53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */; };
+		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
@@ -245,18 +252,6 @@
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
 		779635FE2771DFF200F31AAD /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 779635FD2771DFF000F31AAD /* Cartfile */; };
 		77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 77B569F22771FADE009E47D7 /* Cartfile.resolved */; };
-		77B56A6D2772141D009E47D7 /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */; };
-		77B56A712772141D009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
-		77B56A722772141D009E47D7 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */; };
-		77B56A732772141D009E47D7 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */; };
-		77B56A742772141D009E47D7 /* FirebaseMessaging.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */; };
-		77B56A772772141D009E47D7 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A602772141C009E47D7 /* nanopb.xcframework */; };
-		77B56A792772141D009E47D7 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */; };
-		77B56A7A2772141D009E47D7 /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A632772141C009E47D7 /* FirebaseCore.xcframework */; };
-		77B56A7C2772141D009E47D7 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */; };
-		77B56A7D2772141D009E47D7 /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */; };
-		77B56A7E2772141D009E47D7 /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */; };
-		77B56A812772141D009E47D7 /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */; };
 		77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; };
 		77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */; };
@@ -267,8 +262,6 @@
 		77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; };
 		77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A98277217A1009E47D7 /* LanguageManager_iOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */; };
-		77B56A99277217A1009E47D7 /* LanguageManager_iOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; };
 		77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A592772141B009E47D7 /* KeychainAccess.xcframework */; };
@@ -472,7 +465,6 @@
 				77B56AC127721FCD009E47D7 /* M13Checkbox.xcframework in Embed Frameworks */,
 				77B56AA5277217AD009E47D7 /* HandySwift.xcframework in Embed Frameworks */,
 				77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */,
-				77B56A99277217A1009E47D7 /* LanguageManager_iOS.xcframework in Embed Frameworks */,
 				77B56A9F277217A7009E47D7 /* JGProgressHUD.xcframework in Embed Frameworks */,
 				77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */,
 				77B56AA1277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Embed Frameworks */,
@@ -609,7 +601,7 @@
 		38659BD826B6D2F900E3BFE9 /* AssessmentChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentChoice.swift; sourceTree = "<group>"; };
 		38659BD926B6D2F900E3BFE9 /* OptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		38659C3E26B6E07600E3BFE9 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
-		38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
+		38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		38706CD2265E6DD300440B53 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		38812C53266E9B0E00CCD924 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		38812C58266E9B1E00CCD924 /* HomeApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeApiClient.swift; sourceTree = "<group>"; };
@@ -645,6 +637,9 @@
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
+		536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyView.swift; sourceTree = "<group>"; tabWidth = 4; };
+		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyView.xib; sourceTree = "<group>"; };
 		726F61097298DC7F90F1539F /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
@@ -731,29 +726,15 @@
 		779635FD2771DFF000F31AAD /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		77B569F22771FADE009E47D7 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
 		77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = IQKeyboardManagerSwift.xcframework; path = Carthage/Build/IQKeyboardManagerSwift.xcframework; sourceTree = "<group>"; };
-		77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleDataTransport.xcframework; path = Carthage/Build/GoogleDataTransport.xcframework; sourceTree = "<group>"; };
 		77B56A572772141B009E47D7 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LanguageManager_iOS.xcframework; path = Carthage/Build/LanguageManager_iOS.xcframework; sourceTree = "<group>"; };
 		77B56A592772141B009E47D7 /* KeychainAccess.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KeychainAccess.xcframework; path = Carthage/Build/KeychainAccess.xcframework; sourceTree = "<group>"; };
-		77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = Carthage/Build/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
-		77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Carthage/Build/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
-		77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Carthage/Build/PromisesObjC.xcframework; sourceTree = "<group>"; };
-		77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseMessaging.xcframework; path = Carthage/Build/FirebaseMessaging.xcframework; sourceTree = "<group>"; };
 		77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Kingfisher.xcframework; path = Carthage/Build/Kingfisher.xcframework; sourceTree = "<group>"; };
 		77B56A5F2772141C009E47D7 /* Cosmos.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cosmos.xcframework; path = Carthage/Build/Cosmos.xcframework; sourceTree = "<group>"; };
-		77B56A602772141C009E47D7 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Carthage/Build/nanopb.xcframework; sourceTree = "<group>"; };
 		77B56A612772141C009E47D7 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Starscream.xcframework; path = Carthage/Build/Starscream.xcframework; sourceTree = "<group>"; };
-		77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Carthage/Build/GoogleUtilities.xcframework; sourceTree = "<group>"; };
-		77B56A632772141C009E47D7 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCore.xcframework; path = Carthage/Build/FirebaseCore.xcframework; sourceTree = "<group>"; };
 		77B56A642772141C009E47D7 /* HandySwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandySwift.xcframework; path = Carthage/Build/HandySwift.xcframework; sourceTree = "<group>"; };
-		77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Carthage/Build/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
-		77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseInstallations.xcframework; path = Carthage/Build/FirebaseInstallations.xcframework; sourceTree = "<group>"; };
-		77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCoreDiagnostics.xcframework; path = Carthage/Build/FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
 		77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DZNEmptyDataSet.xcframework; path = Carthage/Build/DZNEmptyDataSet.xcframework; sourceTree = "<group>"; };
 		77B56A692772141D009E47D7 /* SkeletonView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SkeletonView.xcframework; path = Carthage/Build/SkeletonView.xcframework; sourceTree = "<group>"; };
-		77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseCrashlytics.xcframework; path = Carthage/Build/FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
 		77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandyUIKit.xcframework; path = Carthage/Build/HandyUIKit.xcframework; sourceTree = "<group>"; };
-		77B56A8327721422009E47D7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
 		77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftyUserDefaults.xcframework; path = Carthage/Build/SwiftyUserDefaults.xcframework; sourceTree = "<group>"; };
 		77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftEntryKit.xcframework; path = Carthage/Build/SwiftEntryKit.xcframework; sourceTree = "<group>"; };
 		77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = JGProgressHUD.xcframework; path = Carthage/Build/JGProgressHUD.xcframework; sourceTree = "<group>"; };
@@ -925,37 +906,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B56A7E2772141D009E47D7 /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
+				537955C3296F15E20051682D /* FirebaseMessaging in Frameworks */,
 				77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */,
-				77B56A772772141D009E47D7 /* nanopb.xcframework in Frameworks */,
 				77B56A9E277217A6009E47D7 /* JGProgressHUD.xcframework in Frameworks */,
 				77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */,
 				77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */,
+				537955BF296F15E20051682D /* FirebaseAnalytics in Frameworks */,
 				77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */,
-				77B56A722772141D009E47D7 /* FirebaseAnalytics.xcframework in Frameworks */,
 				77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */,
-				77B56A7A2772141D009E47D7 /* FirebaseCore.xcframework in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
 				77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */,
-				77B56A7D2772141D009E47D7 /* FirebaseInstallations.xcframework in Frameworks */,
 				77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */,
-				77B56A712772141D009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
 				77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */,
+				537955C1296F15E20051682D /* FirebaseCrashlytics in Frameworks */,
 				77B56AA8277217D4009E47D7 /* Cosmos.xcframework in Frameworks */,
 				77B56AA0277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Frameworks */,
-				77B56A6D2772141D009E47D7 /* GoogleDataTransport.xcframework in Frameworks */,
-				77B56A812772141D009E47D7 /* FirebaseCrashlytics.xcframework in Frameworks */,
 				77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */,
-				77B56A792772141D009E47D7 /* GoogleUtilities.xcframework in Frameworks */,
-				77B56A98277217A1009E47D7 /* LanguageManager_iOS.xcframework in Frameworks */,
 				77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */,
+				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */,
 				77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */,
 				77B56ABA27721DBE009E47D7 /* Reachability.xcframework in Frameworks */,
 				77B56AC027721FCD009E47D7 /* M13Checkbox.xcframework in Frameworks */,
-				77B56A732772141D009E47D7 /* PromisesObjC.xcframework in Frameworks */,
-				77B56A742772141D009E47D7 /* FirebaseMessaging.xcframework in Frameworks */,
-				77B56A7C2772141D009E47D7 /* GoogleAppMeasurement.xcframework in Frameworks */,
 				77B56AA6277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Frameworks */,
 				41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */,
 			);
@@ -1240,6 +1212,8 @@
 				38F7D4922666C92900CD8934 /* CancelBookingView.xib */,
 				38F7D497266761E600CD8934 /* ReviewCourseView.swift */,
 				38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */,
+				53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */,
+				53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1314,6 +1288,7 @@
 				385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */,
 				385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */,
 				38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */,
+				536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */,
 			);
 			path = CourseDetails;
 			sourceTree = "<group>";
@@ -1808,27 +1783,13 @@
 				77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */,
 				77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */,
 				77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */,
-				77B56A8327721422009E47D7 /* Firebase.framework */,
-				77B56A5B2772141B009E47D7 /* FirebaseAnalytics.xcframework */,
-				77B56A632772141C009E47D7 /* FirebaseCore.xcframework */,
-				77B56A672772141C009E47D7 /* FirebaseCoreDiagnostics.xcframework */,
-				77B56A6A2772141D009E47D7 /* FirebaseCrashlytics.xcframework */,
-				77B56A662772141C009E47D7 /* FirebaseInstallations.xcframework */,
-				77B56A5D2772141C009E47D7 /* FirebaseMessaging.xcframework */,
-				77B56A652772141C009E47D7 /* GoogleAppMeasurement.xcframework */,
-				77B56A5A2772141B009E47D7 /* GoogleAppMeasurementIdentitySupport.xcframework */,
-				77B56A562772141B009E47D7 /* GoogleDataTransport.xcframework */,
-				77B56A622772141C009E47D7 /* GoogleUtilities.xcframework */,
 				77B56A642772141C009E47D7 /* HandySwift.xcframework */,
 				77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */,
 				77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */,
 				77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */,
 				77B56A592772141B009E47D7 /* KeychainAccess.xcframework */,
 				77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */,
-				77B56A582772141B009E47D7 /* LanguageManager_iOS.xcframework */,
 				77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */,
-				77B56A602772141C009E47D7 /* nanopb.xcframework */,
-				77B56A5C2772141C009E47D7 /* PromisesObjC.xcframework */,
 				77B56A692772141D009E47D7 /* SkeletonView.xcframework */,
 				77B56A612772141C009E47D7 /* Starscream.xcframework */,
 				77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */,
@@ -2272,6 +2233,10 @@
 			name = Wojood;
 			packageProductDependencies = (
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
+				537955B8296EC99A0051682D /* LanguageManager-iOS */,
+				537955BE296F15E20051682D /* FirebaseAnalytics */,
+				537955C0296F15E20051682D /* FirebaseCrashlytics */,
+				537955C2296F15E20051682D /* FirebaseMessaging */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2348,6 +2313,8 @@
 			mainGroup = 7723ACCE261C5E68007C0B97;
 			packageReferences = (
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
+				537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
+				537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2408,6 +2375,7 @@
 				3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
+				53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */,
 				380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */,
 				BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
@@ -2571,6 +2539,7 @@
 				38B06A7B26F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
+				53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */,
 				BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */,
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
 				385CC0EB26601A6700A091FD /* Reviews.swift in Sources */,
@@ -2778,6 +2747,7 @@
 				38659BF026B6D2F900E3BFE9 /* AssessmentChoice.swift in Sources */,
 				77D013D026A0F701006EA602 /* SubjectCollectionViewCell.swift in Sources */,
 				380B13A626B807F700CB5811 /* AssessmentDetailsModel.swift in Sources */,
+				536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
 				38659BB726B6D2E600E3BFE9 /* APIClient.swift in Sources */,
 				BC9682492638631D009F8550 /* HomeViewModel.swift in Sources */,
@@ -3069,6 +3039,8 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3104,6 +3076,8 @@
 				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
@@ -3249,6 +3223,22 @@
 				minimumVersion = 3.1.1;
 			};
 		};
+		537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3256,6 +3246,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */;
 			productName = DTPhotoViewerController;
+		};
+		537955B8296EC99A0051682D /* LanguageManager-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
+			productName = "LanguageManager-iOS";
+		};
+		537955BE296F15E20051682D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		537955C0296F15E20051682D /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		537955C2296F15E20051682D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 

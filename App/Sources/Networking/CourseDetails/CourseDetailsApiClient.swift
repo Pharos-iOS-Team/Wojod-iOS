@@ -39,8 +39,8 @@ class CourseDetailsApiClient {
         }
     }
 
-    func bookCourse(courseID: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
-        courseDetailsProvider.request(.bookCourse(courseID: courseID)) { result in
+    func bookCourse(qrCode: String?, courseID: Int, completion: @escaping (Response?, MoyaError?) -> Void) {
+        courseDetailsProvider.request(.bookCourse(courseID: courseID, qrCode: qrCode)) { result in
             switch result {
             case .success(let response):
                 completion(response, nil)
