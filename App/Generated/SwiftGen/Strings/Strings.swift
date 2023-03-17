@@ -167,6 +167,10 @@ internal enum L10n {
         }
     }
     internal enum Main {
+      /// Book by QR
+      internal static var bookByQR: String {
+          return L10n.tr("Localizable", "courseDetails.main.bookByQR")
+        }
       /// Book Now
       internal static var bookNow: String {
           return L10n.tr("Localizable", "courseDetails.main.bookNow")
@@ -174,6 +178,10 @@ internal enum L10n {
       /// Cancel Booking
       internal static var cancelBooking: String {
           return L10n.tr("Localizable", "courseDetails.main.cancelBooking")
+        }
+      /// Enter code manually
+      internal static var codeManually: String {
+          return L10n.tr("Localizable", "courseDetails.main.CodeManually")
         }
       /// Details
       internal static var details: String {
@@ -187,6 +195,18 @@ internal enum L10n {
       internal static var notEnoughViews: String {
           return L10n.tr("Localizable", "courseDetails.main.notEnoughViews")
         }
+      /// Please enter QR code:
+      internal static var pleaseEnterQRCode: String {
+          return L10n.tr("Localizable", "courseDetails.main.PleaseEnterQRCode")
+        }
+      /// QR Code
+      internal static var qrCode: String {
+          return L10n.tr("Localizable", "courseDetails.main.qrCode")
+        }
+      /// QR code scanner
+      internal static var qrCodeScanner: String {
+          return L10n.tr("Localizable", "courseDetails.main.qrCodeScanner")
+        }
       /// Review Course
       internal static var reviewCourse: String {
           return L10n.tr("Localizable", "courseDetails.main.reviewCourse")
@@ -194,6 +214,10 @@ internal enum L10n {
       /// Reviews
       internal static var reviews: String {
           return L10n.tr("Localizable", "courseDetails.main.reviews")
+        }
+      /// Please Select an Option
+      internal static var selectAnOption: String {
+          return L10n.tr("Localizable", "courseDetails.main.selectAnOption")
         }
     }
     internal enum Receipt {

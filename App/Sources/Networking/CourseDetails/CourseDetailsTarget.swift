@@ -12,7 +12,7 @@ enum CourseDetailsTarget {
     case loadLessons(courseID: Int)
     case loadReviews(courseID: Int)
     case loadAttachmentsOfLesson(lessonID: Int)
-    case bookCourse(courseID: Int)
+    case bookCourse(courseID: Int, qrCode: String?)
     case cancelBookingCourse(courseID: Int)
     case sendReview(courseID: Int, courseReview: CourseReview)
     case loadMaterials(courseID: Int)
@@ -30,7 +30,7 @@ extension CourseDetailsTarget: TargetType {
             return "/courses/\(courseID)/reviews"
         case let .loadAttachmentsOfLesson(lessonID):
             return "/lessons/\(lessonID)"
-        case let .bookCourse(courseID):
+        case let .bookCourse(courseID, _):
             return "/courses/\(courseID)/reservations"
         case let .cancelBookingCourse(courseID):
             return "/courses/\(courseID)/reservations"
@@ -62,6 +62,12 @@ extension CourseDetailsTarget: TargetType {
 
     var task: Task {
         switch self {
+        case .bookCourse(_, let qrCode):
+          if let qrCode = qrCode {
+            return .requestParameters(parameters: ["code": qrCode], encoding: URLEncoding.queryString)
+          } else {
+            return .requestPlain
+          }
         case let .sendReview(_, courseReview):
             return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
         case let .updateVideo(_, updateObject):

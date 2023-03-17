@@ -53,8 +53,8 @@ class CourseDetailsModel: ModelDecodable {
         }
     }
 
-    func bookCourse(courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.bookCourse(courseID: courseID) { response, error in
+    func bookCourse(qrCode: String?, courseID: Int, completion: @escaping (Result) -> Void) {
+      apiClient.bookCourse(qrCode: qrCode, courseID: courseID) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
                     self.decode(modelType: BookingCourseResponseModel.self, from: response) { result in

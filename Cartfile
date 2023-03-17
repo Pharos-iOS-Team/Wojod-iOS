@@ -1,9 +1,5 @@
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseAnalyticsBinary.json"
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseCrashlyticsBinary.json"
-binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseMessagingBinary.json"
 
 github "onevcat/Kingfisher" ~> 7.1
-github "Abedalkareem/LanguageManager-iOS" ~> 1.2.5
 github "Juanpe/SkeletonView" ~> 1.25
 github "Flinesoft/HandyUIKit" == 1.9.2
 github "Flinesoft/HandySwift"
