@@ -53,7 +53,7 @@ class SocketManager {
 
 // MARK: - WebSocketDelegate
 extension SocketManager: WebSocketDelegate {
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
+    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
         switch event {
         case .connected:
             subscribeToChannel()

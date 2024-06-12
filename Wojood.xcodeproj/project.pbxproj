@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -254,40 +254,16 @@
 		77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 77B569F22771FADE009E47D7 /* Cartfile.resolved */; };
 		77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; };
 		77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */; };
-		77B56A9127721796009E47D7 /* SwiftyUserDefaults.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; };
 		77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; };
 		77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; };
 		77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; };
-		77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A592772141B009E47D7 /* KeychainAccess.xcframework */; };
-		77B56A9D277217A5009E47D7 /* KeychainAccess.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A592772141B009E47D7 /* KeychainAccess.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A9E277217A6009E47D7 /* JGProgressHUD.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */; };
-		77B56A9F277217A7009E47D7 /* JGProgressHUD.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AA0277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */; };
-		77B56AA1277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */; };
-		77B56AA3277217AB009E47D7 /* HandyUIKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A642772141C009E47D7 /* HandySwift.xcframework */; };
-		77B56AA5277217AD009E47D7 /* HandySwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A642772141C009E47D7 /* HandySwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AA6277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */; };
-		77B56AA7277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AA8277217D4009E47D7 /* Cosmos.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5F2772141C009E47D7 /* Cosmos.xcframework */; };
-		77B56AA9277217D4009E47D7 /* Cosmos.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A5F2772141C009E47D7 /* Cosmos.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; };
 		77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; };
 		77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56ABA27721DBE009E47D7 /* Reachability.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AB827721DB2009E47D7 /* Reachability.xcframework */; };
-		77B56ABB27721DBE009E47D7 /* Reachability.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AB827721DB2009E47D7 /* Reachability.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AC027721FCD009E47D7 /* M13Checkbox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */; };
-		77B56AC127721FCD009E47D7 /* M13Checkbox.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */; };
-		77B56AC5277220FD009E47D7 /* ObjectMapper.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
@@ -355,6 +331,19 @@
 		BC5ED0EB2628688D00774E54 /* ForgotPasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */; };
 		BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */; };
 		BC6231D52638183C00792869 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6231D42638183C00792869 /* User.swift */; };
+		BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69C92C18948700E990C0 /* Cosmos */; };
+		BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69CC2C18966E00E990C0 /* HandySwift */; };
+		BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69CF2C1896D800E990C0 /* Kingfisher */; };
+		BC6B69D32C1897AA00E990C0 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D22C1897AA00E990C0 /* SwiftyUserDefaults */; };
+		BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */; };
+		BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D82C189C0D00E990C0 /* KeychainAccess */; };
+		BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DB2C189DE100E990C0 /* HandyUIKit */; };
+		BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */; };
+		BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E12C189E9900E990C0 /* M13Checkbox */; };
+		BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E42C189ED700E990C0 /* ObjectMapper */; };
+		BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E72C189F1900E990C0 /* Reachability */; };
+		BC6B69EB2C189F9900E990C0 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69EA2C189F9900E990C0 /* JGProgressHUD */; };
+		BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69ED2C18A0B700E990C0 /* DPOTPView */; };
 		BC7101C2276FDF7F002607ED /* ScreenshotAlertTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C0276FDF7F002607ED /* ScreenshotAlertTarget.swift */; };
 		BC7101C3276FDF7F002607ED /* ScreenshotAlertApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C1276FDF7F002607ED /* ScreenshotAlertApiClient.swift */; };
 		BC75549A26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */; };
@@ -453,24 +442,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				77B56A9127721796009E47D7 /* SwiftyUserDefaults.xcframework in Embed Frameworks */,
 				77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */,
 				77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */,
 				77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */,
-				77B56AA7277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Embed Frameworks */,
-				77B56ABB27721DBE009E47D7 /* Reachability.xcframework in Embed Frameworks */,
 				77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */,
-				77B56AA3277217AB009E47D7 /* HandyUIKit.xcframework in Embed Frameworks */,
-				77B56AA9277217D4009E47D7 /* Cosmos.xcframework in Embed Frameworks */,
-				77B56AC127721FCD009E47D7 /* M13Checkbox.xcframework in Embed Frameworks */,
-				77B56AA5277217AD009E47D7 /* HandySwift.xcframework in Embed Frameworks */,
 				77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */,
-				77B56A9F277217A7009E47D7 /* JGProgressHUD.xcframework in Embed Frameworks */,
-				77B56A9B277217A3009E47D7 /* Kingfisher.xcframework in Embed Frameworks */,
-				77B56AA1277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Embed Frameworks */,
-				77B56AC5277220FD009E47D7 /* ObjectMapper.xcframework in Embed Frameworks */,
 				77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */,
-				77B56A9D277217A5009E47D7 /* KeychainAccess.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,27 +702,15 @@
 		77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLocalizableFlowLayoutExt.swift; sourceTree = "<group>"; };
 		779635FD2771DFF000F31AAD /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		77B569F22771FADE009E47D7 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
-		77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = IQKeyboardManagerSwift.xcframework; path = Carthage/Build/IQKeyboardManagerSwift.xcframework; sourceTree = "<group>"; };
 		77B56A572772141B009E47D7 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		77B56A592772141B009E47D7 /* KeychainAccess.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KeychainAccess.xcframework; path = Carthage/Build/KeychainAccess.xcframework; sourceTree = "<group>"; };
-		77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Kingfisher.xcframework; path = Carthage/Build/Kingfisher.xcframework; sourceTree = "<group>"; };
-		77B56A5F2772141C009E47D7 /* Cosmos.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cosmos.xcframework; path = Carthage/Build/Cosmos.xcframework; sourceTree = "<group>"; };
 		77B56A612772141C009E47D7 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Starscream.xcframework; path = Carthage/Build/Starscream.xcframework; sourceTree = "<group>"; };
-		77B56A642772141C009E47D7 /* HandySwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandySwift.xcframework; path = Carthage/Build/HandySwift.xcframework; sourceTree = "<group>"; };
-		77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DZNEmptyDataSet.xcframework; path = Carthage/Build/DZNEmptyDataSet.xcframework; sourceTree = "<group>"; };
 		77B56A692772141D009E47D7 /* SkeletonView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SkeletonView.xcframework; path = Carthage/Build/SkeletonView.xcframework; sourceTree = "<group>"; };
-		77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HandyUIKit.xcframework; path = Carthage/Build/HandyUIKit.xcframework; sourceTree = "<group>"; };
-		77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftyUserDefaults.xcframework; path = Carthage/Build/SwiftyUserDefaults.xcframework; sourceTree = "<group>"; };
 		77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftEntryKit.xcframework; path = Carthage/Build/SwiftEntryKit.xcframework; sourceTree = "<group>"; };
-		77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = JGProgressHUD.xcframework; path = Carthage/Build/JGProgressHUD.xcframework; sourceTree = "<group>"; };
 		77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UIScrollView_InfiniteScroll.xcframework; path = Carthage/Build/UIScrollView_InfiniteScroll.xcframework; sourceTree = "<group>"; };
 		77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlamofireImage.xcframework; path = Carthage/Build/AlamofireImage.xcframework; sourceTree = "<group>"; };
 		77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DPOTPView.xcframework; path = Carthage/Build/DPOTPView.xcframework; sourceTree = "<group>"; };
-		77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = M13Checkbox.xcframework; path = Carthage/Build/M13Checkbox.xcframework; sourceTree = "<group>"; };
 		77B56AB6277219E7009E47D7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		77B56AB827721DB2009E47D7 /* Reachability.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Reachability.xcframework; path = Carthage/Build/Reachability.xcframework; sourceTree = "<group>"; };
-		77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ObjectMapper.xcframework; path = Carthage/Build/ObjectMapper.xcframework; sourceTree = "<group>"; };
 		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2827722BC200E39AA0 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -907,29 +872,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				537955C3296F15E20051682D /* FirebaseMessaging in Frameworks */,
-				77B56A9C277217A5009E47D7 /* KeychainAccess.xcframework in Frameworks */,
-				77B56A9E277217A6009E47D7 /* JGProgressHUD.xcframework in Frameworks */,
 				77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */,
-				77B56A9027721796009E47D7 /* SwiftyUserDefaults.xcframework in Frameworks */,
 				537955BF296F15E20051682D /* FirebaseAnalytics in Frameworks */,
 				77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */,
-				77B56A9A277217A3009E47D7 /* Kingfisher.xcframework in Frameworks */,
+				BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */,
+				BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
+				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
+				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
 				77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */,
 				77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */,
 				77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */,
 				537955C1296F15E20051682D /* FirebaseCrashlytics in Frameworks */,
-				77B56AA8277217D4009E47D7 /* Cosmos.xcframework in Frameworks */,
-				77B56AA0277217A8009E47D7 /* IQKeyboardManagerSwift.xcframework in Frameworks */,
-				77B56AA2277217AB009E47D7 /* HandyUIKit.xcframework in Frameworks */,
-				77B56AA4277217AD009E47D7 /* HandySwift.xcframework in Frameworks */,
+				BC6B69EB2C189F9900E990C0 /* JGProgressHUD in Frameworks */,
+				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
-				77B56AC4277220FD009E47D7 /* ObjectMapper.xcframework in Frameworks */,
+				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
 				77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */,
-				77B56ABA27721DBE009E47D7 /* Reachability.xcframework in Frameworks */,
-				77B56AC027721FCD009E47D7 /* M13Checkbox.xcframework in Frameworks */,
-				77B56AA6277217D2009E47D7 /* DZNEmptyDataSet.xcframework in Frameworks */,
+				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
+				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
+				BC6B69D32C1897AA00E990C0 /* SwiftyUserDefaults in Frameworks */,
+				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
+				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
 				41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */,
+				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,22 +1745,10 @@
 			children = (
 				77B56A572772141B009E47D7 /* Alamofire.xcframework */,
 				77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */,
-				77B56A5F2772141C009E47D7 /* Cosmos.xcframework */,
 				77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */,
-				77B56A682772141D009E47D7 /* DZNEmptyDataSet.xcframework */,
-				77B56AC2277220ED009E47D7 /* ObjectMapper.xcframework */,
-				77B56A642772141C009E47D7 /* HandySwift.xcframework */,
-				77B56A6B2772141D009E47D7 /* HandyUIKit.xcframework */,
-				77B56A552772141B009E47D7 /* IQKeyboardManagerSwift.xcframework */,
-				77B56A872772177F009E47D7 /* JGProgressHUD.xcframework */,
-				77B56A592772141B009E47D7 /* KeychainAccess.xcframework */,
-				77B56A5E2772141C009E47D7 /* Kingfisher.xcframework */,
-				77B56AAE2772194B009E47D7 /* M13Checkbox.xcframework */,
 				77B56A692772141D009E47D7 /* SkeletonView.xcframework */,
 				77B56A612772141C009E47D7 /* Starscream.xcframework */,
 				77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */,
-				77B56A852772177F009E47D7 /* SwiftyUserDefaults.xcframework */,
-				77B56AB827721DB2009E47D7 /* Reachability.xcframework */,
 				77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */,
 			);
 			name = " Carthage";
@@ -2222,9 +2176,9 @@
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
-				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 				5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */,
 				77B56A8F27721795009E47D7 /* Embed Frameworks */,
+				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2237,6 +2191,19 @@
 				537955BE296F15E20051682D /* FirebaseAnalytics */,
 				537955C0296F15E20051682D /* FirebaseCrashlytics */,
 				537955C2296F15E20051682D /* FirebaseMessaging */,
+				BC6B69C92C18948700E990C0 /* Cosmos */,
+				BC6B69CC2C18966E00E990C0 /* HandySwift */,
+				BC6B69CF2C1896D800E990C0 /* Kingfisher */,
+				BC6B69D22C1897AA00E990C0 /* SwiftyUserDefaults */,
+				BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */,
+				BC6B69D82C189C0D00E990C0 /* KeychainAccess */,
+				BC6B69DB2C189DE100E990C0 /* HandyUIKit */,
+				BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */,
+				BC6B69E12C189E9900E990C0 /* M13Checkbox */,
+				BC6B69E42C189ED700E990C0 /* ObjectMapper */,
+				BC6B69E72C189F1900E990C0 /* Reachability */,
+				BC6B69EA2C189F9900E990C0 /* JGProgressHUD */,
+				BC6B69ED2C18A0B700E990C0 /* DPOTPView */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2315,6 +2282,19 @@
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
 				537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
 				537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BC6B69C82C18948700E990C0 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				BC6B69CB2C18966E00E990C0 /* XCRemoteSwiftPackageReference "HandySwift" */,
+				BC6B69CE2C1896D700E990C0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BC6B69D12C1897A900E990C0 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
+				BC6B69D42C189BCD00E990C0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				BC6B69D72C189C0D00E990C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
+				BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */,
+				BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
+				BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */,
+				BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2522,7 +2502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/run\";\n";
+			shellScript = "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3239,6 +3219,110 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		BC6B69C82C18948700E990C0 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 25.0.1;
+			};
+		};
+		BC6B69CB2C18966E00E990C0 /* XCRemoteSwiftPackageReference "HandySwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlineDev/HandySwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		BC6B69CE2C1896D700E990C0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		BC6B69D12C1897A900E990C0 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+		BC6B69D42C189BCD00E990C0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		BC6B69D72C189C0D00E990C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlineDev/HandyUIKit";
+			requirement = {
+				kind = exactVersion;
+				version = 1.9.2;
+			};
+		};
+		BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.6;
+			};
+		};
+		BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Marxon13/M13Checkbox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.1;
+			};
+		};
+		BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
+		BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+		BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Datt1994/DPOTPView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.12;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3266,6 +3350,71 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		BC6B69C92C18948700E990C0 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69C82C18948700E990C0 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+		BC6B69CC2C18966E00E990C0 /* HandySwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69CB2C18966E00E990C0 /* XCRemoteSwiftPackageReference "HandySwift" */;
+			productName = HandySwift;
+		};
+		BC6B69CF2C1896D800E990C0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69CE2C1896D700E990C0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		BC6B69D22C1897AA00E990C0 /* SwiftyUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69D12C1897A900E990C0 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
+			productName = SwiftyUserDefaults;
+		};
+		BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69D42C189BCD00E990C0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+		BC6B69D82C189C0D00E990C0 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69D72C189C0D00E990C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		BC6B69DB2C189DE100E990C0 /* HandyUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
+			productName = HandyUIKit;
+		};
+		BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		BC6B69E12C189E9900E990C0 /* M13Checkbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */;
+			productName = M13Checkbox;
+		};
+		BC6B69E42C189ED700E990C0 /* ObjectMapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
+			productName = ObjectMapper;
+		};
+		BC6B69E72C189F1900E990C0 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+		BC6B69EA2C189F9900E990C0 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		BC6B69ED2C18A0B700E990C0 /* DPOTPView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */;
+			productName = DPOTPView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -56,9 +56,9 @@ extension HomeTarget: TargetType {
                 "my_courses": requestModel.isMyCourses.description,
                 "page": requestModel.page,
                 "limit": requestModel.limit
-            ].merged(with: sharedParameters)
+            ].merging(sharedParameters) { $1 }
         case let .searchCourses(value):
-            return ["value": value].merged(with: sharedParameters)
+            return ["value": value].merging(sharedParameters) { $1 }
         default:
             return [:]
         }

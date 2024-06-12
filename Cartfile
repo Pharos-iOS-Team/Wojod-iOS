@@ -1,19 +1,5 @@
-
-github "onevcat/Kingfisher" ~> 7.1
 github "Juanpe/SkeletonView" ~> 1.25
-github "Flinesoft/HandyUIKit" == 1.9.2
-github "Flinesoft/HandySwift"
-github "dzenbot/DZNEmptyDataSet"
-github "evgenyneu/Cosmos" ~> 23.0
-github "hackiftekhar/IQKeyboardManager" == 6.5.6
-github "sunshinejr/SwiftyUserDefaults" ~> 5.0
-github "kishikawakatsumi/KeychainAccess"
 github "daltoniam/Starscream" >= 4.0.0
-github "JonasGessner/JGProgressHUD"
 github "pronebird/UIScrollView-InfiniteScroll" ~> 1.2.0
 github "huri000/SwiftEntryKit" == 2.0.0
-github "ashleymills/Reachability.swift"
-github "Marxon13/M13Checkbox"
 github "Alamofire/AlamofireImage" ~> 4.1
-github "Datt1994/DPOTPView"
-github "tristanhimmelman/ObjectMapper"
