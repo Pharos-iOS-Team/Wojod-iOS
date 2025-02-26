@@ -8,7 +8,7 @@ import HandySwift
 import JGProgressHUD
 import UIKit
 import SafariServices
-import VdoCipherKit
+import VdoFramework
 import Photos
 
 internal enum CourseState {
@@ -36,7 +36,7 @@ protocol LoadableView: AnyObject {
 }
 
 class CourseDetailsViewController: UIViewController {
-    @IBOutlet private var vdoPlayerView: VdoPlayerView!
+    //    @IBOutlet private var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
@@ -44,12 +44,12 @@ class CourseDetailsViewController: UIViewController {
             actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
         }
     }
-  @IBOutlet private var bookByQRButton: UIButton! {
-      didSet {
-        bookByQRButton.layer.cornerRadius = UIConstants.cornerRadius
-        bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
-      }
-  }
+    @IBOutlet private var bookByQRButton: UIButton! {
+        didSet {
+            bookByQRButton.layer.cornerRadius = UIConstants.cornerRadius
+            bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -82,6 +82,7 @@ class CourseDetailsViewController: UIViewController {
 
     private var doesLessonContainAttachments: [Int: Bool] = [:]
     private var activeSubscreen: CourseDetailsActiveSubScreen = .details
+    private var alertHandler: AlertHandler?
 
     // MARK: - Public Properties
 
@@ -97,6 +98,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel = CourseDetailsViewModel()
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
+        alertHandler = AlertHandler(presentingViewCtrl: self)
         configureActionButtonAccordingToState()
         loadCourseLessons()
         configureTableView()
@@ -192,39 +194,39 @@ class CourseDetailsViewController: UIViewController {
             return
         }
     }
-  
-  @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
-      QRCodeActionSheet()
-  }
+
+    @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
+        QRCodeActionSheet()
+    }
 
     // MARK: - Private Functions
-    
+
     private func QRCodeActionSheet() {
         let alert = UIAlertController(title: L10n.CourseDetails.Main.bookByQR, message: "Please Select an Option", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: L10n.CourseDetails.Main.qrCodeScanner, style: .default , handler:{ _ in
-            self.openQRCodeScannerScreen() 
+            self.openQRCodeScannerScreen()
         }))
         alert.addAction(UIAlertAction(title: L10n.CourseDetails.Main.codeManually, style: .default , handler:{ _ in
             self.openQRCodeManuallyScreen()
         }))
-        alert.addAction(UIAlertAction(title: L10n.Shared.Action.dismiss, style: .cancel))    
+        alert.addAction(UIAlertAction(title: L10n.Shared.Action.dismiss, style: .cancel))
         alert.popoverPresentationController?.sourceView = self.view
         self.present(alert, animated: true)
     }
-    
+
     private func openQRCodeScannerScreen() {
         let viewCtrl = StoryboardScene.CourseDetails.qrCodeScannerViewController.instantiate()
         viewCtrl.scanningCompletionHandler = { scannedCode in
-          self.bookCourse(qrCode: scannedCode)
+            self.bookCourse(qrCode: scannedCode)
         }
         present(viewCtrl, animated: true)
     }
-    
+
     private func openQRCodeManuallyScreen() {
         self.blurView()
         self.displayQRCodeManualScreen()
     }
-    
+
     private func displayQRCodeManualScreen() {
         let view = UINib(nibName: "EnterQRCodeManuallyView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? EnterQRCodeManuallyView
         view?.center = CGPoint(
@@ -232,7 +234,7 @@ class CourseDetailsViewController: UIViewController {
             y: self.view.frame.size.height / 2
         )
         view?.addShadow()
-        view?.scanningCompletionHandler = { code in 
+        view?.scanningCompletionHandler = { code in
             self.blurredView?.removeFromSuperview()
             self.bookCourse(qrCode: code)
         }
@@ -247,7 +249,7 @@ class CourseDetailsViewController: UIViewController {
         let shouldShowButton = isQRCodeEnabled && state == .normal
         bookByQRButton.isHidden = !shouldShowButton
     }
-  
+
     private func bookCourse(qrCode: String? = nil) {
         viewModel?.bookCourses(qrCode: qrCode, courseID: course.id) { bookingResponse, error in
             if error == nil {
@@ -261,7 +263,7 @@ class CourseDetailsViewController: UIViewController {
             }
         }
     }
-    
+
     private func handleBookingSuccessWithQR(bookingResponse: BookingCourseResponseModel?) {
         loadCourseDetails()
         if !self.isTestingAccount() {
@@ -269,7 +271,7 @@ class CourseDetailsViewController: UIViewController {
             self.displayReceipt(bookingResponse!, coursePrice: self.course?.price ?? "")
         }
     }
-    
+
     private func handleBookingSuccess(bookingResponse: BookingCourseResponseModel?) {
         self.state = .pending
         self.actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
@@ -312,9 +314,9 @@ class CourseDetailsViewController: UIViewController {
                 viewModel?.loadAttachmentsOfLesson(lessonID: lessonsList[section].id) { attachmentsModel in
                     self.attachmentsOfLessons[section] = attachmentsModel
                     if self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
-                            self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
-                            self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
-                            self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
+                        self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                        self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                        self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true {
                         self.doesLessonContainAttachments[section] = false
                     } else {
                         self.doesLessonContainAttachments[section] = true
@@ -332,9 +334,9 @@ class CourseDetailsViewController: UIViewController {
                 self.attachmentsOfLessons[section] = attachmentsModel
                 if
                     self.attachmentsOfLessons[section]?.assignments?.isEmpty ?? true &&
-                    self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
-                    self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
-                    self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true
+                        self.attachmentsOfLessons[section]?.documents?.isEmpty ?? true &&
+                        self.attachmentsOfLessons[section]?.quizzes?.isEmpty ?? true &&
+                        self.attachmentsOfLessons[section]?.videos?.isEmpty ?? true
                 {
                     self.doesLessonContainAttachments[section] = false
                     self.attachmentsOfLessons[section] = nil
@@ -390,7 +392,7 @@ class CourseDetailsViewController: UIViewController {
         view?.addShadow()
         self.view.addSubview(view ?? UIView())
     }
-    
+
     private func displayConfirmCancelBooking() {
         let view = UINib(nibName: "CancelBookingView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? CancelBookingView
         view?.layer.cornerRadius = UIConstants.cornerRadius
@@ -639,8 +641,8 @@ class CourseDetailsViewController: UIViewController {
     private func bindAssessmentResultsHandler() {
         quizzesViewModel?.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, type in
             let module: AssessmentsOverViewViewModel.Module = type == .quiz
-                ? .quizzes
-                : .assignments
+            ? .quizzes
+            : .assignments
             self?.navigationController?.navigationBar.isHidden = false
             self?.navigationController?.pushViewController(
                 AssessmentDetailsConfigurator.configure(
@@ -695,7 +697,7 @@ class CourseDetailsViewController: UIViewController {
     private func refresh(_ sender: AnyObject) {
         loadCourseDetails()
     }
-    
+
     private func loadCourseDetails() {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course
@@ -910,7 +912,9 @@ extension CourseDetailsViewController: UITableViewDelegate {
                         }
                     }
                 } else if !(materials?.videos?[indexPath.row].vdocipherId?.isEmpty ?? true) {
-                    fetchAndPlayVideo(videoId: String(materials?.videos?[indexPath.row].id ?? .zero), viewsCount: materials?.videos?[indexPath.row].viewsRemaining ?? .zero)
+                    if let video = materials?.videos?[indexPath.row] {
+                        fetchAndPlayVideo(viewsCount: video.viewsRemaining ?? .zero, video: video)
+                    }
                 }
             case .documents:
                 activeSubscreen = .file
@@ -990,7 +994,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                         UIApplication.shared.open(url)
                     }
                 } else if !(video.vdocipherId?.isEmpty ?? true) {
-                    fetchAndPlayVideo(videoId: String(video.id), viewsCount: video.viewsRemaining ?? .zero)
+                    fetchAndPlayVideo(viewsCount: video.viewsRemaining ?? .zero, video: video)
                 }
             } else if let document = attachment as? MaterialsDocument {
                 activeSubscreen = .file
@@ -1076,50 +1080,41 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
 // MARK: - vdoCipher Functions
 
 extension CourseDetailsViewController {
-    func fetchAndPlayVideo(videoId: String, viewsCount: Int) {
-        vdoPlayerView.player = player
-        if viewsCount > .zero {
-        viewModel?.fetchVideoDetails(videoId: videoId) { [weak self] encryptedVideoResponse in
-                guard let self = self else { return }
-            AlertHandler(presentingViewCtrl: self).showConfirmAlert(title: L10n.Global.Titles.warning, message: L10n.CourseDetails.CourseReview.playVideo(viewsCount), confirmButtonTitle: L10n.Global.Actions.confirm, handler: { _ in
-                    do {
-                        self.showLoadingIndicator()
-                        try self.vdoPlayerView.loadVideo(
-                            otp: encryptedVideoResponse?.otp ?? "",
-                            playbackInfo: encryptedVideoResponse?.playback ?? "",
-                            onPlayerReady: {
-                                self.hideLoadingIndicator()
-                                let playerController = self.avPlayerController
-                                playerController.player = self.vdoPlayerView.player
-                                self.present(playerController, animated: true, completion: {
-                                    let titleLayer = CATextLayer()
-                                    titleLayer.string = "Wojod Academy \(User.shared.mobileNumber ?? "")"
-                                    titleLayer.font = UIFont(font: FontFamily.Roboto.regular, size: 16)
-                                    titleLayer.alignmentMode = .left
-                                    self.setupPlayerLayerFrame(titleLayer)
-                                    playerController.view.layer.addSublayer(titleLayer)
-                                    self.updateId = encryptedVideoResponse?.updateId ?? .zero
-                                    self.videoId = videoId
-                                    self.checkForTime()
-                                    self.vdoPlayerView.player?.play()
-                                    self.checkForBufferedTime()
-                                })
-                            }
-                        )
-                    }  catch {
-                        self.hideLoadingIndicator()
-                        AlertHandler(presentingViewCtrl: self).showConfirmAlert(
-                            title: L10n.Global.Titles.error,
-                            message: L10n.Global.Alerts.somethingWentWrong
-                        )
-                    }
-                })
-            }
-        } else {
-            AlertHandler(presentingViewCtrl: self).showInformationAlert(
+    func fetchAndPlayVideo(viewsCount: Int, video: Video) {
+        guard viewsCount > .zero else {
+            alertHandler?.showInformationAlert(
                 title: L10n.Global.Titles.error,
                 message: L10n.CourseDetails.Main.notEnoughViews
             )
+            return
+        }
+
+        viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
+            self?.alertHandler?.showConfirmAlert(
+                title: L10n.Global.Titles.warning,
+                message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
+                confirmButtonTitle: L10n.Global.Actions.confirm) { _ in
+                self?.showLoadingIndicator()
+
+                VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self?.hideLoadingIndicator()
+                            self?.alertHandler?.showConfirmAlert(
+                                title: L10n.Global.Titles.error,
+                                message: error.description
+                            )
+                        } else if let otp = encryptedVideoResponse?.otp, let playback = encryptedVideoResponse?.playback {
+                            let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
+                            asset?.playOnline(otp: otp, playbackInfo: playback)
+                            self?.present(vdoPlayerController, animated: true)
+
+                            self?.hideLoadingIndicator()
+                        }
+                    }
+                }
+
+            }
         }
     }
 }
@@ -1131,8 +1126,8 @@ extension CourseDetailsViewController {
 
     @objc
     private func checkForTime() {
-        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
-        updateVideo(videoId: self.videoId, updateObject: updateObject)
+        //        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
+        //        updateVideo(videoId: self.videoId, updateObject: updateObject)
     }
 }
 
@@ -1232,9 +1227,9 @@ extension CourseDetailsViewController: DZNEmptyDataSetDelegate {
             return lessonsList.isEmpty
         case .materials:
             return materials?.assignments?.isEmpty ?? true
-                && materials?.documents?.isEmpty ?? true
-                && materials?.quizzes?.isEmpty ?? true
-                && materials?.videos?.isEmpty ?? true
+            && materials?.documents?.isEmpty ?? true
+            && materials?.quizzes?.isEmpty ?? true
+            && materials?.videos?.isEmpty ?? true
         case .reviews:
             return reviewsList.isEmpty
         }

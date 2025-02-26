@@ -6,7 +6,7 @@ target 'Wojood' do
   use_frameworks!
 
   # Pods for Wojood
-  pod 'VdoCipherKit', '1.2.4'
+#  pod 'VdoCipherKit', '1.2.4'
   pod 'OTPFieldView'
   pod 'Moya', '~> 15.0'
   pod 'MessageKit'

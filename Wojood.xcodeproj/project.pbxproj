@@ -169,9 +169,6 @@
 		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
 		536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */; };
 		537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 537955B8296EC99A0051682D /* LanguageManager-iOS */; };
-		537955BF296F15E20051682D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 537955BE296F15E20051682D /* FirebaseAnalytics */; };
-		537955C1296F15E20051682D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 537955C0296F15E20051682D /* FirebaseCrashlytics */; };
-		537955C3296F15E20051682D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 537955C2296F15E20051682D /* FirebaseMessaging */; };
 		53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */; };
 		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
@@ -250,20 +247,6 @@
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
-		779635FE2771DFF200F31AAD /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 779635FD2771DFF000F31AAD /* Cartfile */; };
-		77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 77B569F22771FADE009E47D7 /* Cartfile.resolved */; };
-		77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; };
-		77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; };
-		77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; };
-		77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A612772141C009E47D7 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; };
-		77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56A692772141D009E47D7 /* SkeletonView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; };
-		77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; };
-		77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
@@ -324,6 +307,16 @@
 		BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5E42631A38E00CFA142 /* CreatePasswordTarget.swift */; };
 		BC19E5ED2631A3A000CFA142 /* CreatePasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5EC2631A3A000CFA142 /* CreatePasswordApiClient.swift */; };
 		BC19E5F22631A43B00CFA142 /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19E5F12631A43B00CFA142 /* ForgetPasswordModel.swift */; };
+		BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424232D6E208E005E26DE /* FirebaseAnalytics */; };
+		BC3424262D6E208E005E26DE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424252D6E208E005E26DE /* FirebaseCore */; };
+		BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424272D6E208E005E26DE /* FirebaseCrashlytics */; };
+		BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424292D6E208E005E26DE /* FirebaseMessaging */; };
+		BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BC34242D2D6E2175005E26DE /* JGProgressHUD */; };
+		BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424312D6E2D13005E26DE /* AlamofireImage */; };
+		BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E62D64E6790038A9F1 /* SkeletonView */; };
+		BC39F5EA2D64E6F30038A9F1 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E92D64E6F30038A9F1 /* Starscream */; };
+		BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5EC2D64E7C40038A9F1 /* SwiftEntryKit */; };
+		BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5EF2D64E8480038A9F1 /* UIScrollView_InfiniteScroll */; };
 		BC5ED0C526282CBC00774E54 /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */; };
 		BC5ED0CC2628437500774E54 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ED0CA2628437500774E54 /* ForgotPasswordViewController.swift */; };
 		BC5ED0D82628438D00774E54 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5ED0D72628438D00774E54 /* ForgotPassword.storyboard */; };
@@ -342,7 +335,6 @@
 		BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E12C189E9900E990C0 /* M13Checkbox */; };
 		BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E42C189ED700E990C0 /* ObjectMapper */; };
 		BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E72C189F1900E990C0 /* Reachability */; };
-		BC6B69EB2C189F9900E990C0 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69EA2C189F9900E990C0 /* JGProgressHUD */; };
 		BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69ED2C18A0B700E990C0 /* DPOTPView */; };
 		BC7101C2276FDF7F002607ED /* ScreenshotAlertTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C0276FDF7F002607ED /* ScreenshotAlertTarget.swift */; };
 		BC7101C3276FDF7F002607ED /* ScreenshotAlertApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C1276FDF7F002607ED /* ScreenshotAlertApiClient.swift */; };
@@ -387,6 +379,7 @@
 		BC98F42F262454C300032AC6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC98F42E262454C300032AC6 /* Login.storyboard */; };
 		BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F433262454D800032AC6 /* LoginViewController.swift */; };
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
+		BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BC995D282D64F74D00B86507 /* VdoFramework */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
 		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
 		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
@@ -442,12 +435,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				77B56A8E27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Embed Frameworks */,
-				77B56A972772179D009E47D7 /* SkeletonView.xcframework in Embed Frameworks */,
-				77B56A952772179A009E47D7 /* Starscream.xcframework in Embed Frameworks */,
-				77B56A9327721798009E47D7 /* SwiftEntryKit.xcframework in Embed Frameworks */,
-				77B56AB32772198B009E47D7 /* AlamofireImage.xcframework in Embed Frameworks */,
-				77B56AB52772198E009E47D7 /* DPOTPView.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,15 +687,6 @@
 		778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		778E7308261E035D009D7B35 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLocalizableFlowLayoutExt.swift; sourceTree = "<group>"; };
-		779635FD2771DFF000F31AAD /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		77B569F22771FADE009E47D7 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
-		77B56A572772141B009E47D7 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		77B56A612772141C009E47D7 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Starscream.xcframework; path = Carthage/Build/Starscream.xcframework; sourceTree = "<group>"; };
-		77B56A692772141D009E47D7 /* SkeletonView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SkeletonView.xcframework; path = Carthage/Build/SkeletonView.xcframework; sourceTree = "<group>"; };
-		77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftEntryKit.xcframework; path = Carthage/Build/SwiftEntryKit.xcframework; sourceTree = "<group>"; };
-		77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UIScrollView_InfiniteScroll.xcframework; path = Carthage/Build/UIScrollView_InfiniteScroll.xcframework; sourceTree = "<group>"; };
-		77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlamofireImage.xcframework; path = Carthage/Build/AlamofireImage.xcframework; sourceTree = "<group>"; };
-		77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DPOTPView.xcframework; path = Carthage/Build/DPOTPView.xcframework; sourceTree = "<group>"; };
 		77B56AB6277219E7009E47D7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -871,27 +849,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				537955C3296F15E20051682D /* FirebaseMessaging in Frameworks */,
-				77B56AB22772198B009E47D7 /* AlamofireImage.xcframework in Frameworks */,
-				537955BF296F15E20051682D /* FirebaseAnalytics in Frameworks */,
-				77B56A942772179A009E47D7 /* Starscream.xcframework in Frameworks */,
+				BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */,
 				BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */,
 				BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */,
+				BC3424262D6E208E005E26DE /* FirebaseCore in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
+				BC39F5EA2D64E6F30038A9F1 /* Starscream in Frameworks */,
 				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
+				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
+				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
+				BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */,
 				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
-				77B56A8D27721794009E47D7 /* UIScrollView_InfiniteScroll.xcframework in Frameworks */,
-				77B56AB42772198D009E47D7 /* DPOTPView.xcframework in Frameworks */,
-				77B56A962772179D009E47D7 /* SkeletonView.xcframework in Frameworks */,
-				537955C1296F15E20051682D /* FirebaseCrashlytics in Frameworks */,
-				BC6B69EB2C189F9900E990C0 /* JGProgressHUD in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
+				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
+				BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
-				77B56A9227721798009E47D7 /* SwiftEntryKit.xcframework in Frameworks */,
 				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
+				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
+				BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */,
 				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
 				BC6B69D32C1897AA00E990C0 /* SwiftyUserDefaults in Frameworks */,
+				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
 				41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */,
@@ -1029,7 +1008,6 @@
 			children = (
 				77B56AB727721A21009E47D7 /* libsqlite3.tbd */,
 				77B56AB6277219E7009E47D7 /* libc++.tbd */,
-				77B56A54277213B9009E47D7 /*  Carthage */,
 				726F61097298DC7F90F1539F /* Pods_Wojood.framework */,
 			);
 			name = Frameworks;
@@ -1587,8 +1565,6 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
-				77B569F22771FADE009E47D7 /* Cartfile.resolved */,
-				779635FD2771DFF000F31AAD /* Cartfile */,
 				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
@@ -1738,20 +1714,6 @@
 				7723ADB2261C716D007C0B97 /* NotificationsTarget.swift */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		77B56A54277213B9009E47D7 /*  Carthage */ = {
-			isa = PBXGroup;
-			children = (
-				77B56A572772141B009E47D7 /* Alamofire.xcframework */,
-				77B56AAC2772194B009E47D7 /* AlamofireImage.xcframework */,
-				77B56AAD2772194B009E47D7 /* DPOTPView.xcframework */,
-				77B56A692772141D009E47D7 /* SkeletonView.xcframework */,
-				77B56A612772141C009E47D7 /* Starscream.xcframework */,
-				77B56A862772177F009E47D7 /* SwiftEntryKit.xcframework */,
-				77B56A882772177F009E47D7 /* UIScrollView_InfiniteScroll.xcframework */,
-			);
-			name = " Carthage";
 			sourceTree = "<group>";
 		};
 		77D013C026A0F6C5006EA602 /* Cells */ = {
@@ -2188,9 +2150,6 @@
 			packageProductDependencies = (
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
 				537955B8296EC99A0051682D /* LanguageManager-iOS */,
-				537955BE296F15E20051682D /* FirebaseAnalytics */,
-				537955C0296F15E20051682D /* FirebaseCrashlytics */,
-				537955C2296F15E20051682D /* FirebaseMessaging */,
 				BC6B69C92C18948700E990C0 /* Cosmos */,
 				BC6B69CC2C18966E00E990C0 /* HandySwift */,
 				BC6B69CF2C1896D800E990C0 /* Kingfisher */,
@@ -2202,8 +2161,18 @@
 				BC6B69E12C189E9900E990C0 /* M13Checkbox */,
 				BC6B69E42C189ED700E990C0 /* ObjectMapper */,
 				BC6B69E72C189F1900E990C0 /* Reachability */,
-				BC6B69EA2C189F9900E990C0 /* JGProgressHUD */,
 				BC6B69ED2C18A0B700E990C0 /* DPOTPView */,
+				BC39F5E62D64E6790038A9F1 /* SkeletonView */,
+				BC39F5E92D64E6F30038A9F1 /* Starscream */,
+				BC39F5EC2D64E7C40038A9F1 /* SwiftEntryKit */,
+				BC39F5EF2D64E8480038A9F1 /* UIScrollView_InfiniteScroll */,
+				BC995D282D64F74D00B86507 /* VdoFramework */,
+				BC3424232D6E208E005E26DE /* FirebaseAnalytics */,
+				BC3424252D6E208E005E26DE /* FirebaseCore */,
+				BC3424272D6E208E005E26DE /* FirebaseCrashlytics */,
+				BC3424292D6E208E005E26DE /* FirebaseMessaging */,
+				BC34242D2D6E2175005E26DE /* JGProgressHUD */,
+				BC3424312D6E2D13005E26DE /* AlamofireImage */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2281,7 +2250,6 @@
 			packageReferences = (
 				380B135426B7F89D00CB5811 /* XCRemoteSwiftPackageReference "DTPhotoViewerController" */,
 				537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
-				537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BC6B69C82C18948700E990C0 /* XCRemoteSwiftPackageReference "Cosmos" */,
 				BC6B69CB2C18966E00E990C0 /* XCRemoteSwiftPackageReference "HandySwift" */,
 				BC6B69CE2C1896D700E990C0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -2293,8 +2261,15 @@
 				BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */,
 				BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */,
-				BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */,
+				BC39F5E52D64E6790038A9F1 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				BC39F5E82D64E6F30038A9F1 /* XCRemoteSwiftPackageReference "Starscream" */,
+				BC39F5EB2D64E7C40038A9F1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
+				BC39F5EE2D64E8480038A9F1 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
+				BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */,
+				BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2341,9 +2316,7 @@
 				388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */,
 				380B139526B807F700CB5811 /* AssessmentMCQOptionTableViewCell.xib in Resources */,
 				7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */,
-				77B569F32771FADE009E47D7 /* Cartfile.resolved in Resources */,
 				7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */,
-				779635FE2771DFF200F31AAD /* Cartfile in Resources */,
 				BC98F420262354E100032AC6 /* Inter-ExtraBold.ttf in Resources */,
 				BC98F421262354E100032AC6 /* Inter-Medium.ttf in Resources */,
 				BC767159262C54E50012155C /* CoursesTabBar.storyboard in Resources */,
@@ -3211,12 +3184,60 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 11.8.1;
+			};
+		};
+		BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+		BC39F5E52D64E6790038A9F1 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.25.0;
+			};
+		};
+		BC39F5E82D64E6F30038A9F1 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		BC39F5EB2D64E7C40038A9F1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		BC39F5EE2D64E8480038A9F1 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pronebird/UIScrollView-InfiniteScroll";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
 			};
 		};
 		BC6B69C82C18948700E990C0 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
@@ -3307,20 +3328,20 @@
 				minimumVersion = 5.2.1;
 			};
 		};
-		BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
-			};
-		};
 		BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Datt1994/DPOTPView";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.5.12;
+			};
+		};
+		BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VdoCipher/swift-pm-repo";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3336,20 +3357,55 @@
 			package = 537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
 			productName = "LanguageManager-iOS";
 		};
-		537955BE296F15E20051682D /* FirebaseAnalytics */ = {
+		BC3424232D6E208E005E26DE /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		537955C0296F15E20051682D /* FirebaseCrashlytics */ = {
+		BC3424252D6E208E005E26DE /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		BC3424272D6E208E005E26DE /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		537955C2296F15E20051682D /* FirebaseMessaging */ = {
+		BC3424292D6E208E005E26DE /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 537955BD296F15E20051682D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		BC34242D2D6E2175005E26DE /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		BC3424312D6E2D13005E26DE /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		BC39F5E62D64E6790038A9F1 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC39F5E52D64E6790038A9F1 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+		BC39F5E92D64E6F30038A9F1 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC39F5E82D64E6F30038A9F1 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		BC39F5EC2D64E7C40038A9F1 /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC39F5EB2D64E7C40038A9F1 /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
+		};
+		BC39F5EF2D64E8480038A9F1 /* UIScrollView_InfiniteScroll */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC39F5EE2D64E8480038A9F1 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */;
+			productName = UIScrollView_InfiniteScroll;
 		};
 		BC6B69C92C18948700E990C0 /* Cosmos */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -3406,15 +3462,15 @@
 			package = BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
-		BC6B69EA2C189F9900E990C0 /* JGProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC6B69E92C189F9600E990C0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
-			productName = JGProgressHUD;
-		};
 		BC6B69ED2C18A0B700E990C0 /* DPOTPView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */;
 			productName = DPOTPView;
+		};
+		BC995D282D64F74D00B86507 /* VdoFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */;
+			productName = VdoFramework;
 		};
 /* End XCSwiftPackageProductDependency section */
 

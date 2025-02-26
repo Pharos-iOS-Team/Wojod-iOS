@@ -63,11 +63,11 @@ extension CourseDetailsTarget: TargetType {
     var task: Task {
         switch self {
         case .bookCourse(_, let qrCode):
-          if let qrCode = qrCode {
-            return .requestParameters(parameters: ["code": qrCode], encoding: URLEncoding.queryString)
-          } else {
-            return .requestPlain
-          }
+            if let qrCode = qrCode {
+                return .requestParameters(parameters: ["code": qrCode], encoding: URLEncoding.queryString)
+            } else {
+                return .requestPlain
+            }
         case let .sendReview(_, courseReview):
             return .requestCustomJSONEncodable(courseReview, encoder: JSONEncoder.default)
         case let .updateVideo(_, updateObject):
