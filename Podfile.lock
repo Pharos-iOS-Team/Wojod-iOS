@@ -10,13 +10,11 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - OTPFieldView (1.0.1)
-  - VdoCipherKit (1.2.4)
 
 DEPENDENCIES:
   - MessageKit
   - Moya (~> 15.0)
   - OTPFieldView
-  - VdoCipherKit (= 1.2.4)
 
 SPEC REPOS:
   trunk:
@@ -25,7 +23,6 @@ SPEC REPOS:
     - MessageKit
     - Moya
     - OTPFieldView
-    - VdoCipherKit
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
@@ -33,8 +30,7 @@ SPEC CHECKSUMS:
   MessageKit: 8e76dd8d65ad44b49e1651c673497146416461e9
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
-  VdoCipherKit: 68632d648c4a521aae941a09bb25e6896ad7c334
 
-PODFILE CHECKSUM: f158dc39e1b5a87f90d66ce2161e8176f16cc470
+PODFILE CHECKSUM: 7d1df7bf314b1b8e52ea5d4935a3bf53947acf53
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

@@ -37,6 +37,7 @@ struct Video: Codable {
     var fileName: String?
     var contentType: String?
     var type: String?
+    var publishedAt: Date?
     var vdocipherId: String?
     var duration: Int?
     var link: String?

@@ -5,7 +5,7 @@ import Foundation
 struct Materials: Codable {
     var quizzes: [Assessment]?
     var assignments: [Assessment]?
-    var videos: [MaterialsVideo]?
+    var videos: [Video]?
     var documents: [MaterialsDocument]?
 
     mutating func sort() {
@@ -19,20 +19,6 @@ struct Materials: Codable {
             return false
         }
     }
-}
-
-struct MaterialsVideo: Codable {
-    var id: Int?
-    var title: String?
-    var fileUrl: String?
-    var fileName: String?
-    var contentType: String?
-    var type: String?
-    var publishedAt: Date?
-    var vdocipherId: String?
-    var duration: Int?
-    var link: String?
-    var viewsRemaining: Int?
 }
 
 struct MaterialsDocument: Codable {

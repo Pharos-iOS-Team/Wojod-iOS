@@ -1,5 +1,0 @@
-github "Juanpe/SkeletonView" ~> 1.25
-github "daltoniam/Starscream" >= 4.0.0
-github "pronebird/UIScrollView-InfiniteScroll" ~> 1.2.0
-github "huri000/SwiftEntryKit" == 2.0.0
-github "Alamofire/AlamofireImage" ~> 4.1
