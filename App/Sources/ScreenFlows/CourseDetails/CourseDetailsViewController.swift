@@ -1090,30 +1090,38 @@ extension CourseDetailsViewController {
         }
 
         viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
-            self?.alertHandler?.showConfirmAlert(
-                title: L10n.Global.Titles.warning,
-                message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
-                confirmButtonTitle: L10n.Global.Actions.confirm) { _ in
+            if course.hideViews {
                 self?.showLoadingIndicator()
-
-                VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            self?.hideLoadingIndicator()
-                            self?.alertHandler?.showConfirmAlert(
-                                title: L10n.Global.Titles.error,
-                                message: error.description
-                            )
-                        } else if let otp = encryptedVideoResponse?.otp, let playback = encryptedVideoResponse?.playback {
-                            let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
-                            asset?.playOnline(otp: otp, playbackInfo: playback)
-                            self?.present(vdoPlayerController, animated: true)
-
-                            self?.hideLoadingIndicator()
-                        }
-                    }
+                self?.presentVideo(video)
+            } else {
+                self?.alertHandler?.showConfirmAlert(
+                    title: L10n.Global.Titles.warning,
+                    message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
+                    confirmButtonTitle: L10n.Global.Actions.confirm
+                ) { _ in
+                    self?.showLoadingIndicator()
+                    self?.presentVideo(video)
                 }
+            }
+        }
+    }
 
+    private func presentVideo(_ video: Video) {
+        VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.hideLoadingIndicator()
+                    self?.alertHandler?.showConfirmAlert(
+                        title: L10n.Global.Titles.error,
+                        message: error.description
+                    )
+                } else if let otp = encryptedVideoResponse?.otp, let playback = encryptedVideoResponse?.playback {
+                    let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
+                    asset?.playOnline(otp: otp, playbackInfo: playback)
+                    self?.present(vdoPlayerController, animated: true)
+
+                    self?.hideLoadingIndicator()
+                }
             }
         }
     }
