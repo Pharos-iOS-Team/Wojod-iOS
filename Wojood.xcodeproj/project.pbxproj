@@ -166,7 +166,6 @@
 		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
-		41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F61097298DC7F90F1539F /* Pods_Wojood.framework */; };
 		536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */; };
 		537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 537955B8296EC99A0051682D /* LanguageManager-iOS */; };
 		53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */; };
@@ -353,6 +352,10 @@
 		BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D1E112643F63900F21515 /* FormTextField.swift */; };
 		BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */; };
 		BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */; };
+		BC8C1E9B2DA7CE01000AED7F /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC8C1E9A2DA7CE01000AED7F /* MessageKit */; };
+		BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = BC8C1E9D2DA7CF66000AED7F /* Moya */; };
+		BC8C1EA22DA7D245000AED7F /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C1EA12DA7D245000AED7F /* OTPTextField.swift */; };
+		BC8C1EA32DA7D245000AED7F /* OTPFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C1EA02DA7D245000AED7F /* OTPFieldView.swift */; };
 		BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D4C1826E76EF700033413 /* CourseDetailsInfoHeaderView.swift */; };
 		BC8D4C1B26E76F1400033413 /* CourseDetailsInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8D4C1A26E76F1400033413 /* CourseDetailsInfoHeaderView.xib */; };
 		BC91581026385CED00868BB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91580F26385CED00868BB0 /* Constants.swift */; };
@@ -600,11 +603,9 @@
 		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
-		4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.release.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.release.xcconfig"; sourceTree = "<group>"; };
 		536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyView.xib; sourceTree = "<group>"; };
-		726F61097298DC7F90F1539F /* Pods_Wojood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wojood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -708,7 +709,6 @@
 		77EE8B3C27DA411700B0CE45 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
 		77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExt.swift; sourceTree = "<group>"; };
-		9C66A10DD2CB267EF0EBD0AE /* Pods-Wojood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wojood.debug.xcconfig"; path = "Target Support Files/Pods-Wojood/Pods-Wojood.debug.xcconfig"; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfo.swift; sourceTree = "<group>"; };
@@ -778,6 +778,8 @@
 		BC7D1E4126481EF700F21515 /* Wojood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wojood.entitlements; sourceTree = "<group>"; };
 		BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExt.swift; sourceTree = "<group>"; };
 		BC7FD37126D6888A009BC1EF /* AVAudioSessionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionExt.swift; sourceTree = "<group>"; };
+		BC8C1EA02DA7D245000AED7F /* OTPFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPFieldView.swift; sourceTree = "<group>"; };
+		BC8C1EA12DA7D245000AED7F /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		BC8D4C1826E76EF700033413 /* CourseDetailsInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsInfoHeaderView.swift; sourceTree = "<group>"; };
 		BC8D4C1A26E76F1400033413 /* CourseDetailsInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailsInfoHeaderView.xib; sourceTree = "<group>"; };
 		BC91580F26385CED00868BB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -870,10 +872,11 @@
 				BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */,
 				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
 				BC6B69D32C1897AA00E990C0 /* SwiftyUserDefaults in Frameworks */,
+				BC8C1E9B2DA7CE01000AED7F /* MessageKit in Frameworks */,
 				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
-				41857AF7403731144655974F /* Pods_Wojood.framework in Frameworks */,
+				BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */,
 				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1008,7 +1011,6 @@
 			children = (
 				77B56AB727721A21009E47D7 /* libsqlite3.tbd */,
 				77B56AB6277219E7009E47D7 /* libc++.tbd */,
-				726F61097298DC7F90F1539F /* Pods_Wojood.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1332,7 +1334,6 @@
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
 				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
-				D9D09DB50F944974E08942C1 /* Pods */,
 				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
 				77C88E2727722BC200E39AA0 /* Wojood.app */,
 				77C88E2827722BC200E39AA0 /* WojoodTests.xctest */,
@@ -1977,6 +1978,15 @@
 			path = FormTextField;
 			sourceTree = "<group>";
 		};
+		BC8C1E9F2DA7D23C000AED7F /* OTPFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C1EA02DA7D245000AED7F /* OTPFieldView.swift */,
+				BC8C1EA12DA7D245000AED7F /* OTPTextField.swift */,
+			);
+			path = OTPFieldView;
+			sourceTree = "<group>";
+		};
 		BC91580E26385CE000868BB0 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -2051,6 +2061,7 @@
 		BCD404932743B7A400B27F98 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC8C1E9F2DA7D23C000AED7F /* OTPFieldView */,
 				BCD4049E2743C65900B27F98 /* Youtube */,
 			);
 			path = ExternalFrameworks;
@@ -2081,15 +2092,6 @@
 				BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */,
 			);
 			path = AVFoundationExtensions;
-			sourceTree = "<group>";
-		};
-		D9D09DB50F944974E08942C1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9C66A10DD2CB267EF0EBD0AE /* Pods-Wojood.debug.xcconfig */,
-				4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		E84874532624B0E1006DF74C /* Registration */ = {
@@ -2132,13 +2134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD01261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "Wojood" */;
 			buildPhases = (
-				493826800DBB500AF736A13E /* [CP] Check Pods Manifest.lock */,
 				7723AE25261C807B007C0B97 /* SwiftGen */,
 				7723AE26261C808C007C0B97 /* Swiftlint */,
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
-				5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */,
 				77B56A8F27721795009E47D7 /* Embed Frameworks */,
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 			);
@@ -2173,6 +2173,8 @@
 				BC3424292D6E208E005E26DE /* FirebaseMessaging */,
 				BC34242D2D6E2175005E26DE /* JGProgressHUD */,
 				BC3424312D6E2D13005E26DE /* AlamofireImage */,
+				BC8C1E9A2DA7CE01000AED7F /* MessageKit */,
+				BC8C1E9D2DA7CF66000AED7F /* Moya */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2270,6 +2272,8 @@
 				BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */,
+				BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2384,45 +2388,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		493826800DBB500AF736A13E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Wojood-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5B4E8C12FEF1FD4A7F4C5EE2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wojood/Pods-Wojood-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7723AE25261C807B007C0B97 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2520,6 +2485,8 @@
 				385CC0B7265ED63A00A091FD /* CourseDetailsHeaderView.swift in Sources */,
 				38B06A7426F8B47F001F6E08 /* AssessmentSynchronization.swift in Sources */,
 				BC7101C3276FDF7F002607ED /* ScreenshotAlertApiClient.swift in Sources */,
+				BC8C1EA22DA7D245000AED7F /* OTPTextField.swift in Sources */,
+				BC8C1EA32DA7D245000AED7F /* OTPFieldView.swift in Sources */,
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
 				BC083B622643091A00A1E6A4 /* Avatar.swift in Sources */,
 				385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */,
@@ -2968,7 +2935,6 @@
 		};
 		7723AD02261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C66A10DD2CB267EF0EBD0AE /* Pods-Wojood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2978,10 +2944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46AX569373;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3006,7 +2969,6 @@
 		};
 		7723AD03261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C6BE17A027D56912AB76B34 /* Pods-Wojood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3016,10 +2978,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46AX569373;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3336,6 +3295,22 @@
 				minimumVersion = 1.5.12;
 			};
 		};
+		BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.7.0;
+			};
+		};
+		BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 		BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/VdoCipher/swift-pm-repo";
@@ -3466,6 +3441,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC6B69EC2C18A0B700E990C0 /* XCRemoteSwiftPackageReference "DPOTPView" */;
 			productName = DPOTPView;
+		};
+		BC8C1E9A2DA7CE01000AED7F /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		BC8C1E9D2DA7CF66000AED7F /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 		BC995D282D64F74D00B86507 /* VdoFramework */ = {
 			isa = XCSwiftPackageProductDependency;

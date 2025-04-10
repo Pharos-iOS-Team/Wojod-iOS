@@ -82,7 +82,7 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
                 if let courseID = userinfo["course_id"] as? String {
                     CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
                         let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
-                        viewCtrl.course = course
+                        viewCtrl.course = course.course
                         let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
                         navigationCtrl.modalPresentationStyle = .fullScreen
                         navigationCtrl.navigationBar.isHidden = true

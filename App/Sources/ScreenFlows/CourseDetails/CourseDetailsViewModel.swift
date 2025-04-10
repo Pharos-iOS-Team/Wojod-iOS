@@ -38,8 +38,8 @@ class CourseDetailsViewModel {
         }
     }
 
-  func bookCourses(qrCode: String?, courseID: Int, completion: @escaping (BookingCourseResponseModel?, Error?) -> Void) {
-      model.bookCourse(qrCode: qrCode, courseID: courseID) { result in
+    func bookCourses(qrCode: String?, courseID: Int, completion: @escaping (BookingCourseResponseModel?, Error?) -> Void) {
+        model.bookCourse(qrCode: qrCode, courseID: courseID) { result in
             switch result {
             case .success(let bookingResponse as BookingCourseResponseModel):
                 completion(bookingResponse, nil)
@@ -75,11 +75,11 @@ class CourseDetailsViewModel {
         }
     }
 
-    func loadCourse(courseID: String, completion: @escaping (Course?) -> Void) {
+    func loadCourse(courseID: String, completion: @escaping (CourseDetailsResponse) -> Void) {
         model.loadCourse(courseID: courseID) { result in
             switch result {
-            case .success(let course as CourseDetailsResponse):
-                completion(course.course)
+            case let .success(course as CourseDetailsResponse):
+                completion(course)
             default:
                 return
             }
