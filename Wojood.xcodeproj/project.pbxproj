@@ -3300,7 +3300,7 @@
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 3.7.0;
 			};
 		};
 		BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */ = {

@@ -14,7 +14,8 @@ struct Teacher: Codable {
 }
 
 struct CourseDetailsResponse: Codable {
-    var course: Course?
+    let course: Course?
+    let hideViews: Bool?
 }
 
 struct Course: Codable {
@@ -34,7 +35,6 @@ struct Course: Codable {
     let lessonsUnreadCount: Int?
     let materialsUnreadCount: Int?
     let qrCodeEnabled: Bool?
-    let hideViews: Bool
 }
 
 struct Media: Codable {

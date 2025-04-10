@@ -87,6 +87,7 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Public Properties
 
     var course: Course!
+    var hideViews: Bool?
     var teacherName: String?
     var teacherID: Int?
 
@@ -100,6 +101,7 @@ class CourseDetailsViewController: UIViewController {
         assignemntsViewModel = AssessmentsOverViewViewModel(module: .assignments)
         alertHandler = AlertHandler(presentingViewCtrl: self)
         configureActionButtonAccordingToState()
+        loadCourseDetails()
         loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
@@ -700,7 +702,8 @@ class CourseDetailsViewController: UIViewController {
 
     private func loadCourseDetails() {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
-            self.course = course
+            self.course = course.course
+            self.hideViews = course.hideViews
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
@@ -1090,25 +1093,27 @@ extension CourseDetailsViewController {
         }
 
         viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
-            if course.hideViews {
-                self?.showLoadingIndicator()
-                self?.presentVideo(video)
+            guard let self else { return }
+
+            if let hideViews = hideViews, hideViews {
+                showLoadingIndicator()
+                presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
             } else {
-                self?.alertHandler?.showConfirmAlert(
+                alertHandler?.showConfirmAlert(
                     title: L10n.Global.Titles.warning,
                     message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
                     confirmButtonTitle: L10n.Global.Actions.confirm
                 ) { _ in
-                    self?.showLoadingIndicator()
-                    self?.presentVideo(video)
+                    self.showLoadingIndicator()
+                    self.presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
                 }
             }
         }
     }
 
-    private func presentVideo(_ video: Video) {
+    private func presentVideo(_ video: Video, encryptedVideoResponse: EncryptedVideoResponse?) {
         VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 if let error = error {
                     self?.hideLoadingIndicator()
                     self?.alertHandler?.showConfirmAlert(
@@ -1134,8 +1139,8 @@ extension CourseDetailsViewController {
 
     @objc
     private func checkForTime() {
-        //        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.vdoPlayerView.player?.currentItem?.totalBuffer() ?? .zero))
-        //        updateVideo(videoId: self.videoId, updateObject: updateObject)
+        let updateObject = UpdateObject(updateId: self.updateId, totalBuffered: Int(self.player?.currentItem?.totalBuffer() ?? .zero))
+        updateVideo(videoId: self.videoId, updateObject: updateObject)
     }
 }
 
