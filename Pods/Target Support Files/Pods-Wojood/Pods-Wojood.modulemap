@@ -1,6 +1,0 @@
-framework module Pods_Wojood {
-  umbrella header "Pods-Wojood-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,5 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import OTPFieldView
 import JGProgressHUD
 import UIKit
 
