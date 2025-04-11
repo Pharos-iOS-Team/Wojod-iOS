@@ -87,7 +87,7 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Public Properties
 
     var course: Course!
-    var hideViews: Bool?
+    var hideViews: Bool = false
     var teacherName: String?
     var teacherID: Int?
 
@@ -703,7 +703,7 @@ class CourseDetailsViewController: UIViewController {
     private func loadCourseDetails() {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course.course
-            self.hideViews = course.hideViews
+            self.hideViews = course.hideViews ?? false
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
@@ -1085,9 +1085,10 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
 extension CourseDetailsViewController {
     func fetchAndPlayVideo(viewsCount: Int, video: Video) {
         guard viewsCount > .zero else {
+            let errorMessage = hideViews ? L10n.CourseDetails.Main.videoPlaybackIssue : L10n.CourseDetails.Main.notEnoughViews
             alertHandler?.showInformationAlert(
                 title: L10n.Global.Titles.error,
-                message: L10n.CourseDetails.Main.notEnoughViews
+                message: errorMessage
             )
             return
         }
@@ -1095,7 +1096,7 @@ extension CourseDetailsViewController {
         viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
             guard let self else { return }
 
-            if let hideViews = hideViews, hideViews {
+            if hideViews {
                 showLoadingIndicator()
                 presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
             } else {
