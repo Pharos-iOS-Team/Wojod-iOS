@@ -1,0 +1,55 @@
+name: Student Release
+
+on:
+  push:
+    branches:
+      - 'release/student_v**'
+
+jobs:
+  cancel-previous-runs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cancel previous runs of this workflow on same branch
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  install-frameworks:
+    runs-on: [self-hosted, macOS, ARM64]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+
+      - name: Bundle Install
+        run: bundle update
+  
+      - name: Initialize Fastlane Environment Files
+        run: |
+          ./Release/set_fastlane_env.rb
+
+  upload-to-testflight:
+    runs-on: [self-hosted, macOS, ARM64]
+    needs: [install-frameworks]
+
+    steps:
+      - name: Set build number
+        run: agvtool new-version -all ${{ github.run_number }}
+
+      - name: Upload Student Apps
+        timeout-minutes: 720
+        run: |
+          ./Release/upload_to_appstore.sh
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+
+  post-actions:
+    runs-on: [self-hosted, macOS, ARM64]
+    needs: [upload-to-testflight]
+
+    steps:
+      - name: Clean Xcode build cache
+        run: rm -rf ~/Library/Developer/Xcode/Archives

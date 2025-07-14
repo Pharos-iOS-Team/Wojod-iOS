@@ -90,6 +90,9 @@ included:
 - Tests/Sources
 - UITests/Sources
 
+excluded:
+- App/Sources/Models/CoreData
+
 disabled_rules:
   - discarded_notification_center_observer
   - computed_accessors_order
