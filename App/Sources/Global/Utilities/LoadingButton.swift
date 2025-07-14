@@ -4,7 +4,6 @@ import Foundation
 import UIKit
 
 class LoadingButton: UIButton {
-
     func startLoading() {
         self.isEnabled = false
         startSpinning()

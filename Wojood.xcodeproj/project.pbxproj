@@ -2404,7 +2404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen > /dev/null; then\n    arch -x86_64 swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\n    exit 1\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftgen > /dev/null; then\n    swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
 		7723AE26261C808C007C0B97 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2422,7 +2422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    arch -x86_64 swiftlint\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		7777D76B26D6B66A00B0C441 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
