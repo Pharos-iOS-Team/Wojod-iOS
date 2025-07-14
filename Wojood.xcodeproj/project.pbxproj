@@ -172,6 +172,7 @@
 		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
+		7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7719A08B2E251108004541E6 /* JGProgressHUD */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE3261C5E6B007C0B97 /* Images.xcassets */; };
 		7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */; };
@@ -310,7 +311,6 @@
 		BC3424262D6E208E005E26DE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424252D6E208E005E26DE /* FirebaseCore */; };
 		BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424272D6E208E005E26DE /* FirebaseCrashlytics */; };
 		BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424292D6E208E005E26DE /* FirebaseMessaging */; };
-		BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BC34242D2D6E2175005E26DE /* JGProgressHUD */; };
 		BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424312D6E2D13005E26DE /* AlamofireImage */; };
 		BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E62D64E6790038A9F1 /* SkeletonView */; };
 		BC39F5EA2D64E6F30038A9F1 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E92D64E6F30038A9F1 /* Starscream */; };
@@ -860,7 +860,6 @@
 				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
 				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
 				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
-				BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */,
 				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
@@ -868,6 +867,7 @@
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
 				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
+				7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */,
 				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
 				BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */,
 				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
@@ -2171,10 +2171,10 @@
 				BC3424252D6E208E005E26DE /* FirebaseCore */,
 				BC3424272D6E208E005E26DE /* FirebaseCrashlytics */,
 				BC3424292D6E208E005E26DE /* FirebaseMessaging */,
-				BC34242D2D6E2175005E26DE /* JGProgressHUD */,
 				BC3424312D6E2D13005E26DE /* AlamofireImage */,
 				BC8C1E9A2DA7CE01000AED7F /* MessageKit */,
 				BC8C1E9D2DA7CF66000AED7F /* Moya */,
+				7719A08B2E251108004541E6 /* JGProgressHUD */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2270,10 +2270,10 @@
 				BC39F5EE2D64E8480038A9F1 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 				BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */,
 				BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */,
 				BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */,
+				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -3143,20 +3143,20 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.8.1;
-			};
-		};
-		BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
@@ -3332,6 +3332,11 @@
 			package = 537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
 			productName = "LanguageManager-iOS";
 		};
+		7719A08B2E251108004541E6 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		BC3424232D6E208E005E26DE /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -3351,11 +3356,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
-		};
-		BC34242D2D6E2175005E26DE /* JGProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
-			productName = JGProgressHUD;
 		};
 		BC3424312D6E2D13005E26DE /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;
