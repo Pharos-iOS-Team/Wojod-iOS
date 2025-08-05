@@ -1,9 +1,5 @@
 // Copyright © 2025 Pharos Solutions. All rights reserved.
 
-// Configuration settings file format documentation can be found at:
-// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
-
-
 ROOT_URL = https:/$()/www.mrhassanelnaggar.com/api/student/v1.1
 BASE_URL = https:/$()/www.mrhassanelnaggar.com
 CHAT_BASE_URL = wss:/$()/www.mrhassanelnaggar.com/cable
