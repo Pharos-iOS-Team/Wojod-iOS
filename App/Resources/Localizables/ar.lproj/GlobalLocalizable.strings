@@ -22,6 +22,8 @@
 
 "global.actions.delete" = "Delete";
 
+"global.actions.deleteAccount" = "حذف الحساب";
+
 "global.titles.warning" = "تنبيه";
 
 "global.alerts.logout" = "هل انت متاكد انك تريد تسجيل خروج؟";

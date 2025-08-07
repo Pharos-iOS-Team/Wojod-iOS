@@ -33,6 +33,10 @@ extension L10n {
       internal static var delete: String {
           return L10n.tr("GlobalLocalizable", "global.actions.delete")
         }
+      /// Delete Account
+      internal static var deleteAccount: String {
+          return L10n.tr("GlobalLocalizable", "global.actions.deleteAccount")
+        }
       /// Done
       internal static var done: String {
           return L10n.tr("GlobalLocalizable", "global.actions.done")

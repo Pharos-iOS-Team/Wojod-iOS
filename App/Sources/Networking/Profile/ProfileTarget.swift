@@ -9,6 +9,7 @@ enum ProfileTarget {
     case fetchDivisions(academicLevel: Int, academicType: Int)
     case fetchBatches(id: String)
     case fetchSpecializations(id: String)
+    case deleteAccount
 }
 
 extension ProfileTarget: TargetType {
@@ -24,6 +25,8 @@ extension ProfileTarget: TargetType {
             return "/divisions/\(id)/batches"
         case .fetchSpecializations(let id):
             return "/divisions/\(id)/specializations"
+        case .deleteAccount:
+            return "/delete_account"
         }
     }
 
@@ -33,6 +36,8 @@ extension ProfileTarget: TargetType {
             return .get
         case .editProfile:
             return .put
+        case .deleteAccount:
+            return .delete
         }
     }
 

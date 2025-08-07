@@ -71,6 +71,7 @@ final class User: ModelDecodable {
     var isSchoolStudent: Bool?
     var organizations: [Organization] = []
     let logoutApiClient = LogoutApiClient()
+    let profileApiClient = ProfileApiClient()
     let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
     private init() {}
@@ -133,16 +134,27 @@ final class User: ModelDecodable {
 
     func logout(completionHandler: @escaping (Result) -> Void) {
         logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self?.setLoggedOut()
-                    completionHandler(.success(true))
-                } else {
-                    self?.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self?.handleMoyaError(error: error, completionHandler: completionHandler)
+            self?.cleanUp(response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
+    func deleteAccount(completionHandler: @escaping (Result) -> Void) {
+        profileApiClient.deleteAccount { [weak self] _, _ in
+            self?.setLoggedOut()
+            completionHandler(.success(true))
+        }
+    }
+
+    private func cleanUp(response: Response?, error: MoyaError?, completionHandler: @escaping (Result) -> Void) {
+        if let response = response {
+            if response.statusCode < 300 {
+                setLoggedOut()
+                completionHandler(.success(true))
+            } else {
+                decodeError(response: response, completionHandler: completionHandler)
             }
+        } else if let error = error {
+            handleMoyaError(error: error, completionHandler: completionHandler)
         }
     }
 

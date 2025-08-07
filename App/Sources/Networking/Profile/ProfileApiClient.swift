@@ -60,4 +60,15 @@ class ProfileApiClient {
             }
         }
     }
+
+    func deleteAccount(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        profileProvider.request(.deleteAccount) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
