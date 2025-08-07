@@ -512,6 +512,10 @@ internal enum L10n {
     internal static var country: String {
         return L10n.tr("Localizable", "profile.country")
       }
+    /// Are you sure you want to delete your account? This cannot be undone
+    internal static var deleteConfirmation: String {
+        return L10n.tr("Localizable", "profile.delete_confirmation")
+      }
     /// Division
     internal static var division: String {
         return L10n.tr("Localizable", "profile.division")

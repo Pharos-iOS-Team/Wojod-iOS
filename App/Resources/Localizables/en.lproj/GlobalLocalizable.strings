@@ -24,6 +24,8 @@
 
 "global.actions.delete" = "Delete";
 
+"global.actions.deleteAccount" = "Delete Account";
+
 "global.titles.warning" = "Warning";
 
 "global.alerts.logout" = "Are you sure you need to logout?";

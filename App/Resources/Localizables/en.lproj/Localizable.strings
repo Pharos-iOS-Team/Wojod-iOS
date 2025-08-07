@@ -127,6 +127,8 @@ No worries!";
 
 "profile.save" = "Save";
 
+"profile.delete_confirmation" = "Are you sure you want to delete your account? This cannot be undone";
+
 // MARK: - Registration
 
 "signup.basicInfo.mandatoryFieldsHint" = "* Cells with asterisks must be filled.";

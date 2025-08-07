@@ -127,6 +127,8 @@
 
 "profile.save" = "حفظ";
 
+"profile.delete_confirmation" = "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء";
+
 // MARK: - Registration
 
 "signup.basicInfo.mandatoryFieldsHint" = "";
