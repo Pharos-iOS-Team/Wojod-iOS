@@ -197,8 +197,8 @@ class SchoolViewController: UIViewController {
     private func loadAcademicTypes() {
         viewModel?.loadAcademicTypes(for: .schoolStudent) { academicTypes in
             self.academicTypesList = academicTypes
-            self.selectedAcademicType = academicTypes?[0]
-            self.academicTypeTextField.text = academicTypes?[0].value
+            self.selectedAcademicType = academicTypes?.first
+            self.academicTypeTextField.text = academicTypes?.first?.value
             self.retrieveAcademicDivisions()
         }
     }
@@ -208,10 +208,10 @@ class SchoolViewController: UIViewController {
         viewModel?.loadAcademicDivisions(for: .schoolStudent, in: self.selectedAcademicType?.key ?? 0) { divisions in
             self.activityIndicator.stopAnimating()
             self.divisionsList = divisions ?? []
-            User.shared.divisionId = divisions?[0].key
-            User.shared.divisionName = divisions?[0].value
-            self.academicDivisionTextField.text = divisions?[0].value
-            self.selectedDivision = divisions?[0]
+            User.shared.divisionId = divisions?.first?.key
+            User.shared.divisionName = divisions?.first?.value
+            self.academicDivisionTextField.text = divisions?.first?.value
+            self.selectedDivision = divisions?.first
             self.retrieveAcademicYear()
             self.retrieveFields()
         }
@@ -223,7 +223,7 @@ class SchoolViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             self.academicYears = batches ?? []
             self.selectedYearIndexID = 0
-            self.academicYearTextField.text = !(batches?.isEmpty ?? true) ? batches?[0].value : L10n.Signup.School.none
+            self.academicYearTextField.text = batches?.first?.value ?? L10n.Signup.School.none
             if batches?.isEmpty ?? true {
                 self.academicYears.append(Batch(key: nil, value: L10n.Signup.School.none))
             }
@@ -243,7 +243,7 @@ class SchoolViewController: UIViewController {
     @objc
     private func academicTypePickerDoneTapped() {
         if selectedAcademicType == nil {
-            selectedAcademicType = academicTypesList?[0]
+            selectedAcademicType = academicTypesList?.first
         }
         academicTypesPickerView.resignFirstResponder()
         academicTypeTextField.text = selectedAcademicType?.value
@@ -253,7 +253,7 @@ class SchoolViewController: UIViewController {
     @objc
     private func academicDivisionPickerDoneTapped() {
         if selectedDivision == nil {
-            selectedDivision = viewModel?.divisions?[0]
+            selectedDivision = viewModel?.divisions?.first
         }
         divisionsPickerView.resignFirstResponder()
         User.shared.divisionId = selectedDivision?.key

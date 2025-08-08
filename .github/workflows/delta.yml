@@ -1,0 +1,108 @@
+name: Delta
+
+on:
+  pull_request:
+    branches: [develop, master]
+
+jobs:
+  cancel-previous-runs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cancel previous runs of this workflow on same branch
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  install-frameworks:
+    runs-on: [self-hosted, macOS, ARM64]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+
+      - name: Bundle Install
+        run: bundle install
+
+      - name: Initialize Fastlane Environment Files
+        run: |
+          ./Release/prepare_release_scripts.rb
+
+  upload-student-testflight:
+    runs-on: [self-hosted, macOS, ARM64]
+    needs: [install-frameworks]
+
+    steps:
+      - name: Set build number For Saint Marc
+        run: agvtool new-version -all ${{ github.run_number }}.1
+
+      - name: Upload Saint Marc Student
+        timeout-minutes: 30
+        run: |
+          fastlane delta --env saint-marc_schooldebug
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          BUILD_NUMBER: ${{ github.run_number }}.1
+
+      - name: Set build number For Skoolix
+        run: agvtool new-version -all ${{ github.run_number }}.2
+
+      - name: Upload Skoolix Student
+        timeout-minutes: 30
+        run: |
+          fastlane delta --env skoolix_schooldebug
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          BUILD_NUMBER: ${{ github.run_number }}.2
+
+  upload-teacher-testflight:
+    runs-on: [self-hosted, macOS, ARM64]
+    needs: [install-frameworks]
+
+    steps:
+      - name: Set build number For Saint Marc (Teacher)
+        run: agvtool new-version -all ${{ github.run_number }}.1
+
+      - name: Upload Saint Marc (Teacher)
+        timeout-minutes: 30
+        run: |
+          fastlane delta --env saint-marc_teacherdebug
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          BUILD_NUMBER: ${{ github.run_number }}.1
+
+      - name: Set build number For Skoolix (Teacher)
+        run: agvtool new-version -all ${{ github.run_number }}.2
+
+      - name: Upload Skoolix (Teacher)
+        timeout-minutes: 30
+        run: |
+          fastlane delta --env skoolix_teacherdebug
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          BUILD_NUMBER: ${{ github.run_number }}.2
+
+  post-actions:
+    runs-on: [self-hosted, macOS, ARM64]
+    needs: [upload-teacher-testflight, upload-student-testflight]
+
+    steps:
+      - name: Clean Xcode build cache
+        run: rm -rf ~/Library/Developer/Xcode/Archives
