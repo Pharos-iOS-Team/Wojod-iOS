@@ -18,8 +18,7 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Locked lessons if they are linked to unsolved quiz.
-  Task: [CPI-292](https://jira.pharos-solutions.de/browse/CPI-292) | PR: [#3](https://github.com/pharos-solutions/Courses-Portal-iOS/pull/3) | Author: [Eslam Salem](https://gitlab.com/eslam.salem)
+- None.
 ### Changed
 - None.
 ### Deprecated
@@ -30,5 +29,10 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 - None.
 ### Security
 - None.
+
+## [1.8.0] - 2025-08-08
+### Added
+- Locked lessons if they are linked to unsolved quiz.
+  Task: [CPI-292](https://jira.pharos-solutions.de/browse/CPI-292) | PR: [#3](https://github.com/pharos-solutions/Courses-Portal-iOS/pull/3) | Author: [Eslam Salem](https://gitlab.com/eslam.salem)
 
 ## [2.5.3] - 2025-06-24
