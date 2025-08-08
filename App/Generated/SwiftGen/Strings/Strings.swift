@@ -167,6 +167,10 @@ internal enum L10n {
         }
     }
     internal enum Main {
+      /// Available for: %@ days
+      internal static func avaliableFor(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "courseDetails.main.avaliableFor", String(describing: p1))
+      }
       /// Book by QR
       internal static var bookByQR: String {
           return L10n.tr("Localizable", "courseDetails.main.bookByQR")
@@ -190,6 +194,10 @@ internal enum L10n {
       /// Materials
       internal static var materials: String {
           return L10n.tr("Localizable", "courseDetails.main.materials")
+        }
+      /// No Longer Available
+      internal static var noLongerAvaliable: String {
+          return L10n.tr("Localizable", "courseDetails.main.noLongerAvaliable")
         }
       /// You have exceeded the number of views for this video
       internal static var notEnoughViews: String {

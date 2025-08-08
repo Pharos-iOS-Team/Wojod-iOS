@@ -247,6 +247,7 @@
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
+		77C0F4B22E45870800472880 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 77C0F4B12E45870800472880 /* CHANGELOG.md */; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
@@ -690,6 +691,7 @@
 		77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLocalizableFlowLayoutExt.swift; sourceTree = "<group>"; };
 		77B56AB6277219E7009E47D7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		77C0F4B12E45870800472880 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2827722BC200E39AA0 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1571,6 +1573,7 @@
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
 				7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */,
 				7723AE0A261C7EDD007C0B97 /* swiftgen.yml */,
+				77C0F4B12E45870800472880 /* CHANGELOG.md */,
 			);
 			name = RootFiles;
 			path = App;
@@ -2352,6 +2355,7 @@
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
+				77C0F4B22E45870800472880 /* CHANGELOG.md in Resources */,
 				7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */,
 				BC0F92C92785E7A1001C5B3A /* OrganizationsListTableViewCell.xib in Resources */,
 				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,

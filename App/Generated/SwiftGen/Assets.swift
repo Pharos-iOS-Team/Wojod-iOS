@@ -128,6 +128,7 @@ internal enum Asset {
     internal static let imgSuccess = ImageAsset(name: "imgSuccess")
     internal static let largePlayButton = ImageAsset(name: "largePlayButton")
     internal static let link = ImageAsset(name: "link")
+    internal static let lock = ImageAsset(name: "lock")
     internal static let maximizeIcn = ImageAsset(name: "maximizeIcn")
     internal static let messageButton = ImageAsset(name: "messageButton")
     internal static let newGenericExt = ImageAsset(name: "newGenericExt")
