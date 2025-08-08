@@ -1,0 +1,115 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+
+PROJECT_NAME="Skoolix.xcodeproj"
+BUNDLE_IDENTIFIER=ENV["PRODUCT_BUNDLE_IDENTIFIER"]
+BUILD_NUMBER = ENV['BUILD_NUMBER']
+SCHEME = ENV["SCHEME"]
+CONFIG = "Wojood"
+TEAM_ID = ENV["TEAM_ID"]
+
+
+default_platform(:ios)
+
+before_all do |lane|
+  ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "500"
+  app_store_connect_api_key(
+    key_id: ENV["KEY_ID"],
+    issuer_id: ENV["ISSUER_ID"],
+    key_filepath: ENV["KEY_FILE_PATH"]
+  )
+
+end
+
+
+platform :ios do
+
+
+
+  # ---------------------------- Alpha Lane ---------------------------- #
+
+  desc "Upload Alpha Version To TestFlight"
+  lane :alpha do
+    generate_ipa
+
+    upload_to_testflight(
+        api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+        app_identifier: BUNDLE_IDENTIFIER,
+        skip_waiting_for_build_processing: true,
+        changelog: "Alpha"
+    )
+
+  end
+
+  # ---------------------------- Release Lane ---------------------------- #
+
+  desc "Push a new release build to the App Store"
+  lane :upload_to_appstore do
+    generate_ipa
+
+    deliver(
+      api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      app_identifier: BUNDLE_IDENTIFIER,
+      team_id: TEAM_ID,
+      app_version: ENV["APP_STORE_VERSION"],
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit: false,
+      submit_for_review: true,
+      reject_if_possible: true,
+      automatic_release: true,
+      skip_binary_upload: false,
+      force: true, # Skip HTMl report verification
+      skip_metadata: false,
+      skip_screenshots: true,
+      submission_information: {
+        add_id_info_uses_idfa: false,
+        add_id_info_serves_ads: false,
+        add_id_info_tracks_install: false,
+        add_id_info_tracks_action: false,
+        add_id_info_limits_tracking: false
+      }
+    )
+
+  end
+
+  desc "Sign the app and export an ipa"
+  lane:generate_ipa do
+    unlock_keychain(path: "~/Library/Keychains/login.keychain-db", password: "123456")
+
+    update_code_signing_settings(
+      path: PROJECT_NAME,
+      use_automatic_signing: false,
+      code_sign_identity: "Apple Distribution"
+    )
+
+    get_provisioning_profile(
+      api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      adhoc: false,
+      force: true,
+      app_identifier: BUNDLE_IDENTIFIER,
+      team_id: TEAM_ID
+    )
+
+    update_project_provisioning(
+      xcodeproj: PROJECT_NAME,
+      target_filter: SCHEME, # matches name or type of a target
+      build_configuration: CONFIG
+    )
+
+    build_app(project: PROJECT_NAME, scheme: SCHEME, configuration: CONFIG)
+  end
+
+end

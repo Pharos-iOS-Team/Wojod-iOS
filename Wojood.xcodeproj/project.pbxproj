@@ -176,7 +176,6 @@
 		7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE3261C5E6B007C0B97 /* Images.xcassets */; };
 		7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */; };
 		7723ACF2261C5E6C007C0B97 /* WojoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACF1261C5E6C007C0B97 /* WojoodTests.swift */; };
-		7723ACFD261C5E6C007C0B97 /* WojoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */; };
 		7723AD20261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1A261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift */; };
 		7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1B261C6134007C0B97 /* CompositeAppDelegate.swift */; };
 		7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1C261C6134007C0B97 /* ReachabilityAppDelegate.swift */; };
@@ -246,7 +245,6 @@
 		778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7303261DFFD1009D7B35 /* UIApplicationExt.swift */; };
 		778E7309261E035D009D7B35 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E7308261E035D009D7B35 /* ErrorModel.swift */; };
 		77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */; };
-		77C0F4B22E45870800472880 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 77C0F4B12E45870800472880 /* CHANGELOG.md */; };
 		77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */; };
 		77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */; };
 		77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */; };
@@ -416,13 +414,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		7723ACEE261C5E6C007C0B97 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7723ACCF261C5E68007C0B97 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7723ACD6261C5E69007C0B97;
-			remoteInfo = Wojood;
-		};
-		7723ACF9261C5E6C007C0B97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7723ACCF261C5E68007C0B97 /* Project object */;
 			proxyType = 1;
@@ -614,8 +605,6 @@
 		7723ACE8261C5E6B007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7723ACF1261C5E6C007C0B97 /* WojoodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WojoodTests.swift; sourceTree = "<group>"; };
 		7723ACF3261C5E6C007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WojoodUITests.swift; sourceTree = "<group>"; };
-		7723ACFE261C5E6C007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7723AD1A261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationAppDelegate.swift; sourceTree = "<group>"; };
 		7723AD1B261C6134007C0B97 /* CompositeAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeAppDelegate.swift; sourceTree = "<group>"; };
 		7723AD1C261C6134007C0B97 /* ReachabilityAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityAppDelegate.swift; sourceTree = "<group>"; };
@@ -655,6 +644,20 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		778887342E46AD8D0027D5D9 /* .env.wellington_teacher.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = .env.wellington_teacher.xcconfig; sourceTree = "<group>"; };
+		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = AuthKey_33B7DSRT37.p8; sourceTree = "<group>"; };
+		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
+		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7788873A2E46AD8D0027D5D9 /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
+		7788873C2E46AD8D0027D5D9 /* changelog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changelog.swift; sourceTree = "<group>"; };
+		7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = create_release_branch.rb; sourceTree = "<group>"; };
+		7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = prepare_release_scripts.rb; sourceTree = "<group>"; };
+		778887402E46AD8D0027D5D9 /* version.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = version.rb; sourceTree = "<group>"; };
+		778887422E46ADAA0027D5D9 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
 		778E7237261DC2D3009D7B35 /* ArrayExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		778E7239261DC2D3009D7B35 /* UILabelExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExt.swift; sourceTree = "<group>"; };
@@ -693,10 +696,8 @@
 		77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLocalizableFlowLayoutExt.swift; sourceTree = "<group>"; };
 		77B56AB6277219E7009E47D7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		77C0F4B12E45870800472880 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2827722BC200E39AA0 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubjectCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -707,8 +708,6 @@
 		77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Hassan-Elnaggar.xcconfig"; sourceTree = "<group>"; };
 		77DE4E3D2E2550590001BFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77DE4E3F2E2550A80001BFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		77DE4E552E25651E0001BFAC /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
-		77DE4E562E25651E0001BFAC /* specific-school-release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "specific-school-release.yml"; sourceTree = "<group>"; };
 		77E32B82264A8AD30064B801 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		77E32B90264A8B2C0064B801 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		77E32B95264A8B430064B801 /* LoginApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginApiClient.swift; sourceTree = "<group>"; };
@@ -894,13 +893,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7723ACEA261C5E6C007C0B97 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723ACF5261C5E6C007C0B97 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1345,11 +1337,9 @@
 				7723ACD9261C5E69007C0B97 /* App */,
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
-				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
 				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
 				77C88E2727722BC200E39AA0 /* Wojood.app */,
 				77C88E2827722BC200E39AA0 /* WojoodTests.xctest */,
-				77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1372,15 +1362,6 @@
 				7723ACF3261C5E6C007C0B97 /* Info.plist */,
 			);
 			path = WojoodTests;
-			sourceTree = "<group>";
-		};
-		7723ACFB261C5E6C007C0B97 /* WojoodUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */,
-				7723ACFE261C5E6C007C0B97 /* Info.plist */,
-			);
-			path = WojoodUITests;
 			sourceTree = "<group>";
 		};
 		7723AD19261C60D5007C0B97 /* AppDelegates */ = {
@@ -1580,16 +1561,16 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
-				77DE4E5A2E25651E0001BFAC /* .github */,
+				778887422E46ADAA0027D5D9 /* CHANGELOG.md */,
+				7788873B2E46AD8D0027D5D9 /* fastlane */,
+				778887412E46AD8D0027D5D9 /* release */,
 				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
 				7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */,
 				7723AE0A261C7EDD007C0B97 /* swiftgen.yml */,
-				77C0F4B12E45870800472880 /* CHANGELOG.md */,
 			);
 			name = RootFiles;
-			path = App;
 			sourceTree = "<group>";
 		};
 		7723AE20261C801C007C0B97 /* SwiftGen */ = {
@@ -1638,6 +1619,41 @@
 				77DC5AE62E38CD7500A9CDB0 /* Perfection-in-Physics.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		778887322E46AD8D0027D5D9 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				778887312E46AD8D0027D5D9 /* README.txt */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
+		7788873B2E46AD8D0027D5D9 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				778887322E46AD8D0027D5D9 /* screenshots */,
+				778887332E46AD8D0027D5D9 /* .env */,
+				778887342E46AD8D0027D5D9 /* .env.wellington_teacher.xcconfig */,
+				778887352E46AD8D0027D5D9 /* Appfile */,
+				778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */,
+				778887372E46AD8D0027D5D9 /* Deliverfile */,
+				778887382E46AD8D0027D5D9 /* Fastfile */,
+				778887392E46AD8D0027D5D9 /* README.md */,
+				7788873A2E46AD8D0027D5D9 /* report.xml */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
+		778887412E46AD8D0027D5D9 /* release */ = {
+			isa = PBXGroup;
+			children = (
+				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
+				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
+				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
+				778887402E46AD8D0027D5D9 /* version.rb */,
+			);
+			path = release;
 			sourceTree = "<group>";
 		};
 		778E722A261DC104009D7B35 /* Extensions */ = {
@@ -1806,23 +1822,6 @@
 				77DE4E3F2E2550A80001BFAC /* GoogleService-Info.plist */,
 			);
 			path = "Hassan-Elnaggar";
-			sourceTree = "<group>";
-		};
-		77DE4E592E25651E0001BFAC /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				77DE4E552E25651E0001BFAC /* release.yml */,
-				77DE4E562E25651E0001BFAC /* specific-school-release.yml */,
-			);
-			path = workflows;
-			sourceTree = "<group>";
-		};
-		77DE4E5A2E25651E0001BFAC /* .github */ = {
-			isa = PBXGroup;
-			children = (
-				77DE4E592E25651E0001BFAC /* workflows */,
-			);
-			path = .github;
 			sourceTree = "<group>";
 		};
 		BC083B012641724B00A1E6A4 /* PickerInputView */ = {
@@ -2296,24 +2295,6 @@
 			productReference = 77C88E2827722BC200E39AA0 /* WojoodTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7723ACF7261C5E6C007C0B97 /* WojoodUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7723AD07261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodUITests" */;
-			buildPhases = (
-				7723ACF4261C5E6C007C0B97 /* Sources */,
-				7723ACF5261C5E6C007C0B97 /* Frameworks */,
-				7723ACF6261C5E6C007C0B97 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7723ACFA261C5E6C007C0B97 /* PBXTargetDependency */,
-			);
-			name = WojoodUITests;
-			productName = WojoodUITests;
-			productReference = 77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2328,10 +2309,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					7723ACEC261C5E6C007C0B97 = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 7723ACD6261C5E69007C0B97;
-					};
-					7723ACF7261C5E6C007C0B97 = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 7723ACD6261C5E69007C0B97;
 					};
@@ -2379,7 +2356,6 @@
 			targets = (
 				7723ACD6261C5E69007C0B97 /* Wojood */,
 				7723ACEC261C5E6C007C0B97 /* WojoodTests */,
-				7723ACF7261C5E6C007C0B97 /* WojoodUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -2449,7 +2425,6 @@
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
-				77C0F4B22E45870800472880 /* CHANGELOG.md in Resources */,
 				7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */,
 				BC0F92C92785E7A1001C5B3A /* OrganizationsListTableViewCell.xib in Resources */,
 				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,
@@ -2470,13 +2445,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7723ACEB261C5E6C007C0B97 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723ACF6261C5E6C007C0B97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2894,14 +2862,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7723ACF4261C5E6C007C0B97 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7723ACFD261C5E6C007C0B97 /* WojoodUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2909,11 +2869,6 @@
 			isa = PBXTargetDependency;
 			target = 7723ACD6261C5E69007C0B97 /* Wojood */;
 			targetProxy = 7723ACEE261C5E6C007C0B97 /* PBXContainerItemProxy */;
-		};
-		7723ACFA261C5E6C007C0B97 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7723ACD6261C5E69007C0B97 /* Wojood */;
-			targetProxy = 7723ACF9261C5E6C007C0B97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3138,7 +3093,6 @@
 		7723AD05261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3160,7 +3114,6 @@
 		7723AD06261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3176,46 +3129,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
-			};
-			name = Release;
-		};
-		7723AD08261C5E6C007C0B97 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
-			};
-			name = Debug;
-		};
-		7723AD09261C5E6C007C0B97 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
 			};
 			name = Release;
 		};
@@ -3313,7 +3226,6 @@
 		77DC5AE92E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3329,26 +3241,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
-			};
-			name = "Perfection-in-Physics";
-		};
-		77DC5AEA2E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
 			};
 			name = "Perfection-in-Physics";
 		};
@@ -3446,7 +3338,6 @@
 		77DE4E392E254FFC0001BFAC /* Hassan-Elnaggar */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3462,26 +3353,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
-			};
-			name = "Hassan-Elnaggar";
-		};
-		77DE4E3A2E254FFC0001BFAC /* Hassan-Elnaggar */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
 			};
 			name = "Hassan-Elnaggar";
 		};
@@ -3517,17 +3388,6 @@
 				7723AD06261C5E6C007C0B97 /* Release */,
 				77DE4E392E254FFC0001BFAC /* Hassan-Elnaggar */,
 				77DC5AE92E38CDAB00A9CDB0 /* Perfection-in-Physics */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7723AD07261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7723AD08261C5E6C007C0B97 /* Debug */,
-				7723AD09261C5E6C007C0B97 /* Release */,
-				77DE4E3A2E254FFC0001BFAC /* Hassan-Elnaggar */,
-				77DC5AEA2E38CDAB00A9CDB0 /* Perfection-in-Physics */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
