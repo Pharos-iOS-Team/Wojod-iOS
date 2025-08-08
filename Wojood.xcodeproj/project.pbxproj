@@ -599,6 +599,8 @@
 		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyView.xib; sourceTree = "<group>"; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
+		77135AAC2E46C1BE0032884F /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
+		77135ABC2E4932E80032884F /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7723ACE3261C5E6B007C0B97 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7723ACE6261C5E6B007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -646,7 +648,6 @@
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
 		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
-		778887342E46AD8D0027D5D9 /* .env.wellington_teacher.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = .env.wellington_teacher.xcconfig; sourceTree = "<group>"; };
 		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
 		778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = AuthKey_33B7DSRT37.p8; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
@@ -1330,6 +1331,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		77135AAE2E46C1BE0032884F /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				77135AAC2E46C1BE0032884F /* release.yml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
+		77135AAF2E46C1BE0032884F /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				77135AAE2E46C1BE0032884F /* workflows */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
@@ -1561,13 +1578,15 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
-				778887422E46ADAA0027D5D9 /* CHANGELOG.md */,
-				7788873B2E46AD8D0027D5D9 /* fastlane */,
-				778887412E46AD8D0027D5D9 /* release */,
+				77135AAF2E46C1BE0032884F /* .github */,
 				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
+				778887422E46ADAA0027D5D9 /* CHANGELOG.md */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
 				7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */,
+				7788873B2E46AD8D0027D5D9 /* fastlane */,
+				77135ABC2E4932E80032884F /* Gemfile */,
+				778887412E46AD8D0027D5D9 /* release */,
 				7723AE0A261C7EDD007C0B97 /* swiftgen.yml */,
 			);
 			name = RootFiles;
@@ -1634,7 +1653,6 @@
 			children = (
 				778887322E46AD8D0027D5D9 /* screenshots */,
 				778887332E46AD8D0027D5D9 /* .env */,
-				778887342E46AD8D0027D5D9 /* .env.wellington_teacher.xcconfig */,
 				778887352E46AD8D0027D5D9 /* Appfile */,
 				778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */,
 				778887372E46AD8D0027D5D9 /* Deliverfile */,

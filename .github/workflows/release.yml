@@ -5,17 +5,20 @@ on:
     branches:
       - 'release/**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+  
+
 jobs:
   install-frameworks:
-    runs-on: [self-hosted, macOS, ARM64]
+    if: "contains(github.event.head_commit.message, '[ci release]')"
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           clean: false
-
-      - name: Bundle Install
-        run: bundle update
 
       - name: Initialize Fastlane Environment Files
         run: |
@@ -23,7 +26,7 @@ jobs:
 
   upload-to-testflight:
     if: "contains(github.event.head_commit.message, '[ci release]')"
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
     timeout-minutes: 1440  # Set timeout to 24h
     needs: [install-frameworks]
 
@@ -33,25 +36,15 @@ jobs:
 
       - name: Upload Apps
         run: |
-          ./Release/upload_to_appstore.sh
+          ./release/upload_to_appstore.sh
         env:
           LC_ALL: en_US.UTF-8
           LANG: en_US.UTF-8
 
   post-actions:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
     needs: [upload-to-testflight]
 
     steps:
       - name: Clean Xcode build cache
         run: rm -rf ~/Library/Developer/Xcode/Archives
-
-  cancel-handler:
-    runs-on: [self-hosted, macOS, ARM64]
-    if: cancelled()
-    needs: [install-frameworks, upload-to-testflight, post-actions] 
-    steps:
-      - name: Remove log file due to cancellation
-        run: |
-          echo "Workflow was cancelled. Removing log file..."
-          rm -f ./upload_progress.log
