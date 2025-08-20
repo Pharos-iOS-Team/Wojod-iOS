@@ -649,7 +649,6 @@
 		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
-		778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */ = {isa = PBXFileReference; lastKnownFileType = text; path = AuthKey_33B7DSRT37.p8; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
 		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1654,7 +1653,6 @@
 				778887322E46AD8D0027D5D9 /* screenshots */,
 				778887332E46AD8D0027D5D9 /* .env */,
 				778887352E46AD8D0027D5D9 /* Appfile */,
-				778887362E46AD8D0027D5D9 /* AuthKey_33B7DSRT37.p8 */,
 				778887372E46AD8D0027D5D9 /* Deliverfile */,
 				778887382E46AD8D0027D5D9 /* Fastfile */,
 				778887392E46AD8D0027D5D9 /* README.md */,
