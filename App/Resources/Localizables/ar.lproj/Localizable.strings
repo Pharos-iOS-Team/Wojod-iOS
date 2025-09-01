@@ -20,6 +20,8 @@
 
 "login.signIn" = "تسجيل الدخول";
 
+"login.guestMode" = "متابعة كضيف";
+
 "login.mobileNumber" = "رقم الهاتف";
 
 "login.phoneNumber" = "رقم الهاتف";

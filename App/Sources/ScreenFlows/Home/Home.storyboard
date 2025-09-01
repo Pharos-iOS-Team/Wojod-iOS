@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,21 +23,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small" translatesAutoresizingMaskIntoConstraints="NO" id="doz-wx-tBw">
-                                <rect key="frame" x="22" y="44" width="46" height="48"/>
+                                <rect key="frame" x="22" y="96" width="46" height="48"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="iDj-vZ-gEt">
-                                <rect key="frame" x="0.0" y="102" width="414" height="710"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="624"/>
                                 <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m04-iN-YQq">
-                                <rect key="frame" x="364" y="53" width="30" height="30"/>
+                                <rect key="frame" x="364" y="105" width="30" height="30"/>
                                 <state key="normal" image="homeNotification"/>
                                 <connections>
                                     <action selector="didTapNotificationsButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="la5-Nt-5iT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d28-A6-w5m">
-                                <rect key="frame" x="229" y="50.5" width="120" height="35"/>
+                                <rect key="frame" x="229" y="102.5" width="120" height="35"/>
                                 <color key="backgroundColor" name="backgroundLightPurple"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="TQm-dR-Hke"/>
@@ -48,16 +48,16 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="helpCenter" translatesAutoresizingMaskIntoConstraints="NO" id="Ys3-Rv-O80">
-                                <rect key="frame" x="239" y="60" width="15" height="16"/>
+                                <rect key="frame" x="239" y="112" width="15" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-4d-Zb1">
-                                <rect key="frame" x="259" y="59.5" width="79.5" height="17"/>
+                                <rect key="frame" x="259" y="111.5" width="79.5" height="17"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-fQ-iuP">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="778" width="414" height="50"/>
                                 <color key="backgroundColor" name="sendButtonColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1fB-hC-z1h"/>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y76-rP-T4a">
-                                <rect key="frame" x="207" y="812" width="207" height="50"/>
+                                <rect key="frame" x="207" y="778" width="207" height="50"/>
                                 <color key="backgroundColor" name="green"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,6 +113,7 @@
                         <outlet property="filtersButtonHeightConstraint" destination="1fB-hC-z1h" id="Z07-ue-J80"/>
                         <outlet property="helpCenterButton" destination="d28-A6-w5m" id="dEW-sf-03R"/>
                         <outlet property="helpCenterLabel" destination="sQb-4d-Zb1" id="QqA-cR-MSs"/>
+                        <outlet property="notifiationButton" destination="m04-iN-YQq" id="B07-my-0U4"/>
                         <outlet property="tableView" destination="iDj-vZ-gEt" id="BCw-ZQ-B6B"/>
                     </connections>
                 </viewController>

@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Kingfisher
+import JGProgressHUD
 import SafariServices
 import UIKit
 
@@ -8,7 +9,6 @@ class SettingsViewController: UIViewController {
     enum Constants {
         static let tableViewCellHeight: CGFloat = 65
     }
-
     @IBOutlet private var settingsTableView: UITableView! {
         didSet {
             settingsTableView.delegate = self
@@ -24,6 +24,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet private var profileThumbnail: UIImageView!
 
     let viewModel = SettingsViewModel()
+    private var loadingHud: JGProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class SettingsViewController: UIViewController {
     }
 
     private func setUserAvatar() {
-        if User.shared.avatar?.thumbnailUrl != nil {
+        if User.shared.avatar?.thumbnailUrl != nil, !viewModel.isGuestModeEnabled() {
             guard let link = User.shared.avatar?.thumbnailUrl else { return }
             guard let url = viewModel.getUserAvatar(avatarLink: link) else { return }
             profileThumbnail.kf.setImage(with: url)
@@ -59,13 +60,25 @@ class SettingsViewController: UIViewController {
 
     @objc
     private func navigateToProfile() {
-        let profileViewCtrl = StoryboardScene.Profile.profileViewController.instantiate()
-        profileViewCtrl.modalPresentationStyle = .fullScreen
-        present(profileViewCtrl, animated: true, completion: nil)
+        if viewModel.isGuestModeEnabled() {
+            showLoadingIndicator()
+            viewModel.logout()
+        } else {
+            let profileViewCtrl = StoryboardScene.Profile.profileViewController.instantiate()
+            profileViewCtrl.modalPresentationStyle = .fullScreen
+            present(profileViewCtrl, animated: true, completion: nil)
+        }
+    }
+
+    private func showLoadingIndicator() {
+        loadingHud = JGProgressHUD()
+        loadingHud?.textLabel.text = L10n.Global.Alerts.loading
+        loadingHud?.show(in: self.view, animated: true)
     }
 
     private func configureSettingsCell(forCell cell: SettingsTableViewCell, atIndexPath indexPath: IndexPath) {
-        let cellModel = viewModel.getCellModel(forSettings: indexPath.row)
+        let setting = viewModel.availableSettings[indexPath.row]
+        let cellModel = viewModel.getCellModel(forSettings: setting.rawValue)
         cell.configure(withCellModel: cellModel)
     }
 
@@ -77,7 +90,7 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Settings.allCases.count
+        return viewModel.availableSettings.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +103,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch Settings(rawValue: indexPath.row) {
+        switch viewModel.availableSettings[indexPath.row] {
         case .languages:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
             let cell = tableView.cellForRow(at: indexPath)

@@ -5,21 +5,34 @@ import Moya
 
 enum LoginTarget {
     case login(loginRequestModel: LoginRequestModel)
+    case guestMode
 }
 
 extension LoginTarget: TargetType {
     var path: String {
-        return "/auth/sign_in"
+        switch self {
+        case .login:
+            return "/auth/sign_in"
+        case .guestMode:
+            return "/white_label_version"
+        }
     }
 
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .login:
+            return .post
+        case .guestMode:
+            return .get
+        }
     }
 
     var task: Task {
         switch self {
         case let .login(loginRequestModel):
             return .requestCustomJSONEncodable(loginRequestModel, encoder: JSONEncoder.default)
+        case .guestMode:
+            return .requestPlain
         }
     }
 }

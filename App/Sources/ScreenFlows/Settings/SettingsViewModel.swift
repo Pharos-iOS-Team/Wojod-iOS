@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import SwiftyUserDefaults
 import UIKit
 
 enum Settings: Int, CaseIterable {
@@ -46,6 +47,14 @@ struct SettingsCellModel {
 }
 
 class SettingsViewModel {
+    var availableSettings: [Settings] {
+        var allSettings = Settings.allCases
+        if isGuestModeEnabled() {
+            allSettings.removeAll { $0 == .organizations }
+        }
+        return allSettings
+    }
+
     private func getVersionNumber(forSettings settings: Int) -> String? {
         guard settings != .zero else { return GlobalConstants.Application.version }
         return nil
@@ -70,5 +79,14 @@ class SettingsViewModel {
 
     func getUserAvatar(avatarLink: String) -> URL? {
         return Environment.baseURL.appendingPathComponent(avatarLink)
+    }
+
+    func isGuestModeEnabled() -> Bool {
+        return Defaults[\.isGuestModeEnabled]
+    }
+
+    func logout() {
+        User.shared.setLoggedOut()
+        ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
     }
 }

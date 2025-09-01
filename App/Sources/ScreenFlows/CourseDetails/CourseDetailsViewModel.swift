@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
+import SwiftyUserDefaults
 
 class CourseDetailsViewModel {
     private let model = CourseDetailsModel()
@@ -106,5 +107,14 @@ class CourseDetailsViewModel {
                 return
             }
         }
+    }
+
+    func isGuestModeEnabled() -> Bool {
+        return Defaults[\.isGuestModeEnabled]
+    }
+
+    func logout() {
+        User.shared.setLoggedOut()
+        ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
     }
 }

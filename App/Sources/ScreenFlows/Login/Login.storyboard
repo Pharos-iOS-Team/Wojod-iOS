@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,21 +29,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-jZ-Tnc">
-                                <rect key="frame" x="0.0" y="44" width="390" height="800"/>
+                                <rect key="frame" x="0.0" y="94" width="390" height="750"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgg-Sh-NSy">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="750"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIH-KY-VtK" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="445" width="312" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="OAG-ri-sUq"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="login:" destination="mUu-uY-ag1" eventType="touchUpInside" id="FXI-cw-4ab"/>
-                                                </connections>
-                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-1k-ghw">
                                                 <rect key="frame" x="39" y="60" width="70" height="70"/>
                                                 <constraints>
@@ -79,8 +69,28 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIH-KY-VtK" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
+                                                <rect key="frame" x="39" y="445" width="312" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="OAG-ri-sUq"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="login:" destination="mUu-uY-ag1" eventType="touchUpInside" id="FXI-cw-4ab"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prS-OY-xq8" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
+                                                <rect key="frame" x="39" y="510" width="312" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="UIS-bN-Rm3"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="continueAsAGuest:" destination="mUu-uY-ag1" eventType="touchUpInside" id="GNH-f5-Rrr"/>
+                                                </connections>
+                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-Sl-a0T">
-                                                <rect key="frame" x="39" y="525" width="312" height="68"/>
+                                                <rect key="frame" x="39" y="590" width="312" height="68"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Wf-EN2">
                                                         <rect key="frame" x="0.0" y="0.0" width="312" height="29"/>
@@ -118,16 +128,19 @@
                                         <constraints>
                                             <constraint firstItem="RIH-KY-VtK" firstAttribute="top" secondItem="goN-nW-geb" secondAttribute="bottom" constant="15" id="3YP-oa-pIc"/>
                                             <constraint firstItem="xx8-SA-WDh" firstAttribute="top" secondItem="nUZ-Jh-IZ3" secondAttribute="bottom" constant="15" id="4Tq-39-TJN"/>
+                                            <constraint firstItem="prS-OY-xq8" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="4VS-VZ-zZg"/>
                                             <constraint firstItem="nUZ-Jh-IZ3" firstAttribute="top" secondItem="vTW-1k-ghw" secondAttribute="bottom" constant="35" id="5Ke-RR-L0t"/>
-                                            <constraint firstItem="bfV-Sl-a0T" firstAttribute="top" secondItem="RIH-KY-VtK" secondAttribute="bottom" constant="30" id="6eq-R8-P8D"/>
                                             <constraint firstItem="nUZ-Jh-IZ3" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="9hH-1f-ZdU"/>
                                             <constraint firstItem="vTW-1k-ghw" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="GbL-uS-IzS"/>
                                             <constraint firstItem="goN-nW-geb" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="M8n-yL-bAG"/>
+                                            <constraint firstItem="prS-OY-xq8" firstAttribute="top" secondItem="RIH-KY-VtK" secondAttribute="bottom" constant="15" id="NDV-nG-m26"/>
                                             <constraint firstAttribute="trailing" secondItem="bfV-Sl-a0T" secondAttribute="trailing" constant="39" id="RxA-yz-H0e"/>
                                             <constraint firstItem="RIH-KY-VtK" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="Tnh-0c-XT2"/>
+                                            <constraint firstItem="bfV-Sl-a0T" firstAttribute="top" secondItem="prS-OY-xq8" secondAttribute="bottom" constant="30" id="Yy5-lj-pJE"/>
                                             <constraint firstItem="vTW-1k-ghw" firstAttribute="top" secondItem="Dgg-Sh-NSy" secondAttribute="top" constant="60" id="lKk-4z-0Ku"/>
                                             <constraint firstAttribute="trailing" secondItem="nUZ-Jh-IZ3" secondAttribute="trailing" constant="39" id="mUM-Zc-glz"/>
                                             <constraint firstItem="bfV-Sl-a0T" firstAttribute="leading" secondItem="Dgg-Sh-NSy" secondAttribute="leading" constant="39" id="nvW-6t-kLW"/>
+                                            <constraint firstAttribute="trailing" secondItem="prS-OY-xq8" secondAttribute="trailing" constant="39" id="qSV-7P-hGo"/>
                                             <constraint firstAttribute="trailing" secondItem="RIH-KY-VtK" secondAttribute="trailing" constant="39" id="xr1-IV-O73"/>
                                             <constraint firstAttribute="trailing" secondItem="goN-nW-geb" secondAttribute="trailing" constant="39" id="zsO-eY-sia"/>
                                         </constraints>
@@ -155,26 +168,22 @@
                     <connections>
                         <outlet property="alertView" destination="xx8-SA-WDh" id="8vz-9U-uPP"/>
                         <outlet property="forgotPasswordButton" destination="zzb-Wf-EN2" id="Rb2-Ga-v1A"/>
+                        <outlet property="guestModeButton" destination="prS-OY-xq8" id="I3b-QT-oJq"/>
                         <outlet property="mobileNumberTextField" destination="4el-rM-Yn1" id="Qpb-yT-19G"/>
                         <outlet property="passwordTextField" destination="fib-sY-iXs" id="Ssp-f6-fom"/>
                         <outlet property="scrollView" destination="S1U-jZ-Tnc" id="asv-1G-rUg"/>
                         <outlet property="signUpButton" destination="SaN-8e-5H3" id="tY3-Yv-xcO"/>
-                        <outlet property="submitButton" destination="RIH-KY-VtK" id="LZb-Vf-VOy"/>
+                        <outlet property="submitButton" destination="RIH-KY-VtK" id="6YS-4c-Vji"/>
                         <outlet property="welcomeLabel" destination="nUZ-Jh-IZ3" id="0Yh-fK-d00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lw2-CM-can" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="-26"/>
+            <point key="canvasLocation" x="63.076923076923073" y="-26.303317535545023"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="RIH-KY-VtK">
-            <size key="intrinsicContentSize" width="46" height="30"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="CoursesLogo" width="46" height="48"/>
+        <image name="CoursesLogo" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

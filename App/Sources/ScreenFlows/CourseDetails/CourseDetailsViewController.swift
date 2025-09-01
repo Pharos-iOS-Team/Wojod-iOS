@@ -180,25 +180,35 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
-        switch state {
-        case .normal:
-            bookCourse()
-
-        case .pending:
-            blurView()
-            displayConfirmCancelBooking()
-
-        case .booked:
-            blurView()
-            displayReviewCoursePopup()
-
-        default:
-            return
+        if viewModel?.isGuestModeEnabled() ?? false {
+            showLoadingIndicator()
+            viewModel?.logout()
+        } else {
+            switch state {
+            case .normal:
+                bookCourse()
+                
+            case .pending:
+                blurView()
+                displayConfirmCancelBooking()
+                
+            case .booked:
+                blurView()
+                displayReviewCoursePopup()
+                
+            default:
+                return
+            }
         }
     }
 
     @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
-        QRCodeActionSheet()
+        if viewModel?.isGuestModeEnabled() ?? false {
+            showLoadingIndicator()
+            viewModel?.logout()
+        } else {
+            QRCodeActionSheet()
+        }
     }
 
     // MARK: - Private Functions

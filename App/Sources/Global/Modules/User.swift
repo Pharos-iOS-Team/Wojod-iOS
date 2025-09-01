@@ -122,7 +122,7 @@ final class User: ModelDecodable {
         User.shared.region = nil
     }
 
-    private func setLoggedOut() {
+    func setLoggedOut() {
         isFirstHomeLoad = true
         deleteUserLocationData()
         KeychainHandler.shared.deleteUserToken()

@@ -385,6 +385,8 @@
 		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
 		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
+		D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5070CD82E65FD5C00728D01 /* VersionResponse.swift */; };
+		D5070CDB2E65FECA00728D01 /* login_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* login_response.json */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -827,6 +829,8 @@
 		BCD404A32743C65900B27F98 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
 		BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wojood-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
+		D5070CD82E65FD5C00728D01 /* VersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionResponse.swift; sourceTree = "<group>"; };
+		D5070CDA2E65FEC900728D01 /* login_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = login_response.json; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -1504,6 +1508,8 @@
 		7723AD64261C6649007C0B97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5070CDA2E65FEC900728D01 /* login_response.json */,
+				D5070CD82E65FD5C00728D01 /* VersionResponse.swift */,
 				77DE4E342E254A850001BFAC /* CoreData */,
 				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
 				38659BC026B6D2F900E3BFE9 /* Assessment */,
@@ -2401,6 +2407,7 @@
 				77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */,
 				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
+				D5070CDB2E65FECA00728D01 /* login_response.json in Resources */,
 				BC19E5D02631A35900CFA142 /* CreatePassword.storyboard in Resources */,
 				26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */,
 				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
@@ -2829,6 +2836,7 @@
 				77E32B91264A8B2C0064B801 /* LoginModel.swift in Sources */,
 				E85C74922640A9130097F115 /* Divisions.swift in Sources */,
 				778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */,
+				D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */,
 				380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */,
 				BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */,
 				BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */,

@@ -392,6 +392,10 @@ internal enum L10n {
     internal static var forgotPasswordTitle: String {
         return L10n.tr("Localizable", "login.forgotPasswordTitle")
       }
+    /// Continue as a guest
+    internal static var guestMode: String {
+        return L10n.tr("Localizable", "login.guestMode")
+      }
     /// Mobile number or password entered are not correct
     internal static var invalidCredentials: String {
         return L10n.tr("Localizable", "login.invalidCredentials")

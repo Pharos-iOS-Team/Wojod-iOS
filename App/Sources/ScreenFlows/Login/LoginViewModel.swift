@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
+import SwiftyUserDefaults
 
 class LoginViewModel {
     private var model = LoginModel()
@@ -35,6 +36,31 @@ class LoginViewModel {
             default:
                 return
             }
+        }
+    }
+
+    func isGuestModeEnabled(completion: @escaping (Bool) -> Void) {
+        model.guestMode { result in
+            switch result {
+            case .success(let whiteLabelVersion as VersionResponse):
+                let isGuestModeEnabled = whiteLabelVersion.version == "1.0.0"
+                completion(isGuestModeEnabled)
+            case .failure(let error):
+                self.errorHandler?(error)
+                completion(false)
+            default:
+                completion(false)
+            }
+        }
+    }
+
+    func continueAsAGuest() {
+        showIndicator?()
+        Defaults[\.isGuestModeEnabled] = true
+        User.shared.setLoggedIn(token: "a4IR4BjdJfMb0Rpn-dJ_JA", client: "jSU8ziSjawbDRFQTfVoBAg", uid: "01206425318")
+        if let user = model.loadLoginResponse() {
+            self.setUserData(user: user, studentUser: nil)
+            self.successHandler?(user)
         }
     }
 

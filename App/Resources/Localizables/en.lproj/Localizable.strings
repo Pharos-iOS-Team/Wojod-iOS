@@ -20,6 +20,8 @@ Sign in to continue";
 
 "login.signIn" = "Sign in";
 
+"login.guestMode" = "Continue as a guest";
+
 "login.mobileNumber" = "Mobile number";
 
 "login.phoneNumber" = "Phone number";
