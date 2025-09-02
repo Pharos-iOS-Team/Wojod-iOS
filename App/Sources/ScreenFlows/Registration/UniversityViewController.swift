@@ -25,42 +25,54 @@ class UniversityViewController: UIViewController {
         didSet {
             studentButton.setTitle(L10n.Signup.UniversityScreen.student)
             studentButton.layer.cornerRadius = 5
+            studentButton.isEnabled = Environment.appName != .royalMedicine
         }
     }
     @IBOutlet private var graduateButton: UIButton! {
         didSet {
             graduateButton.setTitle(L10n.Signup.UniversityScreen.graduate)
             graduateButton.layer.cornerRadius = 5
+            graduateButton.isHidden = Environment.appName == .royalMedicine
         }
     }
     @IBOutlet private var universityTextField: NoCutPasteTextField! {
         didSet {
             universityTextField.placeholder = L10n.Signup.UniversityScreen.university
-            universityTextField.addRightIcon(Images.path.image, width: 10, height: 6)
-            universityTextField.inputView = universityPickerView
             universityTextField.isMandatoryTextField = true
             universityTextField.semanticContentAttribute = Language.semanticContent
             universityTextField.textAlignment = Language.textAlignment
+            if Environment.appName == .royalMedicine {
+                universityTextField.isEnabled = false
+                universityTextField.backgroundColor = .gray.withAlphaComponent(0.15)
+            } else {
+                universityTextField.addRightIcon(Images.path.image, width: 10, height: 6)
+                universityTextField.inputView = universityPickerView
+            }
         }
     }
     @IBOutlet private var fieldTextField: NoCutPasteTextField! {
         didSet {
             fieldTextField.placeholder = L10n.Signup.UniversityScreen.field
-            fieldTextField.addRightIcon(Images.path.image, width: 10, height: 6)
-            fieldTextField.inputView = fieldPickerView
             fieldTextField.isMandatoryTextField = true
             fieldTextField.semanticContentAttribute = Language.semanticContent
             fieldTextField.textAlignment = Language.textAlignment
+            if Environment.appName == .royalMedicine {
+                fieldTextField.isEnabled = false
+                fieldTextField.backgroundColor = .gray.withAlphaComponent(0.15)
+            } else {
+                fieldTextField.addRightIcon(Images.path.image, width: 10, height: 6)
+                fieldTextField.inputView = fieldPickerView
+            }
         }
     }
     @IBOutlet private var yearTextField: NoCutPasteTextField! {
         didSet {
             yearTextField.placeholder = L10n.Signup.UniversityScreen.year
-            yearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
-            yearTextField.inputView = yearPickerView
             yearTextField.isMandatoryTextField = true
             yearTextField.semanticContentAttribute = Language.semanticContent
             yearTextField.textAlignment = Language.textAlignment
+            yearTextField.addRightIcon(Images.path.image, width: 10, height: 6)
+            yearTextField.inputView = yearPickerView
         }
     }
     @IBOutlet private var wrongCredentialsImageView: UIImageView! {
@@ -103,7 +115,7 @@ class UniversityViewController: UIViewController {
         viewModel = RegistrationViewModel()
         configureSemanticAttribute()
         configureView()
-        retrieveUniversities()
+        handleFields()
         configurePickerViews()
         configurePickerFields()
         displayAlreadyEnteredDataBeforeUserTapsBackIfAny()
@@ -224,6 +236,21 @@ class UniversityViewController: UIViewController {
         }
     }
 
+    private func handleFields() {
+        if Environment.appName == .royalMedicine {
+            User.shared.divisionId = DivisionsModel.facultyOfMedicine.key
+            User.shared.divisionName = DivisionsModel.facultyOfMedicine.value
+            universityTextField.text = DivisionsModel.facultyOfMedicine.value
+
+            User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
+            User.shared.specializationName = SpecializationsModel.facultyOfMedicine.value
+            fieldTextField.text = SpecializationsModel.facultyOfMedicine.value
+            self.retrieveYears()
+        } else {
+            retrieveUniversities()
+        }
+    }
+
     private func retrieveUniversities() {
         viewModel?.loadAcademicDivisions(for: self.academicLevel, in: 0) { universities in
             self.universities = universities ?? []
@@ -255,16 +282,20 @@ class UniversityViewController: UIViewController {
         viewModel?.loadBatches(for: User.shared.divisionId ?? universities[0].key ?? 0) { years in
             self.years = years ?? []
             self.selectedYearIndex = 0
-            self.yearTextField.text = years?[0].value
-            User.shared.batch = years?[0].key
-            User.shared.batchName = years?[0].value
+            if let defaultYear = years?.first {
+                self.yearTextField.text = defaultYear.value
+                User.shared.batch = defaultYear.key
+                User.shared.batchName = defaultYear.value
+            }
         }
     }
 
     private func selectDefaultUniversity() {
-        User.shared.divisionId = universities[0].key
-        User.shared.divisionName = universities[0].value
-        universityTextField.text = universities[0].value
+        if let defaultUniversity = universities.first {
+            User.shared.divisionId = defaultUniversity.key
+            User.shared.divisionName = defaultUniversity.value
+            universityTextField.text = defaultUniversity.value
+        }
     }
 
     @objc
@@ -322,8 +353,14 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text == L10n.Signup.School.none ? nil : fieldTextField.text
-        User.shared.specializationId = viewModel?.specializationsIDs.isEmpty ?? true || fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
-        User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
+        if Environment.appName == .royalMedicine {
+            User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
+        } else {
+            User.shared.specializationId = fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
+        }
+        if !(viewModel?.batchesIDs.isEmpty ?? true) {
+            User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
+        }
         User.shared.batchName = yearTextField.text
     }
 

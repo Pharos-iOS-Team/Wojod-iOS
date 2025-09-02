@@ -21,6 +21,7 @@ internal struct UserSignupRequest: Codable {
         case batchID = "batch_id"
         case specializationID = "specialization_id"
         case avatarID = "avatar_id"
+        case isRoyalMedicineStudent = "is_royal_medicine_student"
     }
 
     internal let name: String?
@@ -40,4 +41,5 @@ internal struct UserSignupRequest: Codable {
     internal let batchID: Int?
     internal let specializationID: Int?
     internal let avatarID: Int?
+    internal let isRoyalMedicineStudent: Bool?
 }

@@ -147,6 +147,15 @@ class ProfileViewModel {
             let countries = response?.data
             self.countries = countries ?? [KeyName]()
             self.reloadCountriesCell?()
+            if let matchedCountry = self.countries.first(where: { $0.name == User.shared.country }) {
+                self.initializeCities(for: matchedCountry.key)
+            }
+        }
+    }
+
+    private func initializeCities(for selectedCountry: String) {
+        NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
+            self.cities = response?.data ?? [KeyName]()
         }
     }
 
@@ -335,6 +344,8 @@ class ProfileViewModel {
 
     func shouldMakeTextFieldDisabled(forIndexPath index: Int) -> Bool {
         validFields[index] == .mobileNumber
+        || (validFields[index] == .division && Environment.appName == .royalMedicine)
+        || (validFields[index] == .specialization && Environment.appName == .royalMedicine)
     }
 
     func setNewPassword(oldPassword: String?, newPassword: String?, passwordConfirmation: String?) {

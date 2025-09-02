@@ -109,6 +109,13 @@ class LocationInfoViewController: UIViewController {
         self.dismiss(animated: false)
     }
 
+    @IBAction private func didTapOnNext(_ sender: Any) {
+        if Environment.appName == .royalMedicine {
+            performSegue(withIdentifier: "goToUniversity", sender: self)
+        } else {
+            performSegue(withIdentifier: "goToAcademicInfo", sender: self)
+        }
+    }
     // MARK: - Private Functions
 
     private func configurePickerViews() {

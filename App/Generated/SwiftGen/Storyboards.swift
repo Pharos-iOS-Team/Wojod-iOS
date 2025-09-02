@@ -105,7 +105,11 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<Wojood.BasicInfoRegistrationViewController>(storyboard: Registration.self)
 
+    internal static let academicInfo = SceneType<Wojood.AcademicInfoViewController>(storyboard: Registration.self, identifier: "AcademicInfo")
+
     internal static let locationInfo = SceneType<Wojood.LocationInfoViewController>(storyboard: Registration.self, identifier: "LocationInfo")
+
+    internal static let universityViewController = SceneType<Wojood.UniversityViewController>(storyboard: Registration.self, identifier: "UniversityViewController")
   }
   internal enum Settings: StoryboardType {
     internal static let storyboardName = "Settings"

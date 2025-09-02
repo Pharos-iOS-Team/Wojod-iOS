@@ -56,7 +56,7 @@
                                 <color key="textColor" name="sendButtonColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-fQ-iuP">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-fQ-iuP">
                                 <rect key="frame" x="0.0" y="778" width="414" height="50"/>
                                 <color key="backgroundColor" name="sendButtonColor"/>
                                 <constraints>
@@ -70,7 +70,7 @@
                                     <action selector="didTapFiltersButton:" destination="pCi-GB-J7N" eventType="touchUpInside" id="Dr2-ow-MOe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y76-rP-T4a">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y76-rP-T4a">
                                 <rect key="frame" x="207" y="778" width="207" height="50"/>
                                 <color key="backgroundColor" name="green"/>
                                 <state key="normal" title="Clear">
