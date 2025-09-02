@@ -49,19 +49,12 @@ class LoginModel: ModelDecodable {
         }
     }
 
-    func loadLoginResponse() -> LoginApiResponseModel? {
-        guard let url = Bundle.main.url(forResource: "login_response", withExtension: "json") else {
-            return nil
-        }
+    func loadGuestModelUserData() -> LoginApiResponseModel? {
+        guard let url = Bundle.main.url(forResource: "LoginResponse", withExtension: "json") else { return nil }
 
         do {
             let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            decoder.dateDecodingStrategy = .iso8601
-
-            let response = try decoder.decode(LoginApiResponseModel.self, from: data)
-            return response
+            return try JSONDecoder.default.decode(LoginApiResponseModel.self, from: data)
         } catch {
             return nil
         }
