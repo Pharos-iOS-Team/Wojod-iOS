@@ -11,10 +11,10 @@ class LoginViewController: UIViewController {
             submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
-    @IBOutlet private var guestModeButton: SendButton! {
+    @IBOutlet private var guestModeButton: UIButton! {
         didSet {
-          guestModeButton.setTitle(L10n.Login.guestMode)
-          guestModeButton.setImage(Images.localizedDisclosureIndicatorButton)
+            guestModeButton.setTitle(L10n.Login.guestMode)
+            guestModeButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
         }
     }
     @IBOutlet private var alertView: AlertView! {
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController {
         login()
     }
 
-    @IBAction private func continueAsAGuest(_ sender: SendButton) {
+    @IBAction private func continueAsAGuest(_ sender: UIButton) {
         viewModel?.continueAsAGuest()
     }
 

@@ -116,5 +116,6 @@ class CourseDetailsViewModel {
     func logout() {
         User.shared.setLoggedOut()
         ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+        Defaults[\.isGuestModeEnabled] = false
     }
 }

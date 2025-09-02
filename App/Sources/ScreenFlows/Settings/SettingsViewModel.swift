@@ -88,5 +88,6 @@ class SettingsViewModel {
     func logout() {
         User.shared.setLoggedOut()
         ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+        Defaults[\.isGuestModeEnabled] = false
     }
 }
