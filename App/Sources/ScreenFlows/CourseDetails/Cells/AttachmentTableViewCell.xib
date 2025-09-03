@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,6 +73,7 @@
             <connections>
                 <outlet property="attachmentImageView" destination="6u7-py-xz4" id="lE8-BA-jYo"/>
                 <outlet property="avaliabliltyLabel" destination="nMb-8t-ZKw" id="hCx-2S-wij"/>
+                <outlet property="durationAndAvailabilityStackView" destination="7yv-Z4-7DL" id="4BS-Qy-Ejr"/>
                 <outlet property="durationLabel" destination="hhH-cu-JkM" id="YSq-EQ-xgE"/>
                 <outlet property="subtitleLabel" destination="TzX-a2-qti" id="91V-ka-wZ7"/>
             </connections>

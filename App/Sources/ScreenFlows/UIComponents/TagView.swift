@@ -1,7 +1,7 @@
 // Copyright © 2022 Pharos Solutions. All rights reserved.
 
-import HandyUIKit
 import Foundation
+import HandyUIKit
 
 class UITagLabel: UIPaddingLabel {
     override init(frame: CGRect) {
