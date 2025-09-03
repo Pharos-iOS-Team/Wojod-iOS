@@ -34,11 +34,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Wojod needs to access your camera to upload images with your requests</string>
+	<string>Allow access to your camera to take photos and share them in chat.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Wojod needs to access microphone to send audio messages</string>
+	<string>Allow access to your microphone to record and send voice messages.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Wojod needs to access your photos to upload images with your requests</string>
+	<string>Allow access to your photos to share images from your library in chat.</string>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UIAppFonts</key>
