@@ -387,6 +387,8 @@
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
 		D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5070CD82E65FD5C00728D01 /* VersionResponse.swift */; };
 		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
+		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
+		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -831,7 +833,9 @@
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
 		D5070CD82E65FD5C00728D01 /* VersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionResponse.swift; sourceTree = "<group>"; };
 		D5070CDA2E65FEC900728D01 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
-		D53B5CDB2E675A4C00EBB62C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
+		D53B5CDE2E688AA800EBB62C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
@@ -1441,6 +1445,7 @@
 				38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */,
 				7723ADCB261C7339007C0B97 /* Configs */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
+				D53B5CDF2E68940400EBB62C /* AppName.swift */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
 				BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */,
@@ -1545,6 +1550,7 @@
 				38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */,
 				BC19E5C926319D5B00CFA142 /* OtpVerification.swift */,
 				BC19E5982631866700CFA142 /* Profile.swift */,
+				D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */,
 				38812C67266F9DF500CCD924 /* RelatedCoursesResponseModel.swift */,
 				778E72DE261DF9AB009D7B35 /* Result.swift */,
 				385CC0EA26601A6600A091FD /* Reviews.swift */,
@@ -2228,7 +2234,7 @@
 		D5DBC5C22E67291B00FD4034 /* Royal-Medicine */ = {
 			isa = PBXGroup;
 			children = (
-				D53B5CDB2E675A4C00EBB62C /* GoogleService-Info.plist */,
+				D53B5CDE2E688AA800EBB62C /* GoogleService-Info.plist */,
 			);
 			path = "Royal-Medicine";
 			sourceTree = "<group>";
@@ -2737,6 +2743,7 @@
 				BC18A00C266670C6001FDFFF /* ProfileTableViewHeader.swift in Sources */,
 				BC19E5992631866700CFA142 /* Profile.swift in Sources */,
 				BC18A01726667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift in Sources */,
+				D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */,
 				7723ADC7261C72E1007C0B97 /* PropertyListKeyValuePair.swift in Sources */,
 				777F3A8D26FB607E000C5DFC /* AlertData.swift in Sources */,
 				38659BDE26B6D2F900E3BFE9 /* GenericSubjectsViewModel.swift in Sources */,
@@ -2821,6 +2828,7 @@
 				38812C5E266E9CDA00CCD924 /* Subjects.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
+				D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */,
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
 				38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */,

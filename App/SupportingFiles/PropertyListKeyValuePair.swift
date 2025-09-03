@@ -2,13 +2,6 @@
 
 import Foundation
 
-enum AppName: String, Decodable {
-    case wojod = "Wojod"
-    case hassanElnaggar = "Mr. Hassan Elnaggar"
-    case perfectionInPhysics = "Perfection in Physics"
-    case royalMedicine = "Royal Medicine"
-}
-
 struct PropertyListKeyValuePair: Decodable {
     private enum CodingKeys: String, CodingKey {
         case baseUrl = "BASE_URL"

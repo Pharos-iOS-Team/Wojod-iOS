@@ -5,7 +5,7 @@ import Moya
 
 enum LoginTarget {
     case login(loginRequestModel: LoginRequestModel)
-    case guestMode
+    case guestMode(appName: String)
 }
 
 extension LoginTarget: TargetType {
@@ -31,8 +31,11 @@ extension LoginTarget: TargetType {
         switch self {
         case let .login(loginRequestModel):
             return .requestCustomJSONEncodable(loginRequestModel, encoder: JSONEncoder.default)
-        case .guestMode:
-            return .requestPlain
+        case let .guestMode(appName):
+            return .requestParameters(
+                parameters: ["app_name": appName],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 }
