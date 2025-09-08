@@ -1117,7 +1117,7 @@ internal enum L10n {
       internal static var country: String {
           return L10n.tr("Localizable", "signup.locationInfo.country")
         }
-      /// District*
+      /// District
       internal static var district: String {
           return L10n.tr("Localizable", "signup.locationInfo.district")
         }

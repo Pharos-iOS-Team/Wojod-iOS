@@ -145,7 +145,7 @@ No worries!";
 
 "signup.locationInfo.country" = "Country*";
 "signup.locationInfo.city" = "City*";
-"signup.locationInfo.district" = "District*";
+"signup.locationInfo.district" = "District";
 "signup.locationInfo.address" = "Address";
 
 "signup.academicInfo.school" = "SCHOOL";
