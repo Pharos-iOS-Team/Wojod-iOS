@@ -147,15 +147,15 @@ class UniversityViewController: UIViewController {
         fieldPickerView.items = { self.fields.compactMap { $0.value } }
         yearPickerView.items = { self.years.compactMap { $0.value } }
 
-        universityTextField.keyboardToolbar.doneBarButton.setTarget(
+        universityTextField.iq.toolbar.doneBarButton.setTarget(
             self,
             action: #selector(universityPickerDoneTapped)
         )
-        fieldTextField.keyboardToolbar.doneBarButton.setTarget(
+        fieldTextField.iq.toolbar.doneBarButton.setTarget(
             self,
             action: #selector(fieldPickerDoneTapped)
         )
-        yearTextField.keyboardToolbar.doneBarButton.setTarget(
+        yearTextField.iq.toolbar.doneBarButton.setTarget(
             self,
             action: #selector(yearPickerDoneTapped)
         )

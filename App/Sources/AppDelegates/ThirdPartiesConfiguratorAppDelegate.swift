@@ -2,6 +2,7 @@
 
 import FirebaseCore
 import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
 import UIKit
 
 class ThirdPartiesConfiguratorAppDelegate: AppDelegateType {
@@ -12,9 +13,9 @@ class ThirdPartiesConfiguratorAppDelegate: AppDelegateType {
     }
 
     private func configureIQKeyboard() {
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = L10n.Global.Actions.done
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        IQKeyboardToolbarManager.shared.isEnabled = true
         IQKeyboardManager.shared.disabledDistanceHandlingClasses = [ChatViewController.self]
     }
 

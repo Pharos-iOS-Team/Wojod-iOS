@@ -121,7 +121,7 @@ class LocationInfoViewController: UIViewController {
         countryPickerView.text = { $0 }
         cityPickerView.text = { $0 }
 
-        countryTextField .keyboardToolbar.doneBarButton.setTarget(
+      countryTextField .iq.toolbar.doneBarButton.setTarget(
             self,
             action: #selector(countriesPickerDoneTapped)
         )
@@ -131,7 +131,7 @@ class LocationInfoViewController: UIViewController {
             countryTextField.setNormalView()
         }
 
-        cityTextField.keyboardToolbar.doneBarButton.setTarget(
+      cityTextField.iq.toolbar.doneBarButton.setTarget(
             self,
             action: #selector(citiesPickerDoneTapped)
         )

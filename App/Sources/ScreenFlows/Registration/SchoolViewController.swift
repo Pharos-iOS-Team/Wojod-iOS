@@ -157,10 +157,10 @@ class SchoolViewController: UIViewController {
         academicYearPickerView.items = { self.academicYears.compactMap { $0.value } }
         fieldsPickerView.items = { self.fields.compactMap { $0.value } }
 
-        academicTypeTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
-        academicDivisionTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicDivisionPickerDoneTapped))
-        academicYearTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(academicYearPickerDoneTapped))
-        fieldTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(fieldPickerDoneTapped))
+        academicTypeTextField.iq.toolbar.doneBarButton.setTarget(self, action: #selector(academicTypePickerDoneTapped))
+        academicDivisionTextField.iq.toolbar.doneBarButton.setTarget(self, action: #selector(academicDivisionPickerDoneTapped))
+        academicYearTextField.iq.toolbar.doneBarButton.setTarget(self, action: #selector(academicYearPickerDoneTapped))
+        fieldTextField.iq.toolbar.doneBarButton.setTarget(self, action: #selector(fieldPickerDoneTapped))
     }
 
     // swiftlint:disable function_body_length
