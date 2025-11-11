@@ -7,7 +7,7 @@ class ForgotPasswordApiClient {
     let forgotPasswordProvider = MoyaProvider<ForgotPasswordTarget>()
 
     func sendMobileNumber(mobileNumber: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
-        forgotPasswordProvider.request(.sendMobileNumber(mobileNumber: mobileNumber)) { result in
+        forgotPasswordProvider.request(.sendMobileNumber(.init(mobileNumber: mobileNumber))) { result in
             switch result {
             case .success(let response):
                 completionHandler(response, nil)

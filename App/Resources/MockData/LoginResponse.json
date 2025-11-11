@@ -1,0 +1,57 @@
+{
+  "data": {
+    "address": "",
+    "avatar": {
+      "created_at": "2021-07-27T11:44:31.764+03:00",
+      "file_url": "/rails/active_storage/blobs/.../Property%201=avatar,%20Property%202=big,%20Property%203=3.jpg",
+      "id": 8,
+      "name": "1",
+      "thumbnail_url": "/rails/active_storage/representations/.../Property%201=avatar,%20Property%202=big,%20Property%203=3.jpg",
+      "updated_at": "2021-07-27T11:44:31.780+03:00"
+    },
+    "avatar_id": 8,
+    "batch_id": 25,
+    "batch_name": "Dr. Marwan",
+    "city": "ALX",
+    "city_name": "Alexandria",
+    "country": "EGY",
+    "country_name": "Egypt",
+    "devices_info": {},
+    "division_id": 7,
+    "division_name": "Dr. Marwan",
+    "education_level": 1,
+    "education_level_name": "Faculty",
+    "education_type": null,
+    "education_type_name": null,
+    "email": "guest@gmail.com",
+    "home_number": "",
+    "id": 90291,
+    "initials": "G",
+    "mobile_number": "01206425318",
+    "mobile_number2": null,
+    "name": "guest",
+    "organizations": [
+      {
+        "address": "123",
+        "id": 20,
+        "media": {},
+        "name": "Test Organization",
+        "status": "approved"
+      }
+    ],
+    "otp_code": null,
+    "parent1_phone_number": null,
+    "parent2_phone_number": null,
+    "preferences": {
+      "dark_theme": false
+    },
+    "provider": "mobile_number",
+    "region": "Alexandria",
+    "school_name": null,
+    "specialization_id": 7,
+    "specialization_name": "Dr. Marwan",
+    "test_user": false,
+    "uid": "01206425318",
+    "verified": true
+  }
+}

@@ -284,6 +284,10 @@ internal enum L10n {
   }
 
   internal enum Filters {
+    /// 2 filters
+    internal static var _2filters: String {
+        return L10n.tr("Localizable", "filters.2filters")
+      }
     /// 4 filters
     internal static var _4filters: String {
         return L10n.tr("Localizable", "filters.4filters")
@@ -391,6 +395,10 @@ internal enum L10n {
     /// Forgot password?\nNo worries!
     internal static var forgotPasswordTitle: String {
         return L10n.tr("Localizable", "login.forgotPasswordTitle")
+      }
+    /// Continue as a guest
+    internal static var guestMode: String {
+        return L10n.tr("Localizable", "login.guestMode")
       }
     /// Mobile number or password entered are not correct
     internal static var invalidCredentials: String {
@@ -1113,7 +1121,7 @@ internal enum L10n {
       internal static var country: String {
           return L10n.tr("Localizable", "signup.locationInfo.country")
         }
-      /// District*
+      /// District
       internal static var district: String {
           return L10n.tr("Localizable", "signup.locationInfo.district")
         }

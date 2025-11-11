@@ -3,6 +3,7 @@
 import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
+import SwiftyUserDefaults
 import UIKit
 import UIScrollView_InfiniteScroll
 
@@ -12,6 +13,11 @@ enum HomeMode {
 }
 
 class HomeViewController: UIViewController {
+    @IBOutlet private var notifiationButton: UIButton! {
+        didSet {
+            notifiationButton.isHidden = Defaults[\.isGuestModeEnabled]
+        }
+    }
     @IBOutlet private var helpCenterButton: UIButton! {
         didSet {
             helpCenterButton.layer.cornerRadius = UIConstants.slightCornerRadius
@@ -235,7 +241,7 @@ class HomeViewController: UIViewController {
         isFiltersSelected = true
         clearFiltersButton.isHidden = false
         filtersButton.layer.backgroundColor = Colors.green.color.cgColor
-        filtersButton.setTitle(L10n.Filters._4filters)
+        filtersButton.setTitle(Environment.appName == .royalMedicine ? L10n.Filters._2filters : L10n.Filters._4filters)
     }
 
     private func configureFiltersButtonWhenNoFilterSelected() {

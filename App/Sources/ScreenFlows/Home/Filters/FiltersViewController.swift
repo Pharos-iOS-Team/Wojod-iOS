@@ -45,7 +45,6 @@ class FiltersViewController: UIViewController {
     }
     @IBOutlet private var filterLabel: UILabel!
     @IBOutlet private var applyButton: UIButton!
-    @IBOutlet private var studentButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var studentLabel: UILabel! {
         didSet {
             studentLabel.text = L10n.Filters.school
@@ -56,6 +55,8 @@ class FiltersViewController: UIViewController {
             universityLabel.text = L10n.Filters.university
         }
     }
+    @IBOutlet private var headerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var headerView: UIView!
 
     // MARK: - Public Properties
 
@@ -95,6 +96,7 @@ class FiltersViewController: UIViewController {
         configureSelectionOfAcademicLevel()
         configureTableView()
         configureTitles()
+        handleRoyalMedicineFilters()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +142,25 @@ class FiltersViewController: UIViewController {
     }
 
     // MARK: - Private Functions
+    private func handleRoyalMedicineFilters() {
+        guard Environment.appName == .royalMedicine else { return }
+        headerViewHeightConstraint.constant = 0
+        headerView.isHidden = true
+
+        Filters.shared.academicLevel = .universityStudent
+        academicLevel = .universityStudent
+        Filters.shared.academicDivision = DivisionsModel.facultyOfMedicine
+        selectedDivision = DivisionsModel.facultyOfMedicine
+        Filters.shared.field = SpecializationsModel.facultyOfMedicine
+        selectedField = SpecializationsModel.facultyOfMedicine
+        universitySection = .academicYear
+        universitySectionTitles = [L10n.Signup.School.academicYear]
+
+        viewModel?.loadBatches(for: selectedDivision?.key ?? 0) { years in
+            self.academicYears = years ?? []
+            self.tableView.reloadData()
+        }
+    }
 
     private func configureSelectionOfAcademicLevel() {
         switch Filters.shared.academicLevel {
@@ -182,7 +203,7 @@ class FiltersViewController: UIViewController {
         universityButton.setImage(Images.boyAvatarFaded.image)
         studentButton.isHidden = true
         graduatedButton.isHidden = true
-        studentButtonHeightConstraint.constant = 0
+        headerViewHeightConstraint.constant -= 40
         fetchAcademicTypes()
     }
 
@@ -192,7 +213,7 @@ class FiltersViewController: UIViewController {
         universityButton.setImage(Images.boyAvatar.image)
         studentButton.isHidden = false
         graduatedButton.isHidden = false
-        studentButtonHeightConstraint.constant = 40
+        headerViewHeightConstraint.constant += 40
     }
 
     private func selectStudentInUniversity() {
@@ -321,56 +342,79 @@ extension FiltersViewController: UITableViewDataSource {
                 }
             }
         } else {
-            switch universitySection {
-            case .university:
-                cell.configureForUniveristy(title: L10n.Filters.university, filters: universities.compactMap { $0.value }, section: .university)
-                if let univeristy = Filters.shared.academicDivision, Filters.shared.isDataBeingRetrieved {
-                    cell.selectOldEntry(for: universities.firstIndex { $0.key == univeristy.key })
-                    viewModel?.loadSpecializations(for: univeristy.key ?? 0) { fields in
-                        self.fields = fields ?? []
-                        if self.universitySection == .university {
-                            self.universitySection = .field
-                            self.universitySectionTitles.append(L10n.Signup.School.field)
-                            self.tableView.beginUpdates()
-                            self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
-                            self.tableView.endUpdates()
+            if Environment.appName == .royalMedicine {
+                switch universitySection {
+                case .academicYear:
+                    cell.configureForUniveristy(title: L10n.Signup.School.academicYear,
+                                                filters: academicYears.compactMap { $0.value },
+                                                section: .academicYear)
+                    if let academicYear = Filters.shared.academicYear, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: academicYears.firstIndex { $0.key == academicYear.key })
+                    }
+                    
+                case .subjects:
+                    cell.configureForUniveristy(title: L10n.Filters.subject,
+                                                filters: universitySubjects.compactMap { $0.name },
+                                                section: .subjects)
+                    if let subject = Filters.shared.subject, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: universitySubjects.firstIndex { $0.id == subject.id })
+                    }
+                    
+                default:
+                    cell.configure(title: "", filters: [], section: .academicType)
+                }
+            } else {
+                switch universitySection {
+                case .university:
+                    cell.configureForUniveristy(title: L10n.Filters.university, filters: universities.compactMap { $0.value }, section: .university)
+                    if let univeristy = Filters.shared.academicDivision, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: universities.firstIndex { $0.key == univeristy.key })
+                        viewModel?.loadSpecializations(for: univeristy.key ?? 0) { fields in
+                            self.fields = fields ?? []
+                            if self.universitySection == .university {
+                                self.universitySection = .field
+                                self.universitySectionTitles.append(L10n.Signup.School.field)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
                         }
                     }
-                }
-            case .field:
-                cell.configureForUniveristy(title: L10n.Signup.School.field, filters: fields.compactMap { $0.value }, section: .field)
-                if let field = Filters.shared.field, Filters.shared.isDataBeingRetrieved {
-                    cell.selectOldEntry(for: fields.firstIndex { $0.key == field.key })
-                    viewModel?.loadBatches(for: Filters.shared.academicDivision?.key ?? 0) { academicYears in
-                        self.academicYears = academicYears ?? []
-                        if self.universitySection == .field {
-                            self.universitySection = .academicYear
-                            self.universitySectionTitles.append(L10n.Signup.School.academicYear)
-                            self.tableView.beginUpdates()
-                            self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                            self.tableView.endUpdates()
+                case .field:
+                    cell.configureForUniveristy(title: L10n.Signup.School.field, filters: fields.compactMap { $0.value }, section: .field)
+                    if let field = Filters.shared.field, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: fields.firstIndex { $0.key == field.key })
+                        viewModel?.loadBatches(for: Filters.shared.academicDivision?.key ?? 0) { academicYears in
+                            self.academicYears = academicYears ?? []
+                            if self.universitySection == .field {
+                                self.universitySection = .academicYear
+                                self.universitySectionTitles.append(L10n.Signup.School.academicYear)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
                         }
                     }
-                }
-            case .academicYear:
-                cell.configureForUniveristy(title: L10n.Signup.School.academicYear, filters: academicYears.compactMap { $0.value }, section: .academicYear)
-                if let academicYear = Filters.shared.academicYear, Filters.shared.isDataBeingRetrieved {
-                    cell.selectOldEntry(for: academicYears.firstIndex { $0.key == academicYear.key })
-                    viewModel?.loadSubjects(forYear: academicYear.key ?? 0) { subjects in
-                        self.universitySubjects = subjects.subjects ?? []
-                        if self.universitySection == .academicYear {
-                            self.universitySection = .subjects
-                            self.universitySectionTitles.append(L10n.Filters.subject)
-                            self.tableView.beginUpdates()
-                            self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
-                            self.tableView.endUpdates()
+                case .academicYear:
+                    cell.configureForUniveristy(title: L10n.Signup.School.academicYear, filters: academicYears.compactMap { $0.value }, section: .academicYear)
+                    if let academicYear = Filters.shared.academicYear, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: academicYears.firstIndex { $0.key == academicYear.key })
+                        viewModel?.loadSubjects(forYear: academicYear.key ?? 0) { subjects in
+                            self.universitySubjects = subjects.subjects ?? []
+                            if self.universitySection == .academicYear {
+                                self.universitySection = .subjects
+                                self.universitySectionTitles.append(L10n.Filters.subject)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
                         }
                     }
-                }
-            case .subjects:
-                cell.configureForUniveristy(title: L10n.Filters.subject, filters: universitySubjects.compactMap { $0.name }, section: .subjects)
-                if let subject = Filters.shared.subject, Filters.shared.isDataBeingRetrieved {
-                    cell.selectOldEntry(for: universitySubjects.firstIndex { $0.id == subject.id })
+                case .subjects:
+                    cell.configureForUniveristy(title: L10n.Filters.subject, filters: universitySubjects.compactMap { $0.name }, section: .subjects)
+                    if let subject = Filters.shared.subject, Filters.shared.isDataBeingRetrieved {
+                        cell.selectOldEntry(for: universitySubjects.firstIndex { $0.id == subject.id })
+                    }
                 }
             }
         }
@@ -483,98 +527,130 @@ extension FiltersViewController: SelectingFilterDelegate {
 
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
         Filters.shared.isDataBeingRetrieved = false
-        switch section {
-        case .university:
-            universitySection = .field
-            if selectedUniversity == nil {
-                selectedUniversity = universities[filterIndex]
-                Filters.shared.academicDivision = selectedUniversity
-                viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { fields in
+        
+        if Environment.appName == .royalMedicine {
+            switch section {
+            case .academicYear:
+                universitySection = .subjects
+                selectedAcademicYear = academicYears[filterIndex]
+                Filters.shared.academicYear = selectedAcademicYear
+
+                viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
                     self.tableView.performBatchUpdates {
-                        self.fields = fields ?? []
-                        if self.universitySectionTitles.contains(L10n.Signup.School.field) {
+                        self.universitySubjects = subjects.subjects ?? []
+                        if self.universitySectionTitles.contains(L10n.Filters.subject) {
                             self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
                         } else {
-                            self.universitySectionTitles.append(L10n.Signup.School.field)
+                            self.universitySectionTitles.append(L10n.Filters.subject)
                             self.tableView.beginUpdates()
                             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
                             self.tableView.endUpdates()
                         }
                     }
                 }
-            } else {
-                selectedUniversity = universities[filterIndex]
-                Filters.shared.academicDivision = selectedUniversity
-                viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { fields in
-                    self.tableView.performBatchUpdates {
-                        self.fields = fields ?? []
-                        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                
+            case .subjects:
+                shouldApplyButtonBeUnabled = true
+                selectedSubject = universitySubjects[filterIndex]
+                Filters.shared.subject = selectedSubject
+                
+            default:
+                break
+            }
+        } else {
+            switch section {
+            case .university:
+                universitySection = .field
+                if selectedUniversity == nil {
+                    selectedUniversity = universities[filterIndex]
+                    Filters.shared.academicDivision = selectedUniversity
+                    viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { fields in
+                        self.tableView.performBatchUpdates {
+                            self.fields = fields ?? []
+                            if self.universitySectionTitles.contains(L10n.Signup.School.field) {
+                                self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                            } else {
+                                self.universitySectionTitles.append(L10n.Signup.School.field)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
+                        }
+                    }
+                } else {
+                    selectedUniversity = universities[filterIndex]
+                    Filters.shared.academicDivision = selectedUniversity
+                    viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { fields in
+                        self.tableView.performBatchUpdates {
+                            self.fields = fields ?? []
+                            self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+                        }
                     }
                 }
-            }
-
-        case .field:
-            universitySection = .academicYear
-            if selectedField == nil {
-                selectedField = fields[filterIndex]
-                Filters.shared.field = selectedField
-                viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { academicYears in
-                    self.tableView.performBatchUpdates {
-                        self.academicYears = academicYears ?? []
-                        if self.universitySectionTitles.contains(L10n.Signup.School.academicYear) {
+                
+            case .field:
+                universitySection = .academicYear
+                if selectedField == nil {
+                    selectedField = fields[filterIndex]
+                    Filters.shared.field = selectedField
+                    viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { academicYears in
+                        self.tableView.performBatchUpdates {
+                            self.academicYears = academicYears ?? []
+                            if self.universitySectionTitles.contains(L10n.Signup.School.academicYear) {
+                                self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                            } else {
+                                self.universitySectionTitles.append(L10n.Signup.School.academicYear)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
+                        }
+                    }
+                } else {
+                    selectedField = fields[filterIndex]
+                    Filters.shared.field = selectedField
+                    viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { academicYears in
+                        self.tableView.performBatchUpdates {
+                            self.academicYears = academicYears ?? []
                             self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                        } else {
-                            self.universitySectionTitles.append(L10n.Signup.School.academicYear)
-                            self.tableView.beginUpdates()
-                            self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                            self.tableView.endUpdates()
                         }
                     }
                 }
-            } else {
-                selectedField = fields[filterIndex]
-                Filters.shared.field = selectedField
-                viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { academicYears in
-                    self.tableView.performBatchUpdates {
-                        self.academicYears = academicYears ?? []
-                        self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                
+            case .academicYear:
+                universitySection = .subjects
+                if selectedAcademicYear == nil {
+                    selectedAcademicYear = academicYears[filterIndex]
+                    Filters.shared.academicYear = selectedAcademicYear
+                    viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
+                        self.tableView.performBatchUpdates {
+                            self.universitySubjects = subjects.subjects ?? []
+                            if self.universitySectionTitles.contains(L10n.Filters.subject) {
+                                self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                            } else {
+                                self.universitySectionTitles.append(L10n.Filters.subject)
+                                self.tableView.beginUpdates()
+                                self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
+                        }
                     }
-                }
-            }
-
-        case .academicYear:
-            universitySection = .subjects
-            if selectedAcademicYear == nil {
-                selectedAcademicYear = academicYears[filterIndex]
-                Filters.shared.academicYear = selectedAcademicYear
-                viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
-                    self.tableView.performBatchUpdates {
-                        self.universitySubjects = subjects.subjects ?? []
-                        if self.universitySectionTitles.contains(L10n.Filters.subject) {
+                } else {
+                    selectedAcademicYear = academicYears[filterIndex]
+                    Filters.shared.academicYear = selectedAcademicYear
+                    viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
+                        self.tableView.performBatchUpdates {
+                            self.universitySubjects = subjects.subjects ?? []
                             self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
-                        } else {
-                            self.universitySectionTitles.append(L10n.Filters.subject)
-                            self.tableView.beginUpdates()
-                            self.tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
-                            self.tableView.endUpdates()
                         }
                     }
                 }
-            } else {
-                selectedAcademicYear = academicYears[filterIndex]
-                Filters.shared.academicYear = selectedAcademicYear
-                viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { subjects in
-                    self.tableView.performBatchUpdates {
-                        self.universitySubjects = subjects.subjects ?? []
-                        self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .automatic)
-                    }
-                }
+                
+            case .subjects:
+                shouldApplyButtonBeUnabled = true
+                selectedSubject = universitySubjects[filterIndex]
+                Filters.shared.subject = selectedSubject
             }
-
-        case .subjects:
-            shouldApplyButtonBeUnabled = true
-            selectedSubject = universitySubjects[filterIndex]
-            Filters.shared.subject = selectedSubject
         }
     }
 }

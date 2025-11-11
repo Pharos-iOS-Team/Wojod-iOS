@@ -20,6 +20,8 @@
 
 "login.signIn" = "تسجيل الدخول";
 
+"login.guestMode" = "متابعة كضيف";
+
 "login.mobileNumber" = "رقم الهاتف";
 
 "login.phoneNumber" = "رقم الهاتف";
@@ -143,7 +145,7 @@
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";
-"signup.locationInfo.district" = "المنطقة*";
+"signup.locationInfo.district" = "المنطقة";
 "signup.locationInfo.address" = "العنوان";
 
 "signup.academicInfo.school" = "مدرسة";
@@ -230,6 +232,7 @@
 "filters.apply" = "تأكيد";
 "filters.showFilters" = "اظهر التصنيفات";
 "filters.4filters" = "٤ تصنيفات";
+"filters.2filters" = "٢ تصنيفات";
 "filters.school" = "مدرسة";
 "filters.university" = "جامعة";
 "filters.subject" = "المادة";

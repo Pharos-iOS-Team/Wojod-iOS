@@ -16,4 +16,15 @@ class LoginApiClient {
             }
         }
     }
+
+    func guestMode(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        loginProvider.request(.guestMode(appName: Environment.appName.serverAppName)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
