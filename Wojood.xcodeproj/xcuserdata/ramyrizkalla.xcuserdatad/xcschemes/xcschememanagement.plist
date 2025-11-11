@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Hassan Elnaggar.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Perfection in Physics.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Playground (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -23,7 +33,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>42</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
@@ -44,7 +54,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>5</integer>
 		</dict>
 		<key>ReactiveSwift (Playground) 1.xcscheme</key>
 		<dict>
@@ -86,7 +96,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>39</integer>
+			<integer>6</integer>
 		</dict>
 		<key>ReactiveSwift-UIExamples (Playground) 1.xcscheme</key>
 		<dict>
@@ -128,7 +138,12 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>36</integer>
+			<integer>7</integer>
+		</dict>
+		<key>Royal Medicine.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Rx (Playground) 1.xcscheme</key>
 		<dict>
@@ -170,7 +185,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>30</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Test area (Playground) 1.xcscheme</key>
 		<dict>
@@ -254,7 +269,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Wojood.xcscheme_^#shared#^_</key>
 		<dict>

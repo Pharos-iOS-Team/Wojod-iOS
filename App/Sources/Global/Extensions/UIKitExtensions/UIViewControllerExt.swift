@@ -6,6 +6,28 @@ import Reachability
 import SwiftEntryKit
 
 extension UIViewController {
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let alert = base as? UIAlertController {
+            if let presenting = alert.presentingViewController {
+                return topViewController(base: presenting)
+            }
+        }
+        if let presented = base?.presentedViewController, (presented.isKind(of: UIAlertController.self) == false) {
+            return topViewController(base: presented)
+        }
+        return base
+    }
+}
+
+extension UIViewController {
     var rootViewCtrl: UIViewController? {
         AppDelegate.getAppDelegate()?.window?.rootViewController
     }
@@ -71,6 +93,14 @@ extension UIViewController {
             primaryButtonCompletionHandler: primaryButtonCompletionHandler
         )
         return appAlertViewController
+    }
+    
+    func showConfirmAlert(title: String, message: String, confirmButtonTitle: String, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: confirmButtonTitle, style: .default, handler: handler)
+        let cancelAction = UIAlertAction(title: L10n.Global.Actions.cancel, style: .cancel)
+        alertController.addActions([confirmAction, cancelAction])
+        present(alertController, animated: true)
     }
 }
 

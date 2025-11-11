@@ -20,6 +20,8 @@
 
 "login.signIn" = "تسجيل الدخول";
 
+"login.guestMode" = "متابعة كضيف";
+
 "login.mobileNumber" = "رقم الهاتف";
 
 "login.phoneNumber" = "رقم الهاتف";
@@ -127,6 +129,8 @@
 
 "profile.save" = "حفظ";
 
+"profile.delete_confirmation" = "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء";
+
 // MARK: - Registration
 
 "signup.basicInfo.mandatoryFieldsHint" = "";
@@ -141,7 +145,7 @@
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";
-"signup.locationInfo.district" = "المنطقة*";
+"signup.locationInfo.district" = "المنطقة";
 "signup.locationInfo.address" = "العنوان";
 
 "signup.academicInfo.school" = "مدرسة";
@@ -180,6 +184,9 @@
 "courseDetails.main.cancelBooking" = "إلغاء الحجز";
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
 "courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";
+"courseDetails.main.videoPlaybackIssue" = "يوجد مشكلة في تشغيل الفيديو. من فضلك تواصل مع الدعم الفنى 01101005306 - 01101005308";
+"courseDetails.main.noLongerAvaliable" = "لم يعد متاح";
+"courseDetails.main.avaliableFor" = "متاح حتي: %@ ايام";
 
 "courseDetails.receipt.receiptNumber" = "رقم الإيصال";
 "courseDetails.receipt.customerName" = "اسم العميل";
@@ -225,6 +232,7 @@
 "filters.apply" = "تأكيد";
 "filters.showFilters" = "اظهر التصنيفات";
 "filters.4filters" = "٤ تصنيفات";
+"filters.2filters" = "٢ تصنيفات";
 "filters.school" = "مدرسة";
 "filters.university" = "جامعة";
 "filters.subject" = "المادة";

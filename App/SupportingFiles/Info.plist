@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>APP_DISPLAY_NAME</key>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Wojod</string>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>$(APP_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CHAT_BASE_URL</key>
@@ -34,11 +36,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Wojod needs to access your camera to upload images with your requests</string>
+	<string>Allow access to your camera to take photos and share them in chat.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Wojod needs to access microphone to send audio messages</string>
+	<string>Allow access to your microphone to record and send voice messages.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Wojod needs to access your photos to upload images with your requests</string>
+	<string>Allow access to your photos to share images from your library in chat.</string>
 	<key>ROOT_URL</key>
 	<string>$(ROOT_URL)</string>
 	<key>UIAppFonts</key>

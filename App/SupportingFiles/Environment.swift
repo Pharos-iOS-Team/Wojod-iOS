@@ -20,6 +20,10 @@ enum Environment {
     static let chatBaseURLString: String = {
         return propertyListKeyValuePair.chatBaseUrl
     }()
+    
+    static let appName: AppName = {
+        return AppName.init(rawValue: propertyListKeyValuePair.appName) ?? .wojod
+    }()
 
     static var imageUrl: (String) -> URL = { imagePath in
         guard let url = URL(string: "\(baseURLString)\(imagePath)") else { fatalError("Image URL is invalid") }

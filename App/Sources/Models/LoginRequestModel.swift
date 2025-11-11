@@ -6,4 +6,6 @@ struct LoginRequestModel: Encodable {
     var mobileNumber: String
     var password: String
     var locale: String = Language.currentLanguage.rawValue
+    var isRoyalMedicineStudent: Bool = Environment.appName == .royalMedicine
+    var deviceId: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
 }

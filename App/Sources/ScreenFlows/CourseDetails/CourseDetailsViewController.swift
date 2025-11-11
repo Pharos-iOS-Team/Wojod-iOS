@@ -87,7 +87,7 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - Public Properties
 
     var course: Course!
-    var hideViews: Bool?
+    var hideViews: Bool = false
     var teacherName: String?
     var teacherID: Int?
 
@@ -180,25 +180,35 @@ class CourseDetailsViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
-        switch state {
-        case .normal:
-            bookCourse()
-
-        case .pending:
-            blurView()
-            displayConfirmCancelBooking()
-
-        case .booked:
-            blurView()
-            displayReviewCoursePopup()
-
-        default:
-            return
+        if viewModel?.isGuestModeEnabled() ?? false {
+            showLoadingIndicator()
+            viewModel?.logout()
+        } else {
+            switch state {
+            case .normal:
+                bookCourse()
+                
+            case .pending:
+                blurView()
+                displayConfirmCancelBooking()
+                
+            case .booked:
+                blurView()
+                displayReviewCoursePopup()
+                
+            default:
+                return
+            }
         }
     }
 
     @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
-        QRCodeActionSheet()
+        if viewModel?.isGuestModeEnabled() ?? false {
+            showLoadingIndicator()
+            viewModel?.logout()
+        } else {
+            QRCodeActionSheet()
+        }
     }
 
     // MARK: - Private Functions
@@ -304,6 +314,10 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func handleAttachmentsExpantion(section: Int) {
+        guard !lessonsList[section].locked else {
+            showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.warning, message: lessonsList[section].lockMessage)
+            return 
+        }
         if course?.reservationState == "approved" {
             if expandedSections.contains(section) {
                 if let index = expandedSections.firstIndex(of: section) {
@@ -481,6 +495,7 @@ class CourseDetailsViewController: UIViewController {
         } else if let video = attachment as? Video {
             cell?.setSubtitleLabel(video.title)
             cell?.setDuration(video.duration)
+            cell?.setAvaliablity(video.daysRemaining)
             if !(video.link?.isEmpty ?? true) {
                 cell?.setAttachmentImageView(Images.link.image)
             } else {
@@ -703,7 +718,7 @@ class CourseDetailsViewController: UIViewController {
     private func loadCourseDetails() {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course.course
-            self.hideViews = course.hideViews
+            self.hideViews = course.hideViews ?? false
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
@@ -883,10 +898,14 @@ extension CourseDetailsViewController: UITableViewDelegate {
             doesContainAttachments:
                 doesLessonContainAttachments[section] ?? false
         )
-        if expandedSections.contains(section) {
-            view?.setImageOfButton(Images.collapse.image)
+        if lessonsList[section].locked {
+            view?.setImageOfButton(Images.lock.image)
         } else {
-            view?.setImageOfButton(Images.expand.image)
+            if expandedSections.contains(section) {
+                view?.setImageOfButton(Images.collapse.image)
+            } else {
+                view?.setImageOfButton(Images.expand.image)
+            }
         }
         return view
     }
@@ -904,6 +923,10 @@ extension CourseDetailsViewController: UITableViewDelegate {
         if activeScreen == .materials {
             switch MaterialsSections(rawValue: indexPath.section) {
             case .videos:
+                guard let video =  materials?.videos?[indexPath.row], !video.locked else {
+                    showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.warning, message: materials?.videos?[indexPath.row].lockMessage ?? "")
+                    return 
+                }
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
                         if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
@@ -988,6 +1011,10 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return
                 }
             } else if let video = attachment as? Video {
+                guard !video.locked else {
+                    showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.warning, message: video.lockMessage ?? "")
+                    return 
+                }
                 if let url = URL(string: video.link ?? "") {
                     if video.link?.contains("youtu.be") ?? false || video.link?.contains("youtube") ?? false {
                         let headerview = tableView.tableHeaderView as? CourseDetailsInfoHeaderView
@@ -1085,9 +1112,10 @@ extension CourseDetailsViewController: AssessmentDetailsDelegate {
 extension CourseDetailsViewController {
     func fetchAndPlayVideo(viewsCount: Int, video: Video) {
         guard viewsCount > .zero else {
+            let errorMessage = hideViews ? L10n.CourseDetails.Main.videoPlaybackIssue : L10n.CourseDetails.Main.notEnoughViews
             alertHandler?.showInformationAlert(
                 title: L10n.Global.Titles.error,
-                message: L10n.CourseDetails.Main.notEnoughViews
+                message: errorMessage
             )
             return
         }
@@ -1095,7 +1123,7 @@ extension CourseDetailsViewController {
         viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
             guard let self else { return }
 
-            if let hideViews = hideViews, hideViews {
+            if hideViews {
                 showLoadingIndicator()
                 presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
             } else {

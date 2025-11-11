@@ -7,7 +7,7 @@ class ProfileViewController: UIViewController {
     enum Constants {
         static let tableViewCellHeight: CGFloat = 70
         static let tableViewHeaderHeight: CGFloat = 225
-        static let tableViewLogoutCellHeight: CGFloat = 130
+        static let tableViewLogoutCellHeight: CGFloat = 200
     }
 
     @IBOutlet private var profileTableView: UITableView! {

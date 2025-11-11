@@ -20,6 +20,8 @@ Sign in to continue";
 
 "login.signIn" = "Sign in";
 
+"login.guestMode" = "Continue as a guest";
+
 "login.mobileNumber" = "Mobile number";
 
 "login.phoneNumber" = "Phone number";
@@ -127,6 +129,8 @@ No worries!";
 
 "profile.save" = "Save";
 
+"profile.delete_confirmation" = "Are you sure you want to delete your account? This cannot be undone";
+
 // MARK: - Registration
 
 "signup.basicInfo.mandatoryFieldsHint" = "* Cells with asterisks must be filled.";
@@ -141,7 +145,7 @@ No worries!";
 
 "signup.locationInfo.country" = "Country*";
 "signup.locationInfo.city" = "City*";
-"signup.locationInfo.district" = "District*";
+"signup.locationInfo.district" = "District";
 "signup.locationInfo.address" = "Address";
 
 "signup.academicInfo.school" = "SCHOOL";
@@ -181,6 +185,10 @@ No worries!";
 "courseDetails.main.cancelBooking" = "Cancel Booking";
 "courseDetails.main.reviewCourse" = "Review Course";
 "courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
+"courseDetails.main.videoPlaybackIssue" = "There is an issue with video playback. Please our contact technical support 01101005306 - 01101005308";
+"courseDetails.main.noLongerAvaliable" = "No Longer Available";
+"courseDetails.main.avaliableFor" = "Available for: %@ days";
+
 
 "courseDetails.receipt.receiptNumber" = "Receipt Number";
 "courseDetails.receipt.customerName" = "Customer Name";
@@ -227,6 +235,7 @@ No worries!";
 "filters.apply" = "Apply";
 "filters.showFilters" = "Show Filters";
 "filters.4filters" = "4 filters";
+"filters.2filters" = "2 filters";
 "filters.school" = "School";
 "filters.university" = "University";
 "filters.subject" = "Subject";

@@ -55,7 +55,6 @@ class LocationInfoViewController: UIViewController {
     @IBOutlet private var districtTextField: NoCutPasteTextField! {
         didSet {
             districtTextField.placeholder = L10n.Signup.LocationInfo.district
-            districtTextField.isMandatoryTextField = true
             districtTextField.semanticContentAttribute = Language.semanticContent
             districtTextField.textAlignment = Language.textAlignment
         }
@@ -72,11 +71,7 @@ class LocationInfoViewController: UIViewController {
             backButton.setImage(Images.localizedBackButton)
         }
     }
-    @IBOutlet private var nextButton: SendButton! {
-        didSet {
-            nextButton.isEnabled = false
-        }
-    }
+    @IBOutlet private var nextButton: SendButton!
 
     // MARK: - Private Properties
 
@@ -105,7 +100,6 @@ class LocationInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideWrongCredentials()
-        nextButton.backgroundColor = Colors.darkGreyColor.color
     }
 
     // MARK: - IBActions
@@ -115,6 +109,13 @@ class LocationInfoViewController: UIViewController {
         self.dismiss(animated: false)
     }
 
+    @IBAction private func didTapOnNext(_ sender: Any) {
+        if Environment.appName == .royalMedicine {
+            performSegue(withIdentifier: "goToUniversity", sender: self)
+        } else {
+            performSegue(withIdentifier: "goToAcademicInfo", sender: self)
+        }
+    }
     // MARK: - Private Functions
 
     private func configurePickerViews() {
@@ -209,9 +210,9 @@ class LocationInfoViewController: UIViewController {
 
     private func isMandatoryFieldsFilled() -> Bool {
         if cities.isEmpty {
-            return !countryTextField.isEmpty && !districtTextField.isEmpty
+            return !countryTextField.isEmpty
         } else {
-            return !countryTextField.isEmpty && !cityTextField.isEmpty && !districtTextField.isEmpty
+            return !countryTextField.isEmpty && !cityTextField.isEmpty
         }
     }
 
@@ -221,9 +222,6 @@ class LocationInfoViewController: UIViewController {
         }
         if cityTextField.isEmpty {
             cityTextField.setErrorView()
-        }
-        if districtTextField.isEmpty {
-            districtTextField.setErrorView()
         }
     }
 

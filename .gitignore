@@ -70,3 +70,6 @@ Pods/
 Carthage/Checkouts
 Carthage/Build/
 Carthage/Checkouts/
+
+
+App/Resources/Images.xcassets/Common/*

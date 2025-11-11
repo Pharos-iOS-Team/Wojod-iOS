@@ -64,8 +64,8 @@ class ProfileTableViewCell: UITableViewCell {
         profileTextField.labelText = dataModel.fieldLabel
         if dataModel.fields[dataModel.indexPath] == .academicType
             || dataModel.fields[dataModel.indexPath] == .batch
-            || dataModel.fields[dataModel.indexPath] == .division
-            || dataModel.fields[dataModel.indexPath] == .specialization
+            || (dataModel.fields[dataModel.indexPath] == .division && Environment.appName != .royalMedicine)
+            || (dataModel.fields[dataModel.indexPath] == .specialization && Environment.appName != .royalMedicine)
             || dataModel.fields[dataModel.indexPath] == .country
             || dataModel.fields[dataModel.indexPath] == .city {
             addPickerView(field: dataModel.fields[dataModel.indexPath])

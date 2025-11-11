@@ -3,6 +3,7 @@
 import Foundation
 
 struct DivisionsModel: Codable {
+    static let facultyOfMedicine = Division(key: 8, value: "Faculty of Medicine")
     var divisions: [Division]
 }
 

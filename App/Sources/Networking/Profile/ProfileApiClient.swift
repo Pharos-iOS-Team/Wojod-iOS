@@ -17,7 +17,7 @@ class ProfileApiClient {
         }
     }
 
-    func editProfile(id: String, profile: Profile, completionHandler: @escaping(Response?, MoyaError?) -> Void) {
+    func editProfile(id: String, profile: Profile, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         profileProvider.request(.editProfile(id: id, profile: profile)) { result in
             switch result {
             case .success(let response):
@@ -28,7 +28,7 @@ class ProfileApiClient {
         }
     }
 
-    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping(Response?, MoyaError?) -> Void) {
+    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         profileProvider.request(.fetchDivisions(academicLevel: academicLevel, academicType: academicType)) { result in
             switch result {
             case .success(let response):
@@ -52,6 +52,17 @@ class ProfileApiClient {
 
     func fetchSpecializations(id: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
         profileProvider.request(.fetchSpecializations(id: id)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+
+    func deleteAccount(completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        profileProvider.request(.deleteAccount) { result in
             switch result {
             case .success(let response):
                 completionHandler(response, nil)

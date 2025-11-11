@@ -42,6 +42,9 @@ struct Video: Codable {
     var duration: Int?
     var link: String?
     var viewsRemaining: Int?
+    var daysRemaining: Int? 
+    var lockMessage: String?
+    var locked: Bool
 }
 
 struct EncryptedVideoResponse: Codable {

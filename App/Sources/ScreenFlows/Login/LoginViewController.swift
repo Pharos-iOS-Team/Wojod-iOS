@@ -11,6 +11,12 @@ class LoginViewController: UIViewController {
             submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
+    @IBOutlet private var guestModeButton: UIButton! {
+        didSet {
+            guestModeButton.setTitle(L10n.Login.guestMode)
+            guestModeButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
+        }
+    }
     @IBOutlet private var alertView: AlertView! {
         didSet {
             alertView.hideAlertView()
@@ -60,11 +66,16 @@ class LoginViewController: UIViewController {
         handleLoginSuccess()
         handleErrors()
         showLoadingIndicatorHandler()
+        handleGuestMode()
     }
 
     @IBAction private func login(_ sender: SendButton) {
         alertView.hideAlertView()
         login()
+    }
+
+    @IBAction private func continueAsAGuest(_ sender: UIButton) {
+        viewModel?.continueAsAGuest()
     }
 
     @IBAction private func forgotPassword(_ sender: Any) {
@@ -82,7 +93,6 @@ class LoginViewController: UIViewController {
             password: passwordTextField.text
         )
     }
-
     private func showLoadingIndicator() {
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
@@ -108,6 +118,14 @@ class LoginViewController: UIViewController {
                 self?.alertView.message = error.message
             default:
                 self?.showError(error)
+            }
+        }
+    }
+
+    private func handleGuestMode() {
+        viewModel?.isGuestModeEnabled { isGuestModeEnabled in
+            DispatchQueue.main.async {
+                self.guestModeButton.isHidden = !isGuestModeEnabled
             }
         }
     }

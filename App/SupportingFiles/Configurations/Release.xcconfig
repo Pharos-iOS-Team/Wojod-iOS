@@ -1,8 +1,0 @@
-// Copyright © 2021 Pharos Solutions. All rights reserved.
-
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
-
-ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1.1
-BASE_URL = https:/$()/www.wojodacademy.com
-CHAT_BASE_URL = wss:/$()/www.wojodacademy.com/cable

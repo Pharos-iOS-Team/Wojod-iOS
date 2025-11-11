@@ -1,0 +1,17 @@
+// Copyright © 2025 Pharos Solutions. All rights reserved.
+
+ROOT_URL = https:/$()/www.mrhassanelnaggar.com/api/student/v1.1
+BASE_URL = https:/$()/www.mrhassanelnaggar.com
+CHAT_BASE_URL = wss:/$()/www.mrhassanelnaggar.com/cable
+
+// MARK: - Name
+
+APP_DISPLAY_NAME = Mr. Hassan Elnaggar
+
+// MARK: - Bundle Identifier
+
+PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.hassan-elnaggar
+
+// MARK: - App Version
+
+APP_VERSION = 1.0.0

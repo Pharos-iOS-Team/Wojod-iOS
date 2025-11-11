@@ -167,6 +167,10 @@ internal enum L10n {
         }
     }
     internal enum Main {
+      /// Available for: %@ days
+      internal static func avaliableFor(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "courseDetails.main.avaliableFor", String(describing: p1))
+      }
       /// Book by QR
       internal static var bookByQR: String {
           return L10n.tr("Localizable", "courseDetails.main.bookByQR")
@@ -190,6 +194,10 @@ internal enum L10n {
       /// Materials
       internal static var materials: String {
           return L10n.tr("Localizable", "courseDetails.main.materials")
+        }
+      /// No Longer Available
+      internal static var noLongerAvaliable: String {
+          return L10n.tr("Localizable", "courseDetails.main.noLongerAvaliable")
         }
       /// You have exceeded the number of views for this video
       internal static var notEnoughViews: String {
@@ -218,6 +226,10 @@ internal enum L10n {
       /// Please Select an Option
       internal static var selectAnOption: String {
           return L10n.tr("Localizable", "courseDetails.main.selectAnOption")
+        }
+      /// There is an issue with video playback. Please our contact technical support 01101005306 - 01101005308
+      internal static var videoPlaybackIssue: String {
+          return L10n.tr("Localizable", "courseDetails.main.videoPlaybackIssue")
         }
     }
     internal enum Receipt {
@@ -272,6 +284,10 @@ internal enum L10n {
   }
 
   internal enum Filters {
+    /// 2 filters
+    internal static var _2filters: String {
+        return L10n.tr("Localizable", "filters.2filters")
+      }
     /// 4 filters
     internal static var _4filters: String {
         return L10n.tr("Localizable", "filters.4filters")
@@ -379,6 +395,10 @@ internal enum L10n {
     /// Forgot password?\nNo worries!
     internal static var forgotPasswordTitle: String {
         return L10n.tr("Localizable", "login.forgotPasswordTitle")
+      }
+    /// Continue as a guest
+    internal static var guestMode: String {
+        return L10n.tr("Localizable", "login.guestMode")
       }
     /// Mobile number or password entered are not correct
     internal static var invalidCredentials: String {
@@ -507,6 +527,10 @@ internal enum L10n {
     /// Country
     internal static var country: String {
         return L10n.tr("Localizable", "profile.country")
+      }
+    /// Are you sure you want to delete your account? This cannot be undone
+    internal static var deleteConfirmation: String {
+        return L10n.tr("Localizable", "profile.delete_confirmation")
       }
     /// Division
     internal static var division: String {
@@ -1097,7 +1121,7 @@ internal enum L10n {
       internal static var country: String {
           return L10n.tr("Localizable", "signup.locationInfo.country")
         }
-      /// District*
+      /// District
       internal static var district: String {
           return L10n.tr("Localizable", "signup.locationInfo.district")
         }

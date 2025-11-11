@@ -43,7 +43,7 @@ class AvatarsViewController: UIViewController {
     private var viewModel: RegistrationViewModel?
     private var avatars: [Avatar] = []
     private var previouslySelectedAvatarIndexPath: IndexPath?
-    private var sharedUser = User.shared.self
+    private var sharedUser = User.shared
     private var loadingHud: JGProgressHUD?
 
     // MARK: - Lifecycle
@@ -96,6 +96,7 @@ class AvatarsViewController: UIViewController {
 
     // swiftlint:disable function_body_length
     private func signup() {
+        // TODO: add white abel flag , wfen el division id???? uni
         loadingIndicator.startAnimating()
         let user = UserSignupRequest(
             name: sharedUser.name,
@@ -114,7 +115,8 @@ class AvatarsViewController: UIViewController {
             schoolName: sharedUser.schoolName,
             batchID: sharedUser.batch,
             specializationID: sharedUser.specializationId,
-            avatarID: sharedUser.avatar?.id
+            avatarID: sharedUser.avatar?.id,
+            isRoyalMedicineStudent: Environment.appName == .royalMedicine
         )
         viewModel?.signUp(user: user) { _, error in
             self.loadingIndicator.stopAnimating()

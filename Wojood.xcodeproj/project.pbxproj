@@ -140,7 +140,6 @@
 		38812C6D266F9E3900CCD924 /* TeacherCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38812C6C266F9E3800CCD924 /* TeacherCourse.swift */; };
 		388AA9A6269EF6BF00C61C0D /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AA9A5269EF6BF00C61C0D /* HomeTableViewHeader.swift */; };
 		388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388AA9AA269EF6D300C61C0D /* HomeTableViewHeader.xib */; };
-		3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */; };
 		3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898E4E8265E572E00295A43 /* UIConstants.swift */; };
 		38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */; };
 		38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B03551265B9EF200C24479 /* NotificationsViewController.swift */; };
@@ -172,11 +171,11 @@
 		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
+		7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7719A08B2E251108004541E6 /* JGProgressHUD */; };
 		7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACDA261C5E69007C0B97 /* AppDelegate.swift */; };
 		7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE3261C5E6B007C0B97 /* Images.xcassets */; };
 		7723ACE7261C5E6B007C0B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7723ACE5261C5E6B007C0B97 /* LaunchScreen.storyboard */; };
 		7723ACF2261C5E6C007C0B97 /* WojoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACF1261C5E6C007C0B97 /* WojoodTests.swift */; };
-		7723ACFD261C5E6C007C0B97 /* WojoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */; };
 		7723AD20261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1A261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift */; };
 		7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1B261C6134007C0B97 /* CompositeAppDelegate.swift */; };
 		7723AD22261C6134007C0B97 /* ReachabilityAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723AD1C261C6134007C0B97 /* ReachabilityAppDelegate.swift */; };
@@ -310,7 +309,6 @@
 		BC3424262D6E208E005E26DE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424252D6E208E005E26DE /* FirebaseCore */; };
 		BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424272D6E208E005E26DE /* FirebaseCrashlytics */; };
 		BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424292D6E208E005E26DE /* FirebaseMessaging */; };
-		BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BC34242D2D6E2175005E26DE /* JGProgressHUD */; };
 		BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = BC3424312D6E2D13005E26DE /* AlamofireImage */; };
 		BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E62D64E6790038A9F1 /* SkeletonView */; };
 		BC39F5EA2D64E6F30038A9F1 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = BC39F5E92D64E6F30038A9F1 /* Starscream */; };
@@ -387,6 +385,10 @@
 		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
 		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
+		D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5070CD82E65FD5C00728D01 /* VersionResponse.swift */; };
+		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
+		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
+		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -416,13 +418,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		7723ACEE261C5E6C007C0B97 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7723ACCF261C5E68007C0B97 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7723ACD6261C5E69007C0B97;
-			remoteInfo = Wojood;
-		};
-		7723ACF9261C5E6C007C0B97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7723ACCF261C5E68007C0B97 /* Project object */;
 			proxyType = 1;
@@ -608,14 +603,14 @@
 		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyView.xib; sourceTree = "<group>"; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
+		77135AAC2E46C1BE0032884F /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
+		77135ABC2E4932E80032884F /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		7723ACDA261C5E69007C0B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7723ACE3261C5E6B007C0B97 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7723ACE6261C5E6B007C0B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7723ACE8261C5E6B007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7723ACF1261C5E6C007C0B97 /* WojoodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WojoodTests.swift; sourceTree = "<group>"; };
 		7723ACF3261C5E6C007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WojoodUITests.swift; sourceTree = "<group>"; };
-		7723ACFE261C5E6C007C0B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7723AD1A261C6134007C0B97 /* NotificationConfigurationAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationAppDelegate.swift; sourceTree = "<group>"; };
 		7723AD1B261C6134007C0B97 /* CompositeAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeAppDelegate.swift; sourceTree = "<group>"; };
 		7723AD1C261C6134007C0B97 /* ReachabilityAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityAppDelegate.swift; sourceTree = "<group>"; };
@@ -649,9 +644,25 @@
 		773DD40927A34EFF00421524 /* HomeEmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyStateDelegate.swift; sourceTree = "<group>"; };
 		7744F6C62656741800F429F5 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		7744F6CB265689DD00F429F5 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		775C319D2E30E69F009D7722 /* Hassan-Elnaggar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Hassan-Elnaggar.xcassets"; sourceTree = "<group>"; };
+		775C31A02E30ED92009D7722 /* Release.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Release.xcassets; sourceTree = "<group>"; };
+		775C31A22E30ED9E009D7722 /* Debug.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Debug.xcassets; sourceTree = "<group>"; };
+		776C79FD2E7CDD9C00B04082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
+		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7788873A2E46AD8D0027D5D9 /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
+		7788873C2E46AD8D0027D5D9 /* changelog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changelog.swift; sourceTree = "<group>"; };
+		7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = create_release_branch.rb; sourceTree = "<group>"; };
+		7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = prepare_release_scripts.rb; sourceTree = "<group>"; };
+		778887402E46AD8D0027D5D9 /* version.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = version.rb; sourceTree = "<group>"; };
+		778887422E46ADAA0027D5D9 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		778E7236261DC2D3009D7B35 /* UICollectionViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
 		778E7237261DC2D3009D7B35 /* ArrayExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
 		778E7239261DC2D3009D7B35 /* UILabelExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExt.swift; sourceTree = "<group>"; };
@@ -692,11 +703,16 @@
 		77B56AB727721A21009E47D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		77C88E2727722BC200E39AA0 /* Wojood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wojood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C88E2827722BC200E39AA0 /* WojoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WojoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D013C926A0F700006EA602 /* SubjectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubjectCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CA26A0F701006EA602 /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
 		77D013CB26A0F701006EA602 /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
 		77D013CC26A0F701006EA602 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Perfection-in-Physics.xcconfig"; sourceTree = "<group>"; };
+		77DC5AE62E38CD7500A9CDB0 /* Perfection-in-Physics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Perfection-in-Physics.xcassets"; sourceTree = "<group>"; };
+		77DC5AED2E38CE6B00A9CDB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Hassan-Elnaggar.xcconfig"; sourceTree = "<group>"; };
+		77DE4E3D2E2550590001BFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77DE4E3F2E2550A80001BFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77E32B82264A8AD30064B801 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		77E32B90264A8B2C0064B801 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		77E32B95264A8B430064B801 /* LoginApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginApiClient.swift; sourceTree = "<group>"; };
@@ -816,6 +832,12 @@
 		BCD404A32743C65900B27F98 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
 		BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wojood-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
+		D5070CD82E65FD5C00728D01 /* VersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionResponse.swift; sourceTree = "<group>"; };
+		D5070CDA2E65FEC900728D01 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
+		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
+		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
+		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
+		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -860,7 +882,6 @@
 				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
 				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
 				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
-				BC34242E2D6E2175005E26DE /* JGProgressHUD in Frameworks */,
 				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
@@ -868,6 +889,7 @@
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
 				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
+				7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */,
 				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
 				BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */,
 				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
@@ -882,13 +904,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7723ACEA261C5E6C007C0B97 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723ACF5261C5E6C007C0B97 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1326,6 +1341,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		77135AAE2E46C1BE0032884F /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				77135AAC2E46C1BE0032884F /* release.yml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
+		77135AAF2E46C1BE0032884F /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				77135AAE2E46C1BE0032884F /* workflows */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
 		7723ACCE261C5E68007C0B97 = {
 			isa = PBXGroup;
 			children = (
@@ -1333,11 +1364,9 @@
 				7723ACD9261C5E69007C0B97 /* App */,
 				7723AE09261C7E8F007C0B97 /* RootFiles */,
 				7723ACF0261C5E6C007C0B97 /* WojoodTests */,
-				7723ACFB261C5E6C007C0B97 /* WojoodUITests */,
 				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
 				77C88E2727722BC200E39AA0 /* Wojood.app */,
 				77C88E2827722BC200E39AA0 /* WojoodTests.xctest */,
-				77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1360,15 +1389,6 @@
 				7723ACF3261C5E6C007C0B97 /* Info.plist */,
 			);
 			path = WojoodTests;
-			sourceTree = "<group>";
-		};
-		7723ACFB261C5E6C007C0B97 /* WojoodUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7723ACFC261C5E6C007C0B97 /* WojoodUITests.swift */,
-				7723ACFE261C5E6C007C0B97 /* Info.plist */,
-			);
-			path = WojoodUITests;
 			sourceTree = "<group>";
 		};
 		7723AD19261C60D5007C0B97 /* AppDelegates */ = {
@@ -1400,6 +1420,8 @@
 		7723AD54261C656F007C0B97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77CB36CF2E672A39009A129F /* MockData */,
+				775C319B2E30E66C009D7722 /* Assets */,
 				7723AE2D261C815E007C0B97 /* Fonts */,
 				7723ADD1261C73AE007C0B97 /* Localizables */,
 				7723ACE3261C5E6B007C0B97 /* Images.xcassets */,
@@ -1419,12 +1441,11 @@
 		7723AD56261C6584007C0B97 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				38B06A7826F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift */,
-				38B06A7926F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift */,
+				77DE4E322E254A420001BFAC /* GoogleServiceInfo */,
 				38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */,
-				7723ADCB261C7339007C0B97 /* Configurations */,
+				7723ADCB261C7339007C0B97 /* Configs */,
 				7723ADC1261C728E007C0B97 /* Environment.swift */,
-				3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */,
+				D53B5CDF2E68940400EBB62C /* AppName.swift */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
 				BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */,
@@ -1496,6 +1517,8 @@
 		7723AD64261C6649007C0B97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5070CD82E65FD5C00728D01 /* VersionResponse.swift */,
+				77DE4E342E254A850001BFAC /* CoreData */,
 				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
 				38659BC026B6D2F900E3BFE9 /* Assessment */,
 				778E72AD261DD4D1009D7B35 /* Attachable.swift */,
@@ -1527,6 +1550,7 @@
 				38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */,
 				BC19E5C926319D5B00CFA142 /* OtpVerification.swift */,
 				BC19E5982631866700CFA142 /* Profile.swift */,
+				D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */,
 				38812C67266F9DF500CCD924 /* RelatedCoursesResponseModel.swift */,
 				778E72DE261DF9AB009D7B35 /* Result.swift */,
 				385CC0EA26601A6600A091FD /* Reviews.swift */,
@@ -1545,13 +1569,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7723ADCB261C7339007C0B97 /* Configurations */ = {
+		7723ADCB261C7339007C0B97 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */,
 				778E72D0261DE641009D7B35 /* Debug.xcconfig */,
+				77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */,
+				77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */,
 				778E72D1261DE6D8009D7B35 /* Release.xcconfig */,
 			);
-			path = Configurations;
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		7723ADD1261C73AE007C0B97 /* Localizables */ = {
@@ -1566,14 +1593,18 @@
 		7723AE09261C7E8F007C0B97 /* RootFiles */ = {
 			isa = PBXGroup;
 			children = (
+				77135AAF2E46C1BE0032884F /* .github */,
 				7731E1AC2642A30800F08FFD /* .gitignore */,
 				7723AE0C261C7EDD007C0B97 /* .swiftlint.yml */,
+				778887422E46ADAA0027D5D9 /* CHANGELOG.md */,
 				7723AE17261C7FBD007C0B97 /* dn-structured-swift5.stencil */,
 				7723AE16261C7FBD007C0B97 /* extension-structured-swift5.stencil */,
+				7788873B2E46AD8D0027D5D9 /* fastlane */,
+				77135ABC2E4932E80032884F /* Gemfile */,
+				778887412E46AD8D0027D5D9 /* release */,
 				7723AE0A261C7EDD007C0B97 /* swiftgen.yml */,
 			);
 			name = RootFiles;
-			path = App;
 			sourceTree = "<group>";
 		};
 		7723AE20261C801C007C0B97 /* SwiftGen */ = {
@@ -1611,6 +1642,51 @@
 				BC98F413262354E000032AC6 /* Inter-Thin.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		775C319B2E30E66C009D7722 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */,
+				775C31A22E30ED9E009D7722 /* Debug.xcassets */,
+				775C319D2E30E69F009D7722 /* Hassan-Elnaggar.xcassets */,
+				775C31A02E30ED92009D7722 /* Release.xcassets */,
+				77DC5AE62E38CD7500A9CDB0 /* Perfection-in-Physics.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		778887322E46AD8D0027D5D9 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				778887312E46AD8D0027D5D9 /* README.txt */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
+		7788873B2E46AD8D0027D5D9 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				778887322E46AD8D0027D5D9 /* screenshots */,
+				778887332E46AD8D0027D5D9 /* .env */,
+				778887352E46AD8D0027D5D9 /* Appfile */,
+				778887372E46AD8D0027D5D9 /* Deliverfile */,
+				778887382E46AD8D0027D5D9 /* Fastfile */,
+				778887392E46AD8D0027D5D9 /* README.md */,
+				7788873A2E46AD8D0027D5D9 /* report.xml */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
+		778887412E46AD8D0027D5D9 /* release */ = {
+			isa = PBXGroup;
+			children = (
+				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
+				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
+				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
+				778887402E46AD8D0027D5D9 /* version.rb */,
+			);
+			path = release;
 			sourceTree = "<group>";
 		};
 		778E722A261DC104009D7B35 /* Extensions */ = {
@@ -1717,6 +1793,14 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		77CB36CF2E672A39009A129F /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				D5070CDA2E65FEC900728D01 /* LoginResponse.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
 		77D013C026A0F6C5006EA602 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1727,6 +1811,59 @@
 			);
 			name = Cells;
 			path = TableViewHeaders/Cells;
+			sourceTree = "<group>";
+		};
+		77DC5AEC2E38CE5600A9CDB0 /* Perfection-in-Physics */ = {
+			isa = PBXGroup;
+			children = (
+				77DC5AED2E38CE6B00A9CDB0 /* GoogleService-Info.plist */,
+			);
+			path = "Perfection-in-Physics";
+			sourceTree = "<group>";
+		};
+		77DE4E322E254A420001BFAC /* GoogleServiceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D5DBC5C22E67291B00FD4034 /* Royal-Medicine */,
+				77DC5AEC2E38CE5600A9CDB0 /* Perfection-in-Physics */,
+				77DE4E3E2E2550650001BFAC /* Hassan-Elnaggar */,
+				77DE4E3C2E25504A0001BFAC /* Release */,
+				77DE4E3B2E2550410001BFAC /* Debug */,
+			);
+			path = GoogleServiceInfo;
+			sourceTree = "<group>";
+		};
+		77DE4E342E254A850001BFAC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				38B06A7826F8B626001F6E08 /* AssessmentAnswer+CoreDataClass.swift */,
+				38B06A7926F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		77DE4E3B2E2550410001BFAC /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				3892CD3726CD0ECA00AFAE0E /* GoogleService-Info.plist */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		77DE4E3C2E25504A0001BFAC /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				77DE4E3D2E2550590001BFAC /* GoogleService-Info.plist */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
+		77DE4E3E2E2550650001BFAC /* Hassan-Elnaggar */ = {
+			isa = PBXGroup;
+			children = (
+				77DE4E3F2E2550A80001BFAC /* GoogleService-Info.plist */,
+			);
+			path = "Hassan-Elnaggar";
 			sourceTree = "<group>";
 		};
 		BC083B012641724B00A1E6A4 /* PickerInputView */ = {
@@ -2094,6 +2231,14 @@
 			path = AVFoundationExtensions;
 			sourceTree = "<group>";
 		};
+		D5DBC5C22E67291B00FD4034 /* Royal-Medicine */ = {
+			isa = PBXGroup;
+			children = (
+				776C79FD2E7CDD9C00B04082 /* GoogleService-Info.plist */,
+			);
+			path = "Royal-Medicine";
+			sourceTree = "<group>";
+		};
 		E84874532624B0E1006DF74C /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -2134,12 +2279,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7723AD01261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "Wojood" */;
 			buildPhases = (
+				775C319F2E30E746009D7722 /* Copy Assets */,
 				7723AE25261C807B007C0B97 /* SwiftGen */,
 				7723AE26261C808C007C0B97 /* Swiftlint */,
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
 				77B56A8F27721795009E47D7 /* Embed Frameworks */,
+				77DE4E492E2551B30001BFAC /* Copy Google Services info */,
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
 			);
 			buildRules = (
@@ -2171,10 +2318,10 @@
 				BC3424252D6E208E005E26DE /* FirebaseCore */,
 				BC3424272D6E208E005E26DE /* FirebaseCrashlytics */,
 				BC3424292D6E208E005E26DE /* FirebaseMessaging */,
-				BC34242D2D6E2175005E26DE /* JGProgressHUD */,
 				BC3424312D6E2D13005E26DE /* AlamofireImage */,
 				BC8C1E9A2DA7CE01000AED7F /* MessageKit */,
 				BC8C1E9D2DA7CF66000AED7F /* Moya */,
+				7719A08B2E251108004541E6 /* JGProgressHUD */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2198,24 +2345,6 @@
 			productReference = 77C88E2827722BC200E39AA0 /* WojoodTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7723ACF7261C5E6C007C0B97 /* WojoodUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7723AD07261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodUITests" */;
-			buildPhases = (
-				7723ACF4261C5E6C007C0B97 /* Sources */,
-				7723ACF5261C5E6C007C0B97 /* Frameworks */,
-				7723ACF6261C5E6C007C0B97 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7723ACFA261C5E6C007C0B97 /* PBXTargetDependency */,
-			);
-			name = WojoodUITests;
-			productName = WojoodUITests;
-			productReference = 77C88E2927722BC200E39AA0 /* WojoodUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2230,10 +2359,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					7723ACEC261C5E6C007C0B97 = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 7723ACD6261C5E69007C0B97;
-					};
-					7723ACF7261C5E6C007C0B97 = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 7723ACD6261C5E69007C0B97;
 					};
@@ -2270,10 +2395,10 @@
 				BC39F5EE2D64E8480038A9F1 /* XCRemoteSwiftPackageReference "UIScrollView-InfiniteScroll" */,
 				BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */,
 				BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */,
 				BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */,
+				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2281,7 +2406,6 @@
 			targets = (
 				7723ACD6261C5E69007C0B97 /* Wojood */,
 				7723ACEC261C5E6C007C0B97 /* WojoodTests */,
-				7723ACF7261C5E6C007C0B97 /* WojoodUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -2311,6 +2435,7 @@
 				77D013CD26A0F701006EA602 /* SubjectCollectionViewCell.xib in Resources */,
 				7731E1AD2642A30800F08FFD /* .gitignore in Resources */,
 				7723AE0D261C7EDD007C0B97 /* swiftgen.yml in Resources */,
+				D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */,
 				BC19E5D02631A35900CFA142 /* CreatePassword.storyboard in Resources */,
 				26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */,
 				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
@@ -2329,7 +2454,6 @@
 				380B13A226B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.xib in Resources */,
 				BC0F92B92785DC4F001C5B3A /* OrganizationsList.storyboard in Resources */,
 				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
-				3892CD3826CD0ECA00AFAE0E /* GoogleService-Info.plist in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
 				53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */,
@@ -2378,13 +2502,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7723ACF6261C5E6C007C0B97 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2404,7 +2521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen > /dev/null; then\n    arch -x86_64 swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\n    exit 1\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftgen > /dev/null; then\n    swiftgen\nelse\n    echo \"error: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi\n";
 		};
 		7723AE26261C808C007C0B97 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2422,7 +2539,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    arch -x86_64 swiftlint\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		775C319F2E30E746009D7722 /* Copy Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Assets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "IMAGES_RESOURCE_PATH=$SRCROOT/App/Resources/Assets/${CONFIGURATION}.xcassets/Common\nIMAGES_DESTINATION_PATH=$SRCROOT/App/Resources/Images.xcassets/Common\n\nif [ ! -d \"$IMAGES_RESOURCE_PATH\" ] ; then\n    echo \"error: '$IMAGES_RESOURCE_PATH' NOT found.\"\n    exit 1\nfi\n\nrm -r $IMAGES_DESTINATION_PATH/*\ncp -r $IMAGES_RESOURCE_PATH/* \"$IMAGES_DESTINATION_PATH\"\n";
 		};
 		7777D76B26D6B66A00B0C441 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2441,6 +2576,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+		77DE4E492E2551B30001BFAC /* Copy Google Services info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Google Services info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE_SOURCE_PATH=$SRCROOT/\"App\"/\"SupportingFiles\"/\"GoogleServiceInfo\"/$CONFIGURATION/GoogleService-Info.plist\n\nif [ -f \"$FILE_SOURCE_PATH\" ]; then\n    FILE_DESTINATION_PATH=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\n    echo \"Copying Services-Info from $FILE_SOURCE_PATH to $FILE_DESTINATION_PATH\"\n    cp \"$FILE_SOURCE_PATH\" \"$FILE_DESTINATION_PATH\"\nelse\n    echo \"error: Source Path For Google Services File Not Found\"\n    exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2590,6 +2743,7 @@
 				BC18A00C266670C6001FDFFF /* ProfileTableViewHeader.swift in Sources */,
 				BC19E5992631866700CFA142 /* Profile.swift in Sources */,
 				BC18A01726667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift in Sources */,
+				D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */,
 				7723ADC7261C72E1007C0B97 /* PropertyListKeyValuePair.swift in Sources */,
 				777F3A8D26FB607E000C5DFC /* AlertData.swift in Sources */,
 				38659BDE26B6D2F900E3BFE9 /* GenericSubjectsViewModel.swift in Sources */,
@@ -2674,6 +2828,7 @@
 				38812C5E266E9CDA00CCD924 /* Subjects.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
+				D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */,
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
 				38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */,
@@ -2711,6 +2866,7 @@
 				77E32B91264A8B2C0064B801 /* LoginModel.swift in Sources */,
 				E85C74922640A9130097F115 /* Divisions.swift in Sources */,
 				778E724D261DC2D4009D7B35 /* ArrayExt.swift in Sources */,
+				D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */,
 				380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */,
 				BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */,
 				BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */,
@@ -2760,14 +2916,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7723ACF4261C5E6C007C0B97 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7723ACFD261C5E6C007C0B97 /* WojoodUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2775,11 +2923,6 @@
 			isa = PBXTargetDependency;
 			target = 7723ACD6261C5E69007C0B97 /* Wojood */;
 			targetProxy = 7723ACEE261C5E6C007C0B97 /* PBXContainerItemProxy */;
-		};
-		7723ACFA261C5E6C007C0B97 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7723ACD6261C5E69007C0B97 /* Wojood */;
-			targetProxy = 7723ACF9261C5E6C007C0B97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2958,7 +3101,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -2992,7 +3135,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3004,7 +3147,6 @@
 		7723AD05261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3026,7 +3168,6 @@
 		7723AD06261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
@@ -3045,45 +3186,341 @@
 			};
 			name = Release;
 		};
-		7723AD08261C5E6C007C0B97 /* Debug */ = {
+		77DC5AE72E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = "Perfection-in-Physics";
 		};
-		7723AD09261C5E6C007C0B97 /* Release */ = {
+		77DC5AE82E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${CONFIGURATION}";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Perfection-in-Physics";
+		};
+		77DC5AE92E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46AX569373;
-				INFOPLIST_FILE = WojoodUITests/Info.plist;
+				INFOPLIST_FILE = WojoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wojood;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
 			};
-			name = Release;
+			name = "Perfection-in-Physics";
+		};
+		77DE4E372E254FFC0001BFAC /* Hassan-Elnaggar */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Hassan-Elnaggar";
+		};
+		77DE4E382E254FFC0001BFAC /* Hassan-Elnaggar */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${CONFIGURATION}";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Hassan-Elnaggar";
+		};
+		77DE4E392E254FFC0001BFAC /* Hassan-Elnaggar */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46AX569373;
+				INFOPLIST_FILE = WojoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
+			};
+			name = "Hassan-Elnaggar";
+		};
+		D53B5CD82E67588800EBB62C /* Royal-Medicine */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Royal-Medicine";
+		};
+		D53B5CD92E67588800EBB62C /* Royal-Medicine */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Royal-Medicine";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Royal-Medicine";
+		};
+		D53B5CDA2E67588800EBB62C /* Royal-Medicine */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46AX569373;
+				INFOPLIST_FILE = WojoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
+			};
+			name = "Royal-Medicine";
 		};
 /* End XCBuildConfiguration section */
 
@@ -3093,6 +3530,9 @@
 			buildConfigurations = (
 				7723ACFF261C5E6C007C0B97 /* Debug */,
 				7723AD00261C5E6C007C0B97 /* Release */,
+				D53B5CD82E67588800EBB62C /* Royal-Medicine */,
+				77DE4E372E254FFC0001BFAC /* Hassan-Elnaggar */,
+				77DC5AE72E38CDAB00A9CDB0 /* Perfection-in-Physics */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3102,6 +3542,9 @@
 			buildConfigurations = (
 				7723AD02261C5E6C007C0B97 /* Debug */,
 				7723AD03261C5E6C007C0B97 /* Release */,
+				D53B5CD92E67588800EBB62C /* Royal-Medicine */,
+				77DE4E382E254FFC0001BFAC /* Hassan-Elnaggar */,
+				77DC5AE82E38CDAB00A9CDB0 /* Perfection-in-Physics */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3111,15 +3554,9 @@
 			buildConfigurations = (
 				7723AD05261C5E6C007C0B97 /* Debug */,
 				7723AD06261C5E6C007C0B97 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7723AD07261C5E6C007C0B97 /* Build configuration list for PBXNativeTarget "WojoodUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7723AD08261C5E6C007C0B97 /* Debug */,
-				7723AD09261C5E6C007C0B97 /* Release */,
+				D53B5CDA2E67588800EBB62C /* Royal-Medicine */,
+				77DE4E392E254FFC0001BFAC /* Hassan-Elnaggar */,
+				77DC5AE92E38CDAB00A9CDB0 /* Perfection-in-Physics */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3143,20 +3580,20 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.8.1;
-			};
-		};
-		BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		BC3424302D6E2D13005E26DE /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
@@ -3332,6 +3769,11 @@
 			package = 537955B7296EC99A0051682D /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
 			productName = "LanguageManager-iOS";
 		};
+		7719A08B2E251108004541E6 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		BC3424232D6E208E005E26DE /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -3351,11 +3793,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC3424222D6E208E005E26DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
-		};
-		BC34242D2D6E2175005E26DE /* JGProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC34242C2D6E2175005E26DE /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
-			productName = JGProgressHUD;
 		};
 		BC3424312D6E2D13005E26DE /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+  
+
+jobs:
+  install-frameworks:
+    if: "contains(github.event.head_commit.message, '[ci release]')"
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          clean: false
+
+      - name: Initialize Fastlane Environment Files
+        run: |
+          ./release/prepare_release_scripts.rb
+
+  upload-to-testflight:
+    if: "contains(github.event.head_commit.message, '[ci release]')"
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+    timeout-minutes: 1440  # Set timeout to 24h
+    needs: [install-frameworks]
+
+    steps:
+      - name: Set build number
+        run: agvtool new-version -all ${{ github.run_number }}
+
+      - name: Upload Apps
+        run: |
+          ./release/upload_to_appstore.sh
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+
+  post-actions:
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+    needs: [upload-to-testflight]
+
+    steps:
+      - name: Clean Xcode build cache
+        run: rm -rf ~/Library/Developer/Xcode/Archives
