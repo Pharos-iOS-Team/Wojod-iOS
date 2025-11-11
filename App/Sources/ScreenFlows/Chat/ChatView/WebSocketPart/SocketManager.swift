@@ -10,7 +10,7 @@ protocol SocketManagerDelegate: AnyObject {
 
 class SocketManager {
     private let channelIdentifier: String = "ChatChannel"
-    private var socket: WebSocket?
+    private var socket: Starscream.WebSocket?
     private var conversationID: Int
     private var chatType: ChatType
 

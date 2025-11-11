@@ -328,7 +328,6 @@
 		BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */; };
 		BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D82C189C0D00E990C0 /* KeychainAccess */; };
 		BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DB2C189DE100E990C0 /* HandyUIKit */; };
-		BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */; };
 		BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E12C189E9900E990C0 /* M13Checkbox */; };
 		BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E42C189ED700E990C0 /* ObjectMapper */; };
 		BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E72C189F1900E990C0 /* Reachability */; };
@@ -385,6 +384,8 @@
 		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
 		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
+		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
+		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -871,12 +872,12 @@
 				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
 				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
 				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
-				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
 				BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
+				D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
 				7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */,
 				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
@@ -887,6 +888,7 @@
 				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
+				D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */,
 				BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */,
 				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
@@ -2254,7 +2256,6 @@
 				BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */,
 				BC6B69D82C189C0D00E990C0 /* KeychainAccess */,
 				BC6B69DB2C189DE100E990C0 /* HandyUIKit */,
-				BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */,
 				BC6B69E12C189E9900E990C0 /* M13Checkbox */,
 				BC6B69E42C189ED700E990C0 /* ObjectMapper */,
 				BC6B69E72C189F1900E990C0 /* Reachability */,
@@ -2272,6 +2273,8 @@
 				BC8C1E9A2DA7CE01000AED7F /* MessageKit */,
 				BC8C1E9D2DA7CF66000AED7F /* Moya */,
 				7719A08B2E251108004541E6 /* JGProgressHUD */,
+				D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */,
+				D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2334,7 +2337,6 @@
 				BC6B69D42C189BCD00E990C0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
 				BC6B69D72C189C0D00E990C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
-				BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */,
 				BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */,
@@ -2349,6 +2351,8 @@
 				BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */,
 				BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */,
 				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -3035,7 +3039,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3069,7 +3073,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3202,7 +3206,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3314,7 +3318,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3523,14 +3527,6 @@
 				version = 1.9.2;
 			};
 		};
-		BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = exactVersion;
-				version = 6.5.6;
-			};
-		};
 		BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Marxon13/M13Checkbox";
@@ -3585,6 +3581,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.6.0;
+			};
+		};
+		D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.1;
+			};
+		};
+		D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardToolbarManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3685,11 +3697,6 @@
 			package = BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
 			productName = HandyUIKit;
 		};
-		BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
 		BC6B69E12C189E9900E990C0 /* M13Checkbox */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */;
@@ -3724,6 +3731,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */;
 			productName = VdoFramework;
+		};
+		D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */;
+			productName = IQKeyboardToolbarManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 
