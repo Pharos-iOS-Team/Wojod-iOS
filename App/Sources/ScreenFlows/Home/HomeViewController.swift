@@ -143,15 +143,12 @@ class HomeViewController: UIViewController {
     }
 
     private func showReceipt(_ receiptData: Receipt) {
-        let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
-        view?.center = CGPoint(
-            x: self.view.frame.size.width / 2,
-            y: self.view.frame.size.height / 2
-        )
-        view?.configureInMyCourses(with: receiptData)
-        view?.receiptDoneButtonDelegate = self
-        view?.addShadow()
-        self.view.addSubview(view ?? UIView())
+        let receiptViewCtrl = ReceiptViewController(nibName: "ReceiptViewController", bundle: nil)
+        receiptViewCtrl.myCourseReceipt = receiptData
+        receiptViewCtrl.delegate = self
+        receiptViewCtrl.modalPresentationStyle = .overFullScreen
+        receiptViewCtrl.modalTransitionStyle = .crossDissolve
+        self.present(receiptViewCtrl, animated: true)
     }
 
     private func blurView() {

@@ -9,9 +9,9 @@
 
 // MARK: - URLs
 
-ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1.1
-BASE_URL = https:/$()/www.wojodacademy.com
-CHAT_BASE_URL = wss:/$()/www.wojodacademy.com/cable
+ROOT_URL = https:/$()/production.wojodacademy.com/api/student/v1.1
+BASE_URL = https:/$()/production.wojodacademy.com
+CHAT_BASE_URL = wss:/$()/production.wojodacademy.com/cable
 
 // MARK: - Name
 
@@ -19,7 +19,7 @@ APP_DISPLAY_NAME = Wojod
 
 // MARK: - Bundle Identifier
 
-PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp
+PRODUCT_BUNDLE_IDENTIFIER = de.pharos-solutions.wojood-ios
 
 // MARK: - App Version
 

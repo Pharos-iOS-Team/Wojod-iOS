@@ -80,7 +80,8 @@ class CourseDetailsViewModel {
         model.loadCourse(courseID: courseID) { result in
             switch result {
             case let .success(course as CourseDetailsResponse):
-                completion(course)
+              print(">>> contact_us_info \(course.course?.contactUsInfo)")
+              completion(course)
             default:
                 return
             }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Light.ttf">
+            <string>Inter-Light</string>
+        </array>
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterQRCodeManuallyViewController" customModule="Wojood" customModuleProvider="target">
+            <connections>
+                <outlet property="bookButton" destination="LJ1-MZ-Dvm" id="yYu-B9-7ha"/>
+                <outlet property="containerView" destination="mWY-XT-SOq" id="dk8-Kh-sOy"/>
+                <outlet property="messageDescriptionLabel" destination="2Zs-tU-byb" id="OvL-Ns-ZvE"/>
+                <outlet property="messageTitleLabel" destination="ZBm-Qm-4my" id="iIU-Bg-qda"/>
+                <outlet property="returnButton" destination="uhw-db-VAM" id="q0u-UK-6a4"/>
+                <outlet property="textField" destination="yyu-zm-a78" id="D3x-a9-ECs"/>
+                <outlet property="view" destination="mWY-XT-SOq" id="H7f-3N-BsA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="mWY-XT-SOq" customClass="EnterQRCodeManuallyView" customModule="Wojood" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="576" height="411"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsP-lc-Uu3">
+                    <rect key="frame" x="43.333333333333343" y="94" width="489.33333333333326" height="273"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="c0r-cO-QUZ">
+                            <rect key="frame" x="20" y="20" width="449.33333333333331" height="59"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBm-Qm-4my">
+                                    <rect key="frame" x="186.66666666666666" y="0.0" width="76.333333333333343" height="22"/>
+                                    <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="18"/>
+                                    <color key="textColor" name="darkGreyColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter code Manually" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zs-tU-byb">
+                                    <rect key="frame" x="137" y="37" width="175.66666666666663" height="22"/>
+                                    <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="18"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hAC-SD-aBS">
+                            <rect key="frame" x="20" y="153" width="449.33333333333331" height="100"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plY-na-moy">
+                                    <rect key="frame" x="0.0" y="0.0" width="449.33333333333331" height="2"/>
+                                    <color key="backgroundColor" name="lightGreyColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="TaP-bJ-WhQ"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ1-MZ-Dvm">
+                                    <rect key="frame" x="0.0" y="12" width="449.33333333333331" height="34"/>
+                                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
+                                    <state key="normal" title="Book">
+                                        <color key="titleColor" name="sendButtonColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTapBookButton:" destination="-1" eventType="touchUpInside" id="Vh6-v4-ohB"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKj-a5-74t">
+                                    <rect key="frame" x="0.0" y="56" width="449.33333333333331" height="2"/>
+                                    <color key="backgroundColor" name="lightGreyColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="ndc-pg-LYD"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhw-db-VAM">
+                                    <rect key="frame" x="0.0" y="68" width="449.33333333333331" height="32"/>
+                                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
+                                    <state key="normal" title="Return">
+                                        <color key="titleColor" name="errorAlertLabelColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTapReturnButton:" destination="-1" eventType="touchUpInside" id="QjJ-G1-7Wd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yyu-zm-a78">
+                            <rect key="frame" x="20" y="99" width="449.33333333333331" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yyu-zm-a78" secondAttribute="trailing" constant="20" id="55e-dS-2Wk"/>
+                        <constraint firstItem="hAC-SD-aBS" firstAttribute="top" secondItem="yyu-zm-a78" secondAttribute="bottom" constant="20" id="PkL-nC-tj7"/>
+                        <constraint firstItem="yyu-zm-a78" firstAttribute="leading" secondItem="UsP-lc-Uu3" secondAttribute="leading" constant="20" id="R7O-vz-eZM"/>
+                        <constraint firstItem="hAC-SD-aBS" firstAttribute="leading" secondItem="UsP-lc-Uu3" secondAttribute="leading" constant="20" id="YKQ-Xu-pMn"/>
+                        <constraint firstAttribute="trailing" secondItem="hAC-SD-aBS" secondAttribute="trailing" constant="20" id="e8T-tN-02D"/>
+                        <constraint firstItem="c0r-cO-QUZ" firstAttribute="top" secondItem="UsP-lc-Uu3" secondAttribute="top" constant="20" id="g4g-J6-kdU"/>
+                        <constraint firstAttribute="trailing" secondItem="c0r-cO-QUZ" secondAttribute="trailing" constant="20" id="hrb-RG-omH"/>
+                        <constraint firstItem="c0r-cO-QUZ" firstAttribute="leading" secondItem="UsP-lc-Uu3" secondAttribute="leading" constant="20" id="m5W-8K-aeY"/>
+                        <constraint firstItem="yyu-zm-a78" firstAttribute="top" secondItem="c0r-cO-QUZ" secondAttribute="bottom" constant="20" id="qiF-Eh-Dbc"/>
+                        <constraint firstAttribute="bottom" secondItem="hAC-SD-aBS" secondAttribute="bottom" constant="20" id="zw5-Ml-qVc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="5Xk-py-ROO"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="UsP-lc-Uu3" firstAttribute="width" secondItem="mWY-XT-SOq" secondAttribute="width" multiplier="0.85" id="2Ue-Wn-zSC"/>
+                <constraint firstItem="UsP-lc-Uu3" firstAttribute="height" relation="lessThanOrEqual" secondItem="mWY-XT-SOq" secondAttribute="height" multiplier="0.9" id="A6Q-TF-C14"/>
+                <constraint firstItem="UsP-lc-Uu3" firstAttribute="centerY" secondItem="5Xk-py-ROO" secondAttribute="centerY" id="Pwe-eR-WcY"/>
+                <constraint firstItem="UsP-lc-Uu3" firstAttribute="centerX" secondItem="5Xk-py-ROO" secondAttribute="centerX" id="viM-TE-PYA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="41.221374045801525" y="30.633802816901412"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="darkGreyColor">
+            <color red="0.42745098039215684" green="0.44705882352941179" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="errorAlertLabelColor">
+            <color red="1" green="0.31372549019607843" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreyColor">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sendButtonColor">
+            <color red="0.17647058823529413" green="0.16862745098039217" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

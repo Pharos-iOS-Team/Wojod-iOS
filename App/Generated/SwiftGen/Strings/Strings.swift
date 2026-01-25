@@ -187,6 +187,10 @@ internal enum L10n {
       internal static var codeManually: String {
           return L10n.tr("Localizable", "courseDetails.main.CodeManually")
         }
+      /// Contact Us
+      internal static var contactUs: String {
+          return L10n.tr("Localizable", "courseDetails.main.contactUs")
+        }
       /// Details
       internal static var details: String {
           return L10n.tr("Localizable", "courseDetails.main.details")
