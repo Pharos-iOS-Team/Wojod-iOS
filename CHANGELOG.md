@@ -30,9 +30,17 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Security
 - None.
 
+## [1.9.0] - 2026-01-29
+### Fixed
+- Fixed iOS 26 issues.  
+  Task: [CPI-307](https://jira.pharos-solutions.de/browse/CPI-307) | PR: [#7](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/7) | Author: [Sara Rady](https://github.com/sara-rady)
+- Fixed VideoCipher view count calculation.  
+  Task: [CPI-311](https://jira.pharos-solutions.de/browse/CPI-311) | PR: [#10](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/10) | Author: [Sara Rady](https://github.com/sara-rady)
+### Changed
+- Replaced the `Book` feature with the teacher’s contact details instead.  
+  Task: [CPI-313](https://jira.pharos-solutions.de/browse/CPI-313) | PR: [#11](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/11) | Author: [Sara Rady](https://github.com/sara-rady)
+  
 ## [1.8.0] - 2025-08-08
 ### Added
 - Locked lessons if they are linked to unsolved quiz.
   Task: [CPI-292](https://jira.pharos-solutions.de/browse/CPI-292) | PR: [#3](https://github.com/pharos-solutions/Courses-Portal-iOS/pull/3) | Author: [Eslam Salem](https://gitlab.com/eslam.salem)
-
-## [2.5.3] - 2025-06-24
