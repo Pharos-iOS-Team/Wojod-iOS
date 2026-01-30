@@ -175,6 +175,7 @@
 "courseDetails.main.reviews" = "التقييمات";
 "courseDetails.main.materials" = "المحتوى";
 "courseDetails.main.bookNow" = "احجز الآن";
+"courseDetails.main.contactUs" = "تواصل معنا";
 "courseDetails.main.bookByQR" = "احجز بالكود";
 "courseDetails.main.selectAnOption" = "آختر طريقة الحجز من فضلك";
 "courseDetails.main.qrCodeScanner" = "مسح الكود عن طريق الكاميرا";
