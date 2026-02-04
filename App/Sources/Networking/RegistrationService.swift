@@ -88,7 +88,7 @@ extension RegistrationService: TargetType {
             case 0:
                 return .requestParameters(parameters: ["education_level": academicLevel, "education_type": educationType], encoding: URLEncoding.queryString)
             default:
-                return .requestParameters(parameters: ["education_level": academicLevel], encoding: URLEncoding.queryString)
+                return .requestParameters(parameters: ["education_level": academicLevel, "login_organization": AppEnvironment.appName.loginOrganization ?? ""], encoding: URLEncoding.queryString)
             }
         case .signUp(let userInfo):
             guard let params = userInfo.dictionary else { return .requestPlain }

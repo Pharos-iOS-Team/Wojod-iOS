@@ -57,7 +57,8 @@ public class PickerInputView<T>: UIView, UIPickerViewDataSource, UIPickerViewDel
     }
 
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return text(items()[row])
+        guard let item = items()[safe: row] else { return nil }
+        return text(item)
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

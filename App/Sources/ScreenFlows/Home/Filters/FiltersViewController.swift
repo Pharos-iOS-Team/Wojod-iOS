@@ -96,7 +96,7 @@ class FiltersViewController: UIViewController {
         configureSelectionOfAcademicLevel()
         configureTableView()
         configureTitles()
-        handleRoyalMedicineFilters()
+        handleAppSpecificFilters()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -142,17 +142,22 @@ class FiltersViewController: UIViewController {
     }
 
     // MARK: - Private Functions
-    private func handleRoyalMedicineFilters() {
-        guard AppEnvironment.appName == .royalMedicine else { return }
+    private func handleAppSpecificFilters() {
+        guard AppEnvironment.shouldHideOrganization
+        else { return }
+
+        let division = Division(key: User.shared.divisionId, value: User.shared.divisionName)
+        let specialization = Specialization(key: User.shared.specializationId, value: User.shared.specializationName)
+
         headerViewHeightConstraint.constant = 0
         headerView.isHidden = true
 
         Filters.shared.academicLevel = .universityStudent
         academicLevel = .universityStudent
-        Filters.shared.academicDivision = DivisionsModel.facultyOfMedicine
-        selectedDivision = DivisionsModel.facultyOfMedicine
-        Filters.shared.field = SpecializationsModel.facultyOfMedicine
-        selectedField = SpecializationsModel.facultyOfMedicine
+        Filters.shared.academicDivision = division
+        selectedDivision = division
+        Filters.shared.field = specialization
+        selectedField = specialization
         universitySection = .academicYear
         universitySectionTitles = [L10n.Signup.School.academicYear]
 
@@ -342,7 +347,7 @@ extension FiltersViewController: UITableViewDataSource {
                 }
             }
         } else {
-            if AppEnvironment.appName == .royalMedicine {
+            if AppEnvironment.shouldHideOrganization {
                 switch universitySection {
                 case .academicYear:
                     cell.configureForUniveristy(title: L10n.Signup.School.academicYear,
@@ -528,7 +533,7 @@ extension FiltersViewController: SelectingFilterDelegate {
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
         Filters.shared.isDataBeingRetrieved = false
         
-        if AppEnvironment.appName == .royalMedicine {
+        if AppEnvironment.shouldHideOrganization {
             switch section {
             case .academicYear:
                 universitySection = .subjects

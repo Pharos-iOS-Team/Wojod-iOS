@@ -39,6 +39,7 @@ class VerifyOtpViewController: UIViewController {
 
     var mobileNumber: String = ""
     var otp: String = ""
+    var hideBackButton: Bool = false
     var verifyUserFromLogin: Bool = false
     var shouldSendButtonBeUnabled: Bool = false
     var alertViewHeight: CGFloat = 0
@@ -54,6 +55,7 @@ class VerifyOtpViewController: UIViewController {
         configureSuccessHandler()
         showLoadingIndicatorHandler()
         configureSendButton()
+        configureBackButton()
     }
 
     @IBAction private func verifyOTP(_ sender: SendButton) {
@@ -98,6 +100,10 @@ class VerifyOtpViewController: UIViewController {
             sendButton.backgroundColor = Colors.labelGreyColor.color
             sendButton.isEnabled = false
         }
+    }
+    
+    private func configureBackButton() {
+        backButton.isHidden = hideBackButton
     }
 
     private func configureSuccessHandler() {

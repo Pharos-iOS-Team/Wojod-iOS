@@ -32,7 +32,7 @@ class UniversityViewController: UIViewController {
         didSet {
             graduateButton.setTitle(L10n.Signup.UniversityScreen.graduate)
             graduateButton.layer.cornerRadius = 5
-            graduateButton.isHidden = AppEnvironment.appName == .royalMedicine
+            graduateButton.isHidden = AppEnvironment.shouldHideOrganization
         }
     }
     @IBOutlet private var universityTextField: NoCutPasteTextField! {
@@ -41,7 +41,7 @@ class UniversityViewController: UIViewController {
             universityTextField.isMandatoryTextField = true
             universityTextField.semanticContentAttribute = Language.semanticContent
             universityTextField.textAlignment = Language.textAlignment
-            if AppEnvironment.appName == .royalMedicine {
+            if AppEnvironment.shouldHideOrganization {
                 universityTextField.isEnabled = false
                 universityTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -56,7 +56,7 @@ class UniversityViewController: UIViewController {
             fieldTextField.isMandatoryTextField = true
             fieldTextField.semanticContentAttribute = Language.semanticContent
             fieldTextField.textAlignment = Language.textAlignment
-            if AppEnvironment.appName == .royalMedicine {
+            if AppEnvironment.shouldHideOrganization {
                 fieldTextField.isEnabled = false
                 fieldTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -179,18 +179,18 @@ class UniversityViewController: UIViewController {
         yearPickerView.text = { $0 }
 
         universityPickerView.didSelectAtIndex = { [unowned self] index in
-            universityTextField.text = universities[index].value
+            universityTextField.text = universities[safe: index]?.value
             selectedDivisionIndex = index
             universityTextField.setNormalView()
         }
         fieldPickerView.didSelectAtIndex = { [unowned self] index in
-            fieldTextField.text = fields[index].value
+            fieldTextField.text = fields[safe: index]?.value
             selectedFieldIndex = index
             fieldTextField.setNormalView()
         }
         yearPickerView.didSelectAtIndex = { [unowned self] index in
             guard !years.isEmpty else { return }
-            yearTextField.text = years[index].value
+            yearTextField.text = years[safe: index]?.value
             selectedYearIndex = index
             yearTextField.setNormalView()
         }
@@ -261,25 +261,27 @@ class UniversityViewController: UIViewController {
     }
 
     private func retrieveFields() {
-        viewModel?.loadSpecializations(for: User.shared.divisionId ?? universities[0].key ?? 0) { [unowned self] fields in
+        viewModel?.loadSpecializations(for: User.shared.divisionId ?? universities.first?.key ?? 0) { [unowned self] fields in
             self.fields = fields ?? []
             if self.fields.isEmpty {
                 fieldTextField.isHidden = true
                 fieldTextFieldHeightConstraint.constant = 0
             } else {
-                self.fields.append(Specialization(key: nil, value: L10n.Signup.School.none))
+                if !AppEnvironment.shouldHideOrganization {
+                    self.fields.insert(Specialization(key: nil, value: L10n.Signup.School.none), at: 0)
+                }
                 fieldTextField.isHidden = false
                 fieldTextFieldHeightConstraint.constant = 50
                 selectedFieldIndex = 0
-                User.shared.specializationId = fields?[0].key
-                User.shared.specializationName = fields?[0].value
-                fieldTextField.text = self.fields.first { $0.value == L10n.Signup.School.none }?.value
+                User.shared.specializationId = fields?.first?.key
+                User.shared.specializationName = fields?.first?.value
+                fieldTextField.text = fields?.first?.value
             }
         }
     }
 
     private func retrieveYears() {
-        viewModel?.loadBatches(for: User.shared.divisionId ?? universities[0].key ?? 0) { years in
+        viewModel?.loadBatches(for: User.shared.divisionId ?? universities.first?.key ?? 0) { years in
             self.years = years ?? []
             self.selectedYearIndex = 0
             if let defaultYear = years?.first {
@@ -301,8 +303,8 @@ class UniversityViewController: UIViewController {
     @objc
     private func universityPickerDoneTapped() {
         universityPickerView.resignFirstResponder()
-        universityTextField.text = universities[selectedDivisionIndex].value
-        User.shared.divisionId = viewModel?.divisionIDs[selectedDivisionIndex]
+        universityTextField.text = universities[safe: selectedDivisionIndex]?.value
+        User.shared.divisionId = viewModel?.divisionIDs[safe: selectedDivisionIndex]
         retrieveFields()
         retrieveYears()
         // configureNextButtonEnabling()
@@ -311,7 +313,7 @@ class UniversityViewController: UIViewController {
     @objc
     private func fieldPickerDoneTapped() {
         fieldPickerView.resignFirstResponder()
-        fieldTextField.text = fields.isEmpty ? "" : fields[selectedFieldIndex].value
+        fieldTextField.text = fields.isEmpty ? "" : fields[safe: selectedFieldIndex]?.value
         // configureNextButtonEnabling()
     }
 
@@ -319,7 +321,7 @@ class UniversityViewController: UIViewController {
     private func yearPickerDoneTapped() {
         guard !years.isEmpty else { return }
         yearPickerView.resignFirstResponder()
-        yearTextField.text = years[selectedYearIndex].value
+        yearTextField.text = years[safe: selectedYearIndex]?.value
         // configureNextButtonEnabling()
     }
 
@@ -356,10 +358,10 @@ class UniversityViewController: UIViewController {
         if AppEnvironment.appName == .royalMedicine {
             User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
         } else {
-            User.shared.specializationId = fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[selectedFieldIndex]
+            User.shared.specializationId = fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[safe: selectedFieldIndex]
         }
         if !(viewModel?.batchesIDs.isEmpty ?? true) {
-            User.shared.batch = viewModel?.batchesIDs[selectedYearIndex]
+            User.shared.batch = viewModel?.batchesIDs[safe: selectedYearIndex]
         }
         User.shared.batchName = yearTextField.text
     }

@@ -131,7 +131,7 @@ class ProfileViewModel {
             switch result {
             case .success(let specializations as SpecializationsModel):
                 AcademicInfo.shared.specializations = specializations
-                AcademicInfo.shared.specializations?.specializations.append(Specialization(key: nil, value: "None"))
+                AcademicInfo.shared.specializations?.specializations?.append(Specialization(key: nil, value: "None"))
                 self.handleSuccessfulResponse()
             case .failure(let error):
                 self.errorHandler?(error)
@@ -174,9 +174,9 @@ class ProfileViewModel {
             switch result {
             case .success(let divisions as DivisionsModel):
                 AcademicInfo.shared.divisions = divisions
-                User.shared.divisionName = divisions.divisions.first?.value
-                User.shared.divisionId = divisions.divisions.first?.key
-                self.profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == User.shared.divisionName }?.key
+                User.shared.divisionName = divisions.divisions?.first?.value
+                User.shared.divisionId = divisions.divisions?.first?.key
+                self.profile.divisionId = AcademicInfo.shared.divisions?.divisions?.first { $0.value == User.shared.divisionName }?.key
                 self.reloadCitiesCell?(index + 1)
                 self.fetchSpecifiedBatches(for: self.profile.divisionId ?? .zero, index: index)
                 self.reloadCitiesCell?(index + 2)
@@ -211,10 +211,10 @@ class ProfileViewModel {
             switch result {
             case .success(let specializations as SpecializationsModel):
                 AcademicInfo.shared.specializations = specializations
-                AcademicInfo.shared.specializations?.specializations.append(Specialization(key: nil, value: "None"))
-                User.shared.specializationName = specializations.specializations.first?.value
-                User.shared.specializationId = specializations.specializations.first?.key
-                self.profile.specializationId = AcademicInfo.shared.specializations?.specializations.first { $0.value == User.shared.specializationName }?.key
+                AcademicInfo.shared.specializations?.specializations?.append(Specialization(key: nil, value: "None"))
+                User.shared.specializationName = specializations.specializations?.first?.value
+                User.shared.specializationId = specializations.specializations?.first?.key
+                self.profile.specializationId = AcademicInfo.shared.specializations?.specializations?.first { $0.value == User.shared.specializationName }?.key
                 self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 3 : index + 2 )
             case .failure(let error):
                 self.errorHandler?(error)
@@ -252,7 +252,7 @@ class ProfileViewModel {
         case .address:
             return User.shared.address
         case .specialization:
-            return User.shared.specializationName ?? AcademicInfo.shared.specializations?.specializations.first?.value
+            return User.shared.specializationName ?? AcademicInfo.shared.specializations?.specializations?.first?.value
         case .homeNumber:
             return User.shared.homeNumber
         case .parentNumber2:
@@ -282,7 +282,7 @@ class ProfileViewModel {
             profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == text }?.key
             fetchSpecifiedSpecializations(for: profile.divisionId ?? .zero, index: index)
         case .specialization:
-            profile.specializationId = AcademicInfo.shared.specializations?.specializations.first { $0.value == text }?.key
+            profile.specializationId = AcademicInfo.shared.specializations?.specializations?.first { $0.value == text }?.key
         case .homeNumber:
             profile.homeNumber = text
         case .parentNumber:
@@ -297,7 +297,7 @@ class ProfileViewModel {
             fetchSpecifiedDivisions(for: AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key ?? .zero, index: index)
             profile.educationalType = AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key
         case .division:
-            profile.divisionId = AcademicInfo.shared.divisions?.divisions.first { $0.value == text }?.key
+            profile.divisionId = AcademicInfo.shared.divisions?.divisions?.first { $0.value == text }?.key
             fetchSpecifiedBatches(for: profile.divisionId ?? .zero, index: index)
         default:
             return
@@ -344,8 +344,8 @@ class ProfileViewModel {
 
     func shouldMakeTextFieldDisabled(forIndexPath index: Int) -> Bool {
         validFields[index] == .mobileNumber
-        || (validFields[index] == .division && AppEnvironment.appName == .royalMedicine)
-        || (validFields[index] == .specialization && AppEnvironment.appName == .royalMedicine)
+        || (validFields[index] == .division && AppEnvironment.shouldHideOrganization)
+        || (validFields[index] == .specialization && AppEnvironment.shouldHideOrganization)
     }
 
     func setNewPassword(oldPassword: String?, newPassword: String?, passwordConfirmation: String?) {

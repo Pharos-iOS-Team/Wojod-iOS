@@ -171,25 +171,25 @@ class SchoolViewController: UIViewController {
         fieldsPickerView.text = { $0 }
 
         divisionsPickerView.didSelectAtIndex = { [unowned self] index in
-            academicDivisionTextField.text = self.divisionsList[index].value
+            academicDivisionTextField.text = self.divisionsList[safe: index]?.value
             self.selectedDivisionIndexID = index
-            self.selectedDivision = viewModel?.divisions?[index]
+            self.selectedDivision = viewModel?.divisions?[safe: index]
             academicDivisionTextField.setNormalView()
         }
         academicTypesPickerView.didSelectAtIndex = { [unowned self] index in
-            selectedAcademicType = academicTypesList?[index]
+            selectedAcademicType = academicTypesList?[safe: index]
             academicTypeTextField.text = selectedAcademicType?.value
             academicTypeTextField.setNormalView()
         }
         academicYearPickerView.didSelectAtIndex = { [unowned self] index in
             guard !academicYears.isEmpty else { return }
-            academicYearTextField.text = self.academicYears[index].value
+            academicYearTextField.text = self.academicYears[safe: index]?.value
             self.selectedYearIndexID = index
             academicYearTextField.setNormalView()
         }
         fieldsPickerView.didSelectAtIndex = { [unowned self] index in
-            fieldTextField.text = self.fields[index].value
-            selectedField = self.fields[index]
+            fieldTextField.text = self.fields[safe: index]?.value
+            selectedField = self.fields[safe: index]
             fieldTextField.setNormalView()
         }
     }
@@ -266,13 +266,13 @@ class SchoolViewController: UIViewController {
     private func academicYearPickerDoneTapped() {
         guard !academicYears.isEmpty else { return }
         academicYearPickerView.resignFirstResponder()
-        academicYearTextField.text = academicYears[selectedYearIndexID].value
+        academicYearTextField.text = academicYears[safe: selectedYearIndexID]?.value
     }
 
     @objc
     private func fieldPickerDoneTapped() {
         if selectedField == nil {
-            selectedField = fields[0]
+            selectedField = fields.first
         }
         fieldsPickerView.resignFirstResponder()
         User.shared.specializationId = selectedField?.key
@@ -319,7 +319,7 @@ class SchoolViewController: UIViewController {
         User.shared.academicTypeName = academicTypeTextField.text
         User.shared.divisionId = selectedDivision?.key ?? 0
         User.shared.divisionName = academicDivisionTextField.text
-        User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[selectedYearIndexID]
+        User.shared.batch = academicYearTextField.isEmpty ? nil : viewModel?.batchesIDs[safe: selectedYearIndexID]
         User.shared.batchName = academicYearTextField.text
         User.shared.schoolName = schoolNameTextField.text
         User.shared.specializationId = selectedField?.key

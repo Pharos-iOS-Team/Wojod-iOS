@@ -110,7 +110,7 @@ class LocationInfoViewController: UIViewController {
     }
 
     @IBAction private func didTapOnNext(_ sender: Any) {
-        if AppEnvironment.appName == .royalMedicine {
+        if AppEnvironment.shouldHideOrganization {
             performSegue(withIdentifier: "goToUniversity", sender: self)
         } else {
             performSegue(withIdentifier: "goToAcademicInfo", sender: self)

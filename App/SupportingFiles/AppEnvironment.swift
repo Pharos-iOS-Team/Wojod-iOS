@@ -25,6 +25,10 @@ enum AppEnvironment {
         return AppName.init(rawValue: propertyListKeyValuePair.appName) ?? .wojod
     }()
 
+    static let shouldHideOrganization: Bool = {
+        return AppEnvironment.appName.loginOrganization != nil
+    }()
+    
     static var imageUrl: (String) -> URL = { imagePath in
         guard let url = URL(string: "\(baseURLString)\(imagePath)") else { fatalError("Image URL is invalid") }
         return url
