@@ -301,18 +301,21 @@ class AssessmentDetailOverViewViewController: UIViewController {
     }
 
     func animatTransitionIfNeeded(state: AssessmentDetailOverViewState, duration: TimeInterval) {
-        guard let parentHeight = parent?.view.frame.height else { return }
+        guard let parentView = parent?.view else { return }
+        let parentHeight = parentView.bounds.height
+        let safeAreaTop = parentView.safeAreaInsets.top
+        
         if runningAnimations.isEmpty {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) { [weak self] in
                 switch state {
                 case .expanded:
-                    self?.view.frame.origin.y = (parentHeight) - (self?.assessmentDetailOverViewHeight ?? 0) - 5
+                    self?.view.frame.origin.y = safeAreaTop
                     self?.hideNextButton()
                     self?.closeButton.isHidden = false
                     self?.viewAllLabel.isHidden = true
                     self?.intructionsAttachedLabel.isHidden = true
                 case .collapsed:
-                    self?.view.frame.origin.y = (parentHeight) - (self?.assessmentDetaildragViewHeight ?? 0) - 5
+                    self?.view.frame.origin.y = parentHeight - (self?.assessmentDetaildragViewHeight ?? 0) - 5
                 }
             }
             frameAnimator.addCompletion { [weak self] _ in

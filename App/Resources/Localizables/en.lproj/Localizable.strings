@@ -176,6 +176,7 @@ No worries!";
 "courseDetails.main.reviews" = "Reviews";
 "courseDetails.main.materials" = "Materials";
 "courseDetails.main.bookNow" = "Book Now";
+"courseDetails.main.contactUs" = "Contact Us";
 "courseDetails.main.bookByQR" = "Book by QR";
 "courseDetails.main.selectAnOption" = "Please Select an Option";
 "courseDetails.main.qrCodeScanner" = "QR code scanner";

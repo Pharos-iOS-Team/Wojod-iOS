@@ -36,12 +36,11 @@ protocol LoadableView: AnyObject {
 }
 
 class CourseDetailsViewController: UIViewController {
-    //    @IBOutlet private var vdoPlayerView: VdoPlayerView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
             actionButton.layer.cornerRadius = UIConstants.cornerRadius
-            actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
+            actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
         }
     }
     @IBOutlet private var bookByQRButton: UIButton! {
@@ -50,6 +49,8 @@ class CourseDetailsViewController: UIViewController {
             bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
         }
     }
+    
+    var isContactInfoAvailable: Bool { (course.contactUsInfo?.isValid ?? false) }
 
     // MARK: - Private Properties
 
@@ -95,6 +96,7 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        VdoCipher.setPlaybackDelegate(delegate: self)
         state = getReservationState()
         viewModel = CourseDetailsViewModel()
         quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
@@ -168,15 +170,6 @@ class CourseDetailsViewController: UIViewController {
         tableView.reloadData()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        avPlayerController.view.layer.sublayers?.forEach { layer in
-            if layer.isKind(of: CATextLayer.self) {
-                layer.removeFromSuperlayer()
-            }
-        }
-    }
-
     // MARK: - IBActions
 
     @IBAction private func didTapOnActionButton(_ sender: UIButton) {
@@ -186,11 +179,8 @@ class CourseDetailsViewController: UIViewController {
         } else {
             switch state {
             case .normal:
-                bookCourse()
-                
-            case .pending:
                 blurView()
-                displayConfirmCancelBooking()
+                displayContactUsPopup()
                 
             case .booked:
                 blurView()
@@ -240,20 +230,20 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func displayQRCodeManualScreen() {
-        let view = UINib(nibName: "EnterQRCodeManuallyView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? EnterQRCodeManuallyView
-        view?.center = CGPoint(
-            x: self.view.frame.size.width / 2,
-            y: self.view.frame.size.height / 2
-        )
-        view?.addShadow()
-        view?.scanningCompletionHandler = { code in
-            self.blurredView?.removeFromSuperview()
-            self.bookCourse(qrCode: code)
+        let qrVC = EnterQRCodeManuallyViewController(nibName: "EnterQRCodeManuallyViewController", bundle: nil)
+
+        qrVC.scanningCompletionHandler = { [weak self] code in
+            self?.blurredView?.removeFromSuperview()
+            self?.bookCourse(qrCode: code)
         }
-        view?.scanningDismissed = {
+        qrVC.scanningDismissed = {
             self.blurredView?.removeFromSuperview()
         }
-        self.view.addSubview(view ?? UIView())
+
+        qrVC.modalPresentationStyle = .overFullScreen
+        qrVC.modalTransitionStyle = .crossDissolve
+
+        self.present(qrVC, animated: true)
     }
 
     private func shouldShowQRCodeScanner() {
@@ -376,11 +366,11 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func configureActionButtonAccordingToState() {
+        actionButton.isHidden = !isContactInfoAvailable
         switch state {
         case .normal:
-            actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
-        case .pending:
-            actionButton.setTitle(L10n.CourseDetails.Main.cancelBooking)
+            actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
+            
         case .booked:
             actionButton.setTitle(L10n.CourseDetails.Main.reviewCourse)
         default:
@@ -398,33 +388,39 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func displayReceipt(_ receiptData: BookingCourseResponseModel, coursePrice: String) {
-        let view = UINib(nibName: "ReceiptView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReceiptView
-        view?.center = CGPoint(
-            x: self.view.frame.size.width / 2,
-            y: self.view.frame.size.height / 2
-        )
-        view?.configure(with: receiptData, coursePrice: coursePrice)
-        view?.receiptDoneButtonDelegate = self
-        view?.addShadow()
-        self.view.addSubview(view ?? UIView())
+        let receiptVC = ReceiptViewController(nibName: "ReceiptViewController", bundle: nil)
+        receiptVC.receiptData = receiptData
+        receiptVC.coursePrice = coursePrice
+        receiptVC.delegate = self
+        
+        receiptVC.modalPresentationStyle = .overFullScreen
+        receiptVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(receiptVC, animated: true)
     }
 
-    private func displayConfirmCancelBooking() {
-        let view = UINib(nibName: "CancelBookingView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? CancelBookingView
-        view?.layer.cornerRadius = UIConstants.cornerRadius
-        view?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
-        view?.delegate = self
-        view?.addShadow()
-        self.view.addSubview(view ?? UIView())
+    private func displayContactUsPopup() {
+        guard let contactUsInfo = course.contactUsInfo, isContactInfoAvailable else { return }
+        
+        let popupVC = ContactUsViewController(nibName: "ContactUsViewController", bundle: nil)
+        popupVC.modalPresentationStyle = .overFullScreen
+        popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.contactInfo = contactUsInfo
+        popupVC.viewDismissed = {
+            self.blurredView?.removeFromSuperview()
+        }
+        
+        self.present(popupVC, animated: true)
     }
 
     private func displayReviewCoursePopup() {
-        let reviewCourseView = UINib(nibName: "ReviewCourseView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? ReviewCourseView
-        reviewCourseView?.layer.cornerRadius = UIConstants.cornerRadius
-        reviewCourseView?.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 2)
-        reviewCourseView?.delegate = self
-        reviewCourseView?.addShadow()
-        self.view.addSubview(reviewCourseView ?? UIView())
+        let reviewVC = ReviewCourseViewController(nibName: "ReviewCourseViewController", bundle: nil)
+        reviewVC.delegate = self
+        
+        reviewVC.modalPresentationStyle = .overFullScreen
+        reviewVC.modalTransitionStyle = .crossDissolve
+        
+        self.present(reviewVC, animated: true)
     }
 
     private func configureTableView() {
@@ -1056,25 +1052,6 @@ extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
     }
 }
 
-// MARK: - Cancel Booking View Delegate
-
-extension CourseDetailsViewController: CancelBookingViewDelegate {
-    func didTapCancelBooking() {
-        blurredView?.removeFromSuperview()
-        viewModel?.cancelBookingCourse(courseID: course.id) { isCancellingSuccessful in
-            if isCancellingSuccessful {
-                self.state = .normal
-                self.actionButton.setTitle(L10n.CourseDetails.Main.bookNow)
-                self.shouldShowQRCodeScanner()
-            }
-        }
-    }
-
-    func didTapReturn() {
-        blurredView?.removeFromSuperview()
-    }
-}
-
 // MARK: - Review Course View Delegate
 
 extension CourseDetailsViewController: ReviewCourseViewDelegate {
@@ -1149,11 +1126,12 @@ extension CourseDetailsViewController {
                         message: error.description
                     )
                 } else if let otp = encryptedVideoResponse?.otp, let playback = encryptedVideoResponse?.playback {
+                    guard let self = self else { return }
                     let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
+                    vdoPlayerController.transitioningDelegate = self
                     asset?.playOnline(otp: otp, playbackInfo: playback)
-                    self?.present(vdoPlayerController, animated: true)
-
-                    self?.hideLoadingIndicator()
+                    self.present(vdoPlayerController, animated: true)
+                    self.handleVideo(video, encryptedVideoResponse: encryptedVideoResponse, for: vdoPlayerController)
                 }
             }
         }
@@ -1161,6 +1139,13 @@ extension CourseDetailsViewController {
 }
 
 extension CourseDetailsViewController {
+    private func handleVideo(_ video: Video, encryptedVideoResponse: EncryptedVideoResponse?, for vdoPlayerController: VdoPlayerViewController) {
+        self.hideLoadingIndicator()
+        self.updateId = encryptedVideoResponse?.updateId ?? .zero
+        self.videoId = "\(video.id)"
+        self.checkForBufferedTime()
+    }
+    
     private func checkForBufferedTime() {
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(checkForTime), userInfo: nil, repeats: true)
     }
@@ -1216,23 +1201,6 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
     }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: nil) { _ in
-            self.avPlayerController.view.layer.sublayers?.forEach { layer in
-                self.setupPlayerLayerFrame(layer)
-            }
-        }
-    }
-
-    private func setupPlayerLayerFrame(_ layer: CALayer) {
-        guard let layer = layer as? CATextLayer else { return }
-
-        let videoBounds = avPlayerController.videoBounds
-        let width: CGFloat = 175.0
-        let xPoint = videoBounds.maxX - width
-        layer.frame = CGRect(x: xPoint, y: videoBounds.minY + 30, width: width, height: 50)
-    }
 }
 
 // MARK: - DZN Empty State Data Source
@@ -1283,5 +1251,25 @@ extension CourseDetailsViewController {
             self?.dismissAlertView()
             self?.showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.error, message: error)
         }
+    }
+}
+
+// MARK: - AssetPlaybackDelegate
+extension CourseDetailsViewController:  AssetPlaybackDelegate , UIViewControllerTransitioningDelegate{
+    func streamPlaybackManager(playerReadyToPlay player: AVPlayer) {
+        player.play()
+    }
+    
+    func streamPlaybackManager(playerCurrentItemDidChange player: AVPlayer) {
+        self.player = player
+    }
+    
+    func streamLoadError(error: VdoFramework.VdoError) {
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        timer.invalidate()
+        player = nil
+        return nil
     }
 }

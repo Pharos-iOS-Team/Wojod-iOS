@@ -153,7 +153,7 @@ extension AvatarsViewController: UICollectionViewDataSource {
             cell.setImageView(with: image)
             return cell
         }
-        return UICollectionViewCell()
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

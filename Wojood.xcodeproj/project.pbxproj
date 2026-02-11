@@ -97,8 +97,8 @@
 		385CC0F0266116EB00A091FD /* LessonsAttachmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */; };
 		385CC0F52663A96800A091FD /* BookingCourseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */; };
 		385CC1052663D95D00A091FD /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = 385CC1042663D95C00A091FD /* Roboto */; };
-		385CC10B26641D0F00A091FD /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC10A26641D0E00A091FD /* ReceiptView.swift */; };
-		385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC11226641D3A00A091FD /* ReceiptView.xib */; };
+		385CC10B26641D0F00A091FD /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385CC10A26641D0E00A091FD /* ReceiptViewController.swift */; };
+		385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385CC11226641D3A00A091FD /* ReceiptViewController.xib */; };
 		38635B9B26EF79240040CAF4 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38635B9A26EF79230040CAF4 /* Filters.swift */; };
 		38659ABE26B43D5500E3BFE9 /* FiltersApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659ABD26B43D5500E3BFE9 /* FiltersApiClient.swift */; };
 		38659AC326B43D6B00E3BFE9 /* FiltersTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38659AC226B43D6B00E3BFE9 /* FiltersTarget.swift */; };
@@ -157,18 +157,14 @@
 		38B131C926B173D800D5966A /* FiltersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B131C726B173D800D5966A /* FiltersTableViewCell.xib */; };
 		38B131CF26B18ACC00D5966A /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B131CD26B18ACC00D5966A /* FilterCollectionViewCell.swift */; };
 		38B131D026B18ACC00D5966A /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B131CE26B18ACC00D5966A /* FilterCollectionViewCell.xib */; };
-		38F7D48E2666C8FD00CD8934 /* CancelBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */; };
-		38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D4922666C92900CD8934 /* CancelBookingView.xib */; };
-		38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D497266761E600CD8934 /* ReviewCourseView.swift */; };
-		38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */; };
+		38F7D49D266761FC00CD8934 /* ReviewCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F7D49C266761FC00CD8934 /* ReviewCourseViewController.xib */; };
 		38F7D4A526677B6C00CD8934 /* CourseReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4A426677B6C00CD8934 /* CourseReview.swift */; };
 		38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */; };
 		38F7D4CD2668EA7800CD8934 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */; };
 		38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */; };
 		536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */; };
 		537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 537955B8296EC99A0051682D /* LanguageManager-iOS */; };
-		53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */; };
-		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */; };
+		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyViewController.xib */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7719A08B2E251108004541E6 /* JGProgressHUD */; };
@@ -328,7 +324,6 @@
 		BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */; };
 		BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69D82C189C0D00E990C0 /* KeychainAccess */; };
 		BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DB2C189DE100E990C0 /* HandyUIKit */; };
-		BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */; };
 		BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E12C189E9900E990C0 /* M13Checkbox */; };
 		BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E42C189ED700E990C0 /* ObjectMapper */; };
 		BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E72C189F1900E990C0 /* Reachability */; };
@@ -389,6 +384,12 @@
 		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
 		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
+		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
+		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
+		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
+		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
+		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
+		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -529,8 +530,8 @@
 		385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsAttachmentsModel.swift; sourceTree = "<group>"; };
 		385CC0F42663A96700A091FD /* BookingCourseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCourseResponseModel.swift; sourceTree = "<group>"; };
 		385CC1042663D95C00A091FD /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
-		385CC10A26641D0E00A091FD /* ReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
-		385CC11226641D3A00A091FD /* ReceiptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptView.xib; sourceTree = "<group>"; };
+		385CC10A26641D0E00A091FD /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		385CC11226641D3A00A091FD /* ReceiptViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptViewController.xib; sourceTree = "<group>"; };
 		38635B9A26EF79230040CAF4 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		38659ABD26B43D5500E3BFE9 /* FiltersApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersApiClient.swift; sourceTree = "<group>"; };
 		38659AC226B43D6B00E3BFE9 /* FiltersTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersTarget.swift; sourceTree = "<group>"; };
@@ -590,17 +591,13 @@
 		38B131C726B173D800D5966A /* FiltersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersTableViewCell.xib; sourceTree = "<group>"; };
 		38B131CD26B18ACC00D5966A /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		38B131CE26B18ACC00D5966A /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
-		38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBookingView.swift; sourceTree = "<group>"; };
-		38F7D4922666C92900CD8934 /* CancelBookingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelBookingView.xib; sourceTree = "<group>"; };
-		38F7D497266761E600CD8934 /* ReviewCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseView.swift; sourceTree = "<group>"; };
-		38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCourseView.xib; sourceTree = "<group>"; };
+		38F7D49C266761FC00CD8934 /* ReviewCourseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCourseViewController.xib; sourceTree = "<group>"; };
 		38F7D4A426677B6C00CD8934 /* CourseReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseReview.swift; sourceTree = "<group>"; };
 		38F7D4C72668EA5300CD8934 /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
 		38F7D4CC2668EA7800CD8934 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
-		53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyView.swift; sourceTree = "<group>"; tabWidth = 4; };
-		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyView.xib; sourceTree = "<group>"; };
+		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyViewController.xib; sourceTree = "<group>"; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		77135AAC2E46C1BE0032884F /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
@@ -651,6 +648,7 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
 		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
@@ -836,6 +834,10 @@
 		D5070CDA2E65FEC900728D01 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
 		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
+		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
+		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
+		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
@@ -882,12 +884,12 @@
 				BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */,
 				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
 				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
-				BC6B69DF2C189E4700E990C0 /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
 				BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
+				D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */,
 				BC6B69CA2C18948700E990C0 /* Cosmos in Frameworks */,
 				7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */,
 				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
@@ -898,6 +900,7 @@
 				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
+				D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */,
 				BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */,
 				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
@@ -1167,14 +1170,14 @@
 		385CC10926641C9900A091FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				385CC10A26641D0E00A091FD /* ReceiptView.swift */,
-				385CC11226641D3A00A091FD /* ReceiptView.xib */,
-				38F7D48D2666C8FD00CD8934 /* CancelBookingView.swift */,
-				38F7D4922666C92900CD8934 /* CancelBookingView.xib */,
-				38F7D497266761E600CD8934 /* ReviewCourseView.swift */,
-				38F7D49C266761FC00CD8934 /* ReviewCourseView.xib */,
-				53DAFBE2298895AB004E9528 /* EnterQRCodeManuallyView.swift */,
-				53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyView.xib */,
+				D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */,
+				D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */,
+				D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */,
+				53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyViewController.xib */,
+				385CC10A26641D0E00A091FD /* ReceiptViewController.swift */,
+				385CC11226641D3A00A091FD /* ReceiptViewController.xib */,
+				D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */,
+				38F7D49C266761FC00CD8934 /* ReviewCourseViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1681,6 +1684,7 @@
 		778887412E46AD8D0027D5D9 /* release */ = {
 			isa = PBXGroup;
 			children = (
+				7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */,
 				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
 				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
 				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
@@ -2304,7 +2308,6 @@
 				BC6B69D52C189BCD00E990C0 /* DZNEmptyDataSet */,
 				BC6B69D82C189C0D00E990C0 /* KeychainAccess */,
 				BC6B69DB2C189DE100E990C0 /* HandyUIKit */,
-				BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */,
 				BC6B69E12C189E9900E990C0 /* M13Checkbox */,
 				BC6B69E42C189ED700E990C0 /* ObjectMapper */,
 				BC6B69E72C189F1900E990C0 /* Reachability */,
@@ -2322,6 +2325,8 @@
 				BC8C1E9A2DA7CE01000AED7F /* MessageKit */,
 				BC8C1E9D2DA7CF66000AED7F /* Moya */,
 				7719A08B2E251108004541E6 /* JGProgressHUD */,
+				D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */,
+				D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2384,7 +2389,6 @@
 				BC6B69D42C189BCD00E990C0 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
 				BC6B69D72C189C0D00E990C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */,
-				BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */,
 				BC6B69E32C189ED700E990C0 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				BC6B69E62C189F1900E990C0 /* XCRemoteSwiftPackageReference "Reachability" */,
@@ -2399,6 +2403,8 @@
 				BC8C1E992DA7CE01000AED7F /* XCRemoteSwiftPackageReference "MessageKit" */,
 				BC8C1E9C2DA7CF66000AED7F /* XCRemoteSwiftPackageReference "Moya" */,
 				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2440,7 +2446,7 @@
 				26CF48F6269B4BC700DDA29F /* CustomMessageCell.xib in Resources */,
 				38B0355A265B9F0A00C24479 /* Notifications.storyboard in Resources */,
 				77D013CE26A0F701006EA602 /* AdsCollectionViewCell.xib in Resources */,
-				38F7D49D266761FC00CD8934 /* ReviewCourseView.xib in Resources */,
+				38F7D49D266761FC00CD8934 /* ReviewCourseViewController.xib in Resources */,
 				380B139D26B807F700CB5811 /* QuestionHeaderTableViewCell.xib in Resources */,
 				388AA9AB269EF6D400C61C0D /* HomeTableViewHeader.xib in Resources */,
 				380B139526B807F700CB5811 /* AssessmentMCQOptionTableViewCell.xib in Resources */,
@@ -2453,10 +2459,9 @@
 				BC98F41B262354E100032AC6 /* Inter-Light.ttf in Resources */,
 				380B13A226B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.xib in Resources */,
 				BC0F92B92785DC4F001C5B3A /* OrganizationsList.storyboard in Resources */,
-				38F7D4932666C92A00CD8934 /* CancelBookingView.xib in Resources */,
 				385CC0E6265FD67F00A091FD /* ReviewTableViewCell.xib in Resources */,
 				BC98F41C262354E100032AC6 /* Inter-Thin.ttf in Resources */,
-				53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyView.xib in Resources */,
+				53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyViewController.xib in Resources */,
 				380B139826B807F700CB5811 /* AssessmentFreeTextTableViewCell.xib in Resources */,
 				BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
@@ -2467,17 +2472,18 @@
 				380B13A326B807F700CB5811 /* AssessmentDetailOverViewQuestionsTableViewCell.xib in Resources */,
 				BC76714A262C52960012155C /* Home.storyboard in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
-				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
+				385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */,
 				BC8D4C1B26E76F1400033413 /* CourseDetailsInfoHeaderView.xib in Resources */,
 				380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */,
 				380B13A426B807F700CB5811 /* AssessmentDetailOverview.storyboard in Resources */,
-				385CC11326641D3B00A091FD /* ReceiptView.xib in Resources */,
+				385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */,
 				38B131D026B18ACC00D5966A /* FilterCollectionViewCell.xib in Resources */,
 				BC98F422262354E100032AC6 /* Inter-Black.ttf in Resources */,
 				BC98F3FC2623370F00032AC6 /* AlertView.xib in Resources */,
 				7723AE18261C7FBD007C0B97 /* extension-structured-swift5.stencil in Resources */,
 				7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */,
 				BC0F92C92785E7A1001C5B3A /* OrganizationsListTableViewCell.xib in Resources */,
+				D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */,
 				BC98F41D262354E100032AC6 /* Inter-SemiBold.ttf in Resources */,
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */,
@@ -2602,6 +2608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */,
 				BC5ED0F02628689C00774E54 /* ForgotPasswordTarget.swift in Sources */,
 				BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */,
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
@@ -2610,7 +2617,6 @@
 				38B06A7B26F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
-				53DAFBE3298895AC004E9528 /* EnterQRCodeManuallyView.swift in Sources */,
 				BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */,
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
 				385CC0EB26601A6700A091FD /* Reviews.swift in Sources */,
@@ -2762,6 +2768,7 @@
 				BC7101C2276FDF7F002607ED /* ScreenshotAlertTarget.swift in Sources */,
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
+				D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
 				38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
@@ -2811,7 +2818,7 @@
 				E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */,
 				385CC0A0265ECB7200A091FD /* AttachmentTableViewCell.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
-				385CC10B26641D0F00A091FD /* ReceiptView.swift in Sources */,
+				385CC10B26641D0F00A091FD /* ReceiptViewController.swift in Sources */,
 				BC083B032641725B00A1E6A4 /* PickerInputView.swift in Sources */,
 				77E32B96264A8B430064B801 /* LoginApiClient.swift in Sources */,
 				E8C9EF4226323B0D0023D2B1 /* NetworkError.swift in Sources */,
@@ -2841,7 +2848,6 @@
 				26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */,
 				E86753032642890D005ABF77 /* Specializations.swift in Sources */,
 				385CC0C2265F92FA00A091FD /* CourseDetailsApiClient.swift in Sources */,
-				38F7D498266761E600CD8934 /* ReviewCourseView.swift in Sources */,
 				38B131C826B173D800D5966A /* FiltersTableViewCell.swift in Sources */,
 				38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
@@ -2851,6 +2857,7 @@
 				385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */,
 				38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */,
 				26CF48AF269B0F1D00DDA29F /* ChatTarget.swift in Sources */,
+				D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */,
 				BC19E5882631762A00CFA142 /* ProfileTableViewCell.swift in Sources */,
 				380B13AE26B807F700CB5811 /* AssignmentQuestionStateView.swift in Sources */,
 				38659BDA26B6D2F900E3BFE9 /* OptionCollectionViewCell.swift in Sources */,
@@ -2899,7 +2906,6 @@
 				E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */,
 				E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */,
 				E8C9EF78263DD22D0023D2B1 /* DataResponse.swift in Sources */,
-				38F7D48E2666C8FD00CD8934 /* CancelBookingView.swift in Sources */,
 				380B13A026B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.swift in Sources */,
 				778E7271261DC3E1009D7B35 /* Assets.swift in Sources */,
 				BC96829926397FE6009F8550 /* AcademicInfoModel.swift in Sources */,
@@ -3086,10 +3092,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46AX569373;
+				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3102,6 +3108,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "de.pharos-solutions.wojood-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3123,7 +3130,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3256,7 +3263,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3368,7 +3375,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3480,7 +3487,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3692,14 +3699,6 @@
 				version = 1.9.2;
 			};
 		};
-		BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = exactVersion;
-				version = 6.5.6;
-			};
-		};
 		BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Marxon13/M13Checkbox";
@@ -3754,6 +3753,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.6.0;
+			};
+		};
+		D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.1;
+			};
+		};
+		D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardToolbarManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3854,11 +3869,6 @@
 			package = BC6B69DA2C189DE100E990C0 /* XCRemoteSwiftPackageReference "HandyUIKit" */;
 			productName = HandyUIKit;
 		};
-		BC6B69DE2C189E4700E990C0 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC6B69DD2C189E4700E990C0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
 		BC6B69E12C189E9900E990C0 /* M13Checkbox */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC6B69E02C189E9900E990C0 /* XCRemoteSwiftPackageReference "M13Checkbox" */;
@@ -3893,6 +3903,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */;
 			productName = VdoFramework;
+		};
+		D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */;
+			productName = IQKeyboardToolbarManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 

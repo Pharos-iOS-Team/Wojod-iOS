@@ -35,6 +35,7 @@ struct Course: Codable {
     let lessonsUnreadCount: Int?
     let materialsUnreadCount: Int?
     let qrCodeEnabled: Bool?
+    let contactUsInfo: String?
 }
 
 struct Media: Codable {
