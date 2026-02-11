@@ -648,6 +648,7 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
 		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
@@ -1683,6 +1684,7 @@
 		778887412E46AD8D0027D5D9 /* release */ = {
 			isa = PBXGroup;
 			children = (
+				7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */,
 				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
 				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
 				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,

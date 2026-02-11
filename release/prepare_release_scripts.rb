@@ -14,7 +14,7 @@ class ScriptBuilder
     content = ""
     @configuration_files.each do |file_path|
       configuration_base_file_name = File.basename(file_path, '.xcconfig')
-      content << "bundle exec fastlane #{lane} --env #{configuration_base_file_name.downcase}\n"
+      content << "fastlane #{lane} --env #{configuration_base_file_name.downcase}\n"
     end
 
     # Ensure "release" directory exists
