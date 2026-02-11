@@ -165,7 +165,7 @@ class AssessmentQuestionViewModel {
 
     private func downloadImage(with urlString: String?) {
         guard let urlString = urlString,
-            let imageURL = URL(string: "\(Environment.baseURL)\(urlString)"),
+            let imageURL = URL(string: "\(AppEnvironment.baseURL)\(urlString)"),
             let questionID = questionID
             else { return }
         AF.request(imageURL).responseImage { response in
@@ -305,7 +305,7 @@ class AssessmentQuestionViewModel {
            let actualURL = getActualFileURL(from: URL(string: submittedAttachment)) {
             return (actualURL, false)
         } else {
-            return (URL(string: "\(Environment.baseURL)\(submittedAttachment)"), true)
+            return (URL(string: "\(AppEnvironment.baseURL)\(submittedAttachment)"), true)
         }
     }
 

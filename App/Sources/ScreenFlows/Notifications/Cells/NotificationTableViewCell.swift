@@ -137,7 +137,7 @@ class NotificationTableViewCell: UITableViewCell {
     @objc
     private func loadAttachment(button: UIButton) {
         let attachment = attachments?.first { $0.id == button.tag }
-        let documentURL = Environment.baseURL.appendingPathComponent(attachment?.fileUrl ?? "")
+        let documentURL = AppEnvironment.baseURL.appendingPathComponent(attachment?.fileUrl ?? "")
         loadAttachmentsDelegate?.loadAttachment(of: "\(documentURL)")
     }
 

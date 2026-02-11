@@ -90,7 +90,7 @@ class AssessmentMCQOptionTableViewCell: UITableViewCell, UIDocumentInteractionCo
     private func setOptionImage(_ optionImageURL: String?) {
         guard let optionImageURL = optionImageURL,
             !optionImageURL.isEmpty,
-            let imageURL = URL(string: "\(Environment.baseURL)\(optionImageURL)") else {
+            let imageURL = URL(string: "\(AppEnvironment.baseURL)\(optionImageURL)") else {
             setQuestionImageHidden(true)
             return
         }

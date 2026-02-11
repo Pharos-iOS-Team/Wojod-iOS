@@ -6,7 +6,7 @@ import SwiftyUserDefaults
 
 extension TargetType {
     var baseURL: URL {
-        Environment.rootURL
+        AppEnvironment.rootURL
     }
 
     var headers: [String: String]? {

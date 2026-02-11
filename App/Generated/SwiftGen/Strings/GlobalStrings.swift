@@ -101,6 +101,10 @@ extension L10n {
       internal static var error: String {
           return L10n.tr("GlobalLocalizable", "global.titles.error")
         }
+      /// seconds
+      internal static var seconds: String {
+          return L10n.tr("GlobalLocalizable", "global.titles.seconds")
+        }
       /// Server Not Responding
       internal static var serverNotResponding: String {
           return L10n.tr("GlobalLocalizable", "global.titles.server_not_responding")

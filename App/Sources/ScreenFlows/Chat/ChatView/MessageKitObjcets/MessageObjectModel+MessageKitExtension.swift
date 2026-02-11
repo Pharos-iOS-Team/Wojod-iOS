@@ -43,7 +43,7 @@ extension MessageObjectModel: AudioItem {
     var url: URL {
         guard
             let attachmentPath = attachments?.first?.fileUrl,
-            let audioURL = URL(string: Environment.baseURLString + attachmentPath)
+            let audioURL = URL(string: AppEnvironment.baseURLString + attachmentPath)
         else {
             fatalError("MessagesDisplayDelegate has not been set.")
         }
@@ -52,7 +52,7 @@ extension MessageObjectModel: AudioItem {
 
     var duration: Float {
         guard let attachmentPath = attachments?.first?.fileUrl else { return 0.0 }
-        let asset = AVURLAsset(url: URL(fileURLWithPath: Environment.baseURLString + attachmentPath))
+        let asset = AVURLAsset(url: URL(fileURLWithPath: AppEnvironment.baseURLString + attachmentPath))
         let audioDuration = asset.duration
         let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
         return Float(audioDurationSeconds)

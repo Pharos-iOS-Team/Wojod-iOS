@@ -93,4 +93,16 @@ extension String {
     func size(withAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> CGSize {
         return (self as NSString).size(withAttributes: attrs)
     }
+
+    func getYoutubeId() -> String? {
+        let pattern = #"(?:(?<=v=|/videos/|embed/|youtu\.be/|/v/|/e/|/shorts/|/watch/)-?)([a-zA-Z0-9_-]{11})"#
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        let nsString = self as NSString
+        let results = regex?.firstMatch(in: self, options: [], range: NSRange(location: 0, length: nsString.length))
+
+        if let range = results?.range(at: 1) {
+            return nsString.substring(with: range)
+        }
+        return nil
+    }
 }

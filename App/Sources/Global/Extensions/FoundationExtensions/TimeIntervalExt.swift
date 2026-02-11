@@ -14,4 +14,18 @@ extension TimeInterval {
         }
         return formatter.string(from: self)
     }
+    
+    func formattedTime() -> String {
+      let formatter = DateComponentsFormatter()
+      
+      if self < 3600 {
+        formatter.allowedUnits = [.minute, .second]
+      } else {
+        formatter.allowedUnits = [.hour, .minute, .second]
+      }
+      
+      formatter.unitsStyle = .positional
+      formatter.zeroFormattingBehavior = .pad
+      return formatter.string(from: self) ?? "00:00"
+    }
 }

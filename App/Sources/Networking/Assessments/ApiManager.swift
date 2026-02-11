@@ -6,10 +6,10 @@ class ApiManager {
     let manager = Alamofire.Session.default
 
     var hostUrl: String {
-        return "\(Environment.rootURL)"
+        return "\(AppEnvironment.rootURL)"
     }
 
     var baseURL: String {
-        return "\(Environment.baseURL)"
+        return "\(AppEnvironment.baseURL)"
     }
 }

@@ -96,7 +96,6 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
             numberOfViewLabel.text = L10n.CourseDetails.CourseReview.reviews
         }
     }
-    private var youtubePlayerView: YTPlayerView!
 
     weak var delegate: CourseDetailsInfoHeaderDelegate?
     var video: Media?
@@ -130,7 +129,7 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     @IBAction private func didTapPlay(_ sender: Any) {
         playButton.isHidden = true
         let courseVideoUrl = video?.fileUrl ?? ""
-        guard let videoURL = URL(string: "\(Environment.baseURL)" + courseVideoUrl) else { return }
+        guard let videoURL = URL(string: "\(AppEnvironment.baseURL)" + courseVideoUrl) else { return }
         let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController()
         playerController.player = player
@@ -154,7 +153,7 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         batchLabel.text = model.batchName
         descriptionLabel.text = model.description
         numberOfReviewsLabel.text = model.numberOfReviews
-        courseImageView.kf.setImage(with: Environment.baseURL.appendingPathComponent(model.image ?? ""))
+        courseImageView.kf.setImage(with: AppEnvironment.baseURL.appendingPathComponent(model.image ?? ""))
         priceLabel.text = model.price
         materialsButton.isHidden = model.shouldHideMaterials
         configureChatButtonAccordingToState(state: model.state)
@@ -165,36 +164,6 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
         configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
         delegate = model.delegate
-    }
-
-    func playYoutubeVideo(videoLink: String) {
-        youtubePlayerView = YTPlayerView(frame: mediaContainerView.frame)
-        youtubePlayerView.delegate = self
-        videoURL = videoLink
-        mediaContainerView.addSubview(youtubePlayerView)
-        youtubePlayerView.bindEdgesToSuperview()
-        mediaContainerView.bringSubviewToFront(youtubePlayerView)
-        let videoID = extractID(from: videoLink)
-        youtubePlayerView.load(withVideoId: videoID, playerVars: ["playsinline": 1, "autoplay": 1])
-    }
-
-    private func extractID(from videoURL: String) -> String {
-        do {
-            let regex = try NSRegularExpression(
-                pattern: "(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)",
-                options: NSRegularExpression.Options.caseInsensitive
-            )
-            let match = regex.firstMatch(
-                in: videoURL,
-                options: NSRegularExpression.MatchingOptions.reportProgress,
-                range: NSMakeRange(0, videoURL.lengthOfBytes(using: String.Encoding.utf8))
-            )
-            let range = match?.range(at: 0)
-            let youTubeID = (videoURL as NSString).substring(with: range!)
-            return youTubeID
-        } catch {
-        }
-        return ""
     }
 
     private func configureLessonBadge(shouldHide: Bool) {
@@ -239,13 +208,5 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
 
     private func configureChatButtonAccordingToState(state: CourseState) {
         chatButton.isHidden = state != .booked
-    }
-}
-
-extension CourseDetailsInfoHeaderView: YTPlayerViewDelegate {
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        guard let videoURL = videoURL else { return }
-        let videoID = extractID(from: videoURL)
-        playerView.loadVideo(byId: videoID, startSeconds: .zero)
     }
 }

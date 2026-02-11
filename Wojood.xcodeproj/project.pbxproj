@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -186,7 +186,7 @@
 		7723ADB3261C716D007C0B97 /* NotificationsTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADB2261C716D007C0B97 /* NotificationsTarget.swift */; };
 		7723ADB8261C720F007C0B97 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADB7261C720F007C0B97 /* DeviceToken.swift */; };
 		7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADBC261C726E007C0B97 /* TargetTypeExt.swift */; };
-		7723ADC2261C728E007C0B97 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADC1261C728E007C0B97 /* Environment.swift */; };
+		7723ADC2261C728E007C0B97 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADC1261C728E007C0B97 /* AppEnvironment.swift */; };
 		7723ADC7261C72E1007C0B97 /* PropertyListKeyValuePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */; };
 		7723ADDA261C73FE007C0B97 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7723ADDC261C73FE007C0B97 /* Localizable.strings */; };
 		7723ADE4261C742D007C0B97 /* GlobalLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7723ADE6261C742D007C0B97 /* GlobalLocalizable.strings */; };
@@ -377,19 +377,31 @@
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BC995D282D64F74D00B86507 /* VdoFramework */; };
 		BC9E08FC2625DA9500D24C69 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */; };
-		BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD404A02743C65900B27F98 /* YTPlayerView.m */; };
-		BCD404A62743C65900B27F98 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BCD404A32743C65900B27F98 /* Assets.bundle */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
 		D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5070CD82E65FD5C00728D01 /* VersionResponse.swift */; };
 		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
+		D51B99162F3CE5CA00B77BA4 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */; };
+		D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5276DF72F41FB180045A2EA /* TaskExt.swift */; };
 		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
+		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
+		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
+		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
 		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
 		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
+		D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */; };
+		D5FFA0392F3C9A60009B796A /* YouTubePlayerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */; };
+		D5FFA03B2F3C9A60009B796A /* YouTubePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */; };
+		D5FFA03C2F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0332F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift */; };
+		D5FFA0412F3C9AA0009B796A /* PlaybackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA03E2F3C9AA0009B796A /* PlaybackRate.swift */; };
+		D5FFA0422F3C9AA0009B796A /* DisplayableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA03D2F3C9AA0009B796A /* DisplayableProtocol.swift */; };
+		D5FFA0542F3C9F51009B796A /* YouTubePlayerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */; };
+		D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */; };
+		D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -622,7 +634,7 @@
 		7723ADB2261C716D007C0B97 /* NotificationsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTarget.swift; sourceTree = "<group>"; };
 		7723ADB7261C720F007C0B97 /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		7723ADBC261C726E007C0B97 /* TargetTypeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetTypeExt.swift; sourceTree = "<group>"; };
-		7723ADC1261C728E007C0B97 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		7723ADC1261C728E007C0B97 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListKeyValuePair.swift; sourceTree = "<group>"; };
 		7723ADDB261C73FE007C0B97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7723ADE0261C7420007C0B97 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -824,22 +836,30 @@
 		BC98F433262454D800032AC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC9E08FB2625DA9500D24C69 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
-		BCD4049F2743C65900B27F98 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
-		BCD404A02743C65900B27F98 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
-		BCD404A22743C65900B27F98 /* YouTubeiOSPlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeiOSPlayerHelper.h; sourceTree = "<group>"; };
-		BCD404A32743C65900B27F98 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
 		BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wojood-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
 		D5070CD82E65FD5C00728D01 /* VersionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionResponse.swift; sourceTree = "<group>"; };
 		D5070CDA2E65FEC900728D01 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
+		D5276DF72F41FB180045A2EA /* TaskExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExt.swift; sourceTree = "<group>"; };
 		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
+		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
+		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
+		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
 		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
+		D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeControlsView.swift; sourceTree = "<group>"; };
+		D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerView.swift; sourceTree = "<group>"; };
+		D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerRepresentable.swift; sourceTree = "<group>"; };
+		D5FFA0332F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YouTubePlayerRepresentable+Coordinator.swift"; sourceTree = "<group>"; };
+		D5FFA03D2F3C9AA0009B796A /* DisplayableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableProtocol.swift; sourceTree = "<group>"; };
+		D5FFA03E2F3C9AA0009B796A /* PlaybackRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackRate.swift; sourceTree = "<group>"; };
+		D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerReducer.swift; sourceTree = "<group>"; };
+		D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerStore.swift; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -870,11 +890,30 @@
 		E8FB16972647FD5B00895DDC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D5276DF22F3E07750045A2EA /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Assets/YTPlayerView-iframe-player.html",
+				YTPlayerView.m,
+				YTPlayerView.swift,
+			);
+			target = 7723ACD6261C5E69007C0B97 /* Wojood */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D51B99112F3CE4BA00B77BA4 /* SwiftUIExtensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftUIExtensions; sourceTree = "<group>"; };
+		D5A2E17E2F3DD4B100B6B070 /* YoutubeHelperViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = YoutubeHelperViews; sourceTree = "<group>"; };
+		D5FFA0632F3CDACF009B796A /* YTPlayer */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D5276DF22F3E07750045A2EA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = YTPlayer; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		7723ACD4261C5E69007C0B97 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51B99162F3CE5CA00B77BA4 /* SFSafeSymbols in Frameworks */,
 				BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */,
 				BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */,
 				BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */,
@@ -901,6 +940,7 @@
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
 				D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */,
+				D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */,
 				BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */,
 				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
@@ -1170,6 +1210,7 @@
 		385CC10926641C9900A091FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5A2E17E2F3DD4B100B6B070 /* YoutubeHelperViews */,
 				D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */,
 				D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */,
 				D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */,
@@ -1253,6 +1294,7 @@
 				385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */,
 				38A61A6D26E644EB0044AEA4 /* CourseDetailsSubScreens.swift */,
 				536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */,
+				D5FFA0352F3C9A60009B796A /* YouTubePlayer */,
 			);
 			path = CourseDetails;
 			sourceTree = "<group>";
@@ -1447,7 +1489,7 @@
 				77DE4E322E254A420001BFAC /* GoogleServiceInfo */,
 				38B06A6A26F8B18A001F6E08 /* Wojood.xcdatamodeld */,
 				7723ADCB261C7339007C0B97 /* Configs */,
-				7723ADC1261C728E007C0B97 /* Environment.swift */,
+				7723ADC1261C728E007C0B97 /* AppEnvironment.swift */,
 				D53B5CDF2E68940400EBB62C /* AppName.swift */,
 				7723ACE8261C5E6B007C0B97 /* Info.plist */,
 				7723ADC6261C72E1007C0B97 /* PropertyListKeyValuePair.swift */,
@@ -1520,6 +1562,7 @@
 		7723AD64261C6649007C0B97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5FFA0402F3C9AA0009B796A /* YoutubePlayerModels */,
 				D5070CD82E65FD5C00728D01 /* VersionResponse.swift */,
 				77DE4E342E254A850001BFAC /* CoreData */,
 				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
@@ -1696,6 +1739,7 @@
 		778E722A261DC104009D7B35 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D51B99112F3CE4BA00B77BA4 /* SwiftUIExtensions */,
 				BCF8F77027033F0C009593AA /* AVFoundationExtensions */,
 				778E722B261DC111009D7B35 /* FoundationExtensions */,
 				778E722C261DC11A009D7B35 /* UIKitExtensions */,
@@ -1708,6 +1752,8 @@
 		778E722B261DC111009D7B35 /* FoundationExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				D5276DF72F41FB180045A2EA /* TaskExt.swift */,
+				D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */,
 				26CF4910269B51D900DDA29F /* FileManagerExt.swift */,
 				778E7237261DC2D3009D7B35 /* ArrayExt.swift */,
 				778E723B261DC2D3009D7B35 /* BoolExt.swift */,
@@ -1751,6 +1797,7 @@
 				E84E78DA26553DC8000902CB /* ViewControllerExt.swift */,
 				BC7FD36F26D65500009BC1EF /* UIActivityIndicatorExt.swift */,
 				77936F0A26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift */,
+				D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -1758,6 +1805,7 @@
 		778E722D261DC122009D7B35 /* VendorExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */,
 				7723ADFA261C787B007C0B97 /* DefaultsKeysExt.swift */,
 				77E32BB3264A8BF80064B801 /* ImagesExt.swift */,
 				7723ADFF261C79E8007C0B97 /* ReachabilityExt.swift */,
@@ -2202,29 +2250,10 @@
 		BCD404932743B7A400B27F98 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5FFA0632F3CDACF009B796A /* YTPlayer */,
 				BC8C1E9F2DA7D23C000AED7F /* OTPFieldView */,
-				BCD4049E2743C65900B27F98 /* Youtube */,
 			);
 			path = ExternalFrameworks;
-			sourceTree = "<group>";
-		};
-		BCD4049E2743C65900B27F98 /* Youtube */ = {
-			isa = PBXGroup;
-			children = (
-				BCD4049F2743C65900B27F98 /* YTPlayerView.h */,
-				BCD404A02743C65900B27F98 /* YTPlayerView.m */,
-				BCD404A12743C65900B27F98 /* youtube-ios-player-helper */,
-			);
-			path = Youtube;
-			sourceTree = "<group>";
-		};
-		BCD404A12743C65900B27F98 /* youtube-ios-player-helper */ = {
-			isa = PBXGroup;
-			children = (
-				BCD404A22743C65900B27F98 /* YouTubeiOSPlayerHelper.h */,
-				BCD404A32743C65900B27F98 /* Assets.bundle */,
-			);
-			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
 		BCF8F77027033F0C009593AA /* AVFoundationExtensions */ = {
@@ -2241,6 +2270,36 @@
 				776C79FD2E7CDD9C00B04082 /* GoogleService-Info.plist */,
 			);
 			path = "Royal-Medicine";
+			sourceTree = "<group>";
+		};
+		D5FFA0342F3C9A60009B796A /* YouTubePlayerRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */,
+				D5FFA0332F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift */,
+			);
+			path = YouTubePlayerRepresentable;
+			sourceTree = "<group>";
+		};
+		D5FFA0352F3C9A60009B796A /* YouTubePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */,
+				D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */,
+				D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */,
+				D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */,
+				D5FFA0342F3C9A60009B796A /* YouTubePlayerRepresentable */,
+			);
+			path = YouTubePlayer;
+			sourceTree = "<group>";
+		};
+		D5FFA0402F3C9AA0009B796A /* YoutubePlayerModels */ = {
+			isa = PBXGroup;
+			children = (
+				D5FFA03D2F3C9AA0009B796A /* DisplayableProtocol.swift */,
+				D5FFA03E2F3C9AA0009B796A /* PlaybackRate.swift */,
+			);
+			path = YoutubePlayerModels;
 			sourceTree = "<group>";
 		};
 		E84874532624B0E1006DF74C /* Registration */ = {
@@ -2297,6 +2356,10 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				D51B99112F3CE4BA00B77BA4 /* SwiftUIExtensions */,
+				D5A2E17E2F3DD4B100B6B070 /* YoutubeHelperViews */,
+			);
 			name = Wojood;
 			packageProductDependencies = (
 				380B135526B7F89D00CB5811 /* DTPhotoViewerController */,
@@ -2327,6 +2390,8 @@
 				7719A08B2E251108004541E6 /* JGProgressHUD */,
 				D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */,
 				D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */,
+				D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */,
+				D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2405,6 +2470,8 @@
 				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */,
+				D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2488,7 +2555,6 @@
 				7723ACE4261C5E6B007C0B97 /* Images.xcassets in Resources */,
 				3826BC80266CB26F00CF9357 /* MaterialTableViewCell.xib in Resources */,
 				BC98F423262354E100032AC6 /* Inter-ExtraLight.ttf in Resources */,
-				BCD404A62743C65900B27F98 /* Assets.bundle in Resources */,
 				BC083B2826429E4800A1E6A4 /* AvatarsList.storyboard in Resources */,
 				BC19E5892631762A00CFA142 /* ProfileTableViewCell.xib in Resources */,
 				385CC1052663D95D00A091FD /* Roboto in Resources */,
@@ -2635,7 +2701,7 @@
 				BC968291263979CB009F8550 /* AcademicInfoApiClient.swift in Sources */,
 				778E7304261DFFD1009D7B35 /* UIApplicationExt.swift in Sources */,
 				26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */,
-				7723ADC2261C728E007C0B97 /* Environment.swift in Sources */,
+				7723ADC2261C728E007C0B97 /* AppEnvironment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
 				38659AC826B4410200E3BFE9 /* FiltersModel.swift in Sources */,
 				BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */,
@@ -2743,9 +2809,14 @@
 				385CC0CC265F958100A091FD /* CourseDetailsViewModel.swift in Sources */,
 				38812C54266E9B0E00CCD924 /* HomeTarget.swift in Sources */,
 				380B139F26B807F700CB5811 /* AssessmentQuestionViewController.swift in Sources */,
+				D5FFA0542F3C9F51009B796A /* YouTubePlayerReducer.swift in Sources */,
+				D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */,
 				77E32BC4264A8C450064B801 /* ForgotPasswordViewModel.swift in Sources */,
 				38659BDD26B6D2F900E3BFE9 /* AssessmentQuestion.swift in Sources */,
 				BC19E57E263036BB00CFA142 /* ProfileModel.swift in Sources */,
+				D5FFA0412F3C9AA0009B796A /* PlaybackRate.swift in Sources */,
+				D5FFA0422F3C9AA0009B796A /* DisplayableProtocol.swift in Sources */,
+				D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */,
 				BC18A00C266670C6001FDFFF /* ProfileTableViewHeader.swift in Sources */,
 				BC19E5992631866700CFA142 /* Profile.swift in Sources */,
 				BC18A01726667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift in Sources */,
@@ -2787,6 +2858,10 @@
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
 				E8C9EF73263C546D0023D2B1 /* NoCutPasteField.swift in Sources */,
 				268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */,
+				D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */,
+				D5FFA0392F3C9A60009B796A /* YouTubePlayerRepresentable.swift in Sources */,
+				D5FFA03B2F3C9A60009B796A /* YouTubePlayerView.swift in Sources */,
+				D5FFA03C2F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift in Sources */,
 				26CF48E9269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift in Sources */,
 				77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */,
 				26CF4907269B4F9E00DDA29F /* LoadingButton.swift in Sources */,
@@ -2815,6 +2890,7 @@
 				380B13AF26B807F700CB5811 /* AttachmentDownloader.swift in Sources */,
 				778E72AE261DD4D1009D7B35 /* Attachable.swift in Sources */,
 				268BD95A269DD8DB004758CE /* ChatContainerViewModel.swift in Sources */,
+				D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */,
 				E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */,
 				385CC0A0265ECB7200A091FD /* AttachmentTableViewCell.swift in Sources */,
 				778E7261261DC2D4009D7B35 /* NumberFormatterExt.swift in Sources */,
@@ -2838,6 +2914,7 @@
 				D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */,
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
+				D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */,
 				38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */,
 				BC0F92BB2785DC6A001C5B3A /* OrganizationsListViewController.swift in Sources */,
 				26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */,
@@ -2853,6 +2930,7 @@
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
 				770209C92831C77600F9096F /* NSObjectExt.swift in Sources */,
 				380A0262267248D300D01B06 /* CourseTableViewCell.swift in Sources */,
+				D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */,
 				BC083B7226430EBD00A1E6A4 /* AvatarApiClient.swift in Sources */,
 				385CC0D1265F9E8300A091FD /* CourseDetailsModel.swift in Sources */,
 				38706CCE265E6DA900440B53 /* CourseDetailsViewController.swift in Sources */,
@@ -2877,7 +2955,6 @@
 				380B139726B807F700CB5811 /* AssessmentFreeTextTableViewCell.swift in Sources */,
 				BC083B6D26430EB000A1E6A4 /* AvatarTarget.swift in Sources */,
 				BC19E5A22631983500CFA142 /* VerifyOtpViewController.swift in Sources */,
-				BCD404A52743C65900B27F98 /* YTPlayerView.m in Sources */,
 				778E72DA261DF6C4009D7B35 /* ModelDecodable.swift in Sources */,
 				38659BE026B6D2F900E3BFE9 /* SubmissionsHeaderData.swift in Sources */,
 				E8C9EF632638D6940023D2B1 /* TextfieldExt.swift in Sources */,
@@ -3095,7 +3172,7 @@
 				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3130,7 +3207,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3263,7 +3340,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3375,7 +3452,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3487,7 +3564,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3755,6 +3832,14 @@
 				minimumVersion = 2.6.0;
 			};
 		};
+		D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -3769,6 +3854,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.3;
+			};
+		};
+		D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.12.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3904,6 +3997,11 @@
 			package = BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */;
 			productName = VdoFramework;
 		};
+		D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
+		};
 		D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
@@ -3913,6 +4011,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */;
 			productName = IQKeyboardToolbarManager;
+		};
+		D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 

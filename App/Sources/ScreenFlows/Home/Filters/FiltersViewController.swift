@@ -143,7 +143,7 @@ class FiltersViewController: UIViewController {
 
     // MARK: - Private Functions
     private func handleRoyalMedicineFilters() {
-        guard Environment.appName == .royalMedicine else { return }
+        guard AppEnvironment.appName == .royalMedicine else { return }
         headerViewHeightConstraint.constant = 0
         headerView.isHidden = true
 
@@ -342,7 +342,7 @@ extension FiltersViewController: UITableViewDataSource {
                 }
             }
         } else {
-            if Environment.appName == .royalMedicine {
+            if AppEnvironment.appName == .royalMedicine {
                 switch universitySection {
                 case .academicYear:
                     cell.configureForUniveristy(title: L10n.Signup.School.academicYear,
@@ -528,7 +528,7 @@ extension FiltersViewController: SelectingFilterDelegate {
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
         Filters.shared.isDataBeingRetrieved = false
         
-        if Environment.appName == .royalMedicine {
+        if AppEnvironment.appName == .royalMedicine {
             switch section {
             case .academicYear:
                 universitySection = .subjects

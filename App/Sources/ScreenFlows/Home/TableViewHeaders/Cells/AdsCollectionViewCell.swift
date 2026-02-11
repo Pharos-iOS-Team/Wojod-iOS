@@ -40,7 +40,7 @@ class AdsCollectionViewCell: UICollectionViewCell {
         self.advertisement = advertisement
         titleLabel.text = advertisement.title
         descriptionLabel.text = advertisement.description
-        if let url = URL(string: "\(Environment.baseURL)\(advertisement.media?.fileUrl ?? "")") {
+        if let url = URL(string: "\(AppEnvironment.baseURL)\(advertisement.media?.fileUrl ?? "")") {
             imageView.kf.setImage(with: url)
         }
     }

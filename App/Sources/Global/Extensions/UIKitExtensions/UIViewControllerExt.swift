@@ -33,7 +33,7 @@ extension UIViewController {
     }
 
     func getImage(from url: String) -> UIImage? {
-        let imageURL = Environment.baseURLString + url
+        let imageURL = AppEnvironment.baseURLString + url
         guard let url = URL(string: imageURL), let data = try? Data(contentsOf: url) else { return nil }
         return UIImage(data: data)
     }
