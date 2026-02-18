@@ -20,7 +20,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - None.
 ### Changed
-- None.
+- Changed Support number for Royal medicine.  
+  Task: [CPI-319](https://jira.pharos-solutions.de/browse/CPI-319) | PR: [#14](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/14) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed
