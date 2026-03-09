@@ -115,12 +115,15 @@ class AvatarsViewController: UIViewController {
             batchID: sharedUser.batch,
             specializationID: sharedUser.specializationId,
             avatarID: sharedUser.avatar?.id,
-            isRoyalMedicineStudent: AppEnvironment.appName == .royalMedicine
+            isRoyalMedicineStudent: AppEnvironment.appName == .royalMedicine,
+            loginOrganization: AppEnvironment.appName.loginOrganization
         )
         viewModel?.signUp(user: user) { _, error in
             self.loadingIndicator.stopAnimating()
             if error == nil {
                 let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
+                    $0.modalPresentationStyle = .fullScreen
+                    $0.hideBackButton = true
                     $0.mobileNumber = self.sharedUser.mobileNumber ?? ""
                     $0.verifyUserFromLogin = true
                     $0.successHandler = {

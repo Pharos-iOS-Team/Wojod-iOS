@@ -142,6 +142,7 @@ class LoginViewController: UIViewController {
     private func showVerifyOtpScreen() {
         guard let mobileNumber = mobileNumberTextField.text else { return }
         let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
+            $0.modalPresentationStyle = .fullScreen
             $0.mobileNumber = mobileNumber
             $0.verifyUserFromLogin = true
             $0.successHandler = {

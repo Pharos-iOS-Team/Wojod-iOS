@@ -20,6 +20,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - Added Youtube player framework.  
   Task: [CPI-316](https://jira.pharos-solutions.de/browse/CPI-316) | PR: [#13](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/13) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added Square Center whitelabel app.  
+  Task: [CPI-314](https://jira.pharos-solutions.de/browse/CPI-314) | PR: [#12](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/12) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - Changed Support number for Royal medicine.  
   Task: [CPI-319](https://jira.pharos-solutions.de/browse/CPI-319) | PR: [#14](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/14) | Author: [Sara Rady](https://github.com/sara-rady)

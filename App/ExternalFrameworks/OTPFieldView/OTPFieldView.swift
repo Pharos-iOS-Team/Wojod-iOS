@@ -79,14 +79,34 @@ import UIKit
     
     fileprivate var secureEntryData = [String]()
     
+    fileprivate var hasInitialized = false
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        guard hasInitialized else { return }
+        let hasOddNumberOfFields = (fieldsCount % 2 == 1)
+        for index in stride(from: 0, to: fieldsCount, by: 1) {
+            guard let otpField = viewWithTag(index + 1) as? OTPTextField else { continue }
+            var fieldFrame = CGRect(x: 0, y: 0, width: fieldSize, height: fieldSize)
+            if hasOddNumberOfFields {
+                fieldFrame.origin.x = bounds.size.width / 2 - (CGFloat(fieldsCount / 2 - index) * (fieldSize + separatorSpace) + fieldSize / 2)
+            } else {
+                fieldFrame.origin.x = bounds.size.width / 2 - (CGFloat(fieldsCount / 2 - index) * fieldSize + CGFloat(fieldsCount / 2 - index - 1) * separatorSpace + separatorSpace / 2)
+            }
+            fieldFrame.origin.y = (bounds.size.height - fieldSize) / 2
+            otpField.frame = fieldFrame
+        }
     }
     
     public func initializeUI() {
         layer.masksToBounds = true
         layoutIfNeeded()
         
+        hasInitialized = true
         initializeOTPFields()
         
         layoutIfNeeded()

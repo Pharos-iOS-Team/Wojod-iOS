@@ -57,7 +57,7 @@ class LoginViewModel {
     func continueAsAGuest() {
         showIndicator?()
         Defaults[\.isGuestModeEnabled] = true
-        User.shared.setLoggedIn(token: "K76kvPXgGmescsnxR2ZBhg", client: "i6vNqgNLc6NhwVARP-ARAA", uid: "01206425318")
+        User.shared.setLoggedIn(token: "W_GPhQnZ6OztX4TVu5rQAA", client: "F2PewhGD4cBb43ltw31Jjw", uid: "01206425399")
         if let user = model.loadGuestModelUserData() {
             self.setUserData(user: user, studentUser: nil)
             self.successHandler?(user)

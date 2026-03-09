@@ -163,7 +163,7 @@ class ProfileViewController: UIViewController {
                 $0.value
             }) ?? []
         case .division:
-            return AcademicInfo.shared.divisions?.divisions.compactMap({
+            return AcademicInfo.shared.divisions?.divisions?.compactMap({
                 $0.value
             }) ?? []
         case .batch:
@@ -171,7 +171,7 @@ class ProfileViewController: UIViewController {
                 $0.value
             }) ?? []
         case .specialization:
-            return AcademicInfo.shared.specializations?.specializations.compactMap({
+            return AcademicInfo.shared.specializations?.specializations?.compactMap({
                 $0.value
             }) ?? []
         case .country:

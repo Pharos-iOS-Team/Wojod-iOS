@@ -46,6 +46,12 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        borderStyle = .none
+        translatesAutoresizingMaskIntoConstraints = true
+        setContentHuggingPriority(.defaultLow, for: .horizontal)
+        setContentHuggingPriority(.defaultLow, for: .vertical)
+        setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,6 +88,18 @@ import UIKit
         if #available(iOS 12.0, *) {
             textContentType = .oneTimeCode
         }
+    }
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return frame.size
     }
     
     override func deleteBackward() {
