@@ -28,7 +28,9 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+### Fixed
+- Fixed Courses and Lessons API Calls in parallel.  
+  Task: [CPI-321](https://jira.pharos-solutions.de/browse/CPI-321) | PR: [#15](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/15) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

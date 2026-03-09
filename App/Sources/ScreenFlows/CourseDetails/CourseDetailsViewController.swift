@@ -105,7 +105,6 @@ class CourseDetailsViewController: UIViewController {
         alertHandler = AlertHandler(presentingViewCtrl: self)
         configureActionButtonAccordingToState()
         loadCourseDetails()
-        loadCourseLessons()
         configureTableView()
         documentInteractionController.delegate = self
         bindStartAssessmentHandler()
@@ -151,9 +150,9 @@ class CourseDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-
+        
+        guard let courseID = course?.id else { return }
         if activeScreen == .materials {
-            guard let courseID = course?.id else { return }
             showLoadingIndicator()
             viewModel?.loadMaterials(courseID: courseID) { materials in
                 self.hideLoadingIndicator()
@@ -727,6 +726,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func handleRefreshingAccordingToOpenedTab() {
+        guard let course = course else { return }
         switch activeScreen {
         case .details:
             loadCourseLessons()
