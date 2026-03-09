@@ -401,8 +401,8 @@
 		D5FFA0422F3C9AA0009B796A /* DisplayableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA03D2F3C9AA0009B796A /* DisplayableProtocol.swift */; };
 		D5FFA0542F3C9F51009B796A /* YouTubePlayerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */; };
 		D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */; };
-		D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */; };
 		D5FFA0592F3CBAD0009B796A /* CollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0582F3CBACB009B796A /* CollectionExt.swift */; };
+		D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */; };
 		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
@@ -856,7 +856,6 @@
 		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
-		D5FFA0582F3CBACB009B796A /* CollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExt.swift; sourceTree = "<group>"; };
 		D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeControlsView.swift; sourceTree = "<group>"; };
 		D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerView.swift; sourceTree = "<group>"; };
 		D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerRepresentable.swift; sourceTree = "<group>"; };
@@ -865,6 +864,7 @@
 		D5FFA03E2F3C9AA0009B796A /* PlaybackRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackRate.swift; sourceTree = "<group>"; };
 		D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerReducer.swift; sourceTree = "<group>"; };
 		D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerStore.swift; sourceTree = "<group>"; };
+		D5FFA0582F3CBACB009B796A /* CollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExt.swift; sourceTree = "<group>"; };
 		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
@@ -2265,7 +2265,7 @@
 			path = ExternalFrameworks;
 			sourceTree = "<group>";
 		};
-                BCF8F77027033F0C009593AA /* AVFoundationExtensions */ = {
+		BCF8F77027033F0C009593AA /* AVFoundationExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */,
@@ -3694,7 +3694,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -231,7 +231,7 @@ internal enum L10n {
       internal static var selectAnOption: String {
           return L10n.tr("Localizable", "courseDetails.main.selectAnOption")
         }
-      /// There is an issue with video playback. Please our contact technical support 01101005306 - 01101005308
+      /// There is an issue with video playback. Please our contact technical support 01111317891
       internal static var videoPlaybackIssue: String {
           return L10n.tr("Localizable", "courseDetails.main.videoPlaybackIssue")
         }
