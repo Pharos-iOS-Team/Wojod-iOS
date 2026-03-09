@@ -105,12 +105,13 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 - (void)playerView:(nonnull YTPlayerView *)playerView receivedError:(YTPlayerError)error;
 
 /**
- * Callback invoked frequently when playBack is plaing.
+ * Callback invoked frequently while playback is playing or buffering.
  *
- * @param playerView The YTPlayerView instance where the error has occurred.
- * @param playTime float containing curretn playback time.
+ * @param playerView The YTPlayerView instance providing playback data.
+ * @param playTime The current playback time in seconds.
+ * @param bufferTime The currently buffered time in seconds.
  */
-- (void)playerView:(nonnull YTPlayerView *)playerView didPlayTime:(float)playTime;
+- (void)playerView:(nonnull YTPlayerView *)playerView didPlayTime:(float)playTime bufferedTime:(float)bufferTime;
 
 /**
  * Callback invoked when setting up the webview to allow custom colours so it fits in
@@ -152,11 +153,16 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
  */
 @interface YTPlayerView : UIView
 
-@property(nonatomic, nullable, readonly) WKWebView *webView;
+@property(nonatomic, nullable) WKWebView *webView;
 
 /** A delegate to be notified on playback events. */
 @property(nonatomic, weak, nullable) id<YTPlayerViewDelegate> delegate;
 
+@property (nonatomic, nullable) void (^onAirPlayDetectedAction)(void);
+
+- (void)configureVideoPlaybackRestrictions;
+
+- (void)evaluateJavaScript:(nonnull NSString *)jsToExecute;
 /**
  * This method loads the player with the given video ID.
  * This is a convenience method for calling YTPlayerView::loadPlayerWithVideoId:withPlayerVars:
@@ -315,6 +321,12 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 - (void)cueVideoById:(nonnull NSString *)videoId
         startSeconds:(float)startSeconds
           endSeconds:(float)endSeconds;
+
+
+/**
+ * Loads a video again  with current playtime
+ */
+- (void)loadVideoWithCurrentTime;
 
 /**
  * Loads a given video by its video ID for playback starting at the given time.
@@ -486,6 +498,11 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
  */
 - (void)playVideoAt:(int)index;
 
+#pragma mark - Setting the video quality
+- (void)setVideoQuality:(nonnull NSString *)quality;
+
+- (void)getAvailableQualityLevelsWithCompletion:(void (^_Nonnull)(NSArray<NSString *> *_Nonnull))completion;
+
 #pragma mark - Setting the playback rate
 
 /**
@@ -646,5 +663,6 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
  * Intended to use for testing, should not be used in production code.
  */
 - (void)removeWebView;
+- (WKWebView *_Nullable)createNewWebView;
 
 @end

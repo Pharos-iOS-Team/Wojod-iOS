@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #import "YTPlayerView.h"
+#import "Wojood-Swift.h"
 
 // These are instances of NSString because we get them from parsing a URL. It would be silly to
 // convert these into an integer just to have to convert the URL query string value into an integer
@@ -51,7 +52,7 @@ NSString static *const kYTPlayerCallbackOnReady = @"onReady";
 NSString static *const kYTPlayerCallbackOnStateChange = @"onStateChange";
 NSString static *const kYTPlayerCallbackOnPlaybackQualityChange = @"onPlaybackQualityChange";
 NSString static *const kYTPlayerCallbackOnError = @"onError";
-NSString static *const kYTPlayerCallbackOnPlayTime = @"onPlayTime";
+NSString static *const kYTPlayerCallbackOnPlayerData = @"onPlayerData";
 
 NSString static *const kYTPlayerCallbackOnYouTubeIframeAPIReady = @"onYouTubeIframeAPIReady";
 NSString static *const kYTPlayerCallbackOnYouTubeIframeAPIFailedToLoad = @"onYouTubeIframeAPIFailedToLoad";
@@ -84,7 +85,12 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
     playerVars = @{};
   }
   NSDictionary *playerParams = @{ @"videoId" : videoId, @"playerVars" : playerVars };
-  return [self loadWithPlayerParams:playerParams];
+
+  [self clearWebKitCacheWithCompletion:^{
+    [self loadWithPlayerParams:playerParams];
+  }];
+
+  return YES;
 }
 
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId playerVars:(NSDictionary *)playerVars {
@@ -141,6 +147,13 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
   NSString *command = [NSString stringWithFormat:@"player.cueVideoById({'videoId': '%@',"
                        "'startSeconds': %@, 'endSeconds': %@});",
                        videoId, startSecondsValue, endSecondsValue];
+  [self evaluateJavaScript:command];
+}
+- (void)loadVideoWithCurrentTime {
+  NSString *command = @"\
+            var currentTime = player.getCurrentTime();\n\
+            player.loadVideoById(player.getVideoData().video_id, currentTime);\n\
+        ";
   [self evaluateJavaScript:command];
 }
 
@@ -252,6 +265,58 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
       return;
     }
     completionHandler([result floatValue], nil);
+  }];
+}
+
+/// Configures video playback restrictions by hiding the video title,
+/// disabling video suggestions, and preventing AirPlay playback.
+- (void)configureVideoPlaybackRestrictions {
+  [self evaluateJavaScript:@"hideTitleLayer();"];
+  [self evaluateJavaScript:@"hideAllElements();"];
+
+  NSString *disableAirplayCommand = @"document.getElementsByTagName('video')[0].setAttribute('x-webkit-airplay', 'deny')";
+  [self evaluateJavaScript:disableAirplayCommand];
+}
+
+- (void)setVideoQuality:(NSString *)quality {
+  NSString *command;
+  
+  if ([quality isEqualToString:@"auto"]) {
+    command = @"\
+            localStorage.removeItem('yt-player-quality');\n\
+            var currentTime = player.getCurrentTime();\n\
+            player.loadVideoById(player.getVideoData().video_id, currentTime);\n\
+        ";
+  } else {
+    NSTimeInterval currentTimeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    NSTimeInterval expiration = currentTimeStamp + 2419200000; // 28 days expiration
+    command = [NSString stringWithFormat:@"\
+            localStorage.setItem('yt-player-quality', JSON.stringify({\n\
+                data: '%@',\n\
+                creation: %.0f,\n\
+                expiration: %.0f\n\
+            }));\n\
+            var currentTime = player.getCurrentTime();\n\
+            player.loadVideoById(player.getVideoData().video_id, currentTime);\n\
+        ", quality, currentTimeStamp, expiration];
+  }
+  [self evaluateJavaScript:command];
+}
+
+- (void)getAvailableQualityLevelsWithCompletion:(void (^)(NSArray<NSString *> *))completion {
+  NSString *command = @"\
+    (function() {\n\
+        return player.getAvailableQualityLevels();\n\
+    })();\n\
+    ";
+  
+  /// Execute the JavaScript in the player's web view
+  [self evaluateJavaScript:command completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    if ([result isKindOfClass:[NSArray class]]) {
+      completion((NSArray<NSString *> *)result);
+    } else {
+      completion(@[]);
+    }
   }];
 }
 
@@ -619,10 +684,22 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
 
       [self.delegate playerView:self receivedError:error];
     }
-  } else if ([action isEqualToString:kYTPlayerCallbackOnPlayTime]) {
-    if ([self.delegate respondsToSelector:@selector(playerView:didPlayTime:)]) {
-      float time = [data floatValue];
-      [self.delegate playerView:self didPlayTime:time];
+  } else if ([action isEqualToString:kYTPlayerCallbackOnPlayerData]) {
+    if ([self.delegate respondsToSelector:@selector(playerView:didPlayTime:bufferedTime:)]) {
+      NSString *jsonString =  [[data componentsSeparatedByString:@"data="].lastObject stringByRemovingPercentEncoding];
+      
+      NSError *error;
+      NSDictionary *playerData = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                                                 options:0
+                                                                   error:&error];
+      if (!error && [playerData isKindOfClass:[NSDictionary class]]) {
+        float playedTime = [playerData[@"playedTime"] floatValue];
+        float bufferedTime = [playerData[@"bufferedTime"] isKindOfClass:[NSNumber class]] ? [playerData[@"bufferedTime"] floatValue] : 0.0;
+        
+        [self.delegate playerView:self didPlayTime:playedTime bufferedTime:bufferedTime];
+      } else {
+        NSLog(@"Error parsing player data JSON: %@", error.localizedDescription);
+      }
     }
   } else if ([action isEqualToString:kYTPlayerCallbackOnYouTubeIframeAPIFailedToLoad]) {
     if (self.initialLoadingView) {
@@ -746,15 +823,13 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
 
   NSError *error = nil;
   NSString *path = [[NSBundle bundleForClass:[YTPlayerView class]] pathForResource:@"YTPlayerView-iframe-player"
-                                                   ofType:@"html"
-                                              inDirectory:@"Assets"];
+                                                                            ofType:@"html"];
     
   // in case of using Swift and embedded frameworks, resources included not in main bundle,
   // but in framework bundle
   if (!path) {
       path = [[[self class] frameworkBundle] pathForResource:@"YTPlayerView-iframe-player"
-                                                     ofType:@"html"
-                                                inDirectory:@"Assets"];
+                                                      ofType:@"html"];
   }
     
   NSString *embedHTMLTemplate =
@@ -908,19 +983,29 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
 - (WKWebView *)createNewWebView {
   WKWebViewConfiguration *webViewConfiguration = [[WKWebViewConfiguration alloc] init];
   webViewConfiguration.allowsInlineMediaPlayback = YES;
+  webViewConfiguration.allowsAirPlayForMediaPlayback = NO;
+  webViewConfiguration.allowsAirPlayForMediaPlayback = NO;
+  webViewConfiguration.defaultWebpagePreferences.allowsContentJavaScript = YES;
   webViewConfiguration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+  
   WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds
                                           configuration:webViewConfiguration];
   webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+  [webView.scrollView setContentInsetAdjustmentBehavior: UIScrollViewContentInsetAdjustmentNever];
   webView.scrollView.scrollEnabled = NO;
   webView.scrollView.bounces = NO;
 
   if ([self.delegate respondsToSelector:@selector(playerViewPreferredWebViewBackgroundColor:)]) {
     webView.backgroundColor = [self.delegate playerViewPreferredWebViewBackgroundColor:self];
-    if (webView.backgroundColor == [UIColor clearColor]) {
-      webView.opaque = NO;
+    if (webView.backgroundColor == [UIColor clearColor] || webView.backgroundColor == [UIColor blackColor]) {
+      webView.opaque = YES;
+      webView.scrollView.backgroundColor = [UIColor blackColor];
     }
   }
+  
+  /// Fixes iPad issue with fast-forward (+10s) and rewind (-10s) buttons by setting a custom user agent.
+  webView.customUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1";
+  
   return webView;
 }
 
@@ -930,14 +1015,18 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
 }
 
 + (NSBundle *)frameworkBundle {
-    static NSBundle* frameworkBundle = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        NSString* mainBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
-        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Assets.bundle"];
-        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
-    });
-    return frameworkBundle;
+#ifdef SWIFTPM_MODULE_BUNDLE
+  return SWIFTPM_MODULE_BUNDLE;
+#else
+  static NSBundle* frameworkBundle = nil;
+  static dispatch_once_t predicate;
+  dispatch_once(&predicate, ^{
+      NSString* mainBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+      NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Assets.bundle"];
+      frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+  });
+  return frameworkBundle;
+#endif
 }
 
 @end

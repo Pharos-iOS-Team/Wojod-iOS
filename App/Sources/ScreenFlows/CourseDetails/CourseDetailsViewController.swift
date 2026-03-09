@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 import VdoFramework
 import Photos
+import SwiftUI
 
 internal enum CourseState {
     case normal
@@ -492,10 +493,10 @@ class CourseDetailsViewController: UIViewController {
             cell?.setSubtitleLabel(video.title)
             cell?.setDuration(video.duration)
             cell?.setAvaliablity(video.daysRemaining)
-            if !(video.link?.isEmpty ?? true) {
-                cell?.setAttachmentImageView(Images.link.image)
-            } else {
+            if (video.link?.isEmpty ?? true) || video.link.isYouTubeLink {
                 cell?.setAttachmentImageView(Images.videoExtension.image)
+            } else {
+                cell?.setAttachmentImageView(Images.link.image)
             }
         } else if let document = attachment as? MaterialsDocument {
             cell?.setSubtitleLabel((document.title ?? document.fileName) ?? "Document")
@@ -517,7 +518,9 @@ class CourseDetailsViewController: UIViewController {
         case "application/zip":
             return Images.zipExtension.image
         default:
-            if document?.link != nil {
+            if document?.link.isYouTubeLink ?? false {
+                return Images.videoExtension.image
+            } else if document?.link != nil {
                 return Images.link.image
             } else {
                 return Images.unknownExtension.image
@@ -837,7 +840,9 @@ extension CourseDetailsViewController: UITableViewDataSource {
                 cell?.model = MaterialTableCellData(
                     title: video?.title,
                     date: date.formattedDateString,
-                    image: !(video?.link?.isEmpty ?? true) ? Images.link.image : Images.videoExtension.image,
+                    image: ((video?.link?.isEmpty ?? true) || video?.link.isYouTubeLink == true)
+                        ? Images.videoExtension.image
+                        : Images.link.image,
                     duration: video?.duration
                 )
 
@@ -925,10 +930,16 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
-                        if materials?.videos?[indexPath.row].link?.contains("youtu.be") ?? false || materials?.videos?[indexPath.row].link?.contains("youtube") ?? false {
-                            let headerview = tableView.tableHeaderView as? CourseDetailsInfoHeaderView
-                            headerview?.playYoutubeVideo(videoLink: materials?.videos?[indexPath.row].link ?? "")
-                            tableView.setContentOffset(.zero, animated: false)
+                        if materials?.videos?[indexPath.row].link.isYouTubeLink ?? false {
+                            let playerView = YouTubePlayerView(
+                                    store: .init(
+                                        initialState: .init(videoURL: url),
+                                        reducer: { YouTubePlayer() }
+                                    )
+                                )
+                                let hostingController = UIHostingController(rootView: playerView)
+                               hostingController.modalPresentationStyle = .fullScreen
+                                self.present(hostingController, animated: true)
                         } else {
                             UIApplication.shared.open(url)
                         }
@@ -944,7 +955,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
                 } else {
-                    let documentURL = Environment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
+                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
             case .quizzes:
@@ -1012,10 +1023,16 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     return 
                 }
                 if let url = URL(string: video.link ?? "") {
-                    if video.link?.contains("youtu.be") ?? false || video.link?.contains("youtube") ?? false {
-                        let headerview = tableView.tableHeaderView as? CourseDetailsInfoHeaderView
-                        headerview?.playYoutubeVideo(videoLink: video.link ?? "")
-                        tableView.setContentOffset(.zero, animated: false)
+                    if video.link.isYouTubeLink {
+                        let playerView = YouTubePlayerView(
+                                store: .init(
+                                    initialState: .init(videoURL: url),
+                                    reducer: { YouTubePlayer() }
+                                )
+                            )
+                            let hostingController = UIHostingController(rootView: playerView)
+                           hostingController.modalPresentationStyle = .fullScreen
+                            self.present(hostingController, animated: true)
                     } else {
                         UIApplication.shared.open(url)
                     }
@@ -1028,7 +1045,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
                 } else {
-                    let documentURL = Environment.baseURL.appendingPathComponent(document.fileUrl ?? "")
+                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
                     storeAndShare(withURLString: documentURL.absoluteString)
                 }
             }

@@ -238,7 +238,7 @@ class HomeViewController: UIViewController {
         isFiltersSelected = true
         clearFiltersButton.isHidden = false
         filtersButton.layer.backgroundColor = Colors.green.color.cgColor
-        filtersButton.setTitle(Environment.appName == .royalMedicine ? L10n.Filters._2filters : L10n.Filters._4filters)
+        filtersButton.setTitle(AppEnvironment.appName == .royalMedicine ? L10n.Filters._2filters : L10n.Filters._4filters)
     }
 
     private func configureFiltersButtonWhenNoFilterSelected() {

@@ -14,4 +14,5 @@ enum GlobalConstants {
     static let periodFormat: String = "a"
     static let dueDateFormat: String = "dd MMMM yyyy h:mm a"
     static let datePreviewFormat: String = "dd MMMM yyyy"
+    static let watermarkPositionChangeInterval: TimeInterval = .seconds(15.0)
 }

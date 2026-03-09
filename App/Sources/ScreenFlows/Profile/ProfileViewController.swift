@@ -151,7 +151,7 @@ class ProfileViewController: UIViewController {
 
     private func getImage(from avatar: Avatar) -> UIImage {
         guard let link = avatar.thumbnailUrl else { return UIImage() }
-        let url = Environment.baseURL.appendingPathComponent(link)
+        let url = AppEnvironment.baseURL.appendingPathComponent(link)
         guard let data = try? Data(contentsOf: url), let image = UIImage(data: data) else { return UIImage() }
         return image
     }

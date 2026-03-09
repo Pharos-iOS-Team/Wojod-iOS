@@ -344,8 +344,8 @@ class ProfileViewModel {
 
     func shouldMakeTextFieldDisabled(forIndexPath index: Int) -> Bool {
         validFields[index] == .mobileNumber
-        || (validFields[index] == .division && Environment.appName == .royalMedicine)
-        || (validFields[index] == .specialization && Environment.appName == .royalMedicine)
+        || (validFields[index] == .division && AppEnvironment.appName == .royalMedicine)
+        || (validFields[index] == .specialization && AppEnvironment.appName == .royalMedicine)
     }
 
     func setNewPassword(oldPassword: String?, newPassword: String?, passwordConfirmation: String?) {

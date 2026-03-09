@@ -1024,6 +1024,10 @@ internal enum L10n {
       internal static var screenshotsNotAllowed: String {
           return L10n.tr("Localizable", "shared.alerts.screenshotsNotAllowed")
         }
+      /// An error occurred while playing the video. Please try again later or contact technical support.
+      internal static var youtubeError: String {
+          return L10n.tr("Localizable", "shared.alerts.youtube_error")
+        }
       internal enum Camera {
         /// Wojood need to access camera
         internal static var message: String {

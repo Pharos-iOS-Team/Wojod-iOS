@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Youtube player framework.  
+  Task: [CPI-316](https://jira.pharos-solutions.de/browse/CPI-316) | PR: [#13](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/13) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated

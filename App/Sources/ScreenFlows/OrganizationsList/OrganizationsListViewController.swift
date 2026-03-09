@@ -96,7 +96,7 @@ extension OrganizationsListViewController: UITableViewDataSource {
         guard let organization = viewModel?.organizations?[indexPath.row] else { return UITableViewCell() }
         let organizationDataModel = OrganizationCellDataModel(
             doesContainImage: organization.media?.fileUrl != nil,
-            organizationImage: Environment.baseURL.appendingPathComponent(organization.media?.fileUrl ?? ""),
+            organizationImage: AppEnvironment.baseURL.appendingPathComponent(organization.media?.fileUrl ?? ""),
             organizationName: organization.name,
             organizationStatus: OrganizationStatus(rawValue: organization.status ?? "") ?? .notRegistered
         )

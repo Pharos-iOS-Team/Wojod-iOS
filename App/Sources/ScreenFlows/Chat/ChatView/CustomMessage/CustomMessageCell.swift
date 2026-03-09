@@ -93,7 +93,7 @@ class CustomMessageCell: UICollectionViewCell {
         attachmentExtensionLbl.text = currentAttachment?.contentType ?? ""
         if (currentAttachment?.contentType ?? "").contains("image") {
             attachmentImageView.kf.indicatorType = .activity
-            attachmentImageView.kf.setImage(with: URL(string: Environment.baseURLString + (currentAttachment?.fileUrl ?? "")))
+            attachmentImageView.kf.setImage(with: URL(string: AppEnvironment.baseURLString + (currentAttachment?.fileUrl ?? "")))
         } else if (currentAttachment?.contentType ?? "").contains("pdf") {
             attachmentImageView.image = Asset.Images.pdfIcon.image
         } else {
@@ -108,7 +108,7 @@ class CustomMessageCell: UICollectionViewCell {
     }
 
     private func getExistFilePath(attachmentFilePath: String) -> URL? {
-        guard let attachmentFileURL = URL(string: Environment.baseURLString + attachmentFilePath) else { return nil }
+        guard let attachmentFileURL = URL(string: AppEnvironment.baseURLString + attachmentFilePath) else { return nil }
         return FileManager.default.localUrl(ofFileName: attachmentFileURL.lastPathComponent)
     }
 
@@ -116,7 +116,7 @@ class CustomMessageCell: UICollectionViewCell {
         downloadAttachmentBtn.startLoading()
         downloadAttachmentBtn.setImage(UIImage())
         let filePath = attachment.fileUrl ?? ""
-        guard let url = URL(string: Environment.baseURLString + filePath) else { return }
+        guard let url = URL(string: AppEnvironment.baseURLString + filePath) else { return }
         let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
         let downloadTask = urlSession.downloadTask(with: url)
         downloadTask.resume()

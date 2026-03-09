@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum Environment {
+enum AppEnvironment {
     static let rootURL: URL = {
         guard let url = URL(string: propertyListKeyValuePair.rootUrl) else { fatalError("Root URL is invalid") }
         return url

@@ -140,7 +140,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
         titleLabel.text = course?.name
         priceLabel.text = coursePrice()
         activityIndicator.startAnimating()
-        if let url = URL(string: "\(Environment.baseURL)\(course?.media?.fileUrl ?? "")") {
+        if let url = URL(string: "\(AppEnvironment.baseURL)\(course?.media?.fileUrl ?? "")") {
             imageView.kf.setImage(with: url) { _ in
                 self.activityIndicator.stopAnimating()
             }
@@ -153,7 +153,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     func configureVideo(with url: String) {
         playButton.isHidden = true
-        let videoURL = URL(string: "\(Environment.baseURL)" + url)
+        let videoURL = URL(string: "\(AppEnvironment.baseURL)" + url)
         player = AVPlayer(url: videoURL!)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.imageView.bounds

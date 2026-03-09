@@ -4,5 +4,5 @@ import Foundation
 
 struct GetOTPRequestModel: Encodable {
     var mobileNumber: String
-    var isRoyalMedicineStudent: Bool = Environment.appName == .royalMedicine
+    var isRoyalMedicineStudent: Bool = AppEnvironment.appName == .royalMedicine
 }

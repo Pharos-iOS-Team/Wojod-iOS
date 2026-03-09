@@ -25,14 +25,14 @@ class UniversityViewController: UIViewController {
         didSet {
             studentButton.setTitle(L10n.Signup.UniversityScreen.student)
             studentButton.layer.cornerRadius = 5
-            studentButton.isEnabled = Environment.appName != .royalMedicine
+            studentButton.isEnabled = AppEnvironment.appName != .royalMedicine
         }
     }
     @IBOutlet private var graduateButton: UIButton! {
         didSet {
             graduateButton.setTitle(L10n.Signup.UniversityScreen.graduate)
             graduateButton.layer.cornerRadius = 5
-            graduateButton.isHidden = Environment.appName == .royalMedicine
+            graduateButton.isHidden = AppEnvironment.appName == .royalMedicine
         }
     }
     @IBOutlet private var universityTextField: NoCutPasteTextField! {
@@ -41,7 +41,7 @@ class UniversityViewController: UIViewController {
             universityTextField.isMandatoryTextField = true
             universityTextField.semanticContentAttribute = Language.semanticContent
             universityTextField.textAlignment = Language.textAlignment
-            if Environment.appName == .royalMedicine {
+            if AppEnvironment.appName == .royalMedicine {
                 universityTextField.isEnabled = false
                 universityTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -56,7 +56,7 @@ class UniversityViewController: UIViewController {
             fieldTextField.isMandatoryTextField = true
             fieldTextField.semanticContentAttribute = Language.semanticContent
             fieldTextField.textAlignment = Language.textAlignment
-            if Environment.appName == .royalMedicine {
+            if AppEnvironment.appName == .royalMedicine {
                 fieldTextField.isEnabled = false
                 fieldTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -237,7 +237,7 @@ class UniversityViewController: UIViewController {
     }
 
     private func handleFields() {
-        if Environment.appName == .royalMedicine {
+        if AppEnvironment.appName == .royalMedicine {
             User.shared.divisionId = DivisionsModel.facultyOfMedicine.key
             User.shared.divisionName = DivisionsModel.facultyOfMedicine.value
             universityTextField.text = DivisionsModel.facultyOfMedicine.value
@@ -353,7 +353,7 @@ class UniversityViewController: UIViewController {
         User.shared.academicType = self.academicLevel.rawValue
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text == L10n.Signup.School.none ? nil : fieldTextField.text
-        if Environment.appName == .royalMedicine {
+        if AppEnvironment.appName == .royalMedicine {
             User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
         } else {
             User.shared.specializationId = fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[selectedFieldIndex]

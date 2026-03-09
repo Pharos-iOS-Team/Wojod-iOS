@@ -12,4 +12,10 @@ extension Optional where Wrapped == String {
         guard let self = self else { return false }
         return !self.isEmpty && !self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+
+    var isYouTubeLink: Bool {
+        guard let self = self else { return false }
+        return self.lowercased().contains("youtube.com") ||
+        self.lowercased().contains("youtu.be")
+    }
 }

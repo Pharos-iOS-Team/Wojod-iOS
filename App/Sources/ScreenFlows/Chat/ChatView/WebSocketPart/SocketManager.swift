@@ -32,7 +32,7 @@ class SocketManager {
         let accessToken = KeychainHandler.shared.userToken ?? ""
         let client = Defaults[\.clientKey] ?? ""
         let uid = Defaults[\.uidKey] ?? ""
-        var socketUrlString = "\(Environment.chatBaseURLString)?"
+        var socketUrlString = "\(AppEnvironment.chatBaseURLString)?"
         socketUrlString += "access-token=\(accessToken)"
         socketUrlString += "&uid=\(uid)"
         socketUrlString += "&client=\(client)"

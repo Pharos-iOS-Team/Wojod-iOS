@@ -28,7 +28,7 @@ class ProfileTableViewHeader: UITableViewHeaderFooterView {
             guard var link = model.imageURL else { return }
             link = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             link = link.replacingOccurrences(of: "http", with: "https")
-            let url = Environment.baseURL.appendingPathComponent(link)
+            let url = AppEnvironment.baseURL.appendingPathComponent(link)
             profileImageView.isHidden = true
             activityIndicator.startLoading()
             profileImageView.kf.setImage(with: url) { [weak self] _ in

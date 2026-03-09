@@ -47,3 +47,5 @@
 "global.titles.unauthorized_access" = "Unauthorized Access";
 
 "global.titles.server_not_responding" = "Server Not Responding";
+
+"global.titles.seconds" = "seconds";

@@ -44,7 +44,7 @@ class MessagesDisplayHandler: MessagesDisplayDelegate {
         let mediaMessage = message as? MessageObjectModel
         let attachmentUrl = mediaMessage?.attachments?.first?.fileUrl
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: URL(string: Environment.baseURLString + (attachmentUrl ?? "")))
+        imageView.kf.setImage(with: URL(string: AppEnvironment.baseURLString + (attachmentUrl ?? "")))
     }
 
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {

@@ -47,7 +47,7 @@ struct Video: Codable {
     var locked: Bool
 }
 
-struct EncryptedVideoResponse: Codable {
+struct EncryptedVideoResponse: Codable, Equatable {
     var otp: String?
     var playback: String?
     var updateId: Int?

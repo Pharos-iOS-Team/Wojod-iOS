@@ -49,7 +49,7 @@ struct SettingsCellModel {
 class SettingsViewModel {
     var availableSettings: [Settings] {
         var allSettings = Settings.allCases
-        if isGuestModeEnabled() || Environment.appName == .royalMedicine {
+        if isGuestModeEnabled() || AppEnvironment.appName == .royalMedicine {
             allSettings.removeAll { $0 == .organizations }
         }
         return allSettings
@@ -71,14 +71,14 @@ class SettingsViewModel {
     func getUrl(forIndex index: Int) -> URL? {
         switch index {
         case Settings.privacyPolicy.rawValue:
-            return URL(string: "\(Environment.baseURLString)/privacy_policy")
+            return URL(string: "\(AppEnvironment.baseURLString)/privacy_policy")
         default:
             return URL(string: "")
         }
     }
 
     func getUserAvatar(avatarLink: String) -> URL? {
-        return Environment.baseURL.appendingPathComponent(avatarLink)
+        return AppEnvironment.baseURL.appendingPathComponent(avatarLink)
     }
 
     func isGuestModeEnabled() -> Bool {

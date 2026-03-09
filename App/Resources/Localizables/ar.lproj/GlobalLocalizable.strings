@@ -45,3 +45,5 @@
 "global.titles.unauthorized_access" = "دخول غير صحيح";
 
 "global.titles.server_not_responding" = "خطأ في السيرفر";
+
+"global.titles.seconds" = "ثواني";

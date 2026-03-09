@@ -42,21 +42,28 @@
     var error = false;
 
     YT.ready(function() {
-        player = new YT.Player('player', %@);
-        player.setSize(window.innerWidth, window.innerHeight);
-        window.location.href = 'ytplayer://onYouTubeIframeAPIReady';
-
-        // this will transmit playTime frequently while playng
-        function getCurrentTime() {
-             var state = player.getPlayerState();
-             if (state == YT.PlayerState.PLAYING) {
-                 time = player.getCurrentTime()
-                 window.location.href = 'ytplayer://onPlayTime?data=' + time;
-             }
+      player = new YT.Player('player', %@);
+      player.setSize(window.innerWidth, window.innerHeight);
+      window.location.href = 'ytplayer://onYouTubeIframeAPIReady';
+      
+      function sendPlayerData() {
+        var state = player.getPlayerState();
+        if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
+          var playedTime = player.getCurrentTime();
+          var bufferedFraction = player.getVideoLoadedFraction();
+          
+          // Properly encode the JSON data
+          var jsonData = JSON.stringify({
+            playedTime: playedTime,
+            bufferedTime: bufferedFraction
+          });
+          
+          // Ensure safe transmission by encoding URI components
+          window.location.href = 'ytplayer://onPlayerData?data=' + encodeURIComponent(jsonData);
         }
-        
-        window.setInterval(getCurrentTime, 500);
-             
+      }
+      
+      window.setInterval(sendPlayerData, 500);
     });
 
     function onReady(event) {
@@ -64,7 +71,7 @@
     }
 
     function onStateChange(event) {
-        if (!error) {            
+        if (!error) {
             window.location.href = 'ytplayer://onStateChange?data=' + event.data;
         }
         else {
@@ -82,6 +89,44 @@
         }
         window.location.href = 'ytplayer://onError?data=' + event.data;
     }
+      
+    function hideTitleLayer() {
+        const iframe = document.querySelector("iframe");
+        if (!iframe || !iframe.contentDocument) return;
+        
+        const frameDoc = iframe.contentDocument;
+
+        const topGradient = frameDoc.querySelector('.ytp-gradient-top')
+        if (topGradient) {
+          topGradient.style.display = 'none';
+        }
+        
+        const title = frameDoc.querySelector('.ytp-chrome-top')
+        if (title) {
+          title.style.display = 'none';
+        }
+    }
+      
+    function hideAllElements() {
+        setInterval(() => {
+          const iframe = document.querySelector("iframe");
+          if (!iframe || !iframe.contentDocument) return;
+          
+          const frameDoc = iframe.contentDocument;
+          
+          const elements = [
+            frameDoc.querySelector(".ytp-pause-overlay-container"),
+            frameDoc.querySelector(".html5-endscreen.ytp-player-content.videowall-endscreen"),
+            frameDoc.querySelector(".ytp-watch-on-youtube-button"),
+            frameDoc.querySelector(".fullscreen-action-menu"),
+            frameDoc.querySelector(".ytmVideoInfoVideoDetailsContainer")
+          ].filter(Boolean);
+          
+          elements.forEach(el => el.style.display = 'none');
+          
+        }, 200);
+    }
+
     
     window.onresize = function() {
         player.setSize(window.innerWidth, window.innerHeight);
@@ -89,3 +134,4 @@
     </script>
 </body>
 </html>
+
