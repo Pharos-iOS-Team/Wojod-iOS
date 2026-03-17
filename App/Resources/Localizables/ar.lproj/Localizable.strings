@@ -12,6 +12,8 @@
 "shared.alerts.screenRecordingNotAllowed" = "غير مسموح بتسجيل الشاشة!";
 "shared.alerts.appWillTerminate" = "سوف يتم انهاء التطبيق.";
 "shared.alerts.youtube_error" = "حدث خطأ أثناء تشغيل الفيديو يرجى المحاولة لاحقا أو تواصل مع الدعم الفني";
+"shared.alerts.sessionExpired.title" = "انتهت الجلسة";
+"shared.alerts.sessionExpired.message" = "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى للمتابعة.";
 
 "shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
