@@ -7,8 +7,8 @@ public struct WatermarkModifier: ViewModifier {
     let watermarkText: String
     @Binding var hideWatermark: Bool
 
-    private let labelHeight: CGFloat = 20
-    private let labelWidth: CGFloat = .deviceAdjusted(phone: 140, pad: 180)
+    private let labelHeight: CGFloat = 28
+    private let labelWidth: CGFloat = .deviceAdjusted(phone: 200, pad: 240)
 
     @State private var watermarkPosition = CGPoint(
         x: UIScreen.main.bounds.midX,
@@ -33,7 +33,7 @@ public struct WatermarkModifier: ViewModifier {
             .overlay(
                 Text(watermarkText)
                     .frame(width: labelWidth, height: labelHeight, alignment: .center)
-                    .font(.body.bold())
+                    .font(.title.bold())
                     .foregroundColor(.gray)
                     .position(watermarkPosition)
                     .allowsHitTesting(false)

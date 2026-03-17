@@ -26,19 +26,10 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         } else {
             window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
         }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil) { _ in
-            self.hideScreenIfBeingRecorded()
-        }
-        addScreenRecordingPreventionObserver()
+        addAirPlayPreventionObserver()
     }
 
-    private func addScreenRecordingPreventionObserver() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(hideScreenIfBeingRecorded),
-            name: UIScreen.capturedDidChangeNotification,
-            object: nil
-        )
+    private func addAirPlayPreventionObserver() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(hideScreenIfBeingAirPlayed(_:)),
@@ -48,24 +39,9 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
     }
 
     @objc
-    private func hideScreenIfBeingRecorded() {
-        guard let viewCtrl = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
-        guard UIScreen.main.isCaptured else { return }
-        if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: viewCtrl.title ?? ""), isRecording: true)
-        }
-        handleCrashingTheAppForRecording()
-    }
-
-    @objc
     private func hideScreenIfBeingAirPlayed(_ notification: NSNotification?) {
-        guard let viewCtrl = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
-
         guard isAirplayOn() else { return }
-        if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: viewCtrl.title ?? ""), isRecording: true)
-        }
-        handleCrashingTheAppForRecording()
+        handleCrashingTheAppForAirPlay()
     }
 
     private func isAirplayOn() -> Bool {
@@ -77,12 +53,12 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         return false
     }
 
-    private func handleCrashingTheAppForRecording() {
+    private func handleCrashingTheAppForAirPlay() {
         guard let viewCtrl = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
         viewCtrl.view.isHidden = true
         viewCtrl.showAlert(
             imageName: Images.danger.name,
-            title: L10n.Shared.Alerts.screenRecordingNotAllowed,
+            title: L10n.Shared.Alerts.airPlayingNotAllowed,
             message: L10n.Shared.Alerts.appWillTerminate
         ) {
             exit(-1)

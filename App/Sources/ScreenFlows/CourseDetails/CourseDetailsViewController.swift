@@ -114,8 +114,8 @@ class CourseDetailsViewController: UIViewController {
         observeInternetConnection()
         showQuizAlert()
         setHeader()
-        handleScreenCapture()
         shouldShowQRCodeScanner()
+        applyScreenshotPreventingView()
     }
 
     private func setHeader() {
@@ -1212,6 +1212,7 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
     }
 
     func dismissView() {
+        removeScreenshotPreventingView()
         dismiss(animated: true)
     }
 

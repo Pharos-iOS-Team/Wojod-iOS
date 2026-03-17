@@ -8,8 +8,7 @@
 "shared.alerts.microphone.message" = "Wojood need to access Microphone";
 
 "shared.alerts.error" = "Error";
-"shared.alerts.screenshotsNotAllowed" = "Screenshots Aren't Allowed!";
-"shared.alerts.screenRecordingNotAllowed" = "Screen recording is not Allowed!";
+"shared.alerts.airPlayingNotAllowed" = "AirPlay is not Allowed!";
 "shared.alerts.appWillTerminate" = "App will terminate.";
 "shared.alerts.youtube_error" = "An error occurred while playing the video. Please try again later or contact technical support.";
 

@@ -141,78 +141,13 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func handleScreenCapture() {
-        guard
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-            let window = appDelegate.window
-        else { return }
-
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil) { _ in
-            self.hideScreenIfBeingRecorded()
-        }
-        addScreenRecordingPreventionObserver()
-        preventScreenshot()
+    func applyScreenshotPreventingView() {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+        ScreenshotPreventingView.protect(window: window)
     }
 
-    private func addScreenRecordingPreventionObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hideScreenIfBeingRecorded), name: UIScreen.capturedDidChangeNotification, object: nil)
-    }
-
-    func preventScreenshot() {
-        NotificationCenter.default.addObserver(
-            forName: UIApplication.userDidTakeScreenshotNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { notification in
-            self.handleSendingScreenshotAlert()
-        }
-    }
-
-    @objc
-    private func hideScreenIfBeingRecorded() {
-        guard let viewController = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
-        guard UIScreen.main.isCaptured else { return }
-        if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: viewController.title ?? ""), isRecording: true)
-        }
-        handleCrashingTheAppForRecording()
-    }
-
-    private func handleSendingScreenshotAlert() {
-        guard let viewController = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
-        if ReachabilityAppDelegate.connectionState == .connected {
-            User.shared.screenshotAlert(screenName: String(describing: viewController.title ?? ""), isRecording: false)
-        }
-        handleCrashingTheAppForTakingScreenshot()
-    }
-
-    private func handleCrashingTheAppForTakingScreenshot() {
-        guard !isTestingAccount() else { return }
-
-        (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController?.showAlert(
-            imageName: Images.danger.name,
-            title: L10n.Shared.Alerts.screenshotsNotAllowed,
-            message: L10n.Shared.Alerts.appWillTerminate
-        ) {
-            exit(-1)
-        }
-        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
-            exit(-1)
-        }
-    }
-
-    private func handleCrashingTheAppForRecording() {
-        guard let viewController = (UIApplication.shared.delegate as? AppDelegate)?.window?.visibleViewController else { return }
-        viewController.view.isHidden = true
-        viewController.showAlert(
-            imageName: Images.danger.name,
-            title: L10n.Shared.Alerts.screenRecordingNotAllowed,
-            message: L10n.Shared.Alerts.appWillTerminate
-        ) {
-            exit(-1)
-        }
-        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
-            exit(-1)
-        }
+    func removeScreenshotPreventingView() {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+        ScreenshotPreventingView.unprotect(window: window)
     }
 }

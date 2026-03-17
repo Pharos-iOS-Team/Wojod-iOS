@@ -1008,6 +1008,10 @@ internal enum L10n {
         }
     }
     internal enum Alerts {
+      /// AirPlay is not Allowed!
+      internal static var airPlayingNotAllowed: String {
+          return L10n.tr("Localizable", "shared.alerts.airPlayingNotAllowed")
+        }
       /// App will terminate.
       internal static var appWillTerminate: String {
           return L10n.tr("Localizable", "shared.alerts.appWillTerminate")
@@ -1015,14 +1019,6 @@ internal enum L10n {
       /// Error
       internal static var error: String {
           return L10n.tr("Localizable", "shared.alerts.error")
-        }
-      /// Screen recording is not Allowed!
-      internal static var screenRecordingNotAllowed: String {
-          return L10n.tr("Localizable", "shared.alerts.screenRecordingNotAllowed")
-        }
-      /// Screenshots Aren't Allowed!
-      internal static var screenshotsNotAllowed: String {
-          return L10n.tr("Localizable", "shared.alerts.screenshotsNotAllowed")
         }
       /// An error occurred while playing the video. Please try again later or contact technical support.
       internal static var youtubeError: String {
