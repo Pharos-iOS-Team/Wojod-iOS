@@ -20,7 +20,10 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - None.
 ### Changed
-- None.
+- Changed screen capturing prevention behavior. 
+  Task: [CPI-322](https://jira.pharos-solutions.de/browse/CPI-322) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed youtube watermark size. 
+  Task: [CPI-324](https://jira.pharos-solutions.de/browse/CPI-324) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed
