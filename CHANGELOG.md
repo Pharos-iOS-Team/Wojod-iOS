@@ -18,13 +18,9 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Added Expired Session Alert.  
-  Task: [CPI-325](https://jira.pharos-solutions.de/browse/CPI-325) | PR: [#17](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/17) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Changed
-- Changed screen capturing prevention behavior. 
-  Task: [CPI-322](https://jira.pharos-solutions.de/browse/CPI-322) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
-- Changed youtube watermark size. 
-  Task: [CPI-324](https://jira.pharos-solutions.de/browse/CPI-324) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Deprecated
 - None.
 ### Removed
@@ -33,6 +29,16 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 - None.
 ### Security
 - None.
+
+## [1.11.0] - 2026-03-18
+### Added
+- Added Expired Session Alert.  
+  Task: [CPI-325](https://jira.pharos-solutions.de/browse/CPI-325) | PR: [#17](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/17) | Author: [Sara Rady](https://github.com/sara-rady)
+### Changed
+- Changed screen capturing prevention behavior. 
+  Task: [CPI-322](https://jira.pharos-solutions.de/browse/CPI-322) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed youtube watermark size. 
+  Task: [CPI-324](https://jira.pharos-solutions.de/browse/CPI-324) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [1.10.0] - 2026-03-09
 ### Added
