@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Expired Session Alert.  
+  Task: [CPI-325](https://jira.pharos-solutions.de/browse/CPI-325) | PR: [#17](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/17) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - Changed screen capturing prevention behavior. 
   Task: [CPI-322](https://jira.pharos-solutions.de/browse/CPI-322) | PR: [#16](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/16) | Author: [Sara Rady](https://github.com/sara-rady)

@@ -11,6 +11,8 @@
 "shared.alerts.airPlayingNotAllowed" = "AirPlay is not Allowed!";
 "shared.alerts.appWillTerminate" = "App will terminate.";
 "shared.alerts.youtube_error" = "An error occurred while playing the video. Please try again later or contact technical support.";
+"shared.alerts.sessionExpired.title" = "Session Expired";
+"shared.alerts.sessionExpired.message" = "Your session has expired. Please log in again to continue.";
 
 "shared.action.cancel" = "Cancel";
 "shared.action.dismiss" = "Dismiss";

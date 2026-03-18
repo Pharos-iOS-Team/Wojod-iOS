@@ -8,8 +8,7 @@ import SwiftyUserDefaults
 internal class NetworkProvider {
     internal static var shared = NetworkProvider()
 
-    private let provider = MoyaProvider<RegistrationService>(
-        plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: [.formatRequestAscURL, .verbose]))]
+    private let provider = MoyaProvider<RegistrationService>( [NetworkLoggerPlugin(configuration: .init(logOptions: [.formatRequestAscURL, .verbose]))]
     )
 
     internal func request(

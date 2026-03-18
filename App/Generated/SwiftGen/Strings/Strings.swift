@@ -1050,6 +1050,16 @@ internal enum L10n {
             return L10n.tr("Localizable", "shared.alerts.photos.title")
           }
       }
+      internal enum SessionExpired {
+        /// Your session has expired. Please log in again to continue.
+        internal static var message: String {
+            return L10n.tr("Localizable", "shared.alerts.sessionExpired.message")
+          }
+        /// Session Expired
+        internal static var title: String {
+            return L10n.tr("Localizable", "shared.alerts.sessionExpired.title")
+          }
+      }
     }
   }
 

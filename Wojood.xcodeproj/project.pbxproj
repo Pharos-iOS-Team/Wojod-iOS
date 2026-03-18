@@ -385,6 +385,7 @@
 		D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5276DF72F41FB180045A2EA /* TaskExt.swift */; };
 		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
+		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
@@ -846,6 +847,7 @@
 		D5276DF72F41FB180045A2EA /* TaskExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExt.swift; sourceTree = "<group>"; };
 		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
+		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D51B99112F3CE4BA00B77BA4 /* SwiftUIExtensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftUIExtensions; sourceTree = "<group>"; };
+		D5647B0F2F6A52AB00518611 /* UnauthorizedResponse */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UnauthorizedResponse; sourceTree = "<group>"; };
 		D5A2E17E2F3DD4B100B6B070 /* YoutubeHelperViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = YoutubeHelperViews; sourceTree = "<group>"; };
 		D5FFA0632F3CDACF009B796A /* YTPlayer */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D5276DF22F3E07750045A2EA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = YTPlayer; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -1245,7 +1248,6 @@
 				38659BB226B6D2E600E3BFE9 /* AssessmentsAPIClient.swift */,
 				38659BB326B6D2E600E3BFE9 /* APIClient.swift */,
 				38659BB426B6D2E600E3BFE9 /* AssessmentDetailsAPIClient.swift */,
-				38659BB526B6D2E600E3BFE9 /* ApiManager.swift */,
 				38B06A7326F8B47F001F6E08 /* AssessmentSynchronization.swift */,
 			);
 			path = Assessments;
@@ -1543,25 +1545,27 @@
 		7723AD63261C6645007C0B97 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				BC0F92C02785DCE7001C5B3A /* OrganizationsList */,
-				BC7101BF276FDF7F002607ED /* ScreenshotAlert */,
-				38659BB126B6D2E600E3BFE9 /* Assessments */,
-				38659ABC26B43D3B00E3BFE9 /* Filters */,
+				D5647B0F2F6A52AB00518611 /* UnauthorizedResponse */,
+				38659BB526B6D2E600E3BFE9 /* ApiManager.swift */,
 				26835F5926B0578B0061DA70 /* CoursesDecoder.swift */,
+				778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */,
+				E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */,
+				E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */,
+				BC96828A26397995009F8550 /* AcademicInfo */,
+				38659BB126B6D2E600E3BFE9 /* Assessments */,
+				BC083B6B26430EA400A1E6A4 /* Avatar */,
 				26CF48A8269B061E00DDA29F /* Chat */,
 				385CC0C0265F92D800A091FD /* CourseDetails */,
-				38812C52266E9AEE00CCD924 /* Home */,
 				BC19E5E32631A38100CFA142 /* CreatePassword */,
-				BC083B6B26430EA400A1E6A4 /* Avatar */,
-				BC083B122641D50400A1E6A4 /* Logout */,
-				BC96828A26397995009F8550 /* AcademicInfo */,
-				BC19E58D2631823700CFA142 /* Profile */,
+				38659ABC26B43D3B00E3BFE9 /* Filters */,
 				BC5ED0E92628687800774E54 /* ForgotPassword */,
+				38812C52266E9AEE00CCD924 /* Home */,
 				BC9E08FA2625DA8100D24C69 /* Login */,
-				E8C9EF2926321A3C0023D2B1 /* RegistrationService.swift */,
-				E8C9EF3126321AE00023D2B1 /* NetworkProvider.swift */,
+				BC083B122641D50400A1E6A4 /* Logout */,
 				778E7235261DC237009D7B35 /* Notifications */,
-				778E72D9261DF6C4009D7B35 /* ModelDecodable.swift */,
+				BC0F92C02785DCE7001C5B3A /* OrganizationsList */,
+				BC19E58D2631823700CFA142 /* Profile */,
+				BC7101BF276FDF7F002607ED /* ScreenshotAlert */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1815,6 +1819,7 @@
 		778E722D261DC122009D7B35 /* VendorExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */,
 				D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */,
 				7723ADFA261C787B007C0B97 /* DefaultsKeysExt.swift */,
 				77E32BB3264A8BF80064B801 /* ImagesExt.swift */,
@@ -2378,6 +2383,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				D51B99112F3CE4BA00B77BA4 /* SwiftUIExtensions */,
+				D5647B0F2F6A52AB00518611 /* UnauthorizedResponse */,
 				D5A2E17E2F3DD4B100B6B070 /* YoutubeHelperViews */,
 			);
 			name = Wojood;
@@ -2848,6 +2854,7 @@
 				7723AD9F261C6FC5007C0B97 /* WJError.swift in Sources */,
 				BC19E5942631828E00CFA142 /* ProfileTarget.swift in Sources */,
 				3898E4E9265E572E00295A43 /* UIConstants.swift in Sources */,
+				D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */,
 				BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */,
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */,
