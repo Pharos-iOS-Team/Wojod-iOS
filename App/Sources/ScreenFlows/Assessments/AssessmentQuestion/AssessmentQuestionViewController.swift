@@ -273,12 +273,12 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
             let cell: AssessmentMCQOptionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(optionName: title, optionImageURL: imageURL, isSelected: isSelected, textAlignment: viewModel.textAlignment, isCorrectAnswer: isCorrectAnswer, isOpenAssessment: isOpenAssessment, delegate: self)
             return cell
-        case .textView(let answer, let alignment, let attachmentURLString, let isAnswered, let isCorrectAnswer, let answerState, let question, let isComment):
+        case .textView(let answer, let alignment, let attachmentURLString, let isAnswered, let isCorrectAnswer, let answerState, let question, let isComment, let modelAnswer):
             let cell: AssessmentFreeTextTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setDelegate(self)
             cell.setTextViewDelegate(self)
             cell.configure(with: answer, alignment: alignment, attachmentURLString: attachmentURLString, currentProgress: viewModel.currentProgress)
-            cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment)
+            cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment, modelAnswer: modelAnswer)
             return cell
         default:
             return UITableViewCell()
@@ -295,7 +295,7 @@ extension AssessmentQuestionViewController: UITableViewDelegate {
             let item = items[indexPath.row]
             switch item {
             case .textView:
-                return freeTextCellHeightRatio * view.frame.height
+                return UITableView.automaticDimension
             default:
                 return UITableView.automaticDimension
             }

@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Model Answer in Essay questions.  
+  Task: [CPI-328](https://jira.pharos-solutions.de/browse/CPI-328) | PR: [#19](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/19) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated

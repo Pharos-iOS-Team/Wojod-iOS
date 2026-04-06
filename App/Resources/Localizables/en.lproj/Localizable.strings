@@ -316,6 +316,7 @@ No worries!";
 "quizzes.notGradedYet" = "Not graded yet";
 "quizzes.notFinalGrade" = "This grade is not final";
 "quizzes.yourAnswer" = "Your answer";
+"quizzes.modelAnswer" = "Model Answer";
 "quizzes.theAnswer" = "The answer";
 "quizzes.submitButtonTitle" = "Submit";
 "quizzes.submitButtonTitleForTeacherAlert" = "Submit";
