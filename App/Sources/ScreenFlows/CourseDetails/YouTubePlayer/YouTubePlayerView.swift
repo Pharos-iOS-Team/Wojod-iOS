@@ -45,6 +45,7 @@ struct YouTubePlayerView: View {
                                     isEdittingFinished: viewStore.$isEdittingFinished,
                                     fastForward: viewStore.$fastForward,
                                     rewind: viewStore.$rewind,
+                                    isMuted: viewStore.$isMuted
                                 )
                                 .ignoresSafeArea()
                                 .watermark( /// Add watermark when video is displayed
@@ -163,6 +164,9 @@ struct YouTubePlayerView: View {
             } else if newPhase == .background {
                 store.send(.didEnterbackground)
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIScreen.capturedDidChangeNotification)) { _ in
+            store.send(.binding(.set(\.$isMuted, UIScreen.main.isCaptured)))
         }
     }
 }
