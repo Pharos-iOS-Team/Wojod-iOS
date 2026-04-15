@@ -91,7 +91,7 @@ class AssessmentQuestionViewModel {
         )
         case teacherCommentHeader(comment: String?)
         case teacherComment(comment: String?)
-        case commentAndImages(comment: String?, images: [CorrectionImage])
+        case commentAndImages(question: AssessmentQuestion, module: AssessmentsOverViewViewModel.Module)
     }
 
     // MARK: - Closures
@@ -134,10 +134,7 @@ class AssessmentQuestionViewModel {
         let hasComment = question.comment?.isValid == true
         let hasImages = !(question.correctionImages?.isEmpty ?? true)
         guard hasComment || hasImages else { return }
-        let item: QuestionSectionItem = .commentAndImages(
-            comment: question.comment,
-            images: question.correctionImages ?? []
-        )
+        let item: QuestionSectionItem = .commentAndImages(question: question, module: module)
         dataSource.append(.body([item]))
     }
 

@@ -33,12 +33,12 @@ class CommentAndImagesTableViewCell: UITableViewCell {
 
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 1
-        containerView.layer.borderColor = Asset.Colors.orange.color.cgColor.copy(alpha: 0.2)
-        containerView.backgroundColor = Asset.Colors.orange.color.withAlphaComponent(0.2)
         containerView.clipsToBounds = true
 
-        pageControl.currentPageIndicatorTintColor = Asset.Colors.orange.color
         pageControl.pageIndicatorTintColor = UIColor.systemGray4
+
+        titleLabel.font = UIFont(name: "Lato-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
+        titleLabel.textColor = UIColor(white: 0.333, alpha: 1)
 
         imagesCollectionView.backgroundColor = .clear
         imagesCollectionView.dataSource = self
@@ -61,25 +61,72 @@ class CommentAndImagesTableViewCell: UITableViewCell {
         commentLabel.isHidden = false
         imagesCollectionView.isHidden = false
         pageControl.currentPage = 0
+        applyDefaultStyle()
     }
 
     // MARK: - Configuration
 
-    func configure(comment: String?, imageURLs: [CorrectionImage], delegate: CommentAndImagesCellDelegate?) {
+    func configure(question: AssessmentQuestion, module: AssessmentsOverViewViewModel.Module, delegate: CommentAndImagesCellDelegate?) {
         self.delegate = delegate
-        self.correctionImages = imageURLs
+        self.correctionImages = question.correctionImages ?? []
 
-        let hasComment = comment?.isEmpty == false
-        commentLabel.text = comment
+        let hasComment = question.comment?.isEmpty == false
+        commentLabel.text = question.comment
         commentLabel.isHidden = !hasComment
 
-        let hasImages = !imageURLs.isEmpty
+        let hasImages = !correctionImages.isEmpty
         imagesCollectionView.isHidden = !hasImages
         pageControl.isHidden = !hasImages
-        pageControl.numberOfPages = imageURLs.count
+        pageControl.numberOfPages = correctionImages.count
         pageControl.currentPage = 0
 
         imagesCollectionView.reloadData()
+        applyAnswerState(question: question, module: module)
+    }
+
+    private func applyDefaultStyle() {
+        containerView.backgroundColor = Asset.Colors.orange.color.withAlphaComponent(0.2)
+        containerView.layer.borderColor = Asset.Colors.orange.color.cgColor.copy(alpha: 0.2)
+        pageControl.currentPageIndicatorTintColor = Asset.Colors.orange.color
+    }
+
+    private func applyAnswerState(question: AssessmentQuestion, module: AssessmentsOverViewViewModel.Module) {
+        switch module {
+        case .quizzes:
+            switch question.studentMark {
+            case Double.zero:
+                containerView.backgroundColor = UIColor.red.withAlphaComponent(0.1)
+                containerView.layer.borderColor = UIColor.red.cgColor
+                pageControl.currentPageIndicatorTintColor = UIColor.red
+            case question.mark:
+                containerView.backgroundColor = Colors.green.color.withAlphaComponent(0.2)
+                containerView.layer.borderColor = Colors.green.color.cgColor
+                pageControl.currentPageIndicatorTintColor = Colors.green.color
+            default:
+                containerView.backgroundColor = UIColor.orange.withAlphaComponent(0.11)
+                containerView.layer.borderColor = UIColor.orange.cgColor
+                pageControl.currentPageIndicatorTintColor = UIColor.orange
+            }
+        case .assignments:
+            switch question.answerState {
+            case .correct:
+                containerView.backgroundColor = Colors.green.color.withAlphaComponent(0.2)
+                containerView.layer.borderColor = Colors.green.color.cgColor
+                pageControl.currentPageIndicatorTintColor = Colors.green.color
+            case .incorrect:
+                containerView.backgroundColor = UIColor.red.withAlphaComponent(0.11)
+                containerView.layer.borderColor = UIColor.red.cgColor
+                pageControl.currentPageIndicatorTintColor = UIColor.red
+            case .needsImprovement:
+                containerView.backgroundColor = UIColor.orange.withAlphaComponent(0.11)
+                containerView.layer.borderColor = UIColor.orange.cgColor
+                pageControl.currentPageIndicatorTintColor = UIColor.orange
+            case .notReviewed:
+                applyDefaultStyle()
+            }
+        default:
+            applyDefaultStyle()
+        }
     }
 }
 

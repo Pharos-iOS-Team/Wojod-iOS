@@ -281,9 +281,9 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
             cell.configure(with: answer, alignment: alignment, attachmentURLString: attachmentURLString, currentProgress: viewModel.currentProgress)
             cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment, modelAnswer: modelAnswer)
             return cell
-        case .commentAndImages(let comment, let images):
+        case .commentAndImages(let question, let module):
             let cell: CommentAndImagesTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(comment: comment, imageURLs: images, delegate: self)
+            cell.configure(question: question, module: module, delegate: self)
             return cell
         default:
             return UITableViewCell()
