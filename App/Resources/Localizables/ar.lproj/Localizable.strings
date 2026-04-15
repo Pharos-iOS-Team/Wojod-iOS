@@ -368,6 +368,7 @@
 "assignment.incorrect" = "الاجابة خاطئة";
 "assignment.notReviewed" = "لم يتم مراجعته";
 "assignment.needsImprovement" = "يحتاج إلى التحسين";
+"assignment.descriptionTitle" = "التفاصيل";
 
 "navigation.back" = "رجوع";
 

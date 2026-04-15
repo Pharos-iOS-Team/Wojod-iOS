@@ -33,8 +33,8 @@ class AssignmentQuestionStateView: UIView {
         if questionType == .freeText, isAnswered, teacherSelction == nil {
             stackView.spacing = 5
             questionCommentLabel.font = UIFont(font: FontFamily.Inter.regular, size: 11)
-            questionCommentLabel.text = "assignment.notGraded".localiz()
-            questionCommentLabel.textAlignment = "assignment.notGraded".localiz().dominantTextAlignment
+            questionCommentLabel.text = L10n.Assignment.notGraded
+            questionCommentLabel.textAlignment = L10n.Assignment.notGraded.dominantTextAlignment
             return
         }
         guard let comment = text, comment.isValid else {
@@ -60,13 +60,13 @@ class AssignmentQuestionStateView: UIView {
         }
         switch state {
         case .correct:
-            setupView(title: "assignment.correctTitle".localiz(), color: Colors.green.color)
+            setupView(title: L10n.Assignment.correctTitle, color: Colors.green.color)
         case .incorrect:
-            setupView(title: "assignment.incorrectTitle".localiz(), color: .red)
+            setupView(title: L10n.Assignment.incorrectTitle, color: .red)
         case .notReviewed:
-            setupView(title: "assignment.notReviewedTitle".localiz(), color: Colors.sendButtonColor.color)
+            setupView(title: L10n.Assignment.notReviewed, color: Colors.sendButtonColor.color)
         case .needsImprovement:
-            setupView(title: "assignment.needsImprovementTitle".localiz(), color: .orange)
+            setupView(title: L10n.Assignment.needsImprovement, color: .orange)
         }
     }
 
@@ -88,13 +88,13 @@ class AssignmentQuestionStateView: UIView {
     private func handleTeacherGradeSelection(teacherSelction: AssessmentQuestion.AnswerState?) {
         switch teacherSelction {
         case .correct:
-            questionStateLabel.text = "assignment.correctTitle".localiz()
+            questionStateLabel.text = L10n.Assignment.correctTitle
             questionStateLabel.textColor = Colors.green.color
         case .incorrect:
-            questionStateLabel.text = "assignment.incorrectTitle".localiz()
+            questionStateLabel.text = L10n.Assignment.incorrectTitle
             questionStateLabel.textColor = .red
         default:
-            questionStateLabel.text = "assignment.questionIsPending".localiz()
+            questionStateLabel.text = L10n.Assignment.questionIsPending
             questionStateLabel.textColor = Colors.sendButtonColor.color
         }
     }

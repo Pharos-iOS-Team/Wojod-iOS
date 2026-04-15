@@ -24,6 +24,10 @@ internal enum L10n {
     internal static var correctTitle: String {
         return L10n.tr("Localizable", "assignment.correctTitle")
       }
+    /// Description
+    internal static var descriptionTitle: String {
+        return L10n.tr("Localizable", "assignment.descriptionTitle")
+      }
     /// Not correct
     internal static var incorrect: String {
         return L10n.tr("Localizable", "assignment.incorrect")
