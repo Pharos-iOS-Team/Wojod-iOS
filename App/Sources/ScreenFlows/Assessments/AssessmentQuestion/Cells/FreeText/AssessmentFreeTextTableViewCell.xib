@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,6 +23,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="stk-MA-001">
+                        <rect key="frame" x="0.0" y="15" width="320" height="170"/>
+                        <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87W-Rh-NU2">
                         <rect key="frame" x="0.0" y="15" width="320" height="170"/>
                         <subviews>
@@ -30,7 +33,7 @@
                                 <rect key="frame" x="20" y="10" width="210" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
@@ -92,8 +95,39 @@
                             <constraint firstItem="Mce-9z-aT1" firstAttribute="centerX" secondItem="EdG-2L-BKB" secondAttribute="centerX" id="vRN-Hc-mmB"/>
                             <constraint firstAttribute="trailing" secondItem="6nX-50-Iyb" secondAttribute="trailing" constant="10" id="xAc-Uq-ekt"/>
                             <constraint firstItem="lnk-W9-IrJ" firstAttribute="leading" secondItem="87W-Rh-NU2" secondAttribute="leading" constant="20" id="yUH-iQ-KHT"/>
+                            <constraint firstItem="lnk-W9-IrJ" firstAttribute="height" constant="120" id="lnk-height-fix"/>
                         </constraints>
                     </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mac-MA-002">
+                                <rect key="frame" x="0.0" y="178" width="320" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Answer" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtl-MA-003">
+                                        <rect key="frame" x="12" y="10" width="296" height="15"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcl-MA-004">
+                                        <rect key="frame" x="0.0" y="23" width="320" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mtl-MA-003" firstAttribute="top" secondItem="mac-MA-002" secondAttribute="top" constant="10" id="c01-MA-001"/>
+                                    <constraint firstItem="mtl-MA-003" firstAttribute="leading" secondItem="mac-MA-002" secondAttribute="leading" id="c02-MA-002"/>
+                                    <constraint firstAttribute="trailing" secondItem="mtl-MA-003" secondAttribute="trailing" id="c03-MA-003"/>
+                                    <constraint firstItem="mcl-MA-004" firstAttribute="top" secondItem="mtl-MA-003" secondAttribute="bottom" constant="4" id="c04-MA-004"/>
+                                    <constraint firstItem="mcl-MA-004" firstAttribute="leading" secondItem="mac-MA-002" secondAttribute="leading" id="c05-MA-005"/>
+                                    <constraint firstAttribute="trailing" secondItem="mcl-MA-004" secondAttribute="trailing" id="c06-MA-006"/>
+                                    <constraint firstAttribute="bottom" secondItem="mcl-MA-004" secondAttribute="bottom" constant="10" id="c07-MA-007"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qp-Cl-OlK">
                         <rect key="frame" x="0.0" y="10" width="320" height="0.0"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
@@ -102,13 +136,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="87W-Rh-NU2" secondAttribute="bottom" constant="10" id="27s-h4-okL"/>
+                    <constraint firstAttribute="bottom" secondItem="stk-MA-001" secondAttribute="bottom" constant="10" id="27s-h4-okL"/>
                     <constraint firstItem="1Qp-Cl-OlK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="59r-8J-koA"/>
                     <constraint firstAttribute="trailing" secondItem="1Qp-Cl-OlK" secondAttribute="trailing" id="I4D-Cd-C9y"/>
-                    <constraint firstItem="87W-Rh-NU2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J6Z-45-S6d"/>
-                    <constraint firstAttribute="trailing" secondItem="87W-Rh-NU2" secondAttribute="trailing" id="P6R-mT-12k"/>
+                    <constraint firstItem="stk-MA-001" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J6Z-45-S6d"/>
+                    <constraint firstAttribute="trailing" secondItem="stk-MA-001" secondAttribute="trailing" id="P6R-mT-12k"/>
                     <constraint firstItem="1Qp-Cl-OlK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Y82-Bm-NQP"/>
-                    <constraint firstItem="87W-Rh-NU2" firstAttribute="top" secondItem="1Qp-Cl-OlK" secondAttribute="bottom" constant="5" id="ZXM-Yn-Z0W"/>
+                    <constraint firstItem="stk-MA-001" firstAttribute="top" secondItem="1Qp-Cl-OlK" secondAttribute="bottom" constant="5" id="ZXM-Yn-Z0W"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -120,6 +154,9 @@
                 <outlet property="cancelUploadButton" destination="Os4-7s-Z9s" id="GNf-da-u5g"/>
                 <outlet property="containerView" destination="87W-Rh-NU2" id="k7p-dB-82j"/>
                 <outlet property="yourAnswerLabel" destination="1Qp-Cl-OlK" id="tca-8K-fnW"/>
+                <outlet property="modelAnswerCard" destination="mac-MA-002" id="mac-out-001"/>
+                <outlet property="modelAnswerTitleLabel" destination="mtl-MA-003" id="mtl-out-001"/>
+                <outlet property="modelAnswerContentTextView" destination="mcl-MA-004" id="mcl-out-002"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="150.33482142857142"/>
         </tableViewCell>

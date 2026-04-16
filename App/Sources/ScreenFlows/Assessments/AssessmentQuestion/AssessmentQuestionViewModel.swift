@@ -86,7 +86,8 @@ class AssessmentQuestionViewModel {
             _ isCorrectAnswer: Bool?,
             _ answerState: AssessmentQuestion.AnswerState,
             _ question: AssessmentQuestion?,
-            _ isComment: Bool?
+            _ isComment: Bool?,
+            _ modelAnswer: String?
         )
         case teacherCommentHeader(comment: String?)
         case teacherComment(comment: String?)
@@ -112,7 +113,7 @@ class AssessmentQuestionViewModel {
         return mark == nil ? nil : (mark ?? 0.0 > 0.0)
     }
 
-    private func appendFreeTextSection(for question: AssessmentQuestion, answer: String?, isCorrectAnswer: Bool?, isComment: Bool? = false) {
+    private func appendFreeTextSection(for question: AssessmentQuestion, answer: String?, isCorrectAnswer: Bool?, isComment: Bool? = false, modelAnswer: String?) {
         let freeTextQuestionItem: QuestionSectionItem = .textView(
             answer,
             textAlignment,
@@ -121,7 +122,8 @@ class AssessmentQuestionViewModel {
             isCorrectAnswer,
             question.answerState,
             question,
-            isComment
+            isComment,
+            modelAnswer
         )
         let questionSection: QuestionSection = .body([freeTextQuestionItem])
         dataSource.append(questionSection)
@@ -215,12 +217,12 @@ class AssessmentQuestionViewModel {
         case .mcq, .trueOrFalse:
             appendMCQSection(question: question)
         case .freeText:
-            appendFreeTextSection(for: question, answer: question.submittedFreeTextAnswer, isCorrectAnswer: isCorrectFreeTextAnswer(for: question))
+          appendFreeTextSection(for: question, answer: question.submittedFreeTextAnswer, isCorrectAnswer: isCorrectFreeTextAnswer(for: question), modelAnswer: question.modelAnswer)
             if module == .quizzes,
                 assessmentStatus == .closed,
                 let comment = question.comment,
                 comment.isValid {
-                appendFreeTextSection(for: question, answer: comment, isCorrectAnswer: true, isComment: true)
+                appendFreeTextSection(for: question, answer: comment, isCorrectAnswer: true, isComment: true, modelAnswer: nil)
             }
         default:
             return

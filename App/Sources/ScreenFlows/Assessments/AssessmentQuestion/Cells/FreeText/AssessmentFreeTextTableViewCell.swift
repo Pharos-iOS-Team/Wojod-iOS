@@ -20,6 +20,10 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
     @IBOutlet private var cancelUploadButton: UIButton!
     @IBOutlet private var attachmentImageViewWidthConstraint: NSLayoutConstraint!
 
+    @IBOutlet private var modelAnswerCard: UIView!
+    @IBOutlet private var modelAnswerTitleLabel: UILabel!
+    @IBOutlet private var modelAnswerContentTextView: UITextView!
+
     private weak var delegate: AssessmentFreeTextDelegate?
     private let attachmentImageViewWidth: CGFloat = 60
     private let commentBackgroundAlpha: CGFloat = 0.11
@@ -33,6 +37,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         answerTextView.textAlignment = .natural
+        modelAnswerCard.isHidden = true
         // setUploadProgressViewHidden(true)
     }
     
@@ -62,8 +67,10 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         module: AssessmentsOverViewViewModel.Module,
         assignmentAnswerState: AssessmentQuestion.AnswerState,
         question: AssessmentQuestion?,
-        isComment: Bool?
+        isComment: Bool?,
+        modelAnswer: String?
     ) {
+        configureModelAnswer(with: modelAnswer)
         configureIsAnswered(isAnswered)
         switch module {
         case .quizzes:
@@ -99,6 +106,15 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 1
         containerView.layer.borderColor = Asset.Colors.sendButtonColor.color.cgColor.copy(alpha: 0.2)
+        modelAnswerTitleLabel.text = L10n.Quizzes.modelAnswer
+        modelAnswerContentTextView.layer.cornerRadius = 10
+        modelAnswerContentTextView.layer.borderWidth = 1
+        modelAnswerContentTextView.layer.borderColor = UIColor.systemGray.cgColor.copy(alpha: 0.4)
+        modelAnswerContentTextView.backgroundColor = UIColor.systemGray.withAlphaComponent(0.1)
+        modelAnswerContentTextView.isEditable = false
+        modelAnswerContentTextView.isScrollEnabled = false
+        modelAnswerContentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        modelAnswerContentTextView.textContainer.lineFragmentPadding = 0
         cancelUploadButton.setFrameShape(.circular)
         cancelUploadButton.layer.borderColor = Asset.Colors.sendButtonColor.color.cgColor
         cancelUploadButton.layer.borderWidth = 2
@@ -138,14 +154,24 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
 
     private func handleTitleLabel(isComment: Bool) {
         if isComment {
-            yourAnswerLabel.text = "quizzes.questionComment".localiz()
+          yourAnswerLabel.text = L10n.Quizzes.questionComment
         } else {
-            yourAnswerLabel.text = "quizzes.yourAnswer".localiz()
+          yourAnswerLabel.text = L10n.Quizzes.yourAnswer
         }
+    }
+
+    private func configureModelAnswer(with modelAnswer: String?) {
+        guard let modelAnswer = modelAnswer, modelAnswer.isValid else {
+            modelAnswerCard.isHidden = true
+            return
+        }
+        modelAnswerContentTextView.text = modelAnswer
+        modelAnswerCard.isHidden = false
     }
 
     private func configureTextViewAlignment(alignment: NSTextAlignment) {
         answerTextView.textAlignment = alignment
+        modelAnswerContentTextView.textAlignment = alignment
     }
 
     private func addAttachmentGestureRecognizer() {

@@ -771,6 +771,10 @@ internal enum L10n {
     internal static var minutes: String {
         return L10n.tr("Localizable", "quizzes.minutes")
       }
+    /// Model Answer
+    internal static var modelAnswer: String {
+        return L10n.tr("Localizable", "quizzes.modelAnswer")
+      }
     /// Next
     internal static var next: String {
         return L10n.tr("Localizable", "quizzes.next")
