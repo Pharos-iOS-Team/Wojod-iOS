@@ -74,7 +74,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         configureIsAnswered(isAnswered)
         switch module {
         case .quizzes:
-            configureCorrectAnswer(isAnswered, isCorrectAnswer, question, isComment ?? false)
+            configureCorrectAnswer(isAnswered, isCorrectAnswer, question)
         case .assignments:
             configureAssignmentAnswerState(state: assignmentAnswerState)
         default:
@@ -132,7 +132,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         }
     }
 
-    private func configureCorrectAnswer(_ isAnswered: Bool, _ isCorrectAnswer: Bool?, _ question: AssessmentQuestion?, _ isComment: Bool) {
+    private func configureCorrectAnswer(_ isAnswered: Bool, _ isCorrectAnswer: Bool?, _ question: AssessmentQuestion?) {
         guard let question = question, isAnswered else { return }
         switch question.studentMark {
         case Double.zero:
@@ -149,15 +149,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
             containerView.backgroundColor = UIColor.orange.withAlphaComponent(0.11)
             containerView.layer.borderColor = UIColor.orange.cgColor
         }
-        handleTitleLabel(isComment: isComment) 
-    }
-
-    private func handleTitleLabel(isComment: Bool) {
-        if isComment {
-          yourAnswerLabel.text = L10n.Quizzes.questionComment
-        } else {
-          yourAnswerLabel.text = L10n.Quizzes.yourAnswer
-        }
+        yourAnswerLabel.text = L10n.Quizzes.yourAnswer
     }
 
     private func configureModelAnswer(with modelAnswer: String?) {

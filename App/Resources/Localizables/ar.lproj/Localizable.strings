@@ -299,7 +299,7 @@
 "quizzes.numberOfQuestions" = "%@ سؤال";
 "quizzes.chooseOneOrMoreAnswers" = "إختر اجابة او أكثر ";
 "quizzes.thisQuestionGrade" = "درجة هذا السؤال";
-"quizzes.questionComment" = "تعليق";
+"quizzes.questionCorrection" = "التصحيح";
 "quizzes.yourGrade" = "الدرجة";
 "quizzes.finish" = "تم";
 "quizzes.finishMessage" = "هل أنت متأكد من طلب الارسال؟";

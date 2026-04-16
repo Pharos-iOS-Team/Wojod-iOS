@@ -306,7 +306,7 @@ No worries!";
 "quizzes.numberOfQuestions" = "%@ Questions";
 "quizzes.chooseOneOrMoreAnswers" = "Choose one or more answers";
 "quizzes.thisQuestionGrade" = "This question\'s grade";
-"quizzes.questionComment" = "Comment";
+"quizzes.questionCorrection" = "Correction";
 "quizzes.yourGrade" = "Your grade";
 "quizzes.finish" = "Finish";
 "quizzes.finishMessage" = "Are you sure you want to submit?";

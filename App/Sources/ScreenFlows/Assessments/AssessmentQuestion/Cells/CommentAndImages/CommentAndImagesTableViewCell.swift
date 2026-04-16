@@ -29,7 +29,7 @@ class CommentAndImagesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        titleLabel.text = L10n.Quizzes.questionComment
+        titleLabel.text = L10n.Quizzes.questionCorrection
 
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 1
