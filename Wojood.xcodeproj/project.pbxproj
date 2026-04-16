@@ -385,6 +385,7 @@
 		D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5276DF72F41FB180045A2EA /* TaskExt.swift */; };
 		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
+		D53E7D192F90CFC00052D8BC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
@@ -847,6 +848,7 @@
 		D5276DF72F41FB180045A2EA /* TaskExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExt.swift; sourceTree = "<group>"; };
 		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
+		D53E7D182F90CFC00052D8BC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
@@ -1298,6 +1300,7 @@
 				385CC0A5265ED46F00A091FD /* TableViewHeaders */,
 				38706CE4265E91CD00440B53 /* Cells */,
 				38706CCD265E6DA900440B53 /* CourseDetailsViewController.swift */,
+				D53E7D182F90CFC00052D8BC /* PDFViewController.swift */,
 				38706CD2265E6DD300440B53 /* CourseDetails.storyboard */,
 				385CC0CB265F958100A091FD /* CourseDetailsViewModel.swift */,
 				385CC0D0265F9E8300A091FD /* CourseDetailsModel.swift */,
@@ -2773,6 +2776,7 @@
 				38659C3F26B6E07600E3BFE9 /* Nib.swift in Sources */,
 				E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */,
 				38659BB926B6D2E600E3BFE9 /* ApiManager.swift in Sources */,
+				D53E7D192F90CFC00052D8BC /* PDFViewController.swift in Sources */,
 				38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */,
 				BC0F92BD2785DCBF001C5B3A /* OrganizationsListViewModel.swift in Sources */,
 				385CC0C7265F930C00A091FD /* CourseDetailsTarget.swift in Sources */,

@@ -549,6 +549,30 @@ class CourseDetailsViewController: UIViewController {
         }.resume()
     }
 
+    private func presentPDF(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        showLoadingIndicator()
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self, let data, error == nil else { return }
+            let tmpURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "document.pdf")
+            do {
+                try data.write(to: tmpURL)
+            } catch {
+                return
+            }
+            DispatchQueue.main.async {
+                self.hideLoadingIndicator()
+                let pdfVC = PDFViewController(itemUrl: tmpURL, dismissAction: { [weak self] in
+                    self?.dismiss(animated: true)
+                })
+                let navController = UINavigationController(rootViewController: pdfVC)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true)
+            }
+        }.resume()
+    }
+
     func share(url: URL) {
         documentInteractionController.url = url
         documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
@@ -951,12 +975,17 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
             case .documents:
                 activeSubscreen = .file
-                if let linkURL = materials?.documents?[indexPath.row].link {
+                let doc = materials?.documents?[indexPath.row]
+                if let linkURL = doc?.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
                 } else {
-                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
-                    storeAndShare(withURLString: documentURL.absoluteString)
+                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(doc?.fileUrl ?? "")
+                    if doc?.contentType == "application/pdf" {
+                        presentPDF(from: documentURL.absoluteString)
+                    } else {
+                        storeAndShare(withURLString: documentURL.absoluteString)
+                    }
                 }
             case .quizzes:
                 let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
@@ -1046,7 +1075,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-                    storeAndShare(withURLString: documentURL.absoluteString)
+                    if document.contentType == "application/pdf" {
+                        presentPDF(from: documentURL.absoluteString)
+                    } else {
+                        storeAndShare(withURLString: documentURL.absoluteString)
+                    }
                 }
             }
         }
