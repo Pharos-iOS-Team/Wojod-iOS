@@ -18,12 +18,7 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Added Model Answer in Essay questions.  
-  Task: [CPI-328](https://jira.pharos-solutions.de/browse/CPI-328) | PR: [#19](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/19) | Author: [Sara Rady](https://github.com/sara-rady)
-- Added Comment with images in graded quizzes/exercises.  
-  Task: [CPI-332](https://jira.pharos-solutions.de/browse/CPI-332) | PR: [#20](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/20) | Author: [Sara Rady](https://github.com/sara-rady)
-- Added PDFViewController to prevent sharing in PDF files.  
-  Task: [CPI-334](https://jira.pharos-solutions.de/browse/CPI-334) | PR: [#22](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/22) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Changed
 - None.
 ### Deprecated
@@ -31,12 +26,23 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
+- None.
+### Security
+- None.
+
+## [1.12.0] - 2026-04-20
+### Added
+- Added Model Answer in Essay questions.  
+  Task: [CPI-328](https://jira.pharos-solutions.de/browse/CPI-328) | PR: [#19](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/19) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added Comment with images in graded quizzes/exercises.  
+  Task: [CPI-332](https://jira.pharos-solutions.de/browse/CPI-332) | PR: [#20](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/20) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added PDFViewController to prevent sharing in PDF files.  
+  Task: [CPI-334](https://jira.pharos-solutions.de/browse/CPI-334) | PR: [#22](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/22) | Author: [Sara Rady](https://github.com/sara-rady)
+### Fixed
 - Fixed video audio was being recorded
   Task: [CPI-333](https://jira.pharos-solutions.de/browse/CPI-333) | PR: [#21](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/21) | Author: [Sara Rady](https://github.com/sara-rady)
 - Fixed state label in exercise
   Task: [CPI-336](https://jira.pharos-solutions.de/browse/CPI-336) | PR: [#23](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/23) | Author: [Sara Rady](https://github.com/sara-rady)
-### Security
-- None.
 
 ## [1.11.0] - 2026-03-18
 ### Added
