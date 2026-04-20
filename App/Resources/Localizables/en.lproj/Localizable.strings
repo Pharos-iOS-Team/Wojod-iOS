@@ -192,7 +192,6 @@ No worries!";
 "courseDetails.main.noLongerAvaliable" = "No Longer Available";
 "courseDetails.main.avaliableFor" = "Available for: %@ days";
 
-
 "courseDetails.receipt.receiptNumber" = "Receipt Number";
 "courseDetails.receipt.customerName" = "Customer Name";
 "courseDetails.receipt.address" = "Address";

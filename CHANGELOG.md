@@ -29,7 +29,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed video audio was being recorded
+  Task: [CPI-333](https://jira.pharos-solutions.de/browse/CPI-333) | PR: [#21](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/21) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

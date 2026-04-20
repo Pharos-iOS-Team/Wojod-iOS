@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 import VdoFramework
 import Photos
+import ComposableArchitecture
 import SwiftUI
 
 internal enum CourseState {
@@ -116,6 +117,7 @@ class CourseDetailsViewController: UIViewController {
         setHeader()
         shouldShowQRCodeScanner()
         applyScreenshotPreventingView()
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerMuteState), name: UIScreen.capturedDidChangeNotification, object: nil)
     }
 
     private func setHeader() {
@@ -955,15 +957,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
                         if materials?.videos?[indexPath.row].link.isYouTubeLink ?? false {
-                            let playerView = YouTubePlayerView(
-                                    store: .init(
-                                        initialState: .init(videoURL: url),
-                                        reducer: { YouTubePlayer() }
-                                    )
-                                )
-                                let hostingController = UIHostingController(rootView: playerView)
-                               hostingController.modalPresentationStyle = .fullScreen
-                                self.present(hostingController, animated: true)
+                            presentYouTubePlayer(url: url)
                         } else {
                             UIApplication.shared.open(url)
                         }
@@ -1053,15 +1047,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
                 if let url = URL(string: video.link ?? "") {
                     if video.link.isYouTubeLink {
-                        let playerView = YouTubePlayerView(
-                                store: .init(
-                                    initialState: .init(videoURL: url),
-                                    reducer: { YouTubePlayer() }
-                                )
-                            )
-                            let hostingController = UIHostingController(rootView: playerView)
-                           hostingController.modalPresentationStyle = .fullScreen
-                            self.present(hostingController, animated: true)
+                        presentYouTubePlayer(url: url)
                     } else {
                         UIApplication.shared.open(url)
                     }
@@ -1131,6 +1117,19 @@ extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
 extension CourseDetailsViewController: AssessmentDetailsDelegate {
     func didFinishAssessment(with id: Int?) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - YouTube Player
+
+extension CourseDetailsViewController {
+    private func presentYouTubePlayer(url: URL) {
+        var initialState = YouTubePlayer.State(videoURL: url)
+        initialState.isMuted = UIScreen.main.isCaptured
+        let store = StoreOf<YouTubePlayer>(initialState: initialState, reducer: { YouTubePlayer() })
+        let hostingController = UIHostingController(rootView: YouTubePlayerView(store: store))
+        hostingController.modalPresentationStyle = .fullScreen
+        present(hostingController, animated: true)
     }
 }
 
@@ -1307,8 +1306,14 @@ extension CourseDetailsViewController {
 
 // MARK: - AssetPlaybackDelegate
 extension CourseDetailsViewController:  AssetPlaybackDelegate , UIViewControllerTransitioningDelegate{
+    @objc private func updatePlayerMuteState() {
+        player?.isMuted = UIScreen.main.isCaptured
+    }
+
     func streamPlaybackManager(playerReadyToPlay player: AVPlayer) {
+        self.player = player
         player.play()
+        player.isMuted = UIScreen.main.isCaptured
     }
     
     func streamPlaybackManager(playerCurrentItemDidChange player: AVPlayer) {

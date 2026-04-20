@@ -328,8 +328,6 @@
 		BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E42C189ED700E990C0 /* ObjectMapper */; };
 		BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69E72C189F1900E990C0 /* Reachability */; };
 		BC6B69EE2C18A0B700E990C0 /* DPOTPView in Frameworks */ = {isa = PBXBuildFile; productRef = BC6B69ED2C18A0B700E990C0 /* DPOTPView */; };
-		BC7101C2276FDF7F002607ED /* ScreenshotAlertTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C0276FDF7F002607ED /* ScreenshotAlertTarget.swift */; };
-		BC7101C3276FDF7F002607ED /* ScreenshotAlertApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7101C1276FDF7F002607ED /* ScreenshotAlertApiClient.swift */; };
 		BC75549A26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */; };
 		BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */; };
 		BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */; };
@@ -790,8 +788,6 @@
 		BC5ED0EA2628688C00774E54 /* ForgotPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordApiClient.swift; sourceTree = "<group>"; };
 		BC5ED0EF2628689C00774E54 /* ForgotPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTarget.swift; sourceTree = "<group>"; };
 		BC6231D42638183C00792869 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BC7101C0276FDF7F002607ED /* ScreenshotAlertTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotAlertTarget.swift; sourceTree = "<group>"; };
-		BC7101C1276FDF7F002607ED /* ScreenshotAlertApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotAlertApiClient.swift; sourceTree = "<group>"; };
 		BC75549826FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherQuestionCommentTableViewCell.swift; sourceTree = "<group>"; };
 		BC75549926FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeacherQuestionCommentTableViewCell.xib; sourceTree = "<group>"; };
 		BC767132262C4D2F0012155C /* CoursesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTabBarViewController.swift; sourceTree = "<group>"; };
@@ -1568,7 +1564,6 @@
 				778E7235261DC237009D7B35 /* Notifications */,
 				BC0F92C02785DCE7001C5B3A /* OrganizationsList */,
 				BC19E58D2631823700CFA142 /* Profile */,
-				BC7101BF276FDF7F002607ED /* ScreenshotAlert */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2106,15 +2101,6 @@
 				BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		BC7101BF276FDF7F002607ED /* ScreenshotAlert */ = {
-			isa = PBXGroup;
-			children = (
-				BC7101C0276FDF7F002607ED /* ScreenshotAlertTarget.swift */,
-				BC7101C1276FDF7F002607ED /* ScreenshotAlertApiClient.swift */,
-			);
-			path = ScreenshotAlert;
 			sourceTree = "<group>";
 		};
 		BC75549726FB7D0200A7C0AC /* TeacherQuestionComment */ = {
@@ -2738,7 +2724,6 @@
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
 				385CC0B7265ED63A00A091FD /* CourseDetailsHeaderView.swift in Sources */,
 				38B06A7426F8B47F001F6E08 /* AssessmentSynchronization.swift in Sources */,
-				BC7101C3276FDF7F002607ED /* ScreenshotAlertApiClient.swift in Sources */,
 				BC8C1EA22DA7D245000AED7F /* OTPTextField.swift in Sources */,
 				BC8C1EA32DA7D245000AED7F /* OTPFieldView.swift in Sources */,
 				77E32B83264A8AD30064B801 /* UserModel.swift in Sources */,
@@ -2868,7 +2853,6 @@
 				38659BEF26B6D2F900E3BFE9 /* TeacherGradesForAssessment.swift in Sources */,
 				38659BE226B6D2F900E3BFE9 /* TimeCalculator.swift in Sources */,
 				BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */,
-				BC7101C2276FDF7F002607ED /* ScreenshotAlertTarget.swift in Sources */,
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */,
