@@ -33,6 +33,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Fixed
 - Fixed video audio was being recorded
   Task: [CPI-333](https://jira.pharos-solutions.de/browse/CPI-333) | PR: [#21](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/21) | Author: [Sara Rady](https://github.com/sara-rady)
+- Fixed state label in exercise
+  Task: [CPI-336](https://jira.pharos-solutions.de/browse/CPI-336) | PR: [#23](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/23) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

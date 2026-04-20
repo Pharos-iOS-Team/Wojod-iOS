@@ -32,7 +32,7 @@ internal enum L10n {
     internal static var incorrect: String {
         return L10n.tr("Localizable", "assignment.incorrect")
       }
-    /// This question isn't correct
+    /// This answer isn't correct
     internal static var incorrectTitle: String {
         return L10n.tr("Localizable", "assignment.incorrectTitle")
       }
