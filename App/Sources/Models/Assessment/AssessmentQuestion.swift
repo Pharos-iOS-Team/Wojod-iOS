@@ -30,6 +30,7 @@ class AssessmentQuestion: Codable {
     var questioAnswerState: String?
     var answerState: AnswerState = .notReviewed
     var submissionId: Int?
+    var correctionImages: [CorrectionImage]?
     var submittedAttachment: String? {
         didSet {
             answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
@@ -105,6 +106,7 @@ class AssessmentQuestion: Codable {
         case questioAnswerState = "answer_state"
         case submissionId = "submission_id"
         case isSingleChoice = "is_single_choice"
+        case correctionImages = "correction_images"
     }
 
     // swiftlint:disable function_body_length
@@ -135,6 +137,7 @@ class AssessmentQuestion: Codable {
         configureAnswerStatus(state: questioAnswerState)
         isAnswered = isQuestionAnswered()
         isSingleChoice = try values.decodeIfPresent(Bool.self, forKey: .isSingleChoice)
+        correctionImages = try values.decodeIfPresent([CorrectionImage].self, forKey: .correctionImages)
     }
 
     private func configureAnswerStatus(state: String?) {
@@ -209,5 +212,17 @@ class AssessmentQuestion: Codable {
             "ignore_attachment": String(ignoreAttachment),
             "ignore_free_text_answer": String(ignoreFreeTextAnswer)
         ]
+    }
+}
+
+struct CorrectionImage: Codable {
+    let fileUrl: String?
+    let filename: String?
+    let contentType: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case fileUrl = "file_url"
+        case filename
+        case contentType = "content_type"
     }
 }

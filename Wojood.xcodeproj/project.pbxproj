@@ -394,6 +394,10 @@
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
 		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
 		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
+		D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */; };
+		D5FE3EA22F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */; };
+		D5FE3EA32F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3EA12F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib */; };
+		D5FE3EA42F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE3EA02F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift */; };
 		D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */; };
 		D5FFA0392F3C9A60009B796A /* YouTubePlayerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */; };
 		D5FFA03B2F3C9A60009B796A /* YouTubePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */; };
@@ -858,6 +862,10 @@
 		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
+		D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAndImagesTableViewCell.swift; sourceTree = "<group>"; };
+		D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentAndImagesTableViewCell.xib; sourceTree = "<group>"; };
+		D5FE3EA02F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5FE3EA12F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CorrectionImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5FFA02D2F3C9A60009B796A /* YouTubeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeControlsView.swift; sourceTree = "<group>"; };
 		D5FFA0312F3C9A60009B796A /* YouTubePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerView.swift; sourceTree = "<group>"; };
 		D5FFA0322F3C9A60009B796A /* YouTubePlayerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerRepresentable.swift; sourceTree = "<group>"; };
@@ -1110,6 +1118,7 @@
 				380B136F26B807F500CB5811 /* MCQ */,
 				380B137226B807F500CB5811 /* FreeText */,
 				380B137926B807F500CB5811 /* QuestionHeader */,
+				D5FE3E9D2F8F84080008EA86 /* CommentAndImages */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2286,6 +2295,17 @@
 			path = "Royal-Medicine";
 			sourceTree = "<group>";
 		};
+		D5FE3E9D2F8F84080008EA86 /* CommentAndImages */ = {
+			isa = PBXGroup;
+			children = (
+				D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */,
+				D5FE3EA02F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift */,
+				D5FE3EA12F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib */,
+				D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */,
+			);
+			path = CommentAndImages;
+			sourceTree = "<group>";
+		};
 		D5FFA0342F3C9A60009B796A /* YouTubePlayerRepresentable */ = {
 			isa = PBXGroup;
 			children = (
@@ -2548,6 +2568,8 @@
 				BC75549B26FB7D3200A7C0AC /* TeacherQuestionCommentTableViewCell.xib in Resources */,
 				BC18A01826667117001FDFFF /* ProfileEditAndLogoutTableViewCell.xib in Resources */,
 				BC98F41F262354E100032AC6 /* Inter-Regular.ttf in Resources */,
+				D5FE3EA22F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib in Resources */,
+				D5FE3EA32F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib in Resources */,
 				262FA75A2694B0FE00245D2C /* Chat.storyboard in Resources */,
 				BC767154262C531B0012155C /* Settings.storyboard in Resources */,
 				26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */,
@@ -2697,6 +2719,7 @@
 				26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */,
 				38B06A7B26F8B626001F6E08 /* AssessmentAnswer+CoreDataProperties.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
+				D5FE3EA42F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift in Sources */,
 				BC968277263975BD009F8550 /* EducationalTypes.swift in Sources */,
 				BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */,
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
@@ -2927,6 +2950,7 @@
 				38812C5E266E9CDA00CCD924 /* Subjects.swift in Sources */,
 				BC98F3EC2623272E00032AC6 /* SendButton.swift in Sources */,
 				778E7253261DC2D4009D7B35 /* DictionaryExt.swift in Sources */,
+				D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */,
 				D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */,
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,

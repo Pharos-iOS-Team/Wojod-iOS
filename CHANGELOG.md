@@ -20,6 +20,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - Added Model Answer in Essay questions.  
   Task: [CPI-328](https://jira.pharos-solutions.de/browse/CPI-328) | PR: [#19](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/19) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added Comment with images in graded quizzes/exercises.  
+  Task: [CPI-332](https://jira.pharos-solutions.de/browse/CPI-332) | PR: [#20](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/20) | Author: [Sara Rady](https://github.com/sara-rady)
 - Added PDFViewController to prevent sharing in PDF files.  
   Task: [CPI-334](https://jira.pharos-solutions.de/browse/CPI-334) | PR: [#22](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/22) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed

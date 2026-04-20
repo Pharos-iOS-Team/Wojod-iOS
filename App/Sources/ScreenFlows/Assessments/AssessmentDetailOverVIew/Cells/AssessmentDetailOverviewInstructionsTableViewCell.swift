@@ -18,7 +18,7 @@ class AssessmentDetailOverviewInstructionsTableViewCell: UITableViewCell {
 
     func configure(instructions: String?, module: AssessmentsOverViewViewModel.Module) {
         if module == .assignments {
-            descriptionLabel.text = "assignment.description".localiz() + ":"
+            descriptionLabel.text = L10n.Assignment.descriptionTitle + ":"
         }
         guard let instructions = instructions else { return }
         let textAlignment: NSTextAlignment = instructions.dominantTextAlignment

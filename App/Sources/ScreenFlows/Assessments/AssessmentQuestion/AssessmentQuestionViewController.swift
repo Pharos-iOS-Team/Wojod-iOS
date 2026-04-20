@@ -72,6 +72,7 @@ class AssessmentQuestionViewController: UIViewController, UINavigationController
         tableView.registerCell(ofType: AssessmentMCQOptionTableViewCell.self)
         tableView.registerCell(ofType: AssessmentFreeTextTableViewCell.self)
         tableView.registerCell(ofType: TeacherQuestionCommentTableViewCell.self)
+        tableView.registerCell(ofType: CommentAndImagesTableViewCell.self)
     }
 
     private func setTableViewMultiSelection() {
@@ -280,6 +281,10 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
             cell.configure(with: answer, alignment: alignment, attachmentURLString: attachmentURLString, currentProgress: viewModel.currentProgress)
             cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment, modelAnswer: modelAnswer)
             return cell
+        case .commentAndImages(let question, let module):
+            let cell: CommentAndImagesTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(question: question, module: module, delegate: self)
+            return cell
         default:
             return UITableViewCell()
         }
@@ -360,6 +365,13 @@ extension AssessmentQuestionViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true)
         viewModel?.setAttachedFileLocalURL(url: savedImageURL)
         delegate?.didAttachFile(with: savedImageURL, for: viewModel?.questionID)
+    }
+}
+
+// MARK: - CommentAndImagesCellDelegate
+extension AssessmentQuestionViewController: CommentAndImagesCellDelegate {
+    func didTapCorrectionImage(imageView: UIImageView, image: UIImage) {
+        preview(imageView: imageView, image: image)
     }
 }
 
