@@ -17,71 +17,120 @@ internal class RegistrationViewModel {
     internal var divisions: [Division]?
 
     internal func checkNumberIfValid(_ mobileNumber: String, email: String, completion: @escaping (Bool) -> Void) {
-        NetworkProvider.shared.request(target: .checkNumber(mobileNumber, email)) { response, _ in
-            completion(response?.statusCode == 200)
+        let requestModel = CheckNumberRequestModel(mobileNumber: mobileNumber, email: email)
+        ApiProvider.shared.request(.registration(.checkNumber(requestModel))) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
         }
     }
 
     internal func loadCountries(completion: @escaping ([KeyName]?) -> Void) {
-        NetworkProvider.shared.request(target: .countries, type: DataResponse.self) { response, _ in
-            let countryData = response?.data
-            self.countryCodes = countryData?.compactMap { $0.key } ?? []
-            completion(countryData)
+        ApiProvider.shared.request(.registration(.countries), decodeTo: DataResponse.self) { result in
+            switch result {
+            case let .success(response):
+                let countryData = response.data
+                self.countryCodes = countryData.compactMap { $0.key }
+                completion(countryData)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadCities(for selectedCountry: String, completion: @escaping ([KeyName]?) -> Void) {
-        NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
-            let cities = response?.data
-            self.cityCodes = cities?.compactMap { $0.key } ?? []
-            completion(cities)
+        let requestModel = CitiesRequestModel(selectedCountry: selectedCountry)
+        ApiProvider.shared.request(.registration(.cities(requestModel)), decodeTo: DataResponse.self) { result in
+            switch result {
+            case let .success(response):
+                let cities = response.data
+                self.cityCodes = cities.compactMap { $0.key }
+                completion(cities)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([KeyValue]?) -> Void) {
-        NetworkProvider.shared.request(target: .academicTypes(academicLevel.rawValue), type: EducationTypes.self) { response, _ in
-            let educationTypes = response?.educationTypes
-            completion(educationTypes)
+        let requestModel = AcademicRequestModel(educationLevel: academicLevel.rawValue)
+        ApiProvider.shared.request(.registration(.academicTypes(requestModel)), decodeTo: EducationTypes.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.educationTypes)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadAcademicDivisions(for academicLevel: AcademicLevel, in educationType: Int, completion: @escaping ([Division]?) -> Void) {
-        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue, educationType), type: DivisionsModel.self) { response, _ in
-            let divisions = response?.divisions
-            self.divisions = divisions
-            self.divisionIDs = divisions?.compactMap { $0.key } ?? []
-            completion(divisions)
+        let requestModel = AcademicRequestModel(
+            educationLevel: academicLevel.rawValue,
+            educationType: educationType,
+            loginOrganization: academicLevel.rawValue == 0 ? nil : AppEnvironment.appName.loginOrganization
+        )
+        ApiProvider.shared.request(.registration(.academicDivisions(requestModel)), decodeTo: DivisionsModel.self) { result in
+            switch result {
+            case let .success(response):
+                let divisions = response.divisions
+                self.divisions = divisions
+                self.divisionIDs = divisions?.compactMap { $0.key } ?? []
+                completion(divisions)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadBatches(for divisionIndex: Int, completion: @escaping ([Batch]?) -> Void) {
-        NetworkProvider.shared.request(target: .batches(divisionIndex), type: BatchesModel.self) { response, _ in
-            let batches = response?.batches
-            self.batchesIDs = batches?.compactMap { $0.key } ?? []
-            completion(batches)
+        ApiProvider.shared.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: BatchesModel.self) { result in
+            switch result {
+            case let .success(response):
+                let batches = response.batches
+                self.batchesIDs = batches.compactMap { $0.key }
+                completion(batches)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
-        NetworkProvider.shared.request(target: .specializations(divisionIndex), type: SpecializationsModel.self) { response, _ in
-            let specializations = response?.specializations
-            self.specializationsIDs = specializations?.compactMap { $0.key } ?? []
-            completion(specializations)
+        ApiProvider.shared.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: SpecializationsModel.self) { result in
+            switch result {
+            case let .success(response):
+                let specializations = response.specializations
+                self.specializationsIDs = specializations?.compactMap { $0.key } ?? []
+                completion(specializations)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadAvatars(completion: @escaping ([Avatar]) -> Void) {
-        NetworkProvider.shared.request(target: .avatars, type: AvatarsModel.self) { response, _ in
-            completion(response?.avatars ?? [])
+        ApiProvider.shared.request(.profile(.getAvatars), decodeTo: AvatarsModel.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.avatars)
+            case .failure:
+                completion([])
+            }
         }
     }
 
     internal func signUp(user: UserSignupRequest, completion: @escaping (Bool, String?) -> Void) {
-        NetworkProvider.shared.request(target: .signUp(user)) { response, error in
-            if error == nil {
-                completion(response?.statusCode == 200, nil)
-            } else {
-                completion(false, error?.errors?[0])
+        ApiProvider.shared.request(.registration(.signUp(user))) { result in
+            switch result {
+            case .success:
+                completion(true, nil)
+            case let .failure(error):
+                let message = (error as? ApiError)?.errorDescription
+                completion(false, message)
             }
         }
     }

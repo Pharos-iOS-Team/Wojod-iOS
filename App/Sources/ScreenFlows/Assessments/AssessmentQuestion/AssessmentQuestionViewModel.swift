@@ -144,14 +144,15 @@ class AssessmentQuestionViewModel {
         question.choices?.forEach { choice in
             let matchedChoice = question.choices?.first { $0.id == choice.id }
             let isChoiceSelected = question.selectedChoices.contains(choice.id ?? -1)
+            let isCorrectAnswer = assessmentStatus == .open
+                ? nil
+                : isCorrectMCQAnswer(question: question, choice: matchedChoice)
             questionSection.append(
                 .selectableOption(
                     choice.title ?? "",
                     choice.attachment,
                     isChoiceSelected,
-                    assessmentStatus == .open
-                        ? nil
-                        : isCorrectMCQAnswer(question: question, choice: matchedChoice),
+                    isCorrectAnswer,
                     assessmentStatus == .open
                 )
             )
@@ -161,14 +162,14 @@ class AssessmentQuestionViewModel {
 
     private func isCorrectMCQAnswer(question: AssessmentQuestion, choice: AssessmentChoice?) -> Bool? {
         guard let choiceID = choice?.id else { return nil }
-        if question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == true {
+        let isSelected = question.selectedChoices.contains(choiceID)
+        let isCorrect = choice?.modelAnswer == true
+        
+        if isSelected, isCorrect {
             return true
-        } else if question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == false {
+        } else if isSelected, !isCorrect {
             return false
-        } else if !question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == true {
+        } else if !isSelected, isCorrect {
             return true
         } else {
             return nil

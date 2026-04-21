@@ -519,11 +519,7 @@ class AssessmentDetailsViewController: UIViewController {
         assessmentSynchronization.synchronizationCompletionHandler = {
             self.viewModel?.finishAssessment { error in
                 self.hideLoadingIndicator()
-                if error == nil {
-                    self.handleFinishAssessmentSuccess()
-                } else {
-                    self.appAlertViewController?.stopPrimaryButtonLoading()
-                }
+                self.handleFinishAssessmentSuccess()
             }
         }
         assessmentSynchronization.startSynchronizationForQuiz(id: viewModel?.assissmentID ?? 0)

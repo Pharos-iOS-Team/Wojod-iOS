@@ -2,22 +2,20 @@
 
 import Foundation
 
-class FiltersModel: ModelDecodable {
-    private let apiClient = FiltersApiClient()
-
-    func loadFilteredCourses(isMyCourses: Bool, subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (Result) -> Void) {
-        apiClient.loadFilteredCourses(isMyCourses: isMyCourses, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: CoursesResponse.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+class FiltersModel {
+    func loadFilteredCourses(
+        isMyCourses: Bool,
+        subjectID: Int?,
+        batchID: Int,
+        specializationID: Int?,
+        completion: @escaping (Swift.Result<CoursesResponse, Error>) -> Void
+    ) {
+        let requestModel = FilteredCoursesRequestModel(
+            isMyCourses: isMyCourses,
+            subjectID: subjectID,
+            batchID: batchID,
+            specializationID: specializationID
+        )
+        ApiProvider.shared.request(.home(.loadFilteredCourses(requestModel)), decodeTo: CoursesResponse.self, completion: completion)
     }
 }

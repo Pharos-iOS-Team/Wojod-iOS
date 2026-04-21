@@ -29,7 +29,7 @@ class CreatePasswordViewModel {
             case .success:
                 self.successHandler?()
             case .failure(let error):
-                self.errorHandler?(error)
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }

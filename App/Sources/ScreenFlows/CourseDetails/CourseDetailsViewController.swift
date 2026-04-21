@@ -993,7 +993,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 switch quiz?.status {
                 case "open":
                     self.startAssessment(for: .quiz, at: indexPath)
-                case "closed":
+                case "closed", "graded":
                     self.showResultForRow(for: quiz?.type ?? "Quiz", at: indexPath)
                 default:
                     return
@@ -1006,7 +1006,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 switch assignment?.status {
                 case "open":
                     self.startAssessment(for: .assignment, at: indexPath)
-                case "closed":
+                case "closed", "graded":
                     self.showResultForRow(for: assignment?.type ?? "Assignment", at: indexPath)
                 default:
                     return
@@ -1024,7 +1024,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 switch assignment.status {
                 case "open":
                     self.startAssessment(for: .assignment, at: indexPath)
-                case "closed":
+                case "closed", "graded":
                     self.showResultForRow(for: assignment.type ?? "Assignment", at: indexPath)
                 default:
                     return
@@ -1037,7 +1037,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 switch quiz.status {
                 case "open":
                     self.startAssessment(for: .quiz, at: indexPath)
-                case "closed":
+                case "closed", "graded":
                     self.showResultForRow(for: quiz.type ?? "Quiz", at: indexPath)
                 default:
                     return

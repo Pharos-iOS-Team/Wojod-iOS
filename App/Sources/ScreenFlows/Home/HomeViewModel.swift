@@ -18,27 +18,31 @@ class HomeViewModel {
     func fetchUserProfile(id: Int) {
         model.fetchUserProfile(id: id) { result in
             switch result {
-            case .success(let user as StudentModel):
+            case .success(let user):
                 self.setUserData(user)
                 self.successHandler?(user)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
 
     func loadCourses(mode: HomeMode, completion: @escaping () -> Void) {
-        let requestModel = CoursesRequestModel(type: mode, isMyCourses: isMyCourses, subjectID: selectedSubject?.id, page: page)
+        let requestModel = CoursesRequestModel(
+            type: mode,
+            myCourses: isMyCourses,
+            subjectID: selectedSubject?.id,
+            page: page,
+            locale: Language.currentLanguage.rawValue
+        )
         model.loadCourses(requestModel: requestModel) { result in
             switch result {
-            case let .success(courses as CoursesResponse):
+            case .success(let courses):
                 self.parseCoursesResponse(courses)
                 self.page += 1
                 completion()
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -58,11 +62,11 @@ class HomeViewModel {
     func searchCourses(value: String, completion: @escaping () -> Void) {
         model.searchCourses(value: value) { result in
             switch result {
-            case let .success(resultCourses as CoursesResponse):
+            case .success(let resultCourses):
                 self.courses = resultCourses.teachersCourses ?? []
                 completion()
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -70,10 +74,10 @@ class HomeViewModel {
     func loadAds(completion: @escaping (Advertisements?) -> Void) {
         model.loadAds { result in
             switch result {
-            case .success(let advertisements as Advertisements):
+            case .success(let advertisements):
                 completion(advertisements)
-            default:
-                return
+            case .failure:
+                completion(nil)
             }
         }
     }

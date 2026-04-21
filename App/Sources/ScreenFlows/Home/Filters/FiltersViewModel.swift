@@ -7,51 +7,73 @@ class FiltersViewModel {
     private let filtersModel = FiltersModel()
 
     internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([KeyValue]?) -> Void) {
-        NetworkProvider.shared.request(target: .academicTypes(academicLevel.rawValue), type: EducationTypes.self) { response, _ in
-            let educationTypes = response?.educationTypes
-            completion(educationTypes)
+        let requestModel = AcademicRequestModel(educationLevel: academicLevel.rawValue)
+        ApiProvider.shared.request(.registration(.academicTypes(requestModel)), decodeTo: EducationTypes.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.educationTypes)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadAcademicDivisions(for academicLevel: AcademicLevel, in educationType: Int, completion: @escaping ([Division]?) -> Void) {
-        NetworkProvider.shared.request(target: .academicDivisions(academicLevel.rawValue, educationType), type: DivisionsModel.self) { response, _ in
-            let divisions = response?.divisions
-            completion(divisions)
+        let requestModel = AcademicRequestModel(
+            educationLevel: academicLevel.rawValue,
+            educationType: educationType,
+            loginOrganization: academicLevel.rawValue == 0 ? nil : AppEnvironment.appName.loginOrganization
+        )
+        ApiProvider.shared.request(.registration(.academicDivisions(requestModel)), decodeTo: DivisionsModel.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.divisions)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadBatches(for divisionIndex: Int, completion: @escaping ([Batch]?) -> Void) {
-        NetworkProvider.shared.request(target: .batches(divisionIndex), type: BatchesModel.self) { response, _ in
-            let batches = response?.batches
-            completion(batches)
+        ApiProvider.shared.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: BatchesModel.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.batches)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     internal func loadSubjects(forYear yearID: Int, completion: @escaping (Subjects) -> Void) {
         model.loadSubjects(batchID: yearID) { result in
             switch result {
-            case .success(let subjects as Subjects):
+            case .success(let subjects):
                 completion(subjects)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
 
     func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
-        NetworkProvider.shared.request(target: .specializations(divisionIndex), type: SpecializationsModel.self) { response, _ in
-            let specializations = response?.specializations
-            completion(specializations)
+        ApiProvider.shared.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: SpecializationsModel.self) { result in
+            switch result {
+            case let .success(response):
+                completion(response.specializations)
+            case .failure:
+                completion(nil)
+            }
         }
     }
 
     func loadFilteredCourses(subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (CoursesResponse?) -> Void) {
         filtersModel.loadFilteredCourses(isMyCourses: false, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { result in
             switch result {
-            case let .success(courses as CoursesResponse):
+            case .success(let courses):
                 completion(courses)
-            default:
-                return
+            case .failure:
+                completion(nil)
             }
         }
     }

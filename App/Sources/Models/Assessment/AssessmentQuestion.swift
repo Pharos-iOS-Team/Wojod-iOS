@@ -1,4 +1,4 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 // swiftlint:disable all
 
@@ -89,36 +89,45 @@ class AssessmentQuestion: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, title, choices, comment, note
-        case modelAnswer = "model_answer"
-        case mark, position, difficulty
-        case studentMark = "student_mark"
-        case fileName = "file_name"
-        case questionType = "question_type"
+        case id, title, choices, comment, note, mark, position, difficulty
+        case modelAnswer
+        case studentMark
+        case fileName
+        case questionType
         case questionAttachment = "attachment"
-        case attachmentType = "attachment_type"
-        case submittedFileName = "submitted_file_name"
-        case submittedAttachment = "submitted_attachment"
-        case submittedAttachmentType = "submitted_attachment_type"
-        case submittedFreeTextAnswer = "submitted_free_text_answer"
-        case maximumAllowedChoices = "maximum_allowed_choices"
-        case selectedChoices = "submitted_choices"
-        case questioAnswerState = "answer_state"
-        case submissionId = "submission_id"
-        case isSingleChoice = "is_single_choice"
-        case correctionImages = "correction_images"
+        case attachmentType
+        case submittedFileName
+        case submittedAttachment
+        case submittedAttachmentType
+        case submittedFreeTextAnswer
+        case maximumAllowedChoices
+        case selectedChoices = "submittedChoices"
+        case questioAnswerState = "answerState"
+        case submissionId
+        case isSingleChoice
+        case correctionImages
     }
 
     // swiftlint:disable function_body_length
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        // Print all available keys in the JSON
+        let allKeys = values.allKeys.map { String(describing: $0) }
+        
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         submissionId = try values.decodeIfPresent(Int.self, forKey: .submissionId)
         title = try values.decodeIfPresent(String.self, forKey: .title)
         comment = try values.decodeIfPresent(String.self, forKey: .comment)
         note = try values.decodeIfPresent(String.self, forKey: .note)
         modelAnswer = try values.decodeIfPresent(String.self, forKey: .modelAnswer)
-        questionType = try values.decodeIfPresent(String.self, forKey: .questionType)
+        
+        // Try to decode questionType with explicit error handling
+        do {
+            questionType = try values.decodeIfPresent(String.self, forKey: .questionType)
+        } catch {
+            questionType = nil
+        }
+        
         mark = try values.decodeIfPresent(Double.self, forKey: .mark)
         studentMark = try values.decodeIfPresent(Double.self, forKey: .studentMark)
         position = try values.decodeIfPresent(Int.self, forKey: .position)
@@ -131,7 +140,14 @@ class AssessmentQuestion: Codable {
         submittedAttachmentType = try values.decodeIfPresent(String.self, forKey: .submittedAttachmentType)
         maximumAllowedChoices = try values.decodeIfPresent(Int.self, forKey: .maximumAllowedChoices)
         submittedFreeTextAnswer = try values.decodeIfPresent(String.self, forKey: .submittedFreeTextAnswer)
-        choices = try values.decodeIfPresent([AssessmentChoice].self, forKey: .choices)
+        
+        // Try to decode choices with explicit error handling
+        do {
+            choices = try values.decodeIfPresent([AssessmentChoice].self, forKey: .choices)
+        } catch {
+            choices = nil
+        }
+        
         selectedChoices = try values.decodeIfPresent([Int32].self, forKey: .selectedChoices) ?? []
         questioAnswerState = try values.decodeIfPresent(String.self, forKey: .questioAnswerState)
         configureAnswerStatus(state: questioAnswerState)

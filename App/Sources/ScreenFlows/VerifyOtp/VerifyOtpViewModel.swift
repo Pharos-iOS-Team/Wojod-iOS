@@ -22,7 +22,7 @@ class VerifyOtpViewModel {
             case .success:
                 self.successHandler?()
             case .failure(let error):
-                self.errorHandler?(error)
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -36,13 +36,11 @@ class VerifyOtpViewModel {
         showIndicator?()
         model.verifyOtpFromLogin(otp: otp) { result in
             switch result {
-            case .success(let user as LoginApiResponseModel):
+            case .success(let user):
                 User.shared.setUserData(user: user.data)
                 self.successHandler?()
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }

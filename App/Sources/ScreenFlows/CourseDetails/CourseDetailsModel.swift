@@ -2,156 +2,65 @@
 
 import Foundation
 
-class CourseDetailsModel: ModelDecodable {
-    let apiClient = CourseDetailsApiClient()
-
-    func loadLessons(courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.loadLessons(courseID: courseID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: LessonsModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+class CourseDetailsModel {
+    func loadLessons(courseID: Int, completion: @escaping (Swift.Result<LessonsModel, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.loadLessons(courseID: courseID)), decodeTo: LessonsModel.self, completion: completion)
     }
 
-    func loadReviews(courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.loadReviews(courseID: courseID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: ReviewsModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func loadReviews(courseID: Int, completion: @escaping (Swift.Result<ReviewsModel, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.loadReviews(courseID: courseID)), decodeTo: ReviewsModel.self, completion: completion)
     }
 
-    func loadAttachmentsOfLesson(lessonID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.loadAttachmentsOfLesson(lessonID: lessonID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: LessonAttachmentsModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func loadAttachmentsOfLesson(lessonID: Int, completion: @escaping (Swift.Result<LessonAttachmentsModel, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.loadAttachmentsOfLesson(lessonID: lessonID)), decodeTo: LessonAttachmentsModel.self, completion: completion)
     }
 
-    func bookCourse(qrCode: String?, courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.bookCourse(qrCode: qrCode, courseID: courseID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: BookingCourseResponseModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response) { error in
-                        completion(error)
-                    }
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func bookCourse(qrCode: String?, courseID: Int, completion: @escaping (Swift.Result<BookingCourseResponseModel, Error>) -> Void) {
+        let requestModel = BookCourseRequestModel(code: qrCode)
+        ApiProvider.shared.request(.courseDetails(.bookCourse(courseID: courseID, requestModel: requestModel)), decodeTo: BookingCourseResponseModel.self, completion: completion)
     }
 
     func cancelBookingCourse(courseID: Int, completion: @escaping (Bool) -> Void) {
-        apiClient.cancelBookingCourse(courseID: courseID) { response, _ in
-            if let response = response {
-                if response.statusCode < 300 {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
+        ApiProvider.shared.request(.courseDetails(.cancelBookingCourse(courseID: courseID))) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
             }
         }
     }
 
     func sendReview(courseID: Int, courseReview: CourseReview, completion: @escaping (Bool) -> Void) {
-        apiClient.sendReview(courseID: courseID, courseReview: courseReview) { response, _ in
-            if let response = response {
-                if response.statusCode < 300 {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
+        ApiProvider.shared.request(.courseDetails(.sendReview(courseID: courseID, courseReview: courseReview))) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
             }
         }
     }
 
-    func loadMaterials(courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.loadMaterials(courseID: courseID) { [weak self] response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self?.decode(modelType: Materials.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self?.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func loadMaterials(courseID: Int, completion: @escaping (Swift.Result<Materials, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.loadMaterials(courseID: courseID)), decodeTo: Materials.self, completion: completion)
     }
 
-    func loadCourse(courseID: String, completion: @escaping (Result) -> Void) {
-        apiClient.loadCourse(courseID: courseID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: CourseDetailsResponse.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func loadCourse(courseID: String, completion: @escaping (Swift.Result<CourseDetailsResponse, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.loadCourse(courseID: courseID)), decodeTo: CourseDetailsResponse.self, completion: completion)
     }
 
-    func fetchVideo(videoId: String, completion: @escaping (Result) -> Void) {
-        apiClient.fetchVideo(videoId: videoId) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: EncryptedVideoResponse.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func fetchVideo(videoId: String, completion: @escaping (Swift.Result<EncryptedVideoResponse, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.fetchVideo(videoId: videoId)), decodeTo: EncryptedVideoResponse.self, completion: completion)
     }
 
-    func updateVideo(videoId: String, updateObject: UpdateObject, completion: @escaping (Result) -> Void) {
-        apiClient.updateVideo(videoId: videoId, updateObject: updateObject) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+    func updateVideo(videoId: String, updateObject: UpdateObject, completion: @escaping (Swift.Result<Void, Error>) -> Void) {
+        ApiProvider.shared.request(.courseDetails(.updateVideo(videoId: videoId, updateObject: updateObject))) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }

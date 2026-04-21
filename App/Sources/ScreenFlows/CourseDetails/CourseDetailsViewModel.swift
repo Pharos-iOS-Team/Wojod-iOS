@@ -9,10 +9,10 @@ class CourseDetailsViewModel {
     func loadLessons(courseID: Int, completion: @escaping (LessonsModel) -> Void) {
         model.loadLessons(courseID: courseID) { result in
             switch result {
-            case let .success(lessons as LessonsModel):
+            case .success(let lessons):
                 completion(lessons)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -20,10 +20,10 @@ class CourseDetailsViewModel {
     func loadReviews(courseID: Int, completion: @escaping (ReviewsModel) -> Void) {
         model.loadReviews(courseID: courseID) { result in
             switch result {
-            case .success(let reviews as ReviewsModel):
+            case .success(let reviews):
                 completion(reviews)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -31,10 +31,10 @@ class CourseDetailsViewModel {
     func loadAttachmentsOfLesson(lessonID: Int, completion: @escaping (LessonAttachmentsModel) -> Void) {
         model.loadAttachmentsOfLesson(lessonID: lessonID) { result in
             switch result {
-            case .success(let attachments as LessonAttachmentsModel):
+            case .success(let attachments):
                 completion(attachments)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -42,12 +42,10 @@ class CourseDetailsViewModel {
     func bookCourses(qrCode: String?, courseID: Int, completion: @escaping (BookingCourseResponseModel?, Error?) -> Void) {
         model.bookCourse(qrCode: qrCode, courseID: courseID) { result in
             switch result {
-            case .success(let bookingResponse as BookingCourseResponseModel):
+            case .success(let bookingResponse):
                 completion(bookingResponse, nil)
-            case .failure(let error as Error):
+            case .failure(let error):
                 completion(nil, error)
-            default:
-                return
             }
         }
     }
@@ -67,11 +65,11 @@ class CourseDetailsViewModel {
     func loadMaterials(courseID: Int, completion: @escaping (Materials) -> Void) {
         model.loadMaterials(courseID: courseID) { result in
             switch result {
-            case var .success(materials as Materials):
+            case .success(var materials):
                 materials.sort()
                 completion(materials)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -79,10 +77,10 @@ class CourseDetailsViewModel {
     func loadCourse(courseID: String, completion: @escaping (CourseDetailsResponse) -> Void) {
         model.loadCourse(courseID: courseID) { result in
             switch result {
-            case let .success(course as CourseDetailsResponse):
+            case .success(let course):
                 completion(course)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }
@@ -90,10 +88,10 @@ class CourseDetailsViewModel {
     func fetchVideoDetails(videoId: String, completion: @escaping (EncryptedVideoResponse?) -> Void) {
         model.fetchVideo(videoId: videoId) { result in
             switch result {
-            case .success(let encryptedViewResponse as EncryptedVideoResponse):
+            case .success(let encryptedViewResponse):
                 completion(encryptedViewResponse)
-            default:
-                return
+            case .failure:
+                completion(nil)
             }
         }
     }
@@ -103,8 +101,8 @@ class CourseDetailsViewModel {
             switch result {
             case .failure(let error):
                 print(error)
-            default:
-                return
+            case .success:
+                break
             }
         }
     }
