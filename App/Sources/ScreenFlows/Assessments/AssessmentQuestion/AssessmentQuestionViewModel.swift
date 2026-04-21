@@ -84,7 +84,7 @@ class AssessmentQuestionViewModel {
             _ attachmentURLString: String?,
             _ isAnswered: Bool,
             _ isCorrectAnswer: Bool?,
-            _ answerState: AssessmentQuestion.AnswerState,
+            _ answerState: AnswerState,
             _ question: AssessmentQuestion?,
             _ isComment: Bool?,
             _ modelAnswer: String?
@@ -121,7 +121,7 @@ class AssessmentQuestionViewModel {
             question.submittedAttachment,
             assessmentStatus == .closed,
             isCorrectAnswer,
-            question.answerState,
+            question.parsedAnswerState,
             question,
             isComment,
             modelAnswer
@@ -143,15 +143,16 @@ class AssessmentQuestionViewModel {
         var questionSection = [QuestionSectionItem]()
         question.choices?.forEach { choice in
             let matchedChoice = question.choices?.first { $0.id == choice.id }
-            let isChoiceSelected = question.selectedChoices.contains(choice.id ?? -1)
+            let isChoiceSelected = question.submittedChoices?.contains(choice.id ?? -1) ?? false
+            let isCorrectAnswer = assessmentStatus == .open
+                ? nil
+                : isCorrectMCQAnswer(question: question, choice: matchedChoice)
             questionSection.append(
                 .selectableOption(
                     choice.title ?? "",
                     choice.attachment,
                     isChoiceSelected,
-                    assessmentStatus == .open
-                        ? nil
-                        : isCorrectMCQAnswer(question: question, choice: matchedChoice),
+                    isCorrectAnswer,
                     assessmentStatus == .open
                 )
             )
@@ -161,14 +162,14 @@ class AssessmentQuestionViewModel {
 
     private func isCorrectMCQAnswer(question: AssessmentQuestion, choice: AssessmentChoice?) -> Bool? {
         guard let choiceID = choice?.id else { return nil }
-        if question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == true {
+        let isSelected = question.submittedChoices?.contains(choiceID) ?? false
+        let isCorrect = choice?.modelAnswer == true
+        
+        if isSelected, isCorrect {
             return true
-        } else if question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == false {
+        } else if isSelected, !isCorrect {
             return false
-        } else if !question.selectedChoices.contains(choiceID),
-            choice?.modelAnswer == true {
+        } else if !isSelected, isCorrect {
             return true
         } else {
             return nil
@@ -216,13 +217,13 @@ class AssessmentQuestionViewModel {
 
     func setCurrentQuestion(question: AssessmentQuestion?) {
         self.assessmentQuestion = question
-        downloadImage(with: question?.questionAttachment)
+        downloadImage(with: question?.attachment)
     }
 
     func prepareDataSource() {
         guard let question = assessmentQuestion else { return }
         resetDataSource()
-        dataSource.append(.header(question.title ?? "", questionImages[question.id ?? -1], question.questionAttachment?.isValid == true))
+        dataSource.append(.header(question.title ?? "", questionImages[question.id ?? -1], question.attachment?.isValid == true))
         switch question.type {
         case .mcq, .trueOrFalse:
             appendMCQSection(question: question)
@@ -271,10 +272,10 @@ class AssessmentQuestionViewModel {
                 assessmentQuestion?.initAnswerManagedObjectIfNeeded(module: module.rawValue) {
                     switch type {
                     case .trueOrFalse:
-                        self.assessmentQuestion?.selectedChoices = [optionID]
+                        self.assessmentQuestion?.submittedChoices = [optionID]
                     case .mcq:
                         if self.assessmentQuestion?.isSingleChoice ?? false {
-                            self.assessmentQuestion?.selectedChoices = [optionID]
+                            self.assessmentQuestion?.submittedChoices = [optionID]
                         } else {
                             self.assessmentQuestion?.addOrRemoveOptionWith(id: optionID)
                         }

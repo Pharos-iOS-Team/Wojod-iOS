@@ -277,9 +277,9 @@ class AssessmentDetailsViewController: UIViewController {
         }
     }
 
-    private func handleTeacherGradeForAssignment(stateSelected: AssessmentQuestion.AnswerState) {
+    private func handleTeacherGradeForAssignment(stateSelected: AnswerState) {
         viewModel?.editTeacherLocalGradesWith(status: stateSelected, at: self.lastUserIndex?.row ?? 0)
-        currentSelectedQuestion?.answerState = stateSelected
+        currentSelectedQuestion?.answerState = stateSelected.rawValue
         viewModel?.setStatusForQuestion(at: lastUserIndex?.row ?? 0, status: stateSelected)
         configureAssignmentAnswerState(at: lastUserIndex?.row ?? 0)
         refreshViewForTeacherChanges()
@@ -295,7 +295,7 @@ class AssessmentDetailsViewController: UIViewController {
         else { return }
 
         assignmentQuestionStateView?.configureAnswerState(
-            question.answerState,
+            question.parsedAnswerState,
             questionType: question.type,
             isAnswered: question.isAnswered
         )
@@ -519,11 +519,7 @@ class AssessmentDetailsViewController: UIViewController {
         assessmentSynchronization.synchronizationCompletionHandler = {
             self.viewModel?.finishAssessment { error in
                 self.hideLoadingIndicator()
-                if error == nil {
-                    self.handleFinishAssessmentSuccess()
-                } else {
-                    self.appAlertViewController?.stopPrimaryButtonLoading()
-                }
+                self.handleFinishAssessmentSuccess()
             }
         }
         assessmentSynchronization.startSynchronizationForQuiz(id: viewModel?.assissmentID ?? 0)

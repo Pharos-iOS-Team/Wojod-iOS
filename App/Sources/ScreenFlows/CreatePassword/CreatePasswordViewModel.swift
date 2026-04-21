@@ -1,11 +1,9 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
-import Moya
 
-class CreatePasswordViewModel: ModelDecodable {
+class CreatePasswordViewModel {
     private var model = CreatePasswordModel()
-    private let setPasswordApiClient = SetPasswordApiClient()
     private var mobileNumber: String = ""
     private var password: String = ""
     private var passwordConfirmation: String = ""
@@ -28,19 +26,15 @@ class CreatePasswordViewModel: ModelDecodable {
         showIndicator?()
         if isActivationFlow {
             let request = SetPasswordRequest(password: password, passwordConfirmation: passwordConfirmation)
-            setPasswordApiClient.setPassword(request: request) { response, error in
-                if let response = response {
-                    if response.statusCode < 300 {
-                        self.handleSetPasswordSuccess(response: response)
-                    } else {
-                        self.decodeError(response: response) { result in
-                            if case .failure(let error) = result { self.errorHandler?(error) }
-                        }
+            ApiProvider.shared.request(.auth(.setPassword(request))) { result in
+                switch result {
+                case .success(let response):
+                    if let user = try? JSONDecoder.default.decode(LoginApiResponseModel.self, from: response.data) {
+                        User.shared.setUserData(user: user.data)
                     }
-                } else if let error = error {
-                    self.handleMoyaError(error: error) { result in
-                        if case .failure(let wjError) = result { self.errorHandler?(wjError) }
-                    }
+                    self.successHandler?()
+                case .failure(let error):
+                    self.errorHandler?(self.mapToWJError(error))
                 }
             }
         } else {
@@ -50,25 +44,21 @@ class CreatePasswordViewModel: ModelDecodable {
                 case .success:
                     self.successHandler?()
                 case .failure(let error):
-                    self.errorHandler?(error)
+                    self.errorHandler?(self.mapToWJError(error))
                 }
             }
         }
     }
 
-    private func handleSetPasswordSuccess(response: Response) {
-        cacheAccessToken(headers: response.response?.allHeaderFields)
-        decode(modelType: LoginApiResponseModel.self, from: response) { [weak self] result in
-            switch result {
-            case .success(let user as LoginApiResponseModel):
-                User.shared.setUserData(user: user.data)
-            case .failure(let error):
-                print("⚠️ set_password user decode failed: \(error.message)")
-            default:
-                return
-            }
-            self?.successHandler?()
+    private func mapToWJError(_ error: Error) -> WJError {
+        if let apiError = error as? ApiError,
+           case .clientError(let statusCode, let endpointError) = apiError {
+            return WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
+                message: endpointError.errors.first ?? ""
+            )
         }
+        return WJError(type: .parsingError, message: error.localizedDescription)
     }
 
     func validatePassword() -> Bool {

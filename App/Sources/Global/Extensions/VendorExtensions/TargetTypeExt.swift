@@ -12,26 +12,17 @@ extension TargetType {
     var headers: [String: String]? {
         [
             "Content-Type": "application/json",
-            "client": Defaults[\.clientKey] ?? "",
-            "uid": Defaults[\.uidKey] ?? "",
-            "access-token": KeychainHandler.shared.userToken ?? "",
             "Accept": "application/json",
             "lang": Language.currentLanguage.rawValue
         ]
     }
 
     var decoder: JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
+        return JSONDecoder.default
     }
 
     var encoder: JSONEncoder {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
+        return JSONEncoder.default
     }
 
     var sharedParameters: [String: Any] {

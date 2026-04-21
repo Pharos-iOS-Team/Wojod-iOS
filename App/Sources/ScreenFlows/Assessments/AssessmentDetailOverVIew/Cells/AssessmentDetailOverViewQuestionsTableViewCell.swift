@@ -21,7 +21,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
     private let markFont = UIFont(font: FontFamily.Inter.regular, size: 14) ?? UIFont.systemFont(ofSize: 14)
     private let statusFont = UIFont(font: FontFamily.Inter.regular, size: 12) ?? UIFont.systemFont(ofSize: 12)
 
-    func configure(assessmentName name: String, numberOfPoints: String, questionStatus: Bool, mark: String, assessmentStatus: AssessmentStatus, questionMarkStatus: QuestionStatus, module: AssessmentsOverViewViewModel.Module, answerStatus: AssessmentQuestion.AnswerState) {
+    func configure(assessmentName name: String, numberOfPoints: String, questionStatus: Bool, mark: String, assessmentStatus: AssessmentStatus, questionMarkStatus: QuestionStatus, module: AssessmentsOverViewViewModel.Module, answerStatus: AnswerState) {
         setQuestionName(name)
         setQuestionStatus(questionStatus, assessmentStatus, module, answerStatus)
         setMarkLabel(assessmentStatus, module, numberOfPoints, mark, questionMarkStatus)
@@ -77,7 +77,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         numberOfPointsLabel.text = text
     }
     
-    private func setQuestionStatus(_ answered: Bool, _ assessmentStatus: AssessmentStatus, _ module: AssessmentsOverViewViewModel.Module, _ answerStatus: AssessmentQuestion.AnswerState) {
+    private func setQuestionStatus(_ answered: Bool, _ assessmentStatus: AssessmentStatus, _ module: AssessmentsOverViewViewModel.Module, _ answerStatus: AnswerState) {
         switch assessmentStatus {
         case .open:
             if answered {
@@ -96,7 +96,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         }
     }
 
-    private func setAssignmentQuestionStatus(_ status: AssessmentQuestion.AnswerState) {
+    private func setAssignmentQuestionStatus(_ status: AnswerState) {
         switch status {
         case .correct:
             questionStatusLabel.textColor = Colors.green.color

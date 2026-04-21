@@ -3,30 +3,30 @@
 // swiftlint:disable all
 
 import Foundation
-import Alamofire
+import Moya
 import UIKit
 
-class AssessmentDetailsModel: ModelDecodable {
+class AssessmentDetailsModel {
     private let decoder = JSONDecoder()
-    private var uploadRequests = [Int: UploadRequest?]()
+    private var cancellables = [Int: Cancellable]()
 
-    private func addUploadRequest(questionID: Int?, request: UploadRequest?) {
+    private func addCancellable(questionID: Int?, cancellable: Cancellable) {
         guard let questionID = questionID else { return }
-        uploadRequests[questionID] = request
+        cancellables[questionID] = cancellable
     }
 
-    private func removeUploadRequest(for questionID: Int?) {
+    private func removeCancellable(for questionID: Int?) {
         guard let questionID = questionID,
-            let index = uploadRequests.index(forKey: questionID) else { return }
-        uploadRequests.remove(at: index)
+            let index = cancellables.index(forKey: questionID) else { return }
+        cancellables.remove(at: index)
     }
 
     func cancelUploadRequest(for questionID: Int?) {
         guard let questionID = questionID,
-            let request = uploadRequests[questionID]
+            let cancellable = cancellables[questionID]
             else { return }
-        request?.cancel()
-        removeUploadRequest(for: questionID)
+        cancellable.cancel()
+        removeCancellable(for: questionID)
     }
 
     func startAssessment(
@@ -35,30 +35,13 @@ class AssessmentDetailsModel: ModelDecodable {
         module: String,
         completionHandler: @escaping (AssessmentDetails?, String?) -> ()
     ) {
-        APIClient.shared.startAssessment(assessmentID: assessmentID, deviceToken: deviceToken, module: module) { response in
-            switch response.result {
-            case .success:
-                if let statusCode = response.response?.statusCode {
-                    switch statusCode {
-                    case 200...300:
-                        if let data = response.data {
-                            do {
-                                let decoded = try self.decoder.decode(AssessmentDetails.self, from: data)
-                                completionHandler(decoded, nil)
-                            } catch {
-                                completionHandler(nil, error.localizedDescription)
-                            }
-                        }
-                    default:
-                        if let error = self.decodeErrorResponse(from: response.data), error.message != nil {
-                            completionHandler(nil, error.message)
-                        }
-                    }
-                }
-            case.failure:
-                if let error = response.error {
-                    completionHandler(nil, error.localizedDescription)
-                }
+        ApiProvider.shared.request(.assessments(.startAssessment(assessmentID: assessmentID, requestModel: .init(deviceToken: deviceToken), module: module)), decodeTo: AssessmentDetails.self) { result in
+            switch result {
+            case let .success(details):
+                details.questions?.forEach { $0.assessmentID = details.id }
+                completionHandler(details, nil)
+            case let .failure(error):
+                completionHandler(nil, error.localizedDescription)
             }
         }
     }
@@ -69,20 +52,21 @@ class AssessmentDetailsModel: ModelDecodable {
         module: String,
         completionHandler: @escaping (Error?) -> ()
     ) {
-        APIClient.shared.submitAssessmentAnswer(assessmentID: assessmentID, parameters: parameters, module: module) { response in
-            switch response.result {
+        let choicesIds = (parameters["choices_ids"] as? [Any])?.compactMap { Int("\($0)") }
+        let nonEmptyChoicesIds = choicesIds?.isEmpty == false ? choicesIds : nil
+        let requestModel = SubmitAnswerRequestModel(
+            deviceToken: parameters["device_token"] as? String ?? "",
+            questionId: parameters["question_id"] as? Int,
+            choicesIds: nonEmptyChoicesIds,
+            freeTextAnswer: parameters["free_text_answer"] as? String,
+            ignoreAttachment: parameters["ignore_attachment"] as? String ?? "false"
+        )
+        ApiProvider.shared.request(.assessments(.submitAnswer(assessmentID: assessmentID, requestModel: requestModel, module: module))) { result in
+            switch result {
             case .success:
-                guard let statusCode = response.response?.statusCode else { completionHandler(nil); return }
-                switch statusCode {
-                case 200:
-                    completionHandler(nil)
-                default:
-                    completionHandler(nil)
-                }
-            case .failure:
-                if let error = response.error {
-                    completionHandler(error)
-                }
+                completionHandler(nil)
+            case let .failure(error):
+                completionHandler(error)
             }
         }
     }
@@ -94,15 +78,12 @@ class AssessmentDetailsModel: ModelDecodable {
     ) {
         guard let deviceToken = UIDevice.current.identifierForVendor?.uuidString
             else { return }
-        let parameters: [String: Any] = ["device_token": deviceToken]
-        APIClient.shared.finishAssessment(assessmentID: assessmentID, parameters: parameters, module: module) { response in
-            switch response.result {
+        ApiProvider.shared.request(.assessments(.finishAssessment(assessmentID: assessmentID, requestModel: .init(deviceToken: deviceToken), module: module))) { result in
+            switch result {
             case .success:
                 completionHandler(nil)
-            case .failure:
-                if let error = response.error {
-                    completionHandler(error)
-                }
+            case let .failure(error):
+                completionHandler(error)
             }
         }
     }
@@ -111,7 +92,11 @@ class AssessmentDetailsModel: ModelDecodable {
         with url: URL,
         delegate: URLSessionDownloadDelegate
     ) {
-        APIClient.shared.downloadAttachment(with: url, delegate: delegate)
+        let configuration = URLSessionConfiguration.default
+        let operationQueue = OperationQueue()
+        let session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: operationQueue)
+        let downloadTask = session.downloadTask(with: url)
+        downloadTask.resume()
     }
 
     // swiftlint:disable function_parameter_count
@@ -127,47 +112,31 @@ class AssessmentDetailsModel: ModelDecodable {
         completionHandler: @escaping (AssessmentQuestion?, Error?) -> Void
     ) {
         let fileData = getFileData(from: fileURL)
-        APIClient.shared.uploadDocumentAnswer(
+        let endpoint = Endpoint.assessments(.uploadDocumentAnswer(
             assessmentID: assessmentID,
             fileData: fileData,
             fileName: fileName,
             mimeType: mimeType,
             parameters: parameters,
-            module: module,
-            uploadRequestCompletion: { request in
-                self.addUploadRequest(questionID: questionID, request: request)
-            },
-            progressCompletion: { progress in
-                print(progress)
+            module: module
+        ))
+        let cancellable = ApiProvider.shared.upload(endpoint, decodeTo: AnsweredQuestion.self,
+            progress: { progress in
                 progressCompletion(progress)
-            }) { response in
-            self.handleUploadResponse(questionID: questionID, response, completionHandler: completionHandler)
-        }
-    }
-
-    private func handleUploadResponse(
-        questionID: Int?,
-        _ response: AFDataResponse<Any>,
-        completionHandler: @escaping (AssessmentQuestion?, Error?) -> Void
-    ) {
-        switch response.result {
-        case .success:
-            self.removeUploadRequest(for: questionID)
-            do {
-                guard let responseData = response.data else { return }
-                let decodedQuestion = try decoder.decode(AnsweredQuestion.self, from: responseData)
-                completionHandler(decodedQuestion.question, nil)
-            } catch {
-                completionHandler(nil, error)
+            },
+            completion: { [weak self] result in
+                switch result {
+                case let .success(decodedQuestion):
+                    self?.removeCancellable(for: questionID)
+                    completionHandler(decodedQuestion.question, nil)
+                case let .failure(error):
+                    if error.localizedDescription != "cancelled" {
+                        completionHandler(nil, error)
+                    }
+                }
             }
-        case .failure:
-            if let error = response.error,
-                response.error?.localizedDescription != "cancelled" {
-                completionHandler(nil, error)
-                // UploadTracker.shared.uploadError()
-                // AppAnalytics.couldNotUploadAssessmentAttachment(error: error)
-            }
-        }
+        )
+        addCancellable(questionID: questionID, cancellable: cancellable)
     }
 
     private func getFileData(from url: URL?) -> Data? {
@@ -185,20 +154,6 @@ class AssessmentDetailsModel: ModelDecodable {
             guard let fileUrl = matchedFileURL else { return nil }
             let data = try Data(contentsOf: fileUrl)
             return data
-        } catch {
-            // AppAnalytics.couldNotGetFileData(error: error)
-            return nil
-        }
-    }
-
-    private func decodeErrorResponse(from data: Data?) -> NetworkError? {
-        do {
-            guard let data = data else { return .none}
-            let errorResponse = try JSONDecoder().decode(
-                NetworkError.self,
-                from: data
-            )
-            return errorResponse
         } catch {
             return nil
         }

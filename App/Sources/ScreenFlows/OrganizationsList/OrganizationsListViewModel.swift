@@ -18,13 +18,11 @@ class OrganizationsListViewModel {
     func fetchOrganizations(completion: @escaping (Organizations) -> Void) {
         model.fetchOrganizations { result in
             switch result {
-            case .success(let organizations as Organizations):
+            case .success(let organizations):
                 self.organizations = organizations.organizations
                 completion(organizations)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -32,12 +30,10 @@ class OrganizationsListViewModel {
     func registerForOrganization(organizationId: Int, completion: @escaping (StudentOrganizationModel) -> Void) {
         model.registerForOrganization(organizationId: organizationId) { result in
             switch result {
-            case .success(let organization as StudentOrganizationModel):
+            case .success(let organization):
                 completion(organization)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }

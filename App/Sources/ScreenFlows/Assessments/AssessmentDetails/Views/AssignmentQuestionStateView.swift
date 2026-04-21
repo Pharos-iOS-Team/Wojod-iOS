@@ -30,8 +30,8 @@ class AssignmentQuestionStateView: UIView {
     }
 
     func configureAnswerState(
-        _ state: AssessmentQuestion.AnswerState,
-        questionType: AssessmentQuestion.QuestionType,
+        _ state: AnswerState,
+        questionType: QuestionType,
         isAnswered: Bool
     ) {
         switch state {

@@ -335,6 +335,10 @@ internal enum L10n {
     internal static var defaultEmptyState: String {
         return L10n.tr("Localizable", "home.defaultEmptyState")
       }
+    /// Excersise
+    internal static var excersise: String {
+        return L10n.tr("Localizable", "home.excersise")
+      }
     /// Explore More
     internal static var exploreMore: String {
         return L10n.tr("Localizable", "home.exploreMore")
@@ -346,6 +350,10 @@ internal enum L10n {
     /// Pending
     internal static var pending: String {
         return L10n.tr("Localizable", "home.pending")
+      }
+    /// Quiz
+    internal static var quiz: String {
+        return L10n.tr("Localizable", "home.quiz")
       }
     /// Related Courses
     internal static var relatedCourses: String {
