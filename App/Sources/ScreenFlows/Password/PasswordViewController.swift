@@ -138,7 +138,8 @@ class PasswordViewController: UIViewController {
 
     private func showLoadingIndicatorHandler() {
         viewModel.showIndicator = { [weak self] in
-            self?.showLoadingIndicator()
+            guard let self = self else { return }
+            self.showLoadingIndicator()
         }
     }
 

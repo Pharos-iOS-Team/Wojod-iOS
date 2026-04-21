@@ -5,7 +5,7 @@
 import Foundation
 
 class AssessmentDetailsConfigurator {
-    class func configure(status: AssessmentStatus, module: AssessmentsOverViewViewModel.Module, assessmentID: Int?, assessmentDetails: AssessmentDetails?, delegate: AssessmentDetailsDelegate?) -> AssessmentDetailsViewController {
+    class func configure(status: AssessmentStatus, module: AssessmentsOverViewViewModel.Module, assessmentID: Int?, assessmentDetails: AssessmentDetails?, onDidFinishAssessment: ((Int?) -> Void)? = nil) -> AssessmentDetailsViewController {
         let viewModel = AssessmentDetailsViewModel(
             status: status,
             module: module,

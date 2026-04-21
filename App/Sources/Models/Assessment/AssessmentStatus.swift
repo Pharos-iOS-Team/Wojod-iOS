@@ -1,11 +1,11 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 
 enum AssessmentStatus: String, CaseIterable {
     case open
     case closed
-    
+
     static var statusRelevantToRole: AssessmentStatus {
         return .open
     }

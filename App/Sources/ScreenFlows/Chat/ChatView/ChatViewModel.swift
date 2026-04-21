@@ -41,13 +41,11 @@ class ChatViewModel {
     private func fetchConversationForTeacher(id: Int) {
         model.fetchConversationForTeacher(courseID: id) { [self] result in
             switch result {
-            case .success(let conversation as ConversationReponseModel):
+            case .success(let conversation):
                 handleSuccessRequest(response: conversation)
                 handleSuccessResponse?()
             case .failure(let error):
-                handleErrorResponse?(error.message)
-            default:
-                self.handleErrorResponse?(nil)
+                handleErrorResponse?(error.localizedDescription)
             }
         }
     }
@@ -55,13 +53,11 @@ class ChatViewModel {
     private func fetchConversationForCustomerSupport() {
         model.fetchConversationForSupport { [self] result in
             switch result {
-            case .success(let conversation as ConversationReponseModel):
+            case .success(let conversation):
                 handleSuccessRequest(response: conversation)
                 handleSuccessResponse?()
             case .failure(let error):
-                handleErrorResponse?(error.message)
-            default:
-                self.handleErrorResponse?(nil)
+                handleErrorResponse?(error.localizedDescription)
             }
         }
     }
@@ -82,15 +78,13 @@ class ChatViewModel {
             messageRequestModel: messageRequestBody
         ) { [self] result in
             switch result {
-            case .success(let conversation as ConversationReponseModel):
+            case .success(let conversation):
                 selectedImage = nil
                 selectedFile = nil
                 handleSuccessRequest(response: conversation)
                 handleSendingMessageSuccess?()
             case .failure(let error):
-                handleErrorResponse?(error.message)
-            default:
-                self.handleErrorResponse?(nil)
+                handleErrorResponse?(error.localizedDescription)
             }
         }
     }
@@ -111,8 +105,13 @@ class ChatViewModel {
                 attachmentKey = AddMessageRequestModel.attachmentKey
             }
         }
-        guard let requestDictionary = requestModel?.dictionary else { return [] }
-        return getFormData(requestDictionary: requestDictionary, attachmentKey: attachmentKey)
+        guard let requestModel = requestModel else { return [] }
+        do {
+            let requestDictionary = try requestModel.toDictionary(encoder: .default)
+            return getFormData(requestDictionary: requestDictionary, attachmentKey: attachmentKey)
+        } catch {
+            return []
+        }
     }
 
     private func getFormData(requestDictionary: [String: Any], attachmentKey: String) -> [Moya.MultipartFormData] {
@@ -139,9 +138,7 @@ class ChatViewModel {
     }
 
     func decodeReceivedMessageFromWebSocket(from text: String) -> MessageObjectModel? {
-        guard let data = text.data(using: .utf8) else { return nil }
-        let decodedResponse = CoursesDecoder.decode(modelType: WebSocketResponseModel.self, from: data)
-        guard let decodedMessage = decodedResponse.data?.message.messageApi else { return nil }
+        guard let decodedMessage = WebSocketDecoder.decodeMessage(from: text) else { return nil }
         messages.append(decodedMessage)
         return decodedMessage
     }

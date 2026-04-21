@@ -22,7 +22,7 @@ class VerifyOtpViewModel {
             case .success:
                 self.successHandler?()
             case .failure(let error):
-                self.errorHandler?(error)
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
     }
@@ -36,11 +36,26 @@ class VerifyOtpViewModel {
         showIndicator?()
         model.verifyOtpFromLogin(otp: otp) { result in
             switch result {
-            case .success:
+            case .success(let user):
+                if let user = user {
+                    User.shared.setUserData(user: user)
+                }
                 self.successHandler?()
             case .failure(let error):
-                self.errorHandler?(error)
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
+    }
+
+    private func mapToWJError(_ error: Error) -> WJError {
+        if
+            let apiError = error as? ApiError,
+            case .clientError(let statusCode, let endpointError) = apiError {
+            return WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
+                message: endpointError.errors.first ?? ""
+            )
+        }
+        return WJError(type: .parsingError, message: error.localizedDescription)
     }
 }

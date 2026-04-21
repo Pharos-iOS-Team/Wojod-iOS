@@ -71,11 +71,6 @@ internal enum StoryboardScene {
 
     internal static let forgotPasswordViewController = SceneType<Wojood.ForgotPasswordViewController>(storyboard: ForgotPassword.self, identifier: "ForgotPasswordViewController")
   }
-  internal enum Home: StoryboardType {
-    internal static let storyboardName = "Home"
-
-    internal static let homeViewController = SceneType<Wojood.HomeViewController>(storyboard: Home.self, identifier: "HomeViewController")
-  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 
@@ -109,13 +104,13 @@ internal enum StoryboardScene {
   internal enum Registration: StoryboardType {
     internal static let storyboardName = "Registration"
 
-    internal static let initialScene = InitialSceneType<Wojood.BasicInfoRegistrationViewController>(storyboard: Registration.self)
+    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: Registration.self)
 
-    internal static let academicInfo = SceneType<Wojood.AcademicInfoViewController>(storyboard: Registration.self, identifier: "AcademicInfo")
+    internal static let academicInfoRegistration = SceneType<Wojood.AcademicInfoViewController>(storyboard: Registration.self, identifier: "AcademicInfoRegistration")
 
-    internal static let locationInfo = SceneType<Wojood.LocationInfoViewController>(storyboard: Registration.self, identifier: "LocationInfo")
+    internal static let avatars = SceneType<Wojood.AvatarsViewController>(storyboard: Registration.self, identifier: "Avatars")
 
-    internal static let universityViewController = SceneType<Wojood.UniversityViewController>(storyboard: Registration.self, identifier: "UniversityViewController")
+    internal static let personalInfo = SceneType<Wojood.PersonalInfoViewController>(storyboard: Registration.self, identifier: "PersonalInfo")
   }
   internal enum Settings: StoryboardType {
     internal static let storyboardName = "Settings"

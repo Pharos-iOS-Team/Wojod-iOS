@@ -1,18 +1,18 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 import UIKit
 
 enum AssessmentType: String {
-    case quiz
+    case quiz = "Quiz"
     case assignment
 
     var title: String {
         switch self {
         case .quiz:
-            return "home.quiz".localiz()
+            return L10n.Home.quiz
         case .assignment:
-            return "home.excersise".localiz()
+            return L10n.Home.excersise
         }
     }
 

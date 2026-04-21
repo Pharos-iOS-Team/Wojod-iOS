@@ -2,38 +2,13 @@
 
 import Foundation
 
-class OrganizationsListModel: ModelDecodable {
-    let apiClient = OrganizationsListApiClient()
-
-    func fetchOrganizations(completion: @escaping (Result) -> Void) {
-        apiClient.fetchOrganizationsList { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: Organizations.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+class OrganizationsListModel {
+    func fetchOrganizations(completion: @escaping (Swift.Result<ApiResponse<[Organization]>, Error>) -> Void) {
+        ApiProvider.shared.request(.organizationsList(.getOrganizations), decodeTo: ApiResponse<[Organization]>.self, completion: completion)
     }
 
-    func registerForOrganization(organizationId: Int, completion: @escaping (Result) -> Void) {
-        apiClient.regsiterForOrganization(organizationId: organizationId) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: StudentOrganizationModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func registerForOrganization(organizationId: Int, completion: @escaping (Swift.Result<ApiResponse<StudentOrganization>, Error>) -> Void) {
+        let requestModel = RegisterForOrganizationRequestModel(organizationId: organizationId)
+        ApiProvider.shared.request(.organizationsList(.registerForOrganization(requestModel: requestModel)), decodeTo: ApiResponse<StudentOrganization>.self, completion: completion)
     }
 }

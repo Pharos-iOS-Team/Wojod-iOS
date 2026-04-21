@@ -1,12 +1,10 @@
-// Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
-
-// swiftlint:disable all
+// Copyright © 2020 Pharos Solutions. All rights reserved.
 
 import Foundation
 
 class SubjectsViewModel {
     private weak var viewModel: GenericSubjectsViewModel?
-    
+
     init(viewModel: GenericSubjectsViewModel?) {
         self.viewModel = viewModel
     }

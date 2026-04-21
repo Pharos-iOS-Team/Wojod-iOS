@@ -26,6 +26,7 @@ class OrganizationsListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        applyButton.setTitle(L10n.Organizations.apply, for: .normal)
         makeImageViewCircular()
     }
 

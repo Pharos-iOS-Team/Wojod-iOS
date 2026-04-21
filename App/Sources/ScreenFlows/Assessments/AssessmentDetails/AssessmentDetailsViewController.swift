@@ -277,9 +277,9 @@ class AssessmentDetailsViewController: UIViewController {
         }
     }
 
-    private func handleTeacherGradeForAssignment(stateSelected: AssessmentQuestion.AnswerState) {
+    private func handleTeacherGradeForAssignment(stateSelected: AnswerState) {
         viewModel?.editTeacherLocalGradesWith(status: stateSelected, at: self.lastUserIndex?.row ?? 0)
-        currentSelectedQuestion?.answerState = stateSelected
+        currentSelectedQuestion?.answerState = stateSelected.rawValue
         viewModel?.setStatusForQuestion(at: lastUserIndex?.row ?? 0, status: stateSelected)
         configureAssignmentAnswerState(at: lastUserIndex?.row ?? 0)
         refreshViewForTeacherChanges()
@@ -295,7 +295,7 @@ class AssessmentDetailsViewController: UIViewController {
         else { return }
 
         assignmentQuestionStateView?.configureAnswerState(
-            question.answerState,
+            question.parsedAnswerState,
             questionType: question.type,
             isAnswered: question.isAnswered
         )
@@ -346,7 +346,7 @@ class AssessmentDetailsViewController: UIViewController {
     }
 
     private func showError(_ title: String?, _ message: String?) {
-        showAlert(imageName: "danger", title: title, message: message)
+        showAlert(imageName: Images.danger.name, title: title, message: message)
     }
 
     private func registerNib() {
@@ -369,7 +369,7 @@ class AssessmentDetailsViewController: UIViewController {
         setNavigationBarTitle()
         guard let viewModel = viewModel, viewModel.shouldShowFinishButton else { return }
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "quizzes.finish".localiz(),
+            title: L10n.Quizzes.finish,
             style: .plain,
             target: self,
             action: #selector(finishAssessmentAssignmentForParentAndStudent)
@@ -392,7 +392,7 @@ class AssessmentDetailsViewController: UIViewController {
         case .open:
             progressLabel.text = viewModel?.getNumberOfAnsweredQuestionsText()
         case .closed:
-            progressLabel.text = "quizzes.thisQuestionGrade".localiz()
+            progressLabel.text = L10n.Quizzes.thisQuestionGrade
         }
     }
     
@@ -416,9 +416,9 @@ class AssessmentDetailsViewController: UIViewController {
             viewModel?.module == .quizzes else { return }
         switch assessmentStatus {
         case .open:
-            timerDurationLabel.text = "quizzes.timeDuration".localiz()
+            timerDurationLabel.text = L10n.Quizzes.timeDuration
         case .closed:
-            timerDurationLabel.text = "quizzes.yourGrade".localiz()
+            timerDurationLabel.text = L10n.Quizzes.yourGrade
         }
     }
 
@@ -466,7 +466,7 @@ class AssessmentDetailsViewController: UIViewController {
         if viewModel?.isLastQuestion(at: row) == true {
             assessmentFinishedForParentAndStudent(
                 imageName: Images.danger.name,
-                title: "quizzes.finishMessage".localiz(),
+                title: L10n.Quizzes.finishMessage,
                 message: nil
             )
         } else {
@@ -519,11 +519,7 @@ class AssessmentDetailsViewController: UIViewController {
         assessmentSynchronization.synchronizationCompletionHandler = {
             self.viewModel?.finishAssessment { error in
                 self.hideLoadingIndicator()
-                if error == nil {
-                    self.handleFinishAssessmentSuccess()
-                } else {
-                    self.appAlertViewController?.stopPrimaryButtonLoading()
-                }
+                self.handleFinishAssessmentSuccess()
             }
         }
         assessmentSynchronization.startSynchronizationForQuiz(id: viewModel?.assissmentID ?? 0)
@@ -541,7 +537,7 @@ class AssessmentDetailsViewController: UIViewController {
 
     private func showSuccessfulSubmit() {
         self.showAlert(
-            imageName: "imgSuccess",
+            imageName: Images.imgSuccess.name,
             title: self.viewModel?.submittedAlertTitle ?? "",
             message: self.viewModel?.submittedAlertMessage ?? ""
         ) {
@@ -551,10 +547,10 @@ class AssessmentDetailsViewController: UIViewController {
 
     private func handleFininshAssessmentInOfflineMode() {
         let submittedMessage = self.viewModel?.submittedAlertMessage ?? ""
-        let internetIssueMessage = "quizzes.submittedAlertConnectionMessage".localiz()
+        let internetIssueMessage = L10n.Quizzes.submittedAlertConnectionMessage
         appAlertViewController?.dismiss(animated: true) {
             self.showAlert(
-                imageName: "imgSuccess",
+                imageName: Images.imgSuccess.name,
                 title: self.viewModel?.submittedAlertTitle ?? "",
                 message: "\(submittedMessage). \(internetIssueMessage)"
             ) {
@@ -594,9 +590,9 @@ class AssessmentDetailsViewController: UIViewController {
         counter -= 1
         if counter == 0 {
             assessmentFinishedForParentAndStudent(
-                imageName: "timeOut",
-                title: "quizzes.timeOutTitle".localiz(),
-                message: "quizzes.timeOutDescription".localiz(),
+                imageName: Images.timeOut.name,
+                title: L10n.Quizzes.timeOutTitle,
+                message: L10n.Quizzes.timeOutDescription,
                 timesOut: true
             )
         }
@@ -646,8 +642,8 @@ extension AssessmentDetailsViewController {
             timerLabel.text = viewModel?.getCounterString(minutes: 0, seconds: 0)
             assessmentFinishedForParentAndStudent(
                 imageName: Images.timeOut.name,
-                title: "quizzes.timeOutTitle".localiz(),
-                message: "quizzes.timeOutDescription".localiz(),
+                title: L10n.Quizzes.timeOutTitle,
+                message: L10n.Quizzes.timeOutDescription,
                 timesOut: true
             )
         default:
@@ -658,7 +654,7 @@ extension AssessmentDetailsViewController {
     @objc private func finishAssessmentAssignmentForParentAndStudent() {
         assessmentFinishedForParentAndStudent(
             imageName: Images.danger.name,
-            title: "quizzes.finishMessage".localiz(),
+            title: L10n.Quizzes.finishMessage,
             message: nil
         )
     }
@@ -685,10 +681,10 @@ extension AssessmentDetailsViewController {
         dismissPresentedIfNeeded { [weak self] in
             self?.showAlert(
                 imageName: Images.danger.name,
-                title: "assignment.pauseAlertTitle".localiz(),
-                message: "assignment.pauseAlertMessage".localiz(),
-                primaryButtonTitle: "assignment.pauseAlertPauseButtonTitle".localiz(),
-                dismissButtonTitle: "assignment.pauseAlertCancelButtonTitle".localiz()
+                title: L10n.Assignment.pauseAlertTitle,
+                message: L10n.Assignment.pauseAlertMessage,
+                primaryButtonTitle: L10n.Assignment.pauseAlertPauseButtonTitle,
+                dismissButtonTitle: L10n.Assignment.pauseAlertCancelButtonTitle
             ) {
                 self?.dismiss(animated: true) {
                     self?.submitQuestionAnswer(at: self?.lastUserIndex?.row)

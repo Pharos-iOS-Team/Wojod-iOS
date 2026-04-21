@@ -3,55 +3,18 @@
 import Foundation
 import Moya
 
-class ChatModel: ModelDecodable {
-    let apiClient = ChatApiClient()
-
-    func fetchConversationForTeacher(courseID: Int, completion: @escaping (Result) -> Void) {
-        apiClient.loadConversationForTeacher(courseID: courseID) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: ConversationReponseModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+class ChatModel {
+    func fetchConversationForTeacher(courseID: Int, completion: @escaping (Swift.Result<ConversationReponseModel, Error>) -> Void) {
+        let requestModel = GetConversationForTeacherRequestModel(courseId: courseID)
+        ApiProvider.shared.request(.chat(.getConversationForTeacher(requestModel)), decodeTo: ConversationReponseModel.self, completion: completion)
     }
 
-    func fetchConversationForSupport(completion: @escaping (Result) -> Void) {
-        apiClient.loadConversationForSupport { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: ConversationReponseModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func fetchConversationForSupport(completion: @escaping (Swift.Result<ConversationReponseModel, Error>) -> Void) {
+        ApiProvider.shared.request(.chat(.getConversationForSupport), decodeTo: ConversationReponseModel.self, completion: completion)
     }
 
-    func endChat(id: Int, completion: @escaping (Result) -> Void) {
-        apiClient.endChat(id: id) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: ConversationReponseModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
-            }
-        }
+    func endChat(id: Int, completion: @escaping (Swift.Result<ConversationReponseModel, Error>) -> Void) {
+        ApiProvider.shared.request(.chat(.endChat(id: id)), decodeTo: ConversationReponseModel.self, completion: completion)
     }
 
     func addMessage(
@@ -59,25 +22,17 @@ class ChatModel: ModelDecodable {
         isFirstMessage: Bool,
         id: Int,
         messageRequestModel: [Moya.MultipartFormData],
-        completion: @escaping (Result) -> Void
+        completion: @escaping (Swift.Result<ConversationReponseModel, Error>) -> Void
     ) {
-        apiClient.sendMessage(
-            id: id,
-            isSendToTeacher: isSendToTeacher,
-            isFirstMessageInConversation: isFirstMessage,
-            messageRequestModel: messageRequestModel
-        ) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: ConversationReponseModel.self, from: response) { result in
-                        completion(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completion)
-                }
-            } else if let error = error {
-                completion(.failure(WJError(type: .parsingError, message: error.localizedDescription)))
+        let endpoint: Endpoint = {
+            if isSendToTeacher {
+                return .chat(.sendMessageForTeacher(formData: messageRequestModel))
+            } else if isFirstMessage {
+                return .chat(.sendMessageForFirstTime(formData: messageRequestModel))
+            } else {
+                return .chat(.addMessage(id: id, formData: messageRequestModel))
             }
-        }
+        }()
+        ApiProvider.shared.request(endpoint, decodeTo: ConversationReponseModel.self, completion: completion)
     }
 }

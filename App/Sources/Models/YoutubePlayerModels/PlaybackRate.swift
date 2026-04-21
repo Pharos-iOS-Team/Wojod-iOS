@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum PlaybackRate: Float, CaseIterable, Displayable {
+enum PlaybackRate: Float, CaseIterable, Displayable {
     case verySlow = 0.25
     case slow = 0.5
     case moderate = 0.75
@@ -12,9 +12,9 @@ public enum PlaybackRate: Float, CaseIterable, Displayable {
     case veryFast = 1.75
     case ultraFast = 2.0
 
-    public var id: Float { self.rawValue }
+    var id: Float { self.rawValue }
 
-    public var displayName: String {
+    var displayName: String {
         return "\(self.rawValue)x"
     }
 }
