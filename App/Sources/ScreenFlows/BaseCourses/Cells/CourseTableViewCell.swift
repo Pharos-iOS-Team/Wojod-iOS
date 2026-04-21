@@ -33,6 +33,14 @@ class CourseTableViewCell: UITableViewCell {
         configureCollectionView()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        stopAnyPlayingVideoIfAny()
+
+        courses = nil
+        teacherNameLabel.text = nil
+    }
+
     // MARK: - Private Functions
 
     private func configureCollectionView() {
@@ -42,15 +50,34 @@ class CourseTableViewCell: UITableViewCell {
     }
 
     // MARK: - Public Functions
+    // swiftlint:disable:next function_parameter_count
+    func configure(
+        courses: [Course]?,
+        isMyCourses: Bool,
+        teacherName: String?,
+        teacherNameIndex: Int,
+        courseDetailsDelegate: ViewCourseDetailsDelegate?,
+        selectCellDelegate: SelectCourseCellDelegate?,
+        viewReceiptDelegate: ViewReceiptDelegate? = nil
+    ) {
+        let hasDataChanged = self.courses?.count != courses?.count || self.isMyCourses != isMyCourses
+        guard hasDataChanged else { return }
+
+        self.courses = courses
+        self.isMyCourses = isMyCourses
+        self.teacherNameLabel.text = teacherName
+        self.teacherNameIndex = teacherNameIndex
+        self.delegate = courseDetailsDelegate
+        self.selectCellDelegate = selectCellDelegate
+        self.viewReceiptDelegate = viewReceiptDelegate
+
+        DispatchQueue.main.async { [weak self] in
+            self?.coursesCollectionView.reloadData()
+        }
+    }
 
     func setTeacherName(_ name: String) {
         teacherNameLabel.text = name
-    }
-
-    func configureCourses(_ courses: [Course]?, isMyCourses: Bool) {
-        self.courses = courses
-        self.isMyCourses = isMyCourses
-        coursesCollectionView.reloadData()
     }
 
     func stopAnyPlayingVideoIfAny() {
@@ -76,7 +103,7 @@ extension CourseTableViewCell: UICollectionViewDataSource {
         cell.teacherNameIndex = teacherNameIndex
         cell.delegate = delegate
         cell.viewReceiptDelegate = viewReceiptDelegate
-        cell.playVideo = { () -> Void in
+        cell.playVideo = {
             cell.configureVideo(with: course?.video?.fileUrl ?? "")
         }
         return cell

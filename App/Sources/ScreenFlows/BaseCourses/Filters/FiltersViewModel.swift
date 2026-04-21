@@ -3,12 +3,15 @@
 import Foundation
 
 class FiltersViewModel {
-    private let model = HomeModel()
-    private let filtersModel = FiltersModel()
+    private let apiProvider: ApiProvider
+
+    init(apiProvider: ApiProvider = .shared) {
+        self.apiProvider = apiProvider
+    }
 
     internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([KeyValue]?) -> Void) {
         let requestModel = AcademicRequestModel(educationLevel: academicLevel.rawValue)
-        ApiProvider.shared.request(.registration(.academicTypes(requestModel)), decodeTo: EducationTypes.self) { result in
+        apiProvider.request(.registration(.academicTypes(requestModel)), decodeTo: EducationTypes.self) { result in
             switch result {
             case let .success(response):
                 completion(response.educationTypes)
@@ -24,7 +27,7 @@ class FiltersViewModel {
             educationType: academicLevel == .schoolStudent ? educationType : nil,
             loginOrganization: academicLevel == .schoolStudent ? nil : AppEnvironment.appName.loginOrganization
         )
-        ApiProvider.shared.request(.registration(.academicDivisions(requestModel)), decodeTo: DivisionsModel.self) { result in
+        apiProvider.request(.registration(.academicDivisions(requestModel)), decodeTo: DivisionsModel.self) { result in
             switch result {
             case let .success(response):
                 completion(response.divisions)
@@ -35,7 +38,7 @@ class FiltersViewModel {
     }
 
     internal func loadBatches(for divisionIndex: Int, completion: @escaping ([Batch]?) -> Void) {
-        ApiProvider.shared.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: BatchesModel.self) { result in
+        apiProvider.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: BatchesModel.self) { result in
             switch result {
             case let .success(response):
                 completion(response.batches)
@@ -46,18 +49,18 @@ class FiltersViewModel {
     }
 
     internal func loadSubjects(forYear yearID: Int, completion: @escaping (Subjects) -> Void) {
-        model.loadSubjects(batchID: yearID) { result in
+        apiProvider.request(.home(.loadSubjects(batchID: yearID)), decodeTo: Subjects.self) { result in
             switch result {
             case .success(let subjects):
                 completion(subjects)
             case .failure:
-                break
+                return
             }
         }
     }
 
     func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
-        ApiProvider.shared.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: SpecializationsModel.self) { result in
+        apiProvider.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: SpecializationsModel.self) { result in
             switch result {
             case let .success(response):
                 completion(response.specializations)
@@ -68,7 +71,13 @@ class FiltersViewModel {
     }
 
     func loadFilteredCourses(subjectID: Int?, batchID: Int, specializationID: Int?, completion: @escaping (CoursesResponse?) -> Void) {
-        filtersModel.loadFilteredCourses(isMyCourses: false, subjectID: subjectID, batchID: batchID, specializationID: specializationID) { result in
+        let requestModel = FilteredCoursesRequestModel(
+            isMyCourses: false,
+            subjectID: subjectID,
+            batchID: batchID,
+            specializationID: specializationID
+        )
+        apiProvider.request(.home(.loadFilteredCourses(requestModel)), decodeTo: CoursesResponse.self) { result in
             switch result {
             case .success(let courses):
                 completion(courses)

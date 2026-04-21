@@ -176,7 +176,6 @@ extension HomeTableViewHeader: UICollectionViewDelegate {
 extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == subjectsCollectionView {
-            let attributes: [NSAttributedString.Key: Any] = [.font: FontFamily.Inter.regular.font(size: 16) ?? .systemFont(ofSize: 16)]
             return subjects?[indexPath.item].name?.size() ?? .zero
         } else {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)

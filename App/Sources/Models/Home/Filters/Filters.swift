@@ -2,8 +2,10 @@
 
 import Foundation
 
-final class Filters {
-    static let shared = Filters()
+struct FilterSelection {
+    static var empty: FilterSelection {
+        return FilterSelection()
+    }
 
     var isDataBeingRetrieved: Bool = false
     var academicLevel: AcademicLevel?
@@ -12,4 +14,8 @@ final class Filters {
     var academicYear: Batch?
     var subject: Subject?
     var field: Specialization?
+
+    mutating func reset() {
+        self = .empty
+    }
 }

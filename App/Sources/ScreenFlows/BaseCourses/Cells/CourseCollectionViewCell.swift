@@ -86,11 +86,21 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        player?.pause()
+        player?.replaceCurrentItem(with: nil)
         player = nil
+
+        imageView.kf.cancelDownloadTask()
         imageView.image = nil
         imageView.subviews.forEach { $0.removeFromSuperview() }
         imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+
         ratingView.rating = .zero
+        playButton.isHidden = true
+        activityIndicator.stopAnimating()
+
+        course = nil
+        playVideo = nil
     }
 
     // MARK: - Private Functions

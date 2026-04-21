@@ -4,8 +4,8 @@ import HandySwift
 import UIKit
 
 protocol SelectingFilterDelegate: AnyObject {
-    func didSelectFilter(_ filterIndex: Int, in section: SchoolSection)
-    func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection)
+    func selectSchoolFilter(_ filterIndex: Int, in section: SchoolSection)
+    func selectUniversityFilter(_ filterIndex: Int, in section: UniversitySection)
 }
 
 class FiltersTableViewCell: UITableViewCell {
@@ -26,6 +26,7 @@ class FiltersTableViewCell: UITableViewCell {
 
     private var selectedIndexPath: IndexPath?
     private var previouslySelectedItemPath: Int?
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     // MARK: - Lifecycle
 
@@ -38,6 +39,22 @@ class FiltersTableViewCell: UITableViewCell {
         collectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
             $0.scrollDirection = .horizontal
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        contentView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8)
+        ])
+    }
+
+    func setIsLoading(_ loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
         }
     }
 
@@ -80,9 +97,9 @@ extension FiltersTableViewCell: UICollectionViewDataSource {
 extension FiltersTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if academicLevel == .schoolStudent {
-            delegate?.didSelectFilter(indexPath.item, in: currentSchoolSection)
+            delegate?.selectSchoolFilter(indexPath.item, in: currentSchoolSection)
         } else {
-            delegate?.didSelectFilterInUniversity(indexPath.item, in: currentUniversitySection)
+            delegate?.selectUniversityFilter(indexPath.item, in: currentUniversitySection)
         }
     }
 }

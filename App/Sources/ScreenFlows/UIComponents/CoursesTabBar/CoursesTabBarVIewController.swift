@@ -26,20 +26,22 @@ class CoursesTabBarViewController: UITabBarController {
     }
 
     private func setupTabBarForUser() {
-        let homeViewCtrl = setUpTabBarItem(
+        let homeViewCtrl = HomeViewController(viewModel: .init())
+        homeViewCtrl.tabBarItem = UITabBarItem(
             title: L10n.TabBar.home,
-            itemImage: Images.home.image,
-            selectedItemImage: Images.homeSelected.image,
-            storyBoard: StoryboardScene.Home.storyboard,
-            viewCtrlIdentifier: StoryboardScene.Home.homeViewController.identifier
+            image: Images.home.image.withRenderingMode(.alwaysOriginal),
+            selectedImage: Images.homeSelected.image.withRenderingMode(.alwaysOriginal)
         )
-        let coursesViewCtrl = setUpTabBarItem(
+        homeViewCtrl.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+        
+        let coursesViewCtrl = MyCoursesViewController(viewModel: .init())
+        coursesViewCtrl.tabBarItem = UITabBarItem(
             title: L10n.TabBar.myCourses,
-            itemImage: Images.courses.image,
-            selectedItemImage: Images.coursesSelected.image,
-            storyBoard: StoryboardScene.Home.storyboard,
-            viewCtrlIdentifier: StoryboardScene.Home.homeViewController.identifier
+            image: Images.courses.image.withRenderingMode(.alwaysOriginal),
+            selectedImage: Images.coursesSelected.image.withRenderingMode(.alwaysOriginal)
         )
+        coursesViewCtrl.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+        
         let settingsViewCtrl = setUpTabBarItem(
             title: L10n.TabBar.settings,
             itemImage: Images.settings.image,
