@@ -247,6 +247,10 @@ internal enum L10n {
       internal static var videoUnavailable: String {
           return L10n.tr("Localizable", "courseDetails.main.videoUnavailable")
         }
+      /// This video is currently unavailable. Please try again later.
+      internal static var videoUnavailable: String {
+          return L10n.tr("Localizable", "courseDetails.main.videoUnavailable")
+        }
     }
     internal enum Receipt {
       /// Address
