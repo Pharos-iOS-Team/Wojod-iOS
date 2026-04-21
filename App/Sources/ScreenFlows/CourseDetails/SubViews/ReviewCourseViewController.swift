@@ -65,10 +65,10 @@ class ReviewCourseViewController: UIViewController {
 
     private func setupStarRating() {
         starRatingsView.semanticContentAttribute = Language.semanticContent
-        starRatingsView.settings.fillMode = .half
+        starRatingsView.settings.fillMode = .full
         starRatingsView.settings.starMargin = 2
-        starRatingsView.settings.minTouchRating = 0.5
-        starRatingsView.rating = 0.5
+        starRatingsView.settings.minTouchRating = 1
+        starRatingsView.rating = 0
 
         starRatingsView.didFinishTouchingCosmos = { [weak self] _ in
             self?.validateInput()

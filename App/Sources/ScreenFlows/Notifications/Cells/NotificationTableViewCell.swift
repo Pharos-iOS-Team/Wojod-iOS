@@ -117,7 +117,7 @@ class NotificationTableViewCell: UITableViewCell {
         let attachmentString = NSAttributedString(attachment: imageAttachment)
         let completeText = NSMutableAttributedString(string: "")
         completeText.append(attachmentString)
-        let textAfterIcon = NSAttributedString(string: "  \(attachment.filename ?? "attachment")")
+        let textAfterIcon = NSAttributedString(string: "  \(attachment.fileName ?? "attachment")")
         completeText.append(textAfterIcon)
         return completeText
     }
@@ -149,15 +149,6 @@ class NotificationTableViewCell: UITableViewCell {
     }
 
     private func getCorrespondingImage(for attachment: Attachment?) -> UIImage {
-        switch attachment?.contentType {
-        case "application/pdf":
-            return Images.pdfExtension.image
-        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-            return Images.excelExtension.image
-        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            return Images.wordExtension.image
-        default:
-            return Images.unknownExtension.image
-        }
+        return attachment?.mappedContentType?.icon ?? Images.unknownExtension.image
     }
 }

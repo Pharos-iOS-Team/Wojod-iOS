@@ -34,11 +34,11 @@ class AssessmentsOverViewViewModel {
         var choiceTitle: String {
             switch self {
             case .all:
-                return "app.all".localiz()
+                return L10n.Shared.Titles.all
             case .quizzes:
-                return "quizzes.title".localiz()
+                return L10n.Quizzes.title
             case .assignments:
-                return "assignments.title".localiz()
+                return L10n.Assignment.title
             }
         }
         
@@ -92,7 +92,7 @@ class AssessmentsOverViewViewModel {
         guard let assessmentID = assessment.id,
             let deviceToken = UIDevice.current.identifierForVendor?.uuidString
             else { return }
-        let module: Module = assessment.type == "Quiz"
+        let module: Module = assessment.mappedType == .quiz
             ? .quizzes
             : .assignments
         AssessmentDetailsModel().startAssessment(
@@ -102,8 +102,7 @@ class AssessmentsOverViewViewModel {
         ) { [weak self] assessmentDetails, error in
             if error == nil {
             completion?()
-            let assessmentType: AssessmentType = assessment.type == "Quiz" ? .quiz : .assignment
-            self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessmentType)
+                self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessment.mappedType)
             } else {
                 self?.showQuizAlet?(error ?? "")
             }
@@ -113,7 +112,7 @@ class AssessmentsOverViewViewModel {
     func assessmentResults(for assessment: Assessment?, completion: @escaping () -> Void) {
         guard let assessmentID = assessment?.id else { return }
         let studentId = User.shared.id
-        let module: Module = assessment?.type == "Quiz"
+        let module: Module = assessment?.mappedType == .quiz
             ? .quizzes
             : .assignments
         model.assessmentResults(assessmentID: assessmentID, studentId: studentId, module: module.rawValue) { [weak self] assessmentDetails, error in

@@ -92,9 +92,13 @@ class QRCodeScannerViewController: UIViewController, AVCaptureMetadataOutputObje
 
     func failed() {
         captureSession = nil
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        let uIAlertController = UIAlertController(
+            title: L10n.Shared.Alerts.NotSupportedScan.title,
+            message: L10n.Shared.Alerts.NotSupportedScan.title,
+            preferredStyle: .alert
+        )
+        uIAlertController.addAction(UIAlertAction(title: L10n.Global.Actions.ok, style: .default))
+        present(uIAlertController, animated: true)
     }
 
     func scaned(code: String) {

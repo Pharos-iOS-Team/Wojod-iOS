@@ -153,8 +153,8 @@ type_body_length:
   - 400 # error
 
 function_parameter_count:
-  - 4 # warning
-  - 5 # error
+  - 6 # warning
+  - 8 # error
 
 nesting:
   type_level: 4

@@ -7,7 +7,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet private var submitButton: SendButton! {
         didSet {
-            submitButton.setTitle(L10n.Shared.continue)
+            submitButton.setTitle(L10n.Shared.Titles.continue)
             submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }

@@ -6,7 +6,7 @@ struct LessonAttachmentsModel: Codable {
     var quizzes: [Assessment]?
     var assignments: [Assessment]?
     var videos: [Video]?
-    var documents: [MaterialsDocument]?
+    var documents: [Attachment]?
 }
 
 struct Quiz: Codable {

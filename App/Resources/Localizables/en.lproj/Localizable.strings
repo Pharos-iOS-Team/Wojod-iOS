@@ -14,9 +14,13 @@
 "shared.alerts.sessionExpired.title" = "Session Expired";
 "shared.alerts.sessionExpired.message" = "Your session has expired. Please log in again to continue.";
 
+"shared.alerts.notSupportedScan.title" = "Scanning not supported";
+"shared.alerts.notSupportedScan.message" = "Your device does not support scanning a code from an item. Please use a device with a camera";
+
 "shared.action.cancel" = "Cancel";
 "shared.action.dismiss" = "Dismiss";
-"shared.continue" = "Continue";
+"shared.titles.all" = "All";
+"shared.titles.continue" = "Continue";
 
 "login.welcome" = "Welcome! \nEnter mobile number to continue";
 
@@ -189,6 +193,7 @@ No worries!";
 "courseDetails.main.reviewCourse" = "Review Course";
 "courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
 "courseDetails.main.videoPlaybackIssue" = "There is an issue with video playback. Please our contact technical support 01111317891";
+"courseDetails.main.videoUnavailable" = "This video is currently unavailable. Please try again later.";
 "courseDetails.main.noLongerAvaliable" = "No Longer Available";
 "courseDetails.main.avaliableFor" = "Available for: %@ days";
 
@@ -357,6 +362,7 @@ No worries!";
 
 // MARK: - Assignments
 
+"assignment.title" = "Exercise";
 "assignment.pauseAlertTitle" = "Pause exercise for now";
 "assignment.pauseAlertMessage" = "Make sure to come back and submit before due date";
 "assignment.pauseAlertPauseButtonTitle" = "Pause exercise";

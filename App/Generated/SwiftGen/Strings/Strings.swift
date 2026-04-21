@@ -76,6 +76,10 @@ internal enum L10n {
     internal static var submittedAlertTitle: String {
         return L10n.tr("Localizable", "assignment.submittedAlertTitle")
       }
+    /// Exercise
+    internal static var title: String {
+        return L10n.tr("Localizable", "assignment.title")
+      }
   }
 
   internal enum Chat {
@@ -238,6 +242,10 @@ internal enum L10n {
       /// There is an issue with video playback. Please our contact technical support 01111317891
       internal static var videoPlaybackIssue: String {
           return L10n.tr("Localizable", "courseDetails.main.videoPlaybackIssue")
+        }
+      /// This video is currently unavailable. Please try again later.
+      internal static var videoUnavailable: String {
+          return L10n.tr("Localizable", "courseDetails.main.videoUnavailable")
         }
     }
     internal enum Receipt {
@@ -1017,10 +1025,6 @@ internal enum L10n {
   }
 
   internal enum Shared {
-    /// Continue
-    internal static var `continue`: String {
-        return L10n.tr("Localizable", "shared.continue")
-      }
     internal enum Action {
       /// Cancel
       internal static var cancel: String {
@@ -1064,6 +1068,16 @@ internal enum L10n {
             return L10n.tr("Localizable", "shared.alerts.microphone.message")
           }
       }
+      internal enum NotSupportedScan {
+        /// Your device does not support scanning a code from an item. Please use a device with a camera
+        internal static var message: String {
+            return L10n.tr("Localizable", "shared.alerts.notSupportedScan.message")
+          }
+        /// Scanning not supported
+        internal static var title: String {
+            return L10n.tr("Localizable", "shared.alerts.notSupportedScan.title")
+          }
+      }
       internal enum Photos {
         /// Wojood need to access Photos
         internal static var message: String {
@@ -1084,6 +1098,16 @@ internal enum L10n {
             return L10n.tr("Localizable", "shared.alerts.sessionExpired.title")
           }
       }
+    }
+    internal enum Titles {
+      /// All
+      internal static var all: String {
+          return L10n.tr("Localizable", "shared.titles.all")
+        }
+      /// Continue
+      internal static var `continue`: String {
+          return L10n.tr("Localizable", "shared.titles.continue")
+        }
     }
   }
 

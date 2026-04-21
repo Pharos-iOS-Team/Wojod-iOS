@@ -37,7 +37,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
     @IBOutlet private var gradeHintLabel: UILabel!
     @IBOutlet private var submitButton: UIButton! {
         didSet {
-            submitButton.setTitle("quizzes.submitButtonTitle".localiz(), for: .normal)
+            submitButton.setTitle(L10n.Quizzes.submitButtonTitle, for: .normal)
         }
     }
     @IBOutlet private var viewAllLabel: UILabel! {
@@ -60,7 +60,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
     
     @IBOutlet private var nextButton: UIButton! {
         didSet {
-            nextButton.setTitle("quizzes.next".localiz(), for: .normal)
+            nextButton.setTitle(L10n.Quizzes.next, for: .normal)
             var backImage = UIImage(asset: Images.nextIcon)
             backImage = Language.currentLanguage == .arabic ?
                 backImage?.withHorizontallyFlippedOrientation():
@@ -138,13 +138,13 @@ class AssessmentDetailOverViewViewController: UIViewController {
         dateFormatter.dateFormat = GlobalConstants.dateTimeFormat
         if let date = dateFormatter.date(from: date) {
             let dueDate = date.formatted(with: GlobalConstants.dueDateFormat)
-            dueLabel.text = "\("quizzes.due".localiz()) \(dueDate)"
+            dueLabel.text = "\(L10n.Quizzes.due)) \(dueDate)"
         }
     }
 
     private func calculateDuration(duration: Int?) -> String {
         guard let durationInSeconds = duration else { return "" }
-        return "\("quizzes.duration".localiz()) \(TimeCalculator.sharedInstance.getLoacalizedMinutesText(minutes: durationInSeconds / 60))"
+        return "\(L10n.Quizzes.duration) \(TimeCalculator.sharedInstance.getLoacalizedMinutesText(minutes: durationInSeconds / 60))"
     }
 
     private func configureQuestionTableViewCell (
@@ -245,7 +245,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
         configureSubmitButton(assessmentStatus)
         configureGradeInfoView(assessment)
         intructionsAttachedLabel.text = assessment.instructions?.isValid == true
-            ? "quizzes.instructionsAttached".localiz()
+            ? L10n.Quizzes.instructionsAttached
             : nil
         assessmentNameLabel.text = assessment.title
         durationLabel.isHidden = false
@@ -263,7 +263,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
             gradeInfoView.removeFromSuperview()
             return
         }
-        assessmentGradeLabel.text = "quizzes.quizGrade".localiz()
+        assessmentGradeLabel.text = L10n.Quizzes.quizGrade
         gradeLabel.text = getStudentTotalMark(assessmentDetails: assessmentDetails)
         gradeInfoView.isHidden = assessmentStatus == .open ? true : false
         yourGradeLabel.isHidden = true
@@ -366,7 +366,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
     }
     
     func getQuestionName(indexPath: IndexPath) -> String {
-        let text = "\("quizzes.question".localiz()) \(indexPath.row + 1)"
+        let text = "\(L10n.Quizzes.question) \(indexPath.row + 1)"
         return Language.currentLanguage == .arabic ? text.enToArDigits : text
     }
 }

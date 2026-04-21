@@ -69,6 +69,48 @@
                                 <color key="backgroundColor" name="superLightGrey"/>
                                 <color key="sectionIndexBackgroundColor" name="superLightGrey"/>
                             </tableView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-bt-Bubble">
+                                <rect key="frame" x="16" y="10" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="fbb-w"/>
+                                    <constraint firstAttribute="height" constant="36" id="fbb-h"/>
+                                </constraints>
+                                <blurEffect style="systemUltraThinMaterialDark"/>
+                                <view key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fbb-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-btn-Back">
+                                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="BackIconWhite"/>
+                                            <connections>
+                                                <action selector="didTapFloatingBackButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="fbb-act-Back"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fbb-btn-Back" firstAttribute="leading" secondItem="fbb-content" secondAttribute="leading" id="fbb-bl"/>
+                                        <constraint firstItem="fbb-btn-Back" firstAttribute="trailing" secondItem="fbb-content" secondAttribute="trailing" id="fbb-bt"/>
+                                        <constraint firstItem="fbb-btn-Back" firstAttribute="top" secondItem="fbb-content" secondAttribute="top" id="fbb-bt2"/>
+                                        <constraint firstItem="fbb-btn-Back" firstAttribute="bottom" secondItem="fbb-content" secondAttribute="bottom" id="fbb-bb"/>
+                                    </constraints>
+                                </view>
+                            </visualEffectView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Overlay">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Spinner">
+                                        <rect key="frame" x="188.5" y="40" width="37" height="37"/>
+                                        <color key="color" name="sendButtonColor"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="clv-Spinner" firstAttribute="centerX" secondItem="clv-Overlay" secondAttribute="centerX" id="clv-cx"/>
+                                    <constraint firstItem="clv-Spinner" firstAttribute="top" secondItem="clv-Overlay" secondAttribute="top" constant="120" id="clv-st"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzZ-VZ-jsV" customClass="VdoPlayerView" customModule="VdoCipherKit">
                                 <rect key="frame" x="394" y="36" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -83,6 +125,12 @@
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="trailing" secondItem="YDd-VY-3TQ" secondAttribute="trailing" id="Mpd-Ji-9m7"/>
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="bottom" secondItem="lTA-ov-VZE" secondAttribute="bottom" id="Z83-FJ-BGg"/>
                             <constraint firstItem="YDd-VY-3TQ" firstAttribute="top" secondItem="YxP-J3-d9A" secondAttribute="top" id="ZIn-Zu-Si5"/>
+                            <constraint firstItem="fbb-bt-Bubble" firstAttribute="top" secondItem="YxP-J3-d9A" secondAttribute="top" constant="10" id="fbb-top"/>
+                            <constraint firstItem="fbb-bt-Bubble" firstAttribute="leading" secondItem="YxP-J3-d9A" secondAttribute="leading" constant="16" id="fbb-lead"/>
+                            <constraint firstItem="clv-Overlay" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="clv-lead"/>
+                            <constraint firstAttribute="trailing" secondItem="clv-Overlay" secondAttribute="trailing" id="clv-trail"/>
+                            <constraint firstItem="clv-Overlay" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="clv-top"/>
+                            <constraint firstAttribute="bottom" secondItem="clv-Overlay" secondAttribute="bottom" id="clv-bot"/>
                             <constraint firstAttribute="trailing" secondItem="lTA-ov-VZE" secondAttribute="trailing" id="nGf-G6-tw0"/>
                             <constraint firstItem="lTA-ov-VZE" firstAttribute="top" secondItem="YDd-VY-3TQ" secondAttribute="bottom" id="sKO-sz-mJs"/>
                         </constraints>
@@ -90,6 +138,9 @@
                     <connections>
                         <outlet property="actionButton" destination="6tM-9b-gyM" id="QLn-lw-q1K"/>
                         <outlet property="bookByQRButton" destination="dkI-1h-5eS" id="pSq-wq-LLs"/>
+                        <outlet property="contentLoadingView" destination="clv-Overlay" id="clv-out"/>
+                        <outlet property="contentLoadingTopConstraint" destination="clv-top" id="clv-ct-out"/>
+                        <outlet property="floatingBackBubble" destination="fbb-bt-Bubble" id="fbb-out"/>
                         <outlet property="tableView" destination="YDd-VY-3TQ" id="hjN-MF-eH4"/>
                     </connections>
                 </viewController>
@@ -145,6 +196,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackIconWhite" width="24" height="24"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

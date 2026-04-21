@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,7 +16,7 @@
         <array key="Inter-Light.ttf">
             <string>Inter-Light</string>
         </array>
-        <array key="Inter-Regular.ttf">
+        <array key="inter.ttf">
             <string>Inter-Regular</string>
         </array>
     </customFonts>
@@ -77,7 +77,7 @@
                                         <constraint firstItem="6xi-YC-l1W" firstAttribute="leading" secondItem="S6x-LM-epm" secondAttribute="leading" id="JcE-dK-Acd"/>
                                         <constraint firstItem="6xi-YC-l1W" firstAttribute="top" secondItem="S6x-LM-epm" secondAttribute="top" id="LlV-kU-W2E"/>
                                         <constraint firstItem="TK6-gS-Qbv" firstAttribute="centerY" secondItem="S6x-LM-epm" secondAttribute="centerY" id="OVh-m8-H0D"/>
-                                        <constraint firstAttribute="height" constant="290" id="XZX-4s-ku5"/>
+                                        <constraint firstAttribute="height" constant="220" id="XZX-4s-ku5"/>
                                         <constraint firstItem="TK6-gS-Qbv" firstAttribute="centerX" secondItem="S6x-LM-epm" secondAttribute="centerX" id="ol3-7P-tDD"/>
                                     </constraints>
                                 </view>
@@ -91,7 +91,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ9-Nj-L0t">
-                                    <rect key="frame" x="20" y="400" width="96.5" height="39"/>
+                                    <rect key="frame" x="20" y="385" width="96.5" height="54"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                     <color key="textColor" name="avatarViewBackground"/>
                                     <nil key="highlightedColor"/>
@@ -222,7 +222,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoh-yp-TIA" customClass="UITagLabel" customModule="Wojood" customModuleProvider="target">
-                                    <rect key="frame" x="136.5" y="409" width="41.5" height="20.5"/>
+                                    <rect key="frame" x="136.5" y="401.5" width="41.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -246,7 +246,7 @@
                                 <constraint firstItem="Gce-B6-dFe" firstAttribute="leading" secondItem="eqt-dZ-OGD" secondAttribute="leading" id="U64-gV-UbX"/>
                                 <constraint firstItem="eqt-dZ-OGD" firstAttribute="top" secondItem="S6x-LM-epm" secondAttribute="bottom" constant="25" id="Vge-4H-nVj"/>
                                 <constraint firstItem="AYD-K8-sOU" firstAttribute="leading" secondItem="vJ9-Nj-L0t" secondAttribute="leading" id="W0J-ct-1EO"/>
-                                <constraint firstItem="vJ9-Nj-L0t" firstAttribute="top" secondItem="eqt-dZ-OGD" secondAttribute="bottom" constant="30" id="W1O-L3-12g"/>
+                                <constraint firstItem="vJ9-Nj-L0t" firstAttribute="top" secondItem="eqt-dZ-OGD" secondAttribute="bottom" constant="15" id="W1O-L3-12g"/>
                                 <constraint firstItem="cat-0a-yO7" firstAttribute="leading" secondItem="Gce-B6-dFe" secondAttribute="leading" id="WpG-eH-S5T"/>
                                 <constraint firstItem="vJ9-Nj-L0t" firstAttribute="leading" secondItem="eqt-dZ-OGD" secondAttribute="leading" id="XFt-TK-3Ba"/>
                                 <constraint firstItem="gtD-Vs-ESq" firstAttribute="centerY" secondItem="Z3t-Be-2rN" secondAttribute="centerY" id="Xud-2r-jaV"/>

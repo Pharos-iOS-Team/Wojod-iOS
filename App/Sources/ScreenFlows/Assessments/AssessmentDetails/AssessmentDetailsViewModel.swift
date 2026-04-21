@@ -33,13 +33,13 @@ class AssessmentDetailsViewModel {
     }
     var submittedAlertTitle: String {
         return module == .quizzes
-            ? "quizzes.submittedAlertTitle".localiz()
-            : "assignment.submittedAlertTitle".localiz()
+        ? L10n.Quizzes.submittedAlertTitle
+        : L10n.Assignment.submittedAlertTitle
     }
     var submittedAlertMessage: String {
         return module == .quizzes
-            ? "quizzes.submittedAlertMessage".localiz()
-            : "assignment.submittedAlertMessage".localiz()
+        ? L10n.Quizzes.submittedAlertMessage
+        : L10n.Assignment.submittedAlertMessage
     }
 
     var shouldShowFinishButton: Bool {
@@ -254,10 +254,7 @@ class AssessmentDetailsViewModel {
         let answeredQuestionsCount = assessmentDetails?.questions?
             .filter { $0.isAnswered == true }.count
         let answeredQuestionsNumberText = NumberFormatter.getFormattedString(fromInt: answeredQuestionsCount ?? 0) ?? ""
-        let totalQuestionsNumberText = String(
-          format: "quizzes.numberOfQuestions".localiz(),
-          NumberFormatter.getFormattedString(fromInt: Int(totalQuestionsNumber)) ?? ""
-        )
+        let totalQuestionsNumberText = L10n.Quizzes.numberOfQuestions(NumberFormatter.getFormattedString(fromInt: Int(totalQuestionsNumber)) ?? "")
         return Language.currentLanguage == .arabic
             ? answeredQuestionsNumberText + " \\ " + totalQuestionsNumberText
             : answeredQuestionsNumberText + " / " + totalQuestionsNumberText
@@ -293,7 +290,7 @@ class AssessmentDetailsViewModel {
             let totalMark = assessmentDetails?.questions?[index].mark,
             let studentMark = assessmentDetails?.questions?[index].studentMark
         else {
-            return "quizzes.notGradedYet".localiz()
+            return L10n.Quizzes.notGradedYet
         }
 
         let grade = Grade(currentMark: studentMark, totalMark: totalMark)

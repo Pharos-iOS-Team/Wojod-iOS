@@ -101,6 +101,22 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     var video: Media?
     var videoURL: String?
 
+    func prepareImmersiveStyle() {
+        backButton.isHidden = true
+        courseImageView.contentMode = .scaleAspectFit
+        courseImageView.clipsToBounds = true
+        mediaContainerView.clipsToBounds = true
+    }
+
+    func applyStretchEffect(offset: CGFloat) {
+        guard offset < 0 else {
+            courseImageView.transform = .identity
+            return
+        }
+        let scale = 1 + abs(offset) / 220
+        courseImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         try? loadFromNib()
@@ -153,7 +169,10 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         batchLabel.text = model.batchName
         descriptionLabel.text = model.description
         numberOfReviewsLabel.text = model.numberOfReviews
-        courseImageView.kf.setImage(with: AppEnvironment.baseURL.appendingPathComponent(model.image ?? ""))
+        courseImageView.kf.setImage(
+            with: AppEnvironment.baseURL.appendingPathComponent(model.image ?? ""),
+            placeholder: Images.imagePlaceHolder.image
+        )
         priceLabel.text = model.price
         materialsButton.isHidden = model.shouldHideMaterials
         configureChatButtonAccordingToState(state: model.state)
@@ -175,23 +194,17 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     }
 
     private func configureButtonSelected(buttonSelected: ActiveScreen) {
+        [detailsButton, materialsButton, reviewsButton].compactMap { $0 }.forEach { unselectButton(button: $0) }
         switch buttonSelected {
         case .details:
             selectButton(button: detailsButton)
-            unselectButton(button: materialsButton)
-            unselectButton(button: reviewsButton)
         case .materials:
             selectButton(button: materialsButton)
-            unselectButton(button: detailsButton)
-            unselectButton(button: reviewsButton)
         case .reviews:
             selectButton(button: reviewsButton)
-            unselectButton(button: materialsButton)
-            unselectButton(button: detailsButton)
         }
     }
 
-    // swiftlint:disable function_body_length
     private func setRating(_ rating: Double) {
         ratingView.rating = rating
     }
