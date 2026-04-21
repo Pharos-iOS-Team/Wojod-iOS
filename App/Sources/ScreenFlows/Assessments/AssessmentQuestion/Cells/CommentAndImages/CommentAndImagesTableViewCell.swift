@@ -108,7 +108,7 @@ class CommentAndImagesTableViewCell: UITableViewCell {
                 pageControl.currentPageIndicatorTintColor = UIColor.orange
             }
         case .assignments:
-            switch question.answerState {
+            switch question.parsedAnswerState {
             case .correct:
                 containerView.backgroundColor = Colors.green.color.withAlphaComponent(0.2)
                 containerView.layer.borderColor = Colors.green.color.cgColor

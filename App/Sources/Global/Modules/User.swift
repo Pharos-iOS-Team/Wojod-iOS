@@ -1,18 +1,14 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import Dependencies
 import LanguageManager_iOS
-import Moya
 import SwiftyUserDefaults
 import UIKit
 
-enum EducationLevel: Int, CaseIterable {
-    case school
-    case facutly
-    case gradute
-}
-
-final class User: ModelDecodable {
+final class User {
     static let shared = User()
+    @Dependency(\.apiProvider) var apiProvider
+
     private(set) var id: Int? {
         get {
             return Defaults[\.userId]
@@ -70,8 +66,6 @@ final class User: ModelDecodable {
     var homeNumber: String?
     var isSchoolStudent: Bool?
     var organizations: [Organization] = []
-    let logoutApiClient = LogoutApiClient()
-    let profileApiClient = ProfileApiClient()
 
     private init() {}
 
@@ -111,6 +105,7 @@ final class User: ModelDecodable {
         homeNumber = user?.homeNumber
         organizations = user?.organizations ?? []
     }
+    // swiftlint:enable function_body_length
 
     func deleteUserLocationData() {
         User.shared.country = nil
@@ -131,29 +126,29 @@ final class User: ModelDecodable {
         return KeychainHandler.shared.userToken ?? ""
     }
 
-    func logout(completionHandler: @escaping (Result) -> Void) {
-        logoutApiClient.logout(deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "") { [weak self] response, error in
-            self?.cleanUp(response: response, error: error, completionHandler: completionHandler)
-        }
-    }
-
-    func deleteAccount(completionHandler: @escaping (Result) -> Void) {
-        profileApiClient.deleteAccount { [weak self] _, _ in
-            self?.setLoggedOut()
-            completionHandler(.success(true))
-        }
-    }
-
-    private func cleanUp(response: Response?, error: MoyaError?, completionHandler: @escaping (Result) -> Void) {
-        if let response = response {
-            if response.statusCode < 300 {
-                setLoggedOut()
+    func logout(completionHandler: @escaping (Swift.Result<Bool, Error>) -> Void) {
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? ""
+        let requestModel = LogoutRequestModel(deviceId: deviceId)
+        apiProvider.request(.auth(.logout(requestModel))) { [weak self] result in
+            switch result {
+            case .success:
+                self?.setLoggedOut()
                 completionHandler(.success(true))
-            } else {
-                decodeError(response: response, completionHandler: completionHandler)
+            case let .failure(error):
+                completionHandler(.failure(error))
             }
-        } else if let error = error {
-            handleMoyaError(error: error, completionHandler: completionHandler)
+        }
+    }
+
+    func deleteAccount(completionHandler: @escaping (Swift.Result<Bool, Error>) -> Void) {
+        apiProvider.request(.profile(.deleteAccount)) { [weak self] result in
+            switch result {
+            case .success:
+                self?.setLoggedOut()
+                completionHandler(.success(true))
+            case let .failure(error):
+                completionHandler(.failure(error))
+            }
         }
     }
 }

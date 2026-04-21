@@ -221,6 +221,8 @@
 "home.exploreMore" = "استكشاف المزيد";
 "home.helpCenter" = "مركز المساعدة";
 "home.view" = "عرض";
+"home.quiz" = "اختبار";
+"home.excersise" = "تدريب";
 "home.course.price" = "ج.م.";
 "home.course.priceLabel" = "السعر";
 "home.course.seeReceipt" = "عرض الايصال";

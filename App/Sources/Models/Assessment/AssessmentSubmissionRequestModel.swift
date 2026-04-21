@@ -1,8 +1,9 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 
-struct AssessmentSubmissionRequestModel {
+struct AssessmentSubmissionRequestModel: Encodable {
+    var studentID: Int?
     var assessmentID: Int
     var module: AssessmentsOverViewViewModel.Module
 }

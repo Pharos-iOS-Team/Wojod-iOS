@@ -28,13 +28,11 @@ class LoginViewModel {
         showIndicator?()
         model.login(mobileNumber: number, password: password) { result in
             switch result {
-            case .success(let user as LoginApiResponseModel):
+            case .success(let user):
                 self.setUserData(user: user, studentUser: nil)
                 self.successHandler?(user)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -42,13 +40,11 @@ class LoginViewModel {
     func isGuestModeEnabled(completion: @escaping (Bool) -> Void) {
         model.guestMode { result in
             switch result {
-            case .success(let whiteLabelVersion as VersionResponse):
+            case .success(let whiteLabelVersion):
                 let isGuestModeEnabled = whiteLabelVersion.version == "1.0.0"
                 completion(isGuestModeEnabled)
             case .failure(let error):
-                self.errorHandler?(error)
-                completion(false)
-            default:
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
                 completion(false)
             }
         }

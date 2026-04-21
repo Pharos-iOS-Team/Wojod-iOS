@@ -1,4 +1,4 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 

@@ -7,11 +7,6 @@ import SwiftyUserDefaults
 import UIKit
 import UIScrollView_InfiniteScroll
 
-enum HomeMode {
-    case relatedCourses
-    case exploreMore
-}
-
 class HomeViewController: UIViewController {
     @IBOutlet private var notifiationButton: UIButton! {
         didSet {

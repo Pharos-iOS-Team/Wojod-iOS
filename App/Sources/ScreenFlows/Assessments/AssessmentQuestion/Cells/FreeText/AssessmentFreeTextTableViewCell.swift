@@ -65,7 +65,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         isAnswered: Bool,
         isCorrectAnswer: Bool?,
         module: AssessmentsOverViewViewModel.Module,
-        assignmentAnswerState: AssessmentQuestion.AnswerState,
+        assignmentAnswerState: AnswerState,
         question: AssessmentQuestion?,
         isComment: Bool?,
         modelAnswer: String?
@@ -186,7 +186,7 @@ class AssessmentFreeTextTableViewCell: UITableViewCell {
         attachmentImageView.isUserInteractionEnabled = isEnabled
     }
 
-    private func configureAssignmentAnswerState(state: AssessmentQuestion.AnswerState) {
+    private func configureAssignmentAnswerState(state: AnswerState) {
         switch state {
         case .incorrect:
             containerView.backgroundColor = UIColor.red.withAlphaComponent(commentBackgroundAlpha)

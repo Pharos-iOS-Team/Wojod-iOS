@@ -8,10 +8,10 @@ class NotificationsViewModel {
     func loadNotifications(completion: @escaping (Notifications) -> Void) {
         model.fetchNotifications { result in
             switch result {
-            case .success(let notifications as Notifications):
+            case .success(let notifications):
                 completion(notifications)
-            default:
-                return
+            case .failure:
+                break
             }
         }
     }

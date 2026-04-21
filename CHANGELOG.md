@@ -20,7 +20,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - None.
 ### Changed
-- None.
+- Changed network module.  
+  Task: [CPI-330](https://jira.pharos-solutions.de/browse/CPI-330) | PR: [#31](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/31) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed

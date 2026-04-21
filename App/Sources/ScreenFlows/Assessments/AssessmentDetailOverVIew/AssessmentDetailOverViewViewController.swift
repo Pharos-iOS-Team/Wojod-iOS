@@ -165,7 +165,7 @@ class AssessmentDetailOverViewViewController: UIViewController {
                 question: assessmentDetails?.questions?[indexPath.row]
             ),
             module: module,
-            answerStatus: assessmentDetails?.questions?[indexPath.row].answerState ?? .notReviewed
+            answerStatus: assessmentDetails?.questions?[indexPath.row].parsedAnswerState ?? .notReviewed
         )
         return cell
     }

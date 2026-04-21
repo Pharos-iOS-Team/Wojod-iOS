@@ -26,7 +26,7 @@ struct AssessmentModel {
 class AssessmentsOverViewViewModel {
     // MARK: - enums
 
-    enum Module: String, CaseIterable, Choice {
+    enum Module: String, CaseIterable, Choice, Encodable {
         case all
         case quizzes
         case assignments
