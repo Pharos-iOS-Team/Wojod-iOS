@@ -76,6 +76,10 @@ internal enum L10n {
     internal static var submittedAlertTitle: String {
         return L10n.tr("Localizable", "assignment.submittedAlertTitle")
       }
+    /// Exercise
+    internal static var title: String {
+        return L10n.tr("Localizable", "assignment.title")
+      }
   }
 
   internal enum Chat {
@@ -239,6 +243,10 @@ internal enum L10n {
       internal static func videoPlaybackIssue(_ p1: Any) -> String {
         return L10n.tr("Localizable", "courseDetails.main.videoPlaybackIssue", String(describing: p1))
       }
+      /// This video is currently unavailable. Please try again later.
+      internal static var videoUnavailable: String {
+          return L10n.tr("Localizable", "courseDetails.main.videoUnavailable")
+        }
     }
     internal enum Receipt {
       /// Address
@@ -335,6 +343,10 @@ internal enum L10n {
     internal static var defaultEmptyState: String {
         return L10n.tr("Localizable", "home.defaultEmptyState")
       }
+    /// Exercise
+    internal static var excersise: String {
+        return L10n.tr("Localizable", "home.excersise")
+      }
     /// Explore More
     internal static var exploreMore: String {
         return L10n.tr("Localizable", "home.exploreMore")
@@ -346,6 +358,10 @@ internal enum L10n {
     /// Pending
     internal static var pending: String {
         return L10n.tr("Localizable", "home.pending")
+      }
+    /// Quiz
+    internal static var quiz: String {
+        return L10n.tr("Localizable", "home.quiz")
       }
     /// Related Courses
     internal static var relatedCourses: String {
@@ -387,6 +403,10 @@ internal enum L10n {
       /// Sorry
       internal static var emptyStateTitle: String {
           return L10n.tr("Localizable", "home.search.emptyStateTitle")
+        }
+      /// Search for courses
+      internal static var placeholder: String {
+          return L10n.tr("Localizable", "home.search.placeholder")
         }
     }
   }
@@ -1009,10 +1029,6 @@ internal enum L10n {
   }
 
   internal enum Shared {
-    /// Continue
-    internal static var `continue`: String {
-        return L10n.tr("Localizable", "shared.continue")
-      }
     internal enum Action {
       /// Cancel
       internal static var cancel: String {
@@ -1056,6 +1072,16 @@ internal enum L10n {
             return L10n.tr("Localizable", "shared.alerts.microphone.message")
           }
       }
+      internal enum NotSupportedScan {
+        /// Your device does not support scanning a code from an item. Please use a device with a camera
+        internal static var message: String {
+            return L10n.tr("Localizable", "shared.alerts.notSupportedScan.message")
+          }
+        /// Scanning not supported
+        internal static var title: String {
+            return L10n.tr("Localizable", "shared.alerts.notSupportedScan.title")
+          }
+      }
       internal enum Photos {
         /// Wojood need to access Photos
         internal static var message: String {
@@ -1077,6 +1103,16 @@ internal enum L10n {
           }
       }
     }
+    internal enum Titles {
+      /// All
+      internal static var all: String {
+          return L10n.tr("Localizable", "shared.titles.all")
+        }
+      /// Continue
+      internal static var `continue`: String {
+          return L10n.tr("Localizable", "shared.titles.continue")
+        }
+    }
   }
 
   internal enum Signup {
@@ -1094,6 +1130,10 @@ internal enum L10n {
       /// Skip
       internal static var skip: String {
           return L10n.tr("Localizable", "signup.addAvatar.skip")
+        }
+      /// Skip setting avatar
+      internal static var skipSettingAvatar: String {
+          return L10n.tr("Localizable", "signup.addAvatar.skipSettingAvatar")
         }
       /// Submit
       internal static var submit: String {
@@ -1121,6 +1161,10 @@ internal enum L10n {
       internal static var mobileNumber: String {
           return L10n.tr("Localizable", "signup.basicInfo.mobileNumber")
         }
+      /// Another mobile number
+      internal static var mobileNumber2: String {
+          return L10n.tr("Localizable", "signup.basicInfo.mobileNumber2")
+        }
       /// Name*
       internal static var name: String {
           return L10n.tr("Localizable", "signup.basicInfo.name")
@@ -1138,6 +1182,80 @@ internal enum L10n {
           return L10n.tr("Localizable", "signup.basicInfo.whatsappNumberHint")
         }
     }
+    internal enum Error {
+      /// Please select an academic type
+      internal static var academicTypeMissing: String {
+          return L10n.tr("Localizable", "signup.error.academicTypeMissing")
+        }
+      /// Please select a city
+      internal static var cityMissing: String {
+          return L10n.tr("Localizable", "signup.error.cityMissing")
+        }
+      /// Please select a country
+      internal static var countryMissing: String {
+          return L10n.tr("Localizable", "signup.error.countryMissing")
+        }
+      /// Please select an academic division
+      internal static var divisionMissing: String {
+          return L10n.tr("Localizable", "signup.error.divisionMissing")
+        }
+      /// Please enter a valid email
+      internal static var emailInvalid: String {
+          return L10n.tr("Localizable", "signup.error.emailInvalid")
+        }
+      /// Please enter your name
+      internal static var nameEmpty: String {
+          return L10n.tr("Localizable", "signup.error.nameEmpty")
+        }
+      /// Please enter a valid second parent number
+      internal static var parentNumber2Invalid: String {
+          return L10n.tr("Localizable", "signup.error.parentNumber2Invalid")
+        }
+      /// Second parent number must differ from the first parent number
+      internal static var parentNumber2SameAsParent1: String {
+          return L10n.tr("Localizable", "signup.error.parentNumber2SameAsParent1")
+        }
+      /// Please enter a valid parent number
+      internal static var parentNumberInvalid: String {
+          return L10n.tr("Localizable", "signup.error.parentNumberInvalid")
+        }
+      /// Passwords do not match
+      internal static var passwordMismatch: String {
+          return L10n.tr("Localizable", "signup.error.passwordMismatch")
+        }
+      /// Password must be at least 6 characters
+      internal static var passwordTooShort: String {
+          return L10n.tr("Localizable", "signup.error.passwordTooShort")
+        }
+      /// Please enter a valid alternate mobile number
+      internal static var phone2Invalid: String {
+          return L10n.tr("Localizable", "signup.error.phone2Invalid")
+        }
+      /// Alternate number must differ from your primary number
+      internal static var phone2SameAsPhone1: String {
+          return L10n.tr("Localizable", "signup.error.phone2SameAsPhone1")
+        }
+      /// Please enter a valid mobile number
+      internal static var phoneInvalid: String {
+          return L10n.tr("Localizable", "signup.error.phoneInvalid")
+        }
+      /// Please enter your district
+      internal static var regionEmpty: String {
+          return L10n.tr("Localizable", "signup.error.regionEmpty")
+        }
+      /// Please enter the school name
+      internal static var schoolNameEmpty: String {
+          return L10n.tr("Localizable", "signup.error.schoolNameEmpty")
+        }
+      /// Please select a university
+      internal static var universityMissing: String {
+          return L10n.tr("Localizable", "signup.error.universityMissing")
+        }
+      /// Please select an academic year
+      internal static var universityYearMissing: String {
+          return L10n.tr("Localizable", "signup.error.universityYearMissing")
+        }
+    }
     internal enum LocationInfo {
       /// Address
       internal static var address: String {
@@ -1151,7 +1269,7 @@ internal enum L10n {
       internal static var country: String {
           return L10n.tr("Localizable", "signup.locationInfo.country")
         }
-      /// District
+      /// District*
       internal static var district: String {
           return L10n.tr("Localizable", "signup.locationInfo.district")
         }

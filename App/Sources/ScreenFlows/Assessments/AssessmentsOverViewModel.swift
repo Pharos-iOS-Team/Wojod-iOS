@@ -3,10 +3,26 @@
 // swiftlint:disable all
 
 import Foundation
-import Alamofire
 
 class AssessmentsOverViewModel {
     private let decoder = JSONDecoder()
+
+    func loadAssessments(
+        studentId: Int?,
+        subjectId: Int?,
+        module: AssessmentsOverViewViewModel.Module,
+        completionHandler: @escaping (AssessmentsResponse?, Error?) -> Void
+    ) {
+        let requestModel = GetAssessmentsRequestModel(studentId: studentId, subjectId: subjectId)
+        ApiProvider.shared.request(.assessments(.getAssessments(requestModel: requestModel, module: module.rawValue)), decodeTo: AssessmentsResponse.self) { result in
+            switch result {
+            case let .success(response):
+                completionHandler(response, nil)
+            case let .failure(error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 
     func assessmentResults(
         assessmentID: Int,
@@ -14,62 +30,32 @@ class AssessmentsOverViewModel {
         module: String,
         completionHandler: @escaping (AssessmentDetails?, Error?) -> Void
     ) {
-        APIClient.shared.assessmentResults(assessmentID: assessmentID, studentId: studentId, module: module) { response in
-            switch response.result {
-            case .success:
-                if let statusCode = response.response?.statusCode {
-                    switch statusCode {
-                    case 200..<300:
-                        do {
-                            guard let data = response.data else { return }
-                            let assessmentDetails = try self.decoder.decode(AssessmentDetails.self, from: data)
-                            completionHandler(assessmentDetails, nil)
-                        } catch {
-                            completionHandler(nil, error)
-                        }
-                    default:
-                        completionHandler(nil, nil)
-                    }
-                }
-            case .failure:
-                if let error = response.error {
-                    completionHandler(nil, error)
-                }
+        ApiProvider.shared.request(.assessments(.assessmentResults(assessmentID: assessmentID, requestModel: .init(studentId: studentId), module: module)), decodeTo: AssessmentDetails.self) { result in
+            switch result {
+            case let .success(details):
+                details.questions?.forEach { $0.assessmentID = details.id }
+                completionHandler(details, nil)
+            case let .failure(error):
+                completionHandler(nil, error)
             }
         }
     }
 
-    private func getAssessmentForUserRole(
-        fromResponse response: AFDataResponse<Any>,
-        subjectId: Int?,
-        module: AssessmentsOverViewViewModel.Module,
-        allSubjectAssessments: [String: [Assessment]]
-    ) -> [String: [Assessment]]? {
-        return getAssessments(fromResponse: response, subjectId: subjectId, module: module, allSubjectAssessments: allSubjectAssessments)
-    }
-
     private func getAssessments(
-        fromResponse response: AFDataResponse<Any>,
+        fromResponse response: AssessmentsResponse,
         subjectId: Int?,
         module: AssessmentsOverViewViewModel.Module,
         allSubjectAssessments: [String: [Assessment]]
     ) -> [String: [Assessment]] {
         var returnedAssessments = allSubjectAssessments
-        if let data = response.data {
-            do {
-                let assessments = try decoder.decode(AssessmentsResponse.self, from: data)
-                let subjects = assessments.subjects
-                let allAssessments = getAllAssessments(response: assessments, module: module)
-                if let subjectName = subjects?.first(where: { $0.id == subjectId })?.name,
-                    let subjectAssessments = allAssessments?[subjectName] {
-                    returnedAssessments[subjectName] = subjectAssessments.values.reduce([], { $0 + $1 })
-                } else if let firstSubjectName = allAssessments?.keys.first {
-                    let firstSubjectAssessments = allAssessments?.values.first
-                    returnedAssessments[firstSubjectName] = firstSubjectAssessments?.values.reduce([], { $0 + $1 })
-                }
-            } catch {
-                // AppAnalytics.couldNotGetAssessments(error: error)
-            }
+        let subjects = response.subjects
+        let allAssessments = getAllAssessments(response: response, module: module)
+        if let subjectName = subjects?.first(where: { $0.id == subjectId })?.name,
+            let subjectAssessments = allAssessments?[subjectName] {
+            returnedAssessments[subjectName] = subjectAssessments.values.reduce([], { $0 + $1 })
+        } else if let firstSubjectName = allAssessments?.keys.first {
+            let firstSubjectAssessments = allAssessments?.values.first
+            returnedAssessments[firstSubjectName] = firstSubjectAssessments?.values.reduce([], { $0 + $1 })
         }
         return returnedAssessments
     }
@@ -77,7 +63,7 @@ class AssessmentsOverViewModel {
     private func getAllAssessments(response: AssessmentsResponse, module: AssessmentsOverViewViewModel.Module) -> [String: [String: [Assessment]]]? {
         switch module {
         case .all:
-            return response.assessments
+            return response.assignmentsQuizzes
         case .quizzes:
             return response.quizzes
         case .assignments:

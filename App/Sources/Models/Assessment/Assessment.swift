@@ -1,4 +1,4 @@
-// Copyright © 2020 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2020 Pharos Solutions. All rights reserved.
 
 import Foundation
 
@@ -15,4 +15,18 @@ struct Assessment: Codable {
     var type: String?
     var publishedAt: Date
     var numberOfQuesions: Int?
+}
+
+// MARK: - DomainModel
+
+extension Assessment {
+    var domainModel: AssessmentDomain {
+        AssessmentDomain(
+            id: id,
+            title: title,
+            publishedAt: publishedAt,
+            type: AssessmentType(rawValue: type ?? "") ?? .assignment,
+            status: AssessmentStatus(rawValue: status ?? "") ?? .closed
+        )
+    }
 }

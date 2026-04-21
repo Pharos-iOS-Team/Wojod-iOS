@@ -25,7 +25,7 @@ class ProfileViewModel {
     let model = ProfileModel()
     let avatarModel = AvatarModel()
     let academicInfoModel = AcademicInfoModel()
-    var user: StudentModel?
+    var user: UserModel?
     var profile = Profile()
     var countries = [KeyName]()
     var cities = [KeyName]()
@@ -33,18 +33,18 @@ class ProfileViewModel {
     var batches = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
-        case EducationLevel.facutly.rawValue:
+        case EducationLevel.faculty.rawValue:
             return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 && $0 != .academicType }
-        case EducationLevel.gradute.rawValue:
+        case EducationLevel.graduate.rawValue:
             return [.name, .mobileNumber, .mobileNumber2, .email, .homeNumber, .batch, .division, .country, .city, .region, .address, .logout]
         default:
             return ProfileFields.allCases
         }
     }
 
-    var successHandler: ((StudentModel) -> Void)?
+    var successHandler: ((UserModel) -> Void)?
     var academicInfoSuccessHandler: (() -> Void)?
-    var avatarSuccessHandler: ((AvatarsModel) -> Void)?
+    var avatarSuccessHandler: (([Avatar]) -> Void)?
     var errorHandler: ((WJError) -> Void)?
     var reloadCountriesCell: (() -> Void)?
     var reloadCitiesCell: ((Int) -> Void)?
@@ -53,13 +53,11 @@ class ProfileViewModel {
     func editProfile(id: String) {
         model.editProfile(id: id, profile: profile) { result in
             switch result {
-            case .success(let user as StudentModel):
-                User.shared.setUserData(user: user.student)
-                self.successHandler?(user)
+            case .success(let user):
+                User.shared.setUserData(user: user.data)
+                self.successHandler?(user.data)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -67,12 +65,10 @@ class ProfileViewModel {
     func fetchAvatars() {
         avatarModel.fetchAvatars { result in
             switch result {
-            case .success(let avatars as AvatarsModel):
-                self.avatarSuccessHandler?(avatars)
+            case .success(let avatars):
+                self.avatarSuccessHandler?(avatars.data)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -81,13 +77,11 @@ class ProfileViewModel {
         group.enter()
         academicInfoModel.fetchEducationalTypes { result in
             switch result {
-            case .success(let educationalTypes as EducationalTypesModel):
-                AcademicInfo.shared.educationalTypes = educationalTypes
+            case .success(let educationalTypes):
+                AcademicInfo.shared.educationalTypes = educationalTypes.data
                 self.handleSuccessfulResponse()
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
             self.group.leave()
         }
@@ -97,13 +91,11 @@ class ProfileViewModel {
         group.enter()
         academicInfoModel.fetchDivisions { result in
             switch result {
-            case .success(let divisions as DivisionsModel):
-                AcademicInfo.shared.divisions = divisions
+            case .success(let divisions):
+                AcademicInfo.shared.divisions = divisions.data
                 self.handleSuccessfulResponse()
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
             self.group.leave()
         }
@@ -113,13 +105,11 @@ class ProfileViewModel {
         group.enter()
         academicInfoModel.fetchBatches(id: id) { result in
             switch result {
-            case .success(let batches as BatchesModel):
-                AcademicInfo.shared.batches = batches
+            case .success(let batches):
+                AcademicInfo.shared.batches = batches.data
                 self.handleSuccessfulResponse()
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
             self.group.leave()
         }
@@ -129,61 +119,74 @@ class ProfileViewModel {
         group.enter()
         academicInfoModel.fetchSpecializations(id: id) { result in
             switch result {
-            case .success(let specializations as SpecializationsModel):
-                AcademicInfo.shared.specializations = specializations
-                AcademicInfo.shared.specializations?.specializations?.append(Specialization(key: nil, value: "None"))
+            case .success(let specializations):
+                AcademicInfo.shared.specializations = specializations.data
+                AcademicInfo.shared.specializations?.append(KeyValue(key: nil, value: "None"))
                 self.handleSuccessfulResponse()
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
             self.group.leave()
         }
     }
 
     func loadCountries() {
-        NetworkProvider.shared.request(target: .countries, type: DataResponse.self) { response, _ in
-            let countries = response?.data
-            self.countries = countries ?? [KeyName]()
-            self.reloadCountriesCell?()
-            if let matchedCountry = self.countries.first(where: { $0.name == User.shared.country }) {
-                self.initializeCities(for: matchedCountry.key)
+        ApiProvider.shared.request(.registration(.countries), decodeTo: ApiResponse<[KeyName]>.self) { result in
+            switch result {
+            case let .success(response):
+                let countries = response.data
+                self.countries = countries
+                self.reloadCountriesCell?()
+                if let matchedCountry = self.countries.first(where: { $0.name == User.shared.country }) {
+                    self.initializeCities(for: matchedCountry.key ?? "")
+                }
+            case .failure:
+                break
             }
         }
     }
 
     private func initializeCities(for selectedCountry: String) {
-        NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
-            self.cities = response?.data ?? [KeyName]()
+        let requestModel = CitiesRequestModel(selectedCountry: selectedCountry)
+        ApiProvider.shared.request(.registration(.cities(requestModel)), decodeTo: ApiResponse<[KeyName]>.self) { result in
+            switch result {
+            case let .success(response):
+                self.cities = response.data
+            case .failure:
+                break
+            }
         }
     }
 
     func loadCities(for selectedCountry: String, index: Int) {
-        NetworkProvider.shared.request(target: .cities(selectedCountry), type: DataResponse.self) { response, _ in
-            let cities = response?.data
-            self.cities = cities ?? [KeyName]()
-            User.shared.city = cities?.first?.name
-            self.profile.city = cities?.first?.key
-            self.reloadCitiesCell?(index + 1)
+        let requestModel = CitiesRequestModel(selectedCountry: selectedCountry)
+        ApiProvider.shared.request(.registration(.cities(requestModel)), decodeTo: ApiResponse<[KeyName]>.self) { result in
+            switch result {
+            case let .success(response):
+                let cities = response.data
+                self.cities = cities
+                User.shared.city = cities.first?.name
+                self.profile.city = cities.first?.key
+                self.reloadCitiesCell?(index + 1)
+            case .failure:
+                break
+            }
         }
     }
 
     func fetchSpecifiedDivisions(for selectedAcademicType: Int, index: Int) {
         model.fetchDivisions(academicLevel: User.shared.educationLevel, academicType: selectedAcademicType) { result in
             switch result {
-            case .success(let divisions as DivisionsModel):
-                AcademicInfo.shared.divisions = divisions
-                User.shared.divisionName = divisions.divisions?.first?.value
-                User.shared.divisionId = divisions.divisions?.first?.key
-                self.profile.divisionId = AcademicInfo.shared.divisions?.divisions?.first { $0.value == User.shared.divisionName }?.key
+            case .success(let divisions):
+                AcademicInfo.shared.divisions = divisions.data
+                User.shared.divisionName = divisions.data.first?.value
+                User.shared.divisionId = divisions.data.first?.key
+                self.profile.divisionId = AcademicInfo.shared.divisions?.first { $0.value == User.shared.divisionName }?.key
                 self.reloadCitiesCell?(index + 1)
                 self.fetchSpecifiedBatches(for: self.profile.divisionId ?? .zero, index: index)
                 self.reloadCitiesCell?(index + 2)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -191,17 +194,15 @@ class ProfileViewModel {
     func fetchSpecifiedBatches(for selectedDivision: Int, index: Int) {
         model.fetchBatches(id: String(selectedDivision)) { result in
             switch result {
-            case .success(let batches as BatchesModel):
-                AcademicInfo.shared.batches = batches
-                User.shared.batchName = batches.batches.first?.value
-                User.shared.batch = batches.batches.first?.key
-                self.profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == User.shared.batchName }?.key
+            case .success(let batches):
+                AcademicInfo.shared.batches = batches.data
+                User.shared.batchName = batches.data.first?.value
+                User.shared.batch = batches.data.first?.key
+                self.profile.batchId = AcademicInfo.shared.batches?.first { $0.value == User.shared.batchName }?.key
                 self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 2 : index + 1 )
                 self.fetchSpecifiedSpecializations(for: selectedDivision, index: index)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -209,17 +210,15 @@ class ProfileViewModel {
     func fetchSpecifiedSpecializations(for selectedDivision: Int, index: Int) {
         model.fetchSpecializations(id: String(selectedDivision)) { result in
             switch result {
-            case .success(let specializations as SpecializationsModel):
-                AcademicInfo.shared.specializations = specializations
-                AcademicInfo.shared.specializations?.specializations?.append(Specialization(key: nil, value: "None"))
-                User.shared.specializationName = specializations.specializations?.first?.value
-                User.shared.specializationId = specializations.specializations?.first?.key
-                self.profile.specializationId = AcademicInfo.shared.specializations?.specializations?.first { $0.value == User.shared.specializationName }?.key
+            case .success(let specializations):
+                AcademicInfo.shared.specializations = specializations.data
+                AcademicInfo.shared.specializations?.append(KeyValue(key: nil, value: "None"))
+                User.shared.specializationName = specializations.data.first?.value
+                User.shared.specializationId = specializations.data.first?.key
+                self.profile.specializationId = AcademicInfo.shared.specializations?.first { $0.value == User.shared.specializationName }?.key
                 self.reloadCitiesCell?(self.validFields[index] == .academicType ? index + 3 : index + 2 )
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
             }
         }
     }
@@ -252,7 +251,7 @@ class ProfileViewModel {
         case .address:
             return User.shared.address
         case .specialization:
-            return User.shared.specializationName ?? AcademicInfo.shared.specializations?.specializations?.first?.value
+            return User.shared.specializationName ?? AcademicInfo.shared.specializations?.first?.value
         case .homeNumber:
             return User.shared.homeNumber
         case .parentNumber2:
@@ -268,7 +267,7 @@ class ProfileViewModel {
         case .email:
             profile.email = text
         case .country:
-            guard let countryCode = countries.first { $0.name == text }?.key else { return }
+            guard let countryCode = countries.first(where: { $0.name == text })?.key else { return }
             profile.country = countries.first { $0.name == text }?.key
             User.shared.country = countries.first { $0.name == text }?.name
             loadCities(for: countryCode, index: index)
@@ -279,10 +278,10 @@ class ProfileViewModel {
         case .address:
             profile.address = text
         case .batch:
-            profile.batchId = AcademicInfo.shared.batches?.batches.first { $0.value == text }?.key
+            profile.batchId = AcademicInfo.shared.batches?.first { $0.value == text }?.key
             fetchSpecifiedSpecializations(for: profile.divisionId ?? .zero, index: index)
         case .specialization:
-            profile.specializationId = AcademicInfo.shared.specializations?.specializations?.first { $0.value == text }?.key
+            profile.specializationId = AcademicInfo.shared.specializations?.first { $0.value == text }?.key
         case .homeNumber:
             profile.homeNumber = text
         case .parentNumber:
@@ -294,10 +293,10 @@ class ProfileViewModel {
         case .mobileNumber2:
             profile.mobileNumber2 = text
         case .academicType:
-            fetchSpecifiedDivisions(for: AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key ?? .zero, index: index)
-            profile.educationalType = AcademicInfo.shared.educationalTypes?.educationTypes.first { $0.value == text }?.key
+            fetchSpecifiedDivisions(for: AcademicInfo.shared.educationalTypes?.first { $0.value == text }?.key ?? .zero, index: index)
+            profile.educationalType = AcademicInfo.shared.educationalTypes?.first { $0.value == text }?.key
         case .division:
-            profile.divisionId = AcademicInfo.shared.divisions?.divisions?.first { $0.value == text }?.key
+            profile.divisionId = AcademicInfo.shared.divisions?.first { $0.value == text }?.key
             fetchSpecifiedBatches(for: profile.divisionId ?? .zero, index: index)
         default:
             return

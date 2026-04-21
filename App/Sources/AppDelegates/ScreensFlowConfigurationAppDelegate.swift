@@ -24,8 +24,8 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
             window.rootViewController = StoryboardScene.CoursesTabBar.coursesTabBarViewController.instantiate()
         } else {
-            let loginVC = StoryboardScene.Login.loginViewController.instantiate()
-            let navController = UINavigationController(rootViewController: loginVC)
+            let loginViewCtrl = StoryboardScene.Login.loginViewController.instantiate()
+            let navController = UINavigationController(rootViewController: loginViewCtrl)
             navController.setNavigationBarHidden(true, animated: false)
             window.rootViewController = navController
         }

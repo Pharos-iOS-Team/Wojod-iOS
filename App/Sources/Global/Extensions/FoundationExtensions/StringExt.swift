@@ -1,7 +1,7 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
-import MobileCoreServices
 import UIKit
+import UniformTypeIdentifiers
 
 extension String {
     var enToArDigits: String {
@@ -25,38 +25,22 @@ extension String {
     }
 
     var dominantTextAlignment: NSTextAlignment {
-        return NSLinguisticTagger.dominantLanguage(for: self) == "ar"
-            ? .right
-            : .left
-    }
-
-    var isValid: Bool {
-        return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
-
-    var isValidURL: Bool {
-        if let url = NSURL(string: self) {
-            return UIApplication.shared.canOpenURL(url as URL)
-        }
-        return false
+        return NSLinguisticTagger.dominantLanguage(for: self) == "ar" ? .right : .left
     }
 
     var urlPathExtension: FileExtension {
-        guard
-            let fileExtension = NSURL(fileURLWithPath: self).pathExtension,
-            let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
-        else { return .other }
+        let fileExtension = NSURL(fileURLWithPath: self).pathExtension ?? ""
+        guard let type = UTType(filenameExtension: fileExtension) else { return .other }
 
-        let inputUTI = uti.takeRetainedValue()
-        if UTTypeConformsTo(inputUTI, kUTTypeImage) {
+        if type.conforms(to: .image) {
             return .image
-        } else if UTTypeConformsTo(inputUTI, kUTTypeMovie) {
+        } else if type.conforms(to: .movie) {
             return .video
-        } else if UTTypeConformsTo(inputUTI, kUTTypePDF) {
+        } else if type.conforms(to: .pdf) {
             return .pdf
-        } else if UTTypeConformsTo(inputUTI, kUTTypeSpreadsheet) {
+        } else if type.conforms(to: .spreadsheet) {
             return .excel
-        } else if UTTypeConformsTo(inputUTI, kUTTypeData) {
+        } else if type.conforms(to: .data) {
             return .word
         } else {
             return .other
@@ -104,5 +88,32 @@ extension String {
             return nsString.substring(with: range)
         }
         return nil
+    }
+
+    // MARK: - Validation
+
+    var isValid: Bool {
+        return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var isValidURL: Bool {
+        if let url = NSURL(string: self) {
+            return UIApplication.shared.canOpenURL(url as URL)
+        }
+        return false
+    }
+
+    var isValidPhoneNumber: Bool {
+        return isValid && count >= 11
+    }
+
+    var isValidEmail: Bool {
+        let emailFormat = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        return predicate.evaluate(with: self)
+    }
+
+    func isValidPassword(minLength: Int = 6) -> Bool {
+        return count >= minLength
     }
 }

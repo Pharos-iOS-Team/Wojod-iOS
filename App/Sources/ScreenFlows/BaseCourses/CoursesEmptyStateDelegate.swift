@@ -1,0 +1,88 @@
+// Copyright © 2026 Pharos Solutions. All rights reserved.
+
+import DZNEmptyDataSet
+import UIKit
+
+class CoursesEmptyStateDelegate: NSObject {
+    private weak var viewModel: CourseListViewModeling?
+    private weak var navigationCoordinator: CoursesNavigationCoordinating?
+
+    init(viewModel: CourseListViewModeling, navigationCoordinator: CoursesNavigationCoordinating? = nil) {
+        self.viewModel = viewModel
+        self.navigationCoordinator = navigationCoordinator
+        super.init()
+    }
+}
+
+extension CoursesEmptyStateDelegate: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        guard let viewModel = viewModel else { return nil }
+        return NSAttributedString(string: viewModel.emptyStateType.title)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        guard let viewModel = viewModel else { return nil }
+        return NSAttributedString(string: viewModel.emptyStateType.description)
+    }
+
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> NSAttributedString? {
+        guard let viewModel = viewModel, let buttonTitle = viewModel.emptyStateType.buttonTitle
+        else { return nil }
+        return NSAttributedString(string: buttonTitle)
+    }
+
+    func customView(forEmptyDataSet scrollView: UIScrollView) -> UIView? {
+        guard let viewModel = viewModel, case .loading = viewModel.emptyStateType else { return nil }
+        return makeInlineLoadingView()
+    }
+
+    private func makeInlineLoadingView() -> UIView {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.startAnimating()
+
+        let loadingLabel = UILabel()
+        loadingLabel.text = L10n.Global.Alerts.loading
+        loadingLabel.font = .preferredFont(forTextStyle: .subheadline)
+        loadingLabel.textColor = .secondaryLabel
+
+        let stackView = UIStackView(arrangedSubviews: [activityIndicator, loadingLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }
+}
+
+extension CoursesEmptyStateDelegate: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        guard let viewModel = viewModel else { return false }
+        if case .loading = viewModel.emptyStateType {
+            return viewModel.hasCompletedInitialLoad
+        }
+        return viewModel.courses.isEmpty || User.shared.organizations.isEmpty
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
+        guard let baseViewCtrl = scrollView.findViewController() else { return }
+        if let coordinator = navigationCoordinator {
+            coordinator.showOrganizationsList(from: baseViewCtrl)
+        } else {
+            let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
+            organizationsListViewCtrl.modalPresentationStyle = .fullScreen
+            baseViewCtrl.present(organizationsListViewCtrl, animated: true)
+        }
+    }
+
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.emptyStateType.verticalOffset
+    }
+
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+}

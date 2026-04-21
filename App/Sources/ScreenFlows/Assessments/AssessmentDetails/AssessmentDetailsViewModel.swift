@@ -25,6 +25,7 @@ class AssessmentDetailsViewModel {
     var remainingDuration: Double? {
         return Double(assessmentDetails?.remainingDuration ?? 0)
     }
+    var timerDuration: Double = 0.0
     var answeredQuestionsRatio: Float {
         let answeredQuestionsCount = assessmentDetails?.questions?
             .filter { $0.isAnswered == true }.count
@@ -32,13 +33,13 @@ class AssessmentDetailsViewModel {
     }
     var submittedAlertTitle: String {
         return module == .quizzes
-            ? "quizzes.submittedAlertTitle".localiz()
-            : "assignment.submittedAlertTitle".localiz()
+        ? L10n.Quizzes.submittedAlertTitle
+        : L10n.Assignment.submittedAlertTitle
     }
     var submittedAlertMessage: String {
         return module == .quizzes
-            ? "quizzes.submittedAlertMessage".localiz()
-            : "assignment.submittedAlertMessage".localiz()
+        ? L10n.Quizzes.submittedAlertMessage
+        : L10n.Assignment.submittedAlertMessage
     }
 
     var shouldShowFinishButton: Bool {
@@ -69,10 +70,10 @@ class AssessmentDetailsViewModel {
 
     // MARK: - Private functions
 
-    private func getExcersiseStatusFor(question: AssessmentQuestion) -> AssessmentQuestion.AnswerState? {
-        switch question.answerState {
+    private func getExcersiseStatusFor(question: AssessmentQuestion) -> AnswerState? {
+        switch question.parsedAnswerState {
         case .correct, .incorrect:
-            return question.answerState
+            return question.parsedAnswerState
         default:
             return nil
         }
@@ -82,7 +83,7 @@ class AssessmentDetailsViewModel {
         return teacherLocalGrades.first { $0.indexPathRow == index }
     }
 
-    func editTeacherLocalGradesWith(mark: Double? = nil, teacherComment: String? = nil, status: AssessmentQuestion.AnswerState? = nil, at index: Int) {
+    func editTeacherLocalGradesWith(mark: Double? = nil, teacherComment: String? = nil, status: AnswerState? = nil, at index: Int) {
         if let mark = mark {
             getTeacherLocalGradesForQuestion(at: index)?.mark = mark
         }
@@ -200,10 +201,10 @@ class AssessmentDetailsViewModel {
         return assessmentDetails?.questions?[index]
     }
 
-    func setStatusForQuestion(at index: Int, status: AssessmentQuestion.AnswerState) {
+    func setStatusForQuestion(at index: Int, status: AnswerState) {
         guard assessmentDetails?.questions?.indices.contains(index) == true
             else { return }
-        assessmentDetails?.questions?[index].answerState = status
+        assessmentDetails?.questions?[index].answerState = status.rawValue
     }
 
     func cancelUploadRequest(_ questionID: Int?) {
@@ -241,22 +242,6 @@ class AssessmentDetailsViewModel {
         }
     }
 
-    func submitQuestionAnswer(at index: Int) {
-        let questionID = assessmentDetails?.questions?[index].id
-        submitAnswer(for: questionID)
-    }
-
-    func finishAssessment(_ completion: ((Error?) -> Void)? = nil) {
-        guard let assissmentID = assissmentID else { return }
-        model.finishAssessment(assessmentID: assissmentID, module: module.rawValue) { error in
-            if error != nil {
-                completion?(error)
-            } else {
-                completion?(nil)
-            }
-        }
-    }
-
     func downloadAttachemt(
         with url: URL,
         delegate: URLSessionDownloadDelegate
@@ -269,7 +254,7 @@ class AssessmentDetailsViewModel {
         let answeredQuestionsCount = assessmentDetails?.questions?
             .filter { $0.isAnswered == true }.count
         let answeredQuestionsNumberText = NumberFormatter.getFormattedString(fromInt: answeredQuestionsCount ?? 0) ?? ""
-        let totalQuestionsNumberText = String(format: "quizzes.numberOfQuestions".localiz(), NumberFormatter.getFormattedString(fromInt: Int(totalQuestionsNumber)) ?? "")
+        let totalQuestionsNumberText = L10n.Quizzes.numberOfQuestions(NumberFormatter.getFormattedString(fromInt: Int(totalQuestionsNumber)) ?? "")
         return Language.currentLanguage == .arabic
             ? answeredQuestionsNumberText + " \\ " + totalQuestionsNumberText
             : answeredQuestionsNumberText + " / " + totalQuestionsNumberText
@@ -296,8 +281,8 @@ class AssessmentDetailsViewModel {
         return (assessmentDetails?.questions?[index].studentMark ?? 0.0) > 0.0
     }
 
-    func questionState(at index: Int) -> AssessmentQuestion.AnswerState {
-        return assessmentDetails?.questions?[index].answerState ?? .notReviewed
+    func questionState(at index: Int) -> AnswerState {
+        return assessmentDetails?.questions?[index].parsedAnswerState ?? .notReviewed
     }
 
     func questionMarkText(at index: Int) -> String {
@@ -305,7 +290,7 @@ class AssessmentDetailsViewModel {
             let totalMark = assessmentDetails?.questions?[index].mark,
             let studentMark = assessmentDetails?.questions?[index].studentMark
         else {
-            return "quizzes.notGradedYet".localiz()
+            return L10n.Quizzes.notGradedYet
         }
 
         let grade = Grade(currentMark: studentMark, totalMark: totalMark)
@@ -356,21 +341,16 @@ class AssessmentDetailsViewModel {
     }
 
     func updateQuestionAnsweredStatus(_ questionID: Int?) {
-        let question = assessmentDetails?.questions?.first { $0.id == questionID }
-        guard let answeredQuestion = question else {
-            question?.isAnswered = false
-            return
-        }
-        switch answeredQuestion.type {
-        case .mcq where !answeredQuestion.selectedChoices.isEmpty,
-             .trueOrFalse where !answeredQuestion.selectedChoices.isEmpty :
-            question?.isAnswered = true
-        case .freeText where (answeredQuestion.submittedAttachment?.isValid == true
-            || answeredQuestion.submittedFreeTextAnswer?.isValid == true):
-            question?.isAnswered = true
-        default:
-            question?.isAnswered = false
-        }
         updateAnsweredQuestions?()
+    }
+
+    func finishAssessment(_ completion: ((Error?) -> Void)? = nil) {
+        guard let assessmentID = assissmentID else { return }
+        model.finishAssessment(assessmentID: assessmentID, module: module.rawValue, completionHandler: completion ?? { _ in })
+    }
+
+    func submitQuestionAnswer(at index: Int) {
+        guard let question = getQuestion(at: index), let questionID = question.id else { return }
+        submitAnswer(for: questionID)
     }
 }

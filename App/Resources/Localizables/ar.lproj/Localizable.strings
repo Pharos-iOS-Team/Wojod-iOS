@@ -14,9 +14,13 @@
 "shared.alerts.sessionExpired.title" = "انتهت الجلسة";
 "shared.alerts.sessionExpired.message" = "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى للمتابعة.";
 
+"shared.alerts.notSupportedScan.title" = "المسح الضوئي غير مدعوم";
+"shared.alerts.notSupportedScan.message" = "جهازك لا يدعم مسح الرمز من العناصر. يرجى استخدام جهاز مزود بكاميرا.";
+
 "shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
-"shared.continue" = "استمرار";
+"shared.titles.all" = "الكل";
+"shared.titles.continue" = "استمرار";
 
 "login.welcome" = "مرحباً \nأدخل رقم الهاتف  للمتابعة";
 "login.signIn" = "تسجيل الدخول";
@@ -138,15 +142,34 @@
 "signup.basicInfo.whatsappNumberHint" = "رقم الهاتف يجب ان يكون مربوط بخدمة الواتس اب";
 "signup.basicInfo.name" = "الاسم*";
 "signup.basicInfo.mobileNumber" = "رقم الهاتف*";
+"signup.basicInfo.mobileNumber2" = "رقم هاتف إضافي";
 "signup.basicInfo.homeNumber" = "الرقم الارضي";
 "signup.basicInfo.email" = "البريد الالكتروني*";
 "signup.basicInfo.password" = "كلمه السر*";
 "signup.basicInfo.confirmPassword" = "تأكيد كلمة السر*";
 "signup.basicInfo.numberAlreadyExistsError" = "الهاتف المحمول الذي أدخلته له حساب بالفعل.";
+"signup.error.nameEmpty" = "الرجاء إدخال الاسم";
+"signup.error.phoneInvalid" = "الرجاء إدخال رقم هاتف صحيح";
+"signup.error.emailInvalid" = "الرجاء إدخال بريد إلكتروني صحيح";
+"signup.error.passwordTooShort" = "كلمة السر يجب أن تكون 6 أحرف على الأقل";
+"signup.error.passwordMismatch" = "كلمتا السر غير متطابقتين";
+"signup.error.countryMissing" = "الرجاء اختيار البلد";
+"signup.error.cityMissing" = "الرجاء اختيار المحافظة";
+"signup.error.regionEmpty" = "الرجاء إدخال المنطقة";
+"signup.error.parentNumberInvalid" = "الرجاء إدخال رقم ولي أمر صحيح";
+"signup.error.parentNumber2Invalid" = "الرجاء إدخال رقم ولي أمر ثاني صحيح";
+"signup.error.parentNumber2SameAsParent1" = "يجب أن يختلف رقم ولي الأمر الثاني عن رقم ولي الأمر الأول";
+"signup.error.schoolNameEmpty" = "الرجاء إدخال اسم المدرسة";
+"signup.error.academicTypeMissing" = "الرجاء اختيار النوع الأكاديمي";
+"signup.error.divisionMissing" = "الرجاء اختيار القسم الأكاديمي";
+"signup.error.universityMissing" = "الرجاء اختيار الجامعة";
+"signup.error.universityYearMissing" = "الرجاء اختيار السنة الأكاديمية";
+"signup.error.phone2Invalid" = "الرجاء إدخال رقم هاتف بديل صحيح";
+"signup.error.phone2SameAsPhone1" = "يجب أن يختلف الرقم البديل عن رقمك الأساسي";
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";
-"signup.locationInfo.district" = "المنطقة";
+"signup.locationInfo.district" = "المنطقة*";
 "signup.locationInfo.address" = "العنوان";
 
 "signup.academicInfo.school" = "مدرسة";
@@ -169,6 +192,7 @@
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
+"signup.addAvatar.skipSettingAvatar" = "تخطي تعيين الصورة الرمزية";
 
 // MARK: - Course Details
 
@@ -187,6 +211,7 @@
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
 "courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";
 "courseDetails.main.videoPlaybackIssue" = "توجد مشكلة في تشغيل الفيديو. يرجى التواصل مع الدعم الفني عبر واتساب على الرقم %@";
+"courseDetails.main.videoUnavailable" = "هذا الفيديو غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا.";
 "courseDetails.main.noLongerAvaliable" = "لم يعد متاح";
 "courseDetails.main.avaliableFor" = "متاح حتي: %@ ايام";
 
@@ -220,6 +245,8 @@
 "home.exploreMore" = "استكشاف المزيد";
 "home.helpCenter" = "مركز المساعدة";
 "home.view" = "عرض";
+"home.quiz" = "اختبار";
+"home.excersise" = "تدريب";
 "home.course.price" = "ج.م.";
 "home.course.priceLabel" = "السعر";
 "home.course.seeReceipt" = "عرض الايصال";
@@ -228,6 +255,7 @@
 "home.pending" = "محجوز";
 "home.search.emptyStateTitle" = "نأسف";
 "home.search.emptyStateDescription" = "لم نتمكن من العثور على ما تبحث عنه. حاول مرة أخرى بكلمات مختلفة.";
+"home.search.placeholder" = "ابحث عن دورات";
 "home.defaultEmptyState" = "لا توجد دورات متاحة";
 
 "filters.filters" = "الفلتر";
@@ -352,7 +380,7 @@
 "quizzes.noInternetMessage" = "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.";
 
 // MARK: - Assignments
-
+"assignment.title" = "التدريب";
 "assignment.pauseAlertTitle" = "وقف التدريب للوقت الحالي";
 "assignment.pauseAlertMessage" = "تأكد من العودة و الارسال في الميعاد المحدد";
 "assignment.pauseAlertPauseButtonTitle" = "وقف التدريب";

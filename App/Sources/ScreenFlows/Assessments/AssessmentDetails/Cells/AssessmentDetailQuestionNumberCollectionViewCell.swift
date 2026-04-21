@@ -62,7 +62,7 @@ class AssessmentDetailQuestionNumberCollectionViewCell: UICollectionViewCell {
         configureCellColor(isSelected, isAnswered, isWrongAnswer, isRightAnswer, question)
     }
 
-    func configureAssignmentAnswer(with questionNumber: Int, _ state: AssessmentQuestion.AnswerState, isSelected: Bool) {
+    func configureAssignmentAnswer(with questionNumber: Int, _ state: AnswerState, isSelected: Bool) {
         setQuestionNumber(questionNumber)
         switch state {
         case .correct:

@@ -1,0 +1,10 @@
+// Copyright © 2020 Pharos Solutions. All rights reserved.
+
+import Foundation
+import UIKit
+
+struct ImageAttachmentDetails {
+    var image: UIImage
+    var imageName: String?
+    var mimeType: String?
+}

@@ -9,7 +9,7 @@ class LoginViewModel {
     private var password: String = ""
 
     var errorHandler: ((WJError) -> Void)?
-    var successHandler: ((LoginApiResponseModel) -> Void)?
+    var successHandler: ((UserModel) -> Void)?
     var showIndicator: (() -> Void)?
     var navigateToPasswordEntry: (() -> Void)?
     var navigateToOtpVerification: ((String) -> Void)?
@@ -26,7 +26,7 @@ class LoginViewModel {
         showIndicator?()
         model.verifyPhone(mobileNumber: number) { result in
             switch result {
-            case .success(let response as VerifyPhoneResponse):
+            case .success(let response):
                 self.setPassword = response.setPassword
                 if self.setPassword {
                     self.requestOtpThenNavigate(mobileNumber: number)
@@ -34,9 +34,7 @@ class LoginViewModel {
                     self.navigateToPasswordEntry?()
                 }
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
     }
@@ -63,13 +61,11 @@ class LoginViewModel {
         showIndicator?()
         model.login(mobileNumber: number, password: password) { result in
             switch result {
-            case .success(let user as LoginApiResponseModel):
-                self.setUserData(user: user, studentUser: nil)
-                self.successHandler?(user)
+            case .success(let user):
+                self.setUserData(user: user.data)
+                self.successHandler?(user.data)
             case .failure(let error):
-                self.errorHandler?(error)
-            default:
-                return
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
     }
@@ -77,13 +73,11 @@ class LoginViewModel {
     func isGuestModeEnabled(completion: @escaping (Bool) -> Void) {
         model.guestMode { result in
             switch result {
-            case .success(let whiteLabelVersion as VersionResponse):
+            case .success(let whiteLabelVersion):
                 let isGuestModeEnabled = whiteLabelVersion.version == "1.0.0"
                 completion(isGuestModeEnabled)
             case .failure(let error):
-                self.errorHandler?(error)
-                completion(false)
-            default:
+                self.errorHandler?(self.mapToWJError(error))
                 completion(false)
             }
         }
@@ -94,7 +88,7 @@ class LoginViewModel {
         Defaults[\.isGuestModeEnabled] = true
         User.shared.setLoggedIn(token: "W_GPhQnZ6OztX4TVu5rQAA", client: "F2PewhGD4cBb43ltw31Jjw", uid: "01206425399")
         if let user = model.loadGuestModelUserData() {
-            self.setUserData(user: user, studentUser: nil)
+            self.setUserData(user: user)
             self.successHandler?(user)
         }
     }
@@ -109,8 +103,19 @@ class LoginViewModel {
         }
     }
 
-    private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
-        User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
+    private func setUserData(user: UserModel) {
+        User.shared.setUserData(user: user)
+    }
+
+    private func mapToWJError(_ error: Error) -> WJError {
+        if let apiError = error as? ApiError,
+           case .clientError(let statusCode, let endpointError) = apiError {
+            return WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
+                message: endpointError.errors.first ?? ""
+            )
+        }
+        return WJError(type: .parsingError, message: error.localizedDescription)
     }
 
     func doesErrorIndicateVerificationRequired(_ error: WJError) -> Bool {

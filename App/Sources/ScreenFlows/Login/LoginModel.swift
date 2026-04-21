@@ -1,82 +1,34 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import Alamofire
 import Foundation
 import Moya
 
-class LoginModel: ModelDecodable {
-    private let apiClient = LoginApiClient()
-
-    func login(mobileNumber: String, password: String, completionHandler: @escaping (Result) -> Void) {
+class LoginModel {
+    func login(mobileNumber: String, password: String, completionHandler: @escaping (Swift.Result<ApiResponse<UserModel>, Error>) -> Void) {
         let loginRequestModel = LoginRequestModel(mobileNumber: mobileNumber, password: password)
-        apiClient.login(loginRequestModel: loginRequestModel) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.cacheAccessToken(headers: response.response?.allHeaderFields)
-                    self.decode(modelType: LoginApiResponseModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+        ApiProvider.shared.request(.auth(.login(loginRequestModel)), decodeTo: ApiResponse<UserModel>.self, completion: completionHandler)
     }
 
-    func verifyPhone(mobileNumber: String, completionHandler: @escaping (Result) -> Void) {
-        apiClient.verifyPhone(mobileNumber: mobileNumber) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: VerifyPhoneResponse.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+    func verifyPhone(mobileNumber: String, completionHandler: @escaping (Swift.Result<VerifyPhoneResponse, Error>) -> Void) {
+        let requestModel = VerifyPhoneRequestModel(phoneNumber: mobileNumber)
+        ApiProvider.shared.request(.auth(.verifyPhone(requestModel)), decodeTo: VerifyPhoneResponse.self, completion: completionHandler)
     }
 
-    func resendOtpForLogin(mobileNumber: String, completionHandler: @escaping (Result) -> Void) {
-        apiClient.resendOtpForLogin(mobileNumber: mobileNumber) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    completionHandler(.success(true))
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+    func resendOtpForLogin(mobileNumber: String, completionHandler: @escaping (Swift.Result<Moya.Response, Error>) -> Void) {
+        ApiProvider.shared.request(.auth(.resendOtpForLogin(mobileNumber: mobileNumber)), completion: completionHandler)
     }
 
-    func guestMode(completionHandler: @escaping (Result) -> Void) {
-        apiClient.guestMode { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: VersionResponse.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+    func guestMode(completionHandler: @escaping (Swift.Result<VersionResponse, Error>) -> Void) {
+        let requestModel = GuestModeRequestModel(appName: AppEnvironment.appName.guestModeKey)
+        ApiProvider.shared.request(.auth(.guestMode(requestModel)), decodeTo: VersionResponse.self, completion: completionHandler)
     }
 
-    func loadGuestModelUserData() -> LoginApiResponseModel? {
+    func loadGuestModelUserData() -> UserModel? {
         guard let url = Bundle.main.url(forResource: "LoginResponse", withExtension: "json") else { return nil }
 
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder.default.decode(LoginApiResponseModel.self, from: data)
+            return try JSONDecoder.default.decode(ApiResponse<UserModel>.self, from: data).data
         } catch {
             return nil
         }

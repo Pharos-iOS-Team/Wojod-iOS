@@ -1,6 +1,5 @@
 // Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
 
-import Alamofire
 import Foundation
 
 enum ErrorParser {
@@ -33,7 +32,7 @@ enum ErrorParser {
     }
 
     private static func timeoutMessage() -> (title: String, message: String) {
-        let title = "app.connectionError".localiz()
+        let title = L10n.Global.Titles.error
         let message = L10n.Global.Alerts.somethingWentWrong
         return (title, message)
     }
@@ -67,7 +66,7 @@ enum ErrorParser {
 
     private static func invalidCredintialsMessage(forError error: NSError?) -> (title: String, message: String) {
         let title = L10n.Global.Titles.error
-        let message = error?.userInfo["message"] as? String ?? "app.something_went_wrong".localiz()
+        let message = error?.userInfo["message"] as? String ?? L10n.Global.Alerts.somethingWentWrong
         return (title, message)
     }
 
@@ -81,44 +80,5 @@ enum ErrorParser {
         let title = L10n.Global.Titles.serverNotResponding
         let message = L10n.Global.Alerts.somethingWentWrong
         return (title, message)
-    }
-
-    static func parseErrorMessage(inResponse response: AFDataResponse<Any>, withStatusCode statusCode: Int) -> NSError {
-        if let data = response.data {
-            if let tryResponseJSON = try? JSONSerialization.jsonObject(with: data, options: []),
-                let responseJSON = tryResponseJSON as? [String: Any] {
-                if let errors = responseJSON["errors"] as? [String] {
-                    if let errorMessage = errors.first {
-                        var userInfo = ["message": errorMessage] as [String: Any]
-                        if let errorKeys = responseJSON["error_keys"] as? [String] {
-                            userInfo["error_keys"] = errorKeys
-                        }
-                        return NSError(domain: "", code: statusCode, userInfo: userInfo)
-                    }
-                }
-            }
-        }
-        return NSError(domain: "", code: statusCode, userInfo: nil)
-    }
-
-    static func parseErrorMessage(response: AFDataResponse<Any>, statusCode: Int) -> NSError {
-        guard
-            let data = response.data,
-            let tryResponseJSON = try? JSONSerialization.jsonObject(with: data, options: []),
-            let responseJSON = tryResponseJSON as? [String: Any]
-        else {
-            return NSError(domain: "", code: statusCode, userInfo: nil)
-        }
-
-        var userInfo = [String: Any]()
-        if let errors = responseJSON["errors"] as? [String] {
-            userInfo["message"] = errors
-        }
-
-        if let errorKeys = responseJSON["error_keys"] as? [String] {
-            userInfo["error_keys"] = errorKeys
-        }
-
-        return NSError(domain: "", code: statusCode, userInfo: userInfo)
     }
 }
