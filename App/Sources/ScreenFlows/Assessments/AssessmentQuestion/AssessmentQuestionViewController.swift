@@ -72,6 +72,7 @@ class AssessmentQuestionViewController: UIViewController, UINavigationController
         tableView.registerCell(ofType: AssessmentMCQOptionTableViewCell.self)
         tableView.registerCell(ofType: AssessmentFreeTextTableViewCell.self)
         tableView.registerCell(ofType: TeacherQuestionCommentTableViewCell.self)
+        tableView.registerCell(ofType: CommentAndImagesTableViewCell.self)
     }
 
     private func setTableViewMultiSelection() {
@@ -273,12 +274,16 @@ extension AssessmentQuestionViewController: UITableViewDataSource {
             let cell: AssessmentMCQOptionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(optionName: title, optionImageURL: imageURL, isSelected: isSelected, textAlignment: viewModel.textAlignment, isCorrectAnswer: isCorrectAnswer, isOpenAssessment: isOpenAssessment, delegate: self)
             return cell
-        case .textView(let answer, let alignment, let attachmentURLString, let isAnswered, let isCorrectAnswer, let answerState, let question, let isComment):
+        case .textView(let answer, let alignment, let attachmentURLString, let isAnswered, let isCorrectAnswer, let answerState, let question, let isComment, let modelAnswer):
             let cell: AssessmentFreeTextTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setDelegate(self)
             cell.setTextViewDelegate(self)
             cell.configure(with: answer, alignment: alignment, attachmentURLString: attachmentURLString, currentProgress: viewModel.currentProgress)
-            cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment)
+            cell.configureAnswer(isAnswered: isAnswered, isCorrectAnswer: isCorrectAnswer, module: viewModel.module, assignmentAnswerState: answerState, question: question, isComment: isComment, modelAnswer: modelAnswer)
+            return cell
+        case .commentAndImages(let question, let module):
+            let cell: CommentAndImagesTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(question: question, module: module, delegate: self)
             return cell
         default:
             return UITableViewCell()
@@ -295,7 +300,7 @@ extension AssessmentQuestionViewController: UITableViewDelegate {
             let item = items[indexPath.row]
             switch item {
             case .textView:
-                return freeTextCellHeightRatio * view.frame.height
+                return UITableView.automaticDimension
             default:
                 return UITableView.automaticDimension
             }
@@ -360,6 +365,13 @@ extension AssessmentQuestionViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true)
         viewModel?.setAttachedFileLocalURL(url: savedImageURL)
         delegate?.didAttachFile(with: savedImageURL, for: viewModel?.questionID)
+    }
+}
+
+// MARK: - CommentAndImagesCellDelegate
+extension AssessmentQuestionViewController: CommentAndImagesCellDelegate {
+    func didTapCorrectionImage(imageView: UIImageView, image: UIImage) {
+        preview(imageView: imageView, image: image)
     }
 }
 

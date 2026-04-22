@@ -24,6 +24,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
     @Binding var isEdittingFinished: Bool
     @Binding var fastForward: Bool
     @Binding var rewind: Bool
+    @Binding var isMuted: Bool
 
     var playerVars: [String: Any] = [
         "autoplay": 1,
@@ -55,7 +56,8 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
         isEditingSlider: Bool,
         isEdittingFinished: Binding<Bool>,
         fastForward: Binding<Bool>,
-        rewind: Binding<Bool>
+        rewind: Binding<Bool>,
+        isMuted: Binding<Bool>
     ) {
         self.videoId = videoId
         self._isLoading = isLoading
@@ -76,6 +78,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
         self.dismissWebView = dismissWebView
         self._fastForward = fastForward
         self._rewind = rewind
+        self._isMuted = isMuted
     }
 
     public func makeUIViewController(context: Context) -> UIViewController {
@@ -130,6 +133,16 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
             playerView.seek(toSeconds: Float(seekToTime), allowSeekAhead: true)
             playedTime = seekToTime
             rewind = false
+        }
+
+        /// Handle mute state for screen recording protection
+        if isMuted != context.coordinator.wasMuted {
+            if isMuted {
+                playerView.mute()
+            } else {
+                playerView.unMute()
+            }
+            context.coordinator.wasMuted = isMuted
         }
 
         /// Handle play/pause state changes

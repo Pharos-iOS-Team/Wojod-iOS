@@ -192,7 +192,6 @@ No worries!";
 "courseDetails.main.noLongerAvaliable" = "No Longer Available";
 "courseDetails.main.avaliableFor" = "Available for: %@ days";
 
-
 "courseDetails.receipt.receiptNumber" = "Receipt Number";
 "courseDetails.receipt.customerName" = "Customer Name";
 "courseDetails.receipt.address" = "Address";
@@ -307,7 +306,7 @@ No worries!";
 "quizzes.numberOfQuestions" = "%@ Questions";
 "quizzes.chooseOneOrMoreAnswers" = "Choose one or more answers";
 "quizzes.thisQuestionGrade" = "This question\'s grade";
-"quizzes.questionComment" = "Comment";
+"quizzes.questionCorrection" = "Correction";
 "quizzes.yourGrade" = "Your grade";
 "quizzes.finish" = "Finish";
 "quizzes.finishMessage" = "Are you sure you want to submit?";
@@ -316,6 +315,7 @@ No worries!";
 "quizzes.notGradedYet" = "Not graded yet";
 "quizzes.notFinalGrade" = "This grade is not final";
 "quizzes.yourAnswer" = "Your answer";
+"quizzes.modelAnswer" = "Model Answer";
 "quizzes.theAnswer" = "The answer";
 "quizzes.submitButtonTitle" = "Submit";
 "quizzes.submitButtonTitleForTeacherAlert" = "Submit";
@@ -360,7 +360,7 @@ No worries!";
 "assignment.pauseAlertPauseButtonTitle" = "Pause exercise";
 "assignment.pauseAlertCancelButtonTitle" = "Return";
 "assignment.correctTitle" = "This answer is correct";
-"assignment.incorrectTitle" = "This question isn't correct";
+"assignment.incorrectTitle" = "This answer isn't correct";
 "assignment.questionIsPending" = "This question is pending";
 "assignment.notGraded" = "Not graded yet";
 "assignment.submittedAlertTitle" = "Exercise has been submitted!";
@@ -369,6 +369,7 @@ No worries!";
 "assignment.incorrect" = "Not correct";
 "assignment.notReviewed" = "Not reviewed";
 "assignment.needsImprovement" = "Needs improvement";
+"assignment.descriptionTitle" = "Description";
 
 "navigation.back" = "Back";
 

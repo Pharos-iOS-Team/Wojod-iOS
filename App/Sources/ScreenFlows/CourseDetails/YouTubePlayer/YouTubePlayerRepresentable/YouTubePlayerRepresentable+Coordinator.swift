@@ -6,6 +6,7 @@ import SwiftUI
 public extension YouTubePlayerRepresentable {
     class Coordinator: NSObject, YTPlayerViewDelegate {
         var parent: YouTubePlayerRepresentable
+        var wasMuted: Bool = false
 
         public init(parent: YouTubePlayerRepresentable) {
             self.parent = parent
@@ -24,6 +25,10 @@ public extension YouTubePlayerRepresentable {
             playerView.loadVideoWithCurrentTime()
             if parent.didEnterBackground {
                 playerView.pauseVideo()
+            }
+            if UIScreen.main.isCaptured {
+                playerView.mute()
+                wasMuted = true
             }
         }
 

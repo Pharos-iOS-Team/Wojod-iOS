@@ -296,16 +296,8 @@ class AssessmentDetailsViewController: UIViewController {
 
         assignmentQuestionStateView?.configureAnswerState(
             question.answerState,
-            teacherSelction: viewModel.getTeacherLocalGradesForQuestion(at: index)?.status,
             questionType: question.type,
             isAnswered: question.isAnswered
-        )
-        assignmentQuestionStateView?.setQuestionComment(
-            question.comment,
-            question.answerState,
-            questionType: question.type,
-            isAnswered: question.isAnswered,
-            teacherSelction: viewModel.getTeacherLocalGradesForQuestion(at: index)?.status
         )
     }
 

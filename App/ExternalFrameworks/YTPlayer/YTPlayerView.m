@@ -122,6 +122,14 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
   [self evaluateJavaScript:@"player.stopVideo();"];
 }
 
+- (void)mute {
+  [self evaluateJavaScript:@"player.mute();"];
+}
+
+- (void)unMute {
+  [self evaluateJavaScript:@"player.unMute();"];
+}
+
 - (void)seekToSeconds:(float)seekToSeconds allowSeekAhead:(BOOL)allowSeekAhead {
   NSNumber *secondsValue = [NSNumber numberWithFloat:seekToSeconds];
   NSString *allowSeekAheadValue = [self stringForJSBoolean:allowSeekAhead];

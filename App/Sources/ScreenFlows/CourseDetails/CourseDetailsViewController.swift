@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 import VdoFramework
 import Photos
+import ComposableArchitecture
 import SwiftUI
 
 internal enum CourseState {
@@ -116,6 +117,7 @@ class CourseDetailsViewController: UIViewController {
         setHeader()
         shouldShowQRCodeScanner()
         applyScreenshotPreventingView()
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerMuteState), name: UIScreen.capturedDidChangeNotification, object: nil)
     }
 
     private func setHeader() {
@@ -549,6 +551,30 @@ class CourseDetailsViewController: UIViewController {
         }.resume()
     }
 
+    private func presentPDF(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        showLoadingIndicator()
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self, let data, error == nil else { return }
+            let tmpURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "document.pdf")
+            do {
+                try data.write(to: tmpURL)
+            } catch {
+                return
+            }
+            DispatchQueue.main.async {
+                self.hideLoadingIndicator()
+                let pdfVC = PDFViewController(itemUrl: tmpURL, dismissAction: { [weak self] in
+                    self?.dismiss(animated: true)
+                })
+                let navController = UINavigationController(rootViewController: pdfVC)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true)
+            }
+        }.resume()
+    }
+
     func share(url: URL) {
         documentInteractionController.url = url
         documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
@@ -931,15 +957,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
                         if materials?.videos?[indexPath.row].link.isYouTubeLink ?? false {
-                            let playerView = YouTubePlayerView(
-                                    store: .init(
-                                        initialState: .init(videoURL: url),
-                                        reducer: { YouTubePlayer() }
-                                    )
-                                )
-                                let hostingController = UIHostingController(rootView: playerView)
-                               hostingController.modalPresentationStyle = .fullScreen
-                                self.present(hostingController, animated: true)
+                            presentYouTubePlayer(url: url)
                         } else {
                             UIApplication.shared.open(url)
                         }
@@ -951,12 +969,17 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
             case .documents:
                 activeSubscreen = .file
-                if let linkURL = materials?.documents?[indexPath.row].link {
+                let doc = materials?.documents?[indexPath.row]
+                if let linkURL = doc?.link {
                     let safariViewCtrl = SFSafariViewController(url: URL(string: linkURL)!)
                     present(safariViewCtrl, animated: true)
                 } else {
-                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(materials?.documents?[indexPath.row].fileUrl ?? "")
-                    storeAndShare(withURLString: documentURL.absoluteString)
+                    let documentURL = AppEnvironment.baseURL.appendingPathComponent(doc?.fileUrl ?? "")
+                    if doc?.contentType == "application/pdf" {
+                        presentPDF(from: documentURL.absoluteString)
+                    } else {
+                        storeAndShare(withURLString: documentURL.absoluteString)
+                    }
                 }
             case .quizzes:
                 let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
@@ -1024,15 +1047,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                 }
                 if let url = URL(string: video.link ?? "") {
                     if video.link.isYouTubeLink {
-                        let playerView = YouTubePlayerView(
-                                store: .init(
-                                    initialState: .init(videoURL: url),
-                                    reducer: { YouTubePlayer() }
-                                )
-                            )
-                            let hostingController = UIHostingController(rootView: playerView)
-                           hostingController.modalPresentationStyle = .fullScreen
-                            self.present(hostingController, animated: true)
+                        presentYouTubePlayer(url: url)
                     } else {
                         UIApplication.shared.open(url)
                     }
@@ -1046,7 +1061,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-                    storeAndShare(withURLString: documentURL.absoluteString)
+                    if document.contentType == "application/pdf" {
+                        presentPDF(from: documentURL.absoluteString)
+                    } else {
+                        storeAndShare(withURLString: documentURL.absoluteString)
+                    }
                 }
             }
         }
@@ -1098,6 +1117,19 @@ extension CourseDetailsViewController: UIDocumentInteractionControllerDelegate {
 extension CourseDetailsViewController: AssessmentDetailsDelegate {
     func didFinishAssessment(with id: Int?) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - YouTube Player
+
+extension CourseDetailsViewController {
+    private func presentYouTubePlayer(url: URL) {
+        var initialState = YouTubePlayer.State(videoURL: url)
+        initialState.isMuted = UIScreen.main.isCaptured
+        let store = StoreOf<YouTubePlayer>(initialState: initialState, reducer: { YouTubePlayer() })
+        let hostingController = UIHostingController(rootView: YouTubePlayerView(store: store))
+        hostingController.modalPresentationStyle = .fullScreen
+        present(hostingController, animated: true)
     }
 }
 
@@ -1274,8 +1306,14 @@ extension CourseDetailsViewController {
 
 // MARK: - AssetPlaybackDelegate
 extension CourseDetailsViewController:  AssetPlaybackDelegate , UIViewControllerTransitioningDelegate{
+    @objc private func updatePlayerMuteState() {
+        player?.isMuted = UIScreen.main.isCaptured
+    }
+
     func streamPlaybackManager(playerReadyToPlay player: AVPlayer) {
+        self.player = player
         player.play()
+        player.isMuted = UIScreen.main.isCaptured
     }
     
     func streamPlaybackManager(playerCurrentItemDidChange player: AVPlayer) {

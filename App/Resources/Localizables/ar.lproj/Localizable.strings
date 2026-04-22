@@ -299,7 +299,7 @@
 "quizzes.numberOfQuestions" = "%@ سؤال";
 "quizzes.chooseOneOrMoreAnswers" = "إختر اجابة او أكثر ";
 "quizzes.thisQuestionGrade" = "درجة هذا السؤال";
-"quizzes.questionComment" = "تعليق";
+"quizzes.questionCorrection" = "التصحيح";
 "quizzes.yourGrade" = "الدرجة";
 "quizzes.finish" = "تم";
 "quizzes.finishMessage" = "هل أنت متأكد من طلب الارسال؟";
@@ -308,6 +308,7 @@
 "quizzes.notGradedYet" = "لم يتم تقييمه بعد";
 "quizzes.notFinalGrade" = "هذه الدرجة ليست نهائية";
 "quizzes.yourAnswer" = "إجابتك";
+"quizzes.modelAnswer" = "الإجابة النموذجية";
 "quizzes.submitButtonTitle" = "إرسال";
 "quizzes.submitButtonTitleForTeacherAlert" = "موافق";
 "quizzes.quizGrade" = "درجة الاختبار";
@@ -367,6 +368,7 @@
 "assignment.incorrect" = "الاجابة خاطئة";
 "assignment.notReviewed" = "لم يتم مراجعته";
 "assignment.needsImprovement" = "يحتاج إلى التحسين";
+"assignment.descriptionTitle" = "التفاصيل";
 
 "navigation.back" = "رجوع";
 

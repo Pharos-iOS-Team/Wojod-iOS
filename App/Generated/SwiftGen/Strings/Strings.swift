@@ -24,11 +24,15 @@ internal enum L10n {
     internal static var correctTitle: String {
         return L10n.tr("Localizable", "assignment.correctTitle")
       }
+    /// Description
+    internal static var descriptionTitle: String {
+        return L10n.tr("Localizable", "assignment.descriptionTitle")
+      }
     /// Not correct
     internal static var incorrect: String {
         return L10n.tr("Localizable", "assignment.incorrect")
       }
-    /// This question isn't correct
+    /// This answer isn't correct
     internal static var incorrectTitle: String {
         return L10n.tr("Localizable", "assignment.incorrectTitle")
       }
@@ -771,6 +775,10 @@ internal enum L10n {
     internal static var minutes: String {
         return L10n.tr("Localizable", "quizzes.minutes")
       }
+    /// Model Answer
+    internal static var modelAnswer: String {
+        return L10n.tr("Localizable", "quizzes.modelAnswer")
+      }
     /// Next
     internal static var next: String {
         return L10n.tr("Localizable", "quizzes.next")
@@ -839,9 +847,9 @@ internal enum L10n {
     internal static var question: String {
         return L10n.tr("Localizable", "quizzes.question")
       }
-    /// Comment
-    internal static var questionComment: String {
-        return L10n.tr("Localizable", "quizzes.questionComment")
+    /// Correction
+    internal static var questionCorrection: String {
+        return L10n.tr("Localizable", "quizzes.questionCorrection")
       }
     /// Questions
     internal static var questions: String {

@@ -10,6 +10,7 @@ class AssessmentQuestion: Codable {
     let title: String?
     var comment: String?
     var note: String?
+    var modelAnswer: String?
     let questionType: String?
     var mark: Double?
     var studentMark: Double?
@@ -29,6 +30,7 @@ class AssessmentQuestion: Codable {
     var questioAnswerState: String?
     var answerState: AnswerState = .notReviewed
     var submissionId: Int?
+    var correctionImages: [CorrectionImage]?
     var submittedAttachment: String? {
         didSet {
             answerManagedObject?.setValue(submittedAttachment, forKey: "attachmentURL")
@@ -88,6 +90,7 @@ class AssessmentQuestion: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id, title, choices, comment, note
+        case modelAnswer = "model_answer"
         case mark, position, difficulty
         case studentMark = "student_mark"
         case fileName = "file_name"
@@ -103,6 +106,7 @@ class AssessmentQuestion: Codable {
         case questioAnswerState = "answer_state"
         case submissionId = "submission_id"
         case isSingleChoice = "is_single_choice"
+        case correctionImages = "correction_images"
     }
 
     // swiftlint:disable function_body_length
@@ -113,6 +117,7 @@ class AssessmentQuestion: Codable {
         title = try values.decodeIfPresent(String.self, forKey: .title)
         comment = try values.decodeIfPresent(String.self, forKey: .comment)
         note = try values.decodeIfPresent(String.self, forKey: .note)
+        modelAnswer = try values.decodeIfPresent(String.self, forKey: .modelAnswer)
         questionType = try values.decodeIfPresent(String.self, forKey: .questionType)
         mark = try values.decodeIfPresent(Double.self, forKey: .mark)
         studentMark = try values.decodeIfPresent(Double.self, forKey: .studentMark)
@@ -132,6 +137,7 @@ class AssessmentQuestion: Codable {
         configureAnswerStatus(state: questioAnswerState)
         isAnswered = isQuestionAnswered()
         isSingleChoice = try values.decodeIfPresent(Bool.self, forKey: .isSingleChoice)
+        correctionImages = try values.decodeIfPresent([CorrectionImage].self, forKey: .correctionImages)
     }
 
     private func configureAnswerStatus(state: String?) {
@@ -206,5 +212,17 @@ class AssessmentQuestion: Codable {
             "ignore_attachment": String(ignoreAttachment),
             "ignore_free_text_answer": String(ignoreFreeTextAnswer)
         ]
+    }
+}
+
+struct CorrectionImage: Codable {
+    let fileUrl: String?
+    let filename: String?
+    let contentType: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case fileUrl = "file_url"
+        case filename
+        case contentType = "content_type"
     }
 }

@@ -72,7 +72,6 @@ final class User: ModelDecodable {
     var organizations: [Organization] = []
     let logoutApiClient = LogoutApiClient()
     let profileApiClient = ProfileApiClient()
-    let screenShotAlertApiClient = ScreenshotAlertApiClient()
 
     private init() {}
 
@@ -156,9 +155,5 @@ final class User: ModelDecodable {
         } else if let error = error {
             handleMoyaError(error: error, completionHandler: completionHandler)
         }
-    }
-
-    func screenshotAlert(screenName: String, isRecording: Bool) {
-        screenShotAlertApiClient.screenshotAlert(screenName: screenName, isRecording: isRecording) { _, _ in }
     }
 }

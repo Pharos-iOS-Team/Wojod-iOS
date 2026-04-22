@@ -7,6 +7,7 @@ import UIKit
 struct YouTubePlayer: Reducer {
     struct State: Equatable {
         @BindingState var isLoading: Bool = true
+        @BindingState var isMuted: Bool = false
         @BindingState var bufferedTime: TimeInterval = .zero
         @BindingState var playedTime: TimeInterval = .zero
         @BindingState var videoDuration: TimeInterval = .zero

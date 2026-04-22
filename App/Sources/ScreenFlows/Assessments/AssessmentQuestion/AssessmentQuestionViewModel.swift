@@ -46,11 +46,11 @@ class AssessmentQuestionViewModel {
     var questionHeaderText: String? {
         switch assessmentQuestion?.type {
         case .trueOrFalse:
-            return "quizzes.chooseOneAnswer".localiz()
+            return L10n.Quizzes.chooseOneAnswer
         case .mcq:
-            return "quizzes.chooseOneOrMoreAnswers".localiz()
+            return L10n.Quizzes.chooseOneOrMoreAnswers
         case .freeText:
-            return "quizzes.writeAnswer".localiz()
+            return  L10n.Quizzes.writeAnswer
         default:
             return nil
         }
@@ -86,10 +86,12 @@ class AssessmentQuestionViewModel {
             _ isCorrectAnswer: Bool?,
             _ answerState: AssessmentQuestion.AnswerState,
             _ question: AssessmentQuestion?,
-            _ isComment: Bool?
+            _ isComment: Bool?,
+            _ modelAnswer: String?
         )
         case teacherCommentHeader(comment: String?)
         case teacherComment(comment: String?)
+        case commentAndImages(question: AssessmentQuestion, module: AssessmentsOverViewViewModel.Module)
     }
 
     // MARK: - Closures
@@ -112,7 +114,7 @@ class AssessmentQuestionViewModel {
         return mark == nil ? nil : (mark ?? 0.0 > 0.0)
     }
 
-    private func appendFreeTextSection(for question: AssessmentQuestion, answer: String?, isCorrectAnswer: Bool?, isComment: Bool? = false) {
+    private func appendFreeTextSection(for question: AssessmentQuestion, answer: String?, isCorrectAnswer: Bool?, isComment: Bool? = false, modelAnswer: String?) {
         let freeTextQuestionItem: QuestionSectionItem = .textView(
             answer,
             textAlignment,
@@ -121,11 +123,21 @@ class AssessmentQuestionViewModel {
             isCorrectAnswer,
             question.answerState,
             question,
-            isComment
+            isComment,
+            modelAnswer
         )
         let questionSection: QuestionSection = .body([freeTextQuestionItem])
         dataSource.append(questionSection)
     }
+
+    private func appendCommentAndImagesSection(for question: AssessmentQuestion) {
+        let hasComment = question.comment?.isValid == true
+        let hasImages = !(question.correctionImages?.isEmpty ?? true)
+        guard hasComment || hasImages else { return }
+        let item: QuestionSectionItem = .commentAndImages(question: question, module: module)
+        dataSource.append(.body([item]))
+    }
+
 
     private func appendMCQSection(question: AssessmentQuestion) {
         var questionSection = [QuestionSectionItem]()
@@ -215,15 +227,12 @@ class AssessmentQuestionViewModel {
         case .mcq, .trueOrFalse:
             appendMCQSection(question: question)
         case .freeText:
-            appendFreeTextSection(for: question, answer: question.submittedFreeTextAnswer, isCorrectAnswer: isCorrectFreeTextAnswer(for: question))
-            if module == .quizzes,
-                assessmentStatus == .closed,
-                let comment = question.comment,
-                comment.isValid {
-                appendFreeTextSection(for: question, answer: comment, isCorrectAnswer: true, isComment: true)
-            }
+          appendFreeTextSection(for: question, answer: question.submittedFreeTextAnswer, isCorrectAnswer: isCorrectFreeTextAnswer(for: question), modelAnswer: question.modelAnswer)
         default:
             return
+        }
+        if assessmentStatus == .closed {
+            appendCommentAndImagesSection(for: question)
         }
         if !(question.note?.isEmpty ?? true) {
             dataSource.append(.note(question.note))

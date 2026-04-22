@@ -29,44 +29,20 @@ class AssignmentQuestionStateView: UIView {
         UINib(nibName: Nib.assignmentQuestionStateView.rawValue, bundle: nil).instantiate(withOwner: nil, options: nil).first as? AssignmentQuestionStateView
     }
 
-    func setQuestionComment(_ text: String?, _ state: AssessmentQuestion.AnswerState, questionType: AssessmentQuestion.QuestionType, isAnswered: Bool, teacherSelction: AssessmentQuestion.AnswerState?) {
-        if questionType == .freeText, isAnswered, teacherSelction == nil {
-            stackView.spacing = 5
-            questionCommentLabel.font = UIFont(font: FontFamily.Inter.regular, size: 11)
-            questionCommentLabel.text = "assignment.notGraded".localiz()
-            questionCommentLabel.textAlignment = "assignment.notGraded".localiz().dominantTextAlignment
-            return
-        }
-        guard let comment = text, comment.isValid else {
-            questionCommentLabel.text = nil
-            stackView.spacing = 0
-            return
-        }
-        stackView.spacing = 5
-        questionCommentLabel.font = UIFont(font: FontFamily.Inter.regular, size: 11)
-        questionCommentLabel.text = comment
-        questionCommentLabel.textAlignment = Language.textAlignment
-    }
-
     func configureAnswerState(
         _ state: AssessmentQuestion.AnswerState,
-        teacherSelction: AssessmentQuestion.AnswerState?,
         questionType: AssessmentQuestion.QuestionType,
         isAnswered: Bool
     ) {
-        if questionType == .freeText, isAnswered {
-            setupViewForTeacherReviewStateOnly(teacherSelction: teacherSelction)
-            return
-        }
         switch state {
         case .correct:
-            setupView(title: "assignment.correctTitle".localiz(), color: Colors.green.color)
+            setupView(title: L10n.Assignment.correctTitle, color: Colors.green.color)
         case .incorrect:
-            setupView(title: "assignment.incorrectTitle".localiz(), color: .red)
+            setupView(title: L10n.Assignment.incorrectTitle, color: .red)
         case .notReviewed:
-            setupView(title: "assignment.notReviewedTitle".localiz(), color: Colors.sendButtonColor.color)
+            setupView(title: L10n.Assignment.notReviewed, color: Colors.sendButtonColor.color)
         case .needsImprovement:
-            setupView(title: "assignment.needsImprovementTitle".localiz(), color: .orange)
+            setupView(title: L10n.Assignment.needsImprovement, color: .orange)
         }
     }
 
@@ -75,28 +51,6 @@ class AssignmentQuestionStateView: UIView {
         questionStateLabel.textColor = color
         backgroundColor = color.withAlphaComponent(commentBackgroundAlpha)
         layer.borderWidth = 0
-    }
-
-    private func setupViewForTeacherReviewStateOnly(teacherSelction: AssessmentQuestion.AnswerState?) {
-        backgroundColor = .white
-        layer.borderWidth = 2
-        layer.borderColor = Colors.superLightGrey.color.cgColor
-        layer.cornerRadius = 10
-        handleTeacherGradeSelection(teacherSelction: teacherSelction)
-    }
-
-    private func handleTeacherGradeSelection(teacherSelction: AssessmentQuestion.AnswerState?) {
-        switch teacherSelction {
-        case .correct:
-            questionStateLabel.text = "assignment.correctTitle".localiz()
-            questionStateLabel.textColor = Colors.green.color
-        case .incorrect:
-            questionStateLabel.text = "assignment.incorrectTitle".localiz()
-            questionStateLabel.textColor = .red
-        default:
-            questionStateLabel.text = "assignment.questionIsPending".localiz()
-            questionStateLabel.textColor = Colors.sendButtonColor.color
-        }
     }
 }
 
