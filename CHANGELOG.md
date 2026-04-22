@@ -27,6 +27,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
+- Fixed Ci/CD pipeline & add staging workflow.  
+  Task: [CPI-339](https://jira.pharos-solutions.de/browse/CPI-339) | PR: [#26](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/26) | Author: [Sara Rady](https://github.com/sara-rady)
 - Fixed restriction on PDF sharing; it is now prevented in `SquareCenter` only.
   Task: [CPI-338](https://jira.pharos-solutions.de/browse/CPI-338) | PR: [#27](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/27) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
