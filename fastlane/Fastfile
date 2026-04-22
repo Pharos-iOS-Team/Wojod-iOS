@@ -51,7 +51,21 @@ platform :ios do
         skip_waiting_for_build_processing: true,
         changelog: "Alpha"
     )
-
+    
+      jira_ticket_id.empty = sh("echo '#{ENV["PULL_REQUEST_BODY"]}' | grep -o -E '[A-Z]+-[0-9]+' | tr -d '\n'")
+      
+      if !jira_ticket_id.empty?
+        version = get_version_number(xcodeproj: xcodeproj)
+        build_number = get_build_number(xcodeproj: xcodeproj)
+        
+        jira(
+          url: ENV['jira_url'],
+          username: ENV['JIRA_USERNAME'],
+          password: ENV['JIRA_PASSWORD'],
+          ticket_id: jira_ticket_id,
+          comment_text: "*Wojod(Staging):* *V#{version}* Build *\##{build_number}* is ready for testing."
+        )
+      end
   end
 
   # ---------------------------- Release Lane ---------------------------- #
@@ -59,6 +73,9 @@ platform :ios do
   desc "Push a new release build to the App Store"
   lane :upload_to_appstore do
     generate_ipa
+
+    release_notes_file = File.join(File.dirname(__FILE__), 'release_notes.txt')
+    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file) : "Bug fixes and performance improvements"
 
     deliver(
       api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
@@ -74,6 +91,7 @@ platform :ios do
       force: true, # Skip HTMl report verification
       skip_metadata: false,
       skip_screenshots: true,
+      whats_new: release_notes,
       submission_information: {
         add_id_info_uses_idfa: false,
         add_id_info_serves_ads: false,
