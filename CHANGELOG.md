@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Force update alert using `siren`.  
+  Task: [CPI-337](https://jira.pharos-solutions.de/browse/CPI-337) | PR: [#24](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/24) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated

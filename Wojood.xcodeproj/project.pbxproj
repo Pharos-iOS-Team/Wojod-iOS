@@ -389,6 +389,8 @@
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
+		D5B48A152F99321400CAD7B8 /* Siren in Frameworks */ = {isa = PBXBuildFile; productRef = D5B48A142F99321400CAD7B8 /* Siren */; };
+		D5B48A172F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */; };
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
@@ -855,6 +857,7 @@
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
+		D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateAppDelegate.swift; sourceTree = "<group>"; };
 		D5B5426A2F334CAC00694BA3 /* Square-Center.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Square-Center.xcassets"; sourceTree = "<group>"; };
 		D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Square-Center.xcconfig"; sourceTree = "<group>"; };
 		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -942,6 +945,7 @@
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
 				BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */,
+				D5B48A152F99321400CAD7B8 /* Siren in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
 				D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */,
@@ -1463,6 +1467,7 @@
 				7723AD1C261C6134007C0B97 /* ReachabilityAppDelegate.swift */,
 				7723AD1D261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift */,
 				7723AD1E261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift */,
+				D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -2427,6 +2432,7 @@
 				D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */,
 				D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */,
 				D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */,
+				D5B48A142F99321400CAD7B8 /* Siren */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2507,6 +2513,7 @@
 				D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */,
 				D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2895,6 +2902,7 @@
 				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
+				D5B48A172F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift in Sources */,
 				E8C9EF73263C546D0023D2B1 /* NoCutPasteField.swift in Sources */,
 				268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */,
 				D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */,
@@ -3218,7 +3226,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3253,7 +3261,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3386,7 +3394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3498,7 +3506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3610,7 +3618,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3722,7 +3730,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3996,6 +4004,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ArtSabintsev/Siren";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.3;
+			};
+		};
 		D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -4157,6 +4173,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		D5B48A142F99321400CAD7B8 /* Siren */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */;
+			productName = Siren;
 		};
 		D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
