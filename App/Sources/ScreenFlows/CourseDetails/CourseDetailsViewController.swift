@@ -975,7 +975,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(doc?.fileUrl ?? "")
-                    if doc?.contentType == "application/pdf" {
+                    if doc?.contentType == "application/pdf" && AppEnvironment.appName == .squareCenter {
                         presentPDF(from: documentURL.absoluteString)
                     } else {
                         storeAndShare(withURLString: documentURL.absoluteString)
@@ -1061,7 +1061,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-                    if document.contentType == "application/pdf" {
+                    if document.contentType == "application/pdf" && AppEnvironment.appName == .squareCenter {
                         presentPDF(from: documentURL.absoluteString)
                     } else {
                         storeAndShare(withURLString: documentURL.absoluteString)

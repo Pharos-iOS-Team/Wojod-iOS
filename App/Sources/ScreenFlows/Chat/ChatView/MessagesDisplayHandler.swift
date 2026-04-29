@@ -35,7 +35,7 @@ class MessagesDisplayHandler: MessagesDisplayDelegate {
         avatarView.isHidden = true
     }
 
-    func configureMediaMessageImageView(
+    @MainActor func configureMediaMessageImageView(
         _ imageView: UIImageView,
         for message: MessageType,
         at indexPath: IndexPath,

@@ -27,7 +27,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed restriction on PDF sharing; it is now prevented in `SquareCenter` only.
+  Task: [CPI-338](https://jira.pharos-solutions.de/browse/CPI-338) | PR: [#27](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/27) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 
