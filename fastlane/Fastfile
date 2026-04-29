@@ -108,10 +108,10 @@ platform :ios do
       reject_if_possible: true,
       automatic_release: true,
       skip_binary_upload: false,
-      force: true, # Skip HTMl report verification
-      skip_metadata: true,
+      force: true,
       skip_screenshots: true,
-      whats_new: release_notes,
+      skip_metadata: false,
+      release_notes: { "en-US" => release_notes },
       submission_information: {
         add_id_info_uses_idfa: false,
         add_id_info_serves_ads: false,

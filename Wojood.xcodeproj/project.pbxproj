@@ -391,9 +391,9 @@
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
+		D5B489E72F98E8EF00CAD7B8 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
 		D5B48A152F99321400CAD7B8 /* Siren in Frameworks */ = {isa = PBXBuildFile; productRef = D5B48A142F99321400CAD7B8 /* Siren */; };
 		D5B48A172F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */; };
-		D5B489E72F98E8EF00CAD7B8 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
@@ -858,10 +858,10 @@
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
+		D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateAppDelegate.swift; sourceTree = "<group>"; };
 		D5B48A432F9955C900CAD7B8 /* alpha.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = alpha.yml; sourceTree = "<group>"; };
 		D5B48A462F99567800CAD7B8 /* .env.debug */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env.debug; sourceTree = "<group>"; };
 		D5B48A592F9960D800CAD7B8 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateAppDelegate.swift; sourceTree = "<group>"; };
 		D5B5426A2F334CAC00694BA3 /* Square-Center.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Square-Center.xcassets"; sourceTree = "<group>"; };
 		D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Square-Center.xcconfig"; sourceTree = "<group>"; };
 		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -3237,7 +3237,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3272,7 +3272,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3405,7 +3405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3517,7 +3517,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3629,7 +3629,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3741,7 +3741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
