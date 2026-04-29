@@ -378,12 +378,14 @@
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
 		D5070CD92E65FD5C00728D01 /* VersionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5070CD82E65FD5C00728D01 /* VersionResponse.swift */; };
 		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
+		D5125F4D2F9972A90027E9EB /* BunnyStreamAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D5125F4C2F9972A90027E9EB /* BunnyStreamAPI */; };
+		D5125F4F2F9972A90027E9EB /* BunnyStreamPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = D5125F4E2F9972A90027E9EB /* BunnyStreamPlayer */; };
 		D518587A2F680A6D00D1A3BD /* ScreenshotPreventingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51858792F680A6D00D1A3BD /* ScreenshotPreventingView.swift */; };
 		D51B99162F3CE5CA00B77BA4 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */; };
 		D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5276DF72F41FB180045A2EA /* TaskExt.swift */; };
 		D53B5CDD2E6888EC00EBB62C /* GetOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
-		D53E7D192F90CFC00052D8BC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
+		D5647A402F6A247100518611 /* BunnyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */; };
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
@@ -391,6 +393,7 @@
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
 		D5B48A152F99321400CAD7B8 /* Siren in Frameworks */ = {isa = PBXBuildFile; productRef = D5B48A142F99321400CAD7B8 /* Siren */; };
 		D5B48A172F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */; };
+		D5B489E72F98E8EF00CAD7B8 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
@@ -851,6 +854,7 @@
 		D53B5CDC2E6888E200EBB62C /* GetOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOTPRequestModel.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
 		D53E7D182F90CFC00052D8BC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyPlayerView.swift; sourceTree = "<group>"; };
 		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
@@ -936,6 +940,7 @@
 				BC34242A2D6E208E005E26DE /* FirebaseMessaging in Frameworks */,
 				BC6B69E52C189ED700E990C0 /* ObjectMapper in Frameworks */,
 				BC6B69E22C189E9900E990C0 /* M13Checkbox in Frameworks */,
+				D5125F4D2F9972A90027E9EB /* BunnyStreamAPI in Frameworks */,
 				BC3424262D6E208E005E26DE /* FirebaseCore in Frameworks */,
 				380B135626B7F89D00CB5811 /* DTPhotoViewerController in Frameworks */,
 				BC39F5EA2D64E6F30038A9F1 /* Starscream in Frameworks */,
@@ -954,6 +959,7 @@
 				BC39F5ED2D64E7C40038A9F1 /* SwiftEntryKit in Frameworks */,
 				BC3424242D6E208E005E26DE /* FirebaseAnalytics in Frameworks */,
 				BC6B69D02C1896D800E990C0 /* Kingfisher in Frameworks */,
+				D5125F4F2F9972A90027E9EB /* BunnyStreamPlayer in Frameworks */,
 				BC6B69D32C1897AA00E990C0 /* SwiftyUserDefaults in Frameworks */,
 				BC8C1E9B2DA7CE01000AED7F /* MessageKit in Frameworks */,
 				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
@@ -1305,6 +1311,7 @@
 		38706CD7265E6DE100440B53 /* CourseDetails */ = {
 			isa = PBXGroup;
 			children = (
+				D5647A3F2F6A247100518611 /* BunnyPlayer */,
 				385CC10926641C9900A091FD /* Views */,
 				385CC0A5265ED46F00A091FD /* TableViewHeaders */,
 				38706CE4265E91CD00440B53 /* Cells */,
@@ -2284,6 +2291,14 @@
 			path = AVFoundationExtensions;
 			sourceTree = "<group>";
 		};
+		D5647A3F2F6A247100518611 /* BunnyPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */,
+			);
+			path = BunnyPlayer;
+			sourceTree = "<group>";
+		};
 		D56A77E12F33588000CEBC97 /* Square-Center */ = {
 			isa = PBXGroup;
 			children = (
@@ -2433,6 +2448,8 @@
 				D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */,
 				D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */,
 				D5B48A142F99321400CAD7B8 /* Siren */,
+				D5125F4C2F9972A90027E9EB /* BunnyStreamAPI */,
+				D5125F4E2F9972A90027E9EB /* BunnyStreamPlayer */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2514,6 +2531,7 @@
 				D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */,
+				D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -2770,6 +2788,7 @@
 				7744F6C72656741800F429F5 /* HTTPStatusCode.swift in Sources */,
 				3802287826CBDBA0008E41D4 /* Advertisements.swift in Sources */,
 				38659BEB26B6D2F900E3BFE9 /* SubjectsCollectionViewDataObject.swift in Sources */,
+				D5647A402F6A247100518611 /* BunnyPlayerView.swift in Sources */,
 				7723ADA4261C70D6007C0B97 /* Language.swift in Sources */,
 				388AA9A6269EF6BF00C61C0D /* HomeTableViewHeader.swift in Sources */,
 				385CC0F0266116EB00A091FD /* LessonsAttachmentsModel.swift in Sources */,
@@ -2791,7 +2810,6 @@
 				38659C3F26B6E07600E3BFE9 /* Nib.swift in Sources */,
 				E85C748D2640A5B90097F115 /* KeyValue.swift in Sources */,
 				38659BB926B6D2E600E3BFE9 /* ApiManager.swift in Sources */,
-				D53E7D192F90CFC00052D8BC /* PDFViewController.swift in Sources */,
 				38095C0726A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift in Sources */,
 				BC0F92BD2785DCBF001C5B3A /* OrganizationsListViewModel.swift in Sources */,
 				385CC0C7265F930C00A091FD /* CourseDetailsTarget.swift in Sources */,
@@ -3011,6 +3029,7 @@
 				BC767160262C6F870012155C /* SettingsTableViewCell.swift in Sources */,
 				E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */,
 				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,
+				D5B489E72F98E8EF00CAD7B8 /* PDFViewController.swift in Sources */,
 				BC19E5E52631A38E00CFA142 /* CreatePasswordTarget.swift in Sources */,
 				38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */,
 				7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */,
@@ -3996,6 +4015,14 @@
 				minimumVersion = 2.6.0;
 			};
 		};
+		D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sara-rady/bunny-stream-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
@@ -4168,6 +4195,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC995D272D64F74D00B86507 /* XCRemoteSwiftPackageReference "swift-pm-repo" */;
 			productName = VdoFramework;
+		};
+		D5125F4C2F9972A90027E9EB /* BunnyStreamAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */;
+			productName = BunnyStreamAPI;
+		};
+		D5125F4E2F9972A90027E9EB /* BunnyStreamPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */;
+			productName = BunnyStreamPlayer;
 		};
 		D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
