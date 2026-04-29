@@ -672,9 +672,6 @@
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
 		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
-		778887312E46AD8D0027D5D9 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		778887332E46AD8D0027D5D9 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
-		778887352E46AD8D0027D5D9 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
 		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -861,6 +858,9 @@
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
+		D5B48A432F9955C900CAD7B8 /* alpha.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = alpha.yml; sourceTree = "<group>"; };
+		D5B48A462F99567800CAD7B8 /* .env.debug */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env.debug; sourceTree = "<group>"; };
+		D5B48A592F9960D800CAD7B8 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateAppDelegate.swift; sourceTree = "<group>"; };
 		D5B5426A2F334CAC00694BA3 /* Square-Center.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Square-Center.xcassets"; sourceTree = "<group>"; };
 		D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Square-Center.xcconfig"; sourceTree = "<group>"; };
@@ -1417,6 +1417,7 @@
 		77135AAE2E46C1BE0032884F /* workflows */ = {
 			isa = PBXGroup;
 			children = (
+				D5B48A432F9955C900CAD7B8 /* alpha.yml */,
 				77135AAC2E46C1BE0032884F /* release.yml */,
 			);
 			path = workflows;
@@ -1734,23 +1735,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		778887322E46AD8D0027D5D9 /* screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				778887312E46AD8D0027D5D9 /* README.txt */,
-			);
-			path = screenshots;
-			sourceTree = "<group>";
-		};
 		7788873B2E46AD8D0027D5D9 /* fastlane */ = {
 			isa = PBXGroup;
 			children = (
-				778887322E46AD8D0027D5D9 /* screenshots */,
-				778887332E46AD8D0027D5D9 /* .env */,
-				778887352E46AD8D0027D5D9 /* Appfile */,
 				778887372E46AD8D0027D5D9 /* Deliverfile */,
+				D5B48A462F99567800CAD7B8 /* .env.debug */,
 				778887382E46AD8D0027D5D9 /* Fastfile */,
 				778887392E46AD8D0027D5D9 /* README.md */,
+				D5B48A592F9960D800CAD7B8 /* release_notes.txt */,
 				7788873A2E46AD8D0027D5D9 /* report.xml */,
 			);
 			path = fastlane;
