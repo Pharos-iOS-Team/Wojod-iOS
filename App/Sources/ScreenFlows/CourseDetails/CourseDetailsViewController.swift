@@ -954,7 +954,9 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.warning, message: materials?.videos?[indexPath.row].lockMessage ?? "")
                     return 
                 }
-                if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
+                if video.isBunnyVideo {
+                    presentBunnyVideo(video)
+                } else if !(materials?.videos?[indexPath.row].link?.isEmpty ?? true) {
                     if let url = URL(string: materials?.videos?[indexPath.row].link ?? "") {
                         if materials?.videos?[indexPath.row].link.isYouTubeLink ?? false {
                             presentYouTubePlayer(url: url)
@@ -975,7 +977,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(doc?.fileUrl ?? "")
-                    if doc?.contentType == "application/pdf" {
+                    if doc?.contentType == "application/pdf" && AppEnvironment.appName == .squareCenter {
                         presentPDF(from: documentURL.absoluteString)
                     } else {
                         storeAndShare(withURLString: documentURL.absoluteString)
@@ -1043,9 +1045,11 @@ extension CourseDetailsViewController: UITableViewDelegate {
             } else if let video = attachment as? Video {
                 guard !video.locked else {
                     showAlert(imageName: Images.danger.name, title: L10n.Global.Titles.warning, message: video.lockMessage ?? "")
-                    return 
+                    return
                 }
-                if let url = URL(string: video.link ?? "") {
+                if video.isBunnyVideo {
+                    presentBunnyVideo(video)
+                } else if let url = URL(string: video.link ?? "") {
                     if video.link.isYouTubeLink {
                         presentYouTubePlayer(url: url)
                     } else {
@@ -1061,7 +1065,7 @@ extension CourseDetailsViewController: UITableViewDelegate {
                     present(safariViewCtrl, animated: true)
                 } else {
                     let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-                    if document.contentType == "application/pdf" {
+                    if document.contentType == "application/pdf" && AppEnvironment.appName == .squareCenter {
                         presentPDF(from: documentURL.absoluteString)
                     } else {
                         storeAndShare(withURLString: documentURL.absoluteString)
@@ -1133,10 +1137,9 @@ extension CourseDetailsViewController {
     }
 }
 
-// MARK: - vdoCipher Functions
-
+// MARK: - Video Playback Functions
 extension CourseDetailsViewController {
-    func fetchAndPlayVideo(viewsCount: Int, video: Video) {
+    private func playVideoWithChecks<T>(viewsCount: Int, video: Video, presentPlayer: @escaping (T) -> Void) {
         guard viewsCount > .zero else {
             let errorMessage = hideViews ? L10n.CourseDetails.Main.videoPlaybackIssue : L10n.CourseDetails.Main.notEnoughViews
             alertHandler?.showInformationAlert(
@@ -1145,26 +1148,54 @@ extension CourseDetailsViewController {
             )
             return
         }
-
-        viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] encryptedVideoResponse in
+        
+        viewModel?.fetchVideoDetails(videoId: "\(video.id)") { [weak self] response in
             guard let self else { return }
-
+            
             if hideViews {
-                showLoadingIndicator()
-                presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
+                self.showLoadingIndicator()
+                presentPlayer(response as! T)
             } else {
-                alertHandler?.showConfirmAlert(
+                self.alertHandler?.showConfirmAlert(
                     title: L10n.Global.Titles.warning,
                     message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
                     confirmButtonTitle: L10n.Global.Actions.confirm
                 ) { _ in
                     self.showLoadingIndicator()
-                    self.presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
+                    presentPlayer(response as! T)
                 }
             }
         }
     }
-
+    
+    func presentBunnyVideo(_ video: Video) {
+        guard let guid = video.bunnyGuid,
+              let libraryIdString = video.bunnyLibraryId,
+              let libraryId = Int(libraryIdString),
+              let apiKey = video.bunnyApiKey
+        else { return }
+        
+        playVideoWithChecks(viewsCount: video.viewsRemaining ?? .zero, video: video) { [weak self] (_: EncryptedVideoResponse?) in
+            guard let self else { return }
+            let playerView = BunnyPlayerView(
+                videoId: guid,
+                libraryId: libraryId,
+                apiKey: apiKey
+            )
+            let hostingController = UIHostingController(rootView: playerView)
+            hostingController.modalPresentationStyle = .fullScreen
+            self.hideLoadingIndicator()
+            self.present(hostingController, animated: true)
+        }
+    }
+    
+    func fetchAndPlayVideo(viewsCount: Int, video: Video) {
+        playVideoWithChecks(viewsCount: viewsCount, video: video) { [weak self] (encryptedVideoResponse: EncryptedVideoResponse?) in
+            guard let self else { return }
+            self.presentVideo(video, encryptedVideoResponse: encryptedVideoResponse)
+        }
+    }
+    
     private func presentVideo(_ video: Video, encryptedVideoResponse: EncryptedVideoResponse?) {
         VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
             DispatchQueue.main.async { [weak self] in

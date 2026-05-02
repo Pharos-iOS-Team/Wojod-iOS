@@ -11,6 +11,7 @@ enum AppDelagateIndex: Int, CaseIterable {
     case thirdPartyLibraries
     case reachability
     case notifications
+    case forceUpdate
 }
 
 enum AppDelegateFactory {
@@ -21,7 +22,8 @@ enum AppDelegateFactory {
                 ScreensFlowConfigurationAppDelegate(),
                 ThirdPartiesConfiguratorAppDelegate(),
                 ReachabilityAppDelegate(),
-                NotificationConfigurationAppDelegate()
+                NotificationConfigurationAppDelegate(),
+                ForceUpdateAppDelegate()
             ]
         )
     }

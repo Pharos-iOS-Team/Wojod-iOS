@@ -30,6 +30,18 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Security
 - None.
 
+## [2.0.0] - 2026-04-29
+### Added
+- Added Force update alert using `siren`.  
+  Task: [CPI-337](https://jira.pharos-solutions.de/browse/CPI-337) | PR: [#24](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/24) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added Bunny player framework.  
+  Task: [CPI-323](https://jira.pharos-solutions.de/browse/CPI-323) | PR: [#18](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/18) | Author: [Sara Rady](https://github.com/sara-rady)
+### Fixed
+- Fixed Ci/CD pipeline & add staging workflow.  
+  Task: [CPI-339](https://jira.pharos-solutions.de/browse/CPI-339) | PR: [#26](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/26) | Author: [Sara Rady](https://github.com/sara-rady)
+- Fixed restriction on PDF sharing; it is now prevented in `SquareCenter` only.
+  Task: [CPI-338](https://jira.pharos-solutions.de/browse/CPI-338) | PR: [#27](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/27) | Author: [Sara Rady](https://github.com/sara-rady)
+
 ## [1.12.0] - 2026-04-20
 ### Added
 - Added Model Answer in Essay questions.  

@@ -45,10 +45,17 @@ struct Video: Codable {
     var daysRemaining: Int? 
     var lockMessage: String?
     var locked: Bool
+    var bunnyLibraryId: String?
+    var bunnyApiKey: String?
+    var bunnyGuid: String?
+
+    var isBunnyVideo: Bool { return bunnyGuid?.isValid ?? false }
 }
 
 struct EncryptedVideoResponse: Codable, Equatable {
     var otp: String?
     var playback: String?
     var updateId: Int?
+    var guid: String?
+    var libraryId: Int?
 }
