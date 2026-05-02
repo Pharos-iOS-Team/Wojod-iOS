@@ -1,0 +1,42 @@
+name: Alpha
+
+on:
+  pull_request:
+    branches: [develop, master, 'release/v**']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  upload-to-testflight:
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          clean: false
+          lfs: 'true'
+          submodules: 'recursive'
+          ssh-key: ${{ secrets.git_ssh_key }}
+          
+      - name: Upload Alpha Build
+        timeout-minutes: 30
+        run: |
+          fastlane alpha --env debug
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }}
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_PASSWORD: ${{ secrets.JIRA_PASSWORD }}
+          APP_STORE_KEY: ${{ secrets.STAGING_APP_STORE_KEY }}
+
+  post-actions:
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+    needs: [upload-to-testflight]
+
+    steps:
+      - name: Clean Xcode build cache
+        run: rm -rf ~/Library/Developer/Xcode/Archives

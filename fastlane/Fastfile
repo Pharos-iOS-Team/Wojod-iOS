@@ -26,11 +26,20 @@ default_platform(:ios)
 
 before_all do |lane|
   ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "500"
-  app_store_connect_api_key(
-    key_id: ENV["KEY_ID"],
-    issuer_id: ENV["ISSUER_ID"],
-    key_filepath: ENV["KEY_FILE_PATH"]
-  )
+
+  if ENV["APP_STORE_KEY"]
+    app_store_connect_api_key(
+      key_id: ENV["KEY_ID"],
+      issuer_id: ENV["ISSUER_ID"],
+      key_content: ENV["APP_STORE_KEY"]
+    )
+  else
+    app_store_connect_api_key(
+      key_id: ENV["KEY_ID"],
+      issuer_id: ENV["ISSUER_ID"],
+      key_filepath: ENV["KEY_FILE_PATH"]
+    )
+  end
 
 end
 
@@ -43,15 +52,40 @@ platform :ios do
 
   desc "Upload Alpha Version To TestFlight"
   lane :alpha do
+    jira_ticket_id = sh("echo '#{ENV["PULL_REQUEST_BODY"]}' | grep -o -E '[A-Z]+-[0-9]+' | head -n 1 | tr -d '\n'")
+
+    if !jira_ticket_id.empty?
+      ticket_number = jira_ticket_id.split('-').last
+      
+      ci_build = ENV['BUILD_NUMBER'] && !ENV['BUILD_NUMBER'].empty? ? ENV['BUILD_NUMBER'] : Time.now.to_i.to_s[-4..-1]
+      new_build_number = "#{ticket_number}.#{ci_build}"
+
+      increment_build_number(
+        build_number: new_build_number,
+        xcodeproj: PROJECT_NAME
+      )
+    end
+
     generate_ipa
 
     upload_to_testflight(
         api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
         app_identifier: BUNDLE_IDENTIFIER,
-        skip_waiting_for_build_processing: true,
-        changelog: "Alpha"
+        skip_waiting_for_build_processing: true
     )
-
+    
+    if !jira_ticket_id.empty?
+      version = get_version_number(xcodeproj: PROJECT_NAME)
+      build_number = get_build_number(xcodeproj: PROJECT_NAME)
+      
+      jira(
+        url: ENV['jira_url'],
+        username: ENV['JIRA_USERNAME'],
+        password: ENV['JIRA_PASSWORD'],
+        ticket_id: jira_ticket_id,
+        comment_text: "*Wojod(Staging):* *V#{version}* Build *##{build_number}* is ready for testing."
+      )
+    end
   end
 
   # ---------------------------- Release Lane ---------------------------- #
@@ -59,6 +93,9 @@ platform :ios do
   desc "Push a new release build to the App Store"
   lane :upload_to_appstore do
     generate_ipa
+
+    release_notes_file = File.join(File.dirname(__FILE__), 'release_notes.txt')
+    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file) : "Bug fixes and performance improvements"
 
     deliver(
       api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
@@ -71,9 +108,10 @@ platform :ios do
       reject_if_possible: true,
       automatic_release: true,
       skip_binary_upload: false,
-      force: true, # Skip HTMl report verification
-      skip_metadata: false,
+      force: true,
       skip_screenshots: true,
+      skip_metadata: false,
+      release_notes: { "en-US" => release_notes },
       submission_information: {
         add_id_info_uses_idfa: false,
         add_id_info_serves_ads: false,
