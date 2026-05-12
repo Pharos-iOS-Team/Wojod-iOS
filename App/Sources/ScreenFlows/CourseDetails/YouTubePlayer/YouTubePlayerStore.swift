@@ -28,6 +28,7 @@ struct YouTubePlayer: Reducer {
         @BindingState var rewindAnimationIsActive: Bool = false
         @BindingState var didEnterForground: Bool = false
         @BindingState var didEnterBackground: Bool = false
+        @BindingState var isLandscape: Bool = false
 
         var videoURL: URL
         var videoYouTubeId: String?
@@ -56,6 +57,7 @@ struct YouTubePlayer: Reducer {
         case showControllers
         case fastForward
         case rewind
+        case toggleOrientation
 
         // MARK: Screenshot
         case errorReceived(String)
