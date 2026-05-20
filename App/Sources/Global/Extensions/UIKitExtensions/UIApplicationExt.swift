@@ -30,3 +30,20 @@ extension UIApplication {
         return base
     }
 }
+
+extension UIApplication {
+    func requestOrientationChange(to mask: UIInterfaceOrientationMask) {
+        if #available(iOS 16.0, *) {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                let geometryPreferences = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: mask)
+                windowScene.requestGeometryUpdate(geometryPreferences) { error in
+                    print("Orientation change failed: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            let specificOrientation: UIInterfaceOrientation = (mask == .landscape) ? .landscapeRight : .portrait
+            UIDevice.current.setValue(specificOrientation.rawValue, forKey: "orientation")
+            UIViewController.attemptRotationToDeviceOrientation()
+        }
+    }
+}

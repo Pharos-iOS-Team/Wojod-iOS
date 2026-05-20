@@ -15,6 +15,8 @@ struct YouTubeControlsView: View {
     var changeSliderAction: (Bool) -> Void
     var startTimerAction: () -> Void
     var stopTimerAction: () -> Void
+    @Binding var isLandscape: Bool
+    var toggleOrientationAction: () -> Void
 
     var body: some View {
         VStack {
@@ -62,6 +64,16 @@ struct YouTubeControlsView: View {
                             selectorImage: Image(systemSymbol: .speedometer),
                             selectorImageFrame: 22
                         ))
+
+                        // Full-screen button
+                        Button(action: toggleOrientationAction) {
+                            Image(systemSymbol: isLandscape ? .arrowDownRightAndArrowUpLeft : .arrowUpLeftAndArrowDownRight)
+                                .font(.title2)
+                                .contentShape(Rectangle())
+                                .accentColor(Color.gray.opacity(0.9))
+                                .frame(width: 27)
+                        }
+                        .isHidden(UIDevice.current.userInterfaceIdiom == .pad)
                     }
                     .padding(.horizontal, 5)
                 }

@@ -21,6 +21,9 @@ extension YouTubePlayer {
                     UIApplication.shared.statusBarStyle = .lightContent
                     try? AVAudioSession.sharedInstance().setCategory(.playback)
                     state.phoneNumber = User.shared.mobileNumber ?? ""
+                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    let orientation = windowScene?.interfaceOrientation ?? .portrait
+                    state.isLandscape = orientation.isLandscape
                     if let youtubeId = state.videoURL.absoluteString.getYoutubeId() {
                         state.videoYouTubeId = youtubeId
                     } else {
@@ -40,6 +43,7 @@ extension YouTubePlayer {
                 case .onDisappear:
                     state.dismissWebView = true
                     UIApplication.shared.statusBarStyle = state.lastViewStatusBarStyle
+                    UIApplication.shared.requestOrientationChange(to: .all)
 
                 case .sendPlayedTime:
                     return .none // TODO: send playtime
@@ -127,6 +131,10 @@ extension YouTubePlayer {
                         }
                             .cancellable(id: CancelID.cancelAnimationTimer, cancelInFlight: true)
                     )
+
+                case .toggleOrientation:
+                    state.isLandscape.toggle()
+                    UIApplication.shared.requestOrientationChange(to: state.isLandscape ? .landscape : .portrait)
 
                 case .alert(.presented(.navigateBack)):
                     state.dismissWebView = true

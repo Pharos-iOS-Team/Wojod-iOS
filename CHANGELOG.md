@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Full screen button in YouTube.  
+  Task: [CPI-1341](https://jira.pharos-solutions.de/browse/CPI-341) | PR: [#29](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/29) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated
