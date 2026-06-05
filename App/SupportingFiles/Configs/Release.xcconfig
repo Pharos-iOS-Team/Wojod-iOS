@@ -17,4 +17,4 @@ PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.wojoudApp
 
 // MARK: - App Version
 
-APP_VERSION = 2.0.0
+APP_VERSION = 2.0.1

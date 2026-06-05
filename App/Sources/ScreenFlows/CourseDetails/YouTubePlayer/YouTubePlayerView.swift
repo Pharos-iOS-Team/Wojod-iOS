@@ -100,7 +100,9 @@ struct YouTubePlayerView: View {
                                 videoDuration: viewStore.videoDuration,
                                 changeSliderAction: { isEditing in viewStore.send(.changeSliderValue(isEditing: isEditing)) },
                                 startTimerAction: { viewStore.send(.startTimer) },
-                                stopTimerAction: { viewStore.send(.stopTimer) }
+                                stopTimerAction: { viewStore.send(.stopTimer) },
+                                isLandscape: viewStore.$isLandscape,
+                                toggleOrientationAction: { viewStore.send(.toggleOrientation) }
                             )
                             .isHidden(!viewStore.isControlsVisiable || viewStore.isLoading)
 
@@ -167,6 +169,9 @@ struct YouTubePlayerView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: UIScreen.capturedDidChangeNotification)) { _ in
             store.send(.binding(.set(\.$isMuted, UIScreen.main.isCaptured)))
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            store.send(.binding(.set(\.$isLandscape, UIDevice.current.orientation.isLandscape)))
         }
     }
 }

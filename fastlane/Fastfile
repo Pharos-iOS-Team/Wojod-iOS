@@ -147,7 +147,12 @@ platform :ios do
       build_configuration: CONFIG
     )
 
-    build_app(project: PROJECT_NAME, scheme: SCHEME, configuration: CONFIG)
+    build_app(
+      project: PROJECT_NAME,
+      scheme: SCHEME,
+      configuration: CONFIG,
+      xcargs: "-skipMacroValidation -skipPackagePluginValidation"
+    )
   end
 
 end
