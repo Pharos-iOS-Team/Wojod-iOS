@@ -20,6 +20,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - Added login_organization parameter in both Hassan El Naggar & Perfection whitelabels requests.  
   Task: [CPI-343](https://jira.pharos-solutions.de/browse/CPI-343) | PR: [#30](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/30) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added new login flow 
+  Task: [CPI-344](https://jira.pharos-solutions.de/browse/CPI-344) | PR: [#33](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/33) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated

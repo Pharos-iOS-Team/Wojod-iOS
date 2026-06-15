@@ -1,10 +1,10 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
+import Moya
 
 class VerifyOtpModel: ModelDecodable {
     private let apiClient = ForgotPasswordApiClient()
-
     func verifyOtp(otp: OtpVerification, completionHandler: @escaping (Result) -> Void) {
         apiClient.verifyOtp(otp: otp) { response, error in
             if let response = response {
@@ -26,10 +26,7 @@ class VerifyOtpModel: ModelDecodable {
         apiClient.verifyOtpFromLogin(otp: otp) { response, error in
             if let response = response {
                 if response.statusCode < 300 {
-                    self.cacheAccessToken(headers: response.response?.allHeaderFields)
-                    self.decode(modelType: LoginApiResponseModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
+                    self.cacheSessionAndUserData(response: response, completionHandler: completionHandler)
                 } else {
                     self.decodeError(response: response, completionHandler: completionHandler)
                 }
@@ -39,11 +36,18 @@ class VerifyOtpModel: ModelDecodable {
         }
     }
 
-    private func cacheAccessToken(headers: [AnyHashable: Any]?) {
-        guard let token = headers?["access-token"] as? String,
-        let client = headers?["client"] as? String,
-        let uid = headers?["uid"] as? String
-        else { return }
-        User.shared.setLoggedIn(token: token, client: client, uid: uid)
+    private func cacheSessionAndUserData(response: Moya.Response, completionHandler: @escaping (Result) -> Void) {
+        cacheAccessToken(headers: response.response?.allHeaderFields)
+        decode(modelType: LoginApiResponseModel.self, from: response) { result in
+            switch result {
+            case .success(let user as LoginApiResponseModel):
+                User.shared.setUserData(user: user.data)
+            case .failure(let error):
+                print("[AUTH] ⚠️ verify_otp user decode failed: \(error.message)")
+            default:
+                return
+            }
+            completionHandler(.success(true))
+        }
     }
 }

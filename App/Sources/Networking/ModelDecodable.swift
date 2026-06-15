@@ -33,6 +33,14 @@ extension ModelDecodable {
         }
     }
 
+    func cacheAccessToken(headers: [AnyHashable: Any]?) {
+        guard let token = headers?["access-token"] as? String,
+              let client = headers?["client"] as? String,
+              let uid = headers?["uid"] as? String
+        else { return }
+        User.shared.setLoggedIn(token: token, client: client, uid: uid)
+    }
+
     func handleMoyaError(error: MoyaError, completionHandler: @escaping (Result) -> Void) {
         if let alamofireError = error.errorUserInfo["NSUnderlyingError"] as? Alamofire.AFError,
         let underlyingError = alamofireError.underlyingError as NSError?,

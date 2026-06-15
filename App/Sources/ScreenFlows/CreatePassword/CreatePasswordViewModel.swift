@@ -1,13 +1,16 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
+import Moya
 
-class CreatePasswordViewModel {
+class CreatePasswordViewModel: ModelDecodable {
     private var model = CreatePasswordModel()
+    private let setPasswordApiClient = SetPasswordApiClient()
     private var mobileNumber: String = ""
     private var password: String = ""
     private var passwordConfirmation: String = ""
 
+    var isActivationFlow: Bool = false
     var errorHandler: ((WJError) -> Void)?
     var successHandler: (() -> Void)?
     var showIndicator: (() -> Void)?
@@ -23,14 +26,48 @@ class CreatePasswordViewModel {
         self.passwordConfirmation = passwordConfirmation
         guard validatePassword() else { return }
         showIndicator?()
-        let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
-        model.createPassword(password: passwordModel) { result in
-            switch result {
-            case .success:
-                self.successHandler?()
-            case .failure(let error):
-                self.errorHandler?(error)
+        if isActivationFlow {
+            let request = SetPasswordRequest(password: password, passwordConfirmation: passwordConfirmation)
+            setPasswordApiClient.setPassword(request: request) { response, error in
+                if let response = response {
+                    if response.statusCode < 300 {
+                        self.handleSetPasswordSuccess(response: response)
+                    } else {
+                        self.decodeError(response: response) { result in
+                            if case .failure(let error) = result { self.errorHandler?(error) }
+                        }
+                    }
+                } else if let error = error {
+                    self.handleMoyaError(error: error) { result in
+                        if case .failure(let wjError) = result { self.errorHandler?(wjError) }
+                    }
+                }
             }
+        } else {
+            let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
+            model.createPassword(password: passwordModel) { result in
+                switch result {
+                case .success:
+                    self.successHandler?()
+                case .failure(let error):
+                    self.errorHandler?(error)
+                }
+            }
+        }
+    }
+
+    private func handleSetPasswordSuccess(response: Response) {
+        cacheAccessToken(headers: response.response?.allHeaderFields)
+        decode(modelType: LoginApiResponseModel.self, from: response) { [weak self] result in
+            switch result {
+            case .success(let user as LoginApiResponseModel):
+                User.shared.setUserData(user: user.data)
+            case .failure(let error):
+                print("⚠️ set_password user decode failed: \(error.message)")
+            default:
+                return
+            }
+            self?.successHandler?()
         }
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,9 +14,6 @@
         </array>
         <array key="Inter-ExtraBold.ttf">
             <string>Inter-ExtraBold</string>
-        </array>
-        <array key="Inter-Regular.ttf">
-            <string>Inter-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -41,8 +38,8 @@
                                                     <constraint firstAttribute="width" constant="70" id="DAl-Le-0dr"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="goN-nW-geb">
-                                                <rect key="frame" x="39" y="250" width="312" height="180"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="goN-nW-geb">
+                                                <rect key="frame" x="39" y="260" width="312" height="115"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xx8-SA-WDh" customClass="AlertView" customModule="Wojood" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="312" height="50"/>
@@ -59,18 +56,10 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fib-sY-iXs">
-                                                        <rect key="frame" x="0.0" y="130" width="312" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="q7B-4r-Dnr"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                                    </textField>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIH-KY-VtK" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="445" width="312" height="50"/>
+                                                <rect key="frame" x="39" y="390" width="312" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="OAG-ri-sUq"/>
                                                 </constraints>
@@ -79,30 +68,20 @@
                                                     <action selector="login:" destination="mUu-uY-ag1" eventType="touchUpInside" id="FXI-cw-4ab"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUZ-Jh-IZ3">
-                                                <rect key="frame" x="39" y="165" width="312" height="70"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUZ-Jh-IZ3">
+                                                <rect key="frame" x="39" y="165" width="312" height="80"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="5UL-Un-g8C"/>
+                                                    <constraint firstAttribute="height" constant="80" id="5UL-Un-g8C"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="22"/>
                                                 <color key="textColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-Sl-a0T">
-                                                <rect key="frame" x="39" y="525" width="312" height="58"/>
+                                                <rect key="frame" x="39" y="470" width="312" height="29"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Wf-EN2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="312" height="29"/>
-                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                        <state key="normal" title="Forgot password ?">
-                                                            <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="forgotPassword:" destination="mUu-uY-ag1" eventType="touchUpInside" id="fHK-nm-4gv"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-8e-5H3">
-                                                        <rect key="frame" x="0.0" y="29" width="312" height="29"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="312" height="29"/>
                                                         <fontDescription key="fontDescription" name="Inter-ExtraBold" family="Inter" pointSize="14"/>
                                                         <state key="normal" title="No account? Sign up">
                                                             <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,7 +91,7 @@
                                                         </connections>
                                                     </button>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxw-iz-Fv6">
-                                                        <rect key="frame" x="0.0" y="58" width="312" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="312" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Inter-ExtraBold" family="Inter" pointSize="14"/>
                                                         <state key="normal" title="Continue as a guest">
                                                             <color key="titleColor" systemColor="tintColor"/>
@@ -164,10 +143,8 @@
                     </view>
                     <connections>
                         <outlet property="alertView" destination="xx8-SA-WDh" id="8vz-9U-uPP"/>
-                        <outlet property="forgotPasswordButton" destination="zzb-Wf-EN2" id="Rb2-Ga-v1A"/>
                         <outlet property="guestModeButton" destination="Vxw-iz-Fv6" id="E3k-3Q-gII"/>
                         <outlet property="mobileNumberTextField" destination="4el-rM-Yn1" id="Qpb-yT-19G"/>
-                        <outlet property="passwordTextField" destination="fib-sY-iXs" id="Ssp-f6-fom"/>
                         <outlet property="scrollView" destination="S1U-jZ-Tnc" id="asv-1G-rUg"/>
                         <outlet property="signUpButton" destination="SaN-8e-5H3" id="tY3-Yv-xcO"/>
                         <outlet property="submitButton" destination="RIH-KY-VtK" id="6YS-4c-Vji"/>
@@ -180,12 +157,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CoursesLogo" width="512" height="512"/>
+        <image name="CoursesLogo" width="540" height="561"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

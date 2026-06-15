@@ -16,11 +16,13 @@
 
 "shared.action.cancel" = "Cancel";
 "shared.action.dismiss" = "Dismiss";
+"shared.continue" = "Continue";
 
-"login.welcome" = "Welcome!
-Sign in to continue";
+"login.welcome" = "Welcome! \nEnter mobile number to continue";
 
 "login.signIn" = "Sign in";
+
+"login.welcomePassword" = "Welcome! \nEnter password to continue";
 
 "login.guestMode" = "Continue as a guest";
 
@@ -64,8 +66,6 @@ No worries!";
 "verifyOtp.didNotGetACode" = "Didn’t receive a code?";
 
 "verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
-
-"verifyOtp.continue" = "Continue";
 
 "verifyOtp.resendCode" = "Resend code";
 
