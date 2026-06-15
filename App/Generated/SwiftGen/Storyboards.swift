@@ -96,6 +96,11 @@ internal enum StoryboardScene {
 
     internal static let organizationsListViewController = SceneType<Wojood.OrganizationsListViewController>(storyboard: OrganizationsList.self, identifier: "OrganizationsListViewController")
   }
+  internal enum PasswordView: StoryboardType {
+    internal static let storyboardName = "PasswordView"
+
+    internal static let passwordViewController = SceneType<Wojood.PasswordViewController>(storyboard: PasswordView.self, identifier: "PasswordViewController")
+  }
   internal enum Profile: StoryboardType {
     internal static let storyboardName = "Profile"
 
