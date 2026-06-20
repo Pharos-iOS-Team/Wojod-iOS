@@ -143,7 +143,7 @@ class FiltersViewController: UIViewController {
 
     // MARK: - Private Functions
     private func handleAppSpecificFilters() {
-        guard AppEnvironment.shouldHideOrganization
+        guard AppEnvironment.shouldHideOrganizationAndSchool
         else { return }
 
         let division = Division(key: User.shared.divisionId, value: User.shared.divisionName)
@@ -347,7 +347,7 @@ extension FiltersViewController: UITableViewDataSource {
                 }
             }
         } else {
-            if AppEnvironment.shouldHideOrganization {
+            if AppEnvironment.shouldHideOrganizationAndSchool {
                 switch universitySection {
                 case .academicYear:
                     cell.configureForUniveristy(title: L10n.Signup.School.academicYear,
@@ -533,7 +533,7 @@ extension FiltersViewController: SelectingFilterDelegate {
     func didSelectFilterInUniversity(_ filterIndex: Int, in section: UniversitySection) {
         Filters.shared.isDataBeingRetrieved = false
         
-        if AppEnvironment.shouldHideOrganization {
+        if AppEnvironment.shouldHideOrganizationAndSchool {
             switch section {
             case .academicYear:
                 universitySection = .subjects

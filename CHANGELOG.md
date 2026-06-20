@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added login_organization parameter in both Hassan El Naggar & Perfection whitelabels requests.  
+  Task: [CPI-343](https://jira.pharos-solutions.de/browse/CPI-343) | PR: [#30](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/30) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - None.
 ### Deprecated
@@ -33,7 +34,7 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ## [2.0.1] - 2026-05-20
 ### Added
 - Added Full screen button in YouTube.  
-  Task: [CPI-1341](https://jira.pharos-solutions.de/browse/CPI-341) | PR: [#29](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/29) | Author: [Sara Rady](https://github.com/sara-rady)
+  Task: [CPI-341](https://jira.pharos-solutions.de/browse/CPI-341) | PR: [#29](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/29) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [2.0.0] - 2026-04-29
 ### Added
