@@ -18,10 +18,7 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Added login_organization parameter in both Hassan El Naggar & Perfection whitelabels requests.  
-  Task: [CPI-343](https://jira.pharos-solutions.de/browse/CPI-343) | PR: [#30](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/30) | Author: [Sara Rady](https://github.com/sara-rady)
-- Added new login flow 
-  Task: [CPI-344](https://jira.pharos-solutions.de/browse/CPI-344) | PR: [#33](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/33) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Changed
 - None.
 ### Deprecated
@@ -32,6 +29,13 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 - None.
 ### Security
 - None.
+
+## [2.0.2] - 2026-06-25
+### Added
+- Added login_organization parameter in both Hassan El Naggar & Perfection whitelabels requests.  
+  Task: [CPI-343](https://jira.pharos-solutions.de/browse/CPI-343) | PR: [#30](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/30) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added new login flow 
+  Task: [CPI-344](https://jira.pharos-solutions.de/browse/CPI-344) | PR: [#33](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/33) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [2.0.1] - 2026-05-20
 ### Added
