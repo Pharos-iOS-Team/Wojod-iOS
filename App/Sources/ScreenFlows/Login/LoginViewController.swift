@@ -7,7 +7,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet private var submitButton: SendButton! {
         didSet {
-            submitButton.setTitle(L10n.Login.signIn)
+            submitButton.setTitle(L10n.Shared.continue)
             submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
@@ -30,19 +30,6 @@ class LoginViewController: UIViewController {
             mobileNumberTextField.placeholder = L10n.Login.mobileNumber
         }
     }
-    @IBOutlet private var passwordTextField: UITextField! {
-        didSet {
-            passwordTextField.semanticContentAttribute = Language.semanticContent
-            passwordTextField.textAlignment = Language.textAlignment
-            passwordTextField.placeholder = L10n.Login.password
-        }
-    }
-    @IBOutlet private var forgotPasswordButton: UIButton! {
-        didSet {
-            forgotPasswordButton.setTitle(L10n.Login.forgotPassword)
-            forgotPasswordButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
-        }
-    }
     @IBOutlet private var signUpButton: UIButton! {
         didSet {
             signUpButton.setTitle(L10n.Login.noAccount)
@@ -58,28 +45,25 @@ class LoginViewController: UIViewController {
 
     private var viewModel: LoginViewModel!
     private var loadingHud: JGProgressHUD?
-    private var user: LoginApiResponseModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel()
-        handleLoginSuccess()
         handleErrors()
         showLoadingIndicatorHandler()
         handleGuestMode()
+        handleNavigation()
+        mobileNumberTextField.delegate = self
+        submitButton.isEnabled = false
     }
 
     @IBAction private func login(_ sender: SendButton) {
         alertView.hideAlertView()
-        login()
+        viewModel?.submitPhoneNumber(mobileNumber: mobileNumberTextField.text)
     }
 
     @IBAction private func continueAsAGuest(_ sender: UIButton) {
         viewModel?.continueAsAGuest()
-    }
-
-    @IBAction private func forgotPassword(_ sender: Any) {
-        navigateToForgotPasswordScreen()
     }
     @IBAction private func signUp(_ sender: UIButton) {
         let viewCtrl = StoryboardScene.Registration.initialScene.instantiate()
@@ -87,12 +71,28 @@ class LoginViewController: UIViewController {
         self.present(viewCtrl, animated: true)
     }
 
-    private func login() {
-        viewModel?.login(
-            mobileNumber: mobileNumberTextField.text,
-            password: passwordTextField.text
-        )
+    private func handleNavigation() {
+        viewModel?.navigateToPasswordEntry = { [weak self] in
+            DispatchQueue.main.async {
+                self?.hideLoadingIndicator()
+                self?.showPasswordScreen(mobileNumber: self?.mobileNumberTextField.text ?? "")
+            }
+        }
+        viewModel?.navigateToOtpVerification = { [weak self] mobileNumber in
+            DispatchQueue.main.async {
+                self?.hideLoadingIndicator()
+                self?.showVerifyOtpScreen(mobileNumber: mobileNumber)
+            }
+        }
     }
+
+    private func showPasswordScreen(mobileNumber: String) {
+        let passwordViewCtrl = StoryboardScene.PasswordView.passwordViewController.instantiate().with {
+            $0.mobileNumber = mobileNumber
+        }
+        navigationController?.pushViewController(passwordViewCtrl, animated: true)
+    }
+
     private func showLoadingIndicator() {
         loadingHud = JGProgressHUD()
         loadingHud?.textLabel.text = L10n.Global.Alerts.loading
@@ -134,37 +134,44 @@ class LoginViewController: UIViewController {
         let alert = AlertHandler(presentingViewCtrl: self)
         alert.showInformationAlert(title: L10n.Global.Titles.error, message: error.message) { _ in
             if self.viewModel.doesErrorIndicateVerificationRequired(error) {
-                self.showVerifyOtpScreen()
+                self.showVerifyOtpScreen(mobileNumber: self.mobileNumberTextField.text ?? "")
             }
         }
     }
 
-    private func showVerifyOtpScreen() {
-        guard let mobileNumber = mobileNumberTextField.text else { return }
+    private func showVerifyOtpScreen(mobileNumber: String) {
         let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
             $0.modalPresentationStyle = .fullScreen
             $0.mobileNumber = mobileNumber
             $0.verifyUserFromLogin = true
-            $0.successHandler = {
-                self.hideLoadingIndicator()
-                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+        }
+        verifyOtpViewCtrl.successHandler = { [weak verifyOtpViewCtrl, weak self] in
+            guard let presenter = verifyOtpViewCtrl, let self = self else { return }
+            if self.viewModel.setPassword {
+                let setPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
+                    $0.mobileNumber = mobileNumber
+                    $0.isActivationFlow = true
+                    $0.modalPresentationStyle = .fullScreen
+                }
+                presenter.present(setPasswordViewCtrl, animated: true)
+            } else {
+                DispatchQueue.main.async {
+                    PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
+                    ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+                }
             }
         }
         present(verifyOtpViewCtrl, animated: true)
     }
+}
 
-    private func handleLoginSuccess() {
-        viewModel?.successHandler = { [weak self] user in
-            self?.user = user
-            self?.hideLoadingIndicator()
-            PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
-            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
-        }
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-
-    private func navigateToForgotPasswordScreen() {
-        let forgotPasswordViewCtrl = StoryboardScene.ForgotPassword.forgotPasswordViewController.instantiate()
-        forgotPasswordViewCtrl.modalPresentationStyle = .fullScreen
-        present(forgotPasswordViewCtrl, animated: true, completion: nil)
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        submitButton.isEnabled = (mobileNumberTextField.text?.count ?? 0) >= 11
     }
 }

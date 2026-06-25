@@ -27,4 +27,26 @@ class LoginApiClient {
             }
         }
     }
+
+    func verifyPhone(mobileNumber: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        loginProvider.request(.verifyPhone(requestModel: .init(phoneNumber: mobileNumber))) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+
+    func resendOtpForLogin(mobileNumber: String, completionHandler: @escaping (Response?, MoyaError?) -> Void) {
+        loginProvider.request(.resendOtpForLogin(mobileNumber: mobileNumber)) { result in
+            switch result {
+            case .success(let response):
+                completionHandler(response, nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
 }

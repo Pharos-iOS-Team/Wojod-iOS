@@ -11,6 +11,41 @@ class LoginViewModel {
     var errorHandler: ((WJError) -> Void)?
     var successHandler: ((LoginApiResponseModel) -> Void)?
     var showIndicator: (() -> Void)?
+    var navigateToPasswordEntry: (() -> Void)?
+    var navigateToOtpVerification: ((String) -> Void)?
+    var setPassword: Bool = false
+
+    func submitPhoneNumber(mobileNumber: String?) {
+        guard let number = mobileNumber else { return }
+        self.mobileNumber = number
+        guard number.isValid else {
+            let error = WJError(type: .validationError, message: L10n.Login.mobileNumberIsEmpty)
+            errorHandler?(error)
+            return
+        }
+        showIndicator?()
+        model.verifyPhone(mobileNumber: number) { result in
+            switch result {
+            case .success(let response as VerifyPhoneResponse):
+                self.setPassword = response.setPassword
+                if self.setPassword {
+                    self.requestOtpThenNavigate(mobileNumber: number)
+                } else {
+                    self.navigateToPasswordEntry?()
+                }
+            case .failure(let error):
+                self.errorHandler?(error)
+            default:
+                return
+            }
+        }
+    }
+
+    private func requestOtpThenNavigate(mobileNumber: String) {
+        model.resendOtpForLogin(mobileNumber: mobileNumber) { _ in
+            self.navigateToOtpVerification?(mobileNumber)
+        }
+    }
 
     func checkIfMobileOrPasswordAreEmpty() -> Bool {
         return mobileNumber.isValid && password.isValid

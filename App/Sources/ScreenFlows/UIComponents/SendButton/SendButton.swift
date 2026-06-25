@@ -8,6 +8,12 @@ class SendButton: UIButton {
         static let titleOffset: CGFloat = 25
     }
 
+    override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? Colors.sendButtonColor.color : .systemGray3
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = Colors.sendButtonColor.color
