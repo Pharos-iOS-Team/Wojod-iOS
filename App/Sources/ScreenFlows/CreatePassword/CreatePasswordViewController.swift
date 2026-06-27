@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import FirebaseMessaging
 import JGProgressHUD
 import UIKit
 
@@ -53,14 +54,25 @@ class CreatePasswordViewController: UIViewController {
         }
     }
     var mobileNumber: String = ""
+    var isActivationFlow: Bool = false
     private let viewModel = CreatePasswordViewModel()
     private var loadingHud: JGProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.isActivationFlow = isActivationFlow
         handleErrors()
         handleSuccess()
         showLoadingIndicatorHandler()
+        passwordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
+        confirmPasswordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
+        sendButton.isEnabled = false
+    }
+
+    @objc private func passwordFieldsChanged() {
+        let passwordFilled = !(passwordField.text?.isEmpty ?? true)
+        let confirmFilled = !(confirmPasswordField.text?.isEmpty ?? true)
+        sendButton.isEnabled = passwordFilled && confirmFilled
     }
 
     @IBAction private func createPassword(_ sender: SendButton) {
@@ -69,7 +81,12 @@ class CreatePasswordViewController: UIViewController {
     }
 
     @IBAction private func dismissView(_ sender: Any) {
-        rootViewCtrl?.dismiss(animated: true)
+        if isActivationFlow {
+            let loginViewCtrl = view.window?.rootViewController as? LoginViewController
+            view.window?.rootViewController?.dismiss(animated: true)
+        } else {
+            rootViewCtrl?.dismiss(animated: true)
+        }
     }
 
     private func verifyPassword() {
@@ -108,9 +125,14 @@ class CreatePasswordViewController: UIViewController {
     }
 
     private func handleSuccess() {
-        viewModel.successHandler = {
-            self.hideLoadingIndicator()
-            self.rootViewCtrl?.dismiss(animated: true)
+        viewModel.successHandler = { [weak self] in
+            self?.hideLoadingIndicator()
+            if self?.isActivationFlow == true {
+                PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
+                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+            } else {
+                self?.rootViewCtrl?.dismiss(animated: true)
+            }
         }
     }
 }

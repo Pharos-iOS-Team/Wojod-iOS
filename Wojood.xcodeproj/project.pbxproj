@@ -165,6 +165,7 @@
 		536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */; };
 		537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 537955B8296EC99A0051682D /* LanguageManager-iOS */; };
 		53DAFBE5298895BA004E9528 /* EnterQRCodeManuallyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyViewController.xib */; };
+		6C174EE51BF5445EBC0C856E /* PasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5640F984AACF4EA78887781B /* PasswordView.storyboard */; };
 		770209C92831C77600F9096F /* NSObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770209C82831C77600F9096F /* NSObjectExt.swift */; };
 		77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */; };
 		7719A08C2E251108004541E6 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 7719A08B2E251108004541E6 /* JGProgressHUD */; };
@@ -397,6 +398,11 @@
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
+		D5C405042FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */; };
+		D5C405062FEB4322007BBF75 /* SetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */; };
+		D5CEAF0F2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */; };
+		D5CEAF132FE0A6EB00B2C1F7 /* SetPasswordApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF102FE0A6EB00B2C1F7 /* SetPasswordApiClient.swift */; };
+		D5CEAF142FE0A6EB00B2C1F7 /* SetPasswordTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF112FE0A6EB00B2C1F7 /* SetPasswordTarget.swift */; };
 		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
 		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
 		D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */; };
@@ -438,6 +444,7 @@
 		E8C9EF78263DD22D0023D2B1 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF77263DD22D0023D2B1 /* DataResponse.swift */; };
 		E8C9EF7D263DD2680023D2B1 /* KeyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF7C263DD2680023D2B1 /* KeyName.swift */; };
 		E8C9EF8D263E05B00023D2B1 /* EducationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF8C263E05B00023D2B1 /* EducationTypes.swift */; };
+		F7F3F3A77945470DAC75B176 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D346904F66428C917DB371 /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -621,6 +628,7 @@
 		38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		536C94B92978C88200582BDC /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		53DAFBE4298895BA004E9528 /* EnterQRCodeManuallyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQRCodeManuallyViewController.xib; sourceTree = "<group>"; };
+		5640F984AACF4EA78887781B /* PasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordView.storyboard; sourceTree = "<group>"; };
 		770209C82831C77600F9096F /* NSObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExt.swift; sourceTree = "<group>"; };
 		77056DCC261E0A1B00EB3854 /* AccessPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPermissionHandler.swift; sourceTree = "<group>"; };
 		77135AAC2E46C1BE0032884F /* release.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = release.yml; sourceTree = "<group>"; };
@@ -743,6 +751,7 @@
 		77EE8B3C27DA411700B0CE45 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
 		77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExt.swift; sourceTree = "<group>"; };
+		89D346904F66428C917DB371 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfo.swift; sourceTree = "<group>"; };
@@ -867,6 +876,11 @@
 		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
+		D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneRequestModel.swift; sourceTree = "<group>"; };
+		D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordRequest.swift; sourceTree = "<group>"; };
+		D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneResponse.swift; sourceTree = "<group>"; };
+		D5CEAF102FE0A6EB00B2C1F7 /* SetPasswordApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordApiClient.swift; sourceTree = "<group>"; };
+		D5CEAF112FE0A6EB00B2C1F7 /* SetPasswordTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordTarget.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
 		D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAndImagesTableViewCell.swift; sourceTree = "<group>"; };
@@ -1414,6 +1428,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7291D28FE37140DEAC195B10 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				89D346904F66428C917DB371 /* PasswordViewController.swift */,
+				5640F984AACF4EA78887781B /* PasswordView.storyboard */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
 		77135AAE2E46C1BE0032884F /* workflows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1556,6 +1579,7 @@
 				BC0F92B72785DBBD001C5B3A /* OrganizationsList */,
 				BC19E56D2630368500CFA142 /* Profile */,
 				E84874532624B0E1006DF74C /* Registration */,
+				7291D28FE37140DEAC195B10 /* Password */,
 				BC767139262C51E50012155C /* Settings */,
 				BC98F3D426231C5900032AC6 /* UIComponents */,
 				BC19E5A02631981000CFA142 /* VerifyOtp */,
@@ -1578,6 +1602,7 @@
 				26CF48A8269B061E00DDA29F /* Chat */,
 				385CC0C0265F92D800A091FD /* CourseDetails */,
 				BC19E5E32631A38100CFA142 /* CreatePassword */,
+				D5CEAF122FE0A6EB00B2C1F7 /* SetPassword */,
 				38659ABC26B43D3B00E3BFE9 /* Filters */,
 				BC5ED0E92628687800774E54 /* ForgotPassword */,
 				38812C52266E9AEE00CCD924 /* Home */,
@@ -1597,6 +1622,7 @@
 				D5070CD82E65FD5C00728D01 /* VersionResponse.swift */,
 				77DE4E342E254A850001BFAC /* CoreData */,
 				3802287726CBDB9F008E41D4 /* Advertisements.swift */,
+				D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */,
 				38659BC026B6D2F900E3BFE9 /* Assessment */,
 				778E72AD261DD4D1009D7B35 /* Attachable.swift */,
 				BC083B612643091A00A1E6A4 /* Avatar.swift */,
@@ -1621,7 +1647,9 @@
 				38095C0626A2D9DA005168B0 /* LessonAttachmentLocalDataModel.swift */,
 				385CC0D5265FAB1500A091FD /* Lessons.swift */,
 				385CC0EF266116EB00A091FD /* LessonsAttachmentsModel.swift */,
+				D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */,
 				BC5ED0C426282CBC00774E54 /* LoginRequestModel.swift */,
+				D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */,
 				3826BC782669086E00CF9357 /* Materials.swift */,
 				E8C9EF4126323B0D0023D2B1 /* NetworkError.swift */,
 				38F7D4D42668EBE400CD8934 /* NotificationDataModel.swift */,
@@ -2299,6 +2327,15 @@
 			path = "Square-Center";
 			sourceTree = "<group>";
 		};
+		D5CEAF122FE0A6EB00B2C1F7 /* SetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D5CEAF102FE0A6EB00B2C1F7 /* SetPasswordApiClient.swift */,
+				D5CEAF112FE0A6EB00B2C1F7 /* SetPasswordTarget.swift */,
+			);
+			path = SetPassword;
+			sourceTree = "<group>";
+		};
 		D5DBC5C22E67291B00FD4034 /* Royal-Medicine */ = {
 			isa = PBXGroup;
 			children = (
@@ -2614,6 +2651,7 @@
 				385CC1052663D95D00A091FD /* Roboto in Resources */,
 				380B13A726B807F700CB5811 /* AssessmentDetailQuestionNumberCollectionViewCell.xib in Resources */,
 				38659BE826B6D2F900E3BFE9 /* AppAlert.storyboard in Resources */,
+				6C174EE51BF5445EBC0C856E /* PasswordView.storyboard in Resources */,
 				BC98F42F262454C300032AC6 /* Login.storyboard in Resources */,
 				38706CD3265E6DD300440B53 /* CourseDetails.storyboard in Resources */,
 				38B131A326B0400400D5966A /* Filters.storyboard in Resources */,
@@ -2758,6 +2796,7 @@
 				26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */,
 				7723ADC2261C728E007C0B97 /* AppEnvironment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
+				D5CEAF0F2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift in Sources */,
 				38659AC826B4410200E3BFE9 /* FiltersModel.swift in Sources */,
 				BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */,
 				E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */,
@@ -2792,6 +2831,8 @@
 				38635B9B26EF79240040CAF4 /* Filters.swift in Sources */,
 				778E72EE261DFA57009D7B35 /* AlertHandler.swift in Sources */,
 				7723AD21261C6134007C0B97 /* CompositeAppDelegate.swift in Sources */,
+				D5CEAF132FE0A6EB00B2C1F7 /* SetPasswordApiClient.swift in Sources */,
+				D5CEAF142FE0A6EB00B2C1F7 /* SetPasswordTarget.swift in Sources */,
 				26CF4911269B51DA00DDA29F /* FileManagerExt.swift in Sources */,
 				778E7270261DC3E1009D7B35 /* Fonts.swift in Sources */,
 				77EE8B4127DA5C2800B0CE45 /* TimeIntervalExt.swift in Sources */,
@@ -2896,6 +2937,7 @@
 				38659BEC26B6D2F900E3BFE9 /* AssessmentStatus.swift in Sources */,
 				E85C1F22264890B4003D4BF5 /* UserSignupRequest.swift in Sources */,
 				D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */,
+				D5C405062FEB4322007BBF75 /* SetPasswordRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
 				38F7D4D52668EBE400CD8934 /* NotificationDataModel.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
@@ -2928,6 +2970,7 @@
 				BC083B142641D51900A1E6A4 /* LogoutTarget.swift in Sources */,
 				BC7FD37026D65500009BC1EF /* UIActivityIndicatorExt.swift in Sources */,
 				7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */,
+				F7F3F3A77945470DAC75B176 /* PasswordViewController.swift in Sources */,
 				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
 				38F7D4C82668EA5300CD8934 /* NotificationsModel.swift in Sources */,
 				BC19E5D52631A36600CFA142 /* CreatePasswordViewController.swift in Sources */,
@@ -2979,6 +3022,7 @@
 				38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */,
 				38659BDB26B6D2F900E3BFE9 /* Grade.swift in Sources */,
 				385CC0D6265FAB1500A091FD /* Lessons.swift in Sources */,
+				D5C405042FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
 				26CF48AA269B0F0800DDA29F /* ChatApiClient.swift in Sources */,
 				E86753032642890D005ABF77 /* Specializations.swift in Sources */,
@@ -3237,7 +3281,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3272,7 +3316,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3405,7 +3449,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3517,7 +3561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3629,7 +3673,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3741,7 +3785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4051,8 +4095,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.12.1;
+				kind = exactVersion;
+				version = 1.23.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

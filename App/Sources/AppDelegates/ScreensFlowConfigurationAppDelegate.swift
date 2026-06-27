@@ -24,7 +24,10 @@ class ScreensFlowConfigurationAppDelegate: AppDelegateType {
         if let userToken = KeychainHandler.shared.userToken, !userToken.isEmpty {
             window.rootViewController = StoryboardScene.CoursesTabBar.coursesTabBarViewController.instantiate()
         } else {
-            window.rootViewController = StoryboardScene.Login.loginViewController.instantiate()
+            let loginVC = StoryboardScene.Login.loginViewController.instantiate()
+            let navController = UINavigationController(rootViewController: loginVC)
+            navController.setNavigationBarHidden(true, animated: false)
+            window.rootViewController = navController
         }
         addAirPlayPreventionObserver()
     }
