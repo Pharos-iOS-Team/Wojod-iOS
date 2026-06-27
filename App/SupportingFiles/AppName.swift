@@ -30,6 +30,10 @@ enum AppName: String, Decodable {
             return "square_center"
         case .royalMedicine:
             return "royal_medicine"
+        case .hassanElnaggar:
+            return "hassanelnaggar"
+        case .perfectionInPhysics:
+            return "perfection"
         default:
             return nil
         }

@@ -6,14 +6,6 @@ class HomeModel: ModelDecodable {
     private let homeApiClient = HomeApiClient()
     private let profileApiClient = ProfileApiClient()
 
-    private func cacheAccessToken(headers: [AnyHashable: Any]?) {
-        guard let token = headers?["access-token"] as? String,
-        let client = headers?["client"] as? String,
-        let uid = headers?["uid"] as? String
-        else { return }
-        User.shared.setLoggedIn(token: token, client: client, uid: uid)
-    }
-
     func loadSubjects(batchID: Int, completion: @escaping (Result) -> Void) {
         homeApiClient.loadSubjects(batchID: batchID) { response, error in
             if let response = response {

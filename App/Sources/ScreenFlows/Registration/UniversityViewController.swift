@@ -32,7 +32,7 @@ class UniversityViewController: UIViewController {
         didSet {
             graduateButton.setTitle(L10n.Signup.UniversityScreen.graduate)
             graduateButton.layer.cornerRadius = 5
-            graduateButton.isHidden = AppEnvironment.shouldHideOrganization
+            graduateButton.isHidden = AppEnvironment.shouldHideOrganizationAndSchool
         }
     }
     @IBOutlet private var universityTextField: NoCutPasteTextField! {
@@ -41,7 +41,7 @@ class UniversityViewController: UIViewController {
             universityTextField.isMandatoryTextField = true
             universityTextField.semanticContentAttribute = Language.semanticContent
             universityTextField.textAlignment = Language.textAlignment
-            if AppEnvironment.shouldHideOrganization {
+            if AppEnvironment.shouldHideOrganizationAndSchool {
                 universityTextField.isEnabled = false
                 universityTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -56,7 +56,7 @@ class UniversityViewController: UIViewController {
             fieldTextField.isMandatoryTextField = true
             fieldTextField.semanticContentAttribute = Language.semanticContent
             fieldTextField.textAlignment = Language.textAlignment
-            if AppEnvironment.shouldHideOrganization {
+            if AppEnvironment.shouldHideOrganizationAndSchool {
                 fieldTextField.isEnabled = false
                 fieldTextField.backgroundColor = .gray.withAlphaComponent(0.15)
             } else {
@@ -267,7 +267,7 @@ class UniversityViewController: UIViewController {
                 fieldTextField.isHidden = true
                 fieldTextFieldHeightConstraint.constant = 0
             } else {
-                if !AppEnvironment.shouldHideOrganization {
+                if !AppEnvironment.shouldHideOrganizationAndSchool {
                     self.fields.insert(Specialization(key: nil, value: L10n.Signup.School.none), at: 0)
                 }
                 fieldTextField.isHidden = false

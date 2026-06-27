@@ -30,10 +30,17 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Security
 - None.
 
+## [2.0.2] - 2026-06-25
+### Added
+- Added login_organization parameter in both Hassan El Naggar & Perfection whitelabels requests.  
+  Task: [CPI-343](https://jira.pharos-solutions.de/browse/CPI-343) | PR: [#30](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/30) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added new login flow 
+  Task: [CPI-344](https://jira.pharos-solutions.de/browse/CPI-344) | PR: [#33](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/33) | Author: [Sara Rady](https://github.com/sara-rady)
+
 ## [2.0.1] - 2026-05-20
 ### Added
 - Added Full screen button in YouTube.  
-  Task: [CPI-1341](https://jira.pharos-solutions.de/browse/CPI-341) | PR: [#29](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/29) | Author: [Sara Rady](https://github.com/sara-rady)
+  Task: [CPI-341](https://jira.pharos-solutions.de/browse/CPI-341) | PR: [#29](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/29) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [2.0.0] - 2026-04-29
 ### Added
