@@ -26,7 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed district as a required field in registration.  
+  Task: [CPI-346](https://jira.pharos-solutions.de/browse/CPI-346) | PR: [#35](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/35) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

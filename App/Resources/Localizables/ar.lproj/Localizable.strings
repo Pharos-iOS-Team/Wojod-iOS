@@ -146,7 +146,7 @@
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";
-"signup.locationInfo.district" = "المنطقة";
+"signup.locationInfo.district" = "المنطقة*";
 "signup.locationInfo.address" = "العنوان";
 
 "signup.academicInfo.school" = "مدرسة";

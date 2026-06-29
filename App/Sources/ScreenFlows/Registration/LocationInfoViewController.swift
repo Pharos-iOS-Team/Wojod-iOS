@@ -55,6 +55,7 @@ class LocationInfoViewController: UIViewController {
     @IBOutlet private var districtTextField: NoCutPasteTextField! {
         didSet {
             districtTextField.placeholder = L10n.Signup.LocationInfo.district
+            districtTextField.isMandatoryTextField = true
             districtTextField.semanticContentAttribute = Language.semanticContent
             districtTextField.textAlignment = Language.textAlignment
         }
@@ -95,6 +96,7 @@ class LocationInfoViewController: UIViewController {
         configurePickerViews()
         displayDataEnteredBeforePressingBackIfExists()
         configureTextFieldsDelegate()
+        updateNextButtonState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -210,9 +212,9 @@ class LocationInfoViewController: UIViewController {
 
     private func isMandatoryFieldsFilled() -> Bool {
         if cities.isEmpty {
-            return !countryTextField.isEmpty
+            return !countryTextField.isEmpty && !districtTextField.isEmpty
         } else {
-            return !countryTextField.isEmpty && !cityTextField.isEmpty
+            return !countryTextField.isEmpty && !cityTextField.isEmpty && !districtTextField.isEmpty
         }
     }
 
@@ -222,6 +224,9 @@ class LocationInfoViewController: UIViewController {
         }
         if cityTextField.isEmpty {
             cityTextField.setErrorView()
+        }
+        if districtTextField.isEmpty {
+            districtTextField.setErrorView()
         }
     }
 
@@ -255,6 +260,18 @@ class LocationInfoViewController: UIViewController {
         countryTextField.delegate = self
         cityTextField.delegate = self
         districtTextField.delegate = self
+        districtTextField.addTarget(self, action: #selector(districtTextChanged), for: .editingChanged)
+    }
+
+    @objc private func districtTextChanged() {
+        districtTextField.isEmpty ? districtTextField.setErrorView() : districtTextField.setNormalView()
+        updateNextButtonState()
+    }
+
+    private func updateNextButtonState() {
+        let enabled = isMandatoryFieldsFilled()
+        nextButton.isEnabled = enabled
+        nextButton.backgroundColor = enabled ? Colors.sendButtonColor.color : Colors.darkGreyColor.color
     }
 
     // MARK: - Segue
