@@ -9,7 +9,8 @@ extension Task {
         encoding: ParameterEncoding = URLEncoding.queryString
     ) -> Task {
         guard let params = try? model.toDictionary() else {
-            preconditionFailure("Failed to encode \(T.self) into request parameters")
+            assertionFailure("Failed to encode \(T.self) into request parameters")
+            return .requestParameters(parameters: [:], encoding: encoding)
         }
         return .requestParameters(parameters: params, encoding: encoding)
     }

@@ -14,8 +14,9 @@ final class LanguagePlugin: PluginType {
         guard target is Endpoint else { return request }
 
         var request = request
-        if let url = request.url,
-           var components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+        if
+            let url = request.url,
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
             let localeItem = URLQueryItem(name: "locale", value: currentLanguage().rawValue)
             var queryItems = components.queryItems ?? []
             queryItems.append(localeItem)

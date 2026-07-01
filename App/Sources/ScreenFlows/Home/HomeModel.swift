@@ -28,6 +28,6 @@ class HomeModel {
     }
 
     func fetchUserProfile(id: Int, completionHandler: @escaping (Swift.Result<StudentModel, Error>) -> Void) {
-        ApiProvider.shared.request(.profile(.fetchProfile(.init(id: String(User.shared.id ?? 62)))), decodeTo: StudentModel.self, completion: completionHandler)
+        ApiProvider.shared.request(.profile(.fetchProfile(.init(id: String(User.shared.id ?? 0)))), decodeTo: StudentModel.self, completion: completionHandler)
     }
 }

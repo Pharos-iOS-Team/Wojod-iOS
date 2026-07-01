@@ -1,6 +1,5 @@
 // Copyright © 2026 Pharos Solutions. All rights reserved.
 
-// swiftlint:disable all
 import Foundation
 import Moya
 import SwiftyUserDefaults
@@ -40,7 +39,6 @@ final class AuthPlugin: PluginType {
 
     func didReceive(_ result: Swift.Result<Moya.Response, MoyaError>, target: TargetType) {
         guard let endpoint = target as? Endpoint, case let .success(response) = result else { return }
-        
         switch endpoint {
         case .auth(.login), .auth(.verifyOtpFromLogin), .profile(.fetchProfile):
             saveAuthHeader(from: response)
@@ -50,11 +48,11 @@ final class AuthPlugin: PluginType {
     }
 
     private func saveAuthHeader(from response: Moya.Response) {
-        let headers = response.response?.allHeaderFields as? [AnyHashable: String]
+        guard let httpResponse = response.response else { return }
         guard
-            let token = headers?[Header.accessToken.rawValue],
-            let client = headers?[Header.client.rawValue],
-            let uid = headers?[Header.uid.rawValue]
+            let token = httpResponse.value(forHTTPHeaderField: Header.accessToken.rawValue),
+            let client = httpResponse.value(forHTTPHeaderField: Header.client.rawValue),
+            let uid = httpResponse.value(forHTTPHeaderField: Header.uid.rawValue)
         else { return }
 
         User.shared.setLoggedIn(token: token, client: client, uid: uid)
