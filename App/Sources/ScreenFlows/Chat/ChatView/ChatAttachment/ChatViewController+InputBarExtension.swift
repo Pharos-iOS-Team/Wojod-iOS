@@ -146,7 +146,7 @@ extension ChatViewController: AttachmentManagerDelegate, AttachmentManagerDataSo
         }
         if let selectedFile = viewModel.selectedFile {
             if selectedFile.pathExtension.contains("pdf") {
-                cell.imageView.image = Asset.Images.pdfIcon.image
+                cell.imageView.image = Asset.Images.pdfExtension.image
             } else {
                 cell.imageView.image = Asset.Images.newGenericExt.image
             }

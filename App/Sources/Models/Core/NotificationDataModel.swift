@@ -15,10 +15,3 @@ struct NotificationDataModel: Codable {
     var createdAt: String?
     var attachments: [Attachment]?
 }
-
-struct Attachment: Codable {
-    var id: Int?
-    var filename: String?
-    var fileUrl: String?
-    var contentType: String?
-}

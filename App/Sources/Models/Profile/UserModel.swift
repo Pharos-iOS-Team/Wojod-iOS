@@ -75,7 +75,7 @@ struct Organization: Codable {
     var media: OrganizationMedia?
 }
 
-struct OrganizationMedia: Codable {
+struct OrganizationMedia: Codable, ContentTypeable {
     var fileName: String?
     var fileUrl: String?
     var thumbnailUrl: String?

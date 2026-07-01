@@ -53,7 +53,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         case .notGraded:
             numberOfPointsLabel.textColor = Asset.Colors.sendButtonColor.color
             numberOfPointsLabel.font = markFont
-            numberOfPointsLabel.text = "quizzes.notGradedYet".localiz()
+            numberOfPointsLabel.text = L10n.Quizzes.notGradedYet
         case .needsImprovement:
             numberOfPointsLabel.textColor = .orange
             numberOfPointsLabel.font = markFont
@@ -83,11 +83,11 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
             if answered {
                 questionStatusLabel.textColor = .gray
                 questionStatusLabel.font = statusFont
-                questionStatusLabel.text = "quizzes.answered".localiz()
+                questionStatusLabel.text = L10n.Quizzes.answered
             } else {
                 questionStatusLabel.textColor = .red
                 questionStatusLabel.font = statusFont
-                questionStatusLabel.text = "quizzes.notAnswered".localiz()
+                questionStatusLabel.text = L10n.Quizzes.notAnswered
             }
         case .closed where module == .assignments:
             setAssignmentQuestionStatus(answerStatus)
@@ -101,19 +101,19 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         case .correct:
             questionStatusLabel.textColor = Colors.green.color
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.correct".localiz()
+            questionStatusLabel.text = L10n.Assignment.correct
         case .incorrect:
             questionStatusLabel.textColor = .red
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.incorrect".localiz()
+            questionStatusLabel.text = L10n.Assignment.incorrect
         case .needsImprovement:
             questionStatusLabel.textColor = .orange
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.needsImprovement".localiz()
+            questionStatusLabel.text = L10n.Assignment.needsImprovement
         case .notReviewed:
             questionStatusLabel.textColor = Asset.Colors.sendButtonColor.color
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.notReviewed".localiz()
+            questionStatusLabel.text = L10n.Assignment.notReviewed
         }
     }
 

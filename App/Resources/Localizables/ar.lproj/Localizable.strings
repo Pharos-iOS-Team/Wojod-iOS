@@ -14,9 +14,13 @@
 "shared.alerts.sessionExpired.title" = "انتهت الجلسة";
 "shared.alerts.sessionExpired.message" = "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى للمتابعة.";
 
+"shared.alerts.notSupportedScan.title" = "المسح الضوئي غير مدعوم";
+"shared.alerts.notSupportedScan.message" = "جهازك لا يدعم مسح الرمز من العناصر. يرجى استخدام جهاز مزود بكاميرا.";
+
 "shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
-"shared.continue" = "استمرار";
+"shared.titles.all" = "الكل";
+"shared.titles.continue" = "استمرار";
 
 "login.welcome" = "مرحباً \nأدخل رقم الهاتف  للمتابعة";
 "login.signIn" = "تسجيل الدخول";
@@ -187,6 +191,7 @@
 "courseDetails.main.reviewCourse" = "قيم الدورة الأكاديمية";
 "courseDetails.main.notEnoughViews" = "لقد تخطيت العدد المسموح به من المشاهدات لهذا الفيديو";
 "courseDetails.main.videoPlaybackIssue" = "يوجد مشكلة في تشغيل الفيديو. من فضلك تواصل مع الدعم الفنى 01111317891";
+"courseDetails.main.videoUnavailable" = "هذا الفيديو غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا.";
 "courseDetails.main.noLongerAvaliable" = "لم يعد متاح";
 "courseDetails.main.avaliableFor" = "متاح حتي: %@ ايام";
 
@@ -354,7 +359,7 @@
 "quizzes.noInternetMessage" = "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.";
 
 // MARK: - Assignments
-
+"assignment.title" = "التدريب";
 "assignment.pauseAlertTitle" = "وقف التدريب للوقت الحالي";
 "assignment.pauseAlertMessage" = "تأكد من العودة و الارسال في الميعاد المحدد";
 "assignment.pauseAlertPauseButtonTitle" = "وقف التدريب";

@@ -11,6 +11,9 @@ enum AuthEndpoint {
     case verifyOtp(OtpVerification)
     case verifyOtpFromLogin(OtpVerification)
     case createPassword(ForgetPasswordModel)
+    case verifyPhone(VerifyPhoneRequestModel)
+    case resendOtpForLogin(mobileNumber: String)
+    case setPassword(SetPasswordRequest)
 }
 
 extension AuthEndpoint: TargetType {
@@ -30,14 +33,20 @@ extension AuthEndpoint: TargetType {
             return "/verify_otp"
         case .createPassword:
             return "/password"
+        case .verifyPhone:
+            return "/auth/verify_phone"
+        case .resendOtpForLogin:
+            return "/resend_otp"
+        case .setPassword:
+            return "/auth/set_password"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .login, .sendMobileNumber, .verifyOtp, .verifyOtpFromLogin:
+        case .login, .sendMobileNumber, .verifyOtp, .verifyOtpFromLogin, .verifyPhone, .setPassword:
             return .post
-        case .guestMode:
+        case .guestMode, .resendOtpForLogin:
             return .get
         case .logout:
             return .delete
@@ -62,6 +71,12 @@ extension AuthEndpoint: TargetType {
             return .requestCustomJSONEncodable(otp, encoder: .default)
         case let .createPassword(password):
             return .requestCustomJSONEncodable(password, encoder: .default)
+        case let .verifyPhone(requestModel):
+            return .requestCustomJSONEncodable(requestModel, encoder: .default)
+        case let .resendOtpForLogin(mobileNumber):
+            return .requestParameters(parameters: ["mobile_number": mobileNumber], encoding: URLEncoding.queryString)
+        case let .setPassword(request):
+            return .requestCustomJSONEncodable(request, encoder: .default)
         }
     }
 }

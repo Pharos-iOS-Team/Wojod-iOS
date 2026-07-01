@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 enum AssessmentType: String {
-    case quiz
+    case quiz = "Quiz"
     case assignment
 
     var title: String {

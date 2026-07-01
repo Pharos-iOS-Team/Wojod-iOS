@@ -22,6 +22,10 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Changed
 - Changed network module.  
   Task: [CPI-330](https://jira.pharos-solutions.de/browse/CPI-330) | PR: [#31](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/31) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed Home and MyCourses module.  
+  Task: [CPI-340](https://jira.pharos-solutions.de/browse/CPI-340) | PR: [#32](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/32) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed Course Details module.  
+  Task: [CPI-331](https://jira.pharos-solutions.de/browse/CPI-331) | PR: [#36](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/36) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed

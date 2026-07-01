@@ -72,11 +72,10 @@ extension AssessmentsEndpoint: TargetType {
                 )
             }
             for (key, value) in parameters {
-                if let data = "\(value)".data(using: .utf8) {
-                    multipartFormData.append(
-                        Moya.MultipartFormData(provider: .data(data), name: key)
-                    )
-                }
+                let data = Data("\(value)".utf8)
+                multipartFormData.append(
+                    Moya.MultipartFormData(provider: .data(data), name: key)
+                )
             }
             return .uploadMultipart(multipartFormData)
         }

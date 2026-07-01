@@ -36,9 +36,13 @@ struct Course: Codable {
     let materialsUnreadCount: Int?
     let qrCodeEnabled: Bool?
     let contactUsInfo: String?
+
+    func getReservationState() -> CourseState {
+        CourseState(rawValue: reservationState ?? "") ?? .normal
+    }
 }
 
-struct Media: Codable {
+struct Media: Codable, ContentTypeable {
     var fileName: String?
     var fileUrl: String?
     var thumbnailUrl: String?

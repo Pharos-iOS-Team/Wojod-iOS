@@ -39,10 +39,10 @@ extension ChatEndpoint: TargetType {
         switch self {
         case let .getConversationForTeacher(requestModel):
             return .queryParameters(requestModel)
-            
+
         case let .sendMessageForFirstTime(formData), let .addMessage(_, formData), let .sendMessageForTeacher(formData):
             return .uploadMultipart(formData)
-            
+
         default:
             return .requestPlain
         }

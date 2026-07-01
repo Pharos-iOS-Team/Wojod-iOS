@@ -12,7 +12,7 @@ class VerifyOtpViewController: UIViewController {
     }
     @IBOutlet private var sendButton: SendButton! {
         didSet {
-            sendButton.setTitle(L10n.Shared.continue)
+            sendButton.setTitle(L10n.Shared.Titles.continue)
         }
     }
     @IBOutlet private var alertView: AlertView! {
@@ -135,7 +135,8 @@ class VerifyOtpViewController: UIViewController {
     }
 
     private func showLoadingIndicatorHandler() {
-        viewModel.showIndicator = {
+        viewModel.showIndicator = { [weak self] in
+            guard let self = self else { return }
             self.showLoadingIndicator()
         }
     }

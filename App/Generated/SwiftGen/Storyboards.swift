@@ -71,11 +71,6 @@ internal enum StoryboardScene {
 
     internal static let forgotPasswordViewController = SceneType<Wojood.ForgotPasswordViewController>(storyboard: ForgotPassword.self, identifier: "ForgotPasswordViewController")
   }
-  internal enum Home: StoryboardType {
-    internal static let storyboardName = "Home"
-
-    internal static let homeViewController = SceneType<Wojood.HomeViewController>(storyboard: Home.self, identifier: "HomeViewController")
-  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 

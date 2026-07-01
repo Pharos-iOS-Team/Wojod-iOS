@@ -40,7 +40,7 @@ extension RegistrationEndpoint: TargetType {
         switch self {
         case .signUp:
             return .post
-            
+
         default:
             return .get
         }

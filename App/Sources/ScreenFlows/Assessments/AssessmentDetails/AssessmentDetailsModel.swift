@@ -7,7 +7,6 @@ import Moya
 import UIKit
 
 class AssessmentDetailsModel {
-    private let decoder = JSONDecoder()
     private var cancellables = [Int: Cancellable]()
 
     private func addCancellable(questionID: Int?, cancellable: Cancellable) {

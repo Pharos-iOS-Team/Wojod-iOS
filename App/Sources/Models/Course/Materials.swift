@@ -6,7 +6,7 @@ struct Materials: Codable {
     var quizzes: [Assessment]?
     var assignments: [Assessment]?
     var videos: [Video]?
-    var documents: [MaterialsDocument]?
+    var documents: [Attachment]?
 
     mutating func sort() {
         quizzes?.sort { $0.publishedAt > $1.publishedAt }
@@ -19,15 +19,4 @@ struct Materials: Codable {
             return false
         }
     }
-}
-
-struct MaterialsDocument: Codable {
-    var id: Int?
-    var title: String?
-    var link: String?
-    var fileUrl: String?
-    var fileName: String?
-    var contentType: String?
-    var type: String?
-    var publishedAt: Date?
 }
