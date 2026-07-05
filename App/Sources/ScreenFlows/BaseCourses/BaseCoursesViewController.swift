@@ -66,7 +66,6 @@ class BaseCoursesViewController<ViewModel: BaseCoursesViewModel>: UIViewControll
         loadUserProfile()
         viewModel.page = 1
         loadCourses()
-        tableView.refreshControl?.endRefreshing()
     }
 
     func loadUserProfile(completion: (() -> Void)? = nil) {
@@ -108,6 +107,7 @@ class BaseCoursesViewController<ViewModel: BaseCoursesViewModel>: UIViewControll
 
     func hideInfiniteScrolling() {
         tableView.finishInfiniteScroll()
+        tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
     }
 
@@ -120,6 +120,7 @@ class BaseCoursesViewController<ViewModel: BaseCoursesViewModel>: UIViewControll
     }
 
     func appropriateSubjectCourse(index: Int) -> SubjectCourses? {
+        guard index < viewModel.courses.count else { return nil }
         return viewModel.courses[index]
     }
 
@@ -147,7 +148,6 @@ class BaseCoursesViewController<ViewModel: BaseCoursesViewModel>: UIViewControll
 
 extension BaseCoursesViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
     func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
-        showLoadingIndicator()
         let subjectCourse = appropriateSubjectCourse(index: teacherNameIndex)
         let teacherName = subjectCourse?.teacher?.name
         let teacherID = subjectCourse?.teacher?.id
@@ -157,6 +157,5 @@ extension BaseCoursesViewController: ViewCourseDetailsDelegate, SelectCourseCell
             teacherID: teacherID,
             from: self
         )
-        hideLoadingIndicator()
     }
 }

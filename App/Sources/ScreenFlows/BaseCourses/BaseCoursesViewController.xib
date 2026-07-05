@@ -14,14 +14,14 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Wojood" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseCoursesViewController" customModule="Wojood" customModuleProvider="target">
             <connections>
                 <outlet property="clearFiltersButton" destination="Y76-rP-T4a" id="21h-i5-L1a"/>
                 <outlet property="filtersButton" destination="rqP-fQ-iuP" id="Oxc-34-w85"/>
                 <outlet property="filtersButtonHeightConstraint" destination="1fB-hC-z1h" id="Z07-ue-J80"/>
                 <outlet property="helpCenterButton" destination="d28-A6-w5m" id="dEW-sf-03R"/>
                 <outlet property="helpCenterLabel" destination="sQb-4d-Zb1" id="QqA-cR-MSs"/>
-                <outlet property="notifiationButton" destination="m04-iN-YQq" id="B07-my-0U4"/>
+                <outlet property="notificationButton" destination="m04-iN-YQq" id="B07-my-0U4"/>
                 <outlet property="tableView" destination="iDj-vZ-gEt" id="BCw-ZQ-B6B"/>
                 <outlet property="view" destination="Kkm-F3-9QR" id="view-connection"/>
             </connections>

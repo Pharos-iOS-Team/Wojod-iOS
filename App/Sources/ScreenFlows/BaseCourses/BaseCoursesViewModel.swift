@@ -10,6 +10,7 @@ class BaseCoursesViewModel {
     private(set) var subjects: [Subject] = []
     var emptyStateType: EmptyStateType = .loading
     var selectedSubject: Subject?
+    var selectedSubjectIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     private(set) var mode: HomeMode = .relatedCourses
 
     /// Subclasses override to return `true` for "My Courses" API requests.

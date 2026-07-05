@@ -109,6 +109,7 @@ class FiltersViewController: UIViewController {
 
     @IBAction private func didTapStudentButton(_ sender: UIButton) {
         filterState.reset()
+        universityButtonIsTapped = true
         selectStudentInUniversity()
     }
 
@@ -118,12 +119,13 @@ class FiltersViewController: UIViewController {
     }
 
     @IBAction private func didTapApplyButton(_ sender: UIButton) {
-        let batchID = filterState.academicLevel == .schoolStudent ? filterState.selectedYear?.key : filterState.selectedAcademicYear?.key
+        let batchID = filterState.currentSelection.academicYear?.key
         viewModel?.loadFilteredCourses(
-            subjectID: filterState.selectedSubject?.id,
+            subjectID: filterState.currentSelection.subject?.id,
             batchID: batchID ?? 0,
-            specializationID: filterState.selectedField?.key
-        ) { courses in
+            specializationID: filterState.currentSelection.field?.key
+        ) { [weak self] courses in
+            guard let self = self else { return }
             self.delegate?.didApplyFilters(self.filterState.currentSelection, courses: courses)
             self.dismiss(animated: true)
         }
@@ -142,9 +144,7 @@ class FiltersViewController: UIViewController {
         filterState.currentSelection.academicLevel = .universityStudent
         filterState.academicLevel = .universityStudent
         filterState.currentSelection.academicDivision = division
-        filterState.selectedDivision = division
         filterState.currentSelection.field = specialization
-        filterState.selectedField = specialization
         filterState.universitySection = .academicYear
         filterState.universitySectionTitles = [L10n.Signup.School.academicYear]
         tableView.reloadData()
@@ -226,14 +226,24 @@ class FiltersViewController: UIViewController {
     }
 
     private func fetchAcademicTypes() {
-        viewModel?.loadAcademicTypes(for: filterState.academicLevel) { academicTypes in
+        filterState.academicTypes = []
+        filterState.isLoadingData = true
+        tableView.reloadData()
+        viewModel?.loadAcademicTypes(for: filterState.academicLevel) { [weak self] academicTypes in
+            guard let self = self else { return }
+            self.filterState.isLoadingData = false
             self.filterState.academicTypes = academicTypes ?? []
             self.tableView.reloadData()
         }
     }
 
     private func fetchUniversities() {
-        viewModel?.loadAcademicDivisions(for: filterState.academicLevel, in: 0) { universities in
+        filterState.universities = []
+        filterState.isLoadingData = true
+        tableView.reloadData()
+        viewModel?.loadAcademicDivisions(for: filterState.academicLevel, in: 0) { [weak self] universities in
+            guard let self = self else { return }
+            self.filterState.isLoadingData = false
             self.filterState.universities = universities ?? []
             self.tableView.reloadData()
         }

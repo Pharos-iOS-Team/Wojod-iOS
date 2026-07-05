@@ -5,9 +5,9 @@ import SwiftyUserDefaults
 import UIKit
 
 final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITableViewDataSource {
-    @IBOutlet private var notifiationButton: UIButton! {
+    @IBOutlet private var notificationButton: UIButton! {
         didSet {
-            notifiationButton.isHidden = Defaults[\.isGuestModeEnabled]
+            notificationButton.isHidden = Defaults[\.isGuestModeEnabled]
         }
     }
     @IBOutlet private var helpCenterButton: UIButton! {
@@ -29,8 +29,6 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
     @IBOutlet private var filtersButton: UIButton!
     @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint!
 
-    private var selectedSubjectIndexPath: IndexPath = .zero
-    private var mode: HomeMode = .relatedCourses
     private var isFirstScreenLoad: Bool = true
     private var isFiltersSelected: Bool = false
     private var currentFilterSelection = FilterSelection()
@@ -76,7 +74,7 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
         let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
         headerView?.delegate = self
         headerView?.setSubjects(viewModel.subjects)
-        headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
+        headerView?.selectedSubjectIndexPath = viewModel.selectedSubjectIndexPath
         headerView?.setAdvertisements(viewModel.advertisements)
 
         if isFirstScreenLoad {
@@ -85,7 +83,7 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
         }
 
         headerView?.setButtonsVisibility(!viewModel.isInSearchMode)
-        headerView?.setSubjectsVisibility(!viewModel.isInSearchMode && mode == .relatedCourses)
+        headerView?.setSubjectsVisibility(!viewModel.isInSearchMode && viewModel.mode == .relatedCourses)
         headerView?.setAdvertisementsVisibility(!viewModel.advertisements.isEmpty && !viewModel.isInSearchMode)
         return headerView
     }
@@ -110,7 +108,7 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
     }
 
     private func configureFilterButton() {
-        if mode == .exploreMore {
+        if viewModel.mode == .exploreMore {
             filtersButton.isHidden = false
             filtersButtonHeightConstraint.constant = 50
             filtersButton.setTitle(L10n.Filters.showFilters)
@@ -175,14 +173,14 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectSubject(at indexPath: IndexPath) {
-        selectedSubjectIndexPath = indexPath
+        viewModel.selectedSubjectIndexPath = indexPath
+        guard indexPath.item < viewModel.subjects.count else { return }
         viewModel.selectSubject(viewModel.subjects[indexPath.item])
         loadCourses()
     }
 
     func didSelectRelatedCourses() {
-        mode = .relatedCourses
-        selectedSubjectIndexPath = .zero
+        viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .relatedCourses)
         tableView.reloadData()
         configureFilterButton()
@@ -190,8 +188,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectExploreMore() {
-        mode = .exploreMore
-        selectedSubjectIndexPath = .zero
+        viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .exploreMore)
         tableView.reloadData()
         configureFilterButton()
@@ -204,6 +201,7 @@ extension HomeViewController: FiltersDelegate {
         self.currentFilterSelection = selection
         configureFiltersButtonWhenFiltersAreSelected()
         viewModel.courses = courses?.teachersCourses ?? []
+        viewModel.updateEmptyState()
         tableView.reloadData()
     }
 }

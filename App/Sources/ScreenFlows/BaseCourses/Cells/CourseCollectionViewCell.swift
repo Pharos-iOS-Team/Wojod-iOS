@@ -163,8 +163,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
     func configureVideo(with url: String) {
         playButton.isHidden = true
-        let videoURL = URL(string: "\(AppEnvironment.baseURL)" + url)
-        player = AVPlayer(url: videoURL!)
+        guard let videoURL = URL(string: "\(AppEnvironment.baseURL)" + url) else { return }
+        player = AVPlayer(url: videoURL)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.imageView.bounds
         self.imageView.layer.addSublayer(playerLayer)

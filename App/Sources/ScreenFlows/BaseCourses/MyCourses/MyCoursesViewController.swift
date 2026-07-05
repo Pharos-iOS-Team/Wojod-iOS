@@ -4,9 +4,9 @@ import SwiftyUserDefaults
 import UIKit
 
 final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewModel>, UITableViewDataSource {
-    @IBOutlet private var notifiationButton: UIButton! {
+    @IBOutlet private var notificationButton: UIButton! {
         didSet {
-            notifiationButton.isHidden = Defaults[\.isGuestModeEnabled]
+            notificationButton.isHidden = Defaults[\.isGuestModeEnabled]
         }
     }
     @IBOutlet private var helpCenterButton: UIButton! {
@@ -24,9 +24,6 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
     @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint?
 
     private var blurredView: UIVisualEffectView?
-    private var selectedSubjectIndexPath: IndexPath = .zero
-    private var searchText: String = ""
-    private var mode: HomeMode = .relatedCourses
     private var isFirstScreenLoad: Bool = true
 
     convenience init(viewModel: MyCoursesViewModel) {
@@ -43,12 +40,6 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
         super.configureTableView()
         tableView.dataSource = self
         tableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
-    }
-
-    private func hideFilterButtons() {
-        // Only hide filter-related buttons (not used in My Courses)
-        clearFiltersButton?.isHidden = true
-        filtersButton?.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +59,7 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
         let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
         headerView?.delegate = self
         headerView?.setSubjects(viewModel.subjects)
-        headerView?.selectedSubjectIndexPath = selectedSubjectIndexPath
+        headerView?.selectedSubjectIndexPath = viewModel.selectedSubjectIndexPath
 
         if isFirstScreenLoad {
             isFirstScreenLoad = false
@@ -76,7 +67,7 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
         }
 
         headerView?.setButtonsVisibility(true)
-        headerView?.setSubjectsVisibility(mode == .relatedCourses)
+        headerView?.setSubjectsVisibility(viewModel.mode == .relatedCourses)
         headerView?.setAdvertisementsVisibility(false)
         return headerView
     }
@@ -87,6 +78,12 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
 
     @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
         navigationCoordinator.showHelpCenter(from: self)
+    }
+
+    private func hideFilterButtons() {
+        // Only hide filter-related buttons (not used in My Courses)
+        clearFiltersButton?.isHidden = true
+        filtersButton?.isHidden = true
     }
 
     private func showReceipt(_ receiptData: Receipt) {
@@ -142,7 +139,7 @@ extension MyCoursesViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegat
 
 extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     func didSelectSubject(at indexPath: IndexPath) {
-        selectedSubjectIndexPath = indexPath
+        viewModel.selectedSubjectIndexPath = indexPath
         if indexPath.row < viewModel.subjects.count {
             let subject = viewModel.subjects[indexPath.row]
             viewModel.selectedSubject = subject
@@ -152,32 +149,28 @@ extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectRelatedCourses() {
-        mode = .relatedCourses
-        selectedSubjectIndexPath = .zero
+        viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .relatedCourses)
         forceReloadCourses()
         tableView.reloadData()
     }
 
     func didSelectExploreMore() {
-        mode = .exploreMore
-        selectedSubjectIndexPath = .zero
+        viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .exploreMore)
         forceReloadCourses()
         tableView.reloadData()
     }
 
     func textDidChange(in searchBar: UISearchBar) {
-        let text = searchBar.text ?? ""
-        searchText = text
-        if text.isEmpty {
-            viewModel.page = 1
-            loadCourses()
-        } else {
-            viewModel.searchCourses(value: text) { [weak self] in
-                self?.hideLoadingIndicator()
-                self?.tableView.reloadData()
-            }
-        }
+        viewModel.updateSearchText(searchBar.text ?? "")
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        perform(#selector(searchMyCourses(_:)), with: searchBar, afterDelay: 0.75)
+    }
+
+    @objc
+    private func searchMyCourses(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        loadCourses()
     }
 }

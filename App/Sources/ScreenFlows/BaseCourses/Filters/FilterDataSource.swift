@@ -20,10 +20,15 @@ class FilterDataSource: NSObject, UITableViewDataSource {
         cell.delegate = state
         cell.academicLevel = state.academicLevel
 
+        if state.isLoadingData && indexPath.row == 0 {
+            cell.setIsLoading(true)
+            return cell
+        }
+
         if state.academicLevel == .schoolStudent {
             configureSchoolCell(cell, at: indexPath, state: state)
         } else {
-            configureUniversityCell(cell, state: state)
+            configureUniversityCell(cell, at: indexPath, state: state)
         }
 
         return cell
@@ -54,15 +59,15 @@ class FilterDataSource: NSObject, UITableViewDataSource {
         }
     }
 
-    private func configureUniversityCell(_ cell: FiltersTableViewCell, state: FilterCoordinator) {
+    private func configureUniversityCell(_ cell: FiltersTableViewCell, at indexPath: IndexPath, state: FilterCoordinator) {
         if AppEnvironment.shouldHideOrganization {
-            configureHiddenOrgCell(cell, state: state)
+            configureHiddenOrgCell(cell, at: indexPath, state: state)
         } else {
-            configureStandardUniversityCell(cell, state: state)
+            configureStandardUniversityCell(cell, at: indexPath, state: state)
         }
     }
 
-    private func configureHiddenOrgCell(_ cell: FiltersTableViewCell, state: FilterCoordinator) {
+    private func configureHiddenOrgCell(_ cell: FiltersTableViewCell, at indexPath: IndexPath, state: FilterCoordinator) {
         switch state.universitySection {
         case .academicYear:
             cell.configureForUniveristy(title: L10n.Signup.School.academicYear, filters: state.academicYears.compactMap { $0.value }, section: .academicYear)
@@ -79,7 +84,7 @@ class FilterDataSource: NSObject, UITableViewDataSource {
         }
     }
 
-    private func configureStandardUniversityCell(_ cell: FiltersTableViewCell, state: FilterCoordinator) {
+    private func configureStandardUniversityCell(_ cell: FiltersTableViewCell, at indexPath: IndexPath, state: FilterCoordinator) {
         switch state.universitySection {
         case .university:
             cell.configureForUniveristy(title: L10n.Filters.university, filters: state.universities.compactMap { $0.value }, section: .university)

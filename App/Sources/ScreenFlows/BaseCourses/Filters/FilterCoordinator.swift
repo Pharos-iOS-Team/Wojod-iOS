@@ -13,22 +13,17 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     var universitySectionTitles: [String] = [L10n.Filters.university]
     var academicLevel: AcademicLevel = .schoolStudent
     var academicTypes: [KeyValue] = []
-    var selectedAcademicType: KeyValue?
     var schoolSection: SchoolSection = .academicType
     var divisions: [Division] = []
-    var selectedDivision: Division?
     var years: [Batch] = []
-    var selectedYear: Batch?
     var subjects: [Subject] = []
     var universities: [Division] = []
     var universitySection: UniversitySection = .university
-    var selectedUniversity: Division?
     var fields: [Specialization] = []
     var academicYears: [Batch] = []
-    var selectedAcademicYear: Batch?
     var universitySubjects: [Subject] = []
-    var selectedField: Specialization?
-    var selectedSubject: Subject?
+
+    var isLoadingData: Bool = false
 
     var isApplyEnabled: Bool = false {
         didSet {
@@ -37,19 +32,7 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     }
 
     func clearSelections() {
-        currentSelection.academicLevel = nil
-        currentSelection.academicType = nil
-        currentSelection.academicDivision = nil
-        currentSelection.academicYear = nil
-        currentSelection.field = nil
-        currentSelection.subject = nil
-        selectedUniversity = nil
-        selectedYear = nil
-        selectedDivision = nil
-        selectedField = nil
-        selectedAcademicYear = nil
-        selectedAcademicType = nil
-        selectedSubject = nil
+        currentSelection.reset()
     }
 
     func reset() {
@@ -72,8 +55,6 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     // MARK: - Restore
 
     func restoreSelection() {
-        guard currentSelection.isDataBeingRetrieved else { return }
-        currentSelection.isDataBeingRetrieved = false
         if academicLevel == .schoolStudent {
             restoreSchoolCascade()
         } else if AppEnvironment.shouldHideOrganization {
@@ -85,7 +66,7 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
 
     private func restoreSchoolCascade() {
         guard currentSelection.academicType != nil else { return }
-        viewModel?.loadAcademicDivisions(for: academicLevel, in: selectedAcademicType?.key ?? 0) { [weak self] divisions in
+        viewModel?.loadAcademicDivisions(for: academicLevel, in: currentSelection.academicType?.key ?? 0) { [weak self] divisions in
             guard let self = self else { return }
             self.divisions = divisions ?? []
             self.schoolSection = .academicDivision
@@ -119,7 +100,7 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
 
     private func restoreUniversityCascade() {
         guard currentSelection.academicDivision != nil else { return }
-        viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { [weak self] fields in
+        viewModel?.loadSpecializations(for: currentSelection.academicDivision?.key ?? 0) { [weak self] fields in
             guard let self = self else { return }
             self.fields = fields ?? []
             self.universitySection = .field
@@ -150,8 +131,8 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     private func removeRows(from keyPath: ReferenceWritableKeyPath<FilterCoordinator, [String]>, startingAt index: Int) {
         let count = self[keyPath: keyPath].count
         guard count > index else { return }
-        let paths = (index..<count).map { IndexPath(row: $0, section: 0) }
-        self[keyPath: keyPath].removeSubrange(index..<count)
+        let paths = (index ..< count).map { IndexPath(row: $0, section: 0) }
+        self[keyPath: keyPath].removeSubrange(index ..< count)
         tableView?.deleteRows(at: paths, with: .fade)
     }
 
@@ -168,154 +149,164 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     // MARK: - SelectingFilterDelegate
 
     func selectSchoolFilter(_ filterIndex: Int, in section: SchoolSection) {
-        currentSelection.isDataBeingRetrieved = false
         switch section {
         case .academicType:
-            schoolSection = .academicDivision
-
-            selectedDivision = nil
-            selectedYear = nil
-            selectedSubject = nil
-            currentSelection.academicDivision = nil
-            currentSelection.academicYear = nil
-            currentSelection.subject = nil
-            isApplyEnabled = false
-            removeRows(from: \.schoolSectionTitles, startingAt: 1)
-            showLoading(on: 0)
-            selectedAcademicType = academicTypes[filterIndex]
-            currentSelection.academicType = selectedAcademicType
-            viewModel?.loadAcademicDivisions(for: academicLevel, in: selectedAcademicType?.key ?? 0) { [weak self] divisions in
-                guard let self = self else { return }
-                self.divisions = divisions ?? []
-                self.insertRow(title: L10n.Signup.School.academicDivision, into: \.schoolSectionTitles, at: 1)
-            }
-
+            selectAcademicType(filterIndex)
         case .academicDivision:
-            schoolSection = .academicYear
-            selectedYear = nil
-            selectedSubject = nil
-            currentSelection.academicYear = nil
-            currentSelection.subject = nil
-            isApplyEnabled = false
-            removeRows(from: \.schoolSectionTitles, startingAt: 2)
-            showLoading(on: 1)
-            selectedDivision = divisions[filterIndex]
-            currentSelection.academicDivision = selectedDivision
-            viewModel?.loadBatches(for: selectedDivision?.key ?? 0) { [weak self] years in
-                guard let self = self else { return }
-                self.years = years ?? []
-                self.insertRow(title: L10n.Signup.School.academicYear, into: \.schoolSectionTitles, at: 2)
-            }
-
+            selectAcademicDivision(filterIndex)
         case .academicYear:
-            schoolSection = .subjects
-
-            selectedSubject = nil
-            currentSelection.subject = nil
-            isApplyEnabled = false
-            removeRows(from: \.schoolSectionTitles, startingAt: 3)
-            showLoading(on: 2)
-            selectedYear = years[filterIndex]
-            currentSelection.academicYear = selectedYear
-            viewModel?.loadSubjects(forYear: selectedYear?.key ?? 0) { [weak self] subjects in
-                guard let self = self else { return }
-                self.subjects = subjects.subjects ?? []
-                self.insertRow(title: L10n.Filters.subject, into: \.schoolSectionTitles, at: 3)
-            }
-
+            selectSchoolYear(filterIndex)
         case .subjects:
-            isApplyEnabled = true
-            selectedSubject = subjects[filterIndex]
-            currentSelection.subject = selectedSubject
+            selectSchoolSubject(filterIndex)
         }
     }
 
     func selectUniversityFilter(_ filterIndex: Int, in section: UniversitySection) {
-        currentSelection.isDataBeingRetrieved = false
-
         if AppEnvironment.shouldHideOrganization {
             switch section {
             case .academicYear:
-                universitySection = .subjects
-                selectedSubject = nil
-                currentSelection.subject = nil
-                isApplyEnabled = false
-                removeRows(from: \.universitySectionTitles, startingAt: 1)
-                showLoading(on: 0)
-                selectedAcademicYear = academicYears[filterIndex]
-                currentSelection.academicYear = selectedAcademicYear
-                viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { [weak self] subjects in
-                    guard let self = self else { return }
-                    self.universitySubjects = subjects.subjects ?? []
-                    self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 1)
-                }
-
+                selectHiddenOrgYear(filterIndex)
             case .subjects:
-                isApplyEnabled = true
-                selectedSubject = universitySubjects[filterIndex]
-                currentSelection.subject = selectedSubject
-
+                selectHiddenOrgSubject(filterIndex)
             default:
-                break
+                return
             }
         } else {
             switch section {
             case .university:
-                universitySection = .field
-                selectedField = nil
-                selectedAcademicYear = nil
-                selectedSubject = nil
-                currentSelection.field = nil
-                currentSelection.academicYear = nil
-                currentSelection.subject = nil
-                isApplyEnabled = false
-                removeRows(from: \.universitySectionTitles, startingAt: 1)
-                showLoading(on: 0)
-                selectedUniversity = universities[filterIndex]
-                currentSelection.academicDivision = selectedUniversity
-                viewModel?.loadSpecializations(for: selectedUniversity?.key ?? 0) { [weak self] fields in
-                    guard let self = self else { return }
-                    self.fields = fields ?? []
-                    self.insertRow(title: L10n.Signup.School.field, into: \.universitySectionTitles, at: 1)
-                }
-
+                selectUniversity(filterIndex)
             case .field:
-                universitySection = .academicYear
-                selectedAcademicYear = nil
-                selectedSubject = nil
-                currentSelection.academicYear = nil
-                currentSelection.subject = nil
-                isApplyEnabled = false
-                removeRows(from: \.universitySectionTitles, startingAt: 2)
-                showLoading(on: 1)
-                selectedField = fields[filterIndex]
-                currentSelection.field = selectedField
-                viewModel?.loadBatches(for: selectedUniversity?.key ?? 0) { [weak self] academicYears in
-                    guard let self = self else { return }
-                    self.academicYears = academicYears ?? []
-                    self.insertRow(title: L10n.Signup.School.academicYear, into: \.universitySectionTitles, at: 2)
-                }
-
+                selectField(filterIndex)
             case .academicYear:
-                universitySection = .subjects
-                selectedSubject = nil
-                currentSelection.subject = nil
-                isApplyEnabled = false
-                removeRows(from: \.universitySectionTitles, startingAt: 3)
-                showLoading(on: 2)
-                selectedAcademicYear = academicYears[filterIndex]
-                currentSelection.academicYear = selectedAcademicYear
-                viewModel?.loadSubjects(forYear: selectedAcademicYear?.key ?? 0) { [weak self] subjects in
-                    guard let self = self else { return }
-                    self.universitySubjects = subjects.subjects ?? []
-                    self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 3)
-                }
-
+                selectUniversityYear(filterIndex)
             case .subjects:
-                isApplyEnabled = true
-                selectedSubject = universitySubjects[filterIndex]
-                currentSelection.subject = selectedSubject
+                selectUniversitySubject(filterIndex)
             }
         }
+    }
+
+    // MARK: - School filter steps
+
+    private func selectAcademicType(_ filterIndex: Int) {
+        schoolSection = .academicDivision
+        currentSelection.academicDivision = nil
+        currentSelection.academicYear = nil
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.schoolSectionTitles, startingAt: 1)
+        showLoading(on: 0)
+        currentSelection.academicType = academicTypes[filterIndex]
+        viewModel?.loadAcademicDivisions(for: academicLevel, in: currentSelection.academicType?.key ?? 0) { [weak self] divisions in
+            guard let self = self else { return }
+            self.divisions = divisions ?? []
+            self.insertRow(title: L10n.Signup.School.academicDivision, into: \.schoolSectionTitles, at: 1)
+        }
+    }
+
+    private func selectAcademicDivision(_ filterIndex: Int) {
+        schoolSection = .academicYear
+        currentSelection.academicYear = nil
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.schoolSectionTitles, startingAt: 2)
+        showLoading(on: 1)
+        currentSelection.academicDivision = divisions[filterIndex]
+        viewModel?.loadBatches(for: currentSelection.academicDivision?.key ?? 0) { [weak self] years in
+            guard let self = self else { return }
+            self.years = years ?? []
+            self.insertRow(title: L10n.Signup.School.academicYear, into: \.schoolSectionTitles, at: 2)
+        }
+    }
+
+    private func selectSchoolYear(_ filterIndex: Int) {
+        schoolSection = .subjects
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.schoolSectionTitles, startingAt: 3)
+        showLoading(on: 2)
+        currentSelection.academicYear = years[filterIndex]
+        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+            guard let self = self else { return }
+            self.subjects = subjects.subjects ?? []
+            self.insertRow(title: L10n.Filters.subject, into: \.schoolSectionTitles, at: 3)
+        }
+    }
+
+    private func selectSchoolSubject(_ filterIndex: Int) {
+        isApplyEnabled = true
+        currentSelection.subject = subjects[filterIndex]
+    }
+
+    // MARK: - Hidden-org university filter steps
+
+    private func selectHiddenOrgYear(_ filterIndex: Int) {
+        universitySection = .subjects
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.universitySectionTitles, startingAt: 1)
+        showLoading(on: 0)
+        currentSelection.academicYear = academicYears[filterIndex]
+        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+            guard let self = self else { return }
+            self.universitySubjects = subjects.subjects ?? []
+            self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 1)
+        }
+    }
+
+    private func selectHiddenOrgSubject(_ filterIndex: Int) {
+        isApplyEnabled = true
+        currentSelection.subject = universitySubjects[filterIndex]
+    }
+
+    // MARK: - Standard university filter steps
+
+    private func selectUniversity(_ filterIndex: Int) {
+        universitySection = .field
+        currentSelection.field = nil
+        currentSelection.academicYear = nil
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.universitySectionTitles, startingAt: 1)
+        showLoading(on: 0)
+        currentSelection.academicDivision = universities[filterIndex]
+        viewModel?.loadSpecializations(for: currentSelection.academicDivision?.key ?? 0) { [weak self] fields in
+            guard let self = self else { return }
+            self.fields = fields ?? []
+            self.insertRow(title: L10n.Signup.School.field, into: \.universitySectionTitles, at: 1)
+        }
+    }
+
+    private func selectField(_ filterIndex: Int) {
+        universitySection = .academicYear
+        currentSelection.academicYear = nil
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.universitySectionTitles, startingAt: 2)
+        showLoading(on: 1)
+        currentSelection.field = fields[filterIndex]
+        viewModel?.loadBatches(for: currentSelection.academicDivision?.key ?? 0) { [weak self] academicYears in
+            guard let self = self else { return }
+            self.academicYears = academicYears ?? []
+            self.insertRow(title: L10n.Signup.School.academicYear, into: \.universitySectionTitles, at: 2)
+        }
+    }
+
+    private func selectUniversityYear(_ filterIndex: Int) {
+        universitySection = .subjects
+        currentSelection.subject = nil
+        isApplyEnabled = false
+        removeRows(from: \.universitySectionTitles, startingAt: 3)
+        showLoading(on: 2)
+        currentSelection.academicYear = academicYears[filterIndex]
+        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+            guard let self = self else { return }
+            self.universitySubjects = subjects.subjects ?? []
+            self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 3)
+        }
+    }
+
+    private func selectUniversitySubject(_ filterIndex: Int) {
+        isApplyEnabled = true
+        currentSelection.subject = universitySubjects[filterIndex]
     }
 }
