@@ -343,8 +343,8 @@ class ProfileViewModel {
 
     func shouldMakeTextFieldDisabled(forIndexPath index: Int) -> Bool {
         validFields[index] == .mobileNumber
-        || (validFields[index] == .division && AppEnvironment.shouldHideOrganization)
-        || (validFields[index] == .specialization && AppEnvironment.shouldHideOrganization)
+        || (validFields[index] == .division && AppEnvironment.shouldHideOrganizationAndSchool)
+        || (validFields[index] == .specialization && AppEnvironment.shouldHideOrganizationAndSchool)
     }
 
     func setNewPassword(oldPassword: String?, newPassword: String?, passwordConfirmation: String?) {
@@ -358,7 +358,8 @@ class ProfileViewModel {
     }
 
     func handleSuccessfulResponse() {
-        group.notify(queue: .main) {
+        group.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
             self.academicInfoSuccessHandler?()
         }
     }

@@ -25,9 +25,13 @@ enum AppEnvironment {
         return AppName.init(rawValue: propertyListKeyValuePair.appName) ?? .wojod
     }()
 
-    static let shouldHideOrganization: Bool = {
-        return AppEnvironment.appName.loginOrganization != nil
+    static let shouldHideOrganizationAndSchool: Bool = {
+      return AppEnvironment.appName == .squareCenter || AppEnvironment.appName == .royalMedicine
     }()
+  
+    static let shouldHideOrganization: Bool = {
+      return AppEnvironment.appName.loginOrganization != nil
+     }()
     
     static var imageUrl: (String) -> URL = { imagePath in
         guard let url = URL(string: "\(baseURLString)\(imagePath)") else { fatalError("Image URL is invalid") }

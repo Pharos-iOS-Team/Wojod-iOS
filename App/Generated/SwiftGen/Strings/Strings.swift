@@ -456,9 +456,13 @@ internal enum L10n {
     internal static var signIn: String {
         return L10n.tr("Localizable", "login.signIn")
       }
-    /// Welcome!\nSign in to continue
+    /// Welcome! \nEnter mobile number to continue
     internal static var welcome: String {
         return L10n.tr("Localizable", "login.welcome")
+      }
+    /// Welcome! \nEnter password to continue
+    internal static var welcomePassword: String {
+        return L10n.tr("Localizable", "login.welcomePassword")
       }
   }
 
@@ -1013,6 +1017,10 @@ internal enum L10n {
   }
 
   internal enum Shared {
+    /// Continue
+    internal static var `continue`: String {
+        return L10n.tr("Localizable", "shared.continue")
+      }
     internal enum Action {
       /// Cancel
       internal static var cancel: String {
@@ -1230,10 +1238,6 @@ internal enum L10n {
   }
 
   internal enum VerifyOtp {
-    /// Continue
-    internal static var `continue`: String {
-        return L10n.tr("Localizable", "verifyOtp.continue")
-      }
     /// Didn’t receive a code?
     internal static var didNotGetACode: String {
         return L10n.tr("Localizable", "verifyOtp.didNotGetACode")

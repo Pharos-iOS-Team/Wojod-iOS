@@ -8,6 +8,7 @@ class CreatePasswordViewModel {
     private var password: String = ""
     private var passwordConfirmation: String = ""
 
+    var isActivationFlow: Bool = false
     var errorHandler: ((WJError) -> Void)?
     var successHandler: (() -> Void)?
     var showIndicator: (() -> Void)?
@@ -23,13 +24,26 @@ class CreatePasswordViewModel {
         self.passwordConfirmation = passwordConfirmation
         guard validatePassword() else { return }
         showIndicator?()
-        let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
-        model.createPassword(password: passwordModel) { result in
-            switch result {
-            case .success:
-                self.successHandler?()
-            case .failure(let error):
-                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+        if isActivationFlow {
+            let request = SetPasswordRequest(password: password, passwordConfirmation: passwordConfirmation)
+            ApiProvider.shared.request(.auth(.setPassword(request)), decodeTo: LoginApiResponseModel.self) { result in
+                switch result {
+                case .success(let user):
+                    User.shared.setUserData(user: user.data)
+                    self.successHandler?()
+                case .failure(let error):
+                    self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                }
+            }
+        } else {
+            let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
+            model.createPassword(password: passwordModel) { result in
+                switch result {
+                case .success:
+                    self.successHandler?()
+                case .failure(let error):
+                    self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                }
             }
         }
     }

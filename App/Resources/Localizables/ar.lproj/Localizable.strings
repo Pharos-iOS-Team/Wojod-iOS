@@ -16,11 +16,12 @@
 
 "shared.action.cancel" = "إلغاء";
 "shared.action.dismiss" = "غلق";
+"shared.continue" = "استمرار";
 
-"login.welcome" = "مرحبًا!
-سجل الدخول للمتابعة";
-
+"login.welcome" = "مرحباً \nأدخل رقم الهاتف  للمتابعة";
 "login.signIn" = "تسجيل الدخول";
+
+"login.welcomePassword" = "مرحباً \nأدخل كلمة المرور للمتابعة";
 
 "login.guestMode" = "متابعة كضيف";
 
@@ -64,8 +65,6 @@
 "verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
 
 "verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
-
-"verifyOtp.continue" = "استمرار";
 
 "verifyOtp.resendCode" = "إعادة إرسال كود التفعيل";
 

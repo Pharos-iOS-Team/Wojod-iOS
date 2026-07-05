@@ -107,18 +107,9 @@ final class User {
     }
     // swiftlint:enable function_body_length
 
-    func deleteUserLocationData() {
-        User.shared.country = nil
-        User.shared.countryName = nil
-        User.shared.city = nil
-        User.shared.cityName = nil
-        User.shared.address = nil
-        User.shared.region = nil
-    }
-
     func setLoggedOut() {
         isFirstHomeLoad = true
-        deleteUserLocationData()
+        setUserData(user: nil)
         KeychainHandler.shared.deleteUserToken()
     }
 
