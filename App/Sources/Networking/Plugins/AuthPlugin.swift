@@ -40,7 +40,7 @@ final class AuthPlugin: PluginType {
     func didReceive(_ result: Swift.Result<Moya.Response, MoyaError>, target: TargetType) {
         guard let endpoint = target as? Endpoint, case let .success(response) = result else { return }
         switch endpoint {
-        case .auth(.login), .auth(.verifyOtpFromLogin), .auth(.setPassword), .profile(.fetchProfile):
+        case .auth(.login), .auth(.verifyOtp), .auth(.verifyOtpFromLogin), .auth(.setPassword), .profile(.fetchProfile):
             saveAuthHeader(from: response)
         default:
             break

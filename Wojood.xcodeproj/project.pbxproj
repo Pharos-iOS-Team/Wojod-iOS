@@ -299,6 +299,9 @@
 		D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5276DF72F41FB180045A2EA /* TaskExt.swift */; };
 		D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B5CDF2E68940400EBB62C /* AppName.swift */; };
 		D53E7D192F90CFC00052D8BC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53E7D182F90CFC00052D8BC /* PDFViewController.swift */; };
+		D55580EE2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580ED2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift */; };
+		D55580F02FFA8D6700A56073 /* SetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580EF2FFA8D6700A56073 /* SetPasswordRequest.swift */; };
+		D55580F22FFA8D6F00A56073 /* VerifyPhoneResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */; };
 		D5573B792FBC686C00F0FF5E /* AnsweredQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5573B782FBC686C00F0FF5E /* AnsweredQuestion.swift */; };
 		D5647A402F6A247100518611 /* BunnyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */; };
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
@@ -409,10 +412,7 @@
 		D5C3304C2F26513900AB5D53 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */; };
 		D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */; };
 		D5C3304F2F26614E00AB5D53 /* ReviewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */; };
-		D5C405042FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */; };
-		D5C405062FEB4322007BBF75 /* SetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */; };
 		D5CEAE8C2FE0242D00B2C1F7 /* PayloadExtractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAE8B2FE0242D00B2C1F7 /* PayloadExtractable.swift */; };
-		D5CEAF0F2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */; };
 		D5CEAF6E2FE6BD5300B2C1F7 /* GetAssessmentsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF6D2FE6BD5300B2C1F7 /* GetAssessmentsRequestModel.swift */; };
 		D5CEAF702FE6C31100B2C1F7 /* Ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF6F2FE6C31100B2C1F7 /* Ignored.swift */; };
 		D5CEAF722FE6C38100B2C1F7 /* CorrectionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF712FE6C38100B2C1F7 /* CorrectionImage.swift */; };
@@ -773,6 +773,9 @@
 		D5276DF72F41FB180045A2EA /* TaskExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExt.swift; sourceTree = "<group>"; };
 		D53B5CDF2E68940400EBB62C /* AppName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppName.swift; sourceTree = "<group>"; };
 		D53E7D182F90CFC00052D8BC /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		D55580ED2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneRequestModel.swift; sourceTree = "<group>"; };
+		D55580EF2FFA8D6700A56073 /* SetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordRequest.swift; sourceTree = "<group>"; };
+		D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneResponse.swift; sourceTree = "<group>"; };
 		D5573B782FBC686C00F0FF5E /* AnsweredQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnsweredQuestion.swift; sourceTree = "<group>"; };
 		D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyPlayerView.swift; sourceTree = "<group>"; };
 		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
@@ -887,10 +890,7 @@
 		D5C3304A2F26513900AB5D53 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		D5C3304B2F26513900AB5D53 /* ContactUsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		D5C3304E2F26614E00AB5D53 /* ReviewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCourseViewController.swift; sourceTree = "<group>"; };
-		D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneRequestModel.swift; sourceTree = "<group>"; };
-		D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordRequest.swift; sourceTree = "<group>"; };
 		D5CEAE8B2FE0242D00B2C1F7 /* PayloadExtractable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadExtractable.swift; sourceTree = "<group>"; };
-		D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneResponse.swift; sourceTree = "<group>"; };
 		D5CEAF6D2FE6BD5300B2C1F7 /* GetAssessmentsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssessmentsRequestModel.swift; sourceTree = "<group>"; };
 		D5CEAF6F2FE6C31100B2C1F7 /* Ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ignored.swift; sourceTree = "<group>"; };
 		D5CEAF712FE6C38100B2C1F7 /* CorrectionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionImage.swift; sourceTree = "<group>"; };
@@ -2187,13 +2187,13 @@
 				D5AD7AFB2F9E7B4300EA7C7B /* GetOTPRequestModel.swift */,
 				D5AD7AFC2F9E7B4300EA7C7B /* LoginRequestModel.swift */,
 				D5AD7AFD2F9E7B4300EA7C7B /* OtpVerification.swift */,
+				D55580ED2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift */,
+				D55580EF2FFA8D6700A56073 /* SetPasswordRequest.swift */,
 				D5AD7AFE2F9E7B4300EA7C7B /* Profile.swift */,
 				D5AD7AFF2F9E7B4300EA7C7B /* Student.swift */,
+				D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */,
 				D5AD7B002F9E7B4300EA7C7B /* UserModel.swift */,
 				D5AD7B012F9E7B4300EA7C7B /* UserSignupRequest.swift */,
-				D5C405032FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift */,
-				D5CEAF0E2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift */,
-				D5C405052FEB4322007BBF75 /* SetPasswordRequest.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2729,9 +2729,9 @@
 				26CF48CE269B30E900DDA29F /* SocketManager.swift in Sources */,
 				7723ADC2261C728E007C0B97 /* AppEnvironment.swift in Sources */,
 				7723AE00261C79E8007C0B97 /* ReachabilityExt.swift in Sources */,
-				D5CEAF0F2FE0A6BB00B2C1F7 /* VerifyPhoneResponse.swift in Sources */,
 				38659AC826B4410200E3BFE9 /* FiltersModel.swift in Sources */,
 				BC19E5DF2631A37B00CFA142 /* CreatePasswordModel.swift in Sources */,
+				D55580F02FFA8D6700A56073 /* SetPasswordRequest.swift in Sources */,
 				E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */,
 				778E7252261DC2D4009D7B35 /* StringExt.swift in Sources */,
 				385CC0B7265ED63A00A091FD /* CourseDetailsHeaderView.swift in Sources */,
@@ -2829,7 +2829,6 @@
 				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,
 				BC7FD37226D6888A009BC1EF /* AVAudioSessionExt.swift in Sources */,
 				D5C3304D2F26513900AB5D53 /* ContactUsViewController.swift in Sources */,
-				D5C405062FEB4322007BBF75 /* SetPasswordRequest.swift in Sources */,
 				778E7296261DCFF5009D7B35 /* StringProtocolExt.swift in Sources */,
 				77E32BBF264A8C200064B801 /* UITableViewExt.swift in Sources */,
 				BC91581026385CED00868BB0 /* Constants.swift in Sources */,
@@ -2847,6 +2846,7 @@
 				D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */,
 				D5FFA0392F3C9A60009B796A /* YouTubePlayerRepresentable.swift in Sources */,
 				D5FFA03B2F3C9A60009B796A /* YouTubePlayerView.swift in Sources */,
+				D55580EE2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift in Sources */,
 				D5FFA03C2F3C9A60009B796A /* YouTubePlayerRepresentable+Coordinator.swift in Sources */,
 				26CF48E9269B44E000DDA29F /* MessageObjectModel+MessageKitExtension.swift in Sources */,
 				77D013CF26A0F701006EA602 /* AdsCollectionViewCell.swift in Sources */,
@@ -2938,6 +2938,7 @@
 				D5AD7B552F9E7B4300EA7C7B /* PlaybackRate.swift in Sources */,
 				D5AD7B562F9E7B4300EA7C7B /* ForgetPasswordModel.swift in Sources */,
 				D5AD7B572F9E7B4300EA7C7B /* CheckNumberRequestModel.swift in Sources */,
+				D55580F22FFA8D6F00A56073 /* VerifyPhoneResponse.swift in Sources */,
 				D5AD7B582F9E7B4300EA7C7B /* Grade.swift in Sources */,
 				D5AD7B592F9E7B4300EA7C7B /* SubjectsViewModel.swift in Sources */,
 				D5AD7B5A2F9E7B4300EA7C7B /* GetConversationForTeacherRequestModel.swift in Sources */,
@@ -2994,7 +2995,6 @@
 				BC0F92BB2785DC6A001C5B3A /* OrganizationsListViewController.swift in Sources */,
 				26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */,
 				38B1319826B03FD300D5966A /* FiltersViewController.swift in Sources */,
-				D5C405042FEB42C3007BBF75 /* VerifyPhoneRequestModel.swift in Sources */,
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
 				38B131C826B173D800D5966A /* FiltersTableViewCell.swift in Sources */,
 				38A61A6E26E644EC0044AEA4 /* CourseDetailsSubScreens.swift in Sources */,

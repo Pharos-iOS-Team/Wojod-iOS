@@ -34,7 +34,7 @@ class LoginViewModel {
                     self.navigateToPasswordEntry?()
                 }
             case .failure(let error):
-                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
     }
@@ -65,7 +65,7 @@ class LoginViewModel {
                 self.setUserData(user: user, studentUser: nil)
                 self.successHandler?(user)
             case .failure(let error):
-                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                self.errorHandler?(self.mapToWJError(error))
             }
         }
     }
@@ -77,7 +77,7 @@ class LoginViewModel {
                 let isGuestModeEnabled = whiteLabelVersion.version == "1.0.0"
                 completion(isGuestModeEnabled)
             case .failure(let error):
-                self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                self.errorHandler?(self.mapToWJError(error))
                 completion(false)
             }
         }
@@ -105,6 +105,17 @@ class LoginViewModel {
 
     private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
         User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
+    }
+
+    private func mapToWJError(_ error: Error) -> WJError {
+        if let apiError = error as? ApiError,
+           case .clientError(let statusCode, let endpointError) = apiError {
+            return WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
+                message: endpointError.errors.first ?? ""
+            )
+        }
+        return WJError(type: .parsingError, message: error.localizedDescription)
     }
 
     func doesErrorIndicateVerificationRequired(_ error: WJError) -> Bool {

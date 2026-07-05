@@ -26,13 +26,15 @@ class CreatePasswordViewModel {
         showIndicator?()
         if isActivationFlow {
             let request = SetPasswordRequest(password: password, passwordConfirmation: passwordConfirmation)
-            ApiProvider.shared.request(.auth(.setPassword(request)), decodeTo: LoginApiResponseModel.self) { result in
+            ApiProvider.shared.request(.auth(.setPassword(request))) { result in
                 switch result {
-                case .success(let user):
-                    User.shared.setUserData(user: user.data)
+                case .success(let response):
+                    if let user = try? JSONDecoder.default.decode(LoginApiResponseModel.self, from: response.data) {
+                        User.shared.setUserData(user: user.data)
+                    }
                     self.successHandler?()
                 case .failure(let error):
-                    self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                    self.errorHandler?(self.mapToWJError(error))
                 }
             }
         } else {
@@ -42,10 +44,21 @@ class CreatePasswordViewModel {
                 case .success:
                     self.successHandler?()
                 case .failure(let error):
-                    self.errorHandler?(WJError(type: .parsingError, message: error.localizedDescription))
+                    self.errorHandler?(self.mapToWJError(error))
                 }
             }
         }
+    }
+
+    private func mapToWJError(_ error: Error) -> WJError {
+        if let apiError = error as? ApiError,
+           case .clientError(let statusCode, let endpointError) = apiError {
+            return WJError(
+                type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
+                message: endpointError.errors.first ?? ""
+            )
+        }
+        return WJError(type: .parsingError, message: error.localizedDescription)
     }
 
     func validatePassword() -> Bool {

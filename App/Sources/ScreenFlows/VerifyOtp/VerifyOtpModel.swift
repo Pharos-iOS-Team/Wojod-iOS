@@ -14,7 +14,15 @@ class VerifyOtpModel {
         }
     }
 
-    func verifyOtpFromLogin(otp: OtpVerification, completionHandler: @escaping (Swift.Result<LoginApiResponseModel, Error>) -> Void) {
-        ApiProvider.shared.request(.auth(.verifyOtpFromLogin(otp)), decodeTo: LoginApiResponseModel.self, completion: completionHandler)
+    func verifyOtpFromLogin(otp: OtpVerification, completionHandler: @escaping (Swift.Result<LoginApiResponseModel?, Error>) -> Void) {
+        ApiProvider.shared.request(.auth(.verifyOtpFromLogin(otp))) { result in
+            switch result {
+            case .success(let response):
+                let user = try? JSONDecoder.default.decode(LoginApiResponseModel.self, from: response.data)
+                completionHandler(.success(user))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
     }
 }

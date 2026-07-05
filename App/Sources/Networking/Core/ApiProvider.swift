@@ -118,7 +118,7 @@ final class ApiProvider {
             }
 
         case 400 ..< 500:
-            let endpointError = try decoder.decode(EndpointError.self, from: response.data)
+            let endpointError = (try? decoder.decode(EndpointError.self, from: response.data)) ?? EndpointError(errors: [])
             let errorMessage = endpointError.errors.first ?? ""
             switch HTTPStatusCode(rawValue: response.statusCode) {
             case .unauthorized:
