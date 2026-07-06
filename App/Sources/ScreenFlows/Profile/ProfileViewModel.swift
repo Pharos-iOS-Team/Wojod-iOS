@@ -33,9 +33,9 @@ class ProfileViewModel {
     var batches = [KeyName]()
     var validFields: [ProfileFields] {
         switch User.shared.educationLevel {
-        case EducationLevel.facutly.rawValue:
+        case EducationLevel.faculty.rawValue:
             return ProfileFields.allCases.filter { $0 != .parentNumber && $0 != .parentNumber2 && $0 != .academicType }
-        case EducationLevel.gradute.rawValue:
+        case EducationLevel.graduate.rawValue:
             return [.name, .mobileNumber, .mobileNumber2, .email, .homeNumber, .batch, .division, .country, .city, .region, .address, .logout]
         default:
             return ProfileFields.allCases

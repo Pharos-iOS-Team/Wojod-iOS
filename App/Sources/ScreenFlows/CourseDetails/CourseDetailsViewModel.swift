@@ -292,12 +292,12 @@ class CourseDetailsViewModel: NSObject {
         apiProvider.request(
             .courseDetails(.loadLessons(courseID: courseID)),
             decodeTo: LessonsModel.self
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(let lessons):
                 completion(lessons)
-            case .failure:
-                return
+            case .failure(let error):
+                self?.onError?(error.localizedDescription)
             }
         }
     }
@@ -306,12 +306,12 @@ class CourseDetailsViewModel: NSObject {
         apiProvider.request(
             .courseDetails(.loadReviews(courseID: courseID)),
             decodeTo: ReviewsModel.self
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(let reviews):
                 completion(reviews)
-            case .failure:
-                return
+            case .failure(let error):
+                self?.onError?(error.localizedDescription)
             }
         }
     }
@@ -320,12 +320,12 @@ class CourseDetailsViewModel: NSObject {
         apiProvider.request(
             .courseDetails(.loadAttachmentsOfLesson(lessonID: lessonID)),
             decodeTo: LessonAttachmentsModel.self
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(let attachments):
                 completion(attachments)
-            case .failure:
-                return
+            case .failure(let error):
+                self?.onError?(error.localizedDescription)
             }
         }
     }
@@ -356,13 +356,13 @@ class CourseDetailsViewModel: NSObject {
         apiProvider.request(
             .courseDetails(.loadMaterials(courseID: courseID)),
             decodeTo: Materials.self
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(var materials):
                 materials.sort()
                 completion(materials)
-            case .failure:
-                return
+            case .failure(let error):
+                self?.onError?(error.localizedDescription)
             }
         }
     }
@@ -371,12 +371,12 @@ class CourseDetailsViewModel: NSObject {
         apiProvider.request(
             .courseDetails(.loadCourse(courseID: courseID)),
             decodeTo: CourseDetailsResponse.self
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(let course):
                 completion(course)
-            case .failure:
-                return
+            case .failure(let error):
+                self?.onError?(error.localizedDescription)
             }
         }
     }
@@ -398,12 +398,12 @@ class CourseDetailsViewModel: NSObject {
     func updateVideo(videoId: String, updateObject: UpdateObject) {
         apiProvider.request(
             .courseDetails(.updateVideo(videoId: videoId, updateObject: updateObject))
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success:
                 return
             case let .failure(error):
-                print(error)
+                self?.onError?(error.localizedDescription)
             }
         }
     }

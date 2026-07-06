@@ -346,7 +346,7 @@ class AssessmentDetailsViewModel {
 
     func finishAssessment(_ completion: ((Error?) -> Void)? = nil) {
         guard let assessmentID = assissmentID else { return }
-      model.finishAssessment(assessmentID: assessmentID, module: module.rawValue, completionHandler: completion!)
+        model.finishAssessment(assessmentID: assessmentID, module: module.rawValue, completionHandler: completion ?? { _ in })
     }
 
     func submitQuestionAnswer(at index: Int) {

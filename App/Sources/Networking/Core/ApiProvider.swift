@@ -45,28 +45,11 @@ final class ApiProvider {
         provider.request(endpoint) { result in
             switch result {
             case let .success(response):
-                switch response.statusCode {
-                case 200 ..< 300:
+                do {
+                    try self.validateStatusCode(response: response, decoder: endpoint.decoder)
                     completion(.success(response))
-                case 400 ..< 500:
-                    do {
-                        let error = try endpoint.decoder.decode(EndpointError.self, from: response.data)
-                        let errorMessage = error.errors.first ?? ""
-                        switch HTTPStatusCode(rawValue: response.statusCode) {
-                        case .unauthorized:
-                            completion(.failure(ApiError.unauthorized(error: errorMessage)))
-                        case .conflict:
-                            completion(.failure(ApiError.conflictError(errorMessage)))
-                        default:
-                            completion(.failure(ApiError.clientError(statusCode: response.statusCode, clientError: error)))
-                        }
-                    } catch {
-                        completion(.failure(ApiError.clientError(statusCode: response.statusCode, clientError: EndpointError(errors: []))))
-                    }
-                case 500 ..< 600:
-                    completion(.failure(ApiError.serverError(statusCode: response.statusCode)))
-                default:
-                    completion(.failure(ApiError.unexpectedStatusCode(statusCode: response.statusCode)))
+                } catch {
+                    completion(.failure(error))
                 }
             case let .failure(error):
                 completion(.failure(self.mapErrors(error)))
@@ -85,7 +68,7 @@ final class ApiProvider {
     ) -> Cancellable {
         let cancellable = provider.request(
             endpoint,
-            callbackQueue: .global(),
+            callbackQueue: .main,
             progress: { progressResponse in
                 if let progressObject = progressResponse.progressObject {
                     progress(progressObject.fractionCompleted)
@@ -109,14 +92,18 @@ final class ApiProvider {
         response: Response,
         decoder: JSONDecoder
     ) throws -> T {
+        try validateStatusCode(response: response, decoder: decoder)
+        do {
+            return try response.data.decode(decoder)
+        } catch {
+            throw ApiError.responseDataConversionFailed(error: error.localizedDescription)
+        }
+    }
+
+    private func validateStatusCode(response: Response, decoder: JSONDecoder) throws {
         switch response.statusCode {
         case 200 ..< 300:
-            do {
-                return try response.data.decode(decoder)
-            } catch {
-                throw ApiError.responseDataConversionFailed(error: error.localizedDescription)
-            }
-
+            return
         case 400 ..< 500:
             let endpointError = (try? decoder.decode(EndpointError.self, from: response.data)) ?? EndpointError(errors: [])
             let errorMessage = endpointError.errors.first ?? ""
@@ -130,10 +117,8 @@ final class ApiProvider {
             default:
                 throw ApiError.clientError(statusCode: response.statusCode, clientError: endpointError)
             }
-
         case 500 ..< 600:
             throw ApiError.serverError(statusCode: response.statusCode)
-
         default:
             throw ApiError.unexpectedStatusCode(statusCode: response.statusCode)
         }

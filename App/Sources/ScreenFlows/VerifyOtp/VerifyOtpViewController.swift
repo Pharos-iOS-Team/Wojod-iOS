@@ -135,7 +135,8 @@ class VerifyOtpViewController: UIViewController {
     }
 
     private func showLoadingIndicatorHandler() {
-        viewModel.showIndicator = {
+        viewModel.showIndicator = { [weak self] in
+            guard let self = self else { return }
             self.showLoadingIndicator()
         }
     }

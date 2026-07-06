@@ -34,11 +34,11 @@ extension CourseDetailsEndpoint: TargetType {
         case let .loadMaterials(courseID):
             return "/courses/\(courseID)/materials"
         case let .loadCourse(courseID):
-            return "courses/\(courseID)"
+            return "/courses/\(courseID)"
         case let .fetchVideo(videoId):
-            return "videos/\(videoId)"
+            return "/videos/\(videoId)"
         case let .updateVideo(videoId, _):
-            return "videos/\(videoId)/seconds_viewed"
+            return "/videos/\(videoId)/seconds_viewed"
         }
     }
 

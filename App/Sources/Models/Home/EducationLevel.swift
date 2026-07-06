@@ -4,6 +4,6 @@ import Foundation
 
 enum EducationLevel: Int, CaseIterable {
     case school
-    case facutly
-    case gradute
+    case faculty
+    case graduate
 }
