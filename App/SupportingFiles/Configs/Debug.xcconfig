@@ -9,9 +9,9 @@
 
 // MARK: - URLs
 
-ROOT_URL = https:/$()/production.wojodacademy.com/api/student/v1.1
-BASE_URL = https:/$()/production.wojodacademy.com
-CHAT_BASE_URL = wss:/$()/production.wojodacademy.com/cable
+ROOT_URL = https:/$()/www.wojodacademy.com/api/student/v1.1
+BASE_URL = https:/$()/www.wojodacademy.com
+CHAT_BASE_URL = wss:/$()/www.wojodacademy.com/cable
 
 // MARK: - Name
 

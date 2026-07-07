@@ -4,10 +4,10 @@ import DZNEmptyDataSet
 import UIKit
 
 class CoursesEmptyStateDelegate: NSObject {
-    private weak var viewModel: BaseCoursesViewModel?
+    private weak var viewModel: CourseListViewModeling?
     private weak var navigationCoordinator: CoursesNavigationCoordinating?
 
-    init(viewModel: BaseCoursesViewModel, navigationCoordinator: CoursesNavigationCoordinating? = nil) {
+    init(viewModel: CourseListViewModeling, navigationCoordinator: CoursesNavigationCoordinating? = nil) {
         self.viewModel = viewModel
         self.navigationCoordinator = navigationCoordinator
         super.init()

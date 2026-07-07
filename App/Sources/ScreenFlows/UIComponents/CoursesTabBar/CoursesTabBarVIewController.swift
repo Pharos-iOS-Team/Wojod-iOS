@@ -26,7 +26,7 @@ class CoursesTabBarViewController: UITabBarController {
     }
 
     private func setupTabBarForUser() {
-        let homeViewCtrl = HomeViewController(viewModel: .init())
+        let homeViewCtrl = HomeViewController()
         homeViewCtrl.tabBarItem = UITabBarItem(
             title: L10n.TabBar.home,
             image: Images.home.image.withRenderingMode(.alwaysOriginal),
@@ -34,7 +34,7 @@ class CoursesTabBarViewController: UITabBarController {
         )
         homeViewCtrl.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         
-        let coursesViewCtrl = MyCoursesViewController(viewModel: .init())
+        let coursesViewCtrl = MyCoursesViewController()
         coursesViewCtrl.tabBarItem = UITabBarItem(
             title: L10n.TabBar.myCourses,
             image: Images.courses.image.withRenderingMode(.alwaysOriginal),

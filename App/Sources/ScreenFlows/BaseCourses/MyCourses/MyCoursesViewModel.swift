@@ -2,52 +2,106 @@
 
 import Foundation
 
-final class MyCoursesViewModel: BaseCoursesViewModel {
-    override var isMyCourses: Bool { return true }
+final class MyCoursesViewModel: CourseListViewModeling, CourseSearching {
+    let isMyCourses: Bool = true
 
+    var courses: [SubjectCourses] = []
+    var subjects: [Subject] = []
+    var selectedSubjectIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    var selectedSubject: Subject?
+    var mode: HomeMode = .relatedCourses
+    var emptyStateType: EmptyStateType = .loading
     var searchText: String = ""
 
-    var isInSearchMode: Bool {
-        return searchText.isValid
-    }
-
-    func updateSearchText(_ text: String) {
-        searchText = text
-        if !text.isValid {
-            page = 1
+    private lazy var paginator = Paginator<SubjectCourses> { [weak self] page, completion in
+        guard let self = self else {
+            completion(.success([]))
+            return
+        }
+        self.coursesService.fetchCourses(
+            mode: self.mode,
+            isMyCourses: true,
+            subjectID: self.selectedSubject?.id,
+            page: page
+        ) { result in
+            switch result {
+            case .success(let response):
+                if let subjects = response.subjects {
+                    self.subjects = subjects
+                }
+                completion(.success(response.teachersCourses ?? []))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
+    private let coursesService: CoursesServicing
+    private let userProfileService: UserProfileServicing
 
-    override func loadCourses(completion: @escaping () -> Void) {
+    init(
+        coursesService: CoursesServicing = CoursesService(),
+        userProfileService: UserProfileServicing = UserProfileService()
+    ) {
+        self.coursesService = coursesService
+        self.userProfileService = userProfileService
+    }
+
+    func loadCourses(completion: @escaping () -> Void) {
         if isInSearchMode {
-            searchCourses(value: searchText, completion: completion)
+            searchCourses(completion: completion)
         } else {
             fetchCoursesForCurrentMode(completion: completion)
         }
     }
 
-    private func searchCourses(value: String, completion: @escaping () -> Void) {
-        apiProvider.request(
-            .home(.searchCourses(.init(value: value))),
-            decodeTo: CoursesResponse.self
-        ) { [weak self] result in
+    func changeMode(to newMode: HomeMode) {
+        mode = newMode
+        selectedSubject = nil
+        resetPagination()
+    }
+
+    func selectSubject(_ subject: Subject) {
+        selectedSubject = subject
+        resetPagination()
+    }
+
+    func resetPagination() {
+        paginator.reset()
+        courses.removeAll()
+    }
+
+    func updateEmptyState() {
+        if User.shared.organizations.isEmpty {
+            emptyStateType = .noOrganizations
+        } else {
+            emptyStateType = .noPurchasedCourses
+        }
+    }
+
+    // MARK: - Private
+
+    private func fetchCoursesForCurrentMode(completion: @escaping () -> Void) {
+        paginator.loadNextPage { [weak self] result in
+            guard let self = self else { return }
+            if case .success = result {
+                self.courses = self.paginator.items
+                self.updateEmptyState()
+            }
+            completion()
+        }
+    }
+
+    private func searchCourses(completion: @escaping () -> Void) {
+        coursesService.searchCourses(query: searchText) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let resultCourses):
                 self.courses = resultCourses.teachersCourses ?? []
                 self.updateEmptyState()
-                completion()
             case .failure:
-                completion()
+                break
             }
-        }
-    }
-
-    override func updateEmptyState() {
-        if User.shared.organizations.isEmpty {
-            emptyStateType = .noOrganizations
-        } else {
-            emptyStateType = .noPurchasedCourses
+            completion()
         }
     }
 }

@@ -4,7 +4,8 @@ import HandySwift
 import SwiftyUserDefaults
 import UIKit
 
-final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITableViewDataSource {
+final class HomeViewController: UIViewController {
+    @IBOutlet private var tableView: UITableView!
     @IBOutlet private var notificationButton: UIButton! {
         didSet {
             notificationButton.isHidden = Defaults[\.isGuestModeEnabled]
@@ -29,63 +30,29 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
     @IBOutlet private var filtersButton: UIButton!
     @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint!
 
+    private var viewModel: HomeViewModel
+    private let navigationCoordinator: CoursesNavigationCoordinating
+    private let loadingIndicatorPresenter: LoadingIndicatorPresenter
+    private let searchDebouncer: SearchDebouncer
+    private var tableController: CourseListTableController?
     private var isFirstScreenLoad: Bool = true
     private var isFiltersSelected: Bool = false
     private var currentFilterSelection = FilterSelection()
+    private let refreshControl = UIRefreshControl()
 
-    convenience init(viewModel: HomeViewModel) {
-        self.init(nibName: "BaseCoursesViewController", bundle: nil)
+    init(
+        viewModel: HomeViewModel = HomeViewModel(),
+        navigationCoordinator: CoursesNavigationCoordinating = CoursesNavigationCoordinator()
+    ) {
         self.viewModel = viewModel
+        self.navigationCoordinator = navigationCoordinator
+        self.loadingIndicatorPresenter = LoadingIndicatorPresenter(view: UIView())
+        self.searchDebouncer = SearchDebouncer()
+        super.init(nibName: "HomeViewController", bundle: nil)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showLoadingIndicator()
-        loadAndConfigureAdvertisements()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        configureFilterButton()
-        viewModel.page = 1
-        loadUserProfile { [weak self] in
-            self?.loadCourses()
-        }
-    }
-
-    override func configureTableView() {
-        super.configureTableView()
-        tableView.dataSource = self
-        tableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
-    }
-
-    override func configureInfiniteScrolling() {
-        if !isFiltersSelected {
-            super.configureInfiniteScrolling()
-        }
-    }
-
-    override func refresh(_ sender: AnyObject) {
-        super.refresh(sender)
-        loadAndConfigureAdvertisements()
-    }
-
-    override func tableViewHeader() -> UIView? {
-        let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
-        headerView?.delegate = self
-        headerView?.setSubjects(viewModel.subjects)
-        headerView?.selectedSubjectIndexPath = viewModel.selectedSubjectIndexPath
-        headerView?.setAdvertisements(viewModel.advertisements)
-
-        if isFirstScreenLoad {
-            isFirstScreenLoad = false
-            headerView?.selectRelatedCoursesButton()
-        }
-
-        headerView?.setButtonsVisibility(!viewModel.isInSearchMode)
-        headerView?.setSubjectsVisibility(!viewModel.isInSearchMode && viewModel.mode == .relatedCourses)
-        headerView?.setAdvertisementsVisibility(!viewModel.advertisements.isEmpty && !viewModel.isInSearchMode)
-        return headerView
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
@@ -103,8 +70,115 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
     @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
         currentFilterSelection.reset()
         configureFiltersButtonWhenNoFilterSelected()
-        viewModel.page = 1
-        forceReloadCourses()
+        viewModel.resetPagination()
+        loadCourses()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadingIndicatorPresenter.view = view
+        configureTableView()
+        configureRefreshControl()
+        configureInfiniteScrolling()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadingIndicatorPresenter.show()
+        loadAndConfigureAdvertisements()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        configureFilterButton()
+        loadUserProfile { [weak self] in
+            self?.loadCourses()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopAllPlayingVideos()
+        loadingIndicatorPresenter.hide()
+    }
+
+    // MARK: - Private
+
+    private func configureTableView() {
+        tableController = CourseListTableController(
+            tableView: tableView,
+            viewModel: viewModel,
+            isMyCourses: false,
+            headerProvider: { [weak self] in self?.tableViewHeader() },
+            courseDetailsDelegate: self,
+            selectCellDelegate: self,
+            receiptDelegate: nil,
+            navigationCoordinator: navigationCoordinator
+        )
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    private func configureInfiniteScrolling() {
+        tableController?.configureInfiniteScrolling { [weak self] in
+            guard self?.isFiltersSelected == false else { return }
+            self?.loadCourses()
+        }
+    }
+
+    private func tableViewHeader() -> UIView? {
+        let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
+        headerView?.delegate = self
+        headerView?.setSubjects(viewModel.subjects)
+        headerView?.selectedSubjectIndexPath = viewModel.selectedSubjectIndexPath
+        headerView?.setAdvertisements(viewModel.advertisements)
+
+        if isFirstScreenLoad {
+            isFirstScreenLoad = false
+            headerView?.selectRelatedCoursesButton()
+        }
+
+        headerView?.setButtonsVisibility(!viewModel.isInSearchMode)
+        headerView?.setSubjectsVisibility(!viewModel.isInSearchMode && viewModel.mode == .relatedCourses)
+        headerView?.setAdvertisementsVisibility(!viewModel.advertisements.isEmpty && !viewModel.isInSearchMode)
+        return headerView
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        loadUserProfile()
+        viewModel.resetPagination()
+        loadCourses()
+        loadAndConfigureAdvertisements()
+    }
+
+    private func loadUserProfile(completion: (() -> Void)? = nil) {
+        completion?()
+    }
+
+    private func loadCourses() {
+        loadingIndicatorPresenter.show()
+        viewModel.loadCourses { [weak self] in
+            self?.loadingIndicatorPresenter.hide()
+            self?.tableController?.finishInfiniteScroll()
+        }
+    }
+
+    private func loadAndConfigureAdvertisements() {
+        viewModel.loadAdvertisements { [weak self] _ in
+            self?.tableView.reloadData()
+        }
+    }
+
+    private func stopAllPlayingVideos() {
+        for cell in tableView.visibleCells {
+            if let courseCell = cell as? CourseTableViewCell {
+                courseCell.stopAnyPlayingVideoIfAny()
+            }
+        }
     }
 
     private func configureFilterButton() {
@@ -115,12 +189,6 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
         } else {
             filtersButton.isHidden = true
             filtersButtonHeightConstraint.constant = 0
-        }
-    }
-
-    private func loadAndConfigureAdvertisements() {
-        viewModel.loadAdvertisements { [weak self] _ in
-            self?.tableView.reloadData()
         }
     }
 
@@ -137,39 +205,15 @@ final class HomeViewController: BaseCoursesViewController<HomeViewModel>, UITabl
         filtersButton.layer.backgroundColor = Colors.sendButtonColor.color.cgColor
         filtersButton.setTitle(L10n.Filters.showFilters)
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.courses.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(ofType: CourseTableViewCell.self, for: indexPath)
-        let subjectCourse = appropriateSubjectCourse(index: indexPath.row)
-
-        cell?.configure(
-            courses: subjectCourse?.courses,
-            isMyCourses: false,
-            teacherName: subjectCourse?.teacher?.name,
-            teacherNameIndex: indexPath.row,
-            courseDetailsDelegate: self,
-            selectCellDelegate: self
-        )
-
-        return cell ?? UITableViewCell()
-    }
 }
 
 extension HomeViewController: HomeTableViewHeaderDelegate {
     func textDidChange(in searchBar: UISearchBar) {
         viewModel.updateSearchText(searchBar.text ?? "")
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(searchCourses(_:)), with: searchBar, afterDelay: 0.75)
-    }
-
-    @objc
-    private func searchCourses(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-        loadCourses()
+        searchDebouncer.debounce { [weak self, weak searchBar] in
+            searchBar?.endEditing(true)
+            self?.loadCourses()
+        }
     }
 
     func didSelectSubject(at indexPath: IndexPath) {
@@ -184,7 +228,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
         viewModel.changeMode(to: .relatedCourses)
         tableView.reloadData()
         configureFilterButton()
-        forceReloadCourses()
+        loadCourses()
     }
 
     func didSelectExploreMore() {
@@ -192,7 +236,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
         viewModel.changeMode(to: .exploreMore)
         tableView.reloadData()
         configureFilterButton()
-        forceReloadCourses()
+        loadCourses()
     }
 }
 
@@ -203,5 +247,20 @@ extension HomeViewController: FiltersDelegate {
         viewModel.courses = courses?.teachersCourses ?? []
         viewModel.updateEmptyState()
         tableView.reloadData()
+    }
+}
+
+extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
+    func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+        guard teacherNameIndex < viewModel.courses.count else { return }
+        let subjectCourse = viewModel.courses[teacherNameIndex]
+        let teacherName = subjectCourse.teacher?.name
+        let teacherID = subjectCourse.teacher?.id
+        navigationCoordinator.showCourseDetails(
+            course: course,
+            teacherName: teacherName,
+            teacherID: teacherID,
+            from: self
+        )
     }
 }

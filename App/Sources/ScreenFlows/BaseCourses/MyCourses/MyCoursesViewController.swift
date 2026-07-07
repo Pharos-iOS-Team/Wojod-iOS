@@ -3,7 +3,8 @@
 import SwiftyUserDefaults
 import UIKit
 
-final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewModel>, UITableViewDataSource {
+final class MyCoursesViewController: UIViewController {
+    @IBOutlet private var tableView: UITableView!
     @IBOutlet private var notificationButton: UIButton! {
         didSet {
             notificationButton.isHidden = Defaults[\.isGuestModeEnabled]
@@ -19,43 +20,93 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
             helpCenterLabel.text = L10n.Home.helpCenter
         }
     }
-    @IBOutlet private var clearFiltersButton: UIButton?
-    @IBOutlet private var filtersButton: UIButton?
-    @IBOutlet private var filtersButtonHeightConstraint: NSLayoutConstraint?
 
-    private var blurredView: UIVisualEffectView?
+    private var viewModel: MyCoursesViewModel
+    private let navigationCoordinator: CoursesNavigationCoordinating
+    private let loadingIndicatorPresenter: LoadingIndicatorPresenter
+    private let searchDebouncer: SearchDebouncer
+    private var receiptPresenter: ReceiptPresenter?
+    private var tableController: CourseListTableController?
     private var isFirstScreenLoad: Bool = true
+    private let refreshControl = UIRefreshControl()
 
-    convenience init(viewModel: MyCoursesViewModel) {
-        self.init(nibName: "BaseCoursesViewController", bundle: nil)
+    init(
+        viewModel: MyCoursesViewModel = MyCoursesViewModel(),
+        navigationCoordinator: CoursesNavigationCoordinating = CoursesNavigationCoordinator()
+    ) {
         self.viewModel = viewModel
+        self.navigationCoordinator = navigationCoordinator
+        self.loadingIndicatorPresenter = LoadingIndicatorPresenter(view: UIView())
+        self.searchDebouncer = SearchDebouncer()
+        super.init(nibName: "MyCoursesViewController", bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideFilterButtons()
-    }
-
-    override func configureTableView() {
-        super.configureTableView()
-        tableView.dataSource = self
-        tableView.registerHeaderFooterView(ofType: HomeTableViewHeader.self)
+        loadingIndicatorPresenter.view = view
+        receiptPresenter = ReceiptPresenter(viewController: self)
+        configureTableView()
+        configureRefreshControl()
+        configureInfiniteScrolling()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showLoadingIndicator()
+        loadingIndicatorPresenter.show()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.page = 1
         loadUserProfile { [weak self] in
             self?.loadCourses()
         }
     }
 
-    override func tableViewHeader() -> UIView? {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopAllPlayingVideos()
+        loadingIndicatorPresenter.hide()
+    }
+
+    @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
+        navigationCoordinator.showNotifications(from: self)
+    }
+
+    @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
+        navigationCoordinator.showHelpCenter(from: self)
+    }
+
+    // MARK: - Private
+
+    private func configureTableView() {
+        tableController = CourseListTableController(
+            tableView: tableView,
+            viewModel: viewModel,
+            isMyCourses: true,
+            headerProvider: { [weak self] in self?.tableViewHeader() },
+            courseDetailsDelegate: self,
+            selectCellDelegate: self,
+            receiptDelegate: self,
+            navigationCoordinator: navigationCoordinator
+        )
+    }
+
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    private func configureInfiniteScrolling() {
+        tableController?.configureInfiniteScrolling { [weak self] in
+            self?.loadCourses()
+        }
+    }
+
+    private func tableViewHeader() -> UIView? {
         let headerView = tableView.dequeueHeaderFooterView(ofType: HomeTableViewHeader.self)
         headerView?.delegate = self
         headerView?.setSubjects(viewModel.subjects)
@@ -72,68 +123,38 @@ final class MyCoursesViewController: BaseCoursesViewController<MyCoursesViewMode
         return headerView
     }
 
-    @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
-        navigationCoordinator.showNotifications(from: self)
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        loadUserProfile()
+        viewModel.resetPagination()
+        loadCourses()
     }
 
-    @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
-        navigationCoordinator.showHelpCenter(from: self)
+    private func loadUserProfile(completion: (() -> Void)? = nil) {
+        // Profile loading is handled by the service, but we can add completion here if needed
+        completion?()
     }
 
-    private func hideFilterButtons() {
-        // Only hide filter-related buttons (not used in My Courses)
-        clearFiltersButton?.isHidden = true
-        filtersButton?.isHidden = true
+    private func loadCourses() {
+        loadingIndicatorPresenter.show()
+        viewModel.loadCourses { [weak self] in
+            self?.loadingIndicatorPresenter.hide()
+            self?.tableController?.finishInfiniteScroll()
+        }
     }
 
-    private func showReceipt(_ receiptData: Receipt) {
-        let receiptViewCtrl = ReceiptViewController(nibName: "ReceiptViewController", bundle: nil)
-        receiptViewCtrl.myCourseReceipt = receiptData
-        receiptViewCtrl.delegate = self
-        receiptViewCtrl.modalPresentationStyle = .overFullScreen
-        receiptViewCtrl.modalTransitionStyle = .crossDissolve
-        self.present(receiptViewCtrl, animated: true)
-    }
-
-    private func blurView() {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurredView = blurEffectView
-        self.view.addSubview(blurredView ?? blurEffectView)
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.courses.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(ofType: CourseTableViewCell.self, for: indexPath)
-        let subjectCourse = appropriateSubjectCourse(index: indexPath.row)
-
-        cell?.configure(
-            courses: subjectCourse?.courses,
-            isMyCourses: true,
-            teacherName: subjectCourse?.teacher?.name,
-            teacherNameIndex: indexPath.row,
-            courseDetailsDelegate: self,
-            selectCellDelegate: self,
-            viewReceiptDelegate: self
-        )
-
-        return cell ?? UITableViewCell()
+    private func stopAllPlayingVideos() {
+        for cell in tableView.visibleCells {
+            if let courseCell = cell as? CourseTableViewCell {
+                courseCell.stopAnyPlayingVideoIfAny()
+            }
+        }
     }
 }
 
-extension MyCoursesViewController: ViewReceiptDelegate, ReceiptDoneButtonDelegate {
+extension MyCoursesViewController: ViewReceiptDelegate {
     func displayReceipt(_ receipt: Receipt) {
-        self.blurView()
-        self.showReceipt(receipt)
-    }
-
-    func didTapDone() {
-        blurredView?.removeFromSuperview()
+        receiptPresenter?.showReceipt(receipt)
     }
 }
 
@@ -141,9 +162,7 @@ extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     func didSelectSubject(at indexPath: IndexPath) {
         viewModel.selectedSubjectIndexPath = indexPath
         if indexPath.row < viewModel.subjects.count {
-            let subject = viewModel.subjects[indexPath.row]
-            viewModel.selectedSubject = subject
-            viewModel.page = 1
+            viewModel.selectSubject(viewModel.subjects[indexPath.row])
             loadCourses()
         }
     }
@@ -151,26 +170,37 @@ extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     func didSelectRelatedCourses() {
         viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .relatedCourses)
-        forceReloadCourses()
         tableView.reloadData()
+        loadCourses()
     }
 
     func didSelectExploreMore() {
         viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .exploreMore)
-        forceReloadCourses()
         tableView.reloadData()
+        loadCourses()
     }
 
     func textDidChange(in searchBar: UISearchBar) {
         viewModel.updateSearchText(searchBar.text ?? "")
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(searchMyCourses(_:)), with: searchBar, afterDelay: 0.75)
+        searchDebouncer.debounce { [weak self, weak searchBar] in
+            searchBar?.endEditing(true)
+            self?.loadCourses()
+        }
     }
+}
 
-    @objc
-    private func searchMyCourses(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-        loadCourses()
+extension MyCoursesViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
+    func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+        guard teacherNameIndex < viewModel.courses.count else { return }
+        let subjectCourse = viewModel.courses[teacherNameIndex]
+        let teacherName = subjectCourse.teacher?.name
+        let teacherID = subjectCourse.teacher?.id
+        navigationCoordinator.showCourseDetails(
+            course: course,
+            teacherName: teacherName,
+            teacherID: teacherID,
+            from: self
+        )
     }
 }
