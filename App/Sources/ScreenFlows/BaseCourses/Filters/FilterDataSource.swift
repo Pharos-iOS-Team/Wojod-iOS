@@ -17,7 +17,12 @@ class FilterDataSource: NSObject, UITableViewDataSource {
         cell.setIsLoading(false)
 
         guard let state = coordinator else { return cell }
-        cell.delegate = state
+        cell.onSelectSchoolFilter = { [weak state] index, section in
+            state?.selectSchoolFilter(index, in: section)
+        }
+        cell.onSelectUniversityFilter = { [weak state] index, section in
+            state?.selectUniversityFilter(index, in: section)
+        }
         cell.academicLevel = state.academicLevel
 
         if state.isLoadingData && indexPath.row == 0 {

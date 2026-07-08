@@ -7,26 +7,24 @@ protocol CoursesNavigationCoordinating: AnyObject {
     func showCourseDetails(course: Course?, teacherName: String?, teacherID: Int?, from viewController: UIViewController)
     func showNotifications(from viewController: UIViewController)
     func showHelpCenter(from viewController: UIViewController)
-    func showFilters(delegate: FiltersDelegate?, currentSelection: FilterSelection, from viewController: UIViewController)
+    func showFilters(currentSelection: FilterSelection, onApplyFilters: @escaping (FilterSelection, CoursesResponse?) -> Void, from viewController: UIViewController)
     func showOrganizationsList(from viewController: UIViewController)
 }
 
 /// Default implementation of courses navigation coordinator
 final class CoursesNavigationCoordinator: CoursesNavigationCoordinating {
     func showCourseDetails(course: Course?, teacherName: String?, teacherID: Int?, from viewController: UIViewController) {
-        let courseDetailsViewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
-        courseDetailsViewCtrl.course = course
-        courseDetailsViewCtrl.teacherName = teacherName
-        courseDetailsViewCtrl.teacherID = teacherID
+        let viewModel = CourseDetailsViewModel().with {
+            $0.course = course
+            $0.teacherName = teacherName
+            $0.teacherID = teacherID
+            $0.courseState = course?.parsedReservationState ?? .normal
+        }
+
+        let courseDetailsViewCtrl = CourseDetailsViewController.make(viewModel: viewModel, coordinator: CourseDetailsCoordinator())
 
         let navigationController = UINavigationController(rootViewController: courseDetailsViewCtrl)
         navigationController.modalPresentationStyle = .fullScreen
-        navigationController.navigationBar.isHidden = true
-
-        let backButton = UIBarButtonItem()
-        backButton.title = L10n.Navigation.back
-        navigationController.navigationBar.topItem?.backBarButtonItem = backButton
-
         viewController.present(navigationController, animated: true)
     }
 
@@ -43,9 +41,9 @@ final class CoursesNavigationCoordinator: CoursesNavigationCoordinating {
         viewController.present(chatViewCtrl, animated: true)
     }
 
-    func showFilters(delegate: FiltersDelegate?, currentSelection: FilterSelection, from viewController: UIViewController) {
+    func showFilters(currentSelection: FilterSelection, onApplyFilters: @escaping (FilterSelection, CoursesResponse?) -> Void, from viewController: UIViewController) {
         let filtersViewCtrl = StoryboardScene.Filters.initialScene.instantiate()
-        filtersViewCtrl.delegate = delegate
+        filtersViewCtrl.onApplyFilters = onApplyFilters
         filtersViewCtrl.currentSelection = currentSelection
         viewController.present(filtersViewCtrl, animated: true)
     }

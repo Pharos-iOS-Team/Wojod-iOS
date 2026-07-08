@@ -74,22 +74,35 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        if let userinfo = response.notification.request.content.userInfo as? [String: Any] {
-            if let notificationType = userinfo["entity_name"] as? String, notificationType == "Notifications" {
-                let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
-                UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
-            } else {
-                if let courseID = userinfo["course_id"] as? String {
-                    CourseDetailsViewModel().loadCourse(courseID: courseID) { course in
-                        let viewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
-                        viewCtrl.course = course.course
-                        let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
-                        navigationCtrl.modalPresentationStyle = .fullScreen
-                        navigationCtrl.navigationBar.isHidden = true
-                        UIApplication.shared.keyWindow?.rootViewController?.present(navigationCtrl, animated: true)
+        guard let userinfo = response.notification.request.content.userInfo as? [String: Any] else {
+            completionHandler()
+            return
+        }
+        if let notificationType = userinfo["entity_name"] as? String, notificationType == "Notifications" {
+            let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
+            UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+            completionHandler()
+        } else if let courseID = userinfo["course_id"] as? String {
+            Task {
+                let courseResponse = await CourseDetailsViewModel().loadCourse(courseID: courseID)
+                await MainActor.run {
+                    guard let course = courseResponse?.course else {
+                        completionHandler()
+                        return
                     }
+                    let viewModel = CourseDetailsViewModel().with {
+                        $0.course = course
+                        $0.courseState = course.parsedReservationState
+                    }
+                    let viewCtrl = CourseDetailsViewController.make(viewModel: viewModel, coordinator: CourseDetailsCoordinator())
+                    let navigationCtrl = UINavigationController(rootViewController: viewCtrl)
+                    navigationCtrl.modalPresentationStyle = .fullScreen
+                    UIApplication.shared.keyWindow?.rootViewController?.present(navigationCtrl, animated: true)
+                    completionHandler()
                 }
             }
+        } else {
+            completionHandler()
         }
     }
 }

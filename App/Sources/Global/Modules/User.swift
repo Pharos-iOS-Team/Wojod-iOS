@@ -7,7 +7,8 @@ import UIKit
 
 final class User {
     static let shared = User()
-    @Dependency(\.apiProvider) var apiProvider
+    @Dependency(\.apiProvider)
+    var apiProvider: ApiProvider
 
     private(set) var id: Int? {
         get {

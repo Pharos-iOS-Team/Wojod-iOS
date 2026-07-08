@@ -4,16 +4,6 @@ import AVKit
 import UIKit
 import VdoFramework
 
-// MARK: - CollapseExpandDelegate
-
-extension CourseDetailsViewController: CollapseExpandDelegate {
-    func didTapOnCollapseExpand(in section: Int) {
-        viewModel.toggleSectionExpansion(section) { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-}
-
 // MARK: - CourseDetailsInfoHeaderDelegate
 
 extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
@@ -32,29 +22,8 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
         loadActiveTab()
     }
 
-    private func loadActiveTab() {
-        let isFirstLoad = !loadedTabs.contains(viewModel.activeScreen)
-        if isFirstLoad {
-            viewModel.clearTabData()
-            viewModel.isLoadingTab = true
-            tableView.reloadData()
-            showContentSpinner()
-        } else {
-            tableView.reloadData()
-        }
-        viewModel.handleRefreshingAccordingToOpenedTab { [weak self] in
-            guard let self else { return }
-            self.loadedTabs.insert(self.viewModel.activeScreen)
-            if isFirstLoad {
-                self.viewModel.isLoadingTab = false
-                self.hideContentSpinner()
-            }
-            self.tableView.reloadData()
-        }
-    }
-
     func goToChat() {
-        coordinator.showChat(courseID: viewModel.course.id, teacherID: teacherID ?? 0, from: self)
+        coordinator.showChat(courseID: viewModel.course?.id ?? 0, teacherID: viewModel.teacherID ?? 0, from: self)
     }
 
     func dismissView() {
@@ -64,36 +33,6 @@ extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
 
     func playCourseVideo(playerController: AVPlayerViewController) {
         addChild(playerController)
-    }
-}
-
-// MARK: - ReceiptDoneButtonDelegate
-
-extension CourseDetailsViewController: ReceiptDoneButtonDelegate {
-    func didTapDone() {
-        dismissBlurView()
-    }
-}
-
-// MARK: - ReviewCourseViewDelegate
-
-extension CourseDetailsViewController: ReviewCourseViewDelegate {
-    func didTapSendButton(courseReview: CourseReview) {
-        viewModel.sendReview(courseID: viewModel.course?.id ?? 0, courseReview: courseReview) { [weak self] isSentSuccessfully in
-            if isSentSuccessfully { self?.dismissBlurView() }
-        }
-    }
-
-    func didTapSkipButton() {
-        dismissBlurView()
-    }
-}
-
-// MARK: - AssessmentDetailsDelegate
-
-extension CourseDetailsViewController: AssessmentDetailsDelegate {
-    func didFinishAssessment(with id: Int?) {
-        tableView.reloadData()
     }
 }
 

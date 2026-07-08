@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-struct ImageAttachmentDetails: Attachable {
+struct ImageAttachmentDetails {
     var image: UIImage
     var imageName: String?
     var mimeType: String?

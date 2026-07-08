@@ -22,8 +22,7 @@ class AssessmentQuestion: Codable {
     let attachment: String?
     var choices: [AssessmentChoice]?
 
-    @Ignored
-    var answerManagedObject: AssessmentAnswer?
+    @Ignored var answerManagedObject: AssessmentAnswer?
 
     var isAnswered: Bool {
         switch type {
@@ -97,10 +96,16 @@ class AssessmentQuestion: Codable {
         if answerManagedObject != nil {
             completion()
         } else {
-            AssessmentAnswer(context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).createIfNeeded(assessmentID: assessmentID, studentID: User.shared.id, questionID: id, module: module) { answerManagedObject in
-                self.answerManagedObject = answerManagedObject
-                completion()
-            }
+            AssessmentAnswer(
+                context: LocalSettingsConfiguratorAppDelegate.shared.persistentContainer.viewContext).createIfNeeded(
+                    assessmentID: assessmentID,
+                    studentID: User.shared.id,
+                    questionID: id,
+                    module: module
+                ) { answerManagedObject in
+                    self.answerManagedObject = answerManagedObject
+                    completion()
+                }
         }
     }
 

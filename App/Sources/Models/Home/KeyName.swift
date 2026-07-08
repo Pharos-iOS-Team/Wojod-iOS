@@ -2,7 +2,7 @@
 
 import Foundation
 
-internal struct KeyName: Codable {
-    internal let key: String
-    internal let name: String
+struct KeyName: Codable {
+    let key: String?
+    let name: String?
 }

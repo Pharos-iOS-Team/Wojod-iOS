@@ -9,7 +9,7 @@ extension ChatViewController {
         let customMessagesFlowLayout = CustomMessagesFlowLayout()
         customMessagesFlowLayout.customMessageSizeCalculator.viewModel = viewModel
         messagesCollectionView = MessagesCollectionView(frame: .zero, collectionViewLayout: customMessagesFlowLayout)
-        messagesCollectionView.register(UINib(nibName: "\(CustomMessageCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(CustomMessageCell.self)")
+        messagesCollectionView.registerCell(ofType: CustomMessageCell.self)
     }
 
     func collectionView(

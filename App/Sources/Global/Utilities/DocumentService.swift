@@ -5,61 +5,35 @@ import UIKit
 final class DocumentService: NSObject {
     // MARK: - Properties
 
-    private var documentInteractionController = UIDocumentInteractionController()
     private weak var presentingViewController: UIViewController?
     private var activeDownloadTask: URLSessionDownloadTask?
     private var downloadSession: URLSession?
-    private var pendingMode: DownloadMode = .share
     private var progressHandler: ((Float) -> Void)?
     private var completionHandler: ((URL) -> Void)?
-
-    private enum DownloadMode {
-        case share
-        case pdf
-    }
+    var errorHandler: ((Error) -> Void)?
 
     // MARK: - Init
 
     init(presentingViewController: UIViewController) {
         self.presentingViewController = presentingViewController
         super.init()
-        documentInteractionController.delegate = self
     }
 
     // MARK: - Public Interface
-
-    func storeAndShare(urlString: String, progressHandler: @escaping (Float) -> Void, onOpen: @escaping () -> Void) {
+    func downloadToCache(
+        urlString: String,
+        progressHandler: @escaping (Float) -> Void,
+        completion: @escaping (URL) -> Void,
+        errorHandler: @escaping (Error) -> Void
+    ) {
         guard let url = URL(string: urlString) else { return }
-        let fileName = url.lastPathComponent.isEmpty ? "file" : url.lastPathComponent
-        if let cached = cachedFileURL(for: fileName) {
-            onOpen()
-            share(url: cached)
+        if let cached = cachedFileURL(for: urlString) {
+            completion(cached)
             return
         }
-        self.pendingMode = .share
+        self.errorHandler = errorHandler
         self.progressHandler = progressHandler
-        self.completionHandler = { [weak self] localURL in
-            onOpen()
-            self?.share(url: localURL)
-        }
-        startDownload(from: url)
-        DispatchQueue.main.async { progressHandler(0) }
-    }
-
-    func presentPDF(from urlString: String, progressHandler: @escaping (Float) -> Void, onOpen: @escaping () -> Void) {
-        guard let url = URL(string: urlString) else { return }
-        let fileName = url.lastPathComponent.isEmpty ? "document.pdf" : url.lastPathComponent
-        if let cached = cachedFileURL(for: fileName) {
-            onOpen()
-            openPDF(at: cached)
-            return
-        }
-        self.pendingMode = .pdf
-        self.progressHandler = progressHandler
-        self.completionHandler = { [weak self] localURL in
-            onOpen()
-            self?.openPDF(at: localURL)
-        }
+        self.completionHandler = { localURL in completion(localURL) }
         startDownload(from: url)
         DispatchQueue.main.async { progressHandler(0) }
     }
@@ -71,17 +45,22 @@ final class DocumentService: NSObject {
         downloadSession = nil
         progressHandler = nil
         completionHandler = nil
+        errorHandler = nil
     }
 
-    func share(url: URL) {
-        documentInteractionController.url = url
-        documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
-        documentInteractionController.name = url.localizedName ?? url.lastPathComponent
-        documentInteractionController.presentPreview(animated: true)
+    func cachedFileURL(for urlString: String) -> URL? {
+        guard let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return nil }
+        let fileURL = cacheDir.appendingPathComponent(cacheFileName(for: urlString))
+        return FileManager.default.fileExists(atPath: fileURL.path) ? fileURL : nil
+    }
+
+    private func cacheFileName(for urlString: String) -> String {
+        let hash = "\(abs(urlString.hashValue))"
+        let ext = URL(string: urlString)?.pathExtension ?? ""
+        return ext.isEmpty ? hash : "\(hash).\(ext)"
     }
 
     // MARK: - Private Helpers
-
     private func startDownload(from url: URL) {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
         downloadSession = session
@@ -89,83 +68,47 @@ final class DocumentService: NSObject {
         activeDownloadTask = task
         task.resume()
     }
-
-    private func cachedFileURL(for fileName: String) -> URL? {
-        let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let fileURL = cacheDir.appendingPathComponent(fileName)
-        return FileManager.default.fileExists(atPath: fileURL.path) ? fileURL : nil
-    }
-
-    private func saveToCache(from location: URL, suggestedFileName: String?) -> URL? {
-        let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let fileName = suggestedFileName ?? location.lastPathComponent
-        let destination = cacheDir.appendingPathComponent(fileName)
-        try? FileManager.default.removeItem(at: destination)
-        do {
-            try FileManager.default.copyItem(at: location, to: destination)
-            return destination
-        } catch {
-            return nil
-        }
-    }
-
-    private func openPDF(at url: URL) {
-        let pdfVC = PDFViewController(itemUrl: url, dismissAction: { [weak self] in
-            self?.presentingViewController?.dismiss(animated: true)
-        })
-        let navController = UINavigationController(rootViewController: pdfVC)
-        navController.modalPresentationStyle = .fullScreen
-        presentingViewController?.present(navController, animated: true)
-    }
 }
 
 // MARK: - URLSessionDownloadDelegate
 
 extension DocumentService: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        let progress: Float
+    func urlSession(
+        _ session: URLSession,
+        downloadTask: URLSessionDownloadTask,
+        didWriteData bytesWritten: Int64,
+        totalBytesWritten: Int64,
+        totalBytesExpectedToWrite: Int64
+    ) {
         if totalBytesExpectedToWrite > 0 {
-            progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        } else {
-            return
-        }
-        DispatchQueue.main.async { [weak self] in
-            self?.progressHandler?(progress)
+            let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+            DispatchQueue.main.async { [weak self] in
+                self?.progressHandler?(progress)
+            }
         }
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        let suggestedName = downloadTask.response?.suggestedFilename
-            ?? downloadTask.originalRequest?.url?.lastPathComponent
-        let savedURL = saveToCache(from: location, suggestedFileName: suggestedName)
-        guard let savedURL else { return }
+        guard
+            let originalURLString = downloadTask.originalRequest?.url?.absoluteString,
+            let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+        else { return }
+
+        let fileName = cacheFileName(for: originalURLString)
+        let destination = cacheDir.appendingPathComponent(fileName)
+        try? FileManager.default.removeItem(at: destination)
+        guard (try? FileManager.default.copyItem(at: location, to: destination)) != nil else { return}
+        let savedURL = destination
         DispatchQueue.main.async { [weak self] in
             self?.completionHandler?(savedURL)
-            self?.activeDownloadTask = nil
-            self?.downloadSession = nil
-            self?.progressHandler = nil
-            self?.completionHandler = nil
         }
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let error, (error as NSError).code != NSURLErrorCancelled else { return }
         DispatchQueue.main.async { [weak self] in
-            guard let self, let vc = self.presentingViewController else { return }
-            AlertHandler(presentingViewCtrl: vc).showConfirmAlert(
-                title: L10n.Global.Titles.error,
-                message: L10n.Global.Alerts.somethingWentWrong
-            )
-            self.progressHandler = nil
-            self.completionHandler = nil
+            guard let self else { return }
+            self.errorHandler?(error)
         }
-    }
-}
-
-// MARK: - UIDocumentInteractionControllerDelegate
-
-extension DocumentService: UIDocumentInteractionControllerDelegate {
-    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
-        return presentingViewController ?? UIViewController()
     }
 }

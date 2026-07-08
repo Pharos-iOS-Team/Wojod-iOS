@@ -6,10 +6,6 @@ import HandySwift
 import UIKit
 import LanguageManager_iOS
 
-protocol AssessmentDetailsDelegate: class {
-    func didFinishAssessment(with id: Int?)
-}
-
 enum QuestionStatus {
     case correct
     case wrong

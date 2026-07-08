@@ -1,7 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
-import Kingfisher
 import JGProgressHUD
+import Kingfisher
 import SafariServices
 import UIKit
 
@@ -9,6 +9,7 @@ class SettingsViewController: UIViewController {
     enum Constants {
         static let tableViewCellHeight: CGFloat = 65
     }
+
     @IBOutlet private var settingsTableView: UITableView! {
         didSet {
             settingsTableView.delegate = self
@@ -107,7 +108,11 @@ extension SettingsViewController: UITableViewDataSource {
         case .languages:
             let alertHandler = AlertHandler(presentingViewCtrl: self)
             let cell = tableView.cellForRow(at: indexPath)
-            alertHandler.showLanguageActionSheet(title: L10n.Settings.chooseALanguage, sourceView: cell?.contentView ?? UIView(), selectedLanguage: Language.currentLanguage) { action in
+            alertHandler.showLanguageActionSheet(
+                title: L10n.Settings.chooseALanguage,
+                sourceView: cell?.contentView ?? UIView(),
+                selectedLanguage: Language.currentLanguage
+            ) { action in
                 self.changeLanguage(action: action)
             }
         case .privacyPolicy:

@@ -229,7 +229,7 @@ No worries!";
 "home.helpCenter" = "Help Center";
 "home.view" = "View";
 "home.quiz" = "Quiz";
-"home.excersise" = "Excersise";
+"home.excersise" = "Exercise";
 "home.course.price" = "EGP";
 "home.course.priceLabel" = "Price";
 "home.course.seeReceipt" = "See Receipt";
@@ -238,6 +238,7 @@ No worries!";
 "home.pending" = "Pending";
 "home.search.emptyStateTitle" = "Sorry";
 "home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
+"home.search.placeholder" = "Search for courses";
 "home.defaultEmptyState" = "No courses available";
 
 "filters.filters" = "Filters";

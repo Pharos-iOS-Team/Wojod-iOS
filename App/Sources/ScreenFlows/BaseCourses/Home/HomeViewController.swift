@@ -52,7 +52,7 @@ final class HomeViewController: UIViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
 
     @IBAction private func didTapNotificationsButton(_ sender: UIButton) {
@@ -64,7 +64,12 @@ final class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapFiltersButton(_ sender: UIButton) {
-        navigationCoordinator.showFilters(delegate: self, currentSelection: currentFilterSelection, from: self)
+        navigationCoordinator.showFilters(currentSelection: currentFilterSelection, onApplyFilters: { [weak self] selection, courses in
+            self?.currentFilterSelection = selection
+            self?.configureFiltersButtonWhenFiltersAreSelected()
+            self?.viewModel.applyFilterResults(courses: courses)
+            self?.tableView.reloadData()
+        }, from: self)
     }
 
     @IBAction private func didTapClearFiltersButton(_ sender: UIButton) {
@@ -80,20 +85,19 @@ final class HomeViewController: UIViewController {
         configureTableView()
         configureRefreshControl()
         configureInfiniteScrolling()
+        loadUserProfile { [weak self] in
+            self?.loadCourses()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadingIndicatorPresenter.show()
         loadAndConfigureAdvertisements()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureFilterButton()
-        loadUserProfile { [weak self] in
-            self?.loadCourses()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,9 +114,10 @@ final class HomeViewController: UIViewController {
             viewModel: viewModel,
             isMyCourses: false,
             headerProvider: { [weak self] in self?.tableViewHeader() },
-            courseDetailsDelegate: self,
-            selectCellDelegate: self,
-            receiptDelegate: nil,
+            onShowCourseDetails: { [weak self] course, index in
+                self?.showCourseDetails(for: course, with: index)
+            },
+            onDisplayReceipt: nil,
             navigationCoordinator: navigationCoordinator
         )
     }
@@ -149,26 +154,43 @@ final class HomeViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        loadUserProfile()
-        viewModel.resetPagination()
-        loadCourses()
-        loadAndConfigureAdvertisements()
+        loadUserProfile { [weak self] in
+            guard let self else { return }
+            self.loadCourses()
+            self.loadAndConfigureAdvertisements()
+        }
     }
 
     private func loadUserProfile(completion: (() -> Void)? = nil) {
-        completion?()
+        Task { @MainActor [weak self] in
+            do {
+                try await self?.viewModel.fetchUserProfile()
+            } catch {
+                guard let self else { return }
+                AlertHandler(presentingViewCtrl: self).showInformationAlert(
+                    title: L10n.Global.Titles.error,
+                    message: error.localizedDescription
+                )
+            }
+            completion?()
+        }
     }
 
-    private func loadCourses() {
-        loadingIndicatorPresenter.show()
-        viewModel.loadCourses { [weak self] in
-            self?.loadingIndicatorPresenter.hide()
-            self?.tableController?.finishInfiniteScroll()
+    private func loadCourses(showLoadingIndicator: Bool = false) {
+        let shouldShowLoadingIndicator = showLoadingIndicator || !viewModel.hasCompletedInitialLoad
+        if shouldShowLoadingIndicator { loadingIndicatorPresenter.show() }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            await self.viewModel.loadCourses()
+            if shouldShowLoadingIndicator { self.loadingIndicatorPresenter.hide() }
+            self.refreshControl.endRefreshing()
+            self.tableController?.finishInfiniteScroll()
         }
     }
 
     private func loadAndConfigureAdvertisements() {
-        viewModel.loadAdvertisements { [weak self] _ in
+        Task { @MainActor [weak self] in
+            await self?.viewModel.loadAdvertisements()
             self?.tableView.reloadData()
         }
     }
@@ -212,7 +234,8 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
         viewModel.updateSearchText(searchBar.text ?? "")
         searchDebouncer.debounce { [weak self, weak searchBar] in
             searchBar?.endEditing(true)
-            self?.loadCourses()
+            guard let self else { return }
+            self.loadCourses(showLoadingIndicator: self.viewModel.isInSearchMode)
         }
     }
 
@@ -220,6 +243,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
         viewModel.selectedSubjectIndexPath = indexPath
         guard indexPath.item < viewModel.subjects.count else { return }
         viewModel.selectSubject(viewModel.subjects[indexPath.item])
+        tableView.reloadData()
         loadCourses()
     }
 
@@ -240,18 +264,8 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 }
 
-extension HomeViewController: FiltersDelegate {
-    func didApplyFilters(_ selection: FilterSelection, courses: CoursesResponse?) {
-        self.currentFilterSelection = selection
-        configureFiltersButtonWhenFiltersAreSelected()
-        viewModel.courses = courses?.teachersCourses ?? []
-        viewModel.updateEmptyState()
-        tableView.reloadData()
-    }
-}
-
-extension HomeViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
-    func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+extension HomeViewController {
+    private func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
         guard teacherNameIndex < viewModel.courses.count else { return }
         let subjectCourse = viewModel.courses[teacherNameIndex]
         let teacherName = subjectCourse.teacher?.name

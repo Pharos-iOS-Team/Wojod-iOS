@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s5u-w3-yVK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,13 +13,13 @@
         <!--Course-->
         <scene sceneID="mJ7-2d-lnS">
             <objects>
-                <viewController title="Course" id="s5u-w3-yVK" customClass="CourseDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s5u-w3-yVK" customClass="CourseDetailsViewController" customModule="Wojood" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" alpha="0.98999999999999999" contentMode="scaleToFill" id="ZZO-zO-dkI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTA-ov-VZE">
-                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="768" width="414" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Be2-As-rxk">
                                         <rect key="frame" x="12" y="5" width="390" height="50"/>
@@ -33,6 +33,11 @@
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" name="collectionViewBackground"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTapOnActionButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="xRL-YL-fLm"/>
                                                 </connections>
@@ -46,6 +51,11 @@
                                                 <state key="normal" title="Book by QR">
                                                     <color key="titleColor" name="collectionViewBackground"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTapOnQRCodeBooking:" destination="s5u-w3-yVK" eventType="touchUpInside" id="paP-VY-gTA"/>
                                                 </connections>
@@ -65,43 +75,20 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDd-VY-3TQ">
-                                <rect key="frame" x="0.0" y="48" width="414" height="754"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                                 <color key="backgroundColor" name="superLightGrey"/>
                                 <color key="sectionIndexBackgroundColor" name="superLightGrey"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="contentInsetAdjustmentBehavior">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </tableView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-bt-Bubble">
-                                <rect key="frame" x="16" y="10" width="36" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="fbb-w"/>
-                                    <constraint firstAttribute="height" constant="36" id="fbb-h"/>
-                                </constraints>
-                                <blurEffect style="systemUltraThinMaterialDark"/>
-                                <view key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fbb-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-btn-Back">
-                                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="BackIconWhite"/>
-                                            <connections>
-                                                <action selector="didTapFloatingBackButton:" destination="s5u-w3-yVK" eventType="touchUpInside" id="fbb-act-Back"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="fbb-btn-Back" firstAttribute="leading" secondItem="fbb-content" secondAttribute="leading" id="fbb-bl"/>
-                                        <constraint firstItem="fbb-btn-Back" firstAttribute="trailing" secondItem="fbb-content" secondAttribute="trailing" id="fbb-bt"/>
-                                        <constraint firstItem="fbb-btn-Back" firstAttribute="top" secondItem="fbb-content" secondAttribute="top" id="fbb-bt2"/>
-                                        <constraint firstItem="fbb-btn-Back" firstAttribute="bottom" secondItem="fbb-content" secondAttribute="bottom" id="fbb-bb"/>
-                                    </constraints>
-                                </view>
-                            </visualEffectView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Overlay">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Spinner">
-                                        <rect key="frame" x="188.5" y="40" width="37" height="37"/>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Spinner">
+                                        <rect key="frame" x="188.5" y="120" width="37" height="37"/>
                                         <color key="color" name="sendButtonColor"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -124,13 +111,11 @@
                             <constraint firstItem="lTA-ov-VZE" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="EgN-Bf-Sua"/>
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="trailing" secondItem="YDd-VY-3TQ" secondAttribute="trailing" id="Mpd-Ji-9m7"/>
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="bottom" secondItem="lTA-ov-VZE" secondAttribute="bottom" id="Z83-FJ-BGg"/>
-                            <constraint firstItem="YDd-VY-3TQ" firstAttribute="top" secondItem="YxP-J3-d9A" secondAttribute="top" id="ZIn-Zu-Si5"/>
-                            <constraint firstItem="fbb-bt-Bubble" firstAttribute="top" secondItem="YxP-J3-d9A" secondAttribute="top" constant="10" id="fbb-top"/>
-                            <constraint firstItem="fbb-bt-Bubble" firstAttribute="leading" secondItem="YxP-J3-d9A" secondAttribute="leading" constant="16" id="fbb-lead"/>
-                            <constraint firstItem="clv-Overlay" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="clv-lead"/>
-                            <constraint firstAttribute="trailing" secondItem="clv-Overlay" secondAttribute="trailing" id="clv-trail"/>
-                            <constraint firstItem="clv-Overlay" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="clv-top"/>
+                            <constraint firstItem="YDd-VY-3TQ" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="ZIn-Zu-Si5"/>
                             <constraint firstAttribute="bottom" secondItem="clv-Overlay" secondAttribute="bottom" id="clv-bot"/>
+                            <constraint firstItem="clv-Overlay" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="clv-lead"/>
+                            <constraint firstItem="clv-Overlay" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="clv-top"/>
+                            <constraint firstAttribute="trailing" secondItem="clv-Overlay" secondAttribute="trailing" id="clv-trail"/>
                             <constraint firstAttribute="trailing" secondItem="lTA-ov-VZE" secondAttribute="trailing" id="nGf-G6-tw0"/>
                             <constraint firstItem="lTA-ov-VZE" firstAttribute="top" secondItem="YDd-VY-3TQ" secondAttribute="bottom" id="sKO-sz-mJs"/>
                         </constraints>
@@ -138,9 +123,8 @@
                     <connections>
                         <outlet property="actionButton" destination="6tM-9b-gyM" id="QLn-lw-q1K"/>
                         <outlet property="bookByQRButton" destination="dkI-1h-5eS" id="pSq-wq-LLs"/>
-                        <outlet property="contentLoadingView" destination="clv-Overlay" id="clv-out"/>
                         <outlet property="contentLoadingTopConstraint" destination="clv-top" id="clv-ct-out"/>
-                        <outlet property="floatingBackBubble" destination="fbb-bt-Bubble" id="fbb-out"/>
+                        <outlet property="contentLoadingView" destination="clv-Overlay" id="clv-out"/>
                         <outlet property="tableView" destination="YDd-VY-3TQ" id="hjN-MF-eH4"/>
                     </connections>
                 </viewController>
@@ -157,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-o8-N5e">
-                                <rect key="frame" x="20" y="56" width="40" height="40"/>
+                                <rect key="frame" x="20" y="104" width="40" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obr-m2-FPc">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -196,7 +180,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackIconWhite" width="24" height="24"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

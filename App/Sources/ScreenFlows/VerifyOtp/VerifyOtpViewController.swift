@@ -101,7 +101,7 @@ class VerifyOtpViewController: UIViewController {
             sendButton.isEnabled = false
         }
     }
-    
+
     private func configureBackButton() {
         backButton.isHidden = hideBackButton
     }

@@ -62,7 +62,7 @@ class AssessmentsOverViewViewModel {
     var assessments = [Assessment]()
     var lastUserSelectedSubjectIndex: IndexPath?
     var currentModule: Module = .all
-    var showQuizAlet: ((String) -> Void)?
+    var showQuizAlert: ((String) -> Void)?
     var shouldShowSubjects: Bool {
         return true
     }
@@ -104,7 +104,7 @@ class AssessmentsOverViewViewModel {
             completion?()
                 self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessment.mappedType)
             } else {
-                self?.showQuizAlet?(error ?? "")
+                self?.showQuizAlert?(error ?? "")
             }
         }
     }

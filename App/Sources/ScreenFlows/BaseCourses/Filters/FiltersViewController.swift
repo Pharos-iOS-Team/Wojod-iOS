@@ -3,10 +3,6 @@
 import HandySwift
 import UIKit
 
-protocol FiltersDelegate: AnyObject {
-    func didApplyFilters(_ selection: FilterSelection, courses: CoursesResponse?)
-}
-
 class FiltersViewController: UIViewController {
     // MARK: - IBOutlets
 
@@ -46,7 +42,7 @@ class FiltersViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    weak var delegate: FiltersDelegate?
+    var onApplyFilters: ((FilterSelection, CoursesResponse?) -> Void)?
     var currentSelection = FilterSelection() {
         didSet {
             filterState.currentSelection = currentSelection
@@ -120,13 +116,16 @@ class FiltersViewController: UIViewController {
 
     @IBAction private func didTapApplyButton(_ sender: UIButton) {
         let batchID = filterState.currentSelection.academicYear?.key
-        viewModel?.loadFilteredCourses(
-            subjectID: filterState.currentSelection.subject?.id,
-            batchID: batchID ?? 0,
-            specializationID: filterState.currentSelection.field?.key
-        ) { [weak self] courses in
+        let subjectID = filterState.currentSelection.subject?.id
+        let specializationID = filterState.currentSelection.field?.key
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.delegate?.didApplyFilters(self.filterState.currentSelection, courses: courses)
+            let courses = await self.viewModel?.loadFilteredCourses(
+                subjectID: subjectID,
+                batchID: batchID ?? 0,
+                specializationID: specializationID
+            )
+            self.onApplyFilters?(self.filterState.currentSelection, courses)
             self.dismiss(animated: true)
         }
     }
@@ -137,7 +136,7 @@ class FiltersViewController: UIViewController {
         else { return }
 
         let division = Division(key: User.shared.divisionId, value: User.shared.divisionName)
-        let specialization = Specialization(key: User.shared.specializationId, value: User.shared.specializationName)
+        let specialization = KeyValue(key: User.shared.specializationId, value: User.shared.specializationName)
         headerViewHeightConstraint.constant = 0
         headerView.isHidden = true
 
@@ -229,8 +228,10 @@ class FiltersViewController: UIViewController {
         filterState.academicTypes = []
         filterState.isLoadingData = true
         tableView.reloadData()
-        viewModel?.loadAcademicTypes(for: filterState.academicLevel) { [weak self] academicTypes in
+        let academicLevel = filterState.academicLevel
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let academicTypes = await self.viewModel?.loadAcademicTypes(for: academicLevel)
             self.filterState.isLoadingData = false
             self.filterState.academicTypes = academicTypes ?? []
             self.tableView.reloadData()
@@ -241,8 +242,10 @@ class FiltersViewController: UIViewController {
         filterState.universities = []
         filterState.isLoadingData = true
         tableView.reloadData()
-        viewModel?.loadAcademicDivisions(for: filterState.academicLevel, in: 0) { [weak self] universities in
+        let academicLevel = filterState.academicLevel
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let universities = await self.viewModel?.loadAcademicDivisions(for: academicLevel, in: 0)
             self.filterState.isLoadingData = false
             self.filterState.universities = universities ?? []
             self.tableView.reloadData()

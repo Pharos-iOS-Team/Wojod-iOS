@@ -29,7 +29,7 @@ internal class RegistrationViewModel {
     }
 
     internal func loadCountries(completion: @escaping ([KeyName]?) -> Void) {
-        ApiProvider.shared.request(.registration(.countries), decodeTo: DataResponse.self) { result in
+        ApiProvider.shared.request(.registration(.countries), decodeTo: ApiResponse<[KeyName]>.self) { result in
             switch result {
             case let .success(response):
                 let countryData = response.data
@@ -43,7 +43,7 @@ internal class RegistrationViewModel {
 
     internal func loadCities(for selectedCountry: String, completion: @escaping ([KeyName]?) -> Void) {
         let requestModel = CitiesRequestModel(selectedCountry: selectedCountry)
-        ApiProvider.shared.request(.registration(.cities(requestModel)), decodeTo: DataResponse.self) { result in
+        ApiProvider.shared.request(.registration(.cities(requestModel)), decodeTo: ApiResponse<[KeyName]>.self) { result in
             switch result {
             case let .success(response):
                 let cities = response.data
@@ -57,10 +57,10 @@ internal class RegistrationViewModel {
 
     internal func loadAcademicTypes(for academicLevel: AcademicLevel, completion: @escaping ([KeyValue]?) -> Void) {
         let requestModel = AcademicRequestModel(educationLevel: academicLevel.rawValue)
-        ApiProvider.shared.request(.registration(.academicTypes(requestModel)), decodeTo: EducationTypes.self) { result in
+        ApiProvider.shared.request(.registration(.academicTypes(requestModel)), decodeTo: ApiResponse<[KeyValue]>.self) { result in
             switch result {
             case let .success(response):
-                completion(response.educationTypes)
+                completion(response.data)
             case .failure:
                 completion(nil)
             }
@@ -73,12 +73,12 @@ internal class RegistrationViewModel {
             educationType: academicLevel == .schoolStudent ? educationType : nil,
             loginOrganization: academicLevel == .schoolStudent ? nil : AppEnvironment.appName.loginOrganization
         )
-        ApiProvider.shared.request(.registration(.academicDivisions(requestModel)), decodeTo: DivisionsModel.self) { result in
+        ApiProvider.shared.request(.registration(.academicDivisions(requestModel)), decodeTo: ApiResponse<[Division]>.self) { result in
             switch result {
             case let .success(response):
-                let divisions = response.divisions
+                let divisions = response.data
                 self.divisions = divisions
-                self.divisionIDs = divisions?.compactMap { $0.key } ?? []
+                self.divisionIDs = divisions.compactMap { $0.key }
                 completion(divisions)
             case .failure:
                 completion(nil)
@@ -86,11 +86,11 @@ internal class RegistrationViewModel {
         }
     }
 
-    internal func loadBatches(for divisionIndex: Int, completion: @escaping ([Batch]?) -> Void) {
-        ApiProvider.shared.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: BatchesModel.self) { result in
+    internal func loadBatches(for divisionIndex: Int, completion: @escaping ([KeyValue]?) -> Void) {
+        ApiProvider.shared.request(.registration(.batches(divisionID: divisionIndex)), decodeTo: ApiResponse<[KeyValue]>.self) { result in
             switch result {
             case let .success(response):
-                let batches = response.batches
+                let batches = response.data
                 self.batchesIDs = batches.compactMap { $0.key }
                 completion(batches)
             case .failure:
@@ -99,12 +99,12 @@ internal class RegistrationViewModel {
         }
     }
 
-    internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([Specialization]?) -> Void) {
-        ApiProvider.shared.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: SpecializationsModel.self) { result in
+    internal func loadSpecializations(for divisionIndex: Int, completion: @escaping ([KeyValue]?) -> Void) {
+        ApiProvider.shared.request(.registration(.specializations(divisionID: divisionIndex)), decodeTo: ApiResponse<[KeyValue]>.self) { result in
             switch result {
             case let .success(response):
-                let specializations = response.specializations
-                self.specializationsIDs = specializations?.compactMap { $0.key } ?? []
+                let specializations = response.data
+                self.specializationsIDs = specializations.compactMap { $0.key }
                 completion(specializations)
             case .failure:
                 completion(nil)
@@ -113,10 +113,10 @@ internal class RegistrationViewModel {
     }
 
     internal func loadAvatars(completion: @escaping ([Avatar]) -> Void) {
-        ApiProvider.shared.request(.profile(.getAvatars), decodeTo: AvatarsModel.self) { result in
+        ApiProvider.shared.request(.profile(.getAvatars), decodeTo: ApiResponse<[Avatar]>.self) { result in
             switch result {
             case let .success(response):
-                completion(response.avatars)
+                completion(response.data)
             case .failure:
                 completion([])
             }

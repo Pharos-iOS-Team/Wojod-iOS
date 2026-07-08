@@ -11,9 +11,9 @@ struct FilterSelection {
     var academicLevel: AcademicLevel?
     var academicType: KeyValue?
     var academicDivision: Division?
-    var academicYear: Batch?
+    var academicYear: KeyValue?
     var subject: Subject?
-    var field: Specialization?
+    var field: KeyValue?
 
     mutating func reset() {
         self = .empty

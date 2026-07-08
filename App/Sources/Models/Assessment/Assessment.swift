@@ -15,11 +15,11 @@ struct Assessment: Codable {
     var type: String?
     var publishedAt: Date
     var numberOfQuesions: Int?
-    
+
     var mappedType: AssessmentType {
         AssessmentType(rawValue: type ?? "") ?? .assignment
     }
-    
+
     var mappedStatus: AssessmentStatus {
         AssessmentStatus(rawValue: status ?? "") ?? .closed
     }

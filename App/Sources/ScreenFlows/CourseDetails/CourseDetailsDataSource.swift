@@ -133,7 +133,7 @@ final class CourseDetailsDataSource: NSObject, UITableViewDataSource {
     // MARK: - Cell Configuration Helpers
 
     private func configureLessonDetails(cell: AttachmentTableViewCell?, with attachment: Any) {
-        if let assignment = attachment as? Assignment {
+        if let assignment = attachment as? Assessment {
             cell?.setSubtitleLabel(assignment.title)
             cell?.setAttachmentImageView(Images.quiz.image)
         } else if let quiz = attachment as? Assessment {

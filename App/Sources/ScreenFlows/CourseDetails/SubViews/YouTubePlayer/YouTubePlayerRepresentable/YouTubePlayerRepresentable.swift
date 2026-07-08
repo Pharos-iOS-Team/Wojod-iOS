@@ -4,7 +4,7 @@ import ComposableArchitecture
 import HandyUIKit
 import SwiftUI
 
-public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
+struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
     var videoId: String
     @Binding var isLoading: Bool
     @Binding var didEnterForground: Bool
@@ -37,7 +37,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
         "cc_load_policy": 0
     ]
 
-    public init(
+    init(
         videoId: String,
         isLoading: Binding<Bool>,
         didEnterForground: Binding<Bool>,
@@ -81,7 +81,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
         self._isMuted = isMuted
     }
 
-    public func makeUIViewController(context: Context) -> UIViewController {
+    func makeUIViewController(context: Context) -> UIViewController {
         let playerViewCtrl = UIViewController()
         let playerView = YTPlayerView()
         playerView.delegate = context.coordinator
@@ -95,7 +95,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
     }
 
     // swiftlint:disable function_body_length
-    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         guard let playerView = uiViewController.view.subviews.first(where: { $0 is YTPlayerView }) as? YTPlayerView else {
             return
         }
@@ -180,7 +180,7 @@ public struct YouTubePlayerRepresentable: UIViewControllerRepresentable {
     }
     // swiftlint:enable function_body_length
 
-    public func makeCoordinator() -> Coordinator {
+    func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
 }

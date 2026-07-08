@@ -2,15 +2,13 @@
 
 import Foundation
 
-struct LoginApiResponseModel: Decodable {
-    var data: UserModel
-}
-
-struct StudentModel: Decodable {
-    var student: UserModel
-}
-
 struct UserModel: Codable {
+    struct DevicesInfo: Codable {}
+
+    struct Preferences: Codable {
+        var darkTheme: Bool?
+    }
+ 
     var id: Int?
     var email: String?
     var provider: String?
@@ -49,44 +47,4 @@ struct UserModel: Codable {
     var educationLevel: Int?
     var educationType: Int?
     var organizations: [Organization]?
-}
-
-struct Preferences: Codable {
-    var darkTheme: Bool?
-}
-
-struct Avatar: Codable {
-    var id: Int?
-    var name: String?
-    var fileUrl: String?
-    var thumbnailUrl: String?
-}
-
-struct DevicesInfo: Codable {}
-
-struct Organizations: Codable {
-    let organizations: [Organization]?
-}
-
-// MARK: - Organization
-struct Organization: Codable {
-    var id: Int?
-    var address, name, status: String?
-    var media: OrganizationMedia?
-}
-
-struct OrganizationMedia: Codable, ContentTypeable {
-    var fileName: String?
-    var fileUrl: String?
-    var thumbnailUrl: String?
-    var contentType: String?
-}
-
-struct StudentOrganizationModel: Codable {
-    let studentOrganization: StudentOrganization?
-}
-
-struct StudentOrganization: Codable {
-    var id, studentId, organizationId: Int?
-    var status, createdAt, updatedAt: String?
 }

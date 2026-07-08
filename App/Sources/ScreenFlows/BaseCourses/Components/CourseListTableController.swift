@@ -9,9 +9,8 @@ final class CourseListTableController: NSObject, UITableViewDataSource, UITableV
     private weak var viewModel: CourseListViewModeling?
     private let isMyCourses: Bool
     private let headerProvider: () -> UIView?
-    private let courseDetailsDelegate: ViewCourseDetailsDelegate?
-    private let selectCellDelegate: SelectCourseCellDelegate?
-    private let receiptDelegate: ViewReceiptDelegate?
+    private let onShowCourseDetails: ((Course?, Int) -> Void)?
+    private let onDisplayReceipt: ((Receipt) -> Void)?
     private let emptyStateDelegator: CoursesEmptyStateDelegate
 
     init(
@@ -19,18 +18,16 @@ final class CourseListTableController: NSObject, UITableViewDataSource, UITableV
         viewModel: CourseListViewModeling,
         isMyCourses: Bool,
         headerProvider: @escaping () -> UIView?,
-        courseDetailsDelegate: ViewCourseDetailsDelegate?,
-        selectCellDelegate: SelectCourseCellDelegate?,
-        receiptDelegate: ViewReceiptDelegate?,
+        onShowCourseDetails: ((Course?, Int) -> Void)?,
+        onDisplayReceipt: ((Receipt) -> Void)?,
         navigationCoordinator: CoursesNavigationCoordinating
     ) {
         self.tableView = tableView
         self.viewModel = viewModel
         self.isMyCourses = isMyCourses
         self.headerProvider = headerProvider
-        self.courseDetailsDelegate = courseDetailsDelegate
-        self.selectCellDelegate = selectCellDelegate
-        self.receiptDelegate = receiptDelegate
+        self.onShowCourseDetails = onShowCourseDetails
+        self.onDisplayReceipt = onDisplayReceipt
         self.emptyStateDelegator = CoursesEmptyStateDelegate(
             viewModel: viewModel,
             navigationCoordinator: navigationCoordinator
@@ -81,14 +78,19 @@ final class CourseListTableController: NSObject, UITableViewDataSource, UITableV
         let subjectCourse = appropriateSubjectCourse(index: indexPath.row)
 
         cell?.configure(
-            courses: subjectCourse?.courses,
-            isMyCourses: isMyCourses,
-            teacherName: subjectCourse?.teacher?.name,
-            teacherNameIndex: indexPath.row,
-            courseDetailsDelegate: courseDetailsDelegate,
-            selectCellDelegate: selectCellDelegate,
-            viewReceiptDelegate: receiptDelegate
+            model: CourseTableViewCell.CourseTableViewCellModel(
+                courses: subjectCourse?.courses,
+                isMyCourses: isMyCourses,
+                teacherName: subjectCourse?.teacher?.name
+            ),
+            teacherNameIndex: indexPath.row
         )
+        cell?.onShowCourseDetails = { [weak self] course, index in
+            self?.onShowCourseDetails?(course, index)
+        }
+        cell?.onDisplayReceipt = { [weak self] receipt in
+            self?.onDisplayReceipt?(receipt)
+        }
 
         return cell ?? UITableViewCell()
     }

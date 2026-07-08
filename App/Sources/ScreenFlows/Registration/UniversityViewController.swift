@@ -102,8 +102,8 @@ class UniversityViewController: UIViewController {
     private var selectedFieldIndex: Int = 0
     private var selectedYearIndex: Int = 0
     private var universities = [Division]()
-    private var fields = [Specialization]()
-    private var years = [Batch]()
+    private var fields = [KeyValue]()
+    private var years = [KeyValue]()
     private var universityPickerView = PickerInputView<String>(height: 200)
     private var fieldPickerView = PickerInputView<String>(height: 200)
     private var yearPickerView = PickerInputView<String>(height: 200)
@@ -238,13 +238,13 @@ class UniversityViewController: UIViewController {
 
     private func handleFields() {
         if AppEnvironment.appName == .royalMedicine {
-            User.shared.divisionId = DivisionsModel.facultyOfMedicine.key
-            User.shared.divisionName = DivisionsModel.facultyOfMedicine.value
-            universityTextField.text = DivisionsModel.facultyOfMedicine.value
+            User.shared.divisionId = GlobalConstants.facultyOfMedicineSpecializationAndDivision.key
+            User.shared.divisionName = GlobalConstants.facultyOfMedicineSpecializationAndDivision.value
+            universityTextField.text = GlobalConstants.facultyOfMedicineSpecializationAndDivision.value
 
-            User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
-            User.shared.specializationName = SpecializationsModel.facultyOfMedicine.value
-            fieldTextField.text = SpecializationsModel.facultyOfMedicine.value
+            User.shared.specializationId = GlobalConstants.facultyOfMedicineSpecializationAndDivision.key
+            User.shared.specializationName = GlobalConstants.facultyOfMedicineSpecializationAndDivision.value
+            fieldTextField.text = GlobalConstants.facultyOfMedicineSpecializationAndDivision.value
             self.retrieveYears()
         } else {
             retrieveUniversities()
@@ -268,7 +268,7 @@ class UniversityViewController: UIViewController {
                 fieldTextFieldHeightConstraint.constant = 0
             } else {
                 if !AppEnvironment.shouldHideOrganizationAndSchool {
-                    self.fields.insert(Specialization(key: nil, value: L10n.Signup.School.none), at: 0)
+                    self.fields.insert(KeyValue(key: nil, value: L10n.Signup.School.none), at: 0)
                 }
                 fieldTextField.isHidden = false
                 fieldTextFieldHeightConstraint.constant = 50
@@ -356,7 +356,7 @@ class UniversityViewController: UIViewController {
         User.shared.divisionName = universityTextField.text
         User.shared.specializationName = fieldTextField.text == L10n.Signup.School.none ? nil : fieldTextField.text
         if AppEnvironment.appName == .royalMedicine {
-            User.shared.specializationId = SpecializationsModel.facultyOfMedicine.key
+            User.shared.specializationId = GlobalConstants.facultyOfMedicineSpecializationAndDivision.key
         } else {
             User.shared.specializationId = fieldTextField.text == L10n.Signup.School.none ? nil : viewModel?.specializationsIDs[safe: selectedFieldIndex]
         }

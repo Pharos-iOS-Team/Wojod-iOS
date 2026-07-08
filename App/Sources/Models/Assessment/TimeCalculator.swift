@@ -1,7 +1,5 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
-// swiftlint:disable all
-
 import Foundation
 import LanguageManager_iOS
 
@@ -119,27 +117,25 @@ extension TimeCalculator {
             return L10n.Quizzes.endInMoreThan1Day(NumberFormatter.getFormattedString(fromInt: days) ?? "")
         } else if days == 1 {
             return L10n.Quizzes.endInOneDay
-        } else if hours > 10, days ==  0 {
+        } else if hours > 10,days == 0 {
             return L10n.Quizzes.endInMoreThan10Hours(NumberFormatter.getFormattedString(fromInt: hours) ?? "")
-        } else if hours <= 10, days ==  0 {
+        } else if hours <= 10, days == 0 {
             return L10n.Quizzes.endInMoreThan1HourAndLessThan11Hours(NumberFormatter.getFormattedString(fromInt: hours) ?? "")
-        } else if hours == 2, days ==  0 {
+        } else if hours == 2, days == 0 {
             return L10n.Quizzes.endIn2Hours(NumberFormatter.getFormattedString(fromInt: hours) ?? "")
-        } else if hours <= 1, days ==  0 {
+        } else if hours <= 1, days == 0 {
             return L10n.Quizzes.endInOneHour
         } else {
             return L10n.Quizzes.endsIn(date.formatted(with: GlobalConstants.datePreviewFormat))
         }
     }
-    
+
     func timeTillDate(date: Date) -> String {
         let calendar = Calendar.current
         let now = Date()
         let dueDate = date.endOfDay ?? Date()
         let components = calendar.dateComponents([.day, .hour], from: now, to: dueDate)
-        guard let hours = components.hour, let days = components.day else {
-            return ""
-        }
+        guard let hours = components.hour, let days = components.day else { return "" }
         return timeTillDateText(hours, days, date)
     }
 }

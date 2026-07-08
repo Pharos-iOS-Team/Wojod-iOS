@@ -38,7 +38,7 @@ class VerifyOtpViewModel {
             switch result {
             case .success(let user):
                 if let user = user {
-                    User.shared.setUserData(user: user.data)
+                    User.shared.setUserData(user: user)
                 }
                 self.successHandler?()
             case .failure(let error):
@@ -48,8 +48,9 @@ class VerifyOtpViewModel {
     }
 
     private func mapToWJError(_ error: Error) -> WJError {
-        if let apiError = error as? ApiError,
-           case .clientError(let statusCode, let endpointError) = apiError {
+        if
+            let apiError = error as? ApiError,
+            case .clientError(let statusCode, let endpointError) = apiError {
             return WJError(
                 type: .serverSideError(statusCode: HTTPStatusCode(rawValue: statusCode)),
                 message: endpointError.errors.first ?? ""

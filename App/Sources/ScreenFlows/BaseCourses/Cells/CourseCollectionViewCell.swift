@@ -5,14 +5,6 @@ import Cosmos
 import Kingfisher
 import UIKit
 
-protocol ViewCourseDetailsDelegate: AnyObject {
-    func showCourseDetails(for course: Course?, with teacherNameIndex: Int)
-}
-
-protocol ViewReceiptDelegate: AnyObject {
-    func displayReceipt(_ receipt: Receipt)
-}
-
 class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
@@ -23,14 +15,11 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet private var courseContentView: UIView! {
         didSet {
-            courseContentView.layer.cornerRadius = UIConstants.slightCornerRadius
+            courseContentView.layer.cornerRadius = UIConstants.cornerRadius
+            courseContentView.clipsToBounds = true
         }
     }
-    @IBOutlet private var imageView: UIImageView! {
-        didSet {
-            imageView.layer.cornerRadius = UIConstants.slightCornerRadius
-        }
-    }
+    @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var viewButton: UIButton! {
         didSet {
             viewButton.layer.cornerRadius = UIConstants.slightCornerRadius
@@ -68,8 +57,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
     // MARK: - Public Properties
 
     internal var playVideo: (() -> Void)?
-    internal weak var delegate: ViewCourseDetailsDelegate?
-    internal weak var viewReceiptDelegate: ViewReceiptDelegate?
+    internal var onShowCourseDetails: ((Course?, Int) -> Void)?
+    internal var onDisplayReceipt: ((Receipt) -> Void)?
     internal var teacherNameIndex: Int?
 
     // MARK: - IBActions
@@ -79,7 +68,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction private func didTapViewCourse(_ sender: UIButton) {
-        delegate?.showCourseDetails(for: course, with: teacherNameIndex ?? 0)
+        onShowCourseDetails?(course, teacherNameIndex ?? 0)
     }
 
     // MARK: - Lifecycle
@@ -101,6 +90,8 @@ class CourseCollectionViewCell: UICollectionViewCell {
 
         course = nil
         playVideo = nil
+        onShowCourseDetails = nil
+        onDisplayReceipt = nil
     }
 
     // MARK: - Private Functions
@@ -110,10 +101,10 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureActionButtonAccordingToState() {
-        if course?.reservationState == "pending" {
+        if course?.parsedReservationState == .pending {
             viewButton.setTitle(L10n.Home.pending)
             viewButton.layer.backgroundColor = Colors.orange.color.cgColor
-        } else if course?.reservationState == "approved" {
+        } else if course?.parsedReservationState == .booked {
             viewButton.setTitle(L10n.Quizzes.open)
             viewButton.layer.backgroundColor = Colors.green.color.cgColor
         } else {
@@ -133,7 +124,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureBadge() {
-        if isMyCourses && course?.reservationState == "approved" {
+        if isMyCourses && course?.parsedReservationState == .booked {
             if course?.lessonsUnreadCount ?? 0 > 0 || course?.materialsUnreadCount ?? 0 > 0 {
                 badgeImageView.isHidden = false
             } else {

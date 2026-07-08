@@ -40,6 +40,10 @@ class CommentAndImagesTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "Lato-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
         titleLabel.textColor = UIColor(white: 0.333, alpha: 1)
 
+        configureCollectionView()
+    }
+
+    private func configureCollectionView() {
         imagesCollectionView.backgroundColor = .clear
         imagesCollectionView.dataSource = self
         imagesCollectionView.delegate = self
@@ -48,10 +52,7 @@ class CommentAndImagesTableViewCell: UITableViewCell {
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
         }
-        imagesCollectionView.register(
-            UINib(nibName: String(describing: CorrectionImageCollectionViewCell.self), bundle: nil),
-            forCellWithReuseIdentifier: String(describing: CorrectionImageCollectionViewCell.self)
-        )
+        imagesCollectionView.registerCell(ofType: CorrectionImageCollectionViewCell.self)
     }
 
     override func prepareForReuse() {

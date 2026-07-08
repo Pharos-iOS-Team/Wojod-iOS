@@ -5,11 +5,7 @@ import Foundation
 import Moya
 
 final class ApiProvider {
-    static let shared = ApiProvider()
-
-    private let provider: MoyaProvider<Endpoint>
-
-    private init(provider: MoyaProvider<Endpoint>? = nil) {
+    static let shared: ApiProvider = {
         var plugins: [PluginType] = [
             AuthPlugin(),
             LanguagePlugin { Language.currentLanguage },
@@ -19,6 +15,12 @@ final class ApiProvider {
         plugins.append(NetworkLoggerPlugin(configuration: .init(logOptions: [.formatRequestAscURL, .verbose])))
         #endif
 
+        return ApiProvider(plugins: plugins)
+    }()
+
+    private let provider: MoyaProvider<Endpoint>
+
+    init(plugins: [PluginType] = [], provider: MoyaProvider<Endpoint>? = nil) {
         self.provider = provider ?? MoyaProvider<Endpoint>(plugins: plugins)
     }
 

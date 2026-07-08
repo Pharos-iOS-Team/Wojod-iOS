@@ -2,10 +2,6 @@
 
 import UIKit
 
-internal protocol CollapseExpandDelegate: AnyObject {
-    func didTapOnCollapseExpand(in section: Int)
-}
-
 class CourseDetailsHeaderView: UITableViewHeaderFooterView {
     // MARK: - IBOutlets
 
@@ -15,13 +11,13 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - Public Properties
 
-    internal weak var collapseExpandDelegate: CollapseExpandDelegate?
+    internal var onCollapseExpand: ((Int) -> Void)?
     internal var isExpanded: Bool?
 
     // MARK: - IBActions
 
     @IBAction private func didTapOnCollapseExpandButton(_ sender: UIButton) {
-        collapseExpandDelegate?.didTapOnCollapseExpand(in: self.tag)
+        onCollapseExpand?(self.tag)
     }
 
     // MARK: - Lifecycle
@@ -50,12 +46,19 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
         expandCollapseButton.setImage(image)
     }
 
+    internal func animateExpandCollapse(isExpanded: Bool) {
+        let image = isExpanded ? Images.collapse.image : Images.expand.image
+        UIView.transition(with: expandCollapseButton, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.expandCollapseButton.setImage(image, for: .normal)
+        })
+    }
+
     internal func configureVisibilityOfExpandButton(state: CourseState?, doesContainAttachments: Bool) {
         expandCollapseButton.isHidden = state != .booked || !doesContainAttachments
     }
 
     @objc
     private func didTapOnHeader() {
-        collapseExpandDelegate?.didTapOnCollapseExpand(in: self.tag)
+        onCollapseExpand?(self.tag)
     }
 }

@@ -7,12 +7,3 @@ struct AssessmentSubmissionsResponse: Decodable {
     var notSubmittedCount: Int?
     var students: [AssessmentSubmittedStudents]?
 }
-
-struct AssessmentSubmittedStudents: Decodable {
-    var mark: Double?
-    var status: String?
-    var studentName: String?
-    var studentInitials: String?
-    var studentId: Int?
-    var submissionDate: String?
-}

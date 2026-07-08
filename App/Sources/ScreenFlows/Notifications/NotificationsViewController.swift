@@ -57,7 +57,7 @@ class NotificationsViewController: UIViewController {
         showLoadingIndicator()
         viewModel?.loadNotifications { notifications in
             self.hideLoadingIndicator()
-            self.notifications = notifications.notifications ?? []
+            self.notifications = notifications
             self.tableView.reloadData()
         }
     }

@@ -235,6 +235,7 @@
 "home.pending" = "محجوز";
 "home.search.emptyStateTitle" = "نأسف";
 "home.search.emptyStateDescription" = "لم نتمكن من العثور على ما تبحث عنه. حاول مرة أخرى بكلمات مختلفة.";
+"home.search.placeholder" = "ابحث عن دورات";
 "home.defaultEmptyState" = "لا توجد دورات متاحة";
 
 "filters.filters" = "الفلتر";

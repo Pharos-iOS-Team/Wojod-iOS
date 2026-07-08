@@ -32,44 +32,31 @@ struct CourseDetailsInfoModel {
 }
 
 class CourseDetailsInfoHeaderView: UIView, NibLoadable {
+    static let imageHeight: CGFloat = 320
+
     @IBOutlet private var detailsButton: UIButton! {
         didSet {
             detailsButton.setTitle(L10n.CourseDetails.Main.details)
-            detailsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
     @IBOutlet private var materialsButton: UIButton! {
         didSet {
             materialsButton.setTitle(L10n.CourseDetails.Main.materials)
-            materialsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
     @IBOutlet private var reviewsButton: UIButton! {
         didSet {
             reviewsButton.setTitle(L10n.CourseDetails.Main.reviews)
-            reviewsButton.layer.cornerRadius = UIConstants.cornerRadius
         }
     }
-    @IBOutlet private var detailsBadge: UIImageView! {
-        didSet {
-            detailsBadge.isHidden = true
-        }
-    }
-    @IBOutlet private var materialsBadge: UIImageView! {
-        didSet {
-            materialsBadge.isHidden = true
-        }
-    }
+    @IBOutlet private var detailsBadge: UIImageView!
+    @IBOutlet private var materialsBadge: UIImageView!
     @IBOutlet private var backButton: UIButton! {
         didSet {
             backButton.setImage(Images.localizedWhiteBackButton)
         }
     }
-    @IBOutlet private var playButton: UIButton! {
-        didSet {
-            playButton.isHidden = true
-        }
-    }
+    @IBOutlet private var playButton: UIButton!
 
     @IBOutlet private var batchLabel: UITagLabel!
     @IBOutlet private var mainBackgroundView: UIView!
@@ -87,7 +74,6 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
             ratingView.settings.fillMode = .precise
             ratingView.settings.starMargin = 1
             ratingView.settings.starSize = 20
-            ratingView.isUserInteractionEnabled = false
         }
     }
     @IBOutlet private var chatButton: UIButton!
@@ -115,6 +101,12 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         }
         let scale = 1 + abs(offset) / 220
         courseImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        courseTitle.preferredMaxLayoutWidth = courseTitle.bounds.width
+        descriptionLabel.preferredMaxLayoutWidth = descriptionLabel.bounds.width
     }
 
     override init(frame: CGRect) {
@@ -168,6 +160,7 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         teacherNameLabel.text = model.teacherName
         batchLabel.text = model.batchName
         descriptionLabel.text = model.description
+        descriptionLabel.preferredMaxLayoutWidth = UIScreen.main.bounds.width - 40
         numberOfReviewsLabel.text = model.numberOfReviews
         courseImageView.kf.setImage(
             with: AppEnvironment.baseURL.appendingPathComponent(model.image ?? ""),
@@ -210,13 +203,17 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     }
 
     private func selectButton(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightAccentColor.color.cgColor
-        button.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+        UIView.animate(withDuration: 0.25) {
+            button.layer.backgroundColor = Colors.lightAccentColor.color.cgColor
+            button.setTitleColor(Colors.sendButtonColor.color, for: .normal)
+        }
     }
 
     private func unselectButton(button: UIButton) {
-        button.layer.backgroundColor = Colors.lightGreyColor.color.cgColor
-        button.setTitleColor(UIColor.black, for: .normal)
+        UIView.animate(withDuration: 0.25) {
+            button.layer.backgroundColor = Colors.lightGreyColor.color.cgColor
+            button.setTitleColor(UIColor.black, for: .normal)
+        }
     }
 
     private func configureChatButtonAccordingToState(state: CourseState) {

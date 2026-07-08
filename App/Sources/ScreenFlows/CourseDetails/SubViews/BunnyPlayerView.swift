@@ -10,20 +10,28 @@ struct BunnyPlayerView: View {
     let videoId: String
     let libraryId: Int
     let apiKey: String
+    let fetchVideoDetails: (@escaping () -> Void) -> Void
     private let phoneNumber: String = User.shared.mobileNumber ?? ""
     private let headers = ["Referer": "https://wojod.app/"]
+    @State private var isLoading = true
 
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
-                BunnyStreamPlayer(
-                    accessKey: apiKey,
-                    videoId: videoId,
-                    libraryId: libraryId,
-                    headers: headers
-                )
-                .tint(.white)
-                .watermark(phoneNumber)
+                if isLoading {
+                    LoadingView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    BunnyStreamPlayer(
+                        accessKey: apiKey,
+                        videoId: videoId,
+                        libraryId: libraryId,
+                        headers: headers
+                    )
+                    .tint(.white)
+                    .watermark(phoneNumber)
+                }
+
                 Button {
                     dismiss()
                 } label: {
@@ -44,6 +52,7 @@ struct BunnyPlayerView: View {
             .ignoresSafeArea(edges: [.horizontal, .top])
             .background(.black)
             .navigationBarHidden(true)
+            .onAppear { fetchVideoDetails { isLoading = false } }
         }
     }
 }

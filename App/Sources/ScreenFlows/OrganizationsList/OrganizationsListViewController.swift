@@ -75,7 +75,7 @@ class OrganizationsListViewController: UIViewController {
             self.dismiss(animated: true) {
                 self.showLoadingIndicator()
                 self.viewModel?.registerForOrganization(organizationId: organizationId) { organization in
-                    self.viewModel?.organizations?[indexPath.row].status = organization.studentOrganization?.status
+                    self.viewModel?.organizations?[indexPath.row].status = organization.status
                     self.hideLoadingIndicator()
                     let alert = AlertHandler(presentingViewCtrl: self)
                     alert.showInformationAlert(title: "", message: L10n.Organizations.applicationSuccessful)

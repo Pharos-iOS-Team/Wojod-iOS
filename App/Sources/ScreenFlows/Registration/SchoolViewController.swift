@@ -114,14 +114,14 @@ class SchoolViewController: UIViewController {
     private var selectedDivisionIndexID: Int = 0
     private var selectedYearIndexID: Int = 0
     private var divisionsList: [Division] = []
-    private var academicYears: [Batch] = []
-    private var fields: [Specialization] = []
+    private var academicYears: [KeyValue] = []
+    private var fields: [KeyValue] = []
     private var divisionsPickerView = PickerInputView<String>(height: 200)
     private var academicTypesPickerView = PickerInputView<String>(height: 200)
     private var academicYearPickerView = PickerInputView<String>(height: 200)
     private var fieldsPickerView = PickerInputView<String>(height: 200)
     private var selectedDivision: Division?
-    private var selectedField: Specialization?
+    private var selectedField: KeyValue?
 
     // MARK: - Lifecycle
 
@@ -225,7 +225,7 @@ class SchoolViewController: UIViewController {
             self.selectedYearIndexID = 0
             self.academicYearTextField.text = batches?.first?.value ?? L10n.Signup.School.none
             if batches?.isEmpty ?? true {
-                self.academicYears.append(Batch(key: nil, value: L10n.Signup.School.none))
+                self.academicYears.append(KeyValue(key: nil, value: L10n.Signup.School.none))
             }
         }
     }
@@ -236,7 +236,7 @@ class SchoolViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             self.fields = fields ?? []
             self.fieldTextField.text = L10n.Signup.School.none
-            self.fields.append(Specialization(key: nil, value: L10n.Signup.School.none))
+            self.fields.append(KeyValue(key: nil, value: L10n.Signup.School.none))
         }
     }
 

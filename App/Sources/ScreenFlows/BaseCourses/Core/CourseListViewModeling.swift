@@ -10,8 +10,9 @@ protocol CourseListViewModeling: AnyObject {
     var mode: HomeMode { get set }
     var emptyStateType: EmptyStateType { get set }
     var isMyCourses: Bool { get }
+    var hasCompletedInitialLoad: Bool { get }
 
-    func loadCourses(completion: @escaping () -> Void)
+    func loadCourses() async
     func changeMode(to newMode: HomeMode)
     func selectSubject(_ subject: Subject)
     func resetPagination()

@@ -3,7 +3,7 @@
 import Foundation
 
 final class Paginator<Item> {
-    typealias FetchPage = (_ page: Int, _ completion: @escaping (Result<[Item], Error>) -> Void) -> Void
+    typealias FetchPage = (_ page: Int) async throws -> [Item]
 
     private(set) var items: [Item] = []
     private(set) var page: Int
@@ -19,37 +19,33 @@ final class Paginator<Item> {
         self.fetchPage = fetchPage
     }
 
-    func loadNextPage(completion: @escaping (Result<[Item], Error>) -> Void) {
-        guard !isLoading, hasMorePages else {
-            completion(.success([]))
-            return
-        }
+    @discardableResult
+    func loadNextPage() async throws -> [Item] {
+        guard !isLoading, hasMorePages else { return [] }
 
         isLoading = true
         let requestedPage = page
 
-        fetchPage(requestedPage) { [weak self] result in
-            guard let self = self else { return }
-            self.isLoading = false
+        do {
+            let newItems = try await fetchPage(requestedPage)
+            isLoading = false
 
-            switch result {
-            case .success(let newItems):
-                if requestedPage == self.firstPage {
-                    self.items.removeAll()
-                }
-                self.items.append(contentsOf: newItems)
-                self.hasMorePages = !newItems.isEmpty
-                self.page += 1
-                completion(.success(newItems))
-            case .failure(let error):
-                completion(.failure(error))
+            if requestedPage == firstPage {
+                items.removeAll()
             }
+            items.append(contentsOf: newItems)
+            hasMorePages = !newItems.isEmpty
+            page += 1
+            return newItems
+        } catch {
+            isLoading = false
+            throw error
         }
     }
 
-    func refresh(completion: @escaping (Result<[Item], Error>) -> Void) {
+    func refresh() async throws -> [Item] {
         reset()
-        loadNextPage(completion: completion)
+        return try await loadNextPage()
     }
 
     func reset() {

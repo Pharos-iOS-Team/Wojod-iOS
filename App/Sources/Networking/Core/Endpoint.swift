@@ -17,16 +17,13 @@ enum Endpoint: TargetType {
 }
 
 extension Endpoint: PayloadExtractable {
-    private var innerTarget: any TargetType {
-        guard let target: any TargetType = extractPayload() else {
-            fatalError("Endpoint case has no TargetType payload: \(self)")
-        }
-        return target
+    var resolvedTarget: (any TargetType)? {
+        extractPayload()
     }
 
-    var path: String { innerTarget.path }
+    var path: String { resolvedTarget?.path ?? "" }
 
-    var method: Moya.Method { innerTarget.method }
+    var method: Moya.Method { resolvedTarget?.method ?? .get }
 
-    var task: Task { innerTarget.task }
+    var task: Task { resolvedTarget?.task ?? .requestPlain }
 }

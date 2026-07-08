@@ -7,7 +7,7 @@ struct Grade {
     let totalMark: Double
 
     var description: String {
-        let backSlash = Language.currentLanguage == .arabic ?  #"\"# : "/"
+        let backSlash = Language.currentLanguage == .arabic ? #"\"# : "/"
         return "\(currentMarkFormatted)\(backSlash)\(totalMarkFormatted)"
     }
 

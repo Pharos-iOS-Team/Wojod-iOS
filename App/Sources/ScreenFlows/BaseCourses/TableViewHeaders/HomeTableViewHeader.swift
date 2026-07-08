@@ -67,6 +67,7 @@ class HomeTableViewHeader: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         searchBar.delegate = self
+        searchBar.placeholder = L10n.Home.Search.placeholder
         configureCollectionViews()
     }
 
@@ -176,7 +177,9 @@ extension HomeTableViewHeader: UICollectionViewDelegate {
 extension HomeTableViewHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == subjectsCollectionView {
-            return subjects?[indexPath.item].name?.size() ?? .zero
+            guard let name = subjects?[indexPath.item].name else { return .zero }
+            let size = name.size(withAttributes: [.font: UIFont.systemFont(ofSize: 17)])
+            return CGSize(width: size.width + 32, height: size.height + 16)
         } else {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }

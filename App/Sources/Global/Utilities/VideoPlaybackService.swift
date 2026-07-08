@@ -2,6 +2,7 @@
 
 import AVFoundation
 import AVKit
+import SwiftUI
 import UIKit
 import VdoFramework
 
@@ -22,64 +23,59 @@ final class VideoPlaybackService: NSObject {
         self.alertHandler = alertHandler
     }
 
-    // MARK: - Playback Entry Points
-
-    func playVideoWithChecks(
-        viewsCount: Int,
-        video: Video,
-        hideViews: Bool,
-        from viewController: UIViewController,
-        completion: @escaping (EncryptedVideoResponse?) -> Void
-    ) {
-        guard viewsCount > .zero else {
-            let errorMessage = hideViews
-                ? L10n.CourseDetails.Main.videoPlaybackIssue
-                : L10n.CourseDetails.Main.notEnoughViews
-            alertHandler?.showInformationAlert(
-                title: L10n.Global.Titles.error,
-                message: errorMessage
-            )
-            return
-        }
-
-        fetchVideoDetails(videoId: "\(video.id)", from: viewController) { [weak viewController] response in
-            guard let viewController else { return }
-            if hideViews {
-                completion(response)
-            } else {
-                viewController.showConfirmAlert(
-                    title: L10n.Global.Titles.warning,
-                    message: L10n.CourseDetails.CourseReview.playVideo(viewsCount),
-                    confirmButtonTitle: L10n.Global.Actions.confirm
-                ) { _ in
-                    completion(response)
-                }
-            }
-        }
-    }
+    // MARK: - Playback
 
     func presentVdoCipherVideo(
         _ video: Video,
-        encryptedVideoResponse: EncryptedVideoResponse?,
         transitioningDelegate: UIViewControllerTransitioningDelegate,
-        from viewController: UIViewController
+        from viewController: UIViewController,
+        fetchAction: @escaping (_ completion: @escaping (EncryptedVideoResponse?) -> Void) -> Void
     ) {
-        VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
-            DispatchQueue.main.async { [weak self, weak viewController] in
-                guard let self, let viewController else { return }
-                if let error = error {
-                    self.alertHandler?.showConfirmAlert(
-                        title: L10n.Global.Titles.error,
-                        message: error.description
-                    )
-                } else if let otp = encryptedVideoResponse?.otp, let playback = encryptedVideoResponse?.playback {
-                    let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
-                    vdoPlayerController.transitioningDelegate = transitioningDelegate
-                    asset?.playOnline(otp: otp, playbackInfo: playback)
-                    viewController.present(vdoPlayerController, animated: true)
-                    self.updateId = encryptedVideoResponse?.updateId ?? .zero
-                    self.videoId = "\(video.id)"
-                    self.startBufferingTimer()
+        let vdoPlayerController: VdoPlayerViewController = VdoCipher.getVdoPlayerViewController()
+        vdoPlayerController.transitioningDelegate = transitioningDelegate
+        vdoPlayerController.view.backgroundColor = .black
+
+        let loadingHostingController = UIHostingController(rootView: LoadingView())
+        loadingHostingController.view.backgroundColor = .clear
+        loadingHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+
+        vdoPlayerController.addChild(loadingHostingController)
+        vdoPlayerController.view.addSubview(loadingHostingController.view)
+
+        NSLayoutConstraint.activate([
+            loadingHostingController.view.centerXAnchor.constraint(equalTo: vdoPlayerController.view.centerXAnchor),
+            loadingHostingController.view.centerYAnchor.constraint(equalTo: vdoPlayerController.view.centerYAnchor)
+        ])
+        loadingHostingController.didMove(toParent: vdoPlayerController)
+
+        viewController.present(vdoPlayerController, animated: true) { [weak self] in
+            guard let self = self else { return }
+
+            fetchAction { response in
+                VdoAsset.createAsset(videoId: "\(video.vdocipherId ?? "")") { asset, error in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self.alertHandler?.showConfirmAlert(
+                                title: L10n.Global.Titles.error,
+                                message: error.description
+                            ) { _ in
+                                vdoPlayerController.dismiss(animated: true)
+                            }
+                        } else if let otp = response?.otp, let playback = response?.playback {
+                            asset?.playOnline(otp: otp, playbackInfo: playback)
+                            UIView.animate(withDuration: 0.3, animations: {
+                                loadingHostingController.view.alpha = 0
+                            }) { _ in
+                                loadingHostingController.willMove(toParent: nil)
+                                loadingHostingController.view.removeFromSuperview()
+                                loadingHostingController.removeFromParent()
+                            }
+
+                            self.updateId = response?.updateId ?? .zero
+                            self.videoId = "\(video.id)"
+                            self.startBufferingTimer()
+                        }
+                    }
                 }
             }
         }
@@ -115,13 +111,6 @@ final class VideoPlaybackService: NSObject {
 
     func updatePlayerMuteState() {
         player?.isMuted = UIScreen.main.isCaptured
-    }
-
-    // MARK: - Private
-
-    private func fetchVideoDetails(videoId: String, from viewController: UIViewController, completion: @escaping (EncryptedVideoResponse?) -> Void) {
-        // Delegated to the ViewModel; this method is a pass-through to coordinate the confirm alert flow
-        completion(nil)
     }
 }
 

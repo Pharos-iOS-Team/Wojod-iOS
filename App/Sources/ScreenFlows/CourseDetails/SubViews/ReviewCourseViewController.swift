@@ -3,11 +3,6 @@
 import Cosmos
 import UIKit
 
-protocol ReviewCourseViewDelegate: AnyObject {
-    func didTapSendButton(courseReview: CourseReview)
-    func didTapSkipButton()
-}
-
 class ReviewCourseViewController: UIViewController {
     // MARK: - IBOutlets (Connect to the new File's Owner)
     @IBOutlet private var containerView: UIView!
@@ -22,7 +17,9 @@ class ReviewCourseViewController: UIViewController {
     @IBOutlet private var nextIconImageView: UIImageView!
 
     // MARK: - Properties
-    weak var delegate: ReviewCourseViewDelegate?
+    var sendReview: ((CourseReview) async -> Bool)?
+    var onComplete: ((Bool) -> Void)?
+    var onSkip: (() -> Void)?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -39,13 +36,19 @@ class ReviewCourseViewController: UIViewController {
             rating: starRatingsView.rating,
             comment: courseReviewCommentTextField.text
         )
-        dismiss(animated: true)
-        self.delegate?.didTapSendButton(courseReview: review)
+        sendButton.isEnabled = false
+        Task {
+            let success = await sendReview?(review) ?? false
+            await MainActor.run {
+                dismiss(animated: true)
+                onComplete?(success)
+            }
+        }
     }
 
     @IBAction private func didTapSkipRatingButton(_ sender: UIButton) {
         dismiss(animated: true)
-        self.delegate?.didTapSkipButton()
+        onSkip?()
     }
 
     private func setupUI() {

@@ -29,7 +29,7 @@ class CreatePasswordViewModel {
             ApiProvider.shared.request(.auth(.setPassword(request))) { result in
                 switch result {
                 case .success(let response):
-                    if let user = try? JSONDecoder.default.decode(LoginApiResponseModel.self, from: response.data) {
+                    if let user = try? JSONDecoder.default.decode(ApiResponse<UserModel>.self, from: response.data) {
                         User.shared.setUserData(user: user.data)
                     }
                     self.successHandler?()

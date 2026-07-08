@@ -30,6 +30,27 @@ extension CoursesEmptyStateDelegate: DZNEmptyDataSetSource {
         else { return nil }
         return NSAttributedString(string: buttonTitle)
     }
+
+    func customView(forEmptyDataSet scrollView: UIScrollView) -> UIView? {
+        guard let viewModel = viewModel, case .loading = viewModel.emptyStateType else { return nil }
+        return makeInlineLoadingView()
+    }
+
+    private func makeInlineLoadingView() -> UIView {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.startAnimating()
+
+        let loadingLabel = UILabel()
+        loadingLabel.text = L10n.Global.Alerts.loading
+        loadingLabel.font = .preferredFont(forTextStyle: .subheadline)
+        loadingLabel.textColor = .secondaryLabel
+
+        let stackView = UIStackView(arrangedSubviews: [activityIndicator, loadingLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }
 }
 
 extension CoursesEmptyStateDelegate: DZNEmptyDataSetDelegate {
@@ -40,7 +61,7 @@ extension CoursesEmptyStateDelegate: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
         guard let viewModel = viewModel else { return false }
         if case .loading = viewModel.emptyStateType {
-            return false
+            return viewModel.hasCompletedInitialLoad
         }
         return viewModel.courses.isEmpty || User.shared.organizations.isEmpty
     }

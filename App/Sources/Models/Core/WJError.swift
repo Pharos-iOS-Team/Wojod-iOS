@@ -3,6 +3,13 @@
 import Foundation
 
 struct WJError: Error {
+    enum ErrorType: Equatable {
+        case validationError
+        case serverSideError(statusCode: HTTPStatusCode? = nil)
+        case connectivityError
+        case parsingError
+    }
+
     var type: ErrorType
     var message: String
 
@@ -10,11 +17,4 @@ struct WJError: Error {
         self.type = type
         self.message = message
     }
-}
-
-enum ErrorType: Equatable {
-    case validationError
-    case serverSideError(statusCode: HTTPStatusCode? = nil)
-    case connectivityError
-    case parsingError
 }

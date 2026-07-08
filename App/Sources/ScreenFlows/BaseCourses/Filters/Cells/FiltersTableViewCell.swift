@@ -3,11 +3,6 @@
 import HandySwift
 import UIKit
 
-protocol SelectingFilterDelegate: AnyObject {
-    func selectSchoolFilter(_ filterIndex: Int, in section: SchoolSection)
-    func selectUniversityFilter(_ filterIndex: Int, in section: UniversitySection)
-}
-
 class FiltersTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
 
@@ -17,7 +12,8 @@ class FiltersTableViewCell: UITableViewCell {
     // MARK: - Public Properties
 
     var filters: [String] = []
-    weak var delegate: SelectingFilterDelegate?
+    var onSelectSchoolFilter: ((Int, SchoolSection) -> Void)?
+    var onSelectUniversityFilter: ((Int, UniversitySection) -> Void)?
     var academicLevel: AcademicLevel = .schoolStudent
     var currentSchoolSection: SchoolSection = .academicType
     var currentUniversitySection: UniversitySection = .university
@@ -32,15 +28,22 @@ class FiltersTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureCollectionView()
+        configureActivityIndicator()
+    }
+
+    private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.semanticContentAttribute = Language.semanticContent
-        collectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+        collectionView.registerCell(ofType: FilterCollectionViewCell.self)
         collectionView.collectionViewLayout = UICollectionViewLocalizableFlowLayout().with {
             $0.scrollDirection = .horizontal
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
+    }
 
+    private func configureActivityIndicator() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
         contentView.addSubview(activityIndicator)
@@ -97,9 +100,9 @@ extension FiltersTableViewCell: UICollectionViewDataSource {
 extension FiltersTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if academicLevel == .schoolStudent {
-            delegate?.selectSchoolFilter(indexPath.item, in: currentSchoolSection)
+            onSelectSchoolFilter?(indexPath.item, currentSchoolSection)
         } else {
-            delegate?.selectUniversityFilter(indexPath.item, in: currentUniversitySection)
+            onSelectUniversityFilter?(indexPath.item, currentUniversitySection)
         }
     }
 }

@@ -3,11 +3,12 @@
 import UIKit
 import UIScrollView_InfiniteScroll
 
-protocol SelectCourseCellDelegate: AnyObject {
-    func showCourseDetails(for course: Course?, with teacherNameIndex: Int)
-}
-
 class CourseTableViewCell: UITableViewCell {
+    struct CourseTableViewCellModel {
+        let courses: [Course]?
+        let isMyCourses: Bool
+        let teacherName: String?
+    }
     // MARK: - IBOutlets
 
     @IBOutlet private var teacherNameLabel: UILabel!
@@ -20,11 +21,10 @@ class CourseTableViewCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    internal weak var delegate: ViewCourseDetailsDelegate?
-    internal weak var viewReceiptDelegate: ViewReceiptDelegate?
-    internal weak var selectCellDelegate: SelectCourseCellDelegate?
     internal var teacherNameIndex: Int?
     internal var viewModel: HomeViewModel?
+    internal var onShowCourseDetails: ((Course?, Int) -> Void)?
+    internal var onDisplayReceipt: ((Receipt) -> Void)?
 
     // MARK: - Lifecycle
 
@@ -39,6 +39,8 @@ class CourseTableViewCell: UITableViewCell {
 
         courses = nil
         teacherNameLabel.text = nil
+        onShowCourseDetails = nil
+        onDisplayReceipt = nil
     }
 
     // MARK: - Private Functions
@@ -50,26 +52,14 @@ class CourseTableViewCell: UITableViewCell {
     }
 
     // MARK: - Public Functions
-    // swiftlint:disable:next function_parameter_count
-    func configure(
-        courses: [Course]?,
-        isMyCourses: Bool,
-        teacherName: String?,
-        teacherNameIndex: Int,
-        courseDetailsDelegate: ViewCourseDetailsDelegate?,
-        selectCellDelegate: SelectCourseCellDelegate?,
-        viewReceiptDelegate: ViewReceiptDelegate? = nil
-    ) {
-        let hasDataChanged = self.courses?.count != courses?.count || self.isMyCourses != isMyCourses
+    func configure(model: CourseTableViewCellModel, teacherNameIndex: Int) {
+        let hasDataChanged = self.courses?.count != model.courses?.count || self.isMyCourses != model.isMyCourses
         guard hasDataChanged else { return }
 
-        self.courses = courses
-        self.isMyCourses = isMyCourses
-        self.teacherNameLabel.text = teacherName
+        self.courses = model.courses
+        self.isMyCourses = model.isMyCourses
+        self.teacherNameLabel.text = model.teacherName
         self.teacherNameIndex = teacherNameIndex
-        self.delegate = courseDetailsDelegate
-        self.selectCellDelegate = selectCellDelegate
-        self.viewReceiptDelegate = viewReceiptDelegate
 
         DispatchQueue.main.async { [weak self] in
             self?.coursesCollectionView.reloadData()
@@ -101,8 +91,8 @@ extension CourseTableViewCell: UICollectionViewDataSource {
         let course = courses?[indexPath.item]
         cell.configure(with: course, isMyCourses: isMyCourses)
         cell.teacherNameIndex = teacherNameIndex
-        cell.delegate = delegate
-        cell.viewReceiptDelegate = viewReceiptDelegate
+        cell.onShowCourseDetails = onShowCourseDetails
+        cell.onDisplayReceipt = onDisplayReceipt
         cell.playVideo = {
             cell.configureVideo(with: course?.video?.fileUrl ?? "")
         }
@@ -115,6 +105,6 @@ extension CourseTableViewCell: UICollectionViewDataSource {
 extension CourseTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? CourseCollectionViewCell
-        selectCellDelegate?.showCourseDetails(for: courses?[indexPath.item], with: cell?.teacherNameIndex ?? 0)
+        onShowCourseDetails?(courses?[indexPath.item], cell?.teacherNameIndex ?? 0)
     }
 }

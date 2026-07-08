@@ -48,21 +48,13 @@ final class MyCoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingIndicatorPresenter.view = view
-        receiptPresenter = ReceiptPresenter(viewController: self)
+        receiptPresenter = ReceiptPresenter(viewCtrl: self)
         configureTableView()
         configureRefreshControl()
         configureInfiniteScrolling()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadingIndicatorPresenter.show()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         loadUserProfile { [weak self] in
-            self?.loadCourses()
+            guard let self = self else { return }
+            self.loadCourses()
         }
     }
 
@@ -88,9 +80,12 @@ final class MyCoursesViewController: UIViewController {
             viewModel: viewModel,
             isMyCourses: true,
             headerProvider: { [weak self] in self?.tableViewHeader() },
-            courseDetailsDelegate: self,
-            selectCellDelegate: self,
-            receiptDelegate: self,
+            onShowCourseDetails: { [weak self] course, index in
+                self?.showCourseDetails(for: course, with: index)
+            },
+            onDisplayReceipt: { [weak self] receipt in
+                self?.receiptPresenter?.showReceipt(receipt)
+            },
             navigationCoordinator: navigationCoordinator
         )
     }
@@ -125,21 +120,30 @@ final class MyCoursesViewController: UIViewController {
 
     @objc
     private func refresh(_ sender: AnyObject) {
-        loadUserProfile()
         viewModel.resetPagination()
-        loadCourses()
+        loadUserProfile { [weak self] in
+            guard let self = self else { return }
+            self.loadCourses()
+        }
     }
 
     private func loadUserProfile(completion: (() -> Void)? = nil) {
-        // Profile loading is handled by the service, but we can add completion here if needed
-        completion?()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            await self.viewModel.fetchUserProfile()
+            completion?()
+        }
     }
 
-    private func loadCourses() {
-        loadingIndicatorPresenter.show()
-        viewModel.loadCourses { [weak self] in
-            self?.loadingIndicatorPresenter.hide()
-            self?.tableController?.finishInfiniteScroll()
+    private func loadCourses(showLoadingIndicator: Bool = false) {
+        let shouldShowLoadingIndicator = showLoadingIndicator || !viewModel.hasCompletedInitialLoad
+        if shouldShowLoadingIndicator { loadingIndicatorPresenter.show() }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            await self.viewModel.loadCourses()
+            if shouldShowLoadingIndicator { self.loadingIndicatorPresenter.hide() }
+            self.refreshControl.endRefreshing()
+            self.tableController?.finishInfiniteScroll()
         }
     }
 
@@ -152,17 +156,12 @@ final class MyCoursesViewController: UIViewController {
     }
 }
 
-extension MyCoursesViewController: ViewReceiptDelegate {
-    func displayReceipt(_ receipt: Receipt) {
-        receiptPresenter?.showReceipt(receipt)
-    }
-}
-
 extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     func didSelectSubject(at indexPath: IndexPath) {
         viewModel.selectedSubjectIndexPath = indexPath
         if indexPath.row < viewModel.subjects.count {
             viewModel.selectSubject(viewModel.subjects[indexPath.row])
+            tableView.reloadData()
             loadCourses()
         }
     }
@@ -185,13 +184,14 @@ extension MyCoursesViewController: HomeTableViewHeaderDelegate {
         viewModel.updateSearchText(searchBar.text ?? "")
         searchDebouncer.debounce { [weak self, weak searchBar] in
             searchBar?.endEditing(true)
-            self?.loadCourses()
+            guard let self else { return }
+            self.loadCourses(showLoadingIndicator: self.viewModel.isInSearchMode)
         }
     }
 }
 
-extension MyCoursesViewController: ViewCourseDetailsDelegate, SelectCourseCellDelegate {
-    func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
+extension MyCoursesViewController {
+    private func showCourseDetails(for course: Course?, with teacherNameIndex: Int) {
         guard teacherNameIndex < viewModel.courses.count else { return }
         let subjectCourse = viewModel.courses[teacherNameIndex]
         let teacherName = subjectCourse.teacher?.name

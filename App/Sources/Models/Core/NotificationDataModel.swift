@@ -2,10 +2,6 @@
 
 import Foundation
 
-struct Notifications: Codable {
-    var notifications: [NotificationDataModel]?
-}
-
 struct NotificationDataModel: Codable {
     var id: Int?
     var link: String?

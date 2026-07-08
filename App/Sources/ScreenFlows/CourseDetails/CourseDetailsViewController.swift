@@ -9,17 +9,15 @@ import JGProgressHUD
 import UIKit
 import VdoFramework
 
-class CourseDetailsViewController: UIViewController {
+class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManagerHost {
     @IBOutlet var tableView: UITableView!
     @IBOutlet private var actionButton: UIButton! {
         didSet {
-            actionButton.layer.cornerRadius = UIConstants.cornerRadius
             actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
         }
     }
     @IBOutlet private var bookByQRButton: UIButton! {
         didSet {
-            bookByQRButton.layer.cornerRadius = UIConstants.cornerRadius
             bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
         }
     }
@@ -32,37 +30,37 @@ class CourseDetailsViewController: UIViewController {
     var loadingHud: JGProgressHUD?
     @IBOutlet var contentLoadingView: UIView?
     @IBOutlet var contentLoadingTopConstraint: NSLayoutConstraint?
+    var isContentLoading = false
     var loadedTabs: Set<ActiveScreen> = []
-    @IBOutlet var floatingBackBubble: UIVisualEffectView?
-    var downloadHud: JGProgressHUD?
     var courseHeaderView: CourseDetailsInfoHeaderView?
+    private var headerTopConstraint: NSLayoutConstraint?
+    private var didSetInitialContentOffset = false
     var blurredView: UIVisualEffectView?
     var activeSubscreen: CourseDetailsActiveSubScreen = .details
+
     lazy var alertHandler = AlertHandler(presentingViewCtrl: self)
-    var course: Course!
-    var hideViews: Bool = false
-    var teacherName: String?
-    var teacherID: Int?
 
     // MARK: - MVVM Components
 
-    lazy var viewModel: CourseDetailsViewModel = {
-        return CourseDetailsViewModel().with {
-            $0.course = course
-            $0.hideViews = hideViews
-            $0.courseState = course.getReservationState()
-        }
-    }()
-    lazy var coordinator: CourseDetailsNavigationCoordinating = CourseDetailsCoordinator()
+    var viewModel: CourseDetailsViewModel!
+    var coordinator: CourseDetailsNavigationCoordinating!
     lazy var videoPlaybackService: VideoPlaybackService = VideoPlaybackService(alertHandler: alertHandler)
-    lazy var documentService: DocumentService = DocumentService(presentingViewController: self)
-    lazy var dataSource: CourseDetailsDataSource = CourseDetailsDataSource(viewModel: viewModel)
-    lazy var emptyStateDelegate: CourseDetailsEmptyStateDelegate = CourseDetailsEmptyStateDelegate(viewModel: viewModel)
+    lazy var tableViewManager: CourseDetailsTableViewManager = CourseDetailsTableViewManager(viewModel: viewModel, host: self)
+
+    // MARK: - Factory
+
+    static func make(viewModel: CourseDetailsViewModel, coordinator: CourseDetailsNavigationCoordinating) -> CourseDetailsViewController {
+        let viewController = StoryboardScene.CourseDetails.initialScene.instantiate()
+        viewController.viewModel = viewModel
+        viewController.coordinator = coordinator
+        return viewController
+    }
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationController()
         setupDependencies()
         setupTableView()
         setupRefreshControl()
@@ -72,8 +70,6 @@ class CourseDetailsViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerMuteState), name: UIScreen.capturedDidChangeNotification, object: nil)
         setHeader()
-        floatingBackBubble?.layer.cornerRadius = 18
-        floatingBackBubble?.clipsToBounds = true
         configureActionButtonAccordingToState()
         configureQRButtonVisibility()
         loadCourseDetails()
@@ -81,15 +77,25 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if tableView.contentInset.top == 0 {
-            tableView.contentInset.top = view.safeAreaInsets.top
+        tableView.autoResizeTableHeaderView()
+        contentLoadingTopConstraint?.constant = tableView.tableHeaderView?.frame.height ?? 0
+    }
+
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        let topInset = view.safeAreaInsets.top
+        tableView.contentInset.top = topInset
+        tableView.verticalScrollIndicatorInsets.top = topInset
+        headerTopConstraint?.constant = -topInset
+        if !didSetInitialContentOffset {
+            didSetInitialContentOffset = true
+            tableView.contentOffset.y = -topInset
         }
         tableView.autoResizeTableHeaderView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
         guard viewModel.course != nil else { return }
         switch viewModel.activeScreen {
         case .materials:
@@ -99,11 +105,14 @@ class CourseDetailsViewController: UIViewController {
             } else {
                 reloadTablePreservingOffset()
             }
-            viewModel.handleRefreshingAccordingToOpenedTab { [weak self] in
+            Task { [weak self] in
                 guard let self else { return }
-                self.loadedTabs.insert(.materials)
-                if isFirstLoad { self.hideContentSpinner() }
-                self.reloadTablePreservingOffset()
+                await self.viewModel.handleRefreshingAccordingToOpenedTab()
+                await MainActor.run {
+                    self.loadedTabs.insert(.materials)
+                    if isFirstLoad { self.hideContentSpinner() }
+                    self.reloadTablePreservingOffset()
+                }
             }
         case .details:
             loadCourseLessons(preservingOffset: true)
@@ -115,6 +124,7 @@ class CourseDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard isMovingFromParent || isBeingDismissed else { return }
+        removeScreenshotPreventingView()
         viewModel.expandedSections.removeAll()
         tableView.reloadData()
     }
@@ -133,11 +143,22 @@ class CourseDetailsViewController: UIViewController {
             switch viewModel.courseState {
             case .normal:
                 guard viewModel.isContactInfoAvailable,
-                      let info = viewModel.course.contactUsInfo else { return }
+                      let info = viewModel.course?.contactUsInfo else { return }
                 coordinator.showContactUs(info: info, from: self)
             case .booked:
                 blurView()
-                coordinator.showReviewCourse(delegate: self, from: self)
+                coordinator.showReviewCourse(
+                    from: self,
+                    sendReview: { [weak self] review in
+                        await self?.viewModel.sendReview(courseID: self?.viewModel.course?.id ?? 0, courseReview: review) ?? false
+                    },
+                    onComplete: { [weak self] success in
+                        if success { self?.dismissBlurView() }
+                    },
+                    onSkip: { [weak self] in
+                        self?.dismissBlurView()
+                    }
+                )
             default:
                 return
             }
@@ -157,28 +178,28 @@ class CourseDetailsViewController: UIViewController {
 
     private func setupDependencies() {
         videoPlaybackService.onUpdateVideo = { [weak self] videoId, updateObject in
-            self?.viewModel.updateVideo(videoId: videoId, updateObject: updateObject)
+            Task { await self?.viewModel.updateVideo(videoId: videoId, updateObject: updateObject) }
         }
         VdoCipher.setPlaybackDelegate(delegate: videoPlaybackService)
     }
 
+    private func setupNavigationController() {
+        let backButton = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(didTapBack)
+        )
+        navigationItem.leftBarButtonItem = backButton
+    }
+
+    @objc private func didTapBack() {
+        removeScreenshotPreventingView()
+        dismiss(animated: true)
+    }
+
     private func setupTableView() {
-        tableView.contentInsetAdjustmentBehavior = .never
-        if let existingTopConstraint = view.constraints.first(where: {
-            ($0.firstItem as? UITableView == tableView || $0.secondItem as? UITableView == tableView)
-            && ($0.firstAttribute == .top || $0.secondAttribute == .top)
-        }) {
-            existingTopConstraint.isActive = false
-            tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        }
-        tableView.registerCell(ofType: AttachmentTableViewCell.self)
-        tableView.registerCell(ofType: ReviewTableViewCell.self)
-        tableView.registerCell(ofType: MaterialTableViewCell.self)
-        tableView.registerHeaderFooterView(ofType: CourseDetailsHeaderView.self)
-        tableView.dataSource = dataSource
-        tableView.delegate = self
-        tableView.emptyDataSetSource = emptyStateDelegate
-        tableView.emptyDataSetDelegate = emptyStateDelegate
+        tableViewManager.setup(in: tableView)
     }
 
     private func setupRefreshControl() {
@@ -200,59 +221,61 @@ class CourseDetailsViewController: UIViewController {
         viewModel.onOpenAssessment = { [weak self] module, assessmentID, details in
             guard let self else { return }
             self.hideLoadingIndicator()
-            self.coordinator.showAssessmentDetails(status: .open, module: module, assessmentID: assessmentID, assessmentDetails: details, delegate: self, from: self)
+            self.coordinator.showAssessmentDetails(status: .open, module: module, assessmentID: assessmentID, assessmentDetails: details, onDidFinishAssessment: { [weak self] _ in
+                self?.tableView.reloadData()
+            }, from: self)
         }
         viewModel.onShowAssessmentResults = { [weak self] module, assessmentID, details in
             guard let self else { return }
-            self.coordinator.showAssessmentDetails(status: .closed, module: module, assessmentID: assessmentID, assessmentDetails: details, delegate: self, from: self)
+            self.coordinator.showAssessmentDetails(status: .closed, module: module, assessmentID: assessmentID, assessmentDetails: details, onDidFinishAssessment: { [weak self] _ in
+                self?.tableView.reloadData()
+            }, from: self)
         }
     }
 
     // MARK: - Private Helpers
 
     private func loadCourseDetails() {
-        viewModel.loadCourseDetails { [weak self] in
+        Task { [weak self] in
             guard let self else { return }
-            self.setHeader()
-            self.configureActionButtonAccordingToState()
-            self.configureQRButtonVisibility()
-            self.tableView.reloadData()
-            self.handleRefreshingAccordingToOpenedTab()
+            await self.viewModel.loadCourseDetails()
+            await MainActor.run {
+                self.setHeader()
+                self.configureActionButtonAccordingToState()
+                self.configureQRButtonVisibility()
+                self.tableView.reloadData()
+                self.tableView.autoResizeTableHeaderView()
+            }
+            await self.viewModel.handleRefreshingAccordingToOpenedTab()
+            await MainActor.run {
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+                self.hideLoadingIndicator()
+            }
         }
     }
 
     private func loadCourseLessons(preservingOffset: Bool = false) {
-        viewModel.loadCourseLessons { [weak self] in
+        showContentSpinner()
+        Task { [weak self] in
             guard let self else { return }
-            let reload: () -> Void = { [weak self] in
-                preservingOffset ? self?.reloadTablePreservingOffset() : self?.tableView.reloadData()
-            }
-            let sectionsToCheck = (self.viewModel.lessonNumbersList ?? [])
-                .map { $0 - 1 }
-                .filter { !self.viewModel.expandedSections.contains($0) }
-            guard !sectionsToCheck.isEmpty else {
-                reload()
-                return
-            }
-            let group = DispatchGroup()
-            sectionsToCheck.forEach { section in
-                group.enter()
-                self.viewModel.checkAttachmentPresence(section: section) {
-                    group.leave()
-                }
-            }
-            group.notify(queue: .main) {
-                reload()
+            await self.viewModel.loadCourseLessonsWithDetails()
+            await MainActor.run {
+                self.hideContentSpinner()
+                preservingOffset ? self.reloadTablePreservingOffset() : self.tableView.reloadData()
             }
         }
     }
 
     private func handleRefreshingAccordingToOpenedTab() {
-        viewModel.handleRefreshingAccordingToOpenedTab { [weak self] in
+        Task { [weak self] in
             guard let self else { return }
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
-            self.hideLoadingIndicator()
+            await self.viewModel.handleRefreshingAccordingToOpenedTab()
+            await MainActor.run {
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+                self.hideLoadingIndicator()
+            }
         }
     }
 
@@ -261,15 +284,35 @@ class CourseDetailsViewController: UIViewController {
             let detailsView = CourseDetailsInfoHeaderView()
             detailsView.prepareImmersiveStyle()
             courseHeaderView = detailsView
-            tableView.tableHeaderView = detailsView
+            tableView.tableHeaderView = makeHeaderWrapper(for: detailsView)
         }
         courseHeaderView?.configure(model: makeHeaderModel())
+    }
+
+    private func makeHeaderWrapper(for detailsView: CourseDetailsInfoHeaderView) -> UIView {
+        let wrapper = UIView()
+        wrapper.clipsToBounds = false
+        detailsView.translatesAutoresizingMaskIntoConstraints = false
+        wrapper.addSubview(detailsView)
+        let topConstraint = detailsView.topAnchor.constraint(
+            equalTo: wrapper.topAnchor,
+            constant: -view.safeAreaInsets.top
+        )
+        headerTopConstraint = topConstraint
+        NSLayoutConstraint.activate([
+            topConstraint,
+            detailsView.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor),
+            detailsView.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor),
+            detailsView.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor),
+            detailsView.widthAnchor.constraint(equalTo: wrapper.widthAnchor)
+        ])
+        return wrapper
     }
 
     private func makeHeaderModel() -> CourseDetailsInfoModel {
         CourseDetailsInfoModel(
             courseTitle: viewModel.course?.name,
-            teacherName: teacherName,
+            teacherName: viewModel.teacherName,
             batchName: viewModel.course?.batchName,
             image: viewModel.course?.media?.fileUrl,
             video: viewModel.course?.video,
@@ -286,9 +329,28 @@ class CourseDetailsViewController: UIViewController {
         )
     }
 
-    @IBAction private func didTapFloatingBackButton(_ sender: UIButton) {
-        removeScreenshotPreventingView()
-        coordinator.dismiss(from: self)
+    func loadActiveTab() {
+        let isFirstLoad = !loadedTabs.contains(viewModel.activeScreen)
+        if isFirstLoad {
+            viewModel.clearTabData()
+            viewModel.isLoadingTab = true
+            tableView.reloadData()
+            showContentSpinner()
+        } else {
+            tableView.reloadData()
+        }
+        Task { [weak self] in
+            guard let self else { return }
+            await self.viewModel.handleRefreshingAccordingToOpenedTab()
+            await MainActor.run {
+                self.loadedTabs.insert(self.viewModel.activeScreen)
+                if isFirstLoad {
+                    self.viewModel.isLoadingTab = false
+                    self.hideContentSpinner()
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
 
     private func configureActionButtonAccordingToState() {
@@ -305,17 +367,25 @@ class CourseDetailsViewController: UIViewController {
     }
 
     func dismissBlurView() {
-        blurredView?.removeFromSuperview()
-        blurredView = nil
+        guard let blurredView else { return }
+        UIView.animate(withDuration: 0.3, animations: {
+            blurredView.effect = nil
+        }, completion: { _ in
+            blurredView.removeFromSuperview()
+            self.blurredView = nil
+        })
     }
 
     private func blurView() {
         guard blurredView == nil else { return }
-        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        let blurEffectView = UIVisualEffectView(effect: nil)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurredView = blurEffectView
         view.addSubview(blurEffectView)
+        UIView.animate(withDuration: 0.3) {
+            blurEffectView.effect = UIBlurEffect(style: .light)
+        }
     }
 
     func showLoadingIndicator() {
@@ -329,12 +399,24 @@ class CourseDetailsViewController: UIViewController {
     }
 
     func showContentSpinner() {
-        contentLoadingTopConstraint?.constant = tableView.tableHeaderView?.frame.height ?? 0
-        contentLoadingView?.isHidden = false
+        guard let contentLoadingView else { return }
+        isContentLoading = true
+        tableView.reloadData()
+        contentLoadingView.alpha = 0
+        contentLoadingView.isHidden = false
+        UIView.animate(withDuration: 0.25) {
+            contentLoadingView.alpha = 1
+        }
     }
 
     func hideContentSpinner() {
-        contentLoadingView?.isHidden = true
+        guard let contentLoadingView else { return }
+        isContentLoading = false
+        UIView.animate(withDuration: 0.25, animations: {
+            contentLoadingView.alpha = 0
+        }, completion: { _ in
+            contentLoadingView.isHidden = true
+        })
     }
 
     private func showQRCodeActionSheet() {
@@ -356,17 +438,26 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func bookCourse(qrCode: String? = nil) {
-        viewModel.bookCourse(qrCode: qrCode) { [weak self] bookingResponse, error in
+        Task { [weak self] in
             guard let self else { return }
-            if error == nil {
+            do {
+                let bookingResponse = try await viewModel.bookCourse(qrCode: qrCode)
                 let shouldShowReceipt = self.viewModel.handleBookingSuccess(bookingResponse: bookingResponse, isQR: qrCode != nil)
-                self.loadCourseDetails()
-                if shouldShowReceipt, let response = bookingResponse {
-                    self.blurView()
-                    self.coordinator.showReceipt(response, coursePrice: self.viewModel.course?.price ?? "", from: self)
+                await self.viewModel.loadCourseDetails()
+                await MainActor.run {
+                    if shouldShowReceipt {
+                        self.blurView()
+                        self.coordinator.showReceipt(bookingResponse, coursePrice: self.viewModel.course?.price ?? "", from: self)
+                    }
                 }
-            } else if let error = error as? WJError {
-                alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message:error.message)
+            } catch let error as WJError {
+                await MainActor.run {
+                    self.alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: error.message)
+                }
+            } catch {
+                await MainActor.run {
+                    self.alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: error.localizedDescription)
+                }
             }
         }
     }

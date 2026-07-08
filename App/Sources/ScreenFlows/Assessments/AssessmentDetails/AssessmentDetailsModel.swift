@@ -119,7 +119,7 @@ class AssessmentDetailsModel {
             parameters: parameters,
             module: module
         ))
-        let cancellable = ApiProvider.shared.upload(endpoint, decodeTo: AnsweredQuestion.self,
+        let cancellable = ApiProvider.shared.upload(endpoint, decodeTo: ApiResponse<AssessmentQuestion>.self,
             progress: { progress in
                 progressCompletion(progress)
             },
@@ -127,7 +127,7 @@ class AssessmentDetailsModel {
                 switch result {
                 case let .success(decodedQuestion):
                     self?.removeCancellable(for: questionID)
-                    completionHandler(decodedQuestion.question, nil)
+                    completionHandler(decodedQuestion.data, nil)
                 case let .failure(error):
                     if error.localizedDescription != "cancelled" {
                         completionHandler(nil, error)

@@ -4,9 +4,9 @@ import Foundation
 import Moya
 
 class LoginModel {
-    func login(mobileNumber: String, password: String, completionHandler: @escaping (Swift.Result<LoginApiResponseModel, Error>) -> Void) {
+    func login(mobileNumber: String, password: String, completionHandler: @escaping (Swift.Result<ApiResponse<UserModel>, Error>) -> Void) {
         let loginRequestModel = LoginRequestModel(mobileNumber: mobileNumber, password: password)
-        ApiProvider.shared.request(.auth(.login(loginRequestModel)), decodeTo: LoginApiResponseModel.self, completion: completionHandler)
+        ApiProvider.shared.request(.auth(.login(loginRequestModel)), decodeTo: ApiResponse<UserModel>.self, completion: completionHandler)
     }
 
     func verifyPhone(mobileNumber: String, completionHandler: @escaping (Swift.Result<VerifyPhoneResponse, Error>) -> Void) {
@@ -23,12 +23,12 @@ class LoginModel {
         ApiProvider.shared.request(.auth(.guestMode(requestModel)), decodeTo: VersionResponse.self, completion: completionHandler)
     }
 
-    func loadGuestModelUserData() -> LoginApiResponseModel? {
+    func loadGuestModelUserData() -> UserModel? {
         guard let url = Bundle.main.url(forResource: "LoginResponse", withExtension: "json") else { return nil }
 
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder.default.decode(LoginApiResponseModel.self, from: data)
+            return try JSONDecoder.default.decode(ApiResponse<UserModel>.self, from: data).data
         } catch {
             return nil
         }

@@ -3,8 +3,8 @@
 import Foundation
 import SwiftUI
 
-public struct MenuView<T: Displayable & Hashable>: View, Equatable {
-    public static func == (lhs: MenuView<T>, rhs: MenuView<T>) -> Bool {
+ struct MenuView<T: Displayable & Hashable>: View, Equatable {
+    static func == (lhs: MenuView<T>, rhs: MenuView<T>) -> Bool {
         return lhs.selectedOption == rhs.selectedOption && lhs.availableOptions == rhs.availableOptions
     }
 
@@ -15,7 +15,7 @@ public struct MenuView<T: Displayable & Hashable>: View, Equatable {
     var selectorImage: Image
     var selectorImageFrame: CGFloat
 
-    public var body: some View {
+    var body: some View {
         Menu {
             Picker("", selection: $selectedOption) {
                 ForEach(availableOptions, id: \.self) { option in

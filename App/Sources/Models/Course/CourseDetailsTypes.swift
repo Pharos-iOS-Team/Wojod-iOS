@@ -7,21 +7,3 @@ enum CourseState: String {
     case pending
     case booked = "approved"
 }
-
-enum ActiveScreen {
-    case details
-    case reviews
-    case materials
-}
-
-enum MaterialsSections: Int, CaseIterable {
-    case assignments
-    case quizzes
-    case videos
-    case documents
-}
-
-protocol LoadableView: AnyObject {
-    func startLoading()
-    func stopLoading()
-}

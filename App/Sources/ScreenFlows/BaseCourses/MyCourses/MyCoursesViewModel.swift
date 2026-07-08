@@ -12,52 +12,65 @@ final class MyCoursesViewModel: CourseListViewModeling, CourseSearching {
     var mode: HomeMode = .relatedCourses
     var emptyStateType: EmptyStateType = .loading
     var searchText: String = ""
+    private(set) var hasLoadedUserProfile = false
+    var hasCompletedInitialLoad: Bool { loadedModes.contains(mode) }
 
-    private lazy var paginator = Paginator<SubjectCourses> { [weak self] page, completion in
-        guard let self = self else {
-            completion(.success([]))
-            return
+    private var loadedModes: Set<HomeMode> = []
+    private var coursesCache: [HomeMode: [SubjectCourses]] = [:]
+
+    private lazy var paginator = Paginator<SubjectCourses> { [weak self] page in
+        guard let self = self else { return [] }
+        let response = try await self.coursesRepository.fetchCourses(
+            mode: self.mode,
+            isMyCourses: true,
+            subjectID: self.selectedSubject?.id,
+            page: page
+        )
+        if let subjects = response.subjects {
+            self.subjects = subjects
         }
-        Task { @MainActor in
-            do {
-                let response = try await self.coursesService.fetchCourses(
-                    mode: self.mode,
-                    isMyCourses: true,
-                    subjectID: self.selectedSubject?.id,
-                    page: page
-                )
-                if let subjects = response.subjects {
-                    self.subjects = subjects
-                }
-                completion(.success(response.teachersCourses ?? []))
-            } catch {
-                completion(.failure(error))
-            }
-        }
+        return response.teachersCourses ?? []
     }
-    private let coursesService: CoursesServicing
-    private let userProfileService: UserProfileServicing
+    private let coursesRepository: CoursesRepositoryProtocol
+    private let userProfileRepository: UserProfileRepositoryProtocol
 
     init(
-        coursesService: CoursesServicing = CoursesService(),
-        userProfileService: UserProfileServicing = UserProfileService()
+        coursesRepository: CoursesRepository = CoursesRepository(),
+        userProfileRepository: UserProfileRepository = UserProfileRepository()
     ) {
-        self.coursesService = coursesService
-        self.userProfileService = userProfileService
+        self.coursesRepository = coursesRepository
+        self.userProfileRepository = userProfileRepository
     }
 
-    func loadCourses(completion: @escaping () -> Void) {
+    func fetchUserProfile() async {
+        do {
+            let user = try await userProfileRepository.fetchUserProfile()
+            User.shared.setUserData(user: user)
+            hasLoadedUserProfile = true
+        } catch {}
+    }
+
+    func loadCourses() async {
         if isInSearchMode {
-            searchCourses(completion: completion)
+            await searchCourses()
         } else {
-            fetchCoursesForCurrentMode(completion: completion)
+            await fetchCoursesForCurrentMode()
         }
+        loadedModes.insert(mode)
     }
 
     func changeMode(to newMode: HomeMode) {
+        coursesCache[mode] = courses
         mode = newMode
         selectedSubject = nil
-        resetPagination()
+        paginator.reset()
+        if let cachedCourses = coursesCache[newMode], !cachedCourses.isEmpty {
+            courses = cachedCourses
+            updateEmptyState()
+        } else {
+            courses.removeAll()
+            emptyStateType = .loading
+        }
     }
 
     func selectSubject(_ subject: Subject) {
@@ -68,10 +81,11 @@ final class MyCoursesViewModel: CourseListViewModeling, CourseSearching {
     func resetPagination() {
         paginator.reset()
         courses.removeAll()
+        emptyStateType = .loading
     }
 
     func updateEmptyState() {
-        if User.shared.organizations.isEmpty {
+        if hasLoadedUserProfile && User.shared.organizations.isEmpty {
             emptyStateType = .noOrganizations
         } else {
             emptyStateType = .noPurchasedCourses
@@ -80,26 +94,23 @@ final class MyCoursesViewModel: CourseListViewModeling, CourseSearching {
 
     // MARK: - Private
 
-    private func fetchCoursesForCurrentMode(completion: @escaping () -> Void) {
-        paginator.loadNextPage { [weak self] result in
-            guard let self = self else { return }
-            if case .success = result {
-                self.courses = self.paginator.items
-                self.updateEmptyState()
-            }
-            completion()
+    private func fetchCoursesForCurrentMode() async {
+        do {
+            _ = try await paginator.loadNextPage()
+            courses = paginator.items
+            updateEmptyState()
+        } catch {
+            updateEmptyState()
         }
     }
 
-    private func searchCourses(completion: @escaping () -> Void) {
-        Task { @MainActor [weak self] in
-            guard let self = self else { return }
-            do {
-                let response = try await self.coursesService.searchCourses(query: self.searchText)
-                self.courses = response.teachersCourses ?? []
-                self.updateEmptyState()
-            } catch {}
-            completion()
+    private func searchCourses() async {
+        do {
+            let response = try await coursesRepository.searchCourses(query: searchText)
+            courses = response.teachersCourses ?? []
+            updateEmptyState()
+        } catch {
+            updateEmptyState()
         }
     }
 }

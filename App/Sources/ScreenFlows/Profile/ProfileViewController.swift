@@ -30,8 +30,8 @@ class ProfileViewController: UIViewController {
 
     private let viewModel = ProfileViewModel()
     private var loadingHud: JGProgressHUD?
-    var avatars: AvatarsModel?
-    var user: StudentModel?
+    var avatars: [Avatar]?
+    var user: UserModel?
     private var window: UIWindow? {
         return (UIApplication.shared.delegate as? AppDelegate)?.window
     }
@@ -141,7 +141,7 @@ class ProfileViewController: UIViewController {
 
     private func navigateToAvatarsList() {
         showLoadingIndicator()
-        guard let avatars = avatars?.avatars else { return }
+        guard let avatars = avatars else { return }
         let avatarsListViewCtrl = StoryboardScene.AvatarsList.avatarsListViewController.instantiate()
         avatarsListViewCtrl.avatars = avatars
         avatarsListViewCtrl.delegate = self
@@ -159,21 +159,13 @@ class ProfileViewController: UIViewController {
     private func fetchPickerViewItems(forIndex index: Int) -> [String] {
         switch viewModel.validFields[index] {
         case .academicType:
-            return AcademicInfo.shared.educationalTypes?.educationTypes.compactMap({
-                $0.value
-            }) ?? []
+            return AcademicInfo.shared.educationalTypes?.compactMap { $0.value } ?? []
         case .division:
-            return AcademicInfo.shared.divisions?.divisions?.compactMap({
-                $0.value
-            }) ?? []
+            return AcademicInfo.shared.divisions?.compactMap { $0.value } ?? []
         case .batch:
-            return AcademicInfo.shared.batches?.batches.compactMap({
-                $0.value
-            }) ?? []
+            return AcademicInfo.shared.batches?.compactMap { $0.value } ?? []
         case .specialization:
-            return AcademicInfo.shared.specializations?.specializations?.compactMap({
-                $0.value
-            }) ?? []
+            return AcademicInfo.shared.specializations?.compactMap { $0.value } ?? []
         case .country:
             return viewModel.countries.compactMap { $0.name }
         case .city:

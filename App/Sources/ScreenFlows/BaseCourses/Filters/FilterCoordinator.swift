@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-class FilterCoordinator: NSObject, SelectingFilterDelegate {
+class FilterCoordinator: NSObject {
     weak var viewController: FiltersViewController?
     weak var tableView: UITableView?
     weak var viewModel: FiltersViewModel?
@@ -15,12 +15,12 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
     var academicTypes: [KeyValue] = []
     var schoolSection: SchoolSection = .academicType
     var divisions: [Division] = []
-    var years: [Batch] = []
+    var years: [KeyValue] = []
     var subjects: [Subject] = []
     var universities: [Division] = []
     var universitySection: UniversitySection = .university
-    var fields: [Specialization] = []
-    var academicYears: [Batch] = []
+    var fields: [KeyValue] = []
+    var academicYears: [KeyValue] = []
     var universitySubjects: [Subject] = []
 
     var isLoadingData: Bool = false
@@ -66,33 +66,31 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
 
     private func restoreSchoolCascade() {
         guard currentSelection.academicType != nil else { return }
-        viewModel?.loadAcademicDivisions(for: academicLevel, in: currentSelection.academicType?.key ?? 0) { [weak self] divisions in
+        let academicLevel = self.academicLevel
+        let academicTypeKey = currentSelection.academicType?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let divisions = await self.viewModel?.loadAcademicDivisions(for: academicLevel, in: academicTypeKey)
             self.divisions = divisions ?? []
             self.schoolSection = .academicDivision
             self.insertRow(title: L10n.Signup.School.academicDivision, into: \.schoolSectionTitles, at: 1)
             guard let divisionKey = self.currentSelection.academicDivision?.key else { return }
-            self.viewModel?.loadBatches(for: divisionKey) { [weak self] years in
-                guard let self = self else { return }
-                self.years = years ?? []
-                self.schoolSection = .academicYear
-                self.insertRow(title: L10n.Signup.School.academicYear, into: \.schoolSectionTitles, at: 2)
-                guard let yearKey = self.currentSelection.academicYear?.key else { return }
-                self.viewModel?.loadSubjects(forYear: yearKey) { [weak self] subjects in
-                    guard let self = self else { return }
-                    self.subjects = subjects.subjects ?? []
-                    self.schoolSection = .subjects
-                    self.insertRow(title: L10n.Filters.subject, into: \.schoolSectionTitles, at: 3)
-                }
-            }
+            let years = await self.viewModel?.loadBatches(for: divisionKey)
+            self.years = years ?? []
+            self.schoolSection = .academicYear
+            self.insertRow(title: L10n.Signup.School.academicYear, into: \.schoolSectionTitles, at: 2)
+            guard let yearKey = self.currentSelection.academicYear?.key else { return }
+            self.subjects = await self.viewModel?.loadSubjects(forYear: yearKey) ?? []
+            self.schoolSection = .subjects
+            self.insertRow(title: L10n.Filters.subject, into: \.schoolSectionTitles, at: 3)
         }
     }
 
     private func restoreHiddenOrgCascade() {
         guard let yearKey = currentSelection.academicYear?.key else { return }
-        viewModel?.loadSubjects(forYear: yearKey) { [weak self] subjects in
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.universitySubjects = subjects.subjects ?? []
+            self.universitySubjects = await self.viewModel?.loadSubjects(forYear: yearKey) ?? []
             self.universitySection = .subjects
             self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 1)
         }
@@ -100,25 +98,23 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
 
     private func restoreUniversityCascade() {
         guard currentSelection.academicDivision != nil else { return }
-        viewModel?.loadSpecializations(for: currentSelection.academicDivision?.key ?? 0) { [weak self] fields in
+        let divisionKey = currentSelection.academicDivision?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let fields = await self.viewModel?.loadSpecializations(for: divisionKey)
             self.fields = fields ?? []
             self.universitySection = .field
             self.insertRow(title: L10n.Signup.School.field, into: \.universitySectionTitles, at: 1)
             guard let universityKey = self.currentSelection.academicDivision?.key else { return }
-            self.viewModel?.loadBatches(for: universityKey) { [weak self] academicYears in
-                guard let self = self else { return }
-                self.academicYears = academicYears ?? []
-                self.universitySection = .academicYear
-                self.insertRow(title: L10n.Signup.School.academicYear, into: \.universitySectionTitles, at: 2)
-                guard let yearKey = self.currentSelection.academicYear?.key else { return }
-                self.viewModel?.loadSubjects(forYear: yearKey) { [weak self] subjects in
-                    guard let self = self else { return }
-                    self.universitySubjects = subjects.subjects ?? []
-                    self.universitySection = .subjects
-                    self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 3)
-                }
-            }
+            let academicYears = await self.viewModel?.loadBatches(for: universityKey)
+            self.academicYears = academicYears ?? []
+            self.universitySection = .academicYear
+            self.insertRow(title: L10n.Signup.School.academicYear, into: \.universitySectionTitles, at: 2)
+            guard let yearKey = self.currentSelection.academicYear?.key else { return }
+            let subjects = await self.viewModel?.loadSubjects(forYear: yearKey)
+            self.universitySubjects = subjects ?? []
+            self.universitySection = .subjects
+            self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 3)
         }
     }
 
@@ -146,7 +142,7 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         }
     }
 
-    // MARK: - SelectingFilterDelegate
+    // MARK: - Filter Selection
 
     func selectSchoolFilter(_ filterIndex: Int, in section: SchoolSection) {
         switch section {
@@ -196,9 +192,11 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.schoolSectionTitles, startingAt: 1)
         showLoading(on: 0)
         currentSelection.academicType = academicTypes[filterIndex]
-        viewModel?.loadAcademicDivisions(for: academicLevel, in: currentSelection.academicType?.key ?? 0) { [weak self] divisions in
+        let academicLevel = self.academicLevel
+        let academicTypeKey = currentSelection.academicType?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.divisions = divisions ?? []
+            self.divisions = await self.viewModel?.loadAcademicDivisions(for: academicLevel, in: academicTypeKey) ?? []
             self.insertRow(title: L10n.Signup.School.academicDivision, into: \.schoolSectionTitles, at: 1)
         }
     }
@@ -211,9 +209,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.schoolSectionTitles, startingAt: 2)
         showLoading(on: 1)
         currentSelection.academicDivision = divisions[filterIndex]
-        viewModel?.loadBatches(for: currentSelection.academicDivision?.key ?? 0) { [weak self] years in
+        let divisionKey = currentSelection.academicDivision?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.years = years ?? []
+            self.years = await self.viewModel?.loadBatches(for: divisionKey) ?? []
             self.insertRow(title: L10n.Signup.School.academicYear, into: \.schoolSectionTitles, at: 2)
         }
     }
@@ -225,9 +224,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.schoolSectionTitles, startingAt: 3)
         showLoading(on: 2)
         currentSelection.academicYear = years[filterIndex]
-        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+        let yearKey = currentSelection.academicYear?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.subjects = subjects.subjects ?? []
+            self.subjects = await self.viewModel?.loadSubjects(forYear: yearKey) ?? []
             self.insertRow(title: L10n.Filters.subject, into: \.schoolSectionTitles, at: 3)
         }
     }
@@ -246,9 +246,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.universitySectionTitles, startingAt: 1)
         showLoading(on: 0)
         currentSelection.academicYear = academicYears[filterIndex]
-        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+        let yearKey = currentSelection.academicYear?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.universitySubjects = subjects.subjects ?? []
+            self.universitySubjects = await self.viewModel?.loadSubjects(forYear: yearKey) ?? []
             self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 1)
         }
     }
@@ -269,8 +270,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.universitySectionTitles, startingAt: 1)
         showLoading(on: 0)
         currentSelection.academicDivision = universities[filterIndex]
-        viewModel?.loadSpecializations(for: currentSelection.academicDivision?.key ?? 0) { [weak self] fields in
+        let divisionKey = currentSelection.academicDivision?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let fields = await self.viewModel?.loadSpecializations(for: divisionKey)
             self.fields = fields ?? []
             self.insertRow(title: L10n.Signup.School.field, into: \.universitySectionTitles, at: 1)
         }
@@ -284,8 +287,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.universitySectionTitles, startingAt: 2)
         showLoading(on: 1)
         currentSelection.field = fields[filterIndex]
-        viewModel?.loadBatches(for: currentSelection.academicDivision?.key ?? 0) { [weak self] academicYears in
+        let divisionKey = currentSelection.academicDivision?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
+            let academicYears = await self.viewModel?.loadBatches(for: divisionKey)
             self.academicYears = academicYears ?? []
             self.insertRow(title: L10n.Signup.School.academicYear, into: \.universitySectionTitles, at: 2)
         }
@@ -298,9 +303,10 @@ class FilterCoordinator: NSObject, SelectingFilterDelegate {
         removeRows(from: \.universitySectionTitles, startingAt: 3)
         showLoading(on: 2)
         currentSelection.academicYear = academicYears[filterIndex]
-        viewModel?.loadSubjects(forYear: currentSelection.academicYear?.key ?? 0) { [weak self] subjects in
+        let yearKey = currentSelection.academicYear?.key ?? 0
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            self.universitySubjects = subjects.subjects ?? []
+            self.universitySubjects = await self.viewModel?.loadSubjects(forYear: yearKey) ?? []
             self.insertRow(title: L10n.Filters.subject, into: \.universitySectionTitles, at: 3)
         }
     }

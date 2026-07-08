@@ -35,14 +35,3 @@ enum DocumentContentType: String {
         }
     }
 }
-
-protocol ContentTypeable {
-    var contentType: String? { get }
-    var mappedContentType: DocumentContentType? { get }
-}
-
-extension ContentTypeable {
-    var mappedContentType: DocumentContentType? {
-        DocumentContentType(rawValue: contentType ?? "")
-    }
-}

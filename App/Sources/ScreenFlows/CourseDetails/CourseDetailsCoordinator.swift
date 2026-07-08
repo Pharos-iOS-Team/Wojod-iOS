@@ -9,13 +9,13 @@ import UIKit
 protocol CourseDetailsNavigationCoordinating: AnyObject {
     func showReceipt(_ receiptData: BookingCourseResponseModel, coursePrice: String, from viewController: UIViewController)
     func showContactUs(info: String, from viewController: UIViewController)
-    func showReviewCourse(delegate: ReviewCourseViewDelegate, from viewController: UIViewController)
+    func showReviewCourse(from viewController: UIViewController, sendReview: @escaping (CourseReview) async -> Bool, onComplete: @escaping (Bool) -> Void, onSkip: @escaping () -> Void)
     func showQRCodeScanner(completion: @escaping (String) -> Void, from viewController: UIViewController)
     func showQRCodeManually(from viewController: UIViewController, completion: @escaping (String?) -> Void, onDismiss: @escaping () -> Void)
     func showYouTubePlayer(url: URL, from viewController: UIViewController)
-    func showBunnyPlayer(guid: String, libraryId: Int, apiKey: String, from viewController: UIViewController)
-    func showAssessmentDetails(status: AssessmentStatus, module: AssessmentsOverViewViewModel.Module, assessmentID: Int?, assessmentDetails: AssessmentDetails?, delegate: AssessmentDetailsDelegate?, from viewController: UIViewController)
-    func showPDF(url: URL, from viewController: UIViewController)
+    func showBunnyPlayer(guid: String, libraryId: Int, apiKey: String, fetchVideoDetails: @escaping (@escaping () -> Void) -> Void, from viewController: UIViewController)
+    func showAssessmentDetails(status: AssessmentStatus, module: AssessmentsOverViewViewModel.Module, assessmentID: Int?, assessmentDetails: AssessmentDetails?, onDidFinishAssessment: ((Int?) -> Void)?, from viewController: UIViewController)
+    func showDocumentViewer(title: String, urlString: String, isPdf: Bool, from viewController: UIViewController)
     func showSafari(url: URL, from viewController: UIViewController)
     func showChat(courseID: Int, teacherID: Int, from viewController: UIViewController)
     func dismiss(from viewController: UIViewController)
@@ -27,7 +27,7 @@ final class CourseDetailsCoordinator: CourseDetailsNavigationCoordinating {
         let receiptViewCtrl = ReceiptViewController().with {
             $0.receiptData = receiptData
             $0.coursePrice = coursePrice
-            $0.delegate = viewController as? ReceiptDoneButtonDelegate
+            $0.onDone = { [weak viewController] in (viewController as? CourseDetailsViewController)?.dismissBlurView() }
             $0.modalPresentationStyle = .overFullScreen
             $0.modalTransitionStyle = .crossDissolve
         }
@@ -44,9 +44,11 @@ final class CourseDetailsCoordinator: CourseDetailsNavigationCoordinating {
         viewController.present(alert, animated: true)
     }
 
-    func showReviewCourse(delegate: ReviewCourseViewDelegate, from viewController: UIViewController) {
+    func showReviewCourse(from viewController: UIViewController, sendReview: @escaping (CourseReview) async -> Bool, onComplete: @escaping (Bool) -> Void, onSkip: @escaping () -> Void) {
         let reviewViewCtrl = ReviewCourseViewController().with {
-            $0.delegate = delegate
+            $0.sendReview = sendReview
+            $0.onComplete = onComplete
+            $0.onSkip = onSkip
             $0.modalPresentationStyle = .overFullScreen
             $0.modalTransitionStyle = .crossDissolve
         }
@@ -79,8 +81,14 @@ final class CourseDetailsCoordinator: CourseDetailsNavigationCoordinating {
         viewController.present(hostingController, animated: true)
     }
 
-    func showBunnyPlayer(guid: String, libraryId: Int, apiKey: String, from viewController: UIViewController) {
-        let playerView = BunnyPlayerView(videoId: guid, libraryId: libraryId, apiKey: apiKey)
+    func showBunnyPlayer(
+        guid: String,
+        libraryId: Int,
+        apiKey: String,
+        fetchVideoDetails: @escaping (@escaping () -> Void) -> Void,
+        from viewController: UIViewController
+    ) {
+        let playerView = BunnyPlayerView(videoId: guid, libraryId: libraryId, apiKey: apiKey, fetchVideoDetails: fetchVideoDetails)
         let hostingController = UIHostingController(rootView: playerView)
         hostingController.modalPresentationStyle = .fullScreen
         viewController.present(hostingController, animated: true)
@@ -91,28 +99,25 @@ final class CourseDetailsCoordinator: CourseDetailsNavigationCoordinating {
         module: AssessmentsOverViewViewModel.Module,
         assessmentID: Int?,
         assessmentDetails: AssessmentDetails?,
-        delegate: AssessmentDetailsDelegate?,
+        onDidFinishAssessment: ((Int?) -> Void)?,
         from viewController: UIViewController
     ) {
-        viewController.navigationController?.navigationBar.isHidden = false
         viewController.navigationController?.pushViewController(
             AssessmentDetailsConfigurator.configure(
                 status: status,
                 module: module,
                 assessmentID: assessmentID,
                 assessmentDetails: assessmentDetails,
-                delegate: delegate
+                onDidFinishAssessment: onDidFinishAssessment
             ),
             animated: true
         )
     }
 
-    func showPDF(url: URL, from viewController: UIViewController) {
-        let pdfViewCtrl = PDFViewController(itemUrl: url) { [weak viewController] in
-            viewController?.dismiss(animated: true)
-        }
-        let navController = UINavigationController(rootViewController: pdfViewCtrl)
-        navController.modalPresentationStyle = .fullScreen
+    func showDocumentViewer(title: String, urlString: String, isPdf: Bool, from viewController: UIViewController) {
+        let viewerVC = DocumentViewerViewController(title: title, urlString: urlString, isPdf: isPdf)
+        let navController = UINavigationController(rootViewController: viewerVC)
+        navController.modalPresentationStyle = .overFullScreen
         viewController.present(navController, animated: true)
     }
 

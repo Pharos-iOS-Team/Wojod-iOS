@@ -9,7 +9,7 @@ class LoginViewModel {
     private var password: String = ""
 
     var errorHandler: ((WJError) -> Void)?
-    var successHandler: ((LoginApiResponseModel) -> Void)?
+    var successHandler: ((UserModel) -> Void)?
     var showIndicator: (() -> Void)?
     var navigateToPasswordEntry: (() -> Void)?
     var navigateToOtpVerification: ((String) -> Void)?
@@ -62,8 +62,8 @@ class LoginViewModel {
         model.login(mobileNumber: number, password: password) { result in
             switch result {
             case .success(let user):
-                self.setUserData(user: user, studentUser: nil)
-                self.successHandler?(user)
+                self.setUserData(user: user.data)
+                self.successHandler?(user.data)
             case .failure(let error):
                 self.errorHandler?(self.mapToWJError(error))
             }
@@ -88,7 +88,7 @@ class LoginViewModel {
         Defaults[\.isGuestModeEnabled] = true
         User.shared.setLoggedIn(token: "W_GPhQnZ6OztX4TVu5rQAA", client: "F2PewhGD4cBb43ltw31Jjw", uid: "01206425399")
         if let user = model.loadGuestModelUserData() {
-            self.setUserData(user: user, studentUser: nil)
+            self.setUserData(user: user)
             self.successHandler?(user)
         }
     }
@@ -103,8 +103,8 @@ class LoginViewModel {
         }
     }
 
-    private func setUserData(user: LoginApiResponseModel?, studentUser: StudentModel?) {
-        User.shared.setUserData(user: user != nil ? user?.data : studentUser?.student)
+    private func setUserData(user: UserModel) {
+        User.shared.setUserData(user: user)
     }
 
     private func mapToWJError(_ error: Error) -> WJError {

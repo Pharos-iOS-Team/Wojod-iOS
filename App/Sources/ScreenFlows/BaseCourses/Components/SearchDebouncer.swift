@@ -12,8 +12,9 @@ final class SearchDebouncer {
 
     func debounce(block: @escaping () -> Void) {
         workItem?.cancel()
-        workItem = DispatchWorkItem(block: block)
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: workItem!)
+        let item = DispatchWorkItem(block: block)
+        workItem = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: item)
     }
 
     func cancel() {

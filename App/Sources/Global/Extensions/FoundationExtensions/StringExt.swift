@@ -1,7 +1,7 @@
 // Copyright © 2020 Pharos Solutions. All rights reserved.
 
-import MobileCoreServices
 import UIKit
+import UniformTypeIdentifiers
 
 extension String {
     var enToArDigits: String {
@@ -25,9 +25,7 @@ extension String {
     }
 
     var dominantTextAlignment: NSTextAlignment {
-        return NSLinguisticTagger.dominantLanguage(for: self) == "ar"
-            ? .right
-            : .left
+        return NSLinguisticTagger.dominantLanguage(for: self) == "ar" ? .right : .left
     }
 
     var isValid: Bool {
@@ -42,21 +40,18 @@ extension String {
     }
 
     var urlPathExtension: FileExtension {
-        guard
-            let fileExtension = NSURL(fileURLWithPath: self).pathExtension,
-            let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
-        else { return .other }
+        let fileExtension = NSURL(fileURLWithPath: self).pathExtension ?? ""
+        guard let type = UTType(filenameExtension: fileExtension) else { return .other }
 
-        let inputUTI = uti.takeRetainedValue()
-        if UTTypeConformsTo(inputUTI, kUTTypeImage) {
+        if type.conforms(to: .image) {
             return .image
-        } else if UTTypeConformsTo(inputUTI, kUTTypeMovie) {
+        } else if type.conforms(to: .movie) {
             return .video
-        } else if UTTypeConformsTo(inputUTI, kUTTypePDF) {
+        } else if type.conforms(to: .pdf) {
             return .pdf
-        } else if UTTypeConformsTo(inputUTI, kUTTypeSpreadsheet) {
+        } else if type.conforms(to: .spreadsheet) {
             return .excel
-        } else if UTTypeConformsTo(inputUTI, kUTTypeData) {
+        } else if type.conforms(to: .data) {
             return .word
         } else {
             return .other

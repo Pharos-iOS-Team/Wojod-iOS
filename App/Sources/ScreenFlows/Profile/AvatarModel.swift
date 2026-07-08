@@ -3,7 +3,7 @@
 import Foundation
 
 class AvatarModel {
-    func fetchAvatars(completionHandler: @escaping (Swift.Result<AvatarsModel, Error>) -> Void) {
-        ApiProvider.shared.request(.profile(.getAvatars), decodeTo: AvatarsModel.self, completion: completionHandler)
+    func fetchAvatars(completionHandler: @escaping (Swift.Result<ApiResponse<[Avatar]>, Error>) -> Void) {
+        ApiProvider.shared.request(.profile(.getAvatars), decodeTo: ApiResponse<[Avatar]>.self, completion: completionHandler)
     }
 }

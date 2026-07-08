@@ -10,7 +10,7 @@ extension Task {
     ) -> Task {
         guard let params = try? model.toDictionary() else {
             assertionFailure("Failed to encode \(T.self) into request parameters")
-            return .requestParameters(parameters: [:], encoding: encoding)
+            return .requestPlain
         }
         return .requestParameters(parameters: params, encoding: encoding)
     }

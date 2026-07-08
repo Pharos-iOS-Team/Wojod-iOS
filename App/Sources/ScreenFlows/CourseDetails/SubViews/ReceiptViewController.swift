@@ -2,10 +2,6 @@
 
 import UIKit
 
-protocol ReceiptDoneButtonDelegate: AnyObject {
-    func didTapDone()
-}
-
 class ReceiptViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private var containerView: UIView!
@@ -28,7 +24,7 @@ class ReceiptViewController: UIViewController {
     var receiptData: BookingCourseResponseModel?
     var myCourseReceipt: Receipt?
     var coursePrice: String?
-    weak var delegate: ReceiptDoneButtonDelegate?
+    var onDone: (() -> Void)?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -40,7 +36,7 @@ class ReceiptViewController: UIViewController {
     // MARK: - IBActions
     @IBAction private func didTapDone(_ sender: UIButton) {
         dismiss(animated: true)
-        self.delegate?.didTapDone()
+        onDone?()
     }
 
     private func setupUI() {
