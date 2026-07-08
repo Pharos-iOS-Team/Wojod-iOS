@@ -19,19 +19,19 @@ final class HomeViewModel: CourseListViewModeling, CourseSearching {
             completion(.success([]))
             return
         }
-        self.coursesService.fetchCourses(
-            mode: self.mode,
-            isMyCourses: false,
-            subjectID: self.selectedSubject?.id,
-            page: page
-        ) { result in
-            switch result {
-            case .success(let response):
+        Task { @MainActor in
+            do {
+                let response = try await self.coursesService.fetchCourses(
+                    mode: self.mode,
+                    isMyCourses: false,
+                    subjectID: self.selectedSubject?.id,
+                    page: page
+                )
                 if let subjects = response.subjects {
                     self.subjects = subjects
                 }
                 completion(.success(response.teachersCourses ?? []))
-            case .failure(let error):
+            } catch {
                 completion(.failure(error))
             }
         }
@@ -90,12 +90,13 @@ final class HomeViewModel: CourseListViewModeling, CourseSearching {
     }
 
     func loadAdvertisements(completion: @escaping ([Advertisement]) -> Void) {
-        advertisementsService.loadAdvertisements { [weak self] result in
-            switch result {
-            case .success(let advertisements):
-                self?.advertisements = advertisements.advertisements ?? []
-                completion(advertisements.advertisements ?? [])
-            case .failure:
+        Task { @MainActor [weak self] in
+            do {
+                let response = try await self?.advertisementsService.loadAdvertisements()
+                let advertisements = response?.advertisements ?? []
+                self?.advertisements = advertisements
+                completion(advertisements)
+            } catch {
                 completion([])
             }
         }
@@ -115,15 +116,13 @@ final class HomeViewModel: CourseListViewModeling, CourseSearching {
     }
 
     private func searchCourses(completion: @escaping () -> Void) {
-        coursesService.searchCourses(query: searchText) { [weak self] result in
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
-            switch result {
-            case .success(let resultCourses):
-                self.courses = resultCourses.teachersCourses ?? []
+            do {
+                let response = try await self.coursesService.searchCourses(query: self.searchText)
+                self.courses = response.teachersCourses ?? []
                 self.updateEmptyState()
-            case .failure:
-                break
-            }
+            } catch {}
             completion()
         }
     }

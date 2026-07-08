@@ -57,6 +57,28 @@ final class ApiProvider {
         }
     }
 
+    // MARK: - Async/Await
+
+    func request<T: Decodable>(
+        _ endpoint: Endpoint,
+        decodeTo type: T.Type
+    ) async throws -> T {
+        try await withCheckedThrowingContinuation { continuation in
+            request(endpoint, decodeTo: type) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+
+    @discardableResult
+    func request(_ endpoint: Endpoint) async throws -> Response {
+        try await withCheckedThrowingContinuation { continuation in
+            request(endpoint) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+
     // MARK: - Upload with progress
 
     @discardableResult

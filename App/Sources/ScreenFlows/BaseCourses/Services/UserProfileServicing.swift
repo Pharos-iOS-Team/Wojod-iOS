@@ -3,7 +3,7 @@
 import Foundation
 
 protocol UserProfileServicing {
-    func fetchUserProfile(completion: @escaping (Result<StudentModel, Error>) -> Void)
+    func fetchUserProfile() async throws -> StudentModel
 }
 
 final class UserProfileService: UserProfileServicing {
@@ -13,13 +13,11 @@ final class UserProfileService: UserProfileServicing {
         self.apiProvider = apiProvider
     }
 
-    func fetchUserProfile(completion: @escaping (Result<StudentModel, Error>) -> Void) {
+    func fetchUserProfile() async throws -> StudentModel {
         let userId = String(User.shared.id ?? 0)
-        apiProvider.request(
+        return try await apiProvider.request(
             .profile(.fetchProfile(.init(id: userId))),
             decodeTo: StudentModel.self
-        ) { result in
-            completion(result)
-        }
+        )
     }
 }

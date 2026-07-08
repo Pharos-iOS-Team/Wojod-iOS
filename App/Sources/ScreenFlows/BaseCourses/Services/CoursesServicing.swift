@@ -7,14 +7,10 @@ protocol CoursesServicing {
         mode: HomeMode,
         isMyCourses: Bool,
         subjectID: Int?,
-        page: Int,
-        completion: @escaping (Result<CoursesResponse, Error>) -> Void
-    )
+        page: Int
+    ) async throws -> CoursesResponse
 
-    func searchCourses(
-        query: String,
-        completion: @escaping (Result<CoursesResponse, Error>) -> Void
-    )
+    func searchCourses(query: String) async throws -> CoursesResponse
 }
 
 final class CoursesService: CoursesServicing {
@@ -28,9 +24,8 @@ final class CoursesService: CoursesServicing {
         mode: HomeMode,
         isMyCourses: Bool,
         subjectID: Int?,
-        page: Int,
-        completion: @escaping (Result<CoursesResponse, Error>) -> Void
-    ) {
+        page: Int
+    ) async throws -> CoursesResponse {
         let requestModel = CoursesRequestModel(
             type: mode,
             myCourses: isMyCourses,
@@ -48,20 +43,13 @@ final class CoursesService: CoursesServicing {
             }
         }()
 
-        apiProvider.request(endpoint, decodeTo: CoursesResponse.self) { result in
-            completion(result)
-        }
+        return try await apiProvider.request(endpoint, decodeTo: CoursesResponse.self)
     }
 
-    func searchCourses(
-        query: String,
-        completion: @escaping (Result<CoursesResponse, Error>) -> Void
-    ) {
-        apiProvider.request(
+    func searchCourses(query: String) async throws -> CoursesResponse {
+        try await apiProvider.request(
             .home(.searchCourses(.init(value: query))),
             decodeTo: CoursesResponse.self
-        ) { result in
-            completion(result)
-        }
+        )
     }
 }

@@ -3,7 +3,7 @@
 import Foundation
 
 protocol AdvertisementsServicing {
-    func loadAdvertisements(completion: @escaping (Result<Advertisements, Error>) -> Void)
+    func loadAdvertisements() async throws -> Advertisements
 }
 
 final class AdvertisementsService: AdvertisementsServicing {
@@ -13,9 +13,7 @@ final class AdvertisementsService: AdvertisementsServicing {
         self.apiProvider = apiProvider
     }
 
-    func loadAdvertisements(completion: @escaping (Result<Advertisements, Error>) -> Void) {
-        apiProvider.request(.home(.loadAdvertisements), decodeTo: Advertisements.self) { result in
-            completion(result)
-        }
+    func loadAdvertisements() async throws -> Advertisements {
+        try await apiProvider.request(.home(.loadAdvertisements), decodeTo: Advertisements.self)
     }
 }
