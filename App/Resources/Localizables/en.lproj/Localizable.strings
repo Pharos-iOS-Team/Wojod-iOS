@@ -188,7 +188,7 @@ No worries!";
 "courseDetails.main.cancelBooking" = "Cancel Booking";
 "courseDetails.main.reviewCourse" = "Review Course";
 "courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
-"courseDetails.main.videoPlaybackIssue" = "There is an issue with video playback. Please our contact technical support 01111317891";
+"courseDetails.main.videoPlaybackIssue" = "There is an issue with video playback. Please contact our technical support on WhatsApp at %@";
 "courseDetails.main.noLongerAvaliable" = "No Longer Available";
 "courseDetails.main.avaliableFor" = "Available for: %@ days";
 

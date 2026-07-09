@@ -16,6 +16,7 @@ struct Teacher: Codable {
 struct CourseDetailsResponse: Codable {
     let course: Course?
     let hideViews: Bool?
+    let whatsappSupportNumber: String?
 }
 
 struct Course: Codable {
