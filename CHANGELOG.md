@@ -26,7 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed Logout Fails After User Account Is Deleted from Admin Dashboard  
+  Task: [CPI-345](https://jira.pharos-solutions.de/browse/CPI-345) | PR: [#34](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/34) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

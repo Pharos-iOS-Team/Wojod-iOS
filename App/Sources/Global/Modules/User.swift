@@ -137,7 +137,7 @@ final class User: ModelDecodable {
 
     private func cleanUp(response: Response?, error: MoyaError?, completionHandler: @escaping (Result) -> Void) {
         if let response = response {
-            if response.statusCode < 300 {
+            if response.statusCode < 300 || response.statusCode == 500 {
                 setLoggedOut()
                 completionHandler(.success(true))
             } else {
