@@ -18,8 +18,7 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Added WhatsApp Support Number.  
-  Task: [CPI-345](https://jira.pharos-solutions.de/browse/CPI-345) | PR: [#37](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/37) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Changed
 - None.
 ### Deprecated
@@ -27,10 +26,17 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- Fixed Logout Fails After User Account Is Deleted from Admin Dashboard  
-  Task: [CPI-345](https://jira.pharos-solutions.de/browse/CPI-345) | PR: [#34](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/34) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Security
 - None.
+
+## [2.1.0] - 2026-07-09
+### Added
+- Added WhatsApp Support Number.  
+  Task: [CPI-345](https://jira.pharos-solutions.de/browse/CPI-345) | PR: [#37](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/37) | Author: [Sara Rady](https://github.com/sara-rady)
+### Fixed
+- Fixed Logout Fails After User Account Is Deleted from Admin Dashboard  
+  Task: [CPI-345](https://jira.pharos-solutions.de/browse/CPI-345) | PR: [#34](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/34) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [2.0.2] - 2026-06-25
 ### Added
