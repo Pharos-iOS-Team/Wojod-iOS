@@ -91,6 +91,7 @@ class CourseDetailsViewController: UIViewController {
 
     var course: Course!
     var hideViews: Bool = false
+    private var whatsappSupportNumber: String = ""
     var teacherName: String?
     var teacherID: Int?
 
@@ -743,6 +744,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course.course
             self.hideViews = course.hideViews ?? false
+            self.whatsappSupportNumber = course.whatsappSupportNumber ?? ""
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
@@ -1141,7 +1143,7 @@ extension CourseDetailsViewController {
 extension CourseDetailsViewController {
     private func playVideoWithChecks<T>(viewsCount: Int, video: Video, presentPlayer: @escaping (T) -> Void) {
         guard viewsCount > .zero else {
-            let errorMessage = hideViews ? L10n.CourseDetails.Main.videoPlaybackIssue : L10n.CourseDetails.Main.notEnoughViews
+            let errorMessage = hideViews ? L10n.CourseDetails.Main.videoPlaybackIssue(whatsappSupportNumber) : L10n.CourseDetails.Main.notEnoughViews
             alertHandler?.showInformationAlert(
                 title: L10n.Global.Titles.error,
                 message: errorMessage
