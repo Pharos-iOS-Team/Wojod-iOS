@@ -48,11 +48,8 @@ class CreatePasswordViewController: UIViewController {
             backButton.setImage(Images.localizedBackButton)
         }
     }
-    @IBOutlet private var titleLabel: UILabel! {
-        didSet {
-            titleLabel.text = L10n.Login.forgotPasswordTitle
-        }
-    }
+    @IBOutlet private var titleLabel: UILabel!
+
     var mobileNumber: String = ""
     var isActivationFlow: Bool = false
     private let viewModel = CreatePasswordViewModel()
@@ -63,10 +60,8 @@ class CreatePasswordViewController: UIViewController {
         viewModel.isActivationFlow = isActivationFlow
         handleErrors()
         handleSuccess()
+        configureUI()
         showLoadingIndicatorHandler()
-        passwordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
-        confirmPasswordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
-        sendButton.isEnabled = false
     }
 
     @objc private func passwordFieldsChanged() {
@@ -134,5 +129,12 @@ class CreatePasswordViewController: UIViewController {
                 self?.rootViewCtrl?.dismiss(animated: true)
             }
         }
+    }
+    
+    private func configureUI() {
+        titleLabel.text = isActivationFlow ? L10n.Login.welcomePassword : L10n.Login.forgotPasswordTitle
+        sendButton.isEnabled = false
+        passwordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
+        confirmPasswordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
     }
 }

@@ -23,4 +23,4 @@ PRODUCT_BUNDLE_IDENTIFIER = de.pharos-solutions.wojood-ios
 
 // MARK: - App Version
 
-APP_VERSION = 2.0.2
+APP_VERSION = 2.1.0
