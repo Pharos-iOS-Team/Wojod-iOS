@@ -91,9 +91,10 @@ class CourseDetailsViewController: UIViewController {
 
     var course: Course!
     var hideViews: Bool = false
-    private var whatsappSupportNumber: String = ""
     var teacherName: String?
     var teacherID: Int?
+    private let fallbackWhatsAppNumber = "01101005306"
+    private lazy var whatsappSupportNumber: String = fallbackWhatsAppNumber
 
     // MARK: - Lifecycle
 
@@ -744,7 +745,7 @@ class CourseDetailsViewController: UIViewController {
         viewModel?.loadCourse(courseID: "\(course.id)") { course in
             self.course = course.course
             self.hideViews = course.hideViews ?? false
-            self.whatsappSupportNumber = course.whatsappSupportNumber ?? ""
+            self.whatsappSupportNumber = course.whatsappSupportNumber ?? self.fallbackWhatsAppNumber
             self.state = self.getReservationState()
             self.configureActionButtonAccordingToState()
             self.tableView.reloadData()
