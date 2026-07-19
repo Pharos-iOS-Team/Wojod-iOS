@@ -101,10 +101,10 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureActionButtonAccordingToState() {
-        if course?.parsedReservationState == .pending {
+        if course?.parsedState == .pending {
             viewButton.setTitle(L10n.Home.pending)
             viewButton.layer.backgroundColor = Colors.orange.color.cgColor
-        } else if course?.parsedReservationState == .booked {
+        } else if course?.parsedState == .booked {
             viewButton.setTitle(L10n.Quizzes.open)
             viewButton.layer.backgroundColor = Colors.green.color.cgColor
         } else {
@@ -124,7 +124,7 @@ class CourseCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureBadge() {
-        if isMyCourses && course?.parsedReservationState == .booked {
+        if isMyCourses && course?.parsedState == .booked {
             if course?.lessonsUnreadCount ?? 0 > 0 || course?.materialsUnreadCount ?? 0 > 0 {
                 badgeImageView.isHidden = false
             } else {

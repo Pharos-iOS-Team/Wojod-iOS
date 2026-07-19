@@ -8,6 +8,7 @@ struct SubjectCourses: Codable {
         var name: String?
         var initials: String?
     }
+
     var teacher: Teacher?
     var courses: [Course]?
 }

@@ -1,194 +1,294 @@
-// Copyright © 2021 Pharos Solutions. All rights reserved.
+// Copyright © 2026 Pharos Solutions. All rights reserved.
 
-import Dependencies
+import Combine
 import Foundation
 import SwiftyUserDefaults
 
-class CourseDetailsViewModel: NSObject {
-    // MARK: - Dependencies
+final class CourseDetailsViewModel: NSObject {
+    // MARK: - Subtypes
 
-    @Dependency(\.apiProvider)
-    var apiProvider: ApiProvider
+    final class State: ObservableObject {
+        @Published var error: String?
+        @Published var isLoading: Bool = false
+        @Published var isContentLoading: Bool = false
+        @Published var isLoadingTab: Bool = false
 
-    // MARK: - Child ViewModels
+        // Models
+        @Published var course: Course?
+        @Published var materialsDomain: MaterialDomain?
+        @Published var lessonsList: [Lesson] = []
+        @Published var reviewsList: [Review] = []
+        @Published var attachmentsOfLessons: [Int: MaterialDomain] = [:]
 
-    let quizzesViewModel: AssessmentsOverViewViewModel
-    let assignmentsViewModel: AssessmentsOverViewViewModel
+        // Metadata & Selections
+        @Published var teacherName: String?
+        @Published var teacherID: Int?
+        @Published var lessonNumbersList: [Int]?
+        @Published var selectedAssessmentSection: Int?
+        @Published var assessmentLoadingIndexPath: IndexPath?
 
-    // MARK: - State
+        // UI State
+        @Published var hideViews: Bool = false
+        @Published var activeScreen: ActiveScreen = .details
+        @Published var activeSubscreen: CourseDetailsActiveSubScreen = .details
+        @Published var loadedTabs: Set<ActiveScreen> = []
+        @Published var expandedSections: [Int] = []
+        @Published var doesLessonContainAttachments: [Int: Bool] = [:]
+        @Published var didSetInitialContentOffset: Bool = false
 
-    var course: Course?
-    var hideViews: Bool = false
-    var teacherName: String?
-    var teacherID: Int?
-    var courseState: CourseState = .normal
-    var activeScreen: ActiveScreen = .details
-    var lessonsList: [Lesson] = []
-    var lessonNumbersList: [Int]?
-    var reviewsList: [Review] = []
-    var materials: Materials?
-    var attachmentsOfLessons: [Int: LessonAttachmentsModel] = [:]
-    var expandedSections: [Int] = []
-    var doesLessonContainAttachments: [Int: Bool] = [:]
-    var selectedAssessment: Assessment?
-    var selectedAssessmentSection: Int?
-    var isLoadingTab: Bool = false
-
-    func clearTabData() {
-        switch activeScreen {
-        case .details:
-            lessonsList = []
-            lessonNumbersList = nil
-            attachmentsOfLessons = [:]
-            doesLessonContainAttachments = [:]
-            expandedSections = []
-        case .materials:
-            materials = nil
-        case .reviews:
-            reviewsList = []
-        }
+        @Published var routeSubject: CourseDetailsCoordinator.Route?
     }
 
-    // MARK: - Output Bindings
+    // MARK: - Instance Properties
 
-    var onStateUpdated: (() -> Void)?
-    var onLoadingChanged: ((Bool) -> Void)?
-    var onError: ((String) -> Void)?
-    var onShowQuizAlert: ((Assessment) -> Void)?
-    var onOpenAssessment: ((AssessmentsOverViewViewModel.Module, Int?, AssessmentDetails?) -> Void)?
-    var onShowAssessmentResults: ((AssessmentsOverViewViewModel.Module, Int?, AssessmentDetails?) -> Void)?
-
-    // MARK: - Computed UI Properties
+    private let repository: CourseDetailsRepositoryProtocol
+    let assessmentsViewModel: AssessmentsOverViewViewModel
+    var state: State = .init()
+    var cancellables: Set<AnyCancellable> = []
 
     var isContactInfoAvailable: Bool {
-        course?.contactUsInfo?.isValid ?? false
+        state.course?.contactUsInfo?.isValid ?? false
     }
 
     var shouldShowQRButton: Bool {
-        (course?.qrCodeEnabled ?? false) && courseState == .normal
+        (state.course?.qrCodeEnabled ?? false) && state.course?.parsedState == .normal
     }
 
-    var coursePrice: String {
-        guard !isTestingAccount() else { return "" }
-        if course?.price == nil || course?.price?.isEmpty ?? true {
-            return L10n.Home.Course.returnToTeacher
-        } else {
-            return "\(L10n.Home.Course.price) \(course?.price ?? "")"
-        }
-    }
+    // MARK: - Initializer
 
-    // MARK: - Init
-
-    override init() {
-        self.quizzesViewModel = AssessmentsOverViewViewModel(module: .quizzes)
-        self.assignmentsViewModel = AssessmentsOverViewViewModel(module: .assignments)
+    init(service: CourseDetailsRepositoryProtocol = CourseDetailsRepository()) {
+        self.repository = service
+        self.assessmentsViewModel = AssessmentsOverViewViewModel(module: .all)
         super.init()
         bindAssessmentHandlers()
     }
 
-    // MARK: - Data Loading
+    func viewWillAppear() {
+        guard state.course != nil else { return }
+        switch state.activeScreen {
+        case .materials:
+            let isFirstLoad = !state.loadedTabs.contains(.materials)
+            if isFirstLoad { state.isContentLoading = true }
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                await handleRefreshingAccordingToOpenedTab()
+                state.loadedTabs.insert(.materials)
+                if isFirstLoad { state.isContentLoading = false }
+            }
+        case .details:
+            state.isContentLoading = true
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                await loadCourseLessonsWithDetails()
+                state.isContentLoading = false
+            }
+        case .reviews:
+            break
+        }
+    }
+
+    func didSelectItem(at indexPath: IndexPath) {
+        switch state.activeScreen {
+        case .details:
+            handleDetailsSelection(at: indexPath)
+        case .materials:
+            handleMaterialsSelection(at: indexPath)
+        case .reviews:
+            return
+        }
+    }
+
+    func handleActionButtonTapped() {
+        if isGuestModeEnabled() {
+            state.routeSubject = .logout
+        } else {
+            switch state.course?.parsedState ?? .normal {
+            case .normal:
+                guard isContactInfoAvailable, let info = state.course?.contactUsInfo else { return }
+                state.routeSubject = .showContactUs(info: info)
+            case .booked:
+                state.routeSubject = .showReviewCourse
+            default:
+                return
+            }
+        }
+    }
+
+    func handleQRBookingTapped() {
+        if isGuestModeEnabled() {
+            state.routeSubject = .logout
+        } else {
+            state.routeSubject = .showQROptions
+        }
+    }
+
+    func handleTabSelected(_ screen: ActiveScreen) {
+        guard state.activeScreen != screen else { return }
+        state.activeScreen = screen
+        loadActiveTab()
+    }
+
+    func chatTapped() {
+        guard let courseID = state.course?.id, let teacherID = state.teacherID else { return }
+        state.routeSubject = .showChat(courseID: courseID, teacherID: teacherID)
+    }
+
+    func dismissTapped() {
+        state.routeSubject = .dismiss
+    }
+
+    func confirmVideoViews(for video: VideoDomain) {
+        state.routeSubject = .playVdoCipherVideo(video)
+    }
+
+    func bookCourseWithQR(_ qrCode: String?) {
+        Task { @MainActor [weak self] in
+            guard let self, let courseID = state.course?.id else { return }
+            do {
+                let response = try await repository.bookCourse(courseID: courseID, qrCode: qrCode)
+                let shouldShowReceipt = handleBookingSuccess(bookingResponse: response, isQR: qrCode != nil)
+                await loadCourseDetails()
+                if shouldShowReceipt {
+                    state.routeSubject = .showReceipt(response, coursePrice: state.course?.price ?? "")
+                }
+            } catch let error as WJError {
+                state.error = error.message
+            } catch {
+                state.error = error.localizedDescription
+            }
+        }
+    }
+
+    func startAssessmentFromAlert(with assessment: AssessmentDomain) {
+        state.isLoading = true
+        assessmentsViewModel.startAssessment(with: assessment)
+    }
+
+    func loadActiveTab() {
+        let isFirstLoad = !state.loadedTabs.contains(state.activeScreen)
+        if isFirstLoad {
+            clearTabData()
+            state.isLoadingTab = true
+            state.isContentLoading = true
+        }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            await handleRefreshingAccordingToOpenedTab()
+            state.loadedTabs.insert(state.activeScreen)
+            if isFirstLoad {
+                state.isLoadingTab = false
+                state.isContentLoading = false
+            }
+        }
+    }
+
+    func clearTabData() {
+        switch state.activeScreen {
+        case .details:
+            state.lessonsList = []
+            state.lessonNumbersList = nil
+            state.attachmentsOfLessons = [:]
+            state.doesLessonContainAttachments = [:]
+            state.expandedSections = []
+        case .materials:
+            state.materialsDomain = nil
+        case .reviews:
+            state.reviewsList = []
+        }
+    }
 
     func loadCourseDetails() async {
-        guard let courseID = course?.id else { return }
-        let courseResponse = await loadCourse(courseID: "\(courseID)")
-        if let courseResponse {
-            course = courseResponse.course
-            hideViews = courseResponse.hideViews ?? false
-            courseState = course?.parsedReservationState ?? .normal
+        guard let courseID = state.course?.id else { return }
+        await MainActor.run { state.isLoading = true }
+        defer { Task { @MainActor in state.isLoading = false } }
+        do {
+            let response = try await repository.loadCourse(courseID: "\(courseID)")
+            state.course = response.course
+            state.hideViews = response.hideViews ?? false
+        } catch {
+            state.error = error.localizedDescription
         }
     }
 
     func loadCourseLessons() async {
-        guard let courseID = course?.id else { return }
-        let lessons = await loadLessons(courseID: courseID)
-        if let lessons {
-            lessonsList = lessons
+        guard let courseID = state.course?.id else { return }
+        do {
+            let lessons = try await repository.loadLessons(courseID: courseID)
+            state.lessonsList = lessons
             generateLessonsNumbersList()
+        } catch {
+            state.error = error.localizedDescription
         }
     }
 
     func handleRefreshingAccordingToOpenedTab() async {
-        guard let courseID = course?.id else { return }
-        switch activeScreen {
-        case .details:
-            await loadCourseLessonsWithDetails()
-        case .materials:
-            let materials = await loadMaterials(courseID: courseID)
-            self.materials = materials
-        case .reviews:
-            let reviews = await loadReviews(courseID: courseID)
-            reviewsList = reviews ?? []
+        guard let courseID = state.course?.id else { return }
+        do {
+            switch state.activeScreen {
+            case .details:
+                await loadCourseLessonsWithDetails()
+            case .materials:
+                state.materialsDomain = try await repository.loadMaterials(courseID: courseID)
+            case .reviews:
+                state.reviewsList = try await repository.loadReviews(courseID: courseID)
+            }
+        } catch {
+            state.error = error.localizedDescription
         }
     }
 
-    // MARK: - Lessons
-
     func generateLessonsNumbersList() {
-        guard lessonsList.count >= 1 else { return }
-        lessonNumbersList = Array(1 ... lessonsList.count)
+        guard state.lessonsList.count >= 1 else { return }
+        state.lessonNumbersList = Array(1 ... state.lessonsList.count)
     }
 
     func numberOfRowsForLesson(section: Int) -> Int {
-        guard expandedSections.contains(section) else { return 0 }
-        let attachments = attachmentsOfLessons[section]
-        let documentsCount = attachments?.documents?.count ?? 0
-        let assignmentsCount = attachments?.assignments?.count ?? 0
-        let videosCount = attachments?.videos?.count ?? 0
-        let quizzesCount = attachments?.quizzes?.count ?? 0
-        return documentsCount + assignmentsCount + videosCount + quizzesCount
+        guard state.expandedSections.contains(section) else { return 0 }
+        return state.attachmentsOfLessons[section]?.allMaterials.count ?? 0
     }
 
-    func flatAttachments(for section: Int) -> [Any] {
-        var result: [Any] = []
-        let attachments = attachmentsOfLessons[section]
-        if let assignments = attachments?.assignments { result.append(contentsOf: assignments) }
-        if let quizzes = attachments?.quizzes { result.append(contentsOf: quizzes) }
-        if let videos = attachments?.videos { result.append(contentsOf: videos) }
-        if let documents = attachments?.documents { result.append(contentsOf: documents) }
-        return result
+    func attachmentsOfLessons(for section: Int) -> [MaterialItemProtocol] {
+        state.attachmentsOfLessons[section]?.allMaterials ?? []
+    }
+
+    func courseHeaderModel() -> CourseHeaderModel {
+        CourseHeaderModel.make(
+            course: state.course,
+            teacherName: state.teacherName,
+            activeScreen: state.activeScreen,
+        )
+    }
+
+    func lessonHeaderModel(for section: Int) -> LessonHeaderModel {
+        LessonHeaderModel.make(
+            section: section,
+            lesson: state.lessonsList[section],
+            lessonNumber: state.lessonNumbersList?[section] ?? 0,
+            isExpanded: state.expandedSections.contains(section),
+            reservationState: state.course?.parsedState,
+            doesContainAttachments: state.doesLessonContainAttachments[section] ?? false
+        )
     }
 
     func toggleSectionExpansion(_ section: Int, completion: @escaping () -> Void) {
-        guard !lessonsList[section].locked else {
-            let message = lessonsList[section].lockMessage
-            onError?(message)
+        guard !state.lessonsList[section].locked else {
+            state.error = state.lessonsList[section].lockMessage
             return
         }
-        guard course?.parsedReservationState == .booked else { return }
-        if expandedSections.contains(section) {
-            expandedSections.removeAll { $0 == section }
+        guard state.course?.parsedState == .booked else { return }
+        if state.expandedSections.contains(section) {
+            state.expandedSections.removeAll { $0 == section }
         } else {
-            expandedSections.append(section)
+            state.expandedSections.append(section)
         }
         completion()
     }
 
     func prefetchAllLessonDetails() async {
-        guard course?.parsedReservationState == .booked else { return }
-        await fetchAllLessonDetailsConcurrently()
-    }
-
-    private func fetchAllLessonDetailsConcurrently() async {
-        await withTaskGroup(of: (Int, LessonAttachmentsModel?).self) { group in
-            for (section, lesson) in lessonsList.enumerated() {
-                group.addTask { [weak self] in
-                    guard let self else { return (section, nil) }
-                    let attachmentsModel = await self.loadAttachmentsOfLesson(lessonID: lesson.id)
-                    return (section, attachmentsModel)
-                }
-            }
-            for await (section, attachmentsModel) in group {
-                guard let attachmentsModel else { continue }
-                let isEmpty = (attachmentsModel.assignments?.isEmpty ?? true)
-                    && (attachmentsModel.documents?.isEmpty ?? true)
-                    && (attachmentsModel.quizzes?.isEmpty ?? true)
-                    && (attachmentsModel.videos?.isEmpty ?? true)
-                await MainActor.run {
-                    self.attachmentsOfLessons[section] = attachmentsModel
-                    self.doesLessonContainAttachments[section] = !isEmpty
-                }
-            }
-        }
+        guard state.course?.parsedState == .booked else { return }
+        let result = await repository.fetchAllAttachments(for: state.lessonsList)
+        state.attachmentsOfLessons = result.attachments
+        state.doesLessonContainAttachments = result.contains
     }
 
     func loadCourseLessonsWithDetails() async {
@@ -196,204 +296,95 @@ class CourseDetailsViewModel: NSObject {
         await prefetchAllLessonDetails()
     }
 
-    // MARK: - Booking
-
-    func bookCourse(qrCode: String?) async throws -> BookingCourseResponseModel {
-        guard let courseID = course?.id else { throw WJError(type: .parsingError, message: "") }
-        return try await apiProvider.request(
-            .courseDetails(.bookCourse(
-                courseID: courseID,
-                requestModel: BookCourseRequestModel(code: qrCode)
-            )),
-            decodeTo: BookingCourseResponseModel.self
-        )
-    }
-
     func handleBookingSuccess(bookingResponse: BookingCourseResponseModel?, isQR: Bool) -> Bool {
-        if !isQR {
-            courseState = .pending
-        }
+        if !isQR { state.course?.reservationState = CourseState.pending.rawValue }
         return !isTestingAccount()
     }
 
-    // MARK: - Assessments
-
-    func startAssessment(for type: AssessmentType, at indexPath: IndexPath, completion: @escaping () -> Void) {
-        if activeScreen == .materials {
-            guard let assessment = type == .quiz
-                ? quizzesViewModel.assessments[safe: indexPath.row]
-                : assignmentsViewModel.assessments[safe: indexPath.row]
-            else { return }
-            switch assessment.mappedType {
-            case .quiz:
-                onShowQuizAlert?(assessment)
-                completion()
-            case .assignment:
-                assignmentsViewModel.startAssessment(with: assessment) { completion() }
-            }
-        } else {
-            let attachments = flatAttachments(for: indexPath.section)
-            let assessment = attachments[safe: indexPath.row]
-            if let assignment = assessment as? Assessment, assignment.mappedType == .assignment {
-                assignmentsViewModel.startAssessment(with: assignment) { completion() }
-            } else if let quiz = assessment as? Assessment, quiz.mappedType == .quiz {
-                onShowQuizAlert?(quiz)
-                completion()
-            }
-        }
-    }
-
-    func startAssessmentFromAlert(with assessment: Assessment) {
-        if assessment.mappedType == .quiz {
-            quizzesViewModel.startAssessment(with: assessment)
-        } else {
-            assignmentsViewModel.startAssessment(with: assessment)
-        }
-    }
-
-    func showResultForAssessment(type: AssessmentType, at indexPath: IndexPath, completion: @escaping () -> Void) {
-        if activeScreen == .materials {
-            if type == .quiz {
-                quizzesViewModel.assessmentResults(for: quizzesViewModel.assessments[safe: indexPath.row]) { completion() }
-            } else {
-                assignmentsViewModel.assessmentResults(for: assignmentsViewModel.assessments[safe: indexPath.row]) { completion() }
-            }
-        } else {
-            let attachments = flatAttachments(for: indexPath.section)
-            let assessment = attachments[safe: indexPath.row] as? Assessment
-            if type == .quiz {
-                quizzesViewModel.assessmentResults(for: assessment) { completion() }
-            } else {
-                assignmentsViewModel.assessmentResults(for: assessment) { completion() }
-            }
-        }
-    }
-
-    private func bindAssessmentHandlers() {
-        quizzesViewModel.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
-            self?.onOpenAssessment?(.quizzes, assessmentID, assessmentDetails)
-        }
-        assignmentsViewModel.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, _ in
-            self?.onOpenAssessment?(.assignments, assessmentID, assessmentDetails)
-        }
-        quizzesViewModel.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, type in
-            let module: AssessmentsOverViewViewModel.Module = type == .quiz ? .quizzes : .assignments
-            self?.onShowAssessmentResults?(module, assessmentID, assessmentDetails)
-        }
-        assignmentsViewModel.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, _ in
-            self?.onShowAssessmentResults?(.assignments, assessmentID, assessmentDetails)
-        }
-        quizzesViewModel.showQuizAlert = { [weak self] error in
-            self?.onError?(error)
-        }
-    }
-
-    // MARK: - Network
-
-    func loadLessons(courseID: Int) async -> [Lesson]? {
-        do {
-            let lessons = try await apiProvider.request(
-                .courseDetails(.loadLessons(courseID: courseID)),
-                decodeTo: ApiResponse<[Lesson]>.self
-            )
-            return lessons.data
-        } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
-            return nil
-        }
-    }
-
-    func loadReviews(courseID: Int) async -> [Review]? {
-        do {
-            let reviews = try await apiProvider.request(
-                .courseDetails(.loadReviews(courseID: courseID)),
-                decodeTo: ApiResponse<[Review]>.self
-            )
-            return reviews.data
-        } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
-            return nil
-        }
-    }
-
-    func loadAttachmentsOfLesson(lessonID: Int) async -> LessonAttachmentsModel? {
-        do {
-            return try await apiProvider.request(
-                .courseDetails(.loadAttachmentsOfLesson(lessonID: lessonID)),
-                decodeTo: LessonAttachmentsModel.self
-            )
-        } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
-            return nil
-        }
-    }
-
     func cancelBookingCourse(courseID: Int) async -> Bool {
-        do {
-            _ = try await apiProvider.request(.courseDetails(.cancelBookingCourse(courseID: courseID)))
-            return true
-        } catch {
-            return false
-        }
+        (try? await repository.cancelBookingCourse(courseID: courseID)) != nil
     }
 
     func sendReview(courseID: Int, courseReview: CourseReview) async -> Bool {
-        do {
-            _ = try await apiProvider.request(.courseDetails(.sendReview(courseID: courseID, courseReview: courseReview)))
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    func loadMaterials(courseID: Int) async -> Materials? {
-        do {
-            var materials = try await apiProvider.request(
-                .courseDetails(.loadMaterials(courseID: courseID)),
-                decodeTo: Materials.self
-            )
-            materials.sort()
-            return materials
-        } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
-            return nil
-        }
-    }
-
-    func loadCourse(courseID: String) async -> CourseDetailsResponse? {
-        do {
-            return try await apiProvider.request(
-                .courseDetails(.loadCourse(courseID: courseID)),
-                decodeTo: CourseDetailsResponse.self
-            )
-        } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
-            return nil
-        }
+        (try? await repository.sendReview(courseID: courseID, courseReview: courseReview)) ?? false
     }
 
     func fetchVideoDetails(videoId: String) async -> EncryptedVideoResponse? {
-        do {
-            return try await apiProvider.request(
-                .courseDetails(.fetchVideo(videoId: videoId)),
-                decodeTo: EncryptedVideoResponse.self
-            )
-        } catch {
-            return nil
-        }
+        try? await repository.fetchVideoDetails(videoId: videoId)
     }
 
     func updateVideo(videoId: String, updateObject: UpdateObject) async {
         do {
-            _ = try await apiProvider.request(
-                .courseDetails(.updateVideo(videoId: videoId, updateObject: updateObject))
-            )
+            try await repository.updateVideo(videoId: videoId, updateObject: updateObject)
         } catch {
-            await MainActor.run { self.onError?(error.localizedDescription) }
+            state.error = error.localizedDescription
         }
     }
 
     func isGuestModeEnabled() -> Bool {
-        return Defaults[\.isGuestModeEnabled]
+        Defaults[\.isGuestModeEnabled]
+    }
+}
+
+// MARK: - Private Helpers
+extension CourseDetailsViewModel {
+    private func bindAssessmentHandlers() {
+        assessmentsViewModel.startAssessmentHandler = { [weak self] assessmentID, assessmentDetails, type in
+            guard let self else { return }
+            let module: AssessmentsOverViewViewModel.Module = type == .quiz ? .quizzes : .assignments
+            state.isLoading = false
+            state.assessmentLoadingIndexPath = nil
+            state.routeSubject = .showAssessment(status: .open, module: module, assessmentID: assessmentID, details: assessmentDetails)
+        }
+        assessmentsViewModel.assessmentResultsHandler = { [weak self] assessmentID, assessmentDetails, type in
+            guard let self else { return }
+            let module: AssessmentsOverViewViewModel.Module = type == .quiz ? .quizzes : .assignments
+            state.assessmentLoadingIndexPath = nil
+            state.routeSubject = .showAssessment(status: .closed, module: module, assessmentID: assessmentID, details: assessmentDetails)
+        }
+        assessmentsViewModel.showQuizAlert = { [weak self] error in
+            self?.state.error = error
+        }
+    }
+
+    private func handleDetailsSelection(at indexPath: IndexPath) {
+        let attachments = attachmentsOfLessons(for: indexPath.section)
+        guard indexPath.row < attachments.count else { return }
+        handleItemSelection(attachments[indexPath.row], at: indexPath)
+    }
+
+    private func handleMaterialsSelection(at indexPath: IndexPath) {
+        guard let domainItem = state.materialsDomain?.item(at: indexPath) else { return }
+        handleItemSelection(domainItem, at: indexPath)
+    }
+
+    private func handleItemSelection(_ item: MaterialItemProtocol, at indexPath: IndexPath) {
+        switch item.payload {
+        case .assessment(let assessment):
+            state.activeSubscreen = assessment.type == .quiz ? .quiz : .exercise
+            state.selectedAssessmentSection = indexPath.section
+            state.assessmentLoadingIndexPath = indexPath
+            routeAssessment(assessment)
+
+        case .video(let video):
+            guard !video.locked else { state.error = video.lockMessage; return }
+            state.routeSubject = .didSelectVideo(video, hideViews: state.hideViews)
+
+        case .attachment(let document):
+            state.activeSubscreen = .file
+            state.routeSubject = .didSelectDocument(document)
+        }
+    }
+
+    private func routeAssessment(_ assessment: AssessmentDomain) {
+        switch assessment.status {
+        case .open where assessment.type == .quiz:
+            state.assessmentLoadingIndexPath = nil
+            state.routeSubject = .confirmQuiz(assessment)
+        case .open:
+            assessmentsViewModel.startAssessment(with: assessment)
+        case .closed:
+            assessmentsViewModel.assessmentResults(for: assessment) {}
+        }
     }
 }

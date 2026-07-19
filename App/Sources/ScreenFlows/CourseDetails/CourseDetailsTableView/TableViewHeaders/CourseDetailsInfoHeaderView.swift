@@ -13,24 +13,6 @@ protocol CourseDetailsInfoHeaderDelegate: AnyObject {
     func playCourseVideo(playerController: AVPlayerViewController)
 }
 
-struct CourseDetailsInfoModel {
-    var courseTitle: String?
-    var teacherName: String?
-    var batchName: String?
-    var image: String?
-    var video: Media?
-    var description: String?
-    var price: String?
-    var numberOfReviews: String?
-    var rating: Double?
-    var shouldHideMaterials: Bool
-    var buttonSelected: ActiveScreen
-    var state: CourseState
-    var lessonsUnreadCount: Int?
-    var materialsUnreadCount: Int?
-    weak var delegate: CourseDetailsInfoHeaderDelegate?
-}
-
 class CourseDetailsInfoHeaderView: UIView, NibLoadable {
     static let imageHeight: CGFloat = 320
 
@@ -155,7 +137,7 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         delegate?.dismissView()
     }
 
-    func configure(model: CourseDetailsInfoModel) {
+    func configure(model: CourseHeaderModel) {
         courseTitle.text = model.courseTitle
         teacherNameLabel.text = model.teacherName
         batchLabel.text = model.batchName
@@ -175,7 +157,6 @@ class CourseDetailsInfoHeaderView: UIView, NibLoadable {
         configureButtonSelected(buttonSelected: model.buttonSelected)
         configureLessonBadge(shouldHide: model.lessonsUnreadCount == 0)
         configureMaterialsBadge(shouldHide: model.materialsUnreadCount == 0)
-        delegate = model.delegate
     }
 
     private func configureLessonBadge(shouldHide: Bool) {

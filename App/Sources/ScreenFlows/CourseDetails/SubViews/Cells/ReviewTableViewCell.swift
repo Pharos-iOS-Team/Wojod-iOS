@@ -1,6 +1,7 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Cosmos
+import Kingfisher
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
@@ -28,30 +29,26 @@ class ReviewTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    internal func setAvatarImage(_ image: UIImage?) {
-        DispatchQueue.main.async {
-            guard let image = image else {
-                self.avatarImageView.image = Images.person.image
-                return
+    func configure(with review: Review) {
+        titleLabel.text = review.title ?? ""
+        let date = DateFormatter.isoDateFormatter.date(from: review.createdAt ?? "")
+        subtitleLabel.text = "\(date?.formatDateToDateTimeString ?? "") \(L10n.CourseDetails.CourseReview.by) \(review.reviewer?.name ?? "")"
+        commentLabel.text = review.comment ?? ""
+        ratingView.rating = review.rating ?? 0.0
+
+        let avatarURLString = AppEnvironment.baseURLString + (review.reviewer?.avatar?.fileUrl ?? "")
+        if let avatarURL = URL(string: avatarURLString) {
+            KingfisherManager.shared.retrieveImage(with: avatarURL) { [weak self] result in
+                DispatchQueue.main.async {
+                    if case .success(let value) = result {
+                        self?.avatarImageView.image = value.image
+                    } else {
+                        self?.avatarImageView.image = Images.person.image
+                    }
+                }
             }
-            self.avatarImageView.image = image
+        } else {
+            avatarImageView.image = Images.person.image
         }
-    }
-
-    internal func setTitle(_ title: String) {
-        titleLabel.text = title
-    }
-
-    internal func setSubtitle(_ subtitle: String) {
-        subtitleLabel.text = subtitle
-    }
-
-    internal func setComment(_ comment: String) {
-        commentLabel.text = comment
-    }
-
-    // swiftlint:disable function_body_length
-    internal func setRating(_ rating: Double) {
-        ratingView.rating = rating
     }
 }

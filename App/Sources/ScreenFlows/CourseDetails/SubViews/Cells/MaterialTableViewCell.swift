@@ -30,24 +30,16 @@ class MaterialTableViewCell: UITableViewCell {
     @IBOutlet private var videoDurationLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
 
-    var model: MaterialTableCellData! {
-        didSet {
-            titleLabel.text = model.title
-            dateLabel.text = model.date
-            iconImageView.image = model.image
-            setDuration(model.duration)
-        }
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         videoDurationLabel.isHidden = true
     }
-
-    private func setDuration(_ duration: Int?) {
-        guard let duration = duration else { return }
-        videoDurationLabel.isHidden = false
-        videoDurationLabel.text = "\(L10n.Quizzes.duration) \(TimeInterval(duration).format() ?? "-")"
+    func configure(with model: MaterialTableCellData) {
+        selectionStyle = .none
+        titleLabel.text = model.title
+        dateLabel.text = model.date
+        iconImageView.image = model.image
+        setDuration(model.duration)
     }
 
     func startLoadingIndicator() {
@@ -56,5 +48,11 @@ class MaterialTableViewCell: UITableViewCell {
 
     func stopLoadingIndicator() {
         loadingIndicator.stopAnimating()
+    }
+    
+    private func setDuration(_ duration: Int?) {
+        guard let duration = duration else { return }
+        videoDurationLabel.isHidden = false
+        videoDurationLabel.text = "\(L10n.Quizzes.duration) \(TimeInterval(duration).format() ?? "-")"
     }
 }

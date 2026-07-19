@@ -88,11 +88,11 @@ class AssessmentsOverViewViewModel {
         return assessments[indexPath.row]
     }
 
-    func startAssessment(with assessment: Assessment, completion: (() -> Void)? = nil) {
+    func startAssessment(with assessment: AssessmentDomain, completion: (() -> Void)? = nil) {
         guard let assessmentID = assessment.id,
             let deviceToken = UIDevice.current.identifierForVendor?.uuidString
             else { return }
-        let module: Module = assessment.mappedType == .quiz
+        let module: Module = assessment.type == .quiz
             ? .quizzes
             : .assignments
         AssessmentDetailsModel().startAssessment(
@@ -102,22 +102,22 @@ class AssessmentsOverViewViewModel {
         ) { [weak self] assessmentDetails, error in
             if error == nil {
             completion?()
-                self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessment.mappedType)
+                self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessment.type)
             } else {
                 self?.showQuizAlert?(error ?? "")
             }
         }
     }
     
-    func assessmentResults(for assessment: Assessment?, completion: @escaping () -> Void) {
+    func assessmentResults(for assessment: AssessmentDomain?, completion: @escaping () -> Void) {
         guard let assessmentID = assessment?.id else { return }
         let studentId = User.shared.id
-        let module: Module = assessment?.mappedType == .quiz
+        let module: Module = assessment?.type == .quiz
             ? .quizzes
             : .assignments
         model.assessmentResults(assessmentID: assessmentID, studentId: studentId, module: module.rawValue) { [weak self] assessmentDetails, error in
             completion()
-            self?.assessmentResultsHandler?(assessmentID, assessmentDetails, .quiz)
+            self?.assessmentResultsHandler?(assessmentID, assessmentDetails, assessment?.type ?? .quiz)
         }
     }
 

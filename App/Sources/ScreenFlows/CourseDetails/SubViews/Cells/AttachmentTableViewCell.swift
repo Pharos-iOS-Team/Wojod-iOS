@@ -51,4 +51,11 @@ class AttachmentTableViewCell: UITableViewCell {
             avaliabliltyLabel.textColor = .red
         }
     }
+
+    func configure(with item: MaterialItemProtocol) {
+        subtitleLabel.text = item.displayTitle
+        attachmentImageView.image = item.displayIcon
+        setDuration(item.displayDuration)
+        setAvaliablity(item.displayDaysRemaining)
+    }
 }

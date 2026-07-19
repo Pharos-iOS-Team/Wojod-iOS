@@ -117,7 +117,7 @@ extension TimeCalculator {
             return L10n.Quizzes.endInMoreThan1Day(NumberFormatter.getFormattedString(fromInt: days) ?? "")
         } else if days == 1 {
             return L10n.Quizzes.endInOneDay
-        } else if hours > 10,days == 0 {
+        } else if hours > 10, days == 0 {
             return L10n.Quizzes.endInMoreThan10Hours(NumberFormatter.getFormattedString(fromInt: hours) ?? "")
         } else if hours <= 10, days == 0 {
             return L10n.Quizzes.endInMoreThan1HourAndLessThan11Hours(NumberFormatter.getFormattedString(fromInt: hours) ?? "")

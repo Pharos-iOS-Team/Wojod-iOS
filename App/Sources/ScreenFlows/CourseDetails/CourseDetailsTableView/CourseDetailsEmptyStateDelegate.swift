@@ -17,7 +17,7 @@ final class CourseDetailsEmptyStateDelegate: NSObject {
 extension CourseDetailsEmptyStateDelegate: DZNEmptyDataSetSource {
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         guard let viewModel else { return nil }
-        switch viewModel.activeScreen {
+        switch viewModel.state.activeScreen {
         case .details:
             return NSAttributedString(string: L10n.CourseDetails.CourseReview.emptyDetails)
         case .materials:
@@ -42,18 +42,15 @@ extension CourseDetailsEmptyStateDelegate: DZNEmptyDataSetDelegate {
     }
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
-        guard let viewModel else { return false }
-        if viewModel.isLoadingTab { return false }
-        switch viewModel.activeScreen {
+        guard let viewModel, !viewModel.state.isLoadingTab else { return false }
+
+        switch viewModel.state.activeScreen {
         case .details:
-            return viewModel.lessonsList.isEmpty
+            return viewModel.state.lessonsList.isEmpty
         case .materials:
-            return (viewModel.materials?.assignments?.isEmpty ?? true)
-            && (viewModel.materials?.documents?.isEmpty ?? true)
-            && (viewModel.materials?.quizzes?.isEmpty ?? true)
-            && (viewModel.materials?.videos?.isEmpty ?? true)
+            return viewModel.state.materialsDomain?.allMaterials.isEmpty ?? true
         case .reviews:
-            return viewModel.reviewsList.isEmpty
+            return viewModel.state.reviewsList.isEmpty
         }
     }
 }

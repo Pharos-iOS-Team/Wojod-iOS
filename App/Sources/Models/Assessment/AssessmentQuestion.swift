@@ -75,9 +75,10 @@ class AssessmentQuestion: Codable {
     }
 
     var localizedMarkText: String? {
-        guard let mark = mark,
-              let formatedPoints = NumberFormatter
-            .getDecimalFormattedString(fromDouble: mark) else { return nil }
+        guard
+            let mark = mark,
+            let formatedPoints = NumberFormatter.getDecimalFormattedString(fromDouble: mark)
+        else { return nil }
         let isArabic = Language.currentLanguage == .arabic
         switch mark {
         case 1:

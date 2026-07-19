@@ -84,15 +84,14 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
             completionHandler()
         } else if let courseID = userinfo["course_id"] as? String {
             Task {
-                let courseResponse = await CourseDetailsViewModel().loadCourse(courseID: courseID)
+                let courseResponse = try? await CourseDetailsRepository().loadCourse(courseID: courseID)
                 await MainActor.run {
                     guard let course = courseResponse?.course else {
                         completionHandler()
                         return
                     }
                     let viewModel = CourseDetailsViewModel().with {
-                        $0.course = course
-                        $0.courseState = course.parsedReservationState
+                        $0.state.course = course
                     }
                     let viewCtrl = CourseDetailsViewController.make(viewModel: viewModel, coordinator: CourseDetailsCoordinator())
                     let navigationCtrl = UINavigationController(rootViewController: viewCtrl)

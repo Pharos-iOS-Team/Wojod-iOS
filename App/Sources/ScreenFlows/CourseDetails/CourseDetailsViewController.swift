@@ -1,8 +1,8 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
-// swiftlint:disable all
 
 import AVFoundation
 import AVKit
+import Combine
 import DZNEmptyDataSet
 import HandySwift
 import JGProgressHUD
@@ -10,69 +10,60 @@ import UIKit
 import VdoFramework
 
 class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManagerHost {
-    @IBOutlet var tableView: UITableView!
+    // MARK: - Factory
+
+    static func make(viewModel: CourseDetailsViewModel, coordinator: CourseDetailsCoordinator) -> CourseDetailsViewController {
+        let courseDetailsViewCtrl = StoryboardScene.CourseDetails.initialScene.instantiate()
+        courseDetailsViewCtrl.viewModel = viewModel
+        courseDetailsViewCtrl.coordinator = coordinator
+        return courseDetailsViewCtrl
+    }
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var contentLoadingView: UIView?
+    @IBOutlet private var contentLoadingTopConstraint: NSLayoutConstraint?
     @IBOutlet private var actionButton: UIButton! {
-        didSet {
-            actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
-        }
+        didSet { actionButton.setTitle(L10n.CourseDetails.Main.contactUs) }
     }
     @IBOutlet private var bookByQRButton: UIButton! {
-        didSet {
-            bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR)
-        }
+        didSet { bookByQRButton.setTitle(L10n.CourseDetails.Main.bookByQR) }
     }
 
     // MARK: - Properties
 
-    let detailsRowHeight: CGFloat = 50
-    let reviewsRowHeight: CGFloat = 90
+    lazy var tableViewManager: CourseDetailsTableViewManager = CourseDetailsTableViewManager(viewModel: viewModel, host: self)
     let refreshControl = UIRefreshControl()
     var loadingHud: JGProgressHUD?
-    @IBOutlet var contentLoadingView: UIView?
-    @IBOutlet var contentLoadingTopConstraint: NSLayoutConstraint?
-    var isContentLoading = false
-    var loadedTabs: Set<ActiveScreen> = []
     var courseHeaderView: CourseDetailsInfoHeaderView?
-    private var headerTopConstraint: NSLayoutConstraint?
-    private var didSetInitialContentOffset = false
-    var blurredView: UIVisualEffectView?
-    var activeSubscreen: CourseDetailsActiveSubScreen = .details
-
-    lazy var alertHandler = AlertHandler(presentingViewCtrl: self)
-
-    // MARK: - MVVM Components
+    var headerTopConstraint: NSLayoutConstraint?
+    lazy var videoPlaybackService: VideoPlaybackService = VideoPlaybackService(alertHandler: alertHandler)
+    private lazy var alertHandler = AlertHandler(presentingViewCtrl: self)
+    private var blurredView: UIVisualEffectView?
+    private var cancellables: Set<AnyCancellable> = []
 
     var viewModel: CourseDetailsViewModel!
-    var coordinator: CourseDetailsNavigationCoordinating!
-    lazy var videoPlaybackService: VideoPlaybackService = VideoPlaybackService(alertHandler: alertHandler)
-    lazy var tableViewManager: CourseDetailsTableViewManager = CourseDetailsTableViewManager(viewModel: viewModel, host: self)
-
-    // MARK: - Factory
-
-    static func make(viewModel: CourseDetailsViewModel, coordinator: CourseDetailsNavigationCoordinating) -> CourseDetailsViewController {
-        let viewController = StoryboardScene.CourseDetails.initialScene.instantiate()
-        viewController.viewModel = viewModel
-        viewController.coordinator = coordinator
-        return viewController
-    }
+    var coordinator: CourseDetailsCoordinator!
 
     // MARK: - Lifecycle
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
-        setupDependencies()
+        setupVideoPlayback()
+        setupAudioSession()
         setupTableView()
         setupRefreshControl()
         bindViewModel()
+        coordinator.bind(to: viewModel, presentingFrom: self)
         observeInternetConnection()
         applyScreenshotPreventingView()
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerMuteState), name: UIScreen.capturedDidChangeNotification, object: nil)
-        setHeader()
-        configureActionButtonAccordingToState()
-        configureQRButtonVisibility()
-        loadCourseDetails()
+        loadInitialData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -80,6 +71,28 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         tableView.autoResizeTableHeaderView()
         contentLoadingTopConstraint?.constant = tableView.tableHeaderView?.frame.height ?? 0
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.viewWillAppear()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard isMovingFromParent || isBeingDismissed else { return }
+        removeScreenshotPreventingView()
+    }
+
+    // MARK: - IBActions
+
+    @IBAction private func didTapOnActionButton(_ sender: UIButton) {
+        viewModel.handleActionButtonTapped()
+    }
+
+    @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
+        viewModel.handleQRBookingTapped()
+    }
+
+    // MARK: - Setup
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
@@ -87,100 +100,11 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         tableView.contentInset.top = topInset
         tableView.verticalScrollIndicatorInsets.top = topInset
         headerTopConstraint?.constant = -topInset
-        if !didSetInitialContentOffset {
-            didSetInitialContentOffset = true
+        if !viewModel.state.didSetInitialContentOffset {
+            viewModel.state.didSetInitialContentOffset = true
             tableView.contentOffset.y = -topInset
         }
         tableView.autoResizeTableHeaderView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard viewModel.course != nil else { return }
-        switch viewModel.activeScreen {
-        case .materials:
-            let isFirstLoad = !loadedTabs.contains(.materials)
-            if isFirstLoad {
-                showContentSpinner()
-            } else {
-                reloadTablePreservingOffset()
-            }
-            Task { [weak self] in
-                guard let self else { return }
-                await self.viewModel.handleRefreshingAccordingToOpenedTab()
-                await MainActor.run {
-                    self.loadedTabs.insert(.materials)
-                    if isFirstLoad { self.hideContentSpinner() }
-                    self.reloadTablePreservingOffset()
-                }
-            }
-        case .details:
-            loadCourseLessons(preservingOffset: true)
-        case .reviews:
-            break
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard isMovingFromParent || isBeingDismissed else { return }
-        removeScreenshotPreventingView()
-        viewModel.expandedSections.removeAll()
-        tableView.reloadData()
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    // MARK: - IBActions
-
-    @IBAction private func didTapOnActionButton(_ sender: UIButton) {
-        if viewModel.isGuestModeEnabled() {
-            showLoadingIndicator()
-            coordinator.logout()
-        } else {
-            switch viewModel.courseState {
-            case .normal:
-                guard viewModel.isContactInfoAvailable,
-                      let info = viewModel.course?.contactUsInfo else { return }
-                coordinator.showContactUs(info: info, from: self)
-            case .booked:
-                blurView()
-                coordinator.showReviewCourse(
-                    from: self,
-                    sendReview: { [weak self] review in
-                        await self?.viewModel.sendReview(courseID: self?.viewModel.course?.id ?? 0, courseReview: review) ?? false
-                    },
-                    onComplete: { [weak self] success in
-                        if success { self?.dismissBlurView() }
-                    },
-                    onSkip: { [weak self] in
-                        self?.dismissBlurView()
-                    }
-                )
-            default:
-                return
-            }
-        }
-    }
-
-    @IBAction private func didTapOnQRCodeBooking(_ sender: UIButton) {
-        if viewModel.isGuestModeEnabled() {
-            showLoadingIndicator()
-            coordinator.logout()
-        } else {
-            showQRCodeActionSheet()
-        }
-    }
-
-    // MARK: - Setup
-
-    private func setupDependencies() {
-        videoPlaybackService.onUpdateVideo = { [weak self] videoId, updateObject in
-            Task { await self?.viewModel.updateVideo(videoId: videoId, updateObject: updateObject) }
-        }
-        VdoCipher.setPlaybackDelegate(delegate: videoPlaybackService)
     }
 
     private func setupNavigationController() {
@@ -193,9 +117,9 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         navigationItem.leftBarButtonItem = backButton
     }
 
-    @objc private func didTapBack() {
-        removeScreenshotPreventingView()
-        dismiss(animated: true)
+    @objc
+    private func didTapBack() {
+        viewModel.dismissTapped()
     }
 
     private func setupTableView() {
@@ -208,85 +132,115 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         tableView.refreshControl = refreshControl
     }
 
-    // MARK: - ViewModel Bindings
+    private func setupVideoPlayback() {
+        videoPlaybackService.onUpdateVideo = { [weak self] videoId, updateObject in
+            Task { await self?.viewModel.updateVideo(videoId: videoId, updateObject: updateObject) }
+        }
+        VdoCipher.setPlaybackDelegate(delegate: videoPlaybackService)
+    }
+
+    private func setupAudioSession() {
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updatePlayerMuteState),
+            name: UIScreen.capturedDidChangeNotification,
+            object: nil
+        )
+    }
+
+    private func loadInitialData() {
+        Task { [weak self] in
+            guard let self else { return }
+            await viewModel.loadCourseDetails()
+            viewModel.loadActiveTab()
+        }
+    }
+
+    // MARK: - Combine Bindings
 
     private func bindViewModel() {
-        viewModel.onError = { [weak self] message in
-            guard let self else { return }
-            alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: message)
-        }
-        viewModel.onShowQuizAlert = { [weak self] assessment in
-            self?.showStartQuizAlert(assessment)
-        }
-        viewModel.onOpenAssessment = { [weak self] module, assessmentID, details in
-            guard let self else { return }
-            self.hideLoadingIndicator()
-            self.coordinator.showAssessmentDetails(status: .open, module: module, assessmentID: assessmentID, assessmentDetails: details, onDidFinishAssessment: { [weak self] _ in
-                self?.tableView.reloadData()
-            }, from: self)
-        }
-        viewModel.onShowAssessmentResults = { [weak self] module, assessmentID, details in
-            guard let self else { return }
-            self.coordinator.showAssessmentDetails(status: .closed, module: module, assessmentID: assessmentID, assessmentDetails: details, onDidFinishAssessment: { [weak self] _ in
-                self?.tableView.reloadData()
-            }, from: self)
-        }
+        viewModel.state.$error
+            .debounce(for: 0.1, scheduler: DispatchQueue.main)
+            .compactMap { $0 }
+            .sink { [weak self] message in
+                self?.alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: message)
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading { self?.showLoadingIndicator() } else {
+                    self?.hideLoadingIndicator()
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.$isContentLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isContentLoading in
+                if isContentLoading { self?.showContentSpinner() } else { self?.hideContentSpinner() }
+            }
+            .store(in: &cancellables)
+
+        viewModel.state.$course
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                setHeader()
+                configureActionButtonAccordingToState()
+                configureQRButtonVisibility()
+                reloadTablePreservingOffset()
+                tableView.autoResizeTableHeaderView()
+            }
+            .store(in: &cancellables)
+
+        Publishers.MergeMany(
+            viewModel.state.$lessonsList.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$reviewsList.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$materialsDomain.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$attachmentsOfLessons.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$expandedSections.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$doesLessonContainAttachments.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$activeScreen.map { _ in () }.eraseToAnyPublisher(),
+            viewModel.state.$isLoadingTab.map { _ in () }.eraseToAnyPublisher()
+        )
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] _ in self?.reloadTablePreservingOffset() }
+        .store(in: &cancellables)
+
+        viewModel.state.$assessmentLoadingIndexPath
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] indexPath in
+                guard let self else { return }
+                if let indexPath {
+                    let cell = tableView.cellForRow(at: indexPath) as? MaterialTableViewCell
+                    cell?.startLoadingIndicator()
+                    tableView.isUserInteractionEnabled = false
+                } else {
+                    tableView.isUserInteractionEnabled = true
+                    tableView.visibleCells
+                        .compactMap { $0 as? MaterialTableViewCell }
+                        .forEach { $0.stopLoadingIndicator() }
+                }
+            }
+            .store(in: &cancellables)
     }
 
-    // MARK: - Private Helpers
-
-    private func loadCourseDetails() {
-        Task { [weak self] in
-            guard let self else { return }
-            await self.viewModel.loadCourseDetails()
-            await MainActor.run {
-                self.setHeader()
-                self.configureActionButtonAccordingToState()
-                self.configureQRButtonVisibility()
-                self.tableView.reloadData()
-                self.tableView.autoResizeTableHeaderView()
-            }
-            await self.viewModel.handleRefreshingAccordingToOpenedTab()
-            await MainActor.run {
-                self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
-                self.hideLoadingIndicator()
-            }
-        }
-    }
-
-    private func loadCourseLessons(preservingOffset: Bool = false) {
-        showContentSpinner()
-        Task { [weak self] in
-            guard let self else { return }
-            await self.viewModel.loadCourseLessonsWithDetails()
-            await MainActor.run {
-                self.hideContentSpinner()
-                preservingOffset ? self.reloadTablePreservingOffset() : self.tableView.reloadData()
-            }
-        }
-    }
-
-    private func handleRefreshingAccordingToOpenedTab() {
-        Task { [weak self] in
-            guard let self else { return }
-            await self.viewModel.handleRefreshingAccordingToOpenedTab()
-            await MainActor.run {
-                self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
-                self.hideLoadingIndicator()
-            }
-        }
-    }
+    // MARK: - Header
 
     private func setHeader() {
         if courseHeaderView == nil {
-            let detailsView = CourseDetailsInfoHeaderView()
-            detailsView.prepareImmersiveStyle()
+            let detailsView = CourseDetailsInfoHeaderView().with {
+                $0.prepareImmersiveStyle()
+                $0.delegate = self
+            }
             courseHeaderView = detailsView
             tableView.tableHeaderView = makeHeaderWrapper(for: detailsView)
         }
-        courseHeaderView?.configure(model: makeHeaderModel())
+        courseHeaderView?.configure(model: viewModel.courseHeaderModel())
     }
 
     private func makeHeaderWrapper(for detailsView: CourseDetailsInfoHeaderView) -> UIView {
@@ -294,10 +248,7 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         wrapper.clipsToBounds = false
         detailsView.translatesAutoresizingMaskIntoConstraints = false
         wrapper.addSubview(detailsView)
-        let topConstraint = detailsView.topAnchor.constraint(
-            equalTo: wrapper.topAnchor,
-            constant: -view.safeAreaInsets.top
-        )
+        let topConstraint = detailsView.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: -view.safeAreaInsets.top)
         headerTopConstraint = topConstraint
         NSLayoutConstraint.activate([
             topConstraint,
@@ -309,56 +260,17 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         return wrapper
     }
 
-    private func makeHeaderModel() -> CourseDetailsInfoModel {
-        CourseDetailsInfoModel(
-            courseTitle: viewModel.course?.name,
-            teacherName: viewModel.teacherName,
-            batchName: viewModel.course?.batchName,
-            image: viewModel.course?.media?.fileUrl,
-            video: viewModel.course?.video,
-            description: viewModel.course?.summary,
-            price: viewModel.coursePrice,
-            numberOfReviews: String(viewModel.course?.reviewsCount ?? .zero),
-            rating: viewModel.course?.rating,
-            shouldHideMaterials: viewModel.courseState != .booked,
-            buttonSelected: viewModel.activeScreen,
-            state: viewModel.courseState,
-            lessonsUnreadCount: viewModel.course?.lessonsUnreadCount,
-            materialsUnreadCount: viewModel.course?.materialsUnreadCount,
-            delegate: self
-        )
-    }
-
-    func loadActiveTab() {
-        let isFirstLoad = !loadedTabs.contains(viewModel.activeScreen)
-        if isFirstLoad {
-            viewModel.clearTabData()
-            viewModel.isLoadingTab = true
-            tableView.reloadData()
-            showContentSpinner()
-        } else {
-            tableView.reloadData()
-        }
-        Task { [weak self] in
-            guard let self else { return }
-            await self.viewModel.handleRefreshingAccordingToOpenedTab()
-            await MainActor.run {
-                self.loadedTabs.insert(self.viewModel.activeScreen)
-                if isFirstLoad {
-                    self.viewModel.isLoadingTab = false
-                    self.hideContentSpinner()
-                }
-                self.tableView.reloadData()
-            }
-        }
-    }
+    // MARK: - Action Button
 
     private func configureActionButtonAccordingToState() {
         actionButton.isHidden = !viewModel.isContactInfoAvailable
-        switch viewModel.courseState {
-        case .normal:  actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
-        case .booked:  actionButton.setTitle(L10n.CourseDetails.Main.reviewCourse)
-        default:       return
+        switch viewModel.state.course?.parsedState ?? .normal {
+        case .normal:
+            actionButton.setTitle(L10n.CourseDetails.Main.contactUs)
+        case .booked:
+            actionButton.setTitle(L10n.CourseDetails.Main.reviewCourse)
+        default:
+            return
         }
     }
 
@@ -366,26 +278,24 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         bookByQRButton.isHidden = !viewModel.shouldShowQRButton
     }
 
-    func dismissBlurView() {
-        guard let blurredView else { return }
-        UIView.animate(withDuration: 0.3, animations: {
-            blurredView.effect = nil
-        }, completion: { _ in
-            blurredView.removeFromSuperview()
-            self.blurredView = nil
-        })
-    }
+    // MARK: - UI Helpers
 
-    private func blurView() {
+    func blurView() {
         guard blurredView == nil else { return }
         let blurEffectView = UIVisualEffectView(effect: nil)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurredView = blurEffectView
         view.addSubview(blurEffectView)
-        UIView.animate(withDuration: 0.3) {
-            blurEffectView.effect = UIBlurEffect(style: .light)
-        }
+        UIView.animate(withDuration: 0.3) { blurEffectView.effect = UIBlurEffect(style: .light) }
+    }
+
+    func dismissBlurView() {
+        guard let blurredView else { return }
+        UIView.animate(withDuration: 0.3, animations: { blurredView.effect = nil }, completion: { _ in
+            blurredView.removeFromSuperview()
+            self.blurredView = nil
+        })
     }
 
     func showLoadingIndicator() {
@@ -398,92 +308,92 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
         loadingHud?.dismiss()
     }
 
-    func showContentSpinner() {
+    private func showContentSpinner() {
         guard let contentLoadingView else { return }
-        isContentLoading = true
-        tableView.reloadData()
         contentLoadingView.alpha = 0
         contentLoadingView.isHidden = false
-        UIView.animate(withDuration: 0.25) {
-            contentLoadingView.alpha = 1
-        }
+        UIView.animate(withDuration: 0.25) { contentLoadingView.alpha = 1 }
     }
 
-    func hideContentSpinner() {
+    private func hideContentSpinner() {
         guard let contentLoadingView else { return }
-        isContentLoading = false
-        UIView.animate(withDuration: 0.25, animations: {
-            contentLoadingView.alpha = 0
-        }, completion: { _ in
+        UIView.animate(withDuration: 0.25, animations: { contentLoadingView.alpha = 0 }, completion: { _ in
             contentLoadingView.isHidden = true
         })
     }
 
-    private func showQRCodeActionSheet() {
+    func showQRCodeActionSheet() {
         alertHandler.showQRCodeActionSheet(
             sourceView: bookByQRButton,
-            onScan: { [weak self] in
-                guard let self else { return }
-                self.coordinator.showQRCodeScanner(completion: { [weak self] code in self?.bookCourse(qrCode: code) }, from: self)
-            },
-            onManual: { [weak self] in
-                guard let self else { return }
-                self.blurView()
-                self.coordinator.showQRCodeManually(from: self, completion: { [weak self] code in
-                    self?.dismissBlurView()
-                    if let code { self?.bookCourse(qrCode: code) }
-                }, onDismiss: { [weak self] in self?.dismissBlurView() })
-            }
+            onScan: { [weak self] in self?.viewModel.state.routeSubject = .showQRCodeScanner },
+            onManual: { [weak self] in self?.viewModel.state.routeSubject = .showQRCodeManually }
         )
     }
 
-    private func bookCourse(qrCode: String? = nil) {
-        Task { [weak self] in
-            guard let self else { return }
-            do {
-                let bookingResponse = try await viewModel.bookCourse(qrCode: qrCode)
-                let shouldShowReceipt = self.viewModel.handleBookingSuccess(bookingResponse: bookingResponse, isQR: qrCode != nil)
-                await self.viewModel.loadCourseDetails()
-                await MainActor.run {
-                    if shouldShowReceipt {
-                        self.blurView()
-                        self.coordinator.showReceipt(bookingResponse, coursePrice: self.viewModel.course?.price ?? "", from: self)
-                    }
-                }
-            } catch let error as WJError {
-                await MainActor.run {
-                    self.alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: error.message)
-                }
-            } catch {
-                await MainActor.run {
-                    self.alertHandler.showInformationAlert(title: L10n.Shared.Alerts.error, message: error.localizedDescription)
-                }
-            }
-        }
-    }
-
-    private func showStartQuizAlert(_ assessment: Assessment) {
-        alertHandler.showConfirmAlert(
-            title: L10n.Quizzes.alertTitle,
-            message: L10n.Quizzes.alertSubTitle,
-            confirmButtonTitle: L10n.Quizzes.start
-        ) { [weak self] _ in
-            self?.showLoadingIndicator()
-            self?.viewModel.startAssessmentFromAlert(with: assessment)
-        }
-    }
-
-    @objc private func refresh(_ sender: AnyObject) {
-        loadCourseDetails()
-    }
-
-    @objc private func updatePlayerMuteState() {
-        videoPlaybackService.updatePlayerMuteState()
-    }
-
-    private func reloadTablePreservingOffset() {
+    func reloadTablePreservingOffset() {
         let offset = tableView.contentOffset
         tableView.reloadData()
         tableView.setContentOffset(offset, animated: false)
+    }
+
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        Task { [weak self] in
+            guard let self else { return }
+            await viewModel.loadCourseDetails()
+            viewModel.loadActiveTab()
+        }
+    }
+
+    @objc
+    private func updatePlayerMuteState() {
+        videoPlaybackService.updatePlayerMuteState()
+    }
+}
+
+// MARK: - CourseDetailsInfoHeaderDelegate
+extension CourseDetailsViewController: CourseDetailsInfoHeaderDelegate {
+    func showDetails() {
+        viewModel.handleTabSelected(.details)
+    }
+
+    func showMaterials() {
+        viewModel.handleTabSelected(.materials)
+    }
+
+    func showReviews() {
+        viewModel.handleTabSelected(.reviews)
+    }
+
+    func goToChat() {
+        viewModel.chatTapped()
+    }
+
+    func dismissView() {
+        viewModel.dismissTapped()
+    }
+
+    func playCourseVideo(playerController: AVPlayerViewController) {
+        addChild(playerController)
+    }
+}
+
+// MARK: - AssetPlaybackDelegate + UIViewControllerTransitioningDelegate
+extension CourseDetailsViewController: AssetPlaybackDelegate, UIViewControllerTransitioningDelegate {
+    func streamPlaybackManager(playerReadyToPlay player: AVPlayer) {
+        videoPlaybackService.streamPlaybackManager(playerReadyToPlay: player)
+    }
+
+    func streamPlaybackManager(playerCurrentItemDidChange player: AVPlayer) {
+        videoPlaybackService.streamPlaybackManager(playerCurrentItemDidChange: player)
+    }
+
+    func streamLoadError(error: VdoFramework.VdoError) {
+        hideLoadingIndicator()
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        videoPlaybackService.invalidateTimer()
+        return nil
     }
 }

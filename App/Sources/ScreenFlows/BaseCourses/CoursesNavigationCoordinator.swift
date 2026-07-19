@@ -15,10 +15,9 @@ protocol CoursesNavigationCoordinating: AnyObject {
 final class CoursesNavigationCoordinator: CoursesNavigationCoordinating {
     func showCourseDetails(course: Course?, teacherName: String?, teacherID: Int?, from viewController: UIViewController) {
         let viewModel = CourseDetailsViewModel().with {
-            $0.course = course
-            $0.teacherName = teacherName
-            $0.teacherID = teacherID
-            $0.courseState = course?.parsedReservationState ?? .normal
+            $0.state.course = course
+            $0.state.teacherName = teacherName
+            $0.state.teacherID = teacherID
         }
 
         let courseDetailsViewCtrl = CourseDetailsViewController.make(viewModel: viewModel, coordinator: CourseDetailsCoordinator())

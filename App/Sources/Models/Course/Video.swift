@@ -14,12 +14,33 @@ struct Video: Codable {
     var duration: Int?
     var link: String?
     var viewsRemaining: Int?
-    var daysRemaining: Int? 
+    var daysRemaining: Int?
     var lockMessage: String?
     var locked: Bool
     var bunnyLibraryId: String?
     var bunnyApiKey: String?
     var bunnyGuid: String?
+}
 
-    var isBunnyVideo: Bool { return bunnyGuid?.isValid ?? false }
+// MARK: - DomainModel
+
+extension Video {
+    var domainModel: VideoDomain {
+        VideoDomain(
+            id: id,
+            title: title,
+            publishedAt: publishedAt,
+            duration: duration,
+            daysRemaining: daysRemaining,
+            link: link,
+            vdocipherId: vdocipherId,
+            locked: locked,
+            lockMessage: lockMessage,
+            viewsRemaining: viewsRemaining,
+            isBunnyVideo: bunnyGuid?.isValid ?? false,
+            bunnyGuid: bunnyGuid,
+            bunnyLibraryId: bunnyLibraryId,
+            bunnyApiKey: bunnyApiKey
+        )
+    }
 }

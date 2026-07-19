@@ -26,7 +26,7 @@ final class VideoPlaybackService: NSObject {
     // MARK: - Playback
 
     func presentVdoCipherVideo(
-        _ video: Video,
+        _ video: VideoDomain,
         transitioningDelegate: UIViewControllerTransitioningDelegate,
         from viewController: UIViewController,
         fetchAction: @escaping (_ completion: @escaping (EncryptedVideoResponse?) -> Void) -> Void

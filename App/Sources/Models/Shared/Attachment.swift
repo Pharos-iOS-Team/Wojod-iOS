@@ -11,6 +11,21 @@ struct Attachment: Codable, ContentTypeable {
     var contentType: String?
     var type: String?
     var publishedAt: Date?
-
     var isAudio: Bool { contentType?.contains("audio") ?? false }
+}
+
+// MARK: - DomainModel
+
+extension Attachment {
+    var domainModel: AttachmentDomain {
+        AttachmentDomain(
+            id: id,
+            title: title,
+            fileName: fileName,
+            link: link,
+            fileUrl: fileUrl,
+            publishedAt: publishedAt,
+            mappedContentType: mappedContentType
+        )
+    }
 }

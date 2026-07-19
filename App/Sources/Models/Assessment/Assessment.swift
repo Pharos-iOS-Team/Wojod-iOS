@@ -15,12 +15,18 @@ struct Assessment: Codable {
     var type: String?
     var publishedAt: Date
     var numberOfQuesions: Int?
+}
 
-    var mappedType: AssessmentType {
-        AssessmentType(rawValue: type ?? "") ?? .assignment
-    }
+// MARK: - DomainModel
 
-    var mappedStatus: AssessmentStatus {
-        AssessmentStatus(rawValue: status ?? "") ?? .closed
+extension Assessment {
+    var domainModel: AssessmentDomain {
+        AssessmentDomain(
+            id: id,
+            title: title,
+            publishedAt: publishedAt,
+            type: AssessmentType(rawValue: type ?? "") ?? .assignment,
+            status: AssessmentStatus(rawValue: status ?? "") ?? .closed
+        )
     }
 }

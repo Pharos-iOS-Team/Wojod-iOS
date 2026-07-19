@@ -48,13 +48,27 @@ class CourseDetailsHeaderView: UITableViewHeaderFooterView {
 
     internal func animateExpandCollapse(isExpanded: Bool) {
         let image = isExpanded ? Images.collapse.image : Images.expand.image
-        UIView.transition(with: expandCollapseButton, duration: 0.3, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: expandCollapseButton, duration: 0.3, options: .transitionCrossDissolve) {
             self.expandCollapseButton.setImage(image, for: .normal)
-        })
+        }
     }
 
     internal func configureVisibilityOfExpandButton(state: CourseState?, doesContainAttachments: Bool) {
         expandCollapseButton.isHidden = state != .booked || !doesContainAttachments
+    }
+
+    func configure(_ model: LessonHeaderModel, onCollapseExpand: @escaping (Int) -> Void) {
+        self.tag = model.section
+        self.onCollapseExpand = onCollapseExpand
+        lessonTitleLabel.text = model.lessonName
+        numberLabel.text = "\(model.lessonNumber)"
+        expandCollapseButton.tag = model.section
+        expandCollapseButton.isHidden = model.reservationState != .booked || !model.doesContainAttachments
+        if model.isLocked {
+            expandCollapseButton.setImage(Images.lock.image)
+        } else {
+            expandCollapseButton.setImage(model.isExpanded ? Images.collapse.image : Images.expand.image)
+        }
     }
 
     @objc

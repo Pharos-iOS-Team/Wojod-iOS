@@ -20,3 +20,15 @@ struct Materials: Codable {
         }
     }
 }
+
+// MARK: - DomainModel
+extension Materials {
+    var domainModel: MaterialDomain {
+        MaterialDomain(
+            quizzes: quizzes?.sorted { $0.publishedAt > $1.publishedAt }.map { $0.domainModel } ?? [],
+            assignments: assignments?.sorted { $0.publishedAt > $1.publishedAt }.map { $0.domainModel } ?? [],
+            videos: videos?.sorted { ($0.publishedAt ?? Date()) > ($1.publishedAt ?? Date()) }.map { $0.domainModel } ?? [],
+            documents: documents?.sorted { ($0.publishedAt ?? Date()) > ($1.publishedAt ?? Date()) }.map { $0.domainModel } ?? []
+        )
+    }
+}
