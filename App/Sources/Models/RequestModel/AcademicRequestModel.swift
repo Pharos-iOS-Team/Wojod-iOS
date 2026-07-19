@@ -2,6 +2,12 @@
 
 import Foundation
 
+enum AcademicLevel: Int {
+    case schoolStudent
+    case universityStudent
+    case graduate
+}
+
 struct AcademicRequestModel: Encodable {
     let educationLevel: Int
     let educationType: Int?

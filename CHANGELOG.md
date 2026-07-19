@@ -26,6 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
   Task: [CPI-340](https://jira.pharos-solutions.de/browse/CPI-340) | PR: [#32](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/32) | Author: [Sara Rady](https://github.com/sara-rady)
 - Changed Course Details module.  
   Task: [CPI-331](https://jira.pharos-solutions.de/browse/CPI-331) | PR: [#36](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/36) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed Registration module.  
+  Task: [CPI-348](https://jira.pharos-solutions.de/browse/CPI-348) | PR: [#38](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/38) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed

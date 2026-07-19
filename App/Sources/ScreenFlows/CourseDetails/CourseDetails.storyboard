@@ -88,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="clv-Spinner">
-                                        <rect key="frame" x="188.5" y="120" width="37" height="37"/>
+                                        <rect key="frame" x="197" y="120" width="20" height="20"/>
                                         <color key="color" name="sendButtonColor"/>
                                     </activityIndicatorView>
                                 </subviews>

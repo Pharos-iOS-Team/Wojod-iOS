@@ -142,15 +142,34 @@
 "signup.basicInfo.whatsappNumberHint" = "رقم الهاتف يجب ان يكون مربوط بخدمة الواتس اب";
 "signup.basicInfo.name" = "الاسم*";
 "signup.basicInfo.mobileNumber" = "رقم الهاتف*";
+"signup.basicInfo.mobileNumber2" = "رقم هاتف إضافي";
 "signup.basicInfo.homeNumber" = "الرقم الارضي";
 "signup.basicInfo.email" = "البريد الالكتروني*";
 "signup.basicInfo.password" = "كلمه السر*";
 "signup.basicInfo.confirmPassword" = "تأكيد كلمة السر*";
 "signup.basicInfo.numberAlreadyExistsError" = "الهاتف المحمول الذي أدخلته له حساب بالفعل.";
+"signup.error.nameEmpty" = "الرجاء إدخال الاسم";
+"signup.error.phoneInvalid" = "الرجاء إدخال رقم هاتف صحيح";
+"signup.error.emailInvalid" = "الرجاء إدخال بريد إلكتروني صحيح";
+"signup.error.passwordTooShort" = "كلمة السر يجب أن تكون 6 أحرف على الأقل";
+"signup.error.passwordMismatch" = "كلمتا السر غير متطابقتين";
+"signup.error.countryMissing" = "الرجاء اختيار البلد";
+"signup.error.cityMissing" = "الرجاء اختيار المحافظة";
+"signup.error.regionEmpty" = "الرجاء إدخال المنطقة";
+"signup.error.parentNumberInvalid" = "الرجاء إدخال رقم ولي أمر صحيح";
+"signup.error.parentNumber2Invalid" = "الرجاء إدخال رقم ولي أمر ثاني صحيح";
+"signup.error.parentNumber2SameAsParent1" = "يجب أن يختلف رقم ولي الأمر الثاني عن رقم ولي الأمر الأول";
+"signup.error.schoolNameEmpty" = "الرجاء إدخال اسم المدرسة";
+"signup.error.academicTypeMissing" = "الرجاء اختيار النوع الأكاديمي";
+"signup.error.divisionMissing" = "الرجاء اختيار القسم الأكاديمي";
+"signup.error.universityMissing" = "الرجاء اختيار الجامعة";
+"signup.error.universityYearMissing" = "الرجاء اختيار السنة الأكاديمية";
+"signup.error.phone2Invalid" = "الرجاء إدخال رقم هاتف بديل صحيح";
+"signup.error.phone2SameAsPhone1" = "يجب أن يختلف الرقم البديل عن رقمك الأساسي";
 
 "signup.locationInfo.country" = "البلد*";
 "signup.locationInfo.city" = "المحافظة*";
-"signup.locationInfo.district" = "المنطقة";
+"signup.locationInfo.district" = "المنطقة*";
 "signup.locationInfo.address" = "العنوان";
 
 "signup.academicInfo.school" = "مدرسة";
@@ -173,6 +192,7 @@
 
 "signup.addAvatar.submit" = "إرسال";
 "signup.addAvatar.skip" = "تخطي";
+"signup.addAvatar.skipSettingAvatar" = "تخطي تعيين الصورة الرمزية";
 
 // MARK: - Course Details
 

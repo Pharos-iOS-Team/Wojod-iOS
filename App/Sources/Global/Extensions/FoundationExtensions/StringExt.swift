@@ -28,17 +28,6 @@ extension String {
         return NSLinguisticTagger.dominantLanguage(for: self) == "ar" ? .right : .left
     }
 
-    var isValid: Bool {
-        return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
-
-    var isValidURL: Bool {
-        if let url = NSURL(string: self) {
-            return UIApplication.shared.canOpenURL(url as URL)
-        }
-        return false
-    }
-
     var urlPathExtension: FileExtension {
         let fileExtension = NSURL(fileURLWithPath: self).pathExtension ?? ""
         guard let type = UTType(filenameExtension: fileExtension) else { return .other }
@@ -99,5 +88,32 @@ extension String {
             return nsString.substring(with: range)
         }
         return nil
+    }
+
+    // MARK: - Validation
+
+    var isValid: Bool {
+        return !isEmpty && !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var isValidURL: Bool {
+        if let url = NSURL(string: self) {
+            return UIApplication.shared.canOpenURL(url as URL)
+        }
+        return false
+    }
+
+    var isValidPhoneNumber: Bool {
+        return isValid && count >= 11
+    }
+
+    var isValidEmail: Bool {
+        let emailFormat = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        return predicate.evaluate(with: self)
+    }
+
+    func isValidPassword(minLength: Int = 6) -> Bool {
+        return count >= minLength
     }
 }

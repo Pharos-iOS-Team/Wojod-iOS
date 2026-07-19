@@ -143,15 +143,34 @@ No worries!";
 "signup.basicInfo.whatsappNumberHint" = "Mobile number must be linked to whatsapp.";
 "signup.basicInfo.name" = "Name*";
 "signup.basicInfo.mobileNumber" = "Mobile number*";
+"signup.basicInfo.mobileNumber2" = "Another mobile number";
 "signup.basicInfo.homeNumber" = "Home number";
 "signup.basicInfo.email" = "Email*";
 "signup.basicInfo.password" = "Password*";
 "signup.basicInfo.confirmPassword" = "Confirm password*";
 "signup.basicInfo.numberAlreadyExistsError" = "The mobile and/or email you've entered is already registered with another account";
+"signup.error.nameEmpty" = "Please enter your name";
+"signup.error.phoneInvalid" = "Please enter a valid mobile number";
+"signup.error.emailInvalid" = "Please enter a valid email";
+"signup.error.passwordTooShort" = "Password must be at least 6 characters";
+"signup.error.passwordMismatch" = "Passwords do not match";
+"signup.error.countryMissing" = "Please select a country";
+"signup.error.cityMissing" = "Please select a city";
+"signup.error.regionEmpty" = "Please enter your district";
+"signup.error.parentNumberInvalid" = "Please enter a valid parent number";
+"signup.error.parentNumber2Invalid" = "Please enter a valid second parent number";
+"signup.error.parentNumber2SameAsParent1" = "Second parent number must differ from the first parent number";
+"signup.error.schoolNameEmpty" = "Please enter the school name";
+"signup.error.academicTypeMissing" = "Please select an academic type";
+"signup.error.divisionMissing" = "Please select an academic division";
+"signup.error.universityMissing" = "Please select a university";
+"signup.error.universityYearMissing" = "Please select an academic year";
+"signup.error.phone2Invalid" = "Please enter a valid alternate mobile number";
+"signup.error.phone2SameAsPhone1" = "Alternate number must differ from your primary number";
 
 "signup.locationInfo.country" = "Country*";
 "signup.locationInfo.city" = "City*";
-"signup.locationInfo.district" = "District";
+"signup.locationInfo.district" = "District*";
 "signup.locationInfo.address" = "Address";
 
 "signup.academicInfo.school" = "SCHOOL";
@@ -175,6 +194,7 @@ No worries!";
 
 "signup.addAvatar.submit" = "Submit";
 "signup.addAvatar.skip" = "Skip";
+"signup.addAvatar.skipSettingAvatar" = "Skip setting avatar";
 
 // MARK: - Course Details
 

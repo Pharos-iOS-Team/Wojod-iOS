@@ -334,6 +334,10 @@
 		D55580EE2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580ED2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift */; };
 		D55580F02FFA8D6700A56073 /* SetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580EF2FFA8D6700A56073 /* SetPasswordRequest.swift */; };
 		D55580F22FFA8D6F00A56073 /* VerifyPhoneResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */; };
+		D555852B2FFBE49800A56073 /* RegistrationFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55585282FFBE49800A56073 /* RegistrationFormState.swift */; };
+		D555852C2FFBE49800A56073 /* RegistrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55585292FFBE49800A56073 /* RegistrationStore.swift */; };
+		D555852F2FFBE4A500A56073 /* RegistrationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D555852D2FFBE4A500A56073 /* RegistrationValidator.swift */; };
+		D555859B2FFD237F00A56073 /* StepIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55585992FFD237F00A56073 /* StepIndicatorView.swift */; };
 		D55B80522FD3576300A21545 /* MyCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B804F2FD3576300A21545 /* MyCoursesViewController.swift */; };
 		D55B80532FD3576300A21545 /* MyCoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B80502FD3576300A21545 /* MyCoursesViewModel.swift */; };
 		D55B812D2FD3679A00A21545 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55B812C2FD3679A00A21545 /* HomeViewModel.swift */; };
@@ -343,8 +347,27 @@
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
 		D5881E423008DDD100316A28 /* DocumentViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881E413008DDD100316A28 /* DocumentViewerViewController.swift */; };
+		D5881F7F300B96B500316A28 /* NoCutPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F7D300B96B500316A28 /* NoCutPasteTextField.swift */; };
+		D5881F81300B96F900316A28 /* AcademicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F80300B96F900316A28 /* AcademicTrack.swift */; };
+		D5881F8C300BAD1900316A28 /* FormErrorDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F82300BAD1900316A28 /* FormErrorDisplay.swift */; };
+		D5881F8D300BAD1900316A28 /* RegistrationFieldConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F83300BAD1900316A28 /* RegistrationFieldConfigurer.swift */; };
+		D5881F8E300BAD1900316A28 /* TextFieldLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F84300BAD1900316A28 /* TextFieldLoadingIndicator.swift */; };
+		D5881F92300BAD2500316A28 /* AcademicInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F8F300BAD2500316A28 /* AcademicInfoViewModel.swift */; };
+		D5881F93300BAD2500316A28 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F90300BAD2500316A28 /* PersonalInfoViewModel.swift */; };
+		D5881F99300BB0EF00316A28 /* AcademicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F98300BB0EF00316A28 /* AcademicInfoViewController.swift */; };
+		D5881F9B300BB0F800316A28 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F9A300BB0F800316A28 /* PersonalInfoViewController.swift */; };
+		D5882005300BC50400316A28 /* AcademicInfoViewController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881FF5300BC50400316A28 /* AcademicInfoViewController+Configuration.swift */; };
+		D588200E300BC51700316A28 /* PersonalInfoViewController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882007300BC51700316A28 /* PersonalInfoViewController+Configuration.swift */; };
+		D5882010300BC51700316A28 /* PersonalInfoPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882009300BC51700316A28 /* PersonalInfoPickerCoordinator.swift */; };
+		D5882012300BCBFE00316A28 /* AvatarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882011300BCBFE00316A28 /* AvatarsViewModel.swift */; };
+		D5882014300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882013300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift */; };
 		D5882041300CBEF600316A28 /* CourseDetailsTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882040300CBEF600316A28 /* CourseDetailsTableViewManager.swift */; };
 		D588265F300E646C00316A28 /* CourseDetailsCoordinator+Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */; };
+		D588257C300CEF3500316A28 /* SchoolInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588257B300CEF3500316A28 /* SchoolInfoViewController.swift */; };
+		D588257E300CEF4200316A28 /* UniversityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588257D300CEF4200316A28 /* UniversityInfoViewController.swift */; };
+		D5882581300CF16E00316A28 /* UniversityPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882580300CF16E00316A28 /* UniversityPickerCoordinator.swift */; };
+		D5882584300CF19300316A28 /* SchoolPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */; };
+		D58825DC300E19B700316A28 /* PersonalInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58825DB300E19B700316A28 /* PersonalInfoField.swift */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
@@ -470,19 +493,11 @@
 		D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */; };
 		D5FFA0592F3CBAD0009B796A /* CollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0582F3CBACB009B796A /* CollectionExt.swift */; };
 		D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */; };
-		E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
-		E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848748C26276FD2006DF74C /* LocationInfoViewController.swift */; };
-		E84874922627913C006DF74C /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84874912627913C006DF74C /* SegueFromLeft.swift */; };
 		E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E78DA26553DC8000902CB /* ViewControllerExt.swift */; };
 		E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74962640AFEE0097F115 /* AvatarCell.swift */; };
 		E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C749B2640B03F0097F115 /* AvatarsViewController.swift */; };
-		E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */; };
-		E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */; };
-		E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */; };
 		E8C9EF632638D6940023D2B1 /* TextfieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */; };
-		E8C9EF692638D9A60023D2B1 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */; };
-		E8C9EF73263C546D0023D2B1 /* NoCutPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EF72263C546C0023D2B1 /* NoCutPasteTextField.swift */; };
 		F7F3F3A77945470DAC75B176 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D346904F66428C917DB371 /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -844,6 +859,11 @@
 		D55580ED2FFA8D5F00A56073 /* VerifyPhoneRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneRequestModel.swift; sourceTree = "<group>"; };
 		D55580EF2FFA8D6700A56073 /* SetPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordRequest.swift; sourceTree = "<group>"; };
 		D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneResponse.swift; sourceTree = "<group>"; };
+		D55585282FFBE49800A56073 /* RegistrationFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormState.swift; sourceTree = "<group>"; };
+		D55585292FFBE49800A56073 /* RegistrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStore.swift; sourceTree = "<group>"; };
+		D555852D2FFBE4A500A56073 /* RegistrationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidator.swift; sourceTree = "<group>"; };
+		D55585302FFBE69200A56073 /* AcademicTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicTrack.swift; sourceTree = "<group>"; };
+		D55585992FFD237F00A56073 /* StepIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicatorView.swift; sourceTree = "<group>"; };
 		D55B804F2FD3576300A21545 /* MyCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewController.swift; sourceTree = "<group>"; };
 		D55B80502FD3576300A21545 /* MyCoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewModel.swift; sourceTree = "<group>"; };
 		D55B812B2FD3679A00A21545 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -854,8 +874,27 @@
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
 		D5881E413008DDD100316A28 /* DocumentViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerViewController.swift; sourceTree = "<group>"; };
+		D5881F7D300B96B500316A28 /* NoCutPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCutPasteTextField.swift; sourceTree = "<group>"; };
+		D5881F80300B96F900316A28 /* AcademicTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicTrack.swift; sourceTree = "<group>"; };
+		D5881F82300BAD1900316A28 /* FormErrorDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormErrorDisplay.swift; sourceTree = "<group>"; };
+		D5881F83300BAD1900316A28 /* RegistrationFieldConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFieldConfigurer.swift; sourceTree = "<group>"; };
+		D5881F84300BAD1900316A28 /* TextFieldLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLoadingIndicator.swift; sourceTree = "<group>"; };
+		D5881F8F300BAD2500316A28 /* AcademicInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoViewModel.swift; sourceTree = "<group>"; };
+		D5881F90300BAD2500316A28 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
+		D5881F98300BB0EF00316A28 /* AcademicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoViewController.swift; sourceTree = "<group>"; };
+		D5881F9A300BB0F800316A28 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		D5881FF5300BC50400316A28 /* AcademicInfoViewController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicInfoViewController+Configuration.swift"; sourceTree = "<group>"; };
+		D5882007300BC51700316A28 /* PersonalInfoViewController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonalInfoViewController+Configuration.swift"; sourceTree = "<group>"; };
+		D5882009300BC51700316A28 /* PersonalInfoPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoPickerCoordinator.swift; sourceTree = "<group>"; };
+		D5882011300BCBFE00316A28 /* AvatarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsViewModel.swift; sourceTree = "<group>"; };
+		D5882013300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AvatarsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		D5882040300CBEF600316A28 /* CourseDetailsTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsTableViewManager.swift; sourceTree = "<group>"; };
 		D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailsCoordinator+Route.swift"; sourceTree = "<group>"; };
+		D588257B300CEF3500316A28 /* SchoolInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolInfoViewController.swift; sourceTree = "<group>"; };
+		D588257D300CEF4200316A28 /* UniversityInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityInfoViewController.swift; sourceTree = "<group>"; };
+		D5882580300CF16E00316A28 /* UniversityPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityPickerCoordinator.swift; sourceTree = "<group>"; };
+		D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolPickerCoordinator.swift; sourceTree = "<group>"; };
+		D58825DB300E19B700316A28 /* PersonalInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoField.swift; sourceTree = "<group>"; };
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
@@ -984,19 +1023,11 @@
 		D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerReducer.swift; sourceTree = "<group>"; };
 		D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayerStore.swift; sourceTree = "<group>"; };
 		D5FFA0582F3CBACB009B796A /* CollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExt.swift; sourceTree = "<group>"; };
-		E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		E84874592624B138006DF74C /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
-		E848748C26276FD2006DF74C /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
-		E84874912627913C006DF74C /* SegueFromLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		E84E78DA26553DC8000902CB /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExt.swift; sourceTree = "<group>"; };
 		E85C74962640AFEE0097F115 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		E85C749B2640B03F0097F115 /* AvatarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsViewController.swift; sourceTree = "<group>"; };
-		E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfoViewController.swift; sourceTree = "<group>"; };
-		E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
-		E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E8C9EF622638D6940023D2B1 /* TextfieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldExt.swift; sourceTree = "<group>"; };
-		E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
-		E8C9EF72263C546C0023D2B1 /* NoCutPasteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCutPasteTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -1449,6 +1480,7 @@
 				26E25DC6348D8E0CDEDC9102 /* Frameworks */,
 				77C88E2727722BC200E39AA0 /* Wojood.app */,
 				77C88E2827722BC200E39AA0 /* WojoodTests.xctest */,
+				D5881EF8300B923000316A28 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2071,6 +2103,8 @@
 			isa = PBXGroup;
 			children = (
 				BC7D1E112643F63900F21515 /* FormTextField.swift */,
+				D5881F82300BAD1900316A28 /* FormErrorDisplay.swift */,
+				D5881F84300BAD1900316A28 /* TextFieldLoadingIndicator.swift */,
 			);
 			path = FormTextField;
 			sourceTree = "<group>";
@@ -2096,15 +2130,16 @@
 		BC98F3D426231C5900032AC6 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				D555859A2FFD237F00A56073 /* StepIndicatorView */,
 				BC7D1E0A2643F62700F21515 /* FormTextField */,
 				BC083B072641754900A1E6A4 /* AccessoryView */,
 				BC083B012641724B00A1E6A4 /* PickerInputView */,
 				BC767131262C4D030012155C /* CoursesTabBar */,
-				E866815E2652B9F400B98155 /* PickerView */,
 				BC98F3F5262336F800032AC6 /* AlertView */,
 				BC98F3D826231DF900032AC6 /* SendButton */,
 				77EE8B3C27DA411700B0CE45 /* UITagLabel.swift */,
 				77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */,
+				D5881F7E300B96B500316A28 /* PickerView */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -2232,6 +2267,14 @@
 			path = DomainModels;
 			sourceTree = "<group>";
 		};
+		D555859A2FFD237F00A56073 /* StepIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+				D55585992FFD237F00A56073 /* StepIndicatorView.swift */,
+			);
+			path = StepIndicatorView;
+			sourceTree = "<group>";
+		};
 		D55B80512FD3576300A21545 /* MyCourses */ = {
 			isa = PBXGroup;
 			children = (
@@ -2271,6 +2314,75 @@
 				D5BEE1B32FD6F6C100546B3B /* Attachment.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		D5881EF8300B923000316A28 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D55585302FFBE69200A56073 /* AcademicTrack.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		D5881F7E300B96B500316A28 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				D5881F7D300B96B500316A28 /* NoCutPasteTextField.swift */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		D5881F95300BAE2F00316A28 /* AcademicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D5882582300CF17A00316A28 /* SchoolInfo */,
+				D588257F300CF15000316A28 /* UniversityInfo */,
+				D5881F98300BB0EF00316A28 /* AcademicInfoViewController.swift */,
+				D5881FF5300BC50400316A28 /* AcademicInfoViewController+Configuration.swift */,
+				D5881F8F300BAD2500316A28 /* AcademicInfoViewModel.swift */,
+			);
+			path = AcademicInfo;
+			sourceTree = "<group>";
+		};
+		D5881F96300BAE6200316A28 /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D58825DB300E19B700316A28 /* PersonalInfoField.swift */,
+				D5882009300BC51700316A28 /* PersonalInfoPickerCoordinator.swift */,
+				D5881F9A300BB0F800316A28 /* PersonalInfoViewController.swift */,
+				D5882007300BC51700316A28 /* PersonalInfoViewController+Configuration.swift */,
+				D5881F90300BAD2500316A28 /* PersonalInfoViewModel.swift */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		D5881F97300BAED700316A28 /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				E85C74962640AFEE0097F115 /* AvatarCell.swift */,
+				E85C749B2640B03F0097F115 /* AvatarsViewController.swift */,
+				D5882013300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift */,
+				D5882011300BCBFE00316A28 /* AvatarsViewModel.swift */,
+			);
+			path = Avatars;
+			sourceTree = "<group>";
+		};
+		D588257F300CF15000316A28 /* UniversityInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D5882580300CF16E00316A28 /* UniversityPickerCoordinator.swift */,
+				D588257D300CEF4200316A28 /* UniversityInfoViewController.swift */,
+			);
+			path = UniversityInfo;
+			sourceTree = "<group>";
+		};
+		D5882582300CF17A00316A28 /* SchoolInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */,
+				D588257B300CEF3500316A28 /* SchoolInfoViewController.swift */,
+			);
+			path = SchoolInfo;
 			sourceTree = "<group>";
 		};
 		D5AD7ACD2F9E7B4300EA7C7B /* Assessment */ = {
@@ -2392,6 +2504,7 @@
 				D55580F12FFA8D6F00A56073 /* VerifyPhoneResponse.swift */,
 				D5AD7B002F9E7B4300EA7C7B /* UserModel.swift */,
 				D5AD7B012F9E7B4300EA7C7B /* UserSignupRequest.swift */,
+				D5881F80300B96F900316A28 /* AcademicTrack.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2543,25 +2656,15 @@
 			isa = PBXGroup;
 			children = (
 				E84874592624B138006DF74C /* Registration.storyboard */,
-				E84874542624B11A006DF74C /* BasicInfoRegistrationViewController.swift */,
-				E848748C26276FD2006DF74C /* LocationInfoViewController.swift */,
-				E84874912627913C006DF74C /* SegueFromLeft.swift */,
-				E8C9EF03262C573B0023D2B1 /* AcademicInfoViewController.swift */,
-				E8C9EF08262CEB010023D2B1 /* UniversityViewController.swift */,
-				E8C9EF682638D9A60023D2B1 /* SchoolViewController.swift */,
-				E85C74962640AFEE0097F115 /* AvatarCell.swift */,
-				E85C749B2640B03F0097F115 /* AvatarsViewController.swift */,
-				E8C9EF4B26323C190023D2B1 /* RegistrationViewModel.swift */,
+				D5881F83300BAD1900316A28 /* RegistrationFieldConfigurer.swift */,
+				D55585282FFBE49800A56073 /* RegistrationFormState.swift */,
+				D55585292FFBE49800A56073 /* RegistrationStore.swift */,
+				D555852D2FFBE4A500A56073 /* RegistrationValidator.swift */,
+				D5881F95300BAE2F00316A28 /* AcademicInfo */,
+				D5881F97300BAED700316A28 /* Avatars */,
+				D5881F96300BAE6200316A28 /* PersonalInfo */,
 			);
 			path = Registration;
-			sourceTree = "<group>";
-		};
-		E866815E2652B9F400B98155 /* PickerView */ = {
-			isa = PBXGroup;
-			children = (
-				E8C9EF72263C546C0023D2B1 /* NoCutPasteTextField.swift */,
-			);
-			path = PickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2914,6 +3017,7 @@
 				D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */,
 				778E7250261DC2D4009D7B35 /* UIViewExt.swift in Sources */,
 				D521A1C7301210D800185115 /* AttachmentDomain.swift in Sources */,
+				D588257E300CEF4200316A28 /* UniversityInfoViewController.swift in Sources */,
 				26CF48D9269B350100DDA29F /* MessagesDisplayHandler.swift in Sources */,
 				26CF4924269C6ED700DDA29F /* DocumentContainerViewController.swift in Sources */,
 				BC7D1E122643F63900F21515 /* FormTextField.swift in Sources */,
@@ -2925,7 +3029,6 @@
 				385CC0E5265FD67F00A091FD /* ReviewTableViewCell.swift in Sources */,
 				D50D334F3006631C00B463D4 /* Course.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
-				E84874922627913C006DF74C /* SegueFromLeft.swift in Sources */,
 				778E72E9261DFA1E009D7B35 /* JSONEncoderExt.swift in Sources */,
 				BC5ED0E5262867E100774E54 /* ForgotPasswordModel.swift in Sources */,
 				26CF48C9269B306A00DDA29F /* ChatViewController+SocketExtension.swift in Sources */,
@@ -2945,6 +3048,7 @@
 				BC8C1EA22DA7D245000AED7F /* OTPTextField.swift in Sources */,
 				BC8C1EA32DA7D245000AED7F /* OTPFieldView.swift in Sources */,
 				26CF48C4269B2EFD00DDA29F /* ChatViewController+MessageKitExtension.swift in Sources */,
+				D5882012300BCBFE00316A28 /* AvatarsViewModel.swift in Sources */,
 				26CF48BF269B2DE400DDA29F /* ActivityIndicator.swift in Sources */,
 				D5FFA0592F3CBAD0009B796A /* CollectionExt.swift in Sources */,
 				380B13B126B807F700CB5811 /* AssessmentsOverViewViewModel.swift in Sources */,
@@ -2977,6 +3081,7 @@
 				D5BEE1A72FD6D03500546B3B /* CourseDetailsCoordinator.swift in Sources */,
 				BC0F92BF2785DCCE001C5B3A /* OrganizationsListModel.swift in Sources */,
 				380B13B026B807F700CB5811 /* AssessmentsOverViewModel.swift in Sources */,
+				D555852F2FFBE4A500A56073 /* RegistrationValidator.swift in Sources */,
 				262FA7862694BD0B00245D2C /* ChatViewController.swift in Sources */,
 				778E72BE261DD692009D7B35 /* OptionalExt.swift in Sources */,
 				7723AE05261C7DB6007C0B97 /* FileReader.swift in Sources */,
@@ -2996,12 +3101,11 @@
 				E85C749C2640B03F0097F115 /* AvatarsViewController.swift in Sources */,
 				26C2E85026B2CBA500988B1D /* AudioRecordingViewController.swift in Sources */,
 				778E7255261DC2D4009D7B35 /* DateFormatterExt.swift in Sources */,
-				E8C9EF692638D9A60023D2B1 /* SchoolViewController.swift in Sources */,
-				E848748D26276FD2006DF74C /* LocationInfoViewController.swift in Sources */,
 				D50D336C300665A200B463D4 /* DynamicKey.swift in Sources */,
 				BC19E5AF263198AE00CFA142 /* VerifyOtpViewModel.swift in Sources */,
 				77E32B9E264A8BA80064B801 /* CGSizeExt.swift in Sources */,
 				BC767169262D801F0012155C /* SettingsViewModel.swift in Sources */,
+				D5881F81300B96F900316A28 /* AcademicTrack.swift in Sources */,
 				D55B812D2FD3679A00A21545 /* HomeViewModel.swift in Sources */,
 				D55B812E2FD3679A00A21545 /* HomeViewController.swift in Sources */,
 				380B139C26B807F700CB5811 /* QuestionHeaderTableViewCell.swift in Sources */,
@@ -3026,10 +3130,15 @@
 				380B139F26B807F700CB5811 /* AssessmentQuestionViewController.swift in Sources */,
 				D5FFA0542F3C9F51009B796A /* YouTubePlayerReducer.swift in Sources */,
 				D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */,
+				D555852B2FFBE49800A56073 /* RegistrationFormState.swift in Sources */,
+				D555852C2FFBE49800A56073 /* RegistrationStore.swift in Sources */,
 				77E32BC4264A8C450064B801 /* ForgotPasswordViewModel.swift in Sources */,
 				BC19E57E263036BB00CFA142 /* ProfileModel.swift in Sources */,
 				D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */,
 				BC18A00C266670C6001FDFFF /* ProfileTableViewHeader.swift in Sources */,
+				D5881F8C300BAD1900316A28 /* FormErrorDisplay.swift in Sources */,
+				D5881F8D300BAD1900316A28 /* RegistrationFieldConfigurer.swift in Sources */,
+				D5881F8E300BAD1900316A28 /* TextFieldLoadingIndicator.swift in Sources */,
 				BC18A01726667117001FDFFF /* ProfileEditAndLogoutTableViewCell.swift in Sources */,
 				7723ADC7261C72E1007C0B97 /* PropertyListKeyValuePair.swift in Sources */,
 				D5CEAF742FE6C39600B2C1F7 /* QuestionType.swift in Sources */,
@@ -3040,6 +3149,7 @@
 				778E7251261DC2D4009D7B35 /* BoolExt.swift in Sources */,
 				D50D334D300662AA00B463D4 /* Review.swift in Sources */,
 				BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */,
+				D5882005300BC50400316A28 /* AcademicInfoViewController+Configuration.swift in Sources */,
 				380B13A926B807F700CB5811 /* AssessmentDetailsViewController.swift in Sources */,
 				BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */,
 				26CF48F5269B4BC700DDA29F /* CustomMessageCell.swift in Sources */,
@@ -3052,11 +3162,9 @@
 				26C2E85D26B31DCD00988B1D /* ChatViewController+AudioExtension.swift in Sources */,
 				77936F0B26FCFD5900EDE395 /* UICollectionViewLocalizableFlowLayoutExt.swift in Sources */,
 				26AFE37426A5C86C007D01EF /* ErrorView.swift in Sources */,
-				E8C9EF4C26323C190023D2B1 /* RegistrationViewModel.swift in Sources */,
 				26CF4898269AF86B00DDA29F /* ChatViewModel.swift in Sources */,
 				7723ADBD261C726E007C0B97 /* TargetTypeExt.swift in Sources */,
 				D5B48A172F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift in Sources */,
-				E8C9EF73263C546D0023D2B1 /* NoCutPasteTextField.swift in Sources */,
 				268BD951269DBD47004758CE /* FormDataGenerator.swift in Sources */,
 				D5FFA0382F3C9A60009B796A /* YouTubeControlsView.swift in Sources */,
 				D5FFA0392F3C9A60009B796A /* YouTubePlayerRepresentable.swift in Sources */,
@@ -3074,6 +3182,7 @@
 				7723AD24261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift in Sources */,
 				F7F3F3A77945470DAC75B176 /* PasswordViewController.swift in Sources */,
 				BC98F434262454D800032AC6 /* LoginViewController.swift in Sources */,
+				D555859B2FFD237F00A56073 /* StepIndicatorView.swift in Sources */,
 				D5CEAF7A2FE6D01100B2C1F7 /* DependencyValuesExt.swift in Sources */,
 				BC19E5D52631A36600CFA142 /* CreatePasswordViewController.swift in Sources */,
 				380B13AB26B807F700CB5811 /* AssessmentDetailsConfigurator.swift in Sources */,
@@ -3084,8 +3193,8 @@
 				26CF48FF269B4E8900DDA29F /* CustomMessagesFlowLayout.swift in Sources */,
 				BC19E579263036AF00CFA142 /* ProfileViewModel.swift in Sources */,
 				BC083B2D26429E5400A1E6A4 /* AvatarsListViewController.swift in Sources */,
-				E8C9EF04262C573B0023D2B1 /* AcademicInfoViewController.swift in Sources */,
 				38B03561265BA4F800C24479 /* NotificationTableViewCell.swift in Sources */,
+				D5882014300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift in Sources */,
 				380B13AF26B807F700CB5811 /* AttachmentDownloader.swift in Sources */,
 				268BD95A269DD8DB004758CE /* ChatContainerViewModel.swift in Sources */,
 				D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */,
@@ -3095,7 +3204,6 @@
 				385CC10B26641D0F00A091FD /* ReceiptViewController.swift in Sources */,
 				BC083B032641725B00A1E6A4 /* PickerInputView.swift in Sources */,
 				D5CEAF762FE6C3A600B2C1F7 /* AnswerState.swift in Sources */,
-				E84874552624B11A006DF74C /* BasicInfoRegistrationViewController.swift in Sources */,
 				26CF48B4269B0FF800DDA29F /* ChatModel.swift in Sources */,
 				77D013D026A0F701006EA602 /* SubjectCollectionViewCell.swift in Sources */,
 				D50D334330065CE700B463D4 /* AssessmentSubmittedStudents.swift in Sources */,
@@ -3106,6 +3214,7 @@
 				D5AD7B1F2F9E7B4300EA7C7B /* Displayable.swift in Sources */,
 				D5AD7B202F9E7B4300EA7C7B /* Profile.swift in Sources */,
 				D5AD7B212F9E7B4300EA7C7B /* AddMessageRequestModel.swift in Sources */,
+				D5881F9B300BB0F800316A28 /* PersonalInfoViewController.swift in Sources */,
 				D5AD7B222F9E7B4300EA7C7B /* SubmitAnswerRequestModel.swift in Sources */,
 				D5AD7B222F9E7B4300EA7C7B /* SubmitAnswerRequestModel.swift in Sources */,
 				D5AD7B222F9E7B4300EA7C7B /* SubmitAnswerRequestModel.swift in Sources */,
@@ -3151,6 +3260,8 @@
 				D5CEAE8C2FE0242D00B2C1F7 /* PayloadExtractable.swift in Sources */,
 				D5AD7B402F9E7B4300EA7C7B /* Materials.swift in Sources */,
 				D5AD7B412F9E7B4300EA7C7B /* AssessmentAnswer+CoreDataProperties.swift in Sources */,
+				D5881F99300BB0EF00316A28 /* AcademicInfoViewController.swift in Sources */,
+				D58825DC300E19B700316A28 /* PersonalInfoField.swift in Sources */,
 				D5AD7B422F9E7B4300EA7C7B /* Assessment.swift in Sources */,
 				D5BEDF9B2FD4ED8200546B3B /* SchoolSection.swift in Sources */,
 				D5AD7B402F9E7B4300EA7C7B /* Materials.swift in Sources */,
@@ -3186,6 +3297,7 @@
 				77C6D6942FFD74D300418DA7 /* AdvertisementsRepository.swift in Sources */,
 				D5AD7B632F9E7B4300EA7C7B /* VersionResponse.swift in Sources */,
 				D5AD7B642F9E7B4300EA7C7B /* AssessmentSubmissionRequestModel.swift in Sources */,
+				D5881F7F300B96B500316A28 /* NoCutPasteTextField.swift in Sources */,
 				D5AD7B662F9E7B4300EA7C7B /* GenericSubjectsViewModel.swift in Sources */,
 				D5AD7B672F9E7B4300EA7C7B /* HomeMode.swift in Sources */,
 				D5AD7B682F9E7B4300EA7C7B /* KeyValue.swift in Sources */,
@@ -3203,6 +3315,8 @@
 				D5AD7B722F9E7B4300EA7C7B /* ConversationReponseModel.swift in Sources */,
 				D5BEE1AB2FD6D38F00546B3B /* DocumentService.swift in Sources */,
 				D5BEE1AC2FD6D38F00546B3B /* VideoPlaybackService.swift in Sources */,
+				D588200E300BC51700316A28 /* PersonalInfoViewController+Configuration.swift in Sources */,
+				D5882010300BC51700316A28 /* PersonalInfoPickerCoordinator.swift in Sources */,
 				D53EE3042FD0381D00757FB9 /* EmptyStateType.swift in Sources */,
 				536C94BA2978C88200582BDC /* QRCodeScannerViewController.swift in Sources */,
 				77056DCD261E0A1B00EB3854 /* AccessPermissionHandler.swift in Sources */,
@@ -3225,6 +3339,7 @@
 				D5B484962F978E7F00CAD7B8 /* Endpoint.swift in Sources */,
 				D5B484972F978E7F00CAD7B8 /* ProfileEndpoint.swift in Sources */,
 				D5B484992F978E7F00CAD7B8 /* HomeEndpoint.swift in Sources */,
+				D588257C300CEF3500316A28 /* SchoolInfoViewController.swift in Sources */,
 				D5B4849A2F978E7F00CAD7B8 /* LanguagePlugin.swift in Sources */,
 				D5B4849B2F978E7F00CAD7B8 /* RegistrationEndpoint.swift in Sources */,
 				D5B4849D2F978E7F00CAD7B8 /* ApiError.swift in Sources */,
@@ -3235,10 +3350,13 @@
 				D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */,
 				D53B5CE02E6894D400EBB62C /* AppName.swift in Sources */,
 				380B13A526B807F700CB5811 /* AssessmentDetailOverViewViewController.swift in Sources */,
+				D5882584300CF19300316A28 /* SchoolPickerCoordinator.swift in Sources */,
 				D510871D2FD3880A006D67CB /* CoursesNavigationCoordinator.swift in Sources */,
 				3826BC7F266CB26F00CF9357 /* MaterialTableViewCell.swift in Sources */,
 				D5276DF82F41FB1B0045A2EA /* TaskExt.swift in Sources */,
 				38659BE726B6D2F900E3BFE9 /* AppAlertViewController.swift in Sources */,
+				D5881F92300BAD2500316A28 /* AcademicInfoViewModel.swift in Sources */,
+				D5881F93300BAD2500316A28 /* PersonalInfoViewModel.swift in Sources */,
 				BC0F92BB2785DC6A001C5B3A /* OrganizationsListViewController.swift in Sources */,
 				D50D33533006637900B463D4 /* Receipt.swift in Sources */,
 				26CF490C269B4FCD00DDA29F /* ChatConstants.swift in Sources */,
@@ -3246,6 +3364,7 @@
 				778E7258261DC2D4009D7B35 /* UIImageExt.swift in Sources */,
 				38B131C826B173D800D5966A /* FiltersTableViewCell.swift in Sources */,
 				38A61A6E26E644EC0044AEA4 /* CourseDetailsActiveSubScreen.swift in Sources */,
+				D5882581300CF16E00316A28 /* UniversityPickerCoordinator.swift in Sources */,
 				778E72FA261DFF2C009D7B35 /* UIAlertControllerExt.swift in Sources */,
 				770209C92831C77600F9096F /* NSObjectExt.swift in Sources */,
 				D50D33413006509300B463D4 /* ContentTypeable.swift in Sources */,
@@ -3282,7 +3401,6 @@
 				26CF4998269CC3DC00DDA29F /* ChatViewController+AttachmentExtension.swift in Sources */,
 				777F3A8926FB5D58000C5DFC /* ErrorParser.swift in Sources */,
 				7723ADFB261C787B007C0B97 /* DefaultsKeysExt.swift in Sources */,
-				E8C9EF09262CEB010023D2B1 /* UniversityViewController.swift in Sources */,
 				380B13A026B807F700CB5811 /* AssessmentDetailOverviewInstructionsTableViewCell.swift in Sources */,
 				778E7271261DC3E1009D7B35 /* Assets.swift in Sources */,
 				BC96829926397FE6009F8550 /* AcademicInfoModel.swift in Sources */,
@@ -3475,7 +3593,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3510,7 +3628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3643,7 +3761,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3755,7 +3873,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3867,7 +3985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3979,7 +4097,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
