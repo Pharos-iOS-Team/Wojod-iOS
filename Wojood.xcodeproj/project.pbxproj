@@ -875,6 +875,12 @@
 		D5607EF430174BDD00A81C47 /* MaterialItemPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialItemPayload.swift; sourceTree = "<group>"; };
 		D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunnyPlayerView.swift; sourceTree = "<group>"; };
 		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
+		D567EA5B3019EC0F00DA3A41 /* Khalid-Khamis.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Khalid-Khamis.xcconfig"; sourceTree = "<group>"; };
+		D567EA5F3019F15200DA3A41 /* Khalid-Khamis.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Khalid-Khamis.xcassets"; sourceTree = "<group>"; };
+		D567EA633019F8BF00DA3A41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D567EA643019FD6600DA3A41 /* Ashour-Academy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Ashour-Academy.xcconfig"; sourceTree = "<group>"; };
+		D567EA683019FF0200DA3A41 /* Ashour-Academy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Ashour-Academy.xcassets"; sourceTree = "<group>"; };
+		D567EA6B3019FFFA00DA3A41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
 		D5881E413008DDD100316A28 /* DocumentViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerViewController.swift; sourceTree = "<group>"; };
@@ -1625,12 +1631,14 @@
 		7723ADCB261C7339007C0B97 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				D567EA643019FD6600DA3A41 /* Ashour-Academy.xcconfig */,
 				D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */,
 				D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */,
 				778E72D0261DE641009D7B35 /* Debug.xcconfig */,
 				77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */,
 				77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */,
 				778E72D1261DE6D8009D7B35 /* Release.xcconfig */,
+				D567EA5B3019EC0F00DA3A41 /* Khalid-Khamis.xcconfig */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -1701,6 +1709,8 @@
 		775C319B2E30E66C009D7722 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D567EA683019FF0200DA3A41 /* Ashour-Academy.xcassets */,
+				D567EA5F3019F15200DA3A41 /* Khalid-Khamis.xcassets */,
 				D5B5426A2F334CAC00694BA3 /* Square-Center.xcassets */,
 				D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */,
 				775C31A22E30ED9E009D7722 /* Debug.xcassets */,
@@ -1895,6 +1905,8 @@
 		77DE4E322E254A420001BFAC /* GoogleServiceInfo */ = {
 			isa = PBXGroup;
 			children = (
+				D567EA6A3019FF8F00DA3A41 /* Ashour-Academy */,
+				D567EA613019F74000DA3A41 /* Khalid-Khamis */,
 				D56A77E12F33588000CEBC97 /* Square-Center */,
 				D5DBC5C22E67291B00FD4034 /* Royal-Medicine */,
 				77DC5AEC2E38CE5600A9CDB0 /* Perfection-in-Physics */,
@@ -2303,6 +2315,22 @@
 				D55B812C2FD3679A00A21545 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		D567EA613019F74000DA3A41 /* Khalid-Khamis */ = {
+			isa = PBXGroup;
+			children = (
+				D567EA633019F8BF00DA3A41 /* GoogleService-Info.plist */,
+			);
+			path = "Khalid-Khamis";
+			sourceTree = "<group>";
+		};
+		D567EA6A3019FF8F00DA3A41 /* Ashour-Academy */ = {
+			isa = PBXGroup;
+			children = (
+				D567EA6B3019FFFA00DA3A41 /* GoogleService-Info.plist */,
+			);
+			path = "Ashour-Academy";
 			sourceTree = "<group>";
 		};
 		D56A77E12F33588000CEBC97 /* Square-Center */ = {
@@ -3762,7 +3790,7 @@
 		77DC5AE82E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${CONFIGURATION}";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Perfection-in-Physics";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
@@ -3874,7 +3902,7 @@
 		77DE4E382E254FFC0001BFAC /* Hassan-Elnaggar */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-${CONFIGURATION}";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Hassan-Elnaggar";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
@@ -4038,6 +4066,230 @@
 			};
 			name = "Royal-Medicine";
 		};
+		D567EA5C3019ECC800DA3A41 /* Khalid-Khamis */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D567EA5B3019EC0F00DA3A41 /* Khalid-Khamis.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Khalid-Khamis";
+		};
+		D567EA5D3019ECC800DA3A41 /* Khalid-Khamis */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Khalid-Khamis";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Khalid-Khamis";
+		};
+		D567EA5E3019ECC800DA3A41 /* Khalid-Khamis */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46AX569373;
+				INFOPLIST_FILE = WojoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
+			};
+			name = "Khalid-Khamis";
+		};
+		D567EA653019FE8D00DA3A41 /* Ashour-Academy */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D567EA643019FD6600DA3A41 /* Ashour-Academy.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ashour-Academy";
+		};
+		D567EA663019FE8D00DA3A41 /* Ashour-Academy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Ashour-Academy";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = Wojood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 46AX569373;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Ashour-Academy";
+		};
+		D567EA673019FE8D00DA3A41 /* Ashour-Academy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 46AX569373;
+				INFOPLIST_FILE = WojoodTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.WojoodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wojood.app/Wojood";
+			};
+			name = "Ashour-Academy";
+		};
 		D56A77DC2F33575800CEBC97 /* Square-Center */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */;
@@ -4158,6 +4410,8 @@
 			buildConfigurations = (
 				7723ACFF261C5E6C007C0B97 /* Debug */,
 				7723AD00261C5E6C007C0B97 /* Release */,
+				D567EA653019FE8D00DA3A41 /* Ashour-Academy */,
+				D567EA5C3019ECC800DA3A41 /* Khalid-Khamis */,
 				D53B5CD82E67588800EBB62C /* Royal-Medicine */,
 				D56A77DC2F33575800CEBC97 /* Square-Center */,
 				77DE4E372E254FFC0001BFAC /* Hassan-Elnaggar */,
@@ -4171,6 +4425,8 @@
 			buildConfigurations = (
 				7723AD02261C5E6C007C0B97 /* Debug */,
 				7723AD03261C5E6C007C0B97 /* Release */,
+				D567EA663019FE8D00DA3A41 /* Ashour-Academy */,
+				D567EA5D3019ECC800DA3A41 /* Khalid-Khamis */,
 				D53B5CD92E67588800EBB62C /* Royal-Medicine */,
 				D56A77DD2F33575800CEBC97 /* Square-Center */,
 				77DE4E382E254FFC0001BFAC /* Hassan-Elnaggar */,
@@ -4184,6 +4440,8 @@
 			buildConfigurations = (
 				7723AD05261C5E6C007C0B97 /* Debug */,
 				7723AD06261C5E6C007C0B97 /* Release */,
+				D567EA673019FE8D00DA3A41 /* Ashour-Academy */,
+				D567EA5E3019ECC800DA3A41 /* Khalid-Khamis */,
 				D53B5CDA2E67588800EBB62C /* Royal-Medicine */,
 				D56A77DE2F33575800CEBC97 /* Square-Center */,
 				77DE4E392E254FFC0001BFAC /* Hassan-Elnaggar */,

@@ -170,6 +170,16 @@ class LoginViewController: UIViewController {
         }
     }
 
+    private func handleLoginSuccess() {
+        viewModel?.successHandler = { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.hideLoadingIndicator()
+                PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
+                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+            }
+        }
+    }
+
     private func handleGuestMode() {
         viewModel?.isGuestModeEnabled { isGuestModeEnabled in
             DispatchQueue.main.async {

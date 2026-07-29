@@ -77,6 +77,21 @@ final class User {
         KeychainHandler.shared.saveUserToken(token)
     }
 
+    func loginAsGuest() {
+        switch AppEnvironment.appName {
+        case .hassanElnaggar:
+            setLoggedIn(token: "IfVvjvkznLox5udtEOPfbg", client: "k5d4Hh-jlOCge_be6CDOlw", uid: "01020304050")
+        case .perfectionInPhysics:
+            setLoggedIn(token: "qcG9BxLSZRv32558EgnksQ", client: "BtVSywYOG9Bdvw1DBy2p6g", uid: "01020304050")
+        case .khalidKhamis:
+            setLoggedIn(token: "eZa-cevT88h-n6VLULkKew", client: "xn3zlX0Rxv1ZyKtGNmPtKw", uid: "01020304050")
+        case .ashourAcademy:
+            setLoggedIn(token: "nx5UB_XKlw8OSGrls_uH4A", client: "ClfZ76slcZ6m_1bCCwTGZA", uid: "01020304050")
+        default:
+            setLoggedIn(token: "9uxx8vTICppW06NtdHAzSQ", client: "f8dHJi3RlkAarCBIq82ddg", uid: "01020304050")
+        }
+    }
+
     // swiftlint:disable function_body_length
     func setUserData(
         user: UserModel?

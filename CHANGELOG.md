@@ -20,6 +20,10 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Added
 - Added International Phone Numbers and WhatsApp OTP Flow.  
   Task: [CPI-347](https://jira.pharos-solutions.de/browse/CPI-347) | PR: [#45](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/45) | Author: [Sara Rady](https://github.com/sara-rady)
+- Added `mr. Khalid Khamis` WhiteLabel app.  
+  Task: [CPI-350](https://jira.pharos-solutions.de/browse/CPI-350) | PR: [#40](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/40) | Author: [Sara Rady](https://github.com/sara-rady)
+  - Added `Dr. Ashour Academy` WhiteLabel app.  
+  Task: [CPI-351](https://jira.pharos-solutions.de/browse/CPI-351) | PR: [#40](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/40) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - Changed network module.  
   Task: [CPI-330](https://jira.pharos-solutions.de/browse/CPI-330) | PR: [#31](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/31) | Author: [Sara Rady](https://github.com/sara-rady)
