@@ -346,6 +346,7 @@
 		D5647A402F6A247100518611 /* BunnyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */; };
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
+		D5A227853029E7680064DCB7 /* package_variant.sh in Resources */ = {isa = PBXBuildFile; fileRef = D5A227823029E7680064DCB7 /* package_variant.sh */; };
 		D5881E423008DDD100316A28 /* DocumentViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881E413008DDD100316A28 /* DocumentViewerViewController.swift */; };
 		D5881F7F300B96B500316A28 /* NoCutPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F7D300B96B500316A28 /* NoCutPasteTextField.swift */; };
 		D5881F81300B96F900316A28 /* AcademicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5881F80300B96F900316A28 /* AcademicTrack.swift */; };
@@ -676,7 +677,6 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
-		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
 		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -883,6 +883,7 @@
 		D567EA6B3019FFFA00DA3A41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
+		D5A227823029E7680064DCB7 /* package_variant.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = package_variant.sh; sourceTree = "<group>"; };
 		D5881E413008DDD100316A28 /* DocumentViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerViewController.swift; sourceTree = "<group>"; };
 		D5881F7D300B96B500316A28 /* NoCutPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCutPasteTextField.swift; sourceTree = "<group>"; };
 		D5881F80300B96F900316A28 /* AcademicTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicTrack.swift; sourceTree = "<group>"; };
@@ -1737,11 +1738,11 @@
 		778887412E46AD8D0027D5D9 /* release */ = {
 			isa = PBXGroup;
 			children = (
-				7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */,
 				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
 				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
 				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
 				778887402E46AD8D0027D5D9 /* version.rb */,
+				D5A227823029E7680064DCB7 /* package_variant.sh */,
 			);
 			path = release;
 			sourceTree = "<group>";
@@ -2919,6 +2920,7 @@
 				26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */,
 				380B13A326B807F700CB5811 /* AssessmentDetailOverViewQuestionsTableViewCell.xib in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
+				D5A227853029E7680064DCB7 /* package_variant.sh in Resources */,
 				77C6D6972FFD750400418DA7 /* MyCoursesViewController.xib in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */,
 				BC8D4C1B26E76F1400033413 /* CourseDetailsInfoHeaderView.xib in Resources */,
@@ -3644,8 +3646,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "de.pharos-solutions.wojood-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.wojood-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3679,7 +3680,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.wojood-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3812,7 +3813,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wojoudacademy.perfection-in-physics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3924,7 +3925,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wojoudacademy.hassan-elnaggar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -4036,7 +4037,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.pharos-solutions.wojood-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -4148,7 +4149,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wojoudacademy.mr-khalid-khamis";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -4260,7 +4261,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wojoudacademy.dr-ashour-academy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -4372,7 +4373,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wojoudacademy.square-center";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
