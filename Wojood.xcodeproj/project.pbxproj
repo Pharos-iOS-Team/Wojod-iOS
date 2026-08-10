@@ -389,6 +389,7 @@
 		D5647A402F6A247100518611 /* BunnyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647A3E2F6A247100518611 /* BunnyPlayerView.swift */; };
 		D5647ABC2F6A50CE00518611 /* MoyaProviderExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */; };
 		D57B01892F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */; };
+		D5A227853029E7680064DCB7 /* package_variant.sh in Resources */ = {isa = PBXBuildFile; fileRef = D5A227823029E7680064DCB7 /* package_variant.sh */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
@@ -679,7 +680,6 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
-		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
 		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -864,6 +864,7 @@
 		D5647ABB2F6A50C900518611 /* MoyaProviderExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderExt.swift; sourceTree = "<group>"; };
 		D56A77E22F33589B00CEBC97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D57B01882F266C8C000BAB83 /* EnterQRCodeManuallyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQRCodeManuallyViewController.swift; sourceTree = "<group>"; };
+		D5A227823029E7680064DCB7 /* package_variant.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = package_variant.sh; sourceTree = "<group>"; };
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
@@ -1779,11 +1780,11 @@
 		778887412E46AD8D0027D5D9 /* release */ = {
 			isa = PBXGroup;
 			children = (
-				7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */,
 				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
 				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
 				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
 				778887402E46AD8D0027D5D9 /* version.rb */,
+				D5A227823029E7680064DCB7 /* package_variant.sh */,
 			);
 			path = release;
 			sourceTree = "<group>";
@@ -2630,6 +2631,7 @@
 				380B13A326B807F700CB5811 /* AssessmentDetailOverViewQuestionsTableViewCell.xib in Resources */,
 				BC76714A262C52960012155C /* Home.storyboard in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
+				D5A227853029E7680064DCB7 /* package_variant.sh in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */,
 				BC8D4C1B26E76F1400033413 /* CourseDetailsInfoHeaderView.xib in Resources */,
 				380A0263267248D300D01B06 /* CourseTableViewCell.xib in Resources */,
