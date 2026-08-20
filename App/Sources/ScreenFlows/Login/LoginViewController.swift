@@ -7,7 +7,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet private var submitButton: SendButton! {
         didSet {
-            submitButton.setTitle(L10n.Shared.continue)
+            submitButton.setTitle(L10n.Shared.Titles.continue)
             submitButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
@@ -104,7 +104,8 @@ class LoginViewController: UIViewController {
     }
 
     private func showLoadingIndicatorHandler() {
-        viewModel?.showIndicator = {
+        viewModel?.showIndicator = { [weak self] in
+            guard let self = self else { return }
             self.showLoadingIndicator()
         }
     }

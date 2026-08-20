@@ -2,70 +2,21 @@
 
 import Foundation
 
-class ProfileModel: ModelDecodable {
-    let apiClient = ProfileApiClient()
-
-    func editProfile(id: String, profile: Profile, completionHandler: @escaping (Result) -> Void) {
-        apiClient.editProfile(id: id, profile: profile) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: StudentModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+class ProfileModel {
+    func editProfile(id: String, profile: Profile, completionHandler: @escaping (Swift.Result<ApiResponse<UserModel>, Error>) -> Void) {
+        ApiProvider.shared.request(.profile(.editProfile(id: id, profile: profile)), decodeTo: ApiResponse<UserModel>.self, completion: completionHandler)
     }
 
-    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping (Result) -> Void) {
-        apiClient.fetchDivisions(academicLevel: academicLevel, academicType: academicType) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: DivisionsModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
-            }
-        }
+    func fetchDivisions(academicLevel: Int, academicType: Int, completionHandler: @escaping (Swift.Result<ApiResponse<[Division]>, Error>) -> Void) {
+        let requestModel = AcademicInfoRequestModel(educationLevel: String(academicLevel), educationType: String(academicType))
+        ApiProvider.shared.request(.profile(.fetchDivisions(requestModel)), decodeTo: ApiResponse<[Division]>.self, completion: completionHandler)
     }
 
-    func fetchBatches(id: String, completionHandler: @escaping (Result) -> Void) {
-        apiClient.fetchBatches(id: id) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: BatchesModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription.replacingOccurrences(of: "URLSessionTask failed with error:", with: ""))))
-            }
-        }
+    func fetchBatches(id: String, completionHandler: @escaping (Swift.Result<ApiResponse<[KeyValue]>, Error>) -> Void) {
+        ApiProvider.shared.request(.profile(.fetchBatches(id: id)), decodeTo: ApiResponse<[KeyValue]>.self, completion: completionHandler)
     }
 
-    func fetchSpecializations(id: String, completionHandler: @escaping (Result) -> Void) {
-        apiClient.fetchSpecializations(id: id) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: SpecializationsModel.self, from: response) { result in
-                        completionHandler(result)
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                completionHandler(.failure(WJError(type: .parsingError, message: error.localizedDescription.replacingOccurrences(of: "URLSessionTask failed with error:", with: ""))))
-            }
-        }
+    func fetchSpecializations(id: String, completionHandler: @escaping (Swift.Result<ApiResponse<[KeyValue]>, Error>) -> Void) {
+        ApiProvider.shared.request(.profile(.fetchSpecializations(id: id)), decodeTo: ApiResponse<[KeyValue]>.self, completion: completionHandler)
     }
 }

@@ -1,4 +1,4 @@
-// Copyright © 2021 Pharos Solutions GmbH. All rights reserved.
+// Copyright © 2021 Pharos Solutions. All rights reserved.
 
 import Foundation
 
@@ -7,7 +7,7 @@ struct Grade {
     let totalMark: Double
 
     var description: String {
-        let backSlash = Language.currentLanguage == .arabic ?  #"\"# : "/"
+        let backSlash = Language.currentLanguage == .arabic ? #"\"# : "/"
         return "\(currentMarkFormatted)\(backSlash)\(totalMarkFormatted)"
     }
 

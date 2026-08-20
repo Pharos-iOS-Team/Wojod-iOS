@@ -37,6 +37,6 @@ extension UITextField {
 extension UITextField {
     var isEmpty: Bool {
         guard let text = text else { return true }
-        return text.isEmpty
+        return text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }

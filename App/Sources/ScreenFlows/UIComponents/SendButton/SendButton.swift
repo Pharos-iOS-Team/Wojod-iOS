@@ -47,6 +47,11 @@ class SendButton: UIButton {
     override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         let imageRect = super.imageRect(forContentRect: contentRect)
         let imageSize = currentImage?.size ?? .zero
+        if currentTitle == nil {
+            let centerX = (contentRect.width - imageSize.width) / 2
+            let centerY = (contentRect.height - imageSize.height) / 2
+            return CGRect(origin: CGPoint(x: centerX, y: centerY), size: imageSize)
+        }
         let availableWidth = contentRect.width - imageEdgeInsets.right - imageSize.width - imageRect.width
 
         let pointX = (Language.semanticContent == .forceLeftToRight) ? availableWidth : Constants.titleOffset

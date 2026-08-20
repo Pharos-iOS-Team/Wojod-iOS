@@ -2,21 +2,15 @@
 
 import Foundation
 
-class ForgotPasswordModel: ModelDecodable {
-    private let apiClient = ForgotPasswordApiClient()
-
-    func sendMobileNumber(mobileNumber: String, completionHandler: @escaping (Result) -> Void) {
-        apiClient.sendMobileNumber(mobileNumber: mobileNumber) { response, error in
-            if let response = response {
-                if response.statusCode < 300 {
-                    self.decode(modelType: LoginApiResponseModel.self, from: response) { _ in
-                        completionHandler(.success(true))
-                    }
-                } else {
-                    self.decodeError(response: response, completionHandler: completionHandler)
-                }
-            } else if let error = error {
-                self.handleMoyaError(error: error, completionHandler: completionHandler)
+class ForgotPasswordModel {
+    func sendMobileNumber(mobileNumber: String, completionHandler: @escaping (Swift.Result<Bool, Error>) -> Void) {
+        let requestModel = GetOTPRequestModel(mobileNumber: mobileNumber)
+        ApiProvider.shared.request(.auth(.sendMobileNumber(requestModel))) { result in
+            switch result {
+            case .success:
+                completionHandler(.success(true))
+            case let .failure(error):
+                completionHandler(.failure(error))
             }
         }
     }

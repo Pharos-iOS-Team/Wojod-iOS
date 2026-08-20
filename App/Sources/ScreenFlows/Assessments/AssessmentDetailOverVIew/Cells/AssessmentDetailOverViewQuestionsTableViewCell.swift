@@ -21,7 +21,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
     private let markFont = UIFont(font: FontFamily.Inter.regular, size: 14) ?? UIFont.systemFont(ofSize: 14)
     private let statusFont = UIFont(font: FontFamily.Inter.regular, size: 12) ?? UIFont.systemFont(ofSize: 12)
 
-    func configure(assessmentName name: String, numberOfPoints: String, questionStatus: Bool, mark: String, assessmentStatus: AssessmentStatus, questionMarkStatus: QuestionStatus, module: AssessmentsOverViewViewModel.Module, answerStatus: AssessmentQuestion.AnswerState) {
+    func configure(assessmentName name: String, numberOfPoints: String, questionStatus: Bool, mark: String, assessmentStatus: AssessmentStatus, questionMarkStatus: QuestionStatus, module: AssessmentsOverViewViewModel.Module, answerStatus: AnswerState) {
         setQuestionName(name)
         setQuestionStatus(questionStatus, assessmentStatus, module, answerStatus)
         setMarkLabel(assessmentStatus, module, numberOfPoints, mark, questionMarkStatus)
@@ -53,7 +53,7 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         case .notGraded:
             numberOfPointsLabel.textColor = Asset.Colors.sendButtonColor.color
             numberOfPointsLabel.font = markFont
-            numberOfPointsLabel.text = "quizzes.notGradedYet".localiz()
+            numberOfPointsLabel.text = L10n.Quizzes.notGradedYet
         case .needsImprovement:
             numberOfPointsLabel.textColor = .orange
             numberOfPointsLabel.font = markFont
@@ -77,17 +77,17 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         numberOfPointsLabel.text = text
     }
     
-    private func setQuestionStatus(_ answered: Bool, _ assessmentStatus: AssessmentStatus, _ module: AssessmentsOverViewViewModel.Module, _ answerStatus: AssessmentQuestion.AnswerState) {
+    private func setQuestionStatus(_ answered: Bool, _ assessmentStatus: AssessmentStatus, _ module: AssessmentsOverViewViewModel.Module, _ answerStatus: AnswerState) {
         switch assessmentStatus {
         case .open:
             if answered {
                 questionStatusLabel.textColor = .gray
                 questionStatusLabel.font = statusFont
-                questionStatusLabel.text = "quizzes.answered".localiz()
+                questionStatusLabel.text = L10n.Quizzes.answered
             } else {
                 questionStatusLabel.textColor = .red
                 questionStatusLabel.font = statusFont
-                questionStatusLabel.text = "quizzes.notAnswered".localiz()
+                questionStatusLabel.text = L10n.Quizzes.notAnswered
             }
         case .closed where module == .assignments:
             setAssignmentQuestionStatus(answerStatus)
@@ -96,24 +96,24 @@ class AssessmentDetailOverViewQuestionsTableViewCell: UITableViewCell {
         }
     }
 
-    private func setAssignmentQuestionStatus(_ status: AssessmentQuestion.AnswerState) {
+    private func setAssignmentQuestionStatus(_ status: AnswerState) {
         switch status {
         case .correct:
             questionStatusLabel.textColor = Colors.green.color
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.correct".localiz()
+            questionStatusLabel.text = L10n.Assignment.correct
         case .incorrect:
             questionStatusLabel.textColor = .red
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.incorrect".localiz()
+            questionStatusLabel.text = L10n.Assignment.incorrect
         case .needsImprovement:
             questionStatusLabel.textColor = .orange
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.needsImprovement".localiz()
+            questionStatusLabel.text = L10n.Assignment.needsImprovement
         case .notReviewed:
             questionStatusLabel.textColor = Asset.Colors.sendButtonColor.color
             questionStatusLabel.font = statusFont
-            questionStatusLabel.text = "assignment.notReviewed".localiz()
+            questionStatusLabel.text = L10n.Assignment.notReviewed
         }
     }
 

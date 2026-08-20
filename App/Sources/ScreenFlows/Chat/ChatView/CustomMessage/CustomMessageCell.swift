@@ -89,15 +89,13 @@ class CustomMessageCell: UICollectionViewCell {
         contentMessageLbl.text = message?.content
         messageDateLabel.text = DateFormatterHandler.shared.formatStringDateToDateTimeForChat(message?.createdAt ?? "")
         let currentAttachment = message?.attachments?.first
-        attachmentNameLbl.text = currentAttachment?.filename ?? "-"
+        attachmentNameLbl.text = currentAttachment?.fileName ?? "-"
         attachmentExtensionLbl.text = currentAttachment?.contentType ?? ""
-        if (currentAttachment?.contentType ?? "").contains("image") {
+        if currentAttachment?.mappedContentType?.isImage == true {
             attachmentImageView.kf.indicatorType = .activity
             attachmentImageView.kf.setImage(with: URL(string: AppEnvironment.baseURLString + (currentAttachment?.fileUrl ?? "")))
-        } else if (currentAttachment?.contentType ?? "").contains("pdf") {
-            attachmentImageView.image = Asset.Images.pdfIcon.image
         } else {
-            attachmentImageView.image = Asset.Images.newGenericExt.image
+            attachmentImageView.image = currentAttachment?.mappedContentType?.icon ?? Asset.Images.newGenericExt.image
         }
     }
 
@@ -112,7 +110,7 @@ class CustomMessageCell: UICollectionViewCell {
         return FileManager.default.localUrl(ofFileName: attachmentFileURL.lastPathComponent)
     }
 
-    private func downloadFile(attachment: AttachmentObjectModel) {
+    private func downloadFile(attachment: Attachment) {
         downloadAttachmentBtn.startLoading()
         downloadAttachmentBtn.setImage(UIImage())
         let filePath = attachment.fileUrl ?? ""

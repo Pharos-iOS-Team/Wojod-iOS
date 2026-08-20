@@ -14,9 +14,13 @@
 "shared.alerts.sessionExpired.title" = "Session Expired";
 "shared.alerts.sessionExpired.message" = "Your session has expired. Please log in again to continue.";
 
+"shared.alerts.notSupportedScan.title" = "Scanning not supported";
+"shared.alerts.notSupportedScan.message" = "Your device does not support scanning a code from an item. Please use a device with a camera";
+
 "shared.action.cancel" = "Cancel";
 "shared.action.dismiss" = "Dismiss";
-"shared.continue" = "Continue";
+"shared.titles.all" = "All";
+"shared.titles.continue" = "Continue";
 
 "login.welcome" = "Welcome! \nEnter mobile number to continue";
 
@@ -139,15 +143,34 @@ No worries!";
 "signup.basicInfo.whatsappNumberHint" = "Mobile number must be linked to whatsapp.";
 "signup.basicInfo.name" = "Name*";
 "signup.basicInfo.mobileNumber" = "Mobile number*";
+"signup.basicInfo.mobileNumber2" = "Another mobile number";
 "signup.basicInfo.homeNumber" = "Home number";
 "signup.basicInfo.email" = "Email*";
 "signup.basicInfo.password" = "Password*";
 "signup.basicInfo.confirmPassword" = "Confirm password*";
 "signup.basicInfo.numberAlreadyExistsError" = "The mobile and/or email you've entered is already registered with another account";
+"signup.error.nameEmpty" = "Please enter your name";
+"signup.error.phoneInvalid" = "Please enter a valid mobile number";
+"signup.error.emailInvalid" = "Please enter a valid email";
+"signup.error.passwordTooShort" = "Password must be at least 6 characters";
+"signup.error.passwordMismatch" = "Passwords do not match";
+"signup.error.countryMissing" = "Please select a country";
+"signup.error.cityMissing" = "Please select a city";
+"signup.error.regionEmpty" = "Please enter your district";
+"signup.error.parentNumberInvalid" = "Please enter a valid parent number";
+"signup.error.parentNumber2Invalid" = "Please enter a valid second parent number";
+"signup.error.parentNumber2SameAsParent1" = "Second parent number must differ from the first parent number";
+"signup.error.schoolNameEmpty" = "Please enter the school name";
+"signup.error.academicTypeMissing" = "Please select an academic type";
+"signup.error.divisionMissing" = "Please select an academic division";
+"signup.error.universityMissing" = "Please select a university";
+"signup.error.universityYearMissing" = "Please select an academic year";
+"signup.error.phone2Invalid" = "Please enter a valid alternate mobile number";
+"signup.error.phone2SameAsPhone1" = "Alternate number must differ from your primary number";
 
 "signup.locationInfo.country" = "Country*";
 "signup.locationInfo.city" = "City*";
-"signup.locationInfo.district" = "District";
+"signup.locationInfo.district" = "District*";
 "signup.locationInfo.address" = "Address";
 
 "signup.academicInfo.school" = "SCHOOL";
@@ -171,6 +194,7 @@ No worries!";
 
 "signup.addAvatar.submit" = "Submit";
 "signup.addAvatar.skip" = "Skip";
+"signup.addAvatar.skipSettingAvatar" = "Skip setting avatar";
 
 // MARK: - Course Details
 
@@ -189,6 +213,7 @@ No worries!";
 "courseDetails.main.reviewCourse" = "Review Course";
 "courseDetails.main.notEnoughViews" = "You have exceeded the number of views for this video";
 "courseDetails.main.videoPlaybackIssue" = "There is an issue with video playback. Please contact our technical support on WhatsApp at %@";
+"courseDetails.main.videoUnavailable" = "This video is currently unavailable. Please try again later.";
 "courseDetails.main.noLongerAvaliable" = "No Longer Available";
 "courseDetails.main.avaliableFor" = "Available for: %@ days";
 
@@ -223,6 +248,8 @@ No worries!";
 "home.exploreMore" = "Explore More";
 "home.helpCenter" = "Help Center";
 "home.view" = "View";
+"home.quiz" = "Quiz";
+"home.excersise" = "Exercise";
 "home.course.price" = "EGP";
 "home.course.priceLabel" = "Price";
 "home.course.seeReceipt" = "See Receipt";
@@ -231,13 +258,13 @@ No worries!";
 "home.pending" = "Pending";
 "home.search.emptyStateTitle" = "Sorry";
 "home.search.emptyStateDescription" = "We couldn't find what you searched for. Try again with different words.";
+"home.search.placeholder" = "Search for courses";
 "home.defaultEmptyState" = "No courses available";
 
 "filters.filters" = "Filters";
 "filters.apply" = "Apply";
 "filters.showFilters" = "Show Filters";
-"filters.4filters" = "4 filters";
-"filters.2filters" = "2 filters";
+"filters.nFilters" = "%@ Filters";
 "filters.school" = "School";
 "filters.university" = "University";
 "filters.subject" = "Subject";
@@ -355,6 +382,7 @@ No worries!";
 
 // MARK: - Assignments
 
+"assignment.title" = "Exercise";
 "assignment.pauseAlertTitle" = "Pause exercise for now";
 "assignment.pauseAlertMessage" = "Make sure to come back and submit before due date";
 "assignment.pauseAlertPauseButtonTitle" = "Pause exercise";

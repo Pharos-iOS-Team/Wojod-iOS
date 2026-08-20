@@ -25,6 +25,11 @@ class ChatViewController: MessagesViewController {
     }()
 
     // MARK: - Life cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        becomeFirstResponder()
+    }
+
     override func viewDidLoad() {
         configureCustomCell()
         super.viewDidLoad()
@@ -41,7 +46,6 @@ class ChatViewController: MessagesViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        becomeFirstResponder()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,7 +76,8 @@ class ChatViewController: MessagesViewController {
             guard let self = self else { return }
             self.setHeaderHandler?(self.viewModel.reciverName, self.viewModel.conversationID)
             self.messagesCollectionView.reloadData()
-            self.messagesCollectionView.scrollToLastItem()
+            self.messagesCollectionView.layoutIfNeeded()
+            self.messagesCollectionView.scrollToLastItem(animated: false)
             self.configureSocketManager()
             self.connectToSocket()
             self.activityIndicator.dismiss()

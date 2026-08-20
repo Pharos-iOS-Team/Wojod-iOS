@@ -84,6 +84,26 @@ public final class AlertHandler: NSObject {
         present(alertController)
     }
 
+    func showQRCodeActionSheet(
+        sourceView: UIView,
+        onScan: @escaping () -> Void,
+        onManual: @escaping () -> Void
+    ) {
+        let alertController = UIAlertController(
+            title: L10n.CourseDetails.Main.bookByQR,
+            message: L10n.CourseDetails.Main.selectAnOption,
+            preferredStyle: .actionSheet
+        ).with {
+            $0.popoverPresentationController?.sourceView = sourceView
+            $0.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
+        let scanAction = UIAlertAction(title: L10n.CourseDetails.Main.qrCodeScanner, style: .default) { _ in onScan() }
+        let manualAction = UIAlertAction(title: L10n.CourseDetails.Main.codeManually, style: .default) { _ in onManual() }
+        let dismissAction = UIAlertAction(title: L10n.Shared.Action.dismiss, style: .cancel)
+        alertController.addActions([scanAction, manualAction, dismissAction])
+        present(alertController)
+    }
+
     func showNewPasswordAlert(
         title: String,
         sourceView: UIView,

@@ -49,7 +49,7 @@ struct SettingsCellModel {
 class SettingsViewModel {
     var availableSettings: [Settings] {
         var allSettings = Settings.allCases
-      if isGuestModeEnabled() || AppEnvironment.shouldHideOrganization {
+        if isGuestModeEnabled() || AppEnvironment.shouldHideOrganization {
             allSettings.removeAll { $0 == .organizations }
         }
         return allSettings

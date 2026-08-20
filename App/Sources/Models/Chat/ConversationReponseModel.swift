@@ -9,13 +9,6 @@ struct ConversationObjectModel: Codable {
     var closed: Bool
 }
 
-struct AttachmentObjectModel: Codable {
-    var id: Int?
-    var filename: String?
-    var fileUrl: String?
-    var contentType: String?
-}
-
 struct RecivableObjectModel: Codable {
     var name: String
 }
@@ -27,7 +20,7 @@ struct MessageObjectModel: Codable {
     var sendableId: Int?
     var sendableType: String?
     var receivable: RecivableObjectModel?
-    var attachments: [AttachmentObjectModel]?
+    var attachments: [Attachment]?
 }
 
 struct WebSocketResponseModel: Codable {

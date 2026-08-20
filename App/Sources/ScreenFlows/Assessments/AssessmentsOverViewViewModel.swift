@@ -26,7 +26,7 @@ struct AssessmentModel {
 class AssessmentsOverViewViewModel {
     // MARK: - enums
 
-    enum Module: String, CaseIterable, Choice {
+    enum Module: String, CaseIterable, Choice, Encodable {
         case all
         case quizzes
         case assignments
@@ -34,11 +34,11 @@ class AssessmentsOverViewViewModel {
         var choiceTitle: String {
             switch self {
             case .all:
-                return "app.all".localiz()
+                return L10n.Shared.Titles.all
             case .quizzes:
-                return "quizzes.title".localiz()
+                return L10n.Quizzes.title
             case .assignments:
-                return "assignments.title".localiz()
+                return L10n.Assignment.title
             }
         }
         
@@ -62,7 +62,7 @@ class AssessmentsOverViewViewModel {
     var assessments = [Assessment]()
     var lastUserSelectedSubjectIndex: IndexPath?
     var currentModule: Module = .all
-    var showQuizAlet: ((String) -> Void)?
+    var showQuizAlert: ((String) -> Void)?
     var shouldShowSubjects: Bool {
         return true
     }
@@ -88,11 +88,11 @@ class AssessmentsOverViewViewModel {
         return assessments[indexPath.row]
     }
 
-    func startAssessment(with assessment: Assessment, completion: (() -> Void)? = nil) {
+    func startAssessment(with assessment: AssessmentDomain, completion: (() -> Void)? = nil) {
         guard let assessmentID = assessment.id,
             let deviceToken = UIDevice.current.identifierForVendor?.uuidString
             else { return }
-        let module: Module = assessment.type == "Quiz"
+        let module: Module = assessment.type == .quiz
             ? .quizzes
             : .assignments
         AssessmentDetailsModel().startAssessment(
@@ -102,23 +102,22 @@ class AssessmentsOverViewViewModel {
         ) { [weak self] assessmentDetails, error in
             if error == nil {
             completion?()
-            let assessmentType: AssessmentType = assessment.type == "Quiz" ? .quiz : .assignment
-            self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessmentType)
+                self?.startAssessmentHandler?(assessmentID, assessmentDetails, assessment.type)
             } else {
-                self?.showQuizAlet?(error ?? "")
+                self?.showQuizAlert?(error ?? "")
             }
         }
     }
     
-    func assessmentResults(for assessment: Assessment?, completion: @escaping () -> Void) {
+    func assessmentResults(for assessment: AssessmentDomain?, completion: @escaping () -> Void) {
         guard let assessmentID = assessment?.id else { return }
         let studentId = User.shared.id
-        let module: Module = assessment?.type == "Quiz"
+        let module: Module = assessment?.type == .quiz
             ? .quizzes
             : .assignments
         model.assessmentResults(assessmentID: assessmentID, studentId: studentId, module: module.rawValue) { [weak self] assessmentDetails, error in
             completion()
-            self?.assessmentResultsHandler?(assessmentID, assessmentDetails, .quiz)
+            self?.assessmentResultsHandler?(assessmentID, assessmentDetails, assessment?.type ?? .quiz)
         }
     }
 
