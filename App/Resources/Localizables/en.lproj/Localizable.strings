@@ -67,11 +67,15 @@ No worries!";
 
 "verifyOtp.pleaseEnterOTP" = "Please enter the OTP sent to your phone";
 
-"verifyOtp.didNotGetACode" = "Didn’t receive a code?";
+"verifyOtp.pleaseEnterOTPViaWhatsApp" = "Please enter the OTP sent via WhatsApp";
 
-"verifyOtp.didNotGetACodeAlert" = "If you didn’t receive a code please contact the admin";
+"verifyOtp.pleaseEnterOTPViaSMS" = "Please enter the OTP sent via SMS";
+
+"verifyOtp.contactAdminMessage" = "If you didn't receive a code please contact the admin";
 
 "verifyOtp.resendCode" = "Resend code";
+
+"verifyOtp.waitMessage" = "Please wait, you will receive the code within 3 minutes";
 
 "tabBar.home" = "Home";
 

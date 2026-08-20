@@ -7,7 +7,7 @@ final class SchoolInfoViewController: UIViewController {
     // MARK: - UI Elements
 
     let firstParentNumberTextField = NoCutPasteTextField()
-    let secondParentNumberTextField = UITextField()
+    let secondParentNumberTextField = NoCutPasteTextField()
     let schoolNameTextField = NoCutPasteTextField()
     let academicTypeTextField = NoCutPasteTextField()
     let academicDivisionTextField = NoCutPasteTextField()
@@ -71,11 +71,10 @@ final class SchoolInfoViewController: UIViewController {
 
     func clearData() {
         viewModel.clearSchoolData()
-        [
-            firstParentNumberTextField, secondParentNumberTextField, schoolNameTextField,
-            academicTypeTextField, academicDivisionTextField, academicYearTextField, fieldTextField
-        ]
-        .forEach { $0.text = "" }
+        firstParentNumberTextField.text = ""
+        secondParentNumberTextField.text = ""
+        [schoolNameTextField, academicTypeTextField, academicDivisionTextField, academicYearTextField, fieldTextField]
+            .forEach { $0.text = "" }
         errorDisplay.clearAll()
     }
 
@@ -201,8 +200,9 @@ final class SchoolInfoViewController: UIViewController {
             academicTypeTextField, academicDivisionTextField, academicYearTextField, fieldTextField
         ]
         allFields.forEach { $0.delegate = self }
-        [firstParentNumberTextField, schoolNameTextField, secondParentNumberTextField]
-            .forEach { $0.addTarget(self, action: #selector(liveValidateField(_:)), for: .editingChanged) }
+        [firstParentNumberTextField, secondParentNumberTextField]
+            .forEach { $0.addTarget(self, action: #selector(parentPhoneDidChange(_:)), for: .editingChanged) }
+        schoolNameTextField.addTarget(self, action: #selector(liveValidateField(_:)), for: .editingChanged)
     }
 
     private func setupPickerCoordinator() {
@@ -225,27 +225,21 @@ final class SchoolInfoViewController: UIViewController {
     }
 
     @objc
+    private func parentPhoneDidChange(_ sender: UITextField) {
+        viewModel.onFormDidChange?()
+        saveState()
+    }
+
+    @objc
     private func liveValidateField(_ sender: UITextField) {
         viewModel.onFormDidChange?()
         errorDisplay.clearError(for: sender)
-        guard !(sender === secondParentNumberTextField && (sender.text ?? "").isEmpty) else { return }
         saveState()
-        let field: AcademicInfoField?
-        switch sender {
-        case firstParentNumberTextField:
-            field = .parentNumber
-        case schoolNameTextField:
-            field = .schoolName
-        default:
-            field = nil
-        }
-        if
-            let field,
-            let error = viewModel.validateField(
-                field,
-                parentNumber: firstParentNumberTextField.text ?? "",
-                schoolName: schoolNameTextField.text ?? ""
-            ) {
+        if let error = viewModel.validateField(
+            .schoolName,
+            parentNumber: firstParentNumberTextField.text ?? "",
+            schoolName: schoolNameTextField.text ?? ""
+        ) {
             sender.setBorder(color: .red, width: 1, cornerRadius: 6)
             errorDisplay.showError(for: sender, message: error.localizedMessage)
         }

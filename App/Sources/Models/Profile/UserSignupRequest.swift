@@ -22,4 +22,5 @@ struct UserSignupRequest: Codable {
     let avatarId: Int?
     let isRoyalMedicineStudent: Bool?
     let loginOrganization: String?
+    let countryCode: String?
 }

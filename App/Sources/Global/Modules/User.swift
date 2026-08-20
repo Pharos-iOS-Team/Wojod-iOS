@@ -41,6 +41,7 @@ final class User {
     var email: String?
     var mobileNumber: String?
     var mobileNumber2: String?
+    var countryCode: String?
     var password: String = ""
     var avatar: Avatar?
     var parentNumber: String?
@@ -85,6 +86,7 @@ final class User {
         email = user?.email
         mobileNumber = user?.mobileNumber
         mobileNumber2 = user?.mobileNumber2
+        countryCode = user?.countryCode
         parentNumber = user?.parent1PhoneNumber
         parentNumber2 = user?.parent2PhoneNumber
         avatar = user?.avatar

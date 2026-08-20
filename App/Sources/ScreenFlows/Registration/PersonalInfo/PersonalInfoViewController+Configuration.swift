@@ -1,6 +1,8 @@
 // Copyright © 2026 Pharos Solutions. All rights reserved.
 
 import IQKeyboardManagerSwift
+import PhoneNumberKit
+import PhoneNumberKitUI
 import UIKit
 
 extension PersonalInfoViewController {
@@ -19,18 +21,97 @@ extension PersonalInfoViewController {
             case .picker:
                 let picker = key == .country ? countryPickerView : cityPickerView
                 RegistrationFieldConfigurer.configurePickerField(field, placeholder: key.placeholder, picker: picker)
+            case .phone:
+                RegistrationFieldConfigurer.configureMandatory(field, placeholder: key.placeholder)
+                let phoneTextField = makePhoneTextField(placeholder: key.placeholder)
+                embedPhoneTextField(phoneTextField, over: field, key: key)
+                primaryPhoneTextField = phoneTextField
             }
         }
     }
 
+    // MARK: - Phone TextField Factory
+
+    private func makePhoneTextField(placeholder: String) -> PhoneNumberTextField {
+        return PhoneNumberTextField().with {
+            $0.withFlag = true
+            $0.withDefaultPickerUI = true
+            $0.withPrefix = true
+            $0.withExamplePlaceholder = true
+            let code = User.shared.countryCode ?? PhoneNumberValidator.egyptCountryCode
+            let digits = code.hasPrefix("+") ? String(code.dropFirst()) : code
+            $0.defaultRegion = UInt64(digits).flatMap { PhoneNumberUtility().mainCountry(forCode: $0) }
+                ?? PhoneNumberValidator.egyptRegionCode
+
+            $0.semanticContentAttribute = .forceLeftToRight
+            $0.textAlignment = .left
+            $0.translatesAutoresizingMaskIntoConstraints = false
+
+            $0.borderStyle = .none
+            $0.backgroundColor = .white
+            $0.font = .systemFont(ofSize: 14)
+            $0.layer.masksToBounds = true
+            $0.setBorder(color: Asset.Colors.backgroundLightGreyColor.color, width: 1, cornerRadius: 5)
+            $0.flagButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 6)
+            $0.delegate = self
+        }
+    }
+
+    private func embedPhoneTextField(_ phoneTextField: PhoneNumberTextField, over storyboardField: UITextField, key: PersonalInfoField) {
+        guard let superview = storyboardField.superview else { return }
+        superview.addSubview(phoneTextField)
+        NSLayoutConstraint.activate([
+            phoneTextField.topAnchor.constraint(equalTo: storyboardField.topAnchor),
+            phoneTextField.leadingAnchor.constraint(equalTo: storyboardField.leadingAnchor),
+            phoneTextField.trailingAnchor.constraint(equalTo: storyboardField.trailingAnchor),
+            phoneTextField.heightAnchor.constraint(equalTo: storyboardField.heightAnchor)
+        ])
+        storyboardField.isHidden = true
+        phoneTextField.addTarget(self, action: #selector(primaryPhoneDidChange), for: .editingChanged)
+    }
+
+    @objc
+    private func primaryPhoneDidChange() {
+        guard let textField = primaryPhoneTextField else { return }
+        phoneTextFieldDidChange(for: .mobileNumber, phoneTextField: textField)
+    }
+
+    private func phoneTextFieldDidChange(for key: PersonalInfoField, phoneTextField: PhoneNumberTextField) {
+        saveStateToStore()
+        updateNextButtonState()
+        let sourceField: NoCutPasteTextField?
+        switch key {
+        case .mobileNumber:
+            sourceField = field(for: .mobileNumber)
+        case .mobileNumber2:
+            sourceField = field(for: .mobileNumber2)
+        default:
+            sourceField = nil
+        }
+        guard let textField = sourceField else { return }
+        errorDisplay.clearError(for: textField)
+        guard !(key == .mobileNumber2 && phoneTextField.nationalNumber.isEmpty) else { return }
+        if let error = viewModel.validateField(key) {
+            textField.setBorder(color: .red, width: 1, cornerRadius: 6)
+            errorDisplay.showError(for: textField, message: error.localizedMessage)
+        }
+    }
+
+    // MARK: - Text Field Configuration
+
     func configureTextFields() {
         inputFields.forEach { $0.delegate = self }
-        let skipLiveTags = Set([PersonalInfoField.country, .city, .district, .homeNumber, .address].map { $0.rawValue })
+        let skipLiveTags = Set([
+            PersonalInfoField.country, .city, .district, .homeNumber, .address,
+            .mobileNumber
+        ].map { $0.rawValue })
         inputFields
             .filter { !skipLiveTags.contains($0.tag) }
             .forEach { $0.addTarget(self, action: #selector(liveValidateField(_:)), for: .editingChanged) }
         field(for: .district)?.addTarget(self, action: #selector(districtTextChanged), for: .editingChanged)
     }
+
+    // MARK: - Picker Coordinator
 
     func configurePickerCoordinator() {
         guard let countryField = field(for: .country), let cityField = field(for: .city) else { return }
@@ -76,6 +157,8 @@ extension PersonalInfoViewController {
         return containerView
     }
 
+    // MARK: - Loading
+
     func startNextButtonLoading() {
         nextButton.isEnabled = false
         nextButtonIndicator.startAnimating()
@@ -88,6 +171,8 @@ extension PersonalInfoViewController {
         nextButton.setImage(Images.localizedDisclosureIndicatorButton, for: .normal)
         updateNextButtonState()
     }
+
+    // MARK: - Field Targets
 
     @objc
     func districtTextChanged() {
@@ -108,6 +193,8 @@ extension PersonalInfoViewController {
             errorDisplay.showError(for: sender, message: error.localizedMessage)
         }
     }
+
+    // MARK: - Country / City Loading
 
     func retrieveCountriesList() {
         countryFieldIndicator.startAnimating()
@@ -143,10 +230,20 @@ extension PersonalInfoViewController {
         }
     }
 
+    // MARK: - State
+
+    private func dialCodeForRegion(_ region: String) -> String {
+        let code = PhoneNumberUtility().countryCode(for: region) ?? 20
+        return "+\(code)"
+    }
+
     func currentFieldValues() -> PersonalInfoFieldValues {
-        PersonalInfoFieldValues(
+        let primaryRegion = primaryPhoneTextField?.currentRegion ?? PhoneNumberValidator.egyptRegionCode
+        return PersonalInfoFieldValues(
             name: field(for: .name)?.text ?? "",
-            mobileNumber: field(for: .mobileNumber)?.text ?? "",
+            mobileNumber: primaryPhoneTextField?.nationalNumber ?? field(for: .mobileNumber)?.text ?? "",
+            mobileCountryCode: dialCodeForRegion(primaryRegion),
+            mobileRegionCode: primaryRegion,
             mobileNumber2: field(for: .mobileNumber2)?.text ?? "",
             homeNumber: field(for: .homeNumber)?.text ?? "",
             email: field(for: .email)?.text ?? "",
@@ -166,7 +263,9 @@ extension PersonalInfoViewController {
     func restoreStateFromStore() {
         let values = viewModel.restoreStateFromStore()
         field(for: .name)?.text = values.name
-        field(for: .mobileNumber)?.text = values.mobileNumber
+        if !values.mobileNumber.isEmpty {
+            primaryPhoneTextField?.text = dialCodeForRegion(values.mobileRegionCode) + values.mobileNumber
+        }
         field(for: .mobileNumber2)?.text = values.mobileNumber2
         field(for: .homeNumber)?.text = values.homeNumber
         field(for: .email)?.text = values.email

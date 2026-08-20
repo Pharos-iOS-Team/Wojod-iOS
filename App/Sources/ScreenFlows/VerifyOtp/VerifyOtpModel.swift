@@ -25,4 +25,22 @@ class VerifyOtpModel {
             }
         }
     }
+
+    func resendOTP(
+        mobileNumber: String,
+        countryCode: String?,
+        provider: OTPProvider,
+        completionHandler: @escaping (Swift.Result<Bool, Error>) -> Void
+    ) {
+        let formatted = PhoneNumberValidator.formattedEgyptianPhone(mobileNumber, countryCode: countryCode ?? PhoneNumberValidator.egyptCountryCode)
+        let requestModel = GetOTPRequestModel(mobileNumber: formatted, countryCode: countryCode, provider: provider)
+        ApiProvider.shared.request(.auth(.sendMobileNumber(requestModel))) { result in
+            switch result {
+            case .success:
+                completionHandler(.success(true))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
 }

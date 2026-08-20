@@ -18,6 +18,7 @@ struct UserModel: Codable {
     var address: String?
     var mobileNumber: String?
     var mobileNumber2: String?
+    var countryCode: String?
     var homeNumber: String?
     var parent1PhoneNumber: String?
     var parent2PhoneNumber: String?

@@ -50,14 +50,11 @@ class CreatePasswordViewController: UIViewController {
     }
     @IBOutlet private var titleLabel: UILabel!
 
-    var mobileNumber: String = ""
-    var isActivationFlow: Bool = false
-    private let viewModel = CreatePasswordViewModel()
+    var viewModel = CreatePasswordViewModel()
     private var loadingHud: JGProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.isActivationFlow = isActivationFlow
         handleErrors()
         handleSuccess()
         configureUI()
@@ -72,20 +69,19 @@ class CreatePasswordViewController: UIViewController {
 
     @IBAction private func createPassword(_ sender: SendButton) {
         alertView.hideAlertView()
-        verifyPassword()
+        viewModel.createPassword(
+            password: passwordField.text,
+            passwordConfirmation: confirmPasswordField.text
+        )
     }
 
     @IBAction private func dismissView(_ sender: Any) {
-        if isActivationFlow {
+        if viewModel.isActivationFlow {
             let loginViewCtrl = view.window?.rootViewController as? LoginViewController
             view.window?.rootViewController?.dismiss(animated: true)
         } else {
             rootViewCtrl?.dismiss(animated: true)
         }
-    }
-
-    private func verifyPassword() {
-        viewModel.createPassword(mobileNumber: mobileNumber, password: passwordField.text, passwordConfirmation: confirmPasswordField.text)
     }
 
     private func showLoadingIndicator() {
@@ -123,7 +119,7 @@ class CreatePasswordViewController: UIViewController {
     private func handleSuccess() {
         viewModel.successHandler = { [weak self] in
             self?.hideLoadingIndicator()
-            if self?.isActivationFlow == true {
+            if self?.viewModel.isActivationFlow == true {
                 PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
                 ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
             } else {
@@ -131,9 +127,9 @@ class CreatePasswordViewController: UIViewController {
             }
         }
     }
-    
+
     private func configureUI() {
-        titleLabel.text = isActivationFlow ? L10n.Login.welcomePassword : L10n.Login.forgotPasswordTitle
+        titleLabel.text = viewModel.isActivationFlow ? L10n.Login.welcomePassword : L10n.Login.forgotPasswordTitle
         sendButton.isEnabled = false
         passwordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)
         confirmPasswordField.addTarget(self, action: #selector(passwordFieldsChanged), for: .editingChanged)

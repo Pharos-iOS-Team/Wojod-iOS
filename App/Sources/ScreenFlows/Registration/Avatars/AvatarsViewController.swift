@@ -153,12 +153,15 @@ class AvatarsViewController: UIViewController {
                     RegistrationStore.shared.reset()
                     let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
                         $0.modalPresentationStyle = .fullScreen
-                        $0.hideBackButton = true
-                        $0.mobileNumber = mobileNumber
-                        $0.verifyUserFromLogin = true
-                        $0.successHandler = {
-                            ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
-                        }
+                        $0.viewModel = .init(
+                            mobileNumber: mobileNumber,
+                            otpProvider: .whatsapp,
+                            verifyUserFromLogin: true,
+                            hideBackButton: true,
+                            successHandler: {
+                                ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+                            }
+                        )
                     }
                     self.present(verifyOtpViewCtrl, animated: true, completion: nil)
                 }

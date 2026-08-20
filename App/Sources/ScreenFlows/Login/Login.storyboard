@@ -48,13 +48,33 @@
                                                             <constraint firstAttribute="height" constant="50" id="CxA-jn-g6s"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4el-rM-Yn1">
+                                                    <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="none" textAlignment="left" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4el-rM-Yn1" customClass="PhoneNumberTextField" customModule="PhoneNumberKitUI">
                                                         <rect key="frame" x="0.0" y="65" width="312" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="2kL-M6-vJp"/>
                                                         </constraints>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="withFlag" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="withPrefix" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="withExamplePlaceholder" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="withDefaultPickerUI" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                <color key="value" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="mUu-uY-ag1" id="phoneFieldDelegate"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>

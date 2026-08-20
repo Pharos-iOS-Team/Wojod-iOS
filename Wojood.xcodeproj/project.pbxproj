@@ -362,12 +362,12 @@
 		D5882012300BCBFE00316A28 /* AvatarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882011300BCBFE00316A28 /* AvatarsViewModel.swift */; };
 		D5882014300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882013300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift */; };
 		D5882041300CBEF600316A28 /* CourseDetailsTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882040300CBEF600316A28 /* CourseDetailsTableViewManager.swift */; };
-		D588265F300E646C00316A28 /* CourseDetailsCoordinator+Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */; };
 		D588257C300CEF3500316A28 /* SchoolInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588257B300CEF3500316A28 /* SchoolInfoViewController.swift */; };
 		D588257E300CEF4200316A28 /* UniversityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588257D300CEF4200316A28 /* UniversityInfoViewController.swift */; };
 		D5882581300CF16E00316A28 /* UniversityPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882580300CF16E00316A28 /* UniversityPickerCoordinator.swift */; };
 		D5882584300CF19300316A28 /* SchoolPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */; };
 		D58825DC300E19B700316A28 /* PersonalInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58825DB300E19B700316A28 /* PersonalInfoField.swift */; };
+		D588265F300E646C00316A28 /* CourseDetailsCoordinator+Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
@@ -481,6 +481,10 @@
 		D5CEAF7A2FE6D01100B2C1F7 /* DependencyValuesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CEAF792FE6D01100B2C1F7 /* DependencyValuesExt.swift */; };
 		D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */; };
 		D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */ = {isa = PBXBuildFile; productRef = D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */; };
+		D5F1AE553035CE480036B1C5 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = D5F1AE543035CE480036B1C5 /* PhoneNumberKit */; };
+		D5F1AE583035CED00036B1C5 /* PhoneNumberKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5F1AE573035CED00036B1C5 /* PhoneNumberKitUI */; };
+		D5F1AE5A3035D3CB0036B1C5 /* OTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1AE593035D3CB0036B1C5 /* OTPProvider.swift */; };
+		D5F1AE5C3035D3F50036B1C5 /* PhoneNumberValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1AE5B3035D3F50036B1C5 /* PhoneNumberValidator.swift */; };
 		D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */; };
 		D5FE3EA22F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */; };
 		D5FE3EA32F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3EA12F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib */; };
@@ -889,12 +893,12 @@
 		D5882011300BCBFE00316A28 /* AvatarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsViewModel.swift; sourceTree = "<group>"; };
 		D5882013300BCDDB00316A28 /* AvatarsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AvatarsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		D5882040300CBEF600316A28 /* CourseDetailsTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsTableViewManager.swift; sourceTree = "<group>"; };
-		D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailsCoordinator+Route.swift"; sourceTree = "<group>"; };
 		D588257B300CEF3500316A28 /* SchoolInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolInfoViewController.swift; sourceTree = "<group>"; };
 		D588257D300CEF4200316A28 /* UniversityInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityInfoViewController.swift; sourceTree = "<group>"; };
 		D5882580300CF16E00316A28 /* UniversityPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityPickerCoordinator.swift; sourceTree = "<group>"; };
 		D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolPickerCoordinator.swift; sourceTree = "<group>"; };
 		D58825DB300E19B700316A28 /* PersonalInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoField.swift; sourceTree = "<group>"; };
+		D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailsCoordinator+Route.swift"; sourceTree = "<group>"; };
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
@@ -1012,6 +1016,8 @@
 		D5CEAF792FE6D01100B2C1F7 /* DependencyValuesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyValuesExt.swift; sourceTree = "<group>"; };
 		D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Royal-Medicine.xcconfig"; sourceTree = "<group>"; };
 		D5DBC5C72E67317D00FD4034 /* Royal-Medicine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Royal-Medicine.xcassets"; sourceTree = "<group>"; };
+		D5F1AE593035D3CB0036B1C5 /* OTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPProvider.swift; sourceTree = "<group>"; };
+		D5F1AE5B3035D3F50036B1C5 /* PhoneNumberValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberValidator.swift; sourceTree = "<group>"; };
 		D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAndImagesTableViewCell.swift; sourceTree = "<group>"; };
 		D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentAndImagesTableViewCell.xib; sourceTree = "<group>"; };
 		D5FE3EA02F8F8F320008EA86 /* CorrectionImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1066,9 +1072,11 @@
 				BC39F5F02D64E8480038A9F1 /* UIScrollView_InfiniteScroll in Frameworks */,
 				BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */,
 				BC6B69D92C189C0D00E990C0 /* KeychainAccess in Frameworks */,
+				D5F1AE583035CED00036B1C5 /* PhoneNumberKitUI in Frameworks */,
 				BC39F5E72D64E6790038A9F1 /* SkeletonView in Frameworks */,
 				BC3424322D6E2D13005E26DE /* AlamofireImage in Frameworks */,
 				D5B48A152F99321400CAD7B8 /* Siren in Frameworks */,
+				D5F1AE553035CE480036B1C5 /* PhoneNumberKit in Frameworks */,
 				537955B9296EC99A0051682D /* LanguageManager-iOS in Frameworks */,
 				BC6B69E82C189F1900E990C0 /* Reachability in Frameworks */,
 				D5EED9722E926E8C007CC0FE /* IQKeyboardManagerSwift in Frameworks */,
@@ -1833,6 +1841,7 @@
 				D5BEE1A82FD6D38F00546B3B /* DocumentService.swift */,
 				D5BEE1A92FD6D38F00546B3B /* VideoPlaybackService.swift */,
 				38659BCE26B6D2F900E3BFE9 /* AppAlert */,
+				D5F1AE5B3035D3F50036B1C5 /* PhoneNumberValidator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2505,6 +2514,7 @@
 				D5AD7B002F9E7B4300EA7C7B /* UserModel.swift */,
 				D5AD7B012F9E7B4300EA7C7B /* UserSignupRequest.swift */,
 				D5881F80300B96F900316A28 /* AcademicTrack.swift */,
+				D5F1AE593035D3CB0036B1C5 /* OTPProvider.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2728,6 +2738,8 @@
 				D5B48A142F99321400CAD7B8 /* Siren */,
 				D5125F4C2F9972A90027E9EB /* BunnyStreamAPI */,
 				D5125F4E2F9972A90027E9EB /* BunnyStreamPlayer */,
+				D5F1AE543035CE480036B1C5 /* PhoneNumberKit */,
+				D5F1AE573035CED00036B1C5 /* PhoneNumberKitUI */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2810,6 +2822,8 @@
 				D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */,
 				D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */,
+				D5F1AE533035CE480036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				D5F1AE563035CED00036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKitUI" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -3026,6 +3040,7 @@
 				BC8D4C1926E76EF700033413 /* CourseDetailsInfoHeaderView.swift in Sources */,
 				7744F6CC265689DD00F429F5 /* UIViewControllerExt.swift in Sources */,
 				BC767133262C4D2F0012155C /* CoursesTabBarViewController.swift in Sources */,
+				D5F1AE5A3035D3CB0036B1C5 /* OTPProvider.swift in Sources */,
 				385CC0E5265FD67F00A091FD /* ReviewTableViewCell.swift in Sources */,
 				D50D334F3006631C00B463D4 /* Course.swift in Sources */,
 				7723AD25261C6134007C0B97 /* LocalSettingsConfiguratorAppDelegate.swift in Sources */,
@@ -3255,6 +3270,7 @@
 				D5AD7B392F9E7B4300EA7C7B /* Division.swift in Sources */,
 				D5AD7B3A2F9E7B4300EA7C7B /* ErrorModel.swift in Sources */,
 				D5AD7B3B2F9E7B4300EA7C7B /* BookCourseRequestModel.swift in Sources */,
+				D5F1AE5C3035D3F50036B1C5 /* PhoneNumberValidator.swift in Sources */,
 				D5AD7B3D2F9E7B4300EA7C7B /* Subject.swift in Sources */,
 				D5AD7B3E2F9E7B4300EA7C7B /* IDRequestModel.swift in Sources */,
 				D5CEAE8C2FE0242D00B2C1F7 /* PayloadExtractable.swift in Sources */,
@@ -4403,6 +4419,22 @@
 				minimumVersion = 1.1.3;
 			};
 		};
+		D5F1AE533035CE480036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PhoneNumberKit/PhoneNumberKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.7;
+			};
+		};
+		D5F1AE563035CED00036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKitUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PhoneNumberKit/PhoneNumberKitUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
@@ -4573,6 +4605,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */;
 			productName = IQKeyboardToolbarManager;
+		};
+		D5F1AE543035CE480036B1C5 /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5F1AE533035CE480036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
+		};
+		D5F1AE573035CED00036B1C5 /* PhoneNumberKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5F1AE563035CED00036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKitUI" */;
+			productName = PhoneNumberKitUI;
 		};
 		D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

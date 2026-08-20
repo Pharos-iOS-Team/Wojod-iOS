@@ -6,6 +6,8 @@ import Foundation
 struct PersonalInfoFieldValues {
     var name: String
     var mobileNumber: String
+    var mobileCountryCode: String
+    var mobileRegionCode: String
     var mobileNumber2: String
     var homeNumber: String
     var email: String
@@ -95,6 +97,8 @@ final class PersonalInfoViewModel {
         RegistrationStore.shared.update { state in
             state.name = values.name
             state.mobileNumber = values.mobileNumber
+            state.mobileCountryCode = values.mobileCountryCode
+            state.mobileRegionCode = values.mobileRegionCode
             state.mobileNumber2 = values.mobileNumber2
             state.homeNumber = values.homeNumber
             state.email = values.email
@@ -113,6 +117,8 @@ final class PersonalInfoViewModel {
         return PersonalInfoFieldValues(
             name: state.name,
             mobileNumber: state.mobileNumber,
+            mobileCountryCode: state.mobileCountryCode,
+            mobileRegionCode: state.mobileRegionCode,
             mobileNumber2: state.mobileNumber2,
             homeNumber: state.homeNumber,
             email: state.email,
@@ -139,7 +145,12 @@ final class PersonalInfoViewModel {
 
     func validateNumber() async -> Bool {
         let state = RegistrationStore.shared.state
-        let requestModel = CheckNumberRequestModel(mobileNumber: state.mobileNumber, email: state.email)
+        let formatted = PhoneNumberValidator.formattedEgyptianPhone(state.mobileNumber, countryCode: state.mobileCountryCode)
+        let requestModel = CheckNumberRequestModel(
+            mobileNumber: formatted,
+            email: state.email,
+            countryCode: state.mobileCountryCode
+        )
         do {
             _ = try await apiProvider.request(.registration(.checkNumber(requestModel)))
             return true
@@ -154,9 +165,9 @@ final class PersonalInfoViewModel {
         case .name:
             return state.name.isValid ? nil : .nameEmpty
         case .mobileNumber:
-            return state.mobileNumber.isValidPhoneNumber ? nil : .phoneInvalid
+            return state.mobileNumber.isValid ? nil : .phoneInvalid
         case .mobileNumber2:
-            if !state.mobileNumber2.isValidPhoneNumber {
+            if !state.mobileNumber2.isValid {
                 return .phone2Invalid
             }
             if state.mobileNumber2 == state.mobileNumber {

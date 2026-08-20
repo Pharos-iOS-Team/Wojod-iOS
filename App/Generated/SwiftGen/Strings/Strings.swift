@@ -1344,21 +1344,29 @@ internal enum L10n {
   }
 
   internal enum VerifyOtp {
-    /// Didn’t receive a code?
-    internal static var didNotGetACode: String {
-        return L10n.tr("Localizable", "verifyOtp.didNotGetACode")
-      }
-    /// If you didn’t receive a code please contact the admin
-    internal static var didNotGetACodeAlert: String {
-        return L10n.tr("Localizable", "verifyOtp.didNotGetACodeAlert")
+    /// If you didn't receive a code please contact the admin
+    internal static var contactAdminMessage: String {
+        return L10n.tr("Localizable", "verifyOtp.contactAdminMessage")
       }
     /// Please enter the OTP sent to your phone
     internal static var pleaseEnterOTP: String {
         return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTP")
       }
+    /// Please enter the OTP sent via SMS
+    internal static var pleaseEnterOTPViaSMS: String {
+        return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTPViaSMS")
+      }
+    /// Please enter the OTP sent via WhatsApp
+    internal static var pleaseEnterOTPViaWhatsApp: String {
+        return L10n.tr("Localizable", "verifyOtp.pleaseEnterOTPViaWhatsApp")
+      }
     /// Resend code
     internal static var resendCode: String {
         return L10n.tr("Localizable", "verifyOtp.resendCode")
+      }
+    /// Please wait, you will receive the code within 3 minutes
+    internal static var waitMessage: String {
+        return L10n.tr("Localizable", "verifyOtp.waitMessage")
       }
   }
 }

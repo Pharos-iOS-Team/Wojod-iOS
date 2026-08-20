@@ -5,26 +5,48 @@ import SwiftyUserDefaults
 
 class LoginViewModel {
     private var model = LoginModel()
-    private var mobileNumber: String = ""
+    private(set) var mobileNumber: String = ""
     private var password: String = ""
+
+    // MARK: - Country / Phone State
+    private(set) var selectedCountryCode: String = PhoneNumberValidator.egyptCountryCode
+    private(set) var selectedRegionCode: String = PhoneNumberValidator.egyptRegionCode
+
+    init(mobileNumber: String = "", countryCode: String = PhoneNumberValidator.egyptCountryCode, regionCode: String = PhoneNumberValidator.egyptRegionCode) {
+        self.mobileNumber = mobileNumber
+        self.selectedCountryCode = countryCode
+        self.selectedRegionCode = regionCode
+    }
+
+    // MARK: - Callbacks
 
     var errorHandler: ((WJError) -> Void)?
     var successHandler: ((UserModel) -> Void)?
     var showIndicator: (() -> Void)?
     var navigateToPasswordEntry: (() -> Void)?
-    var navigateToOtpVerification: ((String) -> Void)?
+    var navigateToOtpVerification: ((String, String) -> Void)?
     var setPassword: Bool = false
+
+    // MARK: - Phone Input Update
+
+    /// Called by the view whenever the user changes the phone number or country.
+    func updatePhone(rawNumber: String, countryCode: String, regionCode: String) {
+        mobileNumber = rawNumber
+        selectedCountryCode = countryCode
+        selectedRegionCode = regionCode
+    }
+
+    // MARK: - Submit Phone
 
     func submitPhoneNumber(mobileNumber: String?) {
         guard let number = mobileNumber else { return }
         self.mobileNumber = number
         guard number.isValid else {
-            let error = WJError(type: .validationError, message: L10n.Login.mobileNumberIsEmpty)
-            errorHandler?(error)
+            errorHandler?(WJError(type: .validationError, message: L10n.Login.mobileNumberIsEmpty))
             return
         }
         showIndicator?()
-        model.verifyPhone(mobileNumber: number) { result in
+        model.verifyPhone(mobileNumber: number, countryCode: selectedCountryCode) { result in
             switch result {
             case .success(let response):
                 self.setPassword = response.setPassword
@@ -41,9 +63,11 @@ class LoginViewModel {
 
     private func requestOtpThenNavigate(mobileNumber: String) {
         model.resendOtpForLogin(mobileNumber: mobileNumber) { _ in
-            self.navigateToOtpVerification?(mobileNumber)
+            self.navigateToOtpVerification?(mobileNumber, self.selectedCountryCode)
         }
     }
+
+    // MARK: - Login with Password
 
     func checkIfMobileOrPasswordAreEmpty() -> Bool {
         return mobileNumber.isValid && password.isValid
@@ -54,12 +78,12 @@ class LoginViewModel {
         self.mobileNumber = number
         self.password = password
         guard number.isValid && password.isValid else {
-            let error = WJError(type: .validationError, message: getAlertMessage())
-            errorHandler?(error)
+            errorHandler?(WJError(type: .validationError, message: getAlertMessage()))
             return
         }
         showIndicator?()
-        model.login(mobileNumber: number, password: password) { result in
+        print("here >>> \(selectedCountryCode) and \(number)")
+        model.login(mobileNumber: number, password: password, countryCode: selectedCountryCode) { result in
             switch result {
             case .success(let user):
                 self.setUserData(user: user.data)
@@ -70,12 +94,12 @@ class LoginViewModel {
         }
     }
 
+    // MARK: - Guest Mode
     func isGuestModeEnabled(completion: @escaping (Bool) -> Void) {
         model.guestMode { result in
             switch result {
             case .success(let whiteLabelVersion):
-                let isGuestModeEnabled = whiteLabelVersion.version == "1.0.0"
-                completion(isGuestModeEnabled)
+                completion(whiteLabelVersion.version == "1.0.0")
             case .failure(let error):
                 self.errorHandler?(self.mapToWJError(error))
                 completion(false)
@@ -93,6 +117,7 @@ class LoginViewModel {
         }
     }
 
+    // MARK: - Helpers
     func getAlertMessage() -> String {
         if mobileNumber.isValid && !password.isValid {
             return L10n.Login.passwordIsEmpty

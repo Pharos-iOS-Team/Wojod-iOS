@@ -8,4 +8,5 @@ struct LoginRequestModel: Encodable {
     var locale: String = Language.currentLanguage.rawValue
     var deviceId: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
     var loginOrganization: String? = AppEnvironment.appName.loginOrganization
+    var countryCode: String?
 }

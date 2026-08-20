@@ -2,6 +2,7 @@
 
 import FirebaseMessaging
 import JGProgressHUD
+import PhoneNumberKit
 import UIKit
 
 class PasswordViewController: UIViewController {
@@ -37,14 +38,13 @@ class PasswordViewController: UIViewController {
     }
     @IBOutlet private var scrollView: UIScrollView!
 
-    var mobileNumber: String = ""
-
-    private let viewModel = LoginViewModel()
+    var viewModel = LoginViewModel()
     private var loadingHud: JGProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        phoneNumberLabel.text = mobileNumber
+        configurePhoneNumberLabel()
+        configureBackButton()
         handleLoginSuccess()
         handleErrors()
         showLoadingIndicatorHandler()
@@ -53,9 +53,46 @@ class PasswordViewController: UIViewController {
         loginButton.isEnabled = false
     }
 
+    // MARK: - Phone Number Display
+
+    private func configurePhoneNumberLabel() {
+        let displayNumber = PhoneNumberValidator.stripEgyptianLeadingZero(viewModel.mobileNumber, countryCode: viewModel.selectedCountryCode)
+        let flag = PhoneNumberValidator.flagEmoji(forRegionCode: viewModel.selectedRegionCode)
+        phoneNumberLabel.text = "\(flag) \(viewModel.selectedCountryCode) \(displayNumber)"
+        phoneNumberLabel.textColor = .gray
+        phoneNumberLabel.textAlignment = .left
+        phoneNumberLabel.semanticContentAttribute = .forceLeftToRight
+    }
+
+    // MARK: - Navigation Bar
+
+    private func configureBackButton() {
+        let backItem = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(handleBack)
+        )
+        backItem.tintColor = .black
+        navigationItem.leftBarButtonItem = backItem
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+
+    @objc
+    private func handleBack() {
+        navigationController?.popViewController(animated: true)
+    }
+
     @IBAction private func login(_ sender: SendButton) {
         alertView.hideAlertView()
-        viewModel.login(mobileNumber: mobileNumber, password: passwordTextField.text)
+        viewModel.login(mobileNumber: viewModel.mobileNumber, password: passwordTextField.text)
     }
 
     @IBAction private func forgotPassword(_ sender: Any) {
@@ -63,36 +100,38 @@ class PasswordViewController: UIViewController {
     }
 
     private func handleNavigation() {
-        viewModel.navigateToOtpVerification = { [weak self] mobileNumber in
+        viewModel.navigateToOtpVerification = { [weak self] mobileNumber, countryCode in
             DispatchQueue.main.async {
                 self?.hideLoadingIndicator()
-                self?.showVerifyOtpScreen(mobileNumber: mobileNumber)
+                self?.showVerifyOtpScreen(mobileNumber: mobileNumber, countryCode: countryCode)
             }
         }
     }
 
-    private func showVerifyOtpScreen(mobileNumber: String) {
-        let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
-            $0.modalPresentationStyle = .fullScreen
-            $0.mobileNumber = mobileNumber
-            $0.verifyUserFromLogin = true
-        }
-        verifyOtpViewCtrl.successHandler = { [weak verifyOtpViewCtrl, weak self] in
-            guard let presenter = verifyOtpViewCtrl, let self = self else { return }
-            if self.viewModel.setPassword {
-                let setPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
-                    $0.mobileNumber = mobileNumber
-                    $0.isActivationFlow = true
-                    $0.modalPresentationStyle = .fullScreen
-                }
-                presenter.present(setPasswordViewCtrl, animated: true)
-            } else {
-                DispatchQueue.main.async {
-                    PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
-                    ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+    private func showVerifyOtpScreen(mobileNumber: String, countryCode: String) {
+        let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
+        verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
+        verifyOtpViewCtrl.viewModel = .init(
+            mobileNumber: mobileNumber,
+            countryCode: countryCode,
+            otpProvider: .whatsapp,
+            verifyUserFromLogin: true,
+            successHandler: { [weak verifyOtpViewCtrl, weak self] in
+                guard let presenter = verifyOtpViewCtrl, let self = self else { return }
+                if self.viewModel.setPassword {
+                    let setPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
+                        $0.viewModel = .init(mobileNumber: mobileNumber, countryCode: countryCode, isActivationFlow: true)
+                        $0.modalPresentationStyle = .fullScreen
+                    }
+                    presenter.present(setPasswordViewCtrl, animated: true)
+                } else {
+                    DispatchQueue.main.async {
+                        PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
+                        ScreensFlowConfigurationAppDelegate.shared.navigateToMainScreen()
+                    }
                 }
             }
-        }
+        )
         present(verifyOtpViewCtrl, animated: true)
     }
 
@@ -121,7 +160,7 @@ class PasswordViewController: UIViewController {
         let alert = AlertHandler(presentingViewCtrl: self)
         alert.showInformationAlert(title: L10n.Global.Titles.error, message: error.message) { _ in
             if self.viewModel.doesErrorIndicateVerificationRequired(error) {
-                self.showVerifyOtpScreen(mobileNumber: self.mobileNumber)
+                self.showVerifyOtpScreen(mobileNumber: self.viewModel.mobileNumber, countryCode: self.viewModel.selectedCountryCode)
             }
         }
     }

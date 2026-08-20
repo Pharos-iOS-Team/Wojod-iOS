@@ -6,5 +6,6 @@ struct ForgetPasswordModel: Codable {
     var mobileNumber: String?
     var password: String?
     var passwordConfirmation: String?
+    var countryCode: String?
     var locale: String = Language.currentLanguage.rawValue
 }

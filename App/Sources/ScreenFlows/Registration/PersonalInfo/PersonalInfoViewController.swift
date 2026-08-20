@@ -2,6 +2,7 @@
 // swiftlint:disable private_outlet
 
 import IQKeyboardManagerSwift
+import PhoneNumberKitUI
 import UIKit
 
 final class PersonalInfoViewController: UIViewController {
@@ -41,6 +42,8 @@ final class PersonalInfoViewController: UIViewController {
     let countryFieldIndicator = UIActivityIndicatorView(style: .medium)
     let cityFieldIndicator = UIActivityIndicatorView(style: .medium)
     let nextButtonIndicator = UIActivityIndicatorView(style: .medium)
+    /// Phone input overlaid on the storyboard `.mobileNumber` field.
+    var primaryPhoneTextField: PhoneNumberTextField?
 
     init(viewModel: PersonalInfoViewModel = .init()) {
         self.viewModel = viewModel
@@ -115,6 +118,11 @@ final class PersonalInfoViewController: UIViewController {
 extension PersonalInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateNextButtonState()
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let phoneField = textField as? PhoneNumberTextField else { return true }
+        return PhoneNumberValidator.shouldAllowEdit(in: phoneField, range: range)
     }
 }
 

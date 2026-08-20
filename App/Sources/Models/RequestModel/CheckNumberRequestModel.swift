@@ -5,4 +5,5 @@ import Foundation
 struct CheckNumberRequestModel: Encodable {
     let mobileNumber: String
     let email: String
+    let countryCode: String?
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,8 +13,8 @@
         <array key="Inter-Bold.ttf">
             <string>Inter-Bold</string>
         </array>
-        <array key="Inter-Thin.ttf">
-            <string>Inter-Thin</string>
+        <array key="inter.ttf">
+            <string>Inter-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -51,21 +51,21 @@
                                                     <constraint firstAttribute="bottom" secondItem="hj6-au-Dhf" secondAttribute="bottom" constant="25" id="ojb-Bo-Hy1"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter OTP sent to your phone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-zX-jhv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter OTP sent to your phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-zX-jhv">
                                                 <rect key="frame" x="20" y="152" width="374" height="53.5"/>
                                                 <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="22"/>
                                                 <color key="textColor" red="0.10196078431372549" green="0.11764705882352941" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2P-x3-ECb" customClass="AlertView" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="40" y="265.5" width="334" height="50"/>
+                                                <rect key="frame" x="40" y="255.5" width="334" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="onw-Ll-Bl4"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRf-zZ-M2u" customClass="OTPFieldView" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="40" y="323.5" width="334" height="120"/>
+                                                <rect key="frame" x="40" y="313.5" width="334" height="120"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="R3A-EG-rAp">
@@ -98,8 +98,20 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-Tm-0Pw">
+                                                <rect key="frame" x="40" y="465.5" width="334" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait, you will receive the code within 3 minutes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMsg-Lb-0Pw">
+                                                <rect key="frame" x="40" y="497.5" width="334" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqZ-LI-9hH" customClass="SendButton" customModule="Wojood" customModuleProvider="target">
-                                                <rect key="frame" x="40" y="483.5" width="334" height="60"/>
+                                                <rect key="frame" x="40" y="563" width="334" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="hT5-0g-lhh"/>
                                                 </constraints>
@@ -108,11 +120,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hu7-eU-6R3">
-                                                <rect key="frame" x="20" y="575.5" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="639" width="374" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XYH-rm-VZC"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Inter-Thin" family="Inter" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
                                                 <state key="normal" title="Resend code">
                                                     <color key="titleColor" red="0.1019607843" green="0.1176470588" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -130,16 +142,22 @@
                                             <constraint firstAttribute="trailing" secondItem="lRf-zZ-M2u" secondAttribute="trailing" constant="40" id="AfK-X9-w4a"/>
                                             <constraint firstItem="Hu7-eU-6R3" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="20" id="Am3-c7-5k0"/>
                                             <constraint firstItem="N2P-x3-ECb" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="EmS-fN-nPd"/>
-                                            <constraint firstItem="CqZ-LI-9hH" firstAttribute="top" secondItem="lRf-zZ-M2u" secondAttribute="bottom" constant="40" id="IFv-3k-6NO"/>
+                                            <constraint firstAttribute="trailing" secondItem="cdL-Tm-0Pw" secondAttribute="trailing" constant="40" id="Fcd-7c-3Pq"/>
+                                            <constraint firstItem="cdL-Tm-0Pw" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="Gcd-7c-2Pq"/>
+                                            <constraint firstAttribute="trailing" secondItem="wMsg-Lb-0Pw" secondAttribute="trailing" constant="40" id="Hcd-7c-4Pq"/>
+                                            <constraint firstItem="CqZ-LI-9hH" firstAttribute="top" secondItem="wMsg-Lb-0Pw" secondAttribute="bottom" constant="32" id="IFv-3k-6NO"/>
+                                            <constraint firstItem="wMsg-Lb-0Pw" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="Icd-7c-1Pq"/>
                                             <constraint firstAttribute="trailing" secondItem="N2P-x3-ECb" secondAttribute="trailing" constant="40" id="KgK-VQ-xBc"/>
-                                            <constraint firstItem="Hu7-eU-6R3" firstAttribute="top" secondItem="CqZ-LI-9hH" secondAttribute="bottom" constant="32" id="Mdo-X2-6TE"/>
+                                            <constraint firstItem="Hu7-eU-6R3" firstAttribute="top" secondItem="CqZ-LI-9hH" secondAttribute="bottom" constant="16" id="Mdo-X2-6TE"/>
                                             <constraint firstItem="5w1-zX-jhv" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="20" id="eqi-fH-tIS"/>
                                             <constraint firstItem="CqZ-LI-9hH" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="gca-Yr-dpV"/>
                                             <constraint firstItem="rFB-tI-gel" firstAttribute="top" secondItem="Kyb-hx-ftH" secondAttribute="top" constant="52" id="hFt-gO-PYJ"/>
                                             <constraint firstItem="5w1-zX-jhv" firstAttribute="top" secondItem="rFB-tI-gel" secondAttribute="bottom" constant="20" id="hwd-uv-60k"/>
                                             <constraint firstItem="lRf-zZ-M2u" firstAttribute="top" secondItem="N2P-x3-ECb" secondAttribute="bottom" constant="8" symbolic="YES" id="rqk-2g-o9v"/>
                                             <constraint firstAttribute="trailing" secondItem="rFB-tI-gel" secondAttribute="trailing" id="uKq-fS-2if"/>
-                                            <constraint firstItem="N2P-x3-ECb" firstAttribute="top" secondItem="5w1-zX-jhv" secondAttribute="bottom" constant="60" id="vcE-Hi-Yny"/>
+                                            <constraint firstItem="N2P-x3-ECb" firstAttribute="top" secondItem="5w1-zX-jhv" secondAttribute="bottom" constant="50" id="vcE-Hi-Yny"/>
+                                            <constraint firstItem="cdL-Tm-0Pw" firstAttribute="top" secondItem="lRf-zZ-M2u" secondAttribute="bottom" constant="32" id="vcd-Tm-1Pw"/>
+                                            <constraint firstItem="wMsg-Lb-0Pw" firstAttribute="top" secondItem="cdL-Tm-0Pw" secondAttribute="bottom" constant="8" id="wcd-Msg-1Pw"/>
                                             <constraint firstItem="lRf-zZ-M2u" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="wvF-4s-0dX"/>
                                         </constraints>
                                     </view>
@@ -169,10 +187,12 @@
                         <outlet property="alertVIewHeightConstraint" destination="onw-Ll-Bl4" id="NDB-hw-Hqx"/>
                         <outlet property="alertView" destination="N2P-x3-ECb" id="wv1-4a-5OF"/>
                         <outlet property="backButton" destination="hj6-au-Dhf" id="J11-if-Pii"/>
+                        <outlet property="cooldownLabel" destination="cdL-Tm-0Pw" id="cdL-out-001"/>
                         <outlet property="enterOTPLabel" destination="5w1-zX-jhv" id="KFU-IW-3EG"/>
                         <outlet property="otpTextView" destination="lRf-zZ-M2u" id="Ssg-7d-79G"/>
                         <outlet property="resendButton" destination="Hu7-eU-6R3" id="EMP-Cu-Ky2"/>
                         <outlet property="sendButton" destination="CqZ-LI-9hH" id="sy5-pH-eD4"/>
+                        <outlet property="waitMessageLabel" destination="wMsg-Lb-0Pw" id="wMsg-out-001"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvc-GB-Mer" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

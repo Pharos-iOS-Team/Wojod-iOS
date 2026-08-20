@@ -27,9 +27,10 @@ final class RegistrationStore {
 
     func buildSignupRequest() -> UserSignupRequest {
         let isSchool = state.academicTrack == .school
+        let formattedMobile = PhoneNumberValidator.formattedEgyptianPhone(state.mobileNumber, countryCode: state.mobileCountryCode)
         return UserSignupRequest(
             name: state.name,
-            mobileNumber: state.mobileNumber,
+            mobileNumber: formattedMobile,
             mobileNumber2: state.mobileNumber2,
             homeNumber: state.homeNumber,
             email: state.email,
@@ -46,7 +47,8 @@ final class RegistrationStore {
             specializationId: isSchool ? state.schoolSpecialization?.key : state.uniSpecialization?.key,
             avatarId: state.avatar?.id,
             isRoyalMedicineStudent: AppEnvironment.appName == .royalMedicine,
-            loginOrganization: AppEnvironment.appName.loginOrganization
+            loginOrganization: AppEnvironment.appName.loginOrganization,
+            countryCode: state.mobileCountryCode
         )
     }
 }
