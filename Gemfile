@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "fastlane"
+gem "jira-ruby"
 
 # Ruby 3.4 moved 'abbrev' out of the default stdlib into a bundled gem.
 # fastlane's dependency highline 2.0.x uses it without declaring it, which

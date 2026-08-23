@@ -51,7 +51,8 @@ xcuserdata/
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 Packages/
 Package.pins
-Package.resolved
+# Package.resolved MUST be committed so Xcode Cloud (with automatic
+# dependency resolution disabled) can resolve SPM dependencies.
 
 # CocoaPods
 Pods/
@@ -72,3 +73,6 @@ Carthage/Checkouts/
 
 
 App/Resources/Images.xcassets/Common/*
+
+# Bundler local gem cache (installed by ci_post_clone.sh on Xcode Cloud)
+vendor/bundle

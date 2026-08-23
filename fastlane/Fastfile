@@ -9,13 +9,14 @@ default_platform(:ios)
 
 before_all do
   ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "500"
+  next unless ENV["KEY_ID"] && ENV["ISSUER_ID"]
   if ENV["APP_STORE_KEY"]
     app_store_connect_api_key(
       key_id:      ENV["KEY_ID"],
       issuer_id:   ENV["ISSUER_ID"],
       key_content: ENV["APP_STORE_KEY"]
     )
-  else
+  elsif ENV["KEY_FILE_PATH"]
     app_store_connect_api_key(
       key_id:       ENV["KEY_ID"],
       issuer_id:    ENV["ISSUER_ID"],
@@ -71,6 +72,105 @@ platform :ios do
     else
       default
     end
+  end
+
+  # ── Xcode Cloud: export xcarchive → upload → submit for App Store review ────
+  lane :ci_submit_to_app_store do
+    archive_path = ENV["CI_ARCHIVE_PATH"]
+    UI.user_error!("CI_ARCHIVE_PATH is not set — this lane only runs inside Xcode Cloud.") unless archive_path && File.exist?(archive_path)
+
+    info_plist  = File.join(archive_path, "Info.plist")
+    bundle_id   = sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleIdentifier' '#{info_plist}'", log: false).strip
+    app_version = sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' '#{info_plist}'", log: false).strip
+    UI.message("→ bundle_id=#{bundle_id}  version=#{app_version}")
+
+    export_path = "/tmp/xc_ipa_export_#{Time.now.to_i}"
+    export_opts = File.join(project_root, "ci_scripts/ExportOptions.plist")
+
+    key_id     = ENV["KEY_ID"]
+    issuer_id  = ENV["ISSUER_ID"]
+    key_path   = ENV["KEY_FILE_PATH"]
+
+    sh("xcodebuild -exportArchive \
+      -archivePath '#{archive_path}' \
+      -exportOptionsPlist '#{export_opts}' \
+      -exportPath '#{export_path}' \
+      -authenticationKeyPath '#{key_path}' \
+      -authenticationKeyID '#{key_id}' \
+      -authenticationKeyIssuerID '#{issuer_id}' \
+      -allowProvisioningUpdates")
+
+    ipa_file = Dir.glob("#{export_path}/*.ipa").first
+    UI.user_error!("No IPA found after export in #{export_path}") unless ipa_file
+
+    release_notes_file = File.join(File.dirname(__FILE__), "release_notes.txt")
+    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file).strip : "Bug fixes and performance improvements"
+
+    deliver(
+      api_key:         Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      ipa:             ipa_file,
+      app_identifier:  bundle_id,
+      app_version:     app_version,
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit:        false,
+      submit_for_review:  true,
+      reject_if_possible: true,
+      automatic_release:  false,
+      skip_binary_upload: false,
+      force:              true,
+      skip_screenshots:   true,
+      skip_metadata:      false,
+      release_notes:      { "en-US" => release_notes },
+      submission_information: {
+        add_id_info_uses_idfa:         false,
+        add_id_info_serves_ads:        false,
+        add_id_info_tracks_install:    false,
+        add_id_info_tracks_action:     false,
+        add_id_info_limits_tracking:   false
+      }
+    )
+
+    sh("rm -rf '#{export_path}'")
+    UI.success("✅ Build submitted — status: Waiting for Review")
+  end
+
+  # ── Xcode Cloud: post Jira comment after a debug build ─────────────────────
+  # Expects a Jira ticket URL in the commit description, e.g.:
+  #   https://yourcompany.atlassian.net/browse/WOJ-123
+  lane :ci_jira_comment do
+    # CI_COMMIT_MESSAGE is not set by Xcode Cloud — read it directly from git.
+    commit_message = sh("git log -1 --pretty=%B", log: false).strip
+
+    # Extract ticket key from a Jira browse URL in the commit message.
+    match = commit_message.match(%r{/browse/([A-Z]+-\d+)})
+
+    unless match
+      UI.important("No Jira ticket URL found in commit message — skipping comment.\nCommit: #{commit_message}")
+      next
+    end
+
+    jira_ticket_id = match[1]
+    build_number   = ENV["CI_BUILD_NUMBER"] || "N/A"
+    workflow       = ENV["CI_WORKFLOW"]     || "Debug"
+
+    # Read app version from the xcarchive Xcode Cloud already built.
+    archive_path = ENV["CI_ARCHIVE_PATH"].to_s
+    app_version  = if !archive_path.empty? && File.exist?(archive_path)
+                    info_plist = File.join(archive_path, "Info.plist")
+                    sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' '#{info_plist}'", log: false).strip
+                  else
+                    "N/A"
+                  end
+
+    jira(
+      url:          ENV["jira_url"],
+      username:     ENV["JIRA_USERNAME"],
+      password:     ENV["JIRA_PASSWORD"],
+      ticket_id:    jira_ticket_id,
+      comment_text: "*Wojod (#{workflow}):* *V#{app_version}* Build *##{build_number}* is ready for testing."
+    )
+
+    UI.success("Jira comment posted to #{jira_ticket_id}")
   end
 
   lane :alpha do

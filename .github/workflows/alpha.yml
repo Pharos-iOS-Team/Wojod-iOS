@@ -10,6 +10,7 @@ concurrency:
 
 jobs:
   upload-to-testflight:
+    if: "contains(github.event.pull_request.title, '[ci debug]')"
     runs-on: [self-hosted, macOS, ARM64, iOS-Team]
 
     steps:
@@ -34,6 +35,7 @@ jobs:
           APP_STORE_KEY: ${{ secrets.STAGING_APP_STORE_KEY }}
 
   post-actions:
+    if: "contains(github.event.pull_request.title, '[ci release]')"
     runs-on: [self-hosted, macOS, ARM64, iOS-Team]
     needs: [upload-to-testflight]
 
