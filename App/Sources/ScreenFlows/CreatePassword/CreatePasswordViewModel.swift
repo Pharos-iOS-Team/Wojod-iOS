@@ -4,22 +4,28 @@ import Foundation
 
 class CreatePasswordViewModel {
     private var model = CreatePasswordModel()
-    private var mobileNumber: String = ""
     private var password: String = ""
     private var passwordConfirmation: String = ""
 
     var isActivationFlow: Bool = false
+    var mobileNumber: String = ""
+    var countryCode: String = PhoneNumberValidator.egyptCountryCode
     var errorHandler: ((WJError) -> Void)?
     var successHandler: (() -> Void)?
     var showIndicator: (() -> Void)?
+
+    init(mobileNumber: String = "", countryCode: String = PhoneNumberValidator.egyptCountryCode, isActivationFlow: Bool = false) {
+        self.mobileNumber = mobileNumber
+        self.countryCode = countryCode
+        self.isActivationFlow = isActivationFlow
+    }
 
     func checkIfMobileOrPasswordAreEmpty() -> Bool {
         return mobileNumber.isValid && password.isValid
     }
 
-    func createPassword(mobileNumber: String?, password: String?, passwordConfirmation: String?) {
-        guard let number = mobileNumber, let password = password, let passwordConfirmation = passwordConfirmation else { return }
-        self.mobileNumber = number
+    func createPassword(password: String?, passwordConfirmation: String?) {
+        guard let password = password, let passwordConfirmation = passwordConfirmation else { return }
         self.password = password
         self.passwordConfirmation = passwordConfirmation
         guard validatePassword() else { return }
@@ -38,7 +44,13 @@ class CreatePasswordViewModel {
                 }
             }
         } else {
-            let passwordModel = ForgetPasswordModel(mobileNumber: mobileNumber, password: password, passwordConfirmation: passwordConfirmation)
+            let formatted = PhoneNumberValidator.formattedEgyptianPhone(self.mobileNumber, countryCode: self.countryCode)
+            let passwordModel = ForgetPasswordModel(
+                mobileNumber: formatted,
+                password: password,
+                passwordConfirmation: passwordConfirmation,
+                countryCode: self.countryCode
+            )
             model.createPassword(password: passwordModel) { result in
                 switch result {
                 case .success:

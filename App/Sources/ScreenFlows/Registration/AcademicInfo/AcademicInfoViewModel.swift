@@ -326,7 +326,7 @@ final class AcademicInfoViewModel {
         switch academicTrack {
         case .school:
             guard let schoolValues = schoolValues else { return false }
-            return schoolValues.parentNumber.isValidPhoneNumber &&
+            return schoolValues.parentNumber.isValid &&
             schoolValues.schoolName.isValid &&
             selectedAcademicType != nil &&
             selectedDivision != nil &&
@@ -352,7 +352,7 @@ final class AcademicInfoViewModel {
     func validateField(_ field: AcademicInfoField, parentNumber: String, schoolName: String) -> RegistrationValidationError? {
         switch field {
         case .parentNumber:
-            return parentNumber.isValidPhoneNumber ? nil : .parentNumberInvalid
+            return parentNumber.isValid ? nil : .parentNumberInvalid
         case .schoolName:
             return schoolName.isValid ? nil : .schoolNameEmpty
         }

@@ -197,8 +197,19 @@ class ProfileViewController: UIViewController {
 
     private func createProfileFields(indexPath: IndexPath, tableView: UITableView) -> ProfileTableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeueCell(for: indexPath)
+        let currentField = viewModel.validFields[indexPath.row]
         let text = viewModel.setTextFieldInfo(forIndexPath: indexPath.row) ?? ""
         let fieldLabel = viewModel.setTextfieldLabel(forIndexPath: indexPath.row)
+
+        if currentField == .mobileNumber {
+            cell.configureAsPhoneInput(
+                fieldLabel: fieldLabel,
+                phoneNumber: text,
+                countryCode: User.shared.countryCode ?? PhoneNumberValidator.egyptCountryCode
+            )
+            return cell
+        }
+
         let shouldDisableTextField = viewModel.shouldMakeTextFieldDisabled(forIndexPath: indexPath.row)
         let dataModel = ProfileTableViewCellDataModel(
             text: text,

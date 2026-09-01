@@ -63,8 +63,8 @@ extension AuthEndpoint: TargetType {
             return .queryParameters(requestModel)
         case let .logout(requestModel):
             return .queryParameters(requestModel)
-        case let .sendMobileNumber(otp):
-            return .requestCustomJSONEncodable(otp, encoder: .default)
+        case let .sendMobileNumber(model):
+            return .requestCustomJSONEncodable(model, encoder: .default)
         case let .verifyOtp(otp):
             return .requestCustomJSONEncodable(otp, encoder: .default)
         case let .verifyOtpFromLogin(otp):

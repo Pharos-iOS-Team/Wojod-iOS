@@ -1,5 +1,6 @@
 // Copyright © 2021 Pharos Solutions. All rights reserved.
 
+import PhoneNumberKit
 import UIKit
 
 struct ProfileTableViewCellDataModel {
@@ -34,6 +35,7 @@ class ProfileTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         profileTextField.inputView = nil
+        profileTextField.isHidden = false
     }
 
     func addPickerView(field: ProfileFields) {
@@ -74,6 +76,20 @@ class ProfileTableViewCell: UITableViewCell {
 
     func configureDefaultSelectionForCity() {
         profileTextField.text = self.items?.first
+    }
+
+    // MARK: - Phone Display
+    func configureAsPhoneInput(fieldLabel: String, phoneNumber: String, countryCode: String) {
+        profileTextField.isHidden = false
+        profileTextField.isEnabled = false
+        profileTextField.backgroundColor = .white
+        profileTextField.labelText = fieldLabel
+        let displayNumber = PhoneNumberValidator.stripEgyptianLeadingZero(phoneNumber, countryCode: countryCode)
+        let digits = countryCode.hasPrefix("+") ? String(countryCode.dropFirst()) : countryCode
+        let regionCode = UInt64(digits).flatMap { PhoneNumberUtility().mainCountry(forCode: $0) }
+            ?? PhoneNumberValidator.egyptRegionCode
+        let flag = PhoneNumberValidator.flagEmoji(forRegionCode: regionCode)
+        profileTextField.text = "\(flag) \(countryCode) \(displayNumber)"
     }
 }
 

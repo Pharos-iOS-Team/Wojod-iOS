@@ -11,6 +11,8 @@ struct RegistrationFormState {
 
     var name: String = ""
     var mobileNumber: String = ""
+    var mobileCountryCode: String = "+20"
+    var mobileRegionCode: String = "EG"
     var mobileNumber2: String = ""
     var homeNumber: String = ""
     var email: String = ""

@@ -103,10 +103,6 @@ extension String {
         return false
     }
 
-    var isValidPhoneNumber: Bool {
-        return isValid && count >= 11
-    }
-
     var isValidEmail: Bool {
         let emailFormat = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)

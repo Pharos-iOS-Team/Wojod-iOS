@@ -4,13 +4,15 @@ import Foundation
 import Moya
 
 class LoginModel {
-    func login(mobileNumber: String, password: String, completionHandler: @escaping (Swift.Result<ApiResponse<UserModel>, Error>) -> Void) {
-        let loginRequestModel = LoginRequestModel(mobileNumber: mobileNumber, password: password)
+    func login(mobileNumber: String, password: String, countryCode: String?, completionHandler: @escaping (Swift.Result<ApiResponse<UserModel>, Error>) -> Void) {
+        let formatted = PhoneNumberValidator.formattedEgyptianPhone(mobileNumber, countryCode: countryCode ?? PhoneNumberValidator.egyptCountryCode)
+        let loginRequestModel = LoginRequestModel(mobileNumber: formatted, password: password, countryCode: countryCode)
         ApiProvider.shared.request(.auth(.login(loginRequestModel)), decodeTo: ApiResponse<UserModel>.self, completion: completionHandler)
     }
 
-    func verifyPhone(mobileNumber: String, completionHandler: @escaping (Swift.Result<VerifyPhoneResponse, Error>) -> Void) {
-        let requestModel = VerifyPhoneRequestModel(phoneNumber: mobileNumber)
+    func verifyPhone(mobileNumber: String, countryCode: String?, completionHandler: @escaping (Swift.Result<VerifyPhoneResponse, Error>) -> Void) {
+        let formatted = PhoneNumberValidator.formattedEgyptianPhone(mobileNumber, countryCode: countryCode ?? PhoneNumberValidator.egyptCountryCode)
+        let requestModel = VerifyPhoneRequestModel(phoneNumber: formatted, countryCode: countryCode)
         ApiProvider.shared.request(.auth(.verifyPhone(requestModel)), decodeTo: VerifyPhoneResponse.self, completion: completionHandler)
     }
 

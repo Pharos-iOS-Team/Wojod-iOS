@@ -15,7 +15,7 @@ enum PersonalInfoField: Int, CaseIterable {
     case homeNumber = 109
     case address = 110
 
-    enum ConfigStyle { case mandatory, optional, picker }
+    enum ConfigStyle { case mandatory, optional, picker, phone }
 
     var placeholder: String {
         switch self {
@@ -46,9 +46,13 @@ enum PersonalInfoField: Int, CaseIterable {
 
     var configStyle: ConfigStyle {
         switch self {
-        case .name, .mobileNumber, .email, .password, .confirmPassword, .district:
+        case .mobileNumber:
+            return .phone
+        case .mobileNumber2:
+            return .optional
+        case .name, .email, .password, .confirmPassword, .district:
             return .mandatory
-        case .mobileNumber2, .homeNumber, .address:
+        case .homeNumber, .address:
             return .optional
         case .country, .city:
             return .picker

@@ -52,7 +52,7 @@
 
 "login.send" = "ارسل";
 
-"login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كلمة مرور جديدة إلى هاتفك المحمول";
+"login.otpWillBeSent" = "الرجاء إدخال رقم هاتفك ، سيتم إرسال كود إلى هاتفك المحمول";
 
 "createPassword.passwordsDontMatch" = "كلمات المرور التي تم ادخالهم غير متطابقين";
 
@@ -66,11 +66,15 @@
 
 "verifyOtp.pleaseEnterOTP" = "برجاء ادخال الكود المرسل الي هاتفك";
 
-"verifyOtp.didNotGetACode" = "لم تتلق رمز؟";
+"verifyOtp.pleaseEnterOTPViaWhatsApp" = "برجاء ادخال الكود المرسل عبر واتساب";
 
-"verifyOtp.didNotGetACodeAlert" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
+"verifyOtp.pleaseEnterOTPViaSMS" = "برجاء ادخال الكود المرسل عبر رسالة نصية";
+
+"verifyOtp.contactAdminMessage" = "إذا لم تتلق رمزًا ، فيرجى الاتصال بالمسؤول ";
 
 "verifyOtp.resendCode" = "إعادة إرسال كود التفعيل";
+
+"verifyOtp.waitMessage" = "برجاء الانتظار، ستستلم الكود خلال 3 دقائق";
 
 "tabBar.home" = "القائمة الرئيسية";
 

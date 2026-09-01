@@ -5,4 +5,5 @@ import Foundation
 struct OtpVerification: Encodable {
     var mobileNumber: String
     var otpCode: String
+    var countryCode: String?
 }

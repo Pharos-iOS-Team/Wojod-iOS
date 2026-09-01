@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added International Phone Numbers and WhatsApp OTP Flow.  
+  Task: [CPI-347](https://jira.pharos-solutions.de/browse/CPI-347) | PR: [#45](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/45) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
 - Changed network module.  
   Task: [CPI-330](https://jira.pharos-solutions.de/browse/CPI-330) | PR: [#31](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/31) | Author: [Sara Rady](https://github.com/sara-rady)

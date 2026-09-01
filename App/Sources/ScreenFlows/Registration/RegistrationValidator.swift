@@ -82,7 +82,7 @@ enum RegistrationValidator {
         if !state.name.isValid {
             errors.append(.nameEmpty)
         }
-        if !state.mobileNumber.isValidPhoneNumber {
+        if !state.mobileNumber.isValid {
             errors.append(.phoneInvalid)
         }
         if !state.email.isValidEmail {
@@ -105,7 +105,7 @@ enum RegistrationValidator {
         }
         let phone2 = state.mobileNumber2
         if phone2.isValid {
-            if !phone2.isValidPhoneNumber {
+            if !phone2.isValid {
                 errors.append(.phone2Invalid)
             } else if phone2 == state.mobileNumber {
                 errors.append(.phone2SameAsPhone1)
@@ -122,12 +122,12 @@ enum RegistrationValidator {
 
         switch state.academicTrack {
         case .school:
-            if !state.parentNumber.isValidPhoneNumber {
+            if !state.parentNumber.isValid {
                 errors.append(.parentNumberInvalid)
             }
             let parent2 = state.parentNumber2
             if parent2.isValid {
-                if !parent2.isValidPhoneNumber {
+                if !parent2.isValid {
                     errors.append(.parentNumber2Invalid)
                 } else if parent2 == state.parentNumber {
                     errors.append(.parentNumber2SameAsParent1)
