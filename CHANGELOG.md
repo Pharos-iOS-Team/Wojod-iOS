@@ -18,6 +18,24 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
+- None.
+### Changed
+- None.
+### Deprecated
+- None.
+### Removed
+- None.
+### Fixed
+- None.
+### Security
+- None.
+
+## [2.2.0] - 2026-09-01
+### Added
+- Added `mr. Khalid Khamis` WhiteLabel app.  
+  Task: [CPI-350](https://jira.pharos-solutions.de/browse/CPI-350) | PR: [#40](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/40) | Author: [Sara Rady](https://github.com/sara-rady)
+  - Added `Dr. Ashour Academy` WhiteLabel app.  
+  Task: [CPI-351](https://jira.pharos-solutions.de/browse/CPI-351) | PR: [#40](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/40) | Author: [Sara Rady](https://github.com/sara-rady)
 - Added International Phone Numbers and WhatsApp OTP Flow.  
   Task: [CPI-347](https://jira.pharos-solutions.de/browse/CPI-347) | PR: [#45](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/45) | Author: [Sara Rady](https://github.com/sara-rady)
 - Added `mr. Khalid Khamis` WhiteLabel app.  
@@ -33,14 +51,6 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
   Task: [CPI-331](https://jira.pharos-solutions.de/browse/CPI-331) | PR: [#36](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/36) | Author: [Sara Rady](https://github.com/sara-rady)
 - Changed Registration module.  
   Task: [CPI-348](https://jira.pharos-solutions.de/browse/CPI-348) | PR: [#38](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/38) | Author: [Sara Rady](https://github.com/sara-rady)
-### Deprecated
-- None.
-### Removed
-- None.
-### Fixed
-- None.
-### Security
-- None.
 
 ## [2.1.0] - 2026-07-09
 ### Added

@@ -6,45 +6,83 @@ on:
       - 'release/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-  
 
 jobs:
-  install-frameworks:
+  prepare-builds:
     if: "contains(github.event.head_commit.message, '[ci release]')"
     runs-on: [self-hosted, macOS, ARM64, iOS-Team]
-
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
           clean: false
 
-      - name: Initialize Fastlane Environment Files
-        run: |
-          ./release/prepare_release_scripts.rb
+      - name: Generate Fastlane env files
+        run: ./release/prepare_release_scripts.rb
 
-  upload-to-testflight:
-    if: "contains(github.event.head_commit.message, '[ci release]')"
-    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
-    timeout-minutes: 1440  # Set timeout to 24h
-    needs: [install-frameworks]
-
-    steps:
       - name: Set build number
         run: agvtool new-version -all ${{ github.run_number }}
 
-      - name: Upload Apps
-        run: |
-          ./release/upload_to_appstore.sh
+      - name: Archive base app
+        run: bundle exec fastlane archive_once output_dir:"$PWD/build/optimized" --env release
         env:
           LC_ALL: en_US.UTF-8
           LANG: en_US.UTF-8
 
-  post-actions:
-    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
-    needs: [upload-to-testflight]
+      - name: Package all variants
+        run: bundle exec fastlane package_all_optimized output_dir:"$PWD/build/optimized" --env release
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
 
+      - name: Upload packaged IPAs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: packaged-release-ipas
+          path: build/optimized/*/*.ipa
+          if-no-files-found: error
+
+      - name: Upload package logs artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: packaged-release-logs
+          path: build/optimized/*.package.log
+          if-no-files-found: ignore
+
+      - name: Clean local build cache
+        if: always()
+        run: |
+          rm -rf "$PWD/build/optimized"
+          rm -rf ~/Library/Developer/Xcode/Archives
+
+  upload-all:
+    if: "contains(github.event.head_commit.message, '[ci release]')"
+    runs-on: [self-hosted, macOS, ARM64, iOS-Team]
+    needs: [prepare-builds]
+    timeout-minutes: 120
     steps:
-      - name: Clean Xcode build cache
-        run: rm -rf ~/Library/Developer/Xcode/Archives
+      - uses: actions/checkout@v4
+        with:
+          clean: false
+
+      - name: Generate Fastlane env files
+        run: ./release/prepare_release_scripts.rb
+
+      - name: Download packaged IPAs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: packaged-release-ipas
+          path: ${{ github.workspace }}/build/optimized
+
+      - name: Upload all packaged variants to App Store
+        run: bundle exec fastlane upload_all_prebuilt output_dir:"$PWD/build/optimized" --env release
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+
+      - name: Clean local upload cache
+        if: always()
+        run: rm -rf "$PWD/build/optimized"

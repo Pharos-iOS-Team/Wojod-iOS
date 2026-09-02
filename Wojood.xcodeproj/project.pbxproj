@@ -368,6 +368,7 @@
 		D5882584300CF19300316A28 /* SchoolPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */; };
 		D58825DC300E19B700316A28 /* PersonalInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58825DB300E19B700316A28 /* PersonalInfoField.swift */; };
 		D588265F300E646C00316A28 /* CourseDetailsCoordinator+Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */; };
+		D5A227853029E7680064DCB7 /* package_variant.sh in Resources */ = {isa = PBXBuildFile; fileRef = D5A227823029E7680064DCB7 /* package_variant.sh */; };
 		D5A2E18E2F3DD94C00B6B070 /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */; };
 		D5A2E1902F3DD99B00B6B070 /* UIWindowExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */; };
 		D5A2E19D2F3DF48000B6B070 /* AlertStateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */; };
@@ -676,7 +677,6 @@
 		777F3A8826FB5D58000C5DFC /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		777F3A8A26FB5EE0000C5DFC /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		777F3A8C26FB607E000C5DFC /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
-		7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = upload_to_appstore.sh; sourceTree = "<group>"; };
 		778887372E46AD8D0027D5D9 /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
 		778887382E46AD8D0027D5D9 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		778887392E46AD8D0027D5D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -905,6 +905,7 @@
 		D5882583300CF19300316A28 /* SchoolPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolPickerCoordinator.swift; sourceTree = "<group>"; };
 		D58825DB300E19B700316A28 /* PersonalInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoField.swift; sourceTree = "<group>"; };
 		D588265E300E646C00316A28 /* CourseDetailsCoordinator+Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailsCoordinator+Route.swift"; sourceTree = "<group>"; };
+		D5A227823029E7680064DCB7 /* package_variant.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = package_variant.sh; sourceTree = "<group>"; };
 		D5A2E18D2F3DD94A00B6B070 /* CGFloatExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExt.swift; sourceTree = "<group>"; };
 		D5A2E18F2F3DD99B00B6B070 /* UIWindowExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExt.swift; sourceTree = "<group>"; };
 		D5A2E19C2F3DF48000B6B070 /* AlertStateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStateExt.swift; sourceTree = "<group>"; };
@@ -1737,11 +1738,11 @@
 		778887412E46AD8D0027D5D9 /* release */ = {
 			isa = PBXGroup;
 			children = (
-				7787537E2F2C3E2E00259E6F /* upload_to_appstore.sh */,
 				7788873C2E46AD8D0027D5D9 /* changelog.swift */,
 				7788873D2E46AD8D0027D5D9 /* create_release_branch.rb */,
 				7788873E2E46AD8D0027D5D9 /* prepare_release_scripts.rb */,
 				778887402E46AD8D0027D5D9 /* version.rb */,
+				D5A227823029E7680064DCB7 /* package_variant.sh */,
 			);
 			path = release;
 			sourceTree = "<group>";
@@ -2718,6 +2719,7 @@
 				7723ACD3261C5E69007C0B97 /* Sources */,
 				7723ACD4261C5E69007C0B97 /* Frameworks */,
 				7723ACD5261C5E69007C0B97 /* Resources */,
+				D51CCD03303AE3B600C61079 /* Copy GoogleService-Info.plist */,
 				77B56A8F27721795009E47D7 /* Embed Frameworks */,
 				77DE4E492E2551B30001BFAC /* Copy Google Services info */,
 				7777D76B26D6B66A00B0C441 /* Crashlytics */,
@@ -2919,6 +2921,7 @@
 				26AFE37926A5C87A007D01EF /* ErrorView.xib in Resources */,
 				380B13A326B807F700CB5811 /* AssessmentDetailOverViewQuestionsTableViewCell.xib in Resources */,
 				E848745A2624B138006DF74C /* Registration.storyboard in Resources */,
+				D5A227853029E7680064DCB7 /* package_variant.sh in Resources */,
 				77C6D6972FFD750400418DA7 /* MyCoursesViewController.xib in Resources */,
 				385CC11326641D3B00A091FD /* ReceiptViewController.xib in Resources */,
 				BC8D4C1B26E76F1400033413 /* CourseDetailsInfoHeaderView.xib in Resources */,
@@ -3048,6 +3051,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "FILE_SOURCE_PATH=$SRCROOT/\"App\"/\"SupportingFiles\"/\"GoogleServiceInfo\"/$CONFIGURATION/GoogleService-Info.plist\n\nif [ -f \"$FILE_SOURCE_PATH\" ]; then\n    FILE_DESTINATION_PATH=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\n    echo \"Copying Services-Info from $FILE_SOURCE_PATH to $FILE_DESTINATION_PATH\"\n    cp \"$FILE_SOURCE_PATH\" \"$FILE_DESTINATION_PATH\"\nelse\n    echo \"error: Source Path For Google Services File Not Found\"\n    exit 1\nfi\n";
+		};
+		D51CCD03303AE3B600C61079 /* Copy GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "GOOGLE_SERVICES_DIR=\"${SRCROOT}/App/SupportingFiles/GoogleServiceInfo\"\nSOURCE=\"${GOOGLE_SERVICES_DIR}/${CONFIGURATION}/GoogleService-Info.plist\"\nDEST=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\nif [[ -f \"${SOURCE}\" ]]; then\n    cp \"${SOURCE}\" \"${DEST}\"\n    echo \"→ Copied GoogleService-Info.plist for ${CONFIGURATION}\"\nelse\n    echo \"warning: No GoogleService-Info.plist found at ${SOURCE}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3621,6 +3643,7 @@
 		};
 		7723AD02261C5E6C007C0B97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 778E72D0261DE641009D7B35 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3637,7 +3660,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3645,7 +3668,6 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "de.pharos-solutions.wojood-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportingFiles/Wojood-Bridging-Header.h";
@@ -3656,6 +3678,7 @@
 		};
 		7723AD03261C5E6C007C0B97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 778E72D1261DE6D8009D7B35 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3672,7 +3695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3789,6 +3812,7 @@
 		};
 		77DC5AE82E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Perfection-in-Physics";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3805,7 +3829,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3823,6 +3847,7 @@
 		};
 		77DC5AE92E38CDAB00A9CDB0 /* Perfection-in-Physics */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DC5AE52E38CCEA00A9CDB0 /* Perfection-in-Physics.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -3901,6 +3926,7 @@
 		};
 		77DE4E382E254FFC0001BFAC /* Hassan-Elnaggar */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DE4E362E254E5A0001BFAC /* Hassan-Elnaggar.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Hassan-Elnaggar";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3917,7 +3943,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4013,6 +4039,7 @@
 		};
 		D53B5CD92E67588800EBB62C /* Royal-Medicine */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5DBC5C02E67280900FD4034 /* Royal-Medicine.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Royal-Medicine";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4029,7 +4056,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4125,6 +4152,7 @@
 		};
 		D567EA5D3019ECC800DA3A41 /* Khalid-Khamis */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D567EA5B3019EC0F00DA3A41 /* Khalid-Khamis.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Khalid-Khamis";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4237,6 +4265,7 @@
 		};
 		D567EA663019FE8D00DA3A41 /* Ashour-Academy */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D567EA643019FD6600DA3A41 /* Ashour-Academy.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Ashour-Academy";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4253,7 +4282,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4349,6 +4378,7 @@
 		};
 		D56A77DD2F33575800CEBC97 /* Square-Center */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BA82672F334E4C0052D035 /* Square-Center.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Square-Center";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4365,7 +4395,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

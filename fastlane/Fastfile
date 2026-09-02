@@ -1,62 +1,184 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
-
-PROJECT_NAME="Wojood.xcodeproj"
-BUNDLE_IDENTIFIER=ENV["PRODUCT_BUNDLE_IDENTIFIER"]
-BUILD_NUMBER = ENV['BUILD_NUMBER']
-SCHEME = "Wojood"
-CONFIG = ENV["CONFIG"]
-TEAM_ID = ENV["TEAM_ID"]
-
+PROJECT_NAME       = "Wojood.xcodeproj"
+SCHEME             = "Wojood"
+BUNDLE_IDENTIFIER  = ENV["PRODUCT_BUNDLE_IDENTIFIER"]
+BUILD_NUMBER       = ENV['BUILD_NUMBER']
+CONFIG             = ENV["CONFIG"]
+TEAM_ID            = ENV["TEAM_ID"]
 
 default_platform(:ios)
 
-before_all do |lane|
+before_all do
   ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "500"
-
+  next unless ENV["KEY_ID"] && ENV["ISSUER_ID"]
   if ENV["APP_STORE_KEY"]
     app_store_connect_api_key(
-      key_id: ENV["KEY_ID"],
-      issuer_id: ENV["ISSUER_ID"],
+      key_id:      ENV["KEY_ID"],
+      issuer_id:   ENV["ISSUER_ID"],
       key_content: ENV["APP_STORE_KEY"]
     )
-  else
+  elsif ENV["KEY_FILE_PATH"]
     app_store_connect_api_key(
-      key_id: ENV["KEY_ID"],
-      issuer_id: ENV["ISSUER_ID"],
+      key_id:       ENV["KEY_ID"],
+      issuer_id:    ENV["ISSUER_ID"],
       key_filepath: ENV["KEY_FILE_PATH"]
     )
   end
-
 end
-
 
 platform :ios do
 
+  # ── Helpers ──────────────────────────────────────────────────────────────────
 
+  def project_root
+    File.expand_path("..", File.dirname(__FILE__))
+  end
 
-  # ---------------------------- Alpha Lane ---------------------------- #
+  def release_configurations
+    configs_dir = File.join(project_root, "App/SupportingFiles/Configs")
+    Dir.glob(File.join(configs_dir, "*.xcconfig"))
+       .map  { |f| File.basename(f, ".xcconfig") }
+       .reject { |n| n == "Debug" }
+       .sort
+  end
 
-  desc "Upload Alpha Version To TestFlight"
+  def configuration_xcconfig_path(configuration)
+    File.join(project_root, "App/SupportingFiles/Configs/#{configuration}.xcconfig")
+  end
+
+  def configuration_metadata(configuration)
+    xcconfig_path = configuration_xcconfig_path(configuration)
+    xcconfig      = File.read(xcconfig_path)
+    bundle_id     = xcconfig.match(/^PRODUCT_BUNDLE_IDENTIFIER\s*=\s*"?([^"\n]+)"?$/)&.captures&.first&.strip
+    app_version   = xcconfig.match(/^APP_VERSION\s*=\s*"?([^"\n]+)"?$/)&.captures&.first&.strip
+
+    UI.user_error!("PRODUCT_BUNDLE_IDENTIFIER not found in #{configuration}.xcconfig") unless bundle_id
+    UI.user_error!("APP_VERSION not found in #{configuration}.xcconfig") unless app_version
+
+    {
+      bundle_id: bundle_id,
+      app_version: app_version
+    }
+  end
+
+  def boolean_option(value, default:)
+    return default if value.nil?
+    return value if value == true || value == false
+
+    case value.to_s.strip.downcase
+    when "true", "1", "yes", "y"
+      true
+    when "false", "0", "no", "n"
+      false
+    else
+      default
+    end
+  end
+
+  # ── Xcode Cloud: export xcarchive → upload → submit for App Store review ────
+  lane :ci_submit_to_app_store do
+    archive_path = ENV["CI_ARCHIVE_PATH"]
+    UI.user_error!("CI_ARCHIVE_PATH is not set — this lane only runs inside Xcode Cloud.") unless archive_path && File.exist?(archive_path)
+
+    info_plist  = File.join(archive_path, "Info.plist")
+    bundle_id   = sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleIdentifier' '#{info_plist}'", log: false).strip
+    app_version = sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' '#{info_plist}'", log: false).strip
+    UI.message("→ bundle_id=#{bundle_id}  version=#{app_version}")
+
+    export_path = "/tmp/xc_ipa_export_#{Time.now.to_i}"
+    export_opts = File.join(project_root, "ci_scripts/ExportOptions.plist")
+
+    key_id     = ENV["KEY_ID"]
+    issuer_id  = ENV["ISSUER_ID"]
+    key_path   = ENV["KEY_FILE_PATH"]
+
+    sh("xcodebuild -exportArchive \
+      -archivePath '#{archive_path}' \
+      -exportOptionsPlist '#{export_opts}' \
+      -exportPath '#{export_path}' \
+      -authenticationKeyPath '#{key_path}' \
+      -authenticationKeyID '#{key_id}' \
+      -authenticationKeyIssuerID '#{issuer_id}' \
+      -allowProvisioningUpdates")
+
+    ipa_file = Dir.glob("#{export_path}/*.ipa").first
+    UI.user_error!("No IPA found after export in #{export_path}") unless ipa_file
+
+    release_notes_file = File.join(File.dirname(__FILE__), "release_notes.txt")
+    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file).strip : "Bug fixes and performance improvements"
+
+    deliver(
+      api_key:         Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      ipa:             ipa_file,
+      app_identifier:  bundle_id,
+      app_version:     app_version,
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit:        false,
+      submit_for_review:  true,
+      reject_if_possible: true,
+      automatic_release:  false,
+      skip_binary_upload: false,
+      force:              true,
+      skip_screenshots:   true,
+      skip_metadata:      false,
+      release_notes:      { "en-US" => release_notes },
+      submission_information: {
+        add_id_info_uses_idfa:         false,
+        add_id_info_serves_ads:        false,
+        add_id_info_tracks_install:    false,
+        add_id_info_tracks_action:     false,
+        add_id_info_limits_tracking:   false
+      }
+    )
+
+    sh("rm -rf '#{export_path}'")
+    UI.success("✅ Build submitted — status: Waiting for Review")
+  end
+
+  # ── Xcode Cloud: post Jira comment after a debug build ─────────────────────
+  # Expects a Jira ticket URL in the commit description, e.g.:
+  #   https://yourcompany.atlassian.net/browse/WOJ-123
+  lane :ci_jira_comment do
+    # CI_COMMIT_MESSAGE is not set by Xcode Cloud — read it directly from git.
+    commit_message = sh("git log -1 --pretty=%B", log: false).strip
+
+    # Extract ticket key from a Jira browse URL in the commit message.
+    match = commit_message.match(%r{/browse/([A-Z]+-\d+)})
+
+    unless match
+      UI.important("No Jira ticket URL found in commit message — skipping comment.\nCommit: #{commit_message}")
+      next
+    end
+
+    jira_ticket_id = match[1]
+    build_number   = ENV["CI_BUILD_NUMBER"] || "N/A"
+    workflow       = ENV["CI_WORKFLOW"]     || "Debug"
+
+    # Read app version from the xcarchive Xcode Cloud already built.
+    archive_path = ENV["CI_ARCHIVE_PATH"].to_s
+    app_version  = if !archive_path.empty? && File.exist?(archive_path)
+                    info_plist = File.join(archive_path, "Info.plist")
+                    sh("/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' '#{info_plist}'", log: false).strip
+                  else
+                    "N/A"
+                  end
+
+    jira(
+      url:          ENV["jira_url"],
+      username:     ENV["JIRA_USERNAME"],
+      password:     ENV["JIRA_PASSWORD"],
+      ticket_id:    jira_ticket_id,
+      comment_text: "*Wojod (#{workflow}):* *V#{app_version}* Build *##{build_number}* is ready for testing."
+    )
+
+    UI.success("Jira comment posted to #{jira_ticket_id}")
+  end
+
   lane :alpha do
     jira_ticket_id = sh("echo '#{ENV["PULL_REQUEST_BODY"]}' | grep -o -E '[A-Z]+-[0-9]+' | head -n 1 | tr -d '\n'")
 
     if !jira_ticket_id.empty?
       ticket_number = jira_ticket_id.split('-').last
-      
+
       ci_build = ENV['BUILD_NUMBER'] && !ENV['BUILD_NUMBER'].empty? ? ENV['BUILD_NUMBER'] : Time.now.to_i.to_s[-4..-1]
       new_build_number = "#{ticket_number}.#{ci_build}"
 
@@ -73,11 +195,11 @@ platform :ios do
         app_identifier: BUNDLE_IDENTIFIER,
         skip_waiting_for_build_processing: true
     )
-    
+
     if !jira_ticket_id.empty?
       version = get_version_number(xcodeproj: PROJECT_NAME)
       build_number = get_build_number(xcodeproj: PROJECT_NAME)
-      
+
       jira(
         url: ENV['jira_url'],
         username: ENV['JIRA_USERNAME'],
@@ -88,43 +210,7 @@ platform :ios do
     end
   end
 
-  # ---------------------------- Release Lane ---------------------------- #
-
-  desc "Push a new release build to the App Store"
-  lane :upload_to_appstore do
-    generate_ipa
-
-    release_notes_file = File.join(File.dirname(__FILE__), 'release_notes.txt')
-    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file) : "Bug fixes and performance improvements"
-
-    deliver(
-      api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
-      app_identifier: BUNDLE_IDENTIFIER,
-      team_id: TEAM_ID,
-      app_version: ENV["APP_STORE_VERSION"],
-      precheck_include_in_app_purchases: false,
-      run_precheck_before_submit: false,
-      submit_for_review: true,
-      reject_if_possible: true,
-      automatic_release: true,
-      skip_binary_upload: false,
-      force: true,
-      skip_screenshots: true,
-      skip_metadata: false,
-      release_notes: { "en-US" => release_notes },
-      submission_information: {
-        add_id_info_uses_idfa: false,
-        add_id_info_serves_ads: false,
-        add_id_info_tracks_install: false,
-        add_id_info_tracks_action: false,
-        add_id_info_limits_tracking: false
-      }
-    )
-
-  end
-
-  desc "Sign the app and export an ipa"
-  lane:generate_ipa do
+  lane :generate_ipa do
     unlock_keychain(path: "~/Library/Keychains/login.keychain-db", password: "123456")
 
     update_code_signing_settings(
@@ -143,7 +229,7 @@ platform :ios do
 
     update_project_provisioning(
       xcodeproj: PROJECT_NAME,
-      target_filter: SCHEME, # matches name or type of a target
+      target_filter: SCHEME,
       build_configuration: CONFIG
     )
 
@@ -153,6 +239,200 @@ platform :ios do
       configuration: CONFIG,
       xcargs: "-skipMacroValidation -skipPackagePluginValidation"
     )
+  end
+
+  # ── archive_once: compile Swift once → base.xcarchive ────────────────────────
+
+  lane :archive_once do |options|
+    output_dir   = options[:output_dir] || File.join(project_root, "build/optimized")
+    archive_path = File.join(output_dir, "base.xcarchive")
+    FileUtils.mkdir_p(output_dir)
+
+    unlock_keychain(path: "~/Library/Keychains/login.keychain-db", password: "123456")
+    update_code_signing_settings(path: PROJECT_NAME, use_automatic_signing: false, code_sign_identity: "Apple Distribution")
+    get_provisioning_profile(
+      api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      adhoc: false, force: true,
+      app_identifier: "com.wojoudacademy.wojoudApp",
+      team_id: ENV["TEAM_ID"]
+    )
+    update_project_provisioning(xcodeproj: PROJECT_NAME, target_filter: SCHEME, build_configuration: "Release")
+    build_app(
+      project: PROJECT_NAME, scheme: SCHEME, configuration: "Release",
+      archive_path: archive_path, skip_package_ipa: true,
+      xcargs: "-skipMacroValidation -skipPackagePluginValidation"
+    )
+
+    UI.success("Base archive: #{archive_path}")
+    archive_path
+  end
+
+  # ── package_variant: patch + re-sign one variant from base archive ───────────
+
+  lane :package_variant do |options|
+    configuration = options[:configuration]
+    base_archive  = options[:base_archive] || File.join(project_root, "build/optimized/base.xcarchive")
+    output_dir    = options[:output_dir]   || File.join(project_root, "build/optimized")
+
+    UI.user_error!("configuration is required") unless configuration
+    UI.user_error!("base_archive not found: #{base_archive}") unless File.directory?(base_archive)
+
+    bundle_id = configuration_metadata(configuration)[:bundle_id]
+
+    # Download + install the App Store provisioning profile for this bundle ID.
+    # This mirrors the original generate_ipa lane and ensures the profile is
+    # available in ~/Library/MobileDevice/Provisioning Profiles/ before export.
+    get_provisioning_profile(
+      api_key: Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      adhoc:   false,
+      force:   true,
+      app_identifier: bundle_id,
+      team_id: "46AX569373"
+    )
+    profile_uuid = lane_context[SharedValues::SIGH_UDID]
+    profile_path = lane_context[SharedValues::SIGH_PROFILE_PATH]
+    UI.user_error!("Could not download provisioning profile for #{bundle_id}") unless profile_uuid
+    UI.user_error!("Could not locate provisioning profile path for #{bundle_id}") unless profile_path && File.exist?(profile_path)
+
+    UI.message("Profile UUID for #{bundle_id}: #{profile_uuid}")
+    UI.message("Profile path for #{bundle_id}: #{profile_path}")
+
+    # Unlock the keychain so the manual re-sign step can access the
+    # Apple Distribution private key.
+    # This must happen here because CI's package-and-upload job starts a
+    # fresh process; the unlock done in archive_once does not persist.
+    unlock_keychain(path: "~/Library/Keychains/login.keychain-db", password: "123456")
+
+    # Set env vars directly on the Ruby process — child processes inherit
+    # ENV, so the shell script receives PROFILE_UUID and VARIANT_BUNDLE_ID.
+    # Using sh(hash, command) is not a valid Fastlane signature; ENV[]= is.
+    begin
+      ENV["PROFILE_UUID"]      = profile_uuid
+      ENV["PROFILE_PATH"]      = profile_path
+      ENV["VARIANT_BUNDLE_ID"] = bundle_id
+      sh("bash '#{project_root}/release/package_variant.sh' '#{configuration}' '#{base_archive}' '#{output_dir}'")
+    ensure
+      ENV.delete("PROFILE_UUID")
+      ENV.delete("PROFILE_PATH")
+      ENV.delete("VARIANT_BUNDLE_ID")
+    end
+
+    Dir.glob(File.join(output_dir, configuration, "*.ipa")).first
+  end
+
+  # ── upload_variant: deliver one pre-built IPA to the App Store ───────────────
+
+  lane :upload_variant do |options|
+    ipa_dir  = options[:ipa_path].to_s
+    ipa_file = Dir.glob(File.join(ipa_dir, "*.ipa")).first
+    UI.user_error!("No IPA found in: #{ipa_dir}") unless ipa_file
+
+    app_id            = options[:bundle_identifier]
+    team              = options[:team_id] || "46AX569373"
+    app_version       = options[:app_version]
+    submit_for_review = boolean_option(options[:submit_for_review], default: true)
+
+    release_notes_file = File.join(File.dirname(__FILE__), "release_notes.txt")
+    release_notes = File.exist?(release_notes_file) ? File.read(release_notes_file) : "Bug fixes and performance improvements"
+
+    deliver(
+      api_key:         Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY],
+      ipa:             ipa_file,
+      app_identifier:  app_id,
+      team_id:         team,
+      app_version:     app_version,
+      precheck_include_in_app_purchases: false,
+      run_precheck_before_submit:        false,
+      submit_for_review: submit_for_review,
+      reject_if_possible:  submit_for_review,
+      automatic_release:   submit_for_review,
+      skip_binary_upload:  false,
+      force:               true,
+      skip_screenshots:    true,
+      skip_metadata:       false,
+      release_notes: { "en-US" => release_notes },
+      submission_information: {
+        add_id_info_uses_idfa:         false,
+        add_id_info_serves_ads:        false,
+        add_id_info_tracks_install:    false,
+        add_id_info_tracks_action:     false,
+        add_id_info_limits_tracking:   false
+      }
+    )
+  end
+
+  # ── package_all_optimized: package all variants from an existing archive ─────
+
+  lane :package_all_optimized do |options|
+    output_dir   = options[:output_dir]   || File.join(project_root, "build/optimized")
+    base_archive = options[:base_archive] || File.join(output_dir, "base.xcarchive")
+    fail_fast    = boolean_option(options[:fail_fast], default: true)
+    failed = []
+
+    release_configurations.each do |configuration|
+      begin
+        UI.header("Package variant: #{configuration}")
+        package_variant(
+          configuration: configuration,
+          base_archive:  base_archive,
+          output_dir:    output_dir
+        )
+      rescue => e
+        log_file = File.join(output_dir, "#{configuration}.package.log")
+        UI.error("Failed packaging '#{configuration}': #{e.message}")
+        if File.exist?(log_file)
+          UI.error("Package log: #{log_file}")
+          tail_output = sh("tail -n 120 '#{log_file}'", log: false, error_callback: proc { |_result| })
+          UI.important("Last 120 lines of #{configuration}.package.log:\n#{tail_output}") unless tail_output.to_s.strip.empty?
+        end
+        failed << configuration
+        UI.user_error!("Failed packaged variants: #{failed.join(', ')}") if fail_fast
+      end
+    end
+
+    UI.user_error!("Failed packaged variants: #{failed.join(', ')}") if failed.any?
+    UI.success("All variants packaged successfully.")
+  end
+
+  # ── upload_all_prebuilt: upload already-packaged IPAs ─────────────────────────
+
+  lane :upload_all_prebuilt do |options|
+    output_dir         = options[:output_dir] || File.join(project_root, "build/optimized")
+    submit_for_review  = boolean_option(options[:submit_for_review], default: true)
+    failed = []
+
+    release_configurations.each do |configuration|
+      begin
+        metadata = configuration_metadata(configuration)
+        UI.header("Upload variant: #{configuration}")
+        upload_variant(
+          ipa_path:          File.join(output_dir, configuration),
+          bundle_identifier: metadata[:bundle_id],
+          app_version:       metadata[:app_version],
+          submit_for_review: submit_for_review
+        )
+      rescue => e
+        UI.error("Failed upload for '#{configuration}': #{e.message}")
+        failed << configuration
+      end
+    end
+
+    UI.user_error!("Failed upload variants: #{failed.join(', ')}") if failed.any?
+    UI.success("All variants uploaded successfully.")
+  end
+
+  # ── upload_all_optimized: full pipeline (archive once → package → upload) ────
+
+  lane :upload_all_optimized do |options|
+    skip_archive       = options[:skip_archive] || false
+    skip_upload        = options[:skip_upload]  || false
+    submit_for_review  = boolean_option(options[:submit_for_review], default: true)
+    output_dir         = options[:output_dir]   || File.join(project_root, "build/optimized")
+    base_archive       = File.join(output_dir, "base.xcarchive")
+
+    archive_once(output_dir: output_dir) unless skip_archive
+    package_all_optimized(output_dir: output_dir, base_archive: base_archive)
+    upload_all_prebuilt(output_dir: output_dir, submit_for_review: submit_for_review) unless skip_upload
   end
 
 end
