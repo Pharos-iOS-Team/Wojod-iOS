@@ -152,7 +152,6 @@ class AvatarsViewController: UIViewController {
                     let mobileNumber = RegistrationStore.shared.state.mobileNumber
                     RegistrationStore.shared.reset()
                     let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
-                        $0.modalPresentationStyle = .fullScreen
                         $0.viewModel = .init(
                             mobileNumber: mobileNumber,
                             otpProvider: .whatsapp,
@@ -163,7 +162,9 @@ class AvatarsViewController: UIViewController {
                             }
                         )
                     }
-                    self.present(verifyOtpViewCtrl, animated: true, completion: nil)
+                    let navCtrl = UINavigationController(rootViewController: verifyOtpViewCtrl)
+                    navCtrl.modalPresentationStyle = .fullScreen
+                    self.present(navCtrl, animated: true, completion: nil)
                 }
             } catch {
                 await MainActor.run {

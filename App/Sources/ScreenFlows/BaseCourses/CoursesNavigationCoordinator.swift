@@ -37,8 +37,9 @@ final class CoursesNavigationCoordinator: CoursesNavigationCoordinating {
 
     func showNotifications(from viewController: UIViewController) {
         let notificationsViewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
-        notificationsViewCtrl.modalPresentationStyle = .fullScreen
-        viewController.present(notificationsViewCtrl, animated: true)
+        let navigationController = UINavigationController(rootViewController: notificationsViewCtrl)
+        navigationController.modalPresentationStyle = .fullScreen
+        viewController.present(navigationController, animated: true)
     }
 
     func prefetchWhatsAppSupportNumber() {
@@ -86,8 +87,9 @@ final class CoursesNavigationCoordinator: CoursesNavigationCoordinating {
 
     func showOrganizationsList(from viewController: UIViewController) {
         let organizationsViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
-        organizationsViewCtrl.modalPresentationStyle = .fullScreen
-        viewController.present(organizationsViewCtrl, animated: true)
+        let navigationController = UINavigationController(rootViewController: organizationsViewCtrl)
+        navigationController.modalPresentationStyle = .fullScreen
+        viewController.present(navigationController, animated: true)
     }
 
     // MARK: - Private helpers

@@ -309,21 +309,46 @@ class AssessmentDetailsViewController: UIViewController {
 
     private func initAssessmentDetailOverview() {
         guard let assessmentDetailOverViewController = assessmentDetailOverViewController else { return }
-        visualEffectView.frame = view.frame
+        visualEffectView.frame = view.bounds
         self.view.addSubview(visualEffectView)
         self.addChild(assessmentDetailOverViewController)
         self.view.addSubview(assessmentDetailOverViewController.view)
+        repositionDetailOverView()
+    }
+
+    private func repositionDetailOverView() {
+        guard let assessmentDetailOverViewController = assessmentDetailOverViewController else { return }
         let assessmentDetailViewCollapsedBottomPadding: CGFloat = 5
         let assessmentDetailViewExpandedBottomPadding: CGFloat = 20
-        let yPosition = UIScreen.main.bounds.height -
-            assessmentDetailOverViewController.assessmentDetaildragViewHeight -
-            assessmentDetailViewCollapsedBottomPadding
-        assessmentDetailOverViewController.view.frame = CGRect(
-            x: 0,
-            y: yPosition,
-            width: view.bounds.width,
-            height: UIScreen.main.bounds.height + assessmentDetailViewExpandedBottomPadding
-        )
+        let currentHeight = view.bounds.height
+        let currentWidth = view.bounds.width
+
+        if detailState == .collapsed {
+            let yPosition = currentHeight -
+                assessmentDetailOverViewController.assessmentDetaildragViewHeight -
+                assessmentDetailViewCollapsedBottomPadding
+            assessmentDetailOverViewController.view.frame = CGRect(
+                x: 0,
+                y: yPosition,
+                width: currentWidth,
+                height: currentHeight + assessmentDetailViewExpandedBottomPadding
+            )
+        } else {
+            assessmentDetailOverViewController.view.frame = CGRect(
+                x: 0,
+                y: view.safeAreaInsets.top,
+                width: currentWidth,
+                height: currentHeight + assessmentDetailViewExpandedBottomPadding
+            )
+        }
+        visualEffectView.frame = view.bounds
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            self?.repositionDetailOverView()
+        }
     }
     
     private func handleRemovingDragableView() {

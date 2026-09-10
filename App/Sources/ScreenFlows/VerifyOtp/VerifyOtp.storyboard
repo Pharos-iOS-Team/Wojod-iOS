@@ -32,25 +32,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kyb-hx-ftH">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFB-tI-gel">
-                                                <rect key="frame" x="0.0" y="52" width="414" height="80"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj6-au-Dhf">
-                                                        <rect key="frame" x="27" y="25" width="30" height="30"/>
-                                                        <state key="normal" image="BackIcon"/>
-                                                        <connections>
-                                                            <action selector="backButton:" destination="Lo3-10-GAZ" eventType="touchUpInside" id="2Rh-Dk-rDJ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="Cjv-TR-Zs3"/>
-                                                    <constraint firstItem="hj6-au-Dhf" firstAttribute="leading" secondItem="rFB-tI-gel" secondAttribute="leading" constant="27" id="WDA-ax-sJK"/>
-                                                    <constraint firstItem="hj6-au-Dhf" firstAttribute="top" secondItem="rFB-tI-gel" secondAttribute="top" constant="25" id="oBX-fH-eDD"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hj6-au-Dhf" secondAttribute="bottom" constant="25" id="ojb-Bo-Hy1"/>
-                                                </constraints>
-                                            </view>
+
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter OTP sent to your phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-zX-jhv">
                                                 <rect key="frame" x="20" y="152" width="374" height="53.5"/>
                                                 <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="22"/>
@@ -136,7 +118,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="CqZ-LI-9hH" secondAttribute="trailing" constant="40" id="1f9-Pt-BC5"/>
-                                            <constraint firstItem="rFB-tI-gel" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" id="2wh-7d-T6Y"/>
+
                                             <constraint firstAttribute="trailing" secondItem="Hu7-eU-6R3" secondAttribute="trailing" constant="20" id="7pq-F3-xuD"/>
                                             <constraint firstAttribute="trailing" secondItem="5w1-zX-jhv" secondAttribute="trailing" constant="20" id="7zC-f7-PSn"/>
                                             <constraint firstAttribute="trailing" secondItem="lRf-zZ-M2u" secondAttribute="trailing" constant="40" id="AfK-X9-w4a"/>
@@ -151,10 +133,9 @@
                                             <constraint firstItem="Hu7-eU-6R3" firstAttribute="top" secondItem="CqZ-LI-9hH" secondAttribute="bottom" constant="16" id="Mdo-X2-6TE"/>
                                             <constraint firstItem="5w1-zX-jhv" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="20" id="eqi-fH-tIS"/>
                                             <constraint firstItem="CqZ-LI-9hH" firstAttribute="leading" secondItem="Kyb-hx-ftH" secondAttribute="leading" constant="40" id="gca-Yr-dpV"/>
-                                            <constraint firstItem="rFB-tI-gel" firstAttribute="top" secondItem="Kyb-hx-ftH" secondAttribute="top" constant="52" id="hFt-gO-PYJ"/>
-                                            <constraint firstItem="5w1-zX-jhv" firstAttribute="top" secondItem="rFB-tI-gel" secondAttribute="bottom" constant="20" id="hwd-uv-60k"/>
+                                            <constraint firstItem="5w1-zX-jhv" firstAttribute="top" secondItem="Kyb-hx-ftH" secondAttribute="top" constant="20" id="hwd-uv-60k"/>
                                             <constraint firstItem="lRf-zZ-M2u" firstAttribute="top" secondItem="N2P-x3-ECb" secondAttribute="bottom" constant="8" symbolic="YES" id="rqk-2g-o9v"/>
-                                            <constraint firstAttribute="trailing" secondItem="rFB-tI-gel" secondAttribute="trailing" id="uKq-fS-2if"/>
+
                                             <constraint firstItem="N2P-x3-ECb" firstAttribute="top" secondItem="5w1-zX-jhv" secondAttribute="bottom" constant="50" id="vcE-Hi-Yny"/>
                                             <constraint firstItem="cdL-Tm-0Pw" firstAttribute="top" secondItem="lRf-zZ-M2u" secondAttribute="bottom" constant="32" id="vcd-Tm-1Pw"/>
                                             <constraint firstItem="wMsg-Lb-0Pw" firstAttribute="top" secondItem="cdL-Tm-0Pw" secondAttribute="bottom" constant="8" id="wcd-Msg-1Pw"/>
@@ -176,17 +157,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="top" secondItem="J5F-ci-p8r" secondAttribute="top" id="8Ue-qb-Cwp"/>
-                            <constraint firstAttribute="leading" secondItem="J5F-ci-p8r" secondAttribute="leading" id="F4b-50-7Vk"/>
+                            <constraint firstItem="J5F-ci-p8r" firstAttribute="leading" secondItem="g8f-3D-cur" secondAttribute="leading" id="F4b-50-7Vk"/>
                             <constraint firstItem="J5F-ci-p8r" firstAttribute="centerX" secondItem="WkF-0Y-vVb" secondAttribute="centerX" id="aHQ-94-v2F"/>
                             <constraint firstItem="J5F-ci-p8r" firstAttribute="bottom" secondItem="WkF-0Y-vVb" secondAttribute="bottom" id="cL3-08-Th5"/>
                             <constraint firstItem="J5F-ci-p8r" firstAttribute="centerY" secondItem="WkF-0Y-vVb" secondAttribute="centerY" id="gCG-2g-eCU"/>
-                            <constraint firstItem="J5F-ci-p8r" firstAttribute="trailing" secondItem="WkF-0Y-vVb" secondAttribute="trailing" id="qCg-jW-8mf"/>
+                            <constraint firstItem="J5F-ci-p8r" firstAttribute="trailing" secondItem="g8f-3D-cur" secondAttribute="trailing" id="qCg-jW-8mf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="alertVIewHeightConstraint" destination="onw-Ll-Bl4" id="NDB-hw-Hqx"/>
                         <outlet property="alertView" destination="N2P-x3-ECb" id="wv1-4a-5OF"/>
-                        <outlet property="backButton" destination="hj6-au-Dhf" id="J11-if-Pii"/>
+
                         <outlet property="cooldownLabel" destination="cdL-Tm-0Pw" id="cdL-out-001"/>
                         <outlet property="enterOTPLabel" destination="5w1-zX-jhv" id="KFU-IW-3EG"/>
                         <outlet property="otpTextView" destination="lRf-zZ-M2u" id="Ssg-7d-79G"/>
@@ -194,6 +175,7 @@
                         <outlet property="sendButton" destination="CqZ-LI-9hH" id="sy5-pH-eD4"/>
                         <outlet property="waitMessageLabel" destination="wMsg-Lb-0Pw" id="wMsg-out-001"/>
                     </connections>
+                    <navigationItem key="navigationItem" id="otp-NI-001"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvc-GB-Mer" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +183,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackIcon" width="30" height="30"/>
         <namedColor name="informationViewColor">
             <color red="0.17800000309944153" green="0.16899999976158142" blue="0.69199997186660767" alpha="0.15999999642372131" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

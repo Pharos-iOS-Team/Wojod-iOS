@@ -23,11 +23,6 @@ class VerifyOtpViewController: UIViewController {
             resendButton.setTitleColor(.gray, for: .disabled)
         }
     }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.setImage(Images.localizedBackButton)
-        }
-    }
     @IBOutlet private var otpTextView: OTPFieldView!
     @IBOutlet private var alertVIewHeightConstraint: NSLayoutConstraint! {
         didSet {
@@ -60,7 +55,7 @@ class VerifyOtpViewController: UIViewController {
         configureResendSuccessHandler()
         showLoadingIndicatorHandler()
         configureSendButton()
-        configureBackButton()
+        configureNavigationBar()
         startResendCooldown()
     }
 
@@ -94,8 +89,8 @@ class VerifyOtpViewController: UIViewController {
         viewModel.resendOTP()
     }
 
-    @IBAction private func backButton(_ sender: UIButton) {
-        AppDelegate.getAppDelegate()?.window?.rootViewController?.dismiss(animated: true)
+    @objc private func dismissOtp() {
+        dismiss(animated: true)
     }
 
     // MARK: - OTP View Setup
@@ -180,8 +175,14 @@ class VerifyOtpViewController: UIViewController {
         }
     }
 
-    private func configureBackButton() {
-        backButton.isHidden = viewModel.hideBackButton
+    private func configureNavigationBar() {
+        guard !viewModel.hideBackButton else { return }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(dismissOtp)
+        )
     }
 
     private func configureResendSuccessHandler() {

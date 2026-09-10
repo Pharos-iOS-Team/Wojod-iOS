@@ -110,7 +110,6 @@ class PasswordViewController: UIViewController {
 
     private func showVerifyOtpScreen(mobileNumber: String, countryCode: String) {
         let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
-        verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
         verifyOtpViewCtrl.viewModel = .init(
             mobileNumber: mobileNumber,
             countryCode: countryCode,
@@ -121,9 +120,10 @@ class PasswordViewController: UIViewController {
                 if self.viewModel.setPassword {
                     let setPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
                         $0.viewModel = .init(mobileNumber: mobileNumber, countryCode: countryCode, isActivationFlow: true)
-                        $0.modalPresentationStyle = .fullScreen
                     }
-                    presenter.present(setPasswordViewCtrl, animated: true)
+                    let navCtrl = UINavigationController(rootViewController: setPasswordViewCtrl)
+                    navCtrl.modalPresentationStyle = .fullScreen
+                    presenter.present(navCtrl, animated: true)
                 } else {
                     DispatchQueue.main.async {
                         PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
@@ -132,7 +132,9 @@ class PasswordViewController: UIViewController {
                 }
             }
         )
-        present(verifyOtpViewCtrl, animated: true)
+        let navCtrl = UINavigationController(rootViewController: verifyOtpViewCtrl)
+        navCtrl.modalPresentationStyle = .fullScreen
+        present(navCtrl, animated: true)
     }
 
     private func handleLoginSuccess() {
@@ -184,8 +186,9 @@ class PasswordViewController: UIViewController {
 
     private func navigateToForgotPasswordScreen() {
         let forgotPasswordViewCtrl = StoryboardScene.ForgotPassword.forgotPasswordViewController.instantiate()
-        forgotPasswordViewCtrl.modalPresentationStyle = .fullScreen
-        present(forgotPasswordViewCtrl, animated: true, completion: nil)
+        let navCtrl = UINavigationController(rootViewController: forgotPasswordViewCtrl)
+        navCtrl.modalPresentationStyle = .fullScreen
+        present(navCtrl, animated: true, completion: nil)
     }
 }
 

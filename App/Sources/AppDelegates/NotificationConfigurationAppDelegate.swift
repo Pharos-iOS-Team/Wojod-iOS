@@ -80,7 +80,9 @@ extension NotificationConfigurationAppDelegate: UNUserNotificationCenterDelegate
         }
         if let notificationType = userinfo["entity_name"] as? String, notificationType == "Notifications" {
             let viewCtrl = StoryboardScene.Notifications.initialScene.instantiate()
-            UIApplication.shared.keyWindow?.rootViewController?.present(viewCtrl, animated: true)
+            let navController = UINavigationController(rootViewController: viewCtrl)
+            navController.modalPresentationStyle = .fullScreen
+            UIApplication.shared.keyWindow?.rootViewController?.present(navController, animated: true)
             completionHandler()
         } else if let courseID = userinfo["course_id"] as? String {
             Task {

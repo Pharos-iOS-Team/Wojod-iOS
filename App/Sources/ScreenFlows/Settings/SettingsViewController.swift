@@ -66,8 +66,9 @@ class SettingsViewController: UIViewController {
             viewModel.logout()
         } else {
             let profileViewCtrl = StoryboardScene.Profile.profileViewController.instantiate()
-            profileViewCtrl.modalPresentationStyle = .fullScreen
-            present(profileViewCtrl, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: profileViewCtrl)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
         }
     }
 
@@ -120,10 +121,10 @@ extension SettingsViewController: UITableViewDataSource {
             let safariViewCtrl = SFSafariViewController(url: linkURL)
             self.present(safariViewCtrl, animated: true)
         case .organizations:
-            let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate().with {
-                $0.modalPresentationStyle = .fullScreen
-            }
-            self.present(organizationsListViewCtrl, animated: true)
+            let organizationsListViewCtrl = StoryboardScene.OrganizationsList.organizationsListViewController.instantiate()
+            let navigationController = UINavigationController(rootViewController: organizationsListViewCtrl)
+            navigationController.modalPresentationStyle = .fullScreen
+            self.present(navigationController, animated: true)
         default:
             return
         }

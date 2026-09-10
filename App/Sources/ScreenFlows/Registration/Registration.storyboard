@@ -202,13 +202,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrongCredentialsEn" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-WC-001">
                                                 <rect key="frame" x="35" y="192" width="344" height="63"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-CL-001">
-                                                <rect key="frame" x="355" y="30" width="24" height="24"/>
-                                                <state key="normal" image="close"/>
-                                                <connections>
-                                                    <action selector="didTapOnClose:" destination="pIn-VC-001" eventType="touchUpInside" id="pIn-CL-A1"/>
-                                                </connections>
-                                            </button>
+
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" tag="100" id="pIn-TF-001" customClass="NoCutPasteTextField" customModule="Wojood" customModuleProvider="target">
                                                 <rect key="frame" x="35" y="267" width="344" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -330,8 +324,7 @@
                                             <constraint firstItem="pIn-WC-001" firstAttribute="trailing" secondItem="pIn-HC-001" secondAttribute="trailing" id="c014"/>
                                             <constraint firstItem="pIn-WC-001" firstAttribute="top" secondItem="pIn-HC-001" secondAttribute="top" id="c015"/>
                                             <constraint firstItem="pIn-WC-001" firstAttribute="height" secondItem="pIn-HC-001" secondAttribute="height" id="c016"/>
-                                            <constraint firstItem="pIn-CL-001" firstAttribute="centerY" secondItem="pIn-IC-001" secondAttribute="centerY" id="c017"/>
-                                            <constraint firstItem="pIn-CL-001" firstAttribute="trailing" secondItem="pIn-HC-001" secondAttribute="trailing" id="c018"/>
+
                                             <constraint firstItem="pIn-TF-001" firstAttribute="leading" secondItem="pIn-HC-001" secondAttribute="leading" id="c019"/>
                                             <constraint firstItem="pIn-TF-001" firstAttribute="trailing" secondItem="pIn-HC-001" secondAttribute="trailing" id="c020"/>
                                             <constraint firstItem="pIn-TF-001" firstAttribute="top" secondItem="pIn-HC-001" secondAttribute="bottom" constant="12" id="c021"/>
@@ -414,8 +407,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="pIn-SV-001" secondAttribute="bottom" id="pIn-VW-C1"/>
-                            <constraint firstAttribute="trailing" secondItem="pIn-SV-001" secondAttribute="trailing" id="pIn-VW-C2"/>
-                            <constraint firstItem="pIn-SV-001" firstAttribute="leading" secondItem="pIn-VW-001" secondAttribute="leading" id="pIn-VW-C3"/>
+                            <constraint firstItem="pIn-SA-001" firstAttribute="trailing" secondItem="pIn-SV-001" secondAttribute="trailing" id="pIn-VW-C2"/>
+                            <constraint firstItem="pIn-SV-001" firstAttribute="leading" secondItem="pIn-SA-001" secondAttribute="leading" id="pIn-VW-C3"/>
                             <constraint firstItem="pIn-SV-001" firstAttribute="top" secondItem="pIn-SA-001" secondAttribute="top" id="pIn-VW-C4"/>
                             <constraint firstItem="pIn-BB-001" firstAttribute="leading" secondItem="pIn-SA-001" secondAttribute="leading" id="pIn-VW-C5"/>
                             <constraint firstItem="pIn-SA-001" firstAttribute="trailing" secondItem="pIn-BB-001" secondAttribute="trailing" id="pIn-VW-C6"/>
@@ -426,7 +419,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="pIn-NI-001"/>
                     <connections>
-                        <outlet property="closeButton" destination="pIn-CL-001" id="o004"/>
                         <outlet property="firstMilestoneImageView" destination="pIn-FM-001" id="o009"/>
                         <outlet property="hintContentView" destination="pIn-HC-001" id="o010"/>
                         <outlet property="loadingIndicator" destination="pIn-AI-001" id="o012"/>
@@ -606,8 +598,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="aIn-SV-001" secondAttribute="bottom" id="aIn-VW-C1"/>
-                            <constraint firstAttribute="trailing" secondItem="aIn-SV-001" secondAttribute="trailing" id="aIn-VW-C2"/>
-                            <constraint firstItem="aIn-SV-001" firstAttribute="leading" secondItem="aIn-VW-001" secondAttribute="leading" id="aIn-VW-C3"/>
+                            <constraint firstItem="aIn-SA-001" firstAttribute="trailing" secondItem="aIn-SV-001" secondAttribute="trailing" id="aIn-VW-C2"/>
+                            <constraint firstItem="aIn-SV-001" firstAttribute="leading" secondItem="aIn-SA-001" secondAttribute="leading" id="aIn-VW-C3"/>
                             <constraint firstItem="aIn-SV-001" firstAttribute="top" secondItem="aIn-SA-001" secondAttribute="top" id="aIn-VW-C4"/>
                             <constraint firstItem="aIn-BB-001" firstAttribute="leading" secondItem="aIn-SA-001" secondAttribute="leading" id="aIn-VW-C5"/>
                             <constraint firstItem="aIn-SA-001" firstAttribute="trailing" secondItem="aIn-BB-001" secondAttribute="trailing" id="aIn-VW-C6"/>

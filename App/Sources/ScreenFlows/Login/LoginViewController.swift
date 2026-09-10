@@ -202,7 +202,6 @@ class LoginViewController: UIViewController {
 
     private func showVerifyOtpScreen(mobileNumber: String, countryCode: String) {
         let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate()
-        verifyOtpViewCtrl.modalPresentationStyle = .fullScreen
         verifyOtpViewCtrl.viewModel = .init(
             mobileNumber: mobileNumber,
             countryCode: countryCode,
@@ -213,9 +212,10 @@ class LoginViewController: UIViewController {
                 if self.viewModel.setPassword {
                     let setPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
                         $0.viewModel = .init(mobileNumber: mobileNumber, countryCode: countryCode, isActivationFlow: true)
-                        $0.modalPresentationStyle = .fullScreen
                     }
-                    presenter.present(setPasswordViewCtrl, animated: true)
+                    let navCtrl = UINavigationController(rootViewController: setPasswordViewCtrl)
+                    navCtrl.modalPresentationStyle = .fullScreen
+                    presenter.present(navCtrl, animated: true)
                 } else {
                     DispatchQueue.main.async {
                         PushNotificationsManager.shared.sendUserDeviceToken(Messaging.messaging().fcmToken)
@@ -224,7 +224,9 @@ class LoginViewController: UIViewController {
                 }
             }
         )
-        present(verifyOtpViewCtrl, animated: true)
+        let navCtrl = UINavigationController(rootViewController: verifyOtpViewCtrl)
+        navCtrl.modalPresentationStyle = .fullScreen
+        present(navCtrl, animated: true)
     }
 }
 

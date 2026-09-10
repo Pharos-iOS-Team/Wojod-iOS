@@ -26,7 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed IOS 27 Issues.
+  Task: [CPI-353](https://jira.pharos-solutions.de/browse/CPI-353) | PR: [#46](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/46) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

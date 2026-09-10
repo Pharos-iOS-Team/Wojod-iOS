@@ -86,8 +86,12 @@ class AssessmentDetailOverViewViewController: UIViewController {
     var goToNextQuestion: (() -> Void)?
     var submitButtonTapped: (() -> Void)?
     var goToQuestion: ((Int) -> Void)?
-    let assessmentDetailOverViewHeight: CGFloat = 0.92 * UIScreen.main.bounds.height
-    let assessmentDetaildragViewHeight: CGFloat = 0.08 * UIScreen.main.bounds.height
+    /// Height of the draggable header bar — matches the storyboard fixed height constraint on detailMainView.
+    let assessmentDetaildragViewHeight: CGFloat = 75
+    /// Travel distance for the pan gesture fraction calculation; uses parent bounds when available.
+    var assessmentDetailOverViewHeight: CGFloat {
+        (parent?.view.bounds.height ?? UIScreen.main.bounds.height) * 0.92
+    }
     var assessmentDetailOverViewVisible = false
     var runningAnimations = [UIViewPropertyAnimator]()
     var animationProgressWhenInterrupted: CGFloat = 0
