@@ -24,7 +24,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Deprecated
 - None.
 ### Removed
-- None.
+- Removed `Explore More` tab from `Dr Ashour Academy` app.  
+  Task: [CPI-354](https://jira.pharos-solutions.de/browse/CPI-354) | PR: [#47](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/47) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Fixed
 - None.
 ### Security

@@ -112,7 +112,7 @@ final class MyCoursesViewController: UIViewController {
             headerView?.selectRelatedCoursesButton()
         }
 
-        headerView?.setButtonsVisibility(true)
+        headerView?.setButtonsVisibility(!AppEnvironment.shouldHideExploreMore)
         headerView?.setSubjectsVisibility(viewModel.mode == .relatedCourses)
         headerView?.setAdvertisementsVisibility(false)
         return headerView
@@ -174,6 +174,7 @@ extension MyCoursesViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectExploreMore() {
+        guard !AppEnvironment.shouldHideExploreMore else { return }
         viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .exploreMore)
         tableView.reloadData()

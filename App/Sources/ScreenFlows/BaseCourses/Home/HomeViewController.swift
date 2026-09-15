@@ -148,8 +148,7 @@ final class HomeViewController: UIViewController {
             isFirstScreenLoad = false
             headerView?.selectRelatedCoursesButton()
         }
-
-        headerView?.setButtonsVisibility(!viewModel.isInSearchMode)
+        headerView?.setButtonsVisibility(!viewModel.isInSearchMode && !AppEnvironment.shouldHideExploreMore)
         headerView?.setSubjectsVisibility(!viewModel.isInSearchMode && viewModel.mode == .relatedCourses)
         headerView?.setAdvertisementsVisibility(!viewModel.advertisements.isEmpty && !viewModel.isInSearchMode)
         return headerView
@@ -272,6 +271,7 @@ extension HomeViewController: HomeTableViewHeaderDelegate {
     }
 
     func didSelectExploreMore() {
+        guard !AppEnvironment.shouldHideExploreMore else { return }
         viewModel.selectedSubjectIndexPath = .zero
         viewModel.changeMode(to: .exploreMore)
         tableView.reloadData()

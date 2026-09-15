@@ -33,6 +33,10 @@ enum AppEnvironment {
       return AppEnvironment.appName.loginOrganization != nil
      }()
     
+    static let shouldHideExploreMore: Bool = {
+        return AppEnvironment.appName == .ashourAcademy
+     }()
+    
     static var imageUrl: (String) -> URL = { imagePath in
         guard let url = URL(string: "\(baseURLString)\(imagePath)") else { fatalError("Image URL is invalid") }
         return url
