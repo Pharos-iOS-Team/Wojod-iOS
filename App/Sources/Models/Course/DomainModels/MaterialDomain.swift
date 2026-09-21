@@ -9,13 +9,13 @@ struct MaterialDomain {
     let documents: [AttachmentDomain]
 
     var allMaterials: [MaterialItemProtocol] {
-        assignments + quizzes + videos + documents
+        quizzes + assignments + videos + documents
     }
 
     private var nonEmptySections: [[MaterialItemProtocol]] {
         [
-            assignments.map { $0 as MaterialItemProtocol },
             quizzes.map { $0 as MaterialItemProtocol },
+            assignments.map { $0 as MaterialItemProtocol },
             videos.map { $0 as MaterialItemProtocol },
             documents.map { $0 as MaterialItemProtocol }
         ].filter { !$0.isEmpty }

@@ -57,7 +57,6 @@ final class CourseDetailsRepository: CourseDetailsRepositoryProtocol {
             .courseDetails(.loadMaterials(courseID: courseID)),
             decodeTo: Materials.self
         )
-        materials.sort()
         return materials.domainModel
     }
 
