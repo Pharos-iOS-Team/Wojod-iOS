@@ -5,7 +5,6 @@ import UIKit
 final class DocumentService: NSObject {
     // MARK: - Properties
 
-    private weak var presentingViewController: UIViewController?
     private var activeDownloadTask: URLSessionDownloadTask?
     private var downloadSession: URLSession?
     private var progressHandler: ((Float) -> Void)?
@@ -14,8 +13,7 @@ final class DocumentService: NSObject {
 
     // MARK: - Init
 
-    init(presentingViewController: UIViewController) {
-        self.presentingViewController = presentingViewController
+    override init() {
         super.init()
     }
 

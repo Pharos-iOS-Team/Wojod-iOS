@@ -13,7 +13,7 @@ public struct LoadingView: View {
         VStack {
             ProgressView()
                 .progressViewStyle(
-                    CircularProgressViewStyle(tint: Color.accentColor)
+                    CircularProgressViewStyle(tint: Color(Colors.sendButtonColor.color))
                 )
                 .scaleEffect(1.5)
 

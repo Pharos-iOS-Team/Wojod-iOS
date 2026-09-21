@@ -64,4 +64,13 @@ enum PhoneNumberValidator {
             .compactMap { UnicodeScalar(flagBase + $0.value)?.description }
             .joined()
     }
+
+    /// Returns the phone number with its country dial code in a display-friendly format.
+    static func formattedInternationalPhone(_ number: String, countryCode: String) -> String {
+        let dialCode = countryCode.hasPrefix("+") ? countryCode : "+\(countryCode)"
+        let displayNumber = stripEgyptianLeadingZero(number, countryCode: dialCode)
+
+        guard !displayNumber.isEmpty else { return "" }
+        return "\(dialCode) \(displayNumber)"
+    }
 }

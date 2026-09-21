@@ -18,9 +18,11 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Add watermark for pdfs.
+  Task: [CPI-356](https://jira.pharos-solutions.de/browse/CPI-356) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Changed
-- None.
+- Changeed downloadable option for pdfs.
+  Task: [CPI-357](https://jira.pharos-solutions.de/browse/CPI-357) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Deprecated
 - None.
 ### Removed
