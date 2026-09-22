@@ -32,6 +32,5 @@ extension VideoDomain: MaterialItemProtocol {
     }
     var displayDuration: Int? { duration }
     var displayDaysRemaining: Int? { daysRemaining }
-    var sortDate: Date { publishedAt ?? Date() }
     var payload: MaterialItemPayload { .video(self) }
 }

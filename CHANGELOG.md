@@ -24,7 +24,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Deprecated
 - None.
 ### Removed
-- None.
+- Removed Course Lesson Materials Sorting .  
+  Task: [CPI-355](https://jira.pharos-solutions.de/browse/CPI-355) | PR: [#48](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/48) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Fixed
 - None.
 ### Security

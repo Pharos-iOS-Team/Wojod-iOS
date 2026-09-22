@@ -17,6 +17,5 @@ extension AssessmentDomain: MaterialItemProtocol {
     var displayIcon: UIImage { Images.quiz.image }
     var displayDuration: Int? { nil }
     var displayDaysRemaining: Int? { nil }
-    var sortDate: Date { publishedAt }
     var payload: MaterialItemPayload { .assessment(self) }
 }

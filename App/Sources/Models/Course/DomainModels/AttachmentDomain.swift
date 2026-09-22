@@ -29,6 +29,5 @@ extension  AttachmentDomain: MaterialItemProtocol {
     }
     var displayDuration: Int? { nil }
     var displayDaysRemaining: Int? { nil }
-    var sortDate: Date { publishedAt ?? Date() }
     var payload: MaterialItemPayload { .attachment(self) }
 }
