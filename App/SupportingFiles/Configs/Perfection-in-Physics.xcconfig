@@ -14,4 +14,4 @@ PRODUCT_BUNDLE_IDENTIFIER = com.wojoudacademy.perfection-in-physics
 
 // MARK: - App Version
 
-APP_VERSION = 2.2.0
+APP_VERSION = 2.2.1
