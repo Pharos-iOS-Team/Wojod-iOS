@@ -18,7 +18,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- None.
+- Added Watermark on vdocipher second account.  
+  Task: [CPI-359](https://jira.pharos-solutions.de/browse/CPI-359) | PR: [#51](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/51) | Author: [Sara Rady](https://github.com/sara-rady
 ### Changed
 - None.
 ### Deprecated
