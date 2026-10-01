@@ -184,9 +184,10 @@ final class UniversityInfoViewController: UIViewController {
         fieldLoadingIndicator.showLoading(on: uniYearTextField)
         Task { [weak self] in
             guard let self else { return }
+            let viewModel = self.viewModel
             let result = await viewModel.loadUniFieldsAndYears()
             await MainActor.run { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 fieldLoadingIndicator.hideLoading(on: uniFieldTextField)
                 fieldLoadingIndicator.hideLoading(on: uniYearTextField)
                 if viewModel.uniFields.isEmpty {
@@ -197,7 +198,7 @@ final class UniversityInfoViewController: UIViewController {
                     uniFieldHeightConstraint.constant = 50
                     uniFieldTextField.text = viewModel.uniFields[safe: viewModel.selectedUniFieldIndex]?.value
                 }
-                if let firstYear = result.years.first { uniYearTextField.text = firstYear.value }
+                uniYearTextField.text = viewModel.uniYears[safe: viewModel.selectedUniYearIndex]?.value
                 activityIndicator.stopAnimating()
                 fadeFieldsIn()
                 viewModel.onFormDidChange?()
@@ -208,9 +209,12 @@ final class UniversityInfoViewController: UIViewController {
     func retrieveUniYearsOnly() {
         Task { [weak self] in
             guard let self else { return }
-            let years = await viewModel.loadUniYearsOnly()
-            await MainActor.run {
-                if let first = years.first { self.uniYearTextField.text = first.value }
+            let viewModel = self.viewModel
+            _ = await viewModel.loadUniYearsOnly()
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                uniYearTextField.text = viewModel.uniYears[safe: viewModel.selectedUniYearIndex]?.value
+                viewModel.onFormDidChange?()
             }
         }
     }

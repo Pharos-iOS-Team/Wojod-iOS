@@ -18,6 +18,7 @@ extension AcademicInfoViewController {
             universityContainerViewHeightConstraint.constant = 0
             letsKnowMoreTitleImageView.isHidden = true
         } else {
+            letsKnowMoreTitleImageView.isHidden = false
             viewModel.academicTrack == .school ? configureSchoolView() : configureUniversityView()
             if viewModel.academicTrack == .school {
                 schoolInfoVC?.restoreData()
@@ -52,6 +53,11 @@ extension AcademicInfoViewController {
             universityContainerViewHeightConstraint.constant = viewModel.academicLevel == .graduate ? 286 : 336
             viewModel.academicLevel == .graduate ? universityInfoVC?.configureGraduateView() : universityInfoVC?.configureStudentView()
             universityInfoVC?.showFieldsImmediately()
+        } else if AppEnvironment.shouldHideOrganizationAndSchool {
+            viewModel.academicLevel = .universityStudent
+            viewModel.hasChosenAcademicLevel = true
+            universityContainerViewHeightConstraint.constant = 336
+            universityInfoVC?.configureStudentView()
         } else {
             universityContainerViewHeightConstraint.constant = 50
             universityInfoVC?.configureSubTabsUnselected()

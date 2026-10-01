@@ -70,6 +70,10 @@ final class AcademicInfoViewModel {
         academicLevel = state.academicLevel
         hasChosenAcademicLevel = state.hasChosenAcademicLevel
         needsStateRestore = hasChosenTrack
+        if AppEnvironment.shouldHideOrganizationAndSchool {
+            hasChosenTrack = true
+            academicTrack = .university
+        }
     }
 
     func pickerItems(for pickerType: AcademicPickerType) -> [String] {
@@ -218,7 +222,9 @@ final class AcademicInfoViewModel {
     }
 
     func loadUniYearsOnly() async -> [KeyValue] {
-        let key = universities[safe: selectedUniIndex]?.key ?? 0
+        let key = isRoyalMedicine
+            ? (GlobalConstants.facultyOfMedicineSpecializationAndDivision.key ?? 0)
+            : (universities[safe: selectedUniIndex]?.key ?? 0)
         let years = (try? await apiProvider.request(.registration(.batches(divisionID: key)), decodeTo: ApiResponse<[KeyValue]>.self).data) ?? []
         uniYears = years
         if
@@ -253,9 +259,13 @@ final class AcademicInfoViewModel {
             } else {
                 state.academicLevel = self.academicLevel
                 state.university = self.universities[safe: self.selectedUniIndex]
-                state.uniSpecialization =
-                self.uniFields[safe: self.selectedUniFieldIndex]?.value == L10n.Signup.School.none
-                ? nil : self.uniFields[safe: self.selectedUniFieldIndex]
+                if self.isRoyalMedicine {
+                    state.uniSpecialization = GlobalConstants.facultyOfMedicineSpecializationAndDivision
+                } else {
+                    state.uniSpecialization =
+                    self.uniFields[safe: self.selectedUniFieldIndex]?.value == L10n.Signup.School.none
+                    ? nil : self.uniFields[safe: self.selectedUniFieldIndex]
+                }
                 state.uniBatch = self.uniYears[safe: self.selectedUniYearIndex]
                 state.parentNumber = ""
                 state.parentNumber2 = ""
@@ -335,6 +345,7 @@ final class AcademicInfoViewModel {
             guard hasChosenAcademicLevel else { return false }
             switch academicLevel {
             case .universityStudent:
+                if AppEnvironment.shouldHideOrganizationAndSchool { return !uniYears.isEmpty }
                 if uniFields.isEmpty {
                     return !universities.isEmpty && !uniYears.isEmpty
                 } else {
