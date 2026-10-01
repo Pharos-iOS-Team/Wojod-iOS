@@ -144,7 +144,7 @@ enum RegistrationValidator {
             }
 
         case .university:
-            if state.university == nil {
+            if !AppEnvironment.shouldHideOrganizationAndSchool && state.university == nil {
                 errors.append(.universityMissing)
             }
             if state.academicLevel == .universityStudent && state.uniBatch == nil {

@@ -60,6 +60,7 @@ final class AcademicInfoViewController: UIViewController {
         configureInitialLayout()
         scrollView.contentInset.bottom = 120
         fourthMilestoneImageView.image = StepIndicatorView.makeImage(currentStep: 2)
+        handleOnlyShowUniView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +114,19 @@ final class AcademicInfoViewController: UIViewController {
         viewModel.navigateToAvatars(from: self)
     }
 
+    private func handleOnlyShowUniView() {
+        if AppEnvironment.shouldHideOrganizationAndSchool {
+            schoolButton.isHidden = true
+            schoolLabel.isHidden = true
+            universityButton.superview?.constraints.forEach { constraint in
+                guard
+                    (constraint.firstItem as? UIView) == universityButton,
+                    constraint.firstAttribute == .centerX
+                else { return }
+                constraint.constant = 0
+            }
+        }
+    }
     // MARK: - Child VC Embedding
 
     private func embedChildViewControllers() {

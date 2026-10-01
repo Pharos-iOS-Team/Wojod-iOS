@@ -26,7 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed Registration Flow in both `Royal Medicine` and `Square Center` apps.  
+  Task: [CPI-358](https://jira.pharos-solutions.de/browse/CPI-358) | PR: [#50](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/50) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 
