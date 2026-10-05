@@ -30,6 +30,11 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Security
 - None.
 
+## [HotFix] - 2026-10-02
+### Fixed
+- Fixed Registration Flow in both `Royal Medicine` and `Square Center` apps.  
+  Task: [CPI-358](https://jira.pharos-solutions.de/browse/CPI-358) | PR: [#50](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/50) | Author: [Sara Rady](https://github.com/sara-rady)
+
 ## [2.2.1] - 2026-09-23
 ### Removed
 - Removed Course Lesson Materials Sorting .  

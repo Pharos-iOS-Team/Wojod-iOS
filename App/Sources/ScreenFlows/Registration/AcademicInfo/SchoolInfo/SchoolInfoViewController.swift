@@ -107,6 +107,7 @@ final class SchoolInfoViewController: UIViewController {
     // MARK: - Data Loading
 
     func loadAcademicTypes() {
+        guard !AppEnvironment.shouldHideOrganizationAndSchool else { return }
         fieldLoadingIndicator.showLoading(on: academicTypeTextField)
         Task { [weak self] in
             guard let self else { return }
@@ -121,6 +122,7 @@ final class SchoolInfoViewController: UIViewController {
     }
 
     func retrieveAcademicDivisions() {
+        guard !AppEnvironment.shouldHideOrganizationAndSchool else { return }
         fieldLoadingIndicator.showLoading(on: academicDivisionTextField)
         Task { [weak self] in
             guard let self else { return }
