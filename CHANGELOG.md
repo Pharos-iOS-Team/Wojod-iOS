@@ -18,13 +18,9 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 </details>
 ## [Unreleased]
 ### Added
-- Add watermark for pdfs.
-  Task: [CPI-356](https://jira.pharos-solutions.de/browse/CPI-356) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Changed
-- Changeed downloadable option for pdfs.
-  Task: [CPI-357](https://jira.pharos-solutions.de/browse/CPI-357) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
-- Changed helpdesk chat by a popup showing whatsapp number with navigation.  
-  Task: [CPI-360](https://jira.pharos-solutions.de/browse/CPI-360) | PR: [#52](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/52) | Author: [Sara Rady](https://github.com/sara-rady)
+- None.
 ### Deprecated
 - None.
 ### Removed
@@ -33,6 +29,16 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 - None.
 ### Security
 - None.
+
+## [2.3.0] - 2026-10-07
+### Added
+- Add watermark for pdfs.
+  Task: [CPI-356](https://jira.pharos-solutions.de/browse/CPI-356) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
+### Changed
+- Changeed downloadable option for pdfs.
+  Task: [CPI-357](https://jira.pharos-solutions.de/browse/CPI-357) | PR: [#49](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/49) | Author: [Sara Rady](https://github.com/sara-rady)
+- Changed helpdesk chat by a popup showing whatsapp number with navigation.  
+  Task: [CPI-360](https://jira.pharos-solutions.de/browse/CPI-360) | PR: [#52](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/52) | Author: [Sara Rady](https://github.com/sara-rady)
 
 ## [HotFix] - 2026-10-02
 ### Fixed
