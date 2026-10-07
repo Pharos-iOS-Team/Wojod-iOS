@@ -251,6 +251,8 @@ No worries!";
 "home.relatedCourses" = "Related Courses";
 "home.exploreMore" = "Explore More";
 "home.helpCenter" = "Help Center";
+"home.whatsappSupportMessage" = "For help contact us on WhatsApp: %@";
+"home.openWhatsApp" = "Open WhatsApp";
 "home.view" = "View";
 "home.quiz" = "Quiz";
 "home.excersise" = "Exercise";

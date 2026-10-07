@@ -184,6 +184,7 @@
 		77C6D6902FFD74B300418DA7 /* SearchDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6852FFD74B300418DA7 /* SearchDebouncer.swift */; };
 		77C6D6932FFD74D300418DA7 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C6D6922FFD74D300418DA7 /* HomeViewController.xib */; };
 		77C6D6942FFD74D300418DA7 /* AdvertisementsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6912FFD74D300418DA7 /* AdvertisementsRepository.swift */; };
+		BEEF00013000000000000001 /* WhatsAppSupportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */; };
 		77C6D6972FFD750400418DA7 /* MyCoursesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C6D6952FFD750400418DA7 /* MyCoursesViewController.xib */; };
 		77C6D6982FFD750400418DA7 /* ReceiptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6962FFD750400418DA7 /* ReceiptPresenter.swift */; };
 		77C6D69C2FFD751800418DA7 /* CoursesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6992FFD751800418DA7 /* CoursesRepository.swift */; };
@@ -731,6 +732,7 @@
 		77C6D6882FFD74B300418DA7 /* CourseSearching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearching.swift; sourceTree = "<group>"; };
 		77C6D6892FFD74B300418DA7 /* Paginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
 		77C6D6912FFD74D300418DA7 /* AdvertisementsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementsRepository.swift; sourceTree = "<group>"; };
+		BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppSupportRepository.swift; sourceTree = "<group>"; };
 		77C6D6922FFD74D300418DA7 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		77C6D6952FFD750400418DA7 /* MyCoursesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCoursesViewController.xib; sourceTree = "<group>"; };
 		77C6D6962FFD750400418DA7 /* ReceiptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPresenter.swift; sourceTree = "<group>"; };
@@ -1896,6 +1898,7 @@
 				77C6D6992FFD751800418DA7 /* CoursesRepository.swift */,
 				77C6D6912FFD74D300418DA7 /* AdvertisementsRepository.swift */,
 				77C6D69A2FFD751800418DA7 /* UserProfileRepository.swift */,
+				BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -3388,6 +3391,7 @@
 				D5AD7B5E2F9E7B4300EA7C7B /* AssessmentSubmissionsResponse.swift in Sources */,
 				D5AD7B602F9E7B4300EA7C7B /* Choice.swift in Sources */,
 				77C6D6942FFD74D300418DA7 /* AdvertisementsRepository.swift in Sources */,
+				BEEF00013000000000000001 /* WhatsAppSupportRepository.swift in Sources */,
 				D5AD7B632F9E7B4300EA7C7B /* VersionResponse.swift in Sources */,
 				D5AD7B642F9E7B4300EA7C7B /* AssessmentSubmissionRequestModel.swift in Sources */,
 				D5881F7F300B96B500316A28 /* NoCutPasteTextField.swift in Sources */,

@@ -351,6 +351,10 @@ internal enum L10n {
     internal static var helpCenter: String {
         return L10n.tr("Localizable", "home.helpCenter")
       }
+    /// Open WhatsApp
+    internal static var openWhatsApp: String {
+        return L10n.tr("Localizable", "home.openWhatsApp")
+      }
     /// Pending
     internal static var pending: String {
         return L10n.tr("Localizable", "home.pending")
@@ -367,6 +371,10 @@ internal enum L10n {
     internal static var view: String {
         return L10n.tr("Localizable", "home.view")
       }
+    /// For help contact us on WhatsApp: %@
+    internal static func whatsappSupportMessage(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "home.whatsappSupportMessage", String(describing: p1))
+    }
     internal enum Ads {
       /// View more
       internal static var viewMore: String {
