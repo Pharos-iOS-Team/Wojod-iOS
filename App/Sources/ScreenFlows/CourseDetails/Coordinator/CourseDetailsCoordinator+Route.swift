@@ -36,7 +36,7 @@ extension CourseDetailsCoordinator {
         case didSelectDocument(AttachmentDomain)
 
         // MARK: - Documents & Safari
-        case showDocument(title: String, urlString: String, isPdf: Bool)
+        case showDocument(attachment: AttachmentDomain)
         case showSafari(url: URL)
 
         // MARK: - Navigation

@@ -10,6 +10,7 @@ struct AttachmentDomain {
     let fileUrl: String?
     let publishedAt: Date?
     let mappedContentType: DocumentContentType?
+    let isDownloadable: Bool
 }
 
 // MARK: - MaterialItemProtocol

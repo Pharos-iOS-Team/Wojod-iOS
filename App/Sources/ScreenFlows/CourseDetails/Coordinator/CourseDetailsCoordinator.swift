@@ -65,8 +65,8 @@ final class CourseDetailsCoordinator {
             routeVideo(video, hideViews: hideViews)
         case let .didSelectDocument(document):
             routeDocument(document)
-        case let .showDocument(title, url, isPdf):
-            showDocument(title: title, urlString: url, isPdf: isPdf)
+        case let .showDocument(document):
+            showDocument(document: document)
         case let .showSafari(url):
             showSafari(url: url)
         case let .showChat(courseID, teacherID):
@@ -109,14 +109,7 @@ extension CourseDetailsCoordinator {
             handle(.showSafari(url: url))
             return
         }
-
-        let url = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-        let isPdf = document.mappedContentType == .pdf && AppEnvironment.appName == .squareCenter
-        handle(.showDocument(
-            title: document.title ?? document.fileName ?? "",
-            urlString: url.absoluteString,
-            isPdf: isPdf
-        ))
+        handle(.showDocument(attachment: document))
     }
 
     private func showContactUs(info: String) {
@@ -263,12 +256,10 @@ extension CourseDetailsCoordinator {
         )
     }
 
-    private func showDocument(title: String, urlString: String, isPdf: Bool) {
+    private func showDocument(document: AttachmentDomain) {
         guard let viewController else { return }
-        let viewerViewCtrl = DocumentViewerViewController(title: title, urlString: urlString, isPdf: isPdf)
-        let navViewCtrl = UINavigationController(rootViewController: viewerViewCtrl)
-        navViewCtrl.modalPresentationStyle = .overFullScreen
-        viewController.present(navViewCtrl, animated: true)
+        let documentPreviewCoordinator = DocumentPreviewCoordinator()
+        documentPreviewCoordinator.present(document: document, from: viewController)
     }
 
     private func showSafari(url: URL) {
