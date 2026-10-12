@@ -10,6 +10,7 @@ enum HomeEndpoint {
     case searchCourses(SearchRequest)
     case loadAdvertisements
     case loadFilteredCourses(FilteredCoursesRequestModel)
+    case getWhatsAppSupportNumber(loginOrganization: String?)
 }
 
 extension HomeEndpoint: TargetType {
@@ -27,6 +28,8 @@ extension HomeEndpoint: TargetType {
             return "/advertisements"
         case .loadFilteredCourses:
             return "/courses"
+        case .getWhatsAppSupportNumber:
+            return "/whatsapp_support_number"
         }
     }
 
@@ -42,6 +45,9 @@ extension HomeEndpoint: TargetType {
             return .queryParameters(requestModel)
         case let .loadFilteredCourses(requestModel):
             return .queryParameters(requestModel)
+        case let .getWhatsAppSupportNumber(loginOrganization):
+            guard let org = loginOrganization else { return .requestPlain }
+            return .requestParameters(parameters: ["login_organization": org], encoding: URLEncoding.queryString)
         default:
             return .requestPlain
         }

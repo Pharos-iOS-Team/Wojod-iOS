@@ -260,10 +260,7 @@ extension CourseDetailsViewController {
         if let linkString = document.link, let url = URL(string: linkString) {
             coordinator.showSafari(url: url, from: self)
         } else {
-            let documentURL = AppEnvironment.baseURL.appendingPathComponent(document.fileUrl ?? "")
-            let isPdf = document.mappedContentType == .pdf && AppEnvironment.appName == .squareCenter
-            let documentTitle = document.title ?? document.fileName ?? ""
-            coordinator.showDocumentViewer(title: documentTitle, urlString: documentURL.absoluteString, isPdf: isPdf, from: self)
+            coordinator.showDocument(document.domainModel, from: self)
         }
     }
 }

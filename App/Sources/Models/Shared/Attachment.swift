@@ -11,6 +11,7 @@ struct Attachment: Codable, ContentTypeable {
     var contentType: String?
     var type: String?
     var publishedAt: Date?
+    var downloadable: Bool?
     var isAudio: Bool { contentType?.contains("audio") ?? false }
 }
 
@@ -25,7 +26,8 @@ extension Attachment {
             link: link,
             fileUrl: fileUrl,
             publishedAt: publishedAt,
-            mappedContentType: mappedContentType
+            mappedContentType: mappedContentType,
+            isDownloadable: downloadable ?? true
         )
     }
 }

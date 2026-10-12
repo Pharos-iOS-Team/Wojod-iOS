@@ -60,7 +60,7 @@ final class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
-        navigationCoordinator.showHelpCenter(from: self)
+        navigationCoordinator.showWhatsAppSupport(from: self)
     }
 
     @IBAction private func didTapFiltersButton(_ sender: UIButton) {
@@ -93,6 +93,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadAndConfigureAdvertisements()
+        navigationCoordinator.prefetchWhatsAppSupportNumber()
     }
 
     override func viewDidAppear(_ animated: Bool) {

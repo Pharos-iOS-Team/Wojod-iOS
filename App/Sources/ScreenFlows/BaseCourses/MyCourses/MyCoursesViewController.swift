@@ -58,6 +58,11 @@ final class MyCoursesViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationCoordinator.prefetchWhatsAppSupportNumber()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopAllPlayingVideos()
@@ -69,7 +74,7 @@ final class MyCoursesViewController: UIViewController {
     }
 
     @IBAction private func didTapHelpCenterButton(_ sender: UIButton) {
-        navigationCoordinator.showHelpCenter(from: self)
+        navigationCoordinator.showWhatsAppSupport(from: self)
     }
 
     // MARK: - Private
