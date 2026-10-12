@@ -14,6 +14,7 @@ final class VideoPlaybackService: NSObject {
     private var updateId: Int = .zero
     private var videoId: String = ""
     private weak var alertHandler: AlertHandler?
+    private var watermarkViewController: UIViewController?
 
     var onUpdateVideo: ((String, UpdateObject) -> Void)?
 
@@ -69,6 +70,32 @@ final class VideoPlaybackService: NSObject {
                                 loadingHostingController.willMove(toParent: nil)
                                 loadingHostingController.view.removeFromSuperview()
                                 loadingHostingController.removeFromParent()
+
+                                guard response?.watermarkEmbedded == false else { return }
+
+                                let watermarkText = User.shared.mobileNumber ?? ""
+                                let watermarkHostingController = UIHostingController(
+                                    rootView: Color.clear.watermark(watermarkText)
+                                )
+                                watermarkHostingController.view.backgroundColor = .clear
+                                watermarkHostingController.view.isUserInteractionEnabled = false
+                                watermarkHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+
+                                self.watermarkViewController?.willMove(toParent: nil)
+                                self.watermarkViewController?.view.removeFromSuperview()
+                                self.watermarkViewController?.removeFromParent()
+
+                                vdoPlayerController.addChild(watermarkHostingController)
+                                vdoPlayerController.view.addSubview(watermarkHostingController.view)
+
+                                NSLayoutConstraint.activate([
+                                    watermarkHostingController.view.topAnchor.constraint(equalTo: vdoPlayerController.view.topAnchor),
+                                    watermarkHostingController.view.bottomAnchor.constraint(equalTo: vdoPlayerController.view.bottomAnchor),
+                                    watermarkHostingController.view.leadingAnchor.constraint(equalTo: vdoPlayerController.view.leadingAnchor),
+                                    watermarkHostingController.view.trailingAnchor.constraint(equalTo: vdoPlayerController.view.trailingAnchor)
+                                ])
+                                watermarkHostingController.didMove(toParent: vdoPlayerController)
+                                self.watermarkViewController = watermarkHostingController
                             }
 
                             self.updateId = response?.updateId ?? .zero

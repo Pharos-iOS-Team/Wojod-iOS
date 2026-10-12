@@ -8,4 +8,5 @@ struct EncryptedVideoResponse: Codable, Equatable {
     var updateId: Int?
     var guid: String?
     var libraryId: Int?
+    var watermarkEmbedded: Bool?
 }
