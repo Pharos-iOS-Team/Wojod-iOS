@@ -152,8 +152,9 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
     private func loadInitialData() {
         Task { [weak self] in
             guard let self else { return }
-            await viewModel.loadCourseDetails()
-            viewModel.loadActiveTab()
+            if await viewModel.loadCourseDetails() {
+                viewModel.loadActiveTab()
+            }
         }
     }
 
@@ -340,8 +341,11 @@ class CourseDetailsViewController: UIViewController, CourseDetailsTableViewManag
     private func refresh(_ sender: AnyObject) {
         Task { [weak self] in
             guard let self else { return }
-            await viewModel.loadCourseDetails()
-            viewModel.loadActiveTab()
+            if await viewModel.loadCourseDetails() {
+                viewModel.loadActiveTab()
+            } else {
+                tableView.refreshControl?.endRefreshing()
+            }
         }
     }
 

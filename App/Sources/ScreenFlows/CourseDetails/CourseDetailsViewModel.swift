@@ -197,16 +197,19 @@ final class CourseDetailsViewModel: NSObject {
         }
     }
 
-    func loadCourseDetails() async {
-        guard let courseID = state.course?.id else { return }
+    @discardableResult
+    func loadCourseDetails() async -> Bool {
+        guard let courseID = state.course?.id else { return false }
         await MainActor.run { state.isLoading = true }
         defer { Task { @MainActor in state.isLoading = false } }
         do {
             let response = try await repository.loadCourse(courseID: "\(courseID)")
             state.course = response.course
             state.hideViews = response.hideViews ?? false
+            return true
         } catch {
             state.error = error.localizedDescription
+            return false
         }
     }
 

@@ -26,6 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
+- Fixed Remaining Video Alert Appears Unexpectedly.
+  Task: [CPI-362](https://jira.pharos-solutions.de/browse/CPI-362) | PR: [#53](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/53) | Author: [Sara Rady](https://github.com/sara-rady)
 - None.
 ### Security
 - None.
