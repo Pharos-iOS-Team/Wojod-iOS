@@ -30,6 +30,11 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Security
 - None.
 
+## [2.3.1] - 2026-10-27
+### Fixed
+- Fixed Remaining Video Alert Appears Unexpectedly.
+  Task: [CPI-362](https://jira.pharos-solutions.de/browse/CPI-362) | PR: [#53](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/53) | Author: [Sara Rady](https://github.com/sara-rady)
+
 ## [2.3.0] - 2026-10-07
 ### Added
 - Add watermark for pdfs.
