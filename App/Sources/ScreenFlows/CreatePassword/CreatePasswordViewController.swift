@@ -43,11 +43,6 @@ class CreatePasswordViewController: UIViewController {
             sendButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.setImage(Images.localizedBackButton)
-        }
-    }
     @IBOutlet private var titleLabel: UILabel!
 
     var viewModel = CreatePasswordViewModel()
@@ -55,6 +50,7 @@ class CreatePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         handleErrors()
         handleSuccess()
         configureUI()
@@ -75,13 +71,17 @@ class CreatePasswordViewController: UIViewController {
         )
     }
 
-    @IBAction private func dismissView(_ sender: Any) {
-        if viewModel.isActivationFlow {
-            let loginViewCtrl = view.window?.rootViewController as? LoginViewController
-            view.window?.rootViewController?.dismiss(animated: true)
-        } else {
-            rootViewCtrl?.dismiss(animated: true)
-        }
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(dismissView)
+        )
+    }
+
+    @objc private func dismissView() {
+        dismiss(animated: true)
     }
 
     private func showLoadingIndicator() {

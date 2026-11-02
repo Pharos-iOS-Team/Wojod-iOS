@@ -156,9 +156,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="S1U-jZ-Tnc" firstAttribute="bottom" secondItem="abG-Sv-zMX" secondAttribute="bottom" id="Kdz-fa-auM"/>
-                            <constraint firstAttribute="leading" secondItem="S1U-jZ-Tnc" secondAttribute="leading" id="YbN-Qa-RwP"/>
+                            <constraint firstItem="S1U-jZ-Tnc" firstAttribute="leading" secondItem="wyB-Mr-nsa" secondAttribute="leading" id="YbN-Qa-RwP"/>
                             <constraint firstItem="S1U-jZ-Tnc" firstAttribute="top" secondItem="wyB-Mr-nsa" secondAttribute="top" id="cph-no-PXC"/>
-                            <constraint firstItem="S1U-jZ-Tnc" firstAttribute="trailing" secondItem="abG-Sv-zMX" secondAttribute="trailing" id="pxf-eb-DMc"/>
+                            <constraint firstItem="S1U-jZ-Tnc" firstAttribute="trailing" secondItem="wyB-Mr-nsa" secondAttribute="trailing" id="pxf-eb-DMc"/>
                         </constraints>
                     </view>
                     <connections>

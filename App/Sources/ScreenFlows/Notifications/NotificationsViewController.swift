@@ -7,13 +7,7 @@ import UIKit
 class NotificationsViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet private var backButton: UIButton!
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var notificationsScreenTitleLabel: UILabel! {
-        didSet {
-            notificationsScreenTitleLabel.text = L10n.Notifications.title
-        }
-    }
 
     // MARK: - Private Properties
 
@@ -32,6 +26,7 @@ class NotificationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = NotificationsViewModel()
+        configureNavigationBar()
         configureTableView()
         configureRefreshControl()
         loadNotifications()
@@ -39,13 +34,21 @@ class NotificationsViewController: UIViewController {
         observeInternetConnection()
     }
 
-    // MARK: - IBActions
+    // MARK: - Private functions
 
-    @IBAction private func didTapOnBack(_ sender: UIButton) {
-        self.dismiss(animated: true)
+    private func configureNavigationBar() {
+        title = L10n.Notifications.title
+        let closeButton = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(didTapClose)
+        )
+        navigationItem.rightBarButtonItem = closeButton
     }
 
-    // MARK: - Private functions
+    @objc private func didTapClose() {
+        dismiss(animated: true)
+    }
 
     private func configureTableView() {
         tableView.registerCell(ofType: NotificationTableViewCell.self)

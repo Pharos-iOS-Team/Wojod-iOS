@@ -203,6 +203,7 @@
 		77EE8B3D27DA411700B0CE45 /* UITagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B3C27DA411700B0CE45 /* UITagLabel.swift */; };
 		77EE8B3F27DA51B100B0CE45 /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */; };
 		77EE8B4127DA5C2800B0CE45 /* TimeIntervalExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */; };
+		A14E6B3A63F44950A2101CA2B0BA0FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DBD42617B404997E558D396B1EB38 /* SceneDelegate.swift */; };
 		BC083B032641725B00A1E6A4 /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B022641725B00A1E6A4 /* PickerInputView.swift */; };
 		BC083B092641755A00A1E6A4 /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B082641755A00A1E6A4 /* AccessoryView.swift */; };
 		BC083B0E26418F3400A1E6A4 /* AcademicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */; };
@@ -492,6 +493,7 @@
 		D5F1AE583035CED00036B1C5 /* PhoneNumberKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5F1AE573035CED00036B1C5 /* PhoneNumberKitUI */; };
 		D5F1AE5A3035D3CB0036B1C5 /* OTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1AE593035D3CB0036B1C5 /* OTPProvider.swift */; };
 		D5F1AE5C3035D3F50036B1C5 /* PhoneNumberValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1AE5B3035D3F50036B1C5 /* PhoneNumberValidator.swift */; };
+		D5F217893052C36C003B9EAD /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5F217883052C36C003B9EAD /* ComposableArchitecture */; };
 		D5FE3E9E2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE3E9C2F8F84080008EA86 /* CommentAndImagesTableViewCell.swift */; };
 		D5FE3EA22F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3E9F2F8F8F320008EA86 /* CommentAndImagesTableViewCell.xib */; };
 		D5FE3EA32F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FE3EA12F8F8F320008EA86 /* CorrectionImageCollectionViewCell.xib */; };
@@ -503,7 +505,6 @@
 		D5FFA0542F3C9F51009B796A /* YouTubePlayerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0522F3C9F51009B796A /* YouTubePlayerReducer.swift */; };
 		D5FFA0552F3C9F51009B796A /* YouTubePlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0532F3C9F51009B796A /* YouTubePlayerStore.swift */; };
 		D5FFA0592F3CBAD0009B796A /* CollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFA0582F3CBACB009B796A /* CollectionExt.swift */; };
-		D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */; };
 		E848745A2624B138006DF74C /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84874592624B138006DF74C /* Registration.storyboard */; };
 		E84E78DB26553DC8000902CB /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E78DA26553DC8000902CB /* ViewControllerExt.swift */; };
 		E85C74972640AFEE0097F115 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85C74962640AFEE0097F115 /* AvatarCell.swift */; };
@@ -761,6 +762,7 @@
 		77EE8B3E27DA51B100B0CE45 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
 		77EE8B4027DA5C2800B0CE45 /* TimeIntervalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExt.swift; sourceTree = "<group>"; };
 		89D346904F66428C917DB371 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		9A1DBD42617B404997E558D396B1EB38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BC083B022641725B00A1E6A4 /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		BC083B082641755A00A1E6A4 /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BC083B0D26418F3300A1E6A4 /* AcademicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicInfo.swift; sourceTree = "<group>"; };
@@ -1109,9 +1111,9 @@
 				BC8C1E9B2DA7CE01000AED7F /* MessageKit in Frameworks */,
 				BC3424282D6E208E005E26DE /* FirebaseCrashlytics in Frameworks */,
 				BC6B69D62C189BCD00E990C0 /* DZNEmptyDataSet in Frameworks */,
+				D5F217893052C36C003B9EAD /* ComposableArchitecture in Frameworks */,
 				BC6B69DC2C189DE100E990C0 /* HandyUIKit in Frameworks */,
 				D5EED9752E926EAA007CC0FE /* IQKeyboardToolbarManager in Frameworks */,
-				D5FFA05C2F3CD7EF009B796A /* ComposableArchitecture in Frameworks */,
 				BC8C1E9E2DA7CF66000AED7F /* Moya in Frameworks */,
 				BC6B69CD2C18966E00E990C0 /* HandySwift in Frameworks */,
 			);
@@ -1546,6 +1548,7 @@
 				7723AD1D261C6134007C0B97 /* ScreensFlowConfigurationAppDelegate.swift */,
 				7723AD1E261C6134007C0B97 /* ThirdPartiesConfiguratorAppDelegate.swift */,
 				D5B48A162F9932C200CAD7B8 /* ForceUpdateAppDelegate.swift */,
+				9A1DBD42617B404997E558D396B1EB38 /* SceneDelegate.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -2789,13 +2792,13 @@
 				7719A08B2E251108004541E6 /* JGProgressHUD */,
 				D5EED9712E926E8C007CC0FE /* IQKeyboardManagerSwift */,
 				D5EED9742E926EAA007CC0FE /* IQKeyboardToolbarManager */,
-				D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */,
 				D51B99152F3CE5CA00B77BA4 /* SFSafeSymbols */,
 				D5B48A142F99321400CAD7B8 /* Siren */,
 				D5125F4C2F9972A90027E9EB /* BunnyStreamAPI */,
 				D5125F4E2F9972A90027E9EB /* BunnyStreamPlayer */,
 				D5F1AE543035CE480036B1C5 /* PhoneNumberKit */,
 				D5F1AE573035CED00036B1C5 /* PhoneNumberKitUI */,
+				D5F217883052C36C003B9EAD /* ComposableArchitecture */,
 			);
 			productName = Wojood;
 			productReference = 77C88E2727722BC200E39AA0 /* Wojood.app */;
@@ -2874,12 +2877,12 @@
 				7719A08A2E251108004541E6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				D5EED9702E926E8C007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				D5EED9732E926EAA007CC0FE /* XCRemoteSwiftPackageReference "IQKeyboardToolbarManager" */,
-				D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				D51B99142F3CE5CA00B77BA4 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				D5B48A132F99321400CAD7B8 /* XCRemoteSwiftPackageReference "Siren" */,
 				D5125F4B2F9972A90027E9EB /* XCRemoteSwiftPackageReference "bunny-stream-ios" */,
 				D5F1AE533035CE480036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				D5F1AE563035CED00036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKitUI" */,
+				D5F217873052C36C003B9EAD /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 7723ACCE261C5E68007C0B97;
 			projectDirPath = "";
@@ -3489,6 +3492,7 @@
 				BC98F3F72623370500032AC6 /* AlertView.swift in Sources */,
 				38B03552265B9EF200C24479 /* NotificationsViewController.swift in Sources */,
 				7723ACDB261C5E69007C0B97 /* AppDelegate.swift in Sources */,
+				A14E6B3A63F44950A2101CA2B0BA0FD7 /* SceneDelegate.swift in Sources */,
 				380B13AA26B807F700CB5811 /* AssessmentDetailsViewModel.swift in Sources */,
 				BC7D1DF42643EDE000F21515 /* AvatarCollectionViewCell.swift in Sources */,
 				77EE8B3F27DA51B100B0CE45 /* UIPaddingLabel.swift in Sources */,
@@ -3687,7 +3691,7 @@
 				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3722,7 +3726,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3856,7 +3860,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3970,7 +3974,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4083,7 +4087,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4196,7 +4200,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4309,7 +4313,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4422,7 +4426,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4755,13 +4759,15 @@
 				minimumVersion = 1.1.0;
 			};
 		};
-		D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		D5F217873052C36C003B9EAD /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.23.2;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.26.2;
 			};
+			traits = (
+			);
 		};
 /* End XCRemoteSwiftPackageReference section */
 
@@ -4936,9 +4942,9 @@
 			package = D5F1AE563035CED00036B1C5 /* XCRemoteSwiftPackageReference "PhoneNumberKitUI" */;
 			productName = PhoneNumberKitUI;
 		};
-		D5FFA05B2F3CD7EF009B796A /* ComposableArchitecture */ = {
+		D5F217883052C36C003B9EAD /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D5FFA05A2F3CD7EF009B796A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = D5F217873052C36C003B9EAD /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

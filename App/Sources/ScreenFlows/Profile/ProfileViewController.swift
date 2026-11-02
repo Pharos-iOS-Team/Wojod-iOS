@@ -16,18 +16,6 @@ class ProfileViewController: UIViewController {
             profileTableView.delegate = self
         }
     }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.contentHorizontalAlignment = Language.contentHorizontalAlignment
-            backButton.semanticContentAttribute = Language.semanticContent
-        }
-    }
-    @IBOutlet private var saveButton: UIButton! {
-        didSet {
-            saveButton.setTitle(L10n.Profile.save)
-        }
-    }
-
     private let viewModel = ProfileViewModel()
     private var loadingHud: JGProgressHUD?
     var avatars: [Avatar]?
@@ -38,6 +26,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         registerNib()
         avatarsSuccessHandler()
         editSuccessHandler()
@@ -55,11 +44,30 @@ class ProfileViewController: UIViewController {
         fetchAvatars()
     }
 
-    @IBAction private func editProfile(_ sender: Any) {
-        editProfile()
+    private func configureNavigationBar() {
+        let backItem = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(dismissProfile)
+        )
+        navigationItem.leftBarButtonItem = backItem
+        let saveItem = UIBarButtonItem(
+            title: L10n.Profile.save,
+            style: .done,
+            target: self,
+            action: #selector(saveProfile)
+        )
+        saveItem.tintColor = Colors.sendButtonColor.color
+        navigationItem.rightBarButtonItem = saveItem
     }
-    @IBAction private func dismiss(_ sender: Any) {
+
+    @objc private func dismissProfile() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func saveProfile() {
+        editProfile()
     }
 
     private func registerNib() {

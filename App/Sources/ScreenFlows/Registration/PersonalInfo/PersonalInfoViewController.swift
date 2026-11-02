@@ -9,7 +9,7 @@ final class PersonalInfoViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var closeButton: UIButton!
+
     @IBOutlet var signUpTitleImageView: UIImageView! {
         didSet { signUpTitleImageView.image = Images.signUpTitlePageOne }
     }
@@ -59,6 +59,7 @@ final class PersonalInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         configureSemanticAttribute()
         configureFields()
         let validatedFields = [
@@ -82,7 +83,16 @@ final class PersonalInfoViewController: UIViewController {
 
     // MARK: - IBActions
 
-    @IBAction private func didTapOnClose(_ sender: UIButton) {
+    private func configureNavigationBar() {
+        let closeItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(didTapOnClose)
+        )
+        navigationItem.leftBarButtonItem = closeItem
+    }
+
+    @objc private func didTapOnClose() {
         viewModel.dismissRegistration(from: self)
     }
 

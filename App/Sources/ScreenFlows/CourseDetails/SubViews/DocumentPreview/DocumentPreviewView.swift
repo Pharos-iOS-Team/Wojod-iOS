@@ -27,19 +27,17 @@ struct DocumentPreviewView: View {
                     .ignoresSafeArea()
 
                     if !watermarkText.isEmpty {
-                        GeometryReader { geometry in
-                            let isLandscape = geometry.size.width > geometry.size.height
-                            Text(watermarkText)
-                                .font(.system(size: geometry.size.width / (isLandscape ? 24.0 : 8.0), weight: .bold))
-                                .minimumScaleFactor(0.3)
-                                .lineLimit(2)
-                                .multilineTextAlignment(.center)
-                                .allowsTightening(true)
-                                .rotationEffect(.degrees(45))
-                                .foregroundColor(.gray.opacity(0.5))
-                                .frame(maxWidth: isLandscape ? geometry.size.height : .infinity)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
+                        let isLandscape = UIScreen.main.bounds.width > UIScreen.main.bounds.height
+                        Text(watermarkText)
+                            .font(.system(size: UIScreen.main.bounds.width / (isLandscape ? 24.0 : 8.0), weight: .bold))
+                            .minimumScaleFactor(0.3)
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .allowsTightening(true)
+                            .rotationEffect(.degrees(45))
+                            .foregroundColor(.gray.opacity(0.5))
+                            .frame(maxWidth: isLandscape ? UIScreen.main.bounds.height : .infinity)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }
                 .ignoresSafeArea()

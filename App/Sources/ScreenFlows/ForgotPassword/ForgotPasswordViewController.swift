@@ -45,17 +45,13 @@ class ForgotPasswordViewController: UIViewController {
             sendButton.setImage(Images.localizedDisclosureIndicatorButton)
         }
     }
-    @IBOutlet private var backButton: UIButton! {
-        didSet {
-            backButton.setImage(Images.localizedBackButton)
-        }
-    }
 
     private var loadingHud: JGProgressHUD?
     private var viewModel = ForgotPasswordViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         configurePhoneField()
         syncViewModel()
         sendButton.isEnabled = false
@@ -82,12 +78,21 @@ class ForgotPasswordViewController: UIViewController {
 
     // MARK: - IBActions
 
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(dismissView)
+        )
+    }
+
     @IBAction private func sendNumber(_ sender: Any) {
         alertView.hideAlertView()
         send(mobileNumber: mobileNumberTextField.nationalNumber)
     }
 
-    @IBAction private func dismissView(_ sender: Any) {
+    @objc private func dismissView() {
         dismiss(animated: true, completion: nil)
     }
 
@@ -150,7 +155,6 @@ class ForgotPasswordViewController: UIViewController {
             guard let self = self else { return }
             self.hideLoadingIndicator()
             let verifyOtpViewCtrl = StoryboardScene.VerifyOtp.verifyOtpViewController.instantiate().with {
-                $0.modalPresentationStyle = .fullScreen
                 $0.viewModel = .init(
                     mobileNumber: self.mobileNumberTextField.nationalNumber,
                     countryCode: self.viewModel.selectedCountryCode,
@@ -163,16 +167,19 @@ class ForgotPasswordViewController: UIViewController {
                     }
                 )
             }
-            self.present(verifyOtpViewCtrl, animated: true)
+            let navCtrl = UINavigationController(rootViewController: verifyOtpViewCtrl)
+            navCtrl.modalPresentationStyle = .fullScreen
+            self.present(navCtrl, animated: true)
         }
     }
 
     private func showCreatePasswordScreen(mobileNumber: String) {
         let createPasswordViewCtrl = StoryboardScene.CreatePassword.createPasswordViewController.instantiate().with {
             $0.viewModel = .init(mobileNumber: mobileNumber, countryCode: self.viewModel.selectedCountryCode)
-            $0.modalPresentationStyle = .fullScreen
         }
-        present(createPasswordViewCtrl, animated: true)
+        let navCtrl = UINavigationController(rootViewController: createPasswordViewCtrl)
+        navCtrl.modalPresentationStyle = .fullScreen
+        present(navCtrl, animated: true)
     }
 }
 

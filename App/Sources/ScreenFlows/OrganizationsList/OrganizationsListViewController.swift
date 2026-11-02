@@ -6,7 +6,6 @@ import UIKit
 
 class OrganizationsListViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var titleLabel: UILabel!
 
     private var viewModel: OrganizationsListViewModel?
     private var loadingHud: JGProgressHUD?
@@ -14,19 +13,26 @@ class OrganizationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = OrganizationsListViewModel()
+        configureNavigationBar()
         showLoadingIndicator()
-        setViewControllerTitle()
         configureTableView()
         configureErrorHandler()
         fetchOrganizations()
     }
 
-    @IBAction private func dismissView(_ sender: Any) {
-        dismiss(animated: true)
+    private func configureNavigationBar() {
+        title = L10n.Organizations.title
+        let closeButton = UIBarButtonItem(
+            image: Images.localizedBackButton,
+            style: .plain,
+            target: self,
+            action: #selector(dismissView)
+        )
+        navigationItem.leftBarButtonItem = closeButton
     }
 
-    private func setViewControllerTitle() {
-        titleLabel.text = L10n.Organizations.title
+    @objc private func dismissView() {
+        dismiss(animated: true)
     }
 
     private func configureTableView() {

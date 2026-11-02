@@ -108,7 +108,7 @@
                         <color key="backgroundColor" name="superLightGreyBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YDd-VY-3TQ" firstAttribute="leading" secondItem="YxP-J3-d9A" secondAttribute="leading" id="0uJ-5i-XIt"/>
-                            <constraint firstItem="lTA-ov-VZE" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="EgN-Bf-Sua"/>
+                            <constraint firstItem="lTA-ov-VZE" firstAttribute="leading" secondItem="YxP-J3-d9A" secondAttribute="leading" id="EgN-Bf-Sua"/>
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="trailing" secondItem="YDd-VY-3TQ" secondAttribute="trailing" id="Mpd-Ji-9m7"/>
                             <constraint firstItem="YxP-J3-d9A" firstAttribute="bottom" secondItem="lTA-ov-VZE" secondAttribute="bottom" id="Z83-FJ-BGg"/>
                             <constraint firstItem="YDd-VY-3TQ" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="ZIn-Zu-Si5"/>
@@ -116,7 +116,7 @@
                             <constraint firstItem="clv-Overlay" firstAttribute="leading" secondItem="ZZO-zO-dkI" secondAttribute="leading" id="clv-lead"/>
                             <constraint firstItem="clv-Overlay" firstAttribute="top" secondItem="ZZO-zO-dkI" secondAttribute="top" id="clv-top"/>
                             <constraint firstAttribute="trailing" secondItem="clv-Overlay" secondAttribute="trailing" id="clv-trail"/>
-                            <constraint firstAttribute="trailing" secondItem="lTA-ov-VZE" secondAttribute="trailing" id="nGf-G6-tw0"/>
+                            <constraint firstItem="YxP-J3-d9A" firstAttribute="trailing" secondItem="lTA-ov-VZE" secondAttribute="trailing" id="nGf-G6-tw0"/>
                             <constraint firstItem="lTA-ov-VZE" firstAttribute="top" secondItem="YDd-VY-3TQ" secondAttribute="bottom" id="sKO-sz-mJs"/>
                         </constraints>
                     </view>
