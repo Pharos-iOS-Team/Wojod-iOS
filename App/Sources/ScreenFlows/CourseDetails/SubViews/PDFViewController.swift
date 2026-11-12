@@ -41,6 +41,11 @@ final class PDFViewController: UIViewController {
         onDismiss()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pdfView.disableTextSelection()
+    }
+
     private func setupPDFView() {
         pdfView.translatesAutoresizingMaskIntoConstraints = false
         pdfView.autoScales = true
@@ -58,5 +63,6 @@ final class PDFViewController: UIViewController {
         if let document = PDFDocument(url: itemURL) {
             pdfView.document = document
         }
+        pdfView.disableTextSelection()
     }
 }
