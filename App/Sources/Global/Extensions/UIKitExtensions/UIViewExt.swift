@@ -190,6 +190,23 @@ extension UIView {
 }
 
 extension UIView {
+    /// Recursively removes text-selection/edit interactions .
+    func disableTextSelection() {
+        interactions.forEach { interaction in
+            if interaction is UITextInteraction || interaction is UIEditMenuInteraction {
+                removeInteraction(interaction)
+            }
+        }
+        gestureRecognizers?.forEach {
+            if $0 is UILongPressGestureRecognizer {
+                $0.isEnabled = false
+            }
+        }
+        subviews.forEach { $0.disableTextSelection() }
+    }
+}
+
+extension UIView {
     func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder

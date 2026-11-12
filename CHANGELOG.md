@@ -26,7 +26,8 @@ If needed, pluralize to `Tasks`, `PRs` or `Authors` and list multiple separated 
 ### Removed
 - None.
 ### Fixed
-- None.
+- Fixed Prevent text selection and copying in pdfs.
+  Task: [CPI-364](https://jira.pharos-solutions.de/browse/CPI-364) | PR: [#54](https://github.com/Pharos-iOS-Team/Wojod-iOS/pull/54) | Author: [Sara Rady](https://github.com/sara-rady)
 ### Security
 - None.
 

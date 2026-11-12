@@ -184,7 +184,6 @@
 		77C6D6902FFD74B300418DA7 /* SearchDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6852FFD74B300418DA7 /* SearchDebouncer.swift */; };
 		77C6D6932FFD74D300418DA7 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C6D6922FFD74D300418DA7 /* HomeViewController.xib */; };
 		77C6D6942FFD74D300418DA7 /* AdvertisementsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6912FFD74D300418DA7 /* AdvertisementsRepository.swift */; };
-		BEEF00013000000000000001 /* WhatsAppSupportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */; };
 		77C6D6972FFD750400418DA7 /* MyCoursesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C6D6952FFD750400418DA7 /* MyCoursesViewController.xib */; };
 		77C6D6982FFD750400418DA7 /* ReceiptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6962FFD750400418DA7 /* ReceiptPresenter.swift */; };
 		77C6D69C2FFD751800418DA7 /* CoursesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6D6992FFD751800418DA7 /* CoursesRepository.swift */; };
@@ -296,6 +295,7 @@
 		BC98F439262454E400032AC6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98F438262454E400032AC6 /* LoginViewModel.swift */; };
 		BC995D292D64F74D00B86507 /* VdoFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BC995D282D64F74D00B86507 /* VdoFramework */; };
 		BCF8F77227033F0C009593AA /* AVPlayerItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */; };
+		BEEF00013000000000000001 /* WhatsAppSupportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */; };
 		D5070CDB2E65FECA00728D01 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D5070CDA2E65FEC900728D01 /* LoginResponse.json */; };
 		D50B12163063BED7001E1119 /* DocumentQLPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50B12153063BED7001E1119 /* DocumentQLPreviewController.swift */; };
 		D50B121B3063BF8A001E1119 /* DocumentPreviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50B121A3063BF8A001E1119 /* DocumentPreviewState.swift */; };
@@ -732,7 +732,6 @@
 		77C6D6882FFD74B300418DA7 /* CourseSearching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearching.swift; sourceTree = "<group>"; };
 		77C6D6892FFD74B300418DA7 /* Paginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
 		77C6D6912FFD74D300418DA7 /* AdvertisementsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementsRepository.swift; sourceTree = "<group>"; };
-		BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppSupportRepository.swift; sourceTree = "<group>"; };
 		77C6D6922FFD74D300418DA7 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		77C6D6952FFD750400418DA7 /* MyCoursesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCoursesViewController.xib; sourceTree = "<group>"; };
 		77C6D6962FFD750400418DA7 /* ReceiptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPresenter.swift; sourceTree = "<group>"; };
@@ -834,6 +833,7 @@
 		BC98F438262454E400032AC6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BCD404A82743C6B900B27F98 /* Wojood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wojood-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF8F77127033F0C009593AA /* AVPlayerItemExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExt.swift; sourceTree = "<group>"; };
+		BEEF00013000000000000002 /* WhatsAppSupportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppSupportRepository.swift; sourceTree = "<group>"; };
 		D5070CDA2E65FEC900728D01 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
 		D50B12153063BED7001E1119 /* DocumentQLPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentQLPreviewController.swift; sourceTree = "<group>"; };
 		D50B121A3063BF8A001E1119 /* DocumentPreviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPreviewState.swift; sourceTree = "<group>"; };
@@ -3687,7 +3687,7 @@
 				DEVELOPMENT_TEAM = V2HE6N3YX4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3722,7 +3722,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3856,7 +3856,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3970,7 +3970,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4083,7 +4083,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4196,7 +4196,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4309,7 +4309,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4422,7 +4422,7 @@
 				DEVELOPMENT_TEAM = 46AX569373;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = App/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
